@@ -1,0 +1,10 @@
+Download from source, configure using the commands below:
+
+* In Linux 32-bit: ./configure --enable-static
+* In Linux 64-bit: ./configure --enable-static
+
+.sapp:
+|-bin
+| |-dot
+|
+|-license.txt

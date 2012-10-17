@@ -1,0 +1,13 @@
+#!/bin/bash
+
+JAVA_LOC=java
+SCALA_LOC=$HOME/Downloads/scala-2.9.1-1/lib/scala-library.jar
+WORKSPACE_LIB=$HOME/Documents/WORKSPACE_HOME/sireum-core/lib
+
+# NOTE: 'bin' and '$WORKSPACE_LIB/../bin' allows us to work on the cli stuff
+# in a different scala project (e.g. sireum-cli rather than sireum-core)
+CP=$SCALA_LOC:$WORKSPACE_LIB/string-template-4.0.4.jar:$WORKSPACE_LIB/antlr-runtime-3.4.jar:$WORKSPACE_LIB/xstream-1.4.1.jar:$WORKSPACE_LIB/xpp3-1.1.4c.jar:bin:$WORKSPACE_LIB/../bin
+
+DEST_DIR=./src
+
+$JAVA_LOC -cp $CP sireumcli tools cligen --d $DEST_DIR org.sireum.cli.SireumMode

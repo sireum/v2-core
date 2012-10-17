@@ -1,0 +1,5 @@
+ANTLRWorks v1.4.2 
+ANTLR v3.3
+
+ANTLR Options: -report -Xconversiontimeout 5000
+ANTLRWorks Mac plist->Java: VMOptions: -Xmx1024m

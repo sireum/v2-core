@@ -1,0 +1,177 @@
+topLevel(module, _package, imports, className, topMethod, entry, key) ::= <<
+package $_package$
+
+import org.sireum.util._
+import org.sireum.pipeline._
+import $imports; separator="\nimport "$
+  
+$module; separator="\n\n"$
+>>
+
+modLevel(className, title, reflectClass, origin, key, dep, init, indef, outdef, mod_meth, trait_meth) ::= <<
+object $className$ extends PipelineModule {
+  def title = "$title$"
+  def origin = classOf[$origin$]
+  
+  $key; separator="\n"$
+  
+  def compute(job : PipelineJob, info : PipelineJobModuleInfo) : MBuffer[Tag] = {
+    val tags = marrayEmpty[Tag]
+    try {
+      val module = Class.forName("$reflectClass$")
+      val cons = module.getConstructors()(0)
+      val params = Array[AnyRef](job, info)
+      val inst = cons.newInstance(params : _*)
+    } catch {
+      case e =>
+        e.printStackTrace
+        tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, e.getMessage);
+    }
+    return tags
+  }
+  
+  override def initialize(job : PipelineJob) {
+    $init; separator="\n\n"$
+  }
+  
+  override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
+    val tags = marrayEmpty[Tag]
+    val deps = ilist[PipelineModule]($dep; separator=", "$)
+    deps.foreach(d =>
+      if(stage.modules.contains(d)){
+        tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
+            "'" + this.title + "' depends on '" + d.title + "' yet both were found in stage '" + stage.title + "'"
+        )
+      }
+    )
+    return tags
+  }
+    
+  def inputDefined (job : PipelineJob) : MBuffer[Tag] = {
+    val tags = marrayEmpty[Tag]
+    $indef; separator="\n"$
+    return tags
+  }
+  
+  def outputDefined (job : PipelineJob) : MBuffer[Tag] = {
+    val tags = marrayEmpty[Tag]
+    $outdef; separator="\n\n"$
+    return tags
+  }
+  
+  $mod_meth; separator="\n\n"$
+}
+
+trait $className$ {
+  def job : PipelineJob
+  
+  $trait_meth; separator="\n\n"$
+}
+>>
+
+init(key, set_mod_name, spec_name, mname, static_mname, rtype) ::= <<
+if(!(job ? $key; separator=") && !(job ? "$)) {
+  val $mname$ = Class.forName("$spec_name$").getDeclaredMethod("$static_mname$").invoke(null).asInstanceOf[$rtype$]
+  $set_mod_name$(job.properties, $mname$)
+}
+>>
+
+get_mod_method(mname, rtype, inputchk) ::= <<
+def $mname$ (options : scala.collection.Map[Property.Key, Any]) : $rtype$ = {
+  $inputchk; separator="\n"$
+  
+  throw new Exception("Pipeline checker should guarantee we never reach here")
+}
+>>
+
+get_trait_method(mname, modname, modget, rtype) ::= <<
+def $mname$ : $rtype$ = $modname$.$modget$(job.properties)
+>>
+
+set_mod_method(mname, pname, rtype, assign_key_value) ::= <<
+def $mname$ (options : MMap[Property.Key, Any], $pname$ : $rtype$) : MMap[Property.Key, Any] = {
+
+  $assign_key_value; separator="\n"$
+
+  return options
+}
+>>
+
+assign_key_value(key, pname) ::= <<
+options($key$) = $pname$
+>>
+
+set_trait_method(mname, modname, modset, rtype) ::= <<  
+def $mname$_=($mname$ : $rtype$) { $modname$.$modset$(job.properties, $mname$) }
+>>
+ 
+inputchk(key, rtype) ::= <<
+if (options.contains($key$)) {
+   return options($key$).asInstanceOf[$rtype$]
+}
+>>
+
+indef(mname, key, rtype) ::= <<
+var _$mname$ : scala.Option[AnyRef] = None
+var _$mname$Key : scala.Option[String] = None
+      
+val keylist$mname$ = List($key; separator=", "$)
+keylist$mname$.foreach(key => 
+  if(job ? key) { 
+    if(_$mname$.isEmpty) {
+      _$mname$ = Some(job(key))
+      _$mname$Key = Some(key)
+    }
+    if(!(job(key).asInstanceOf[AnyRef] eq _$mname$.get)) {
+      tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
+        "Input error for '" + this.title + "': '$mname$' keys '" + _$mname$Key.get + " and '" + key + "' point to different objects.")
+    }
+  }
+)
+    
+_$mname$ match{
+  case Some(x) =>
+    if(!x.isInstanceOf[$rtype$]){
+      tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
+        "Input error for '" + this.title + "': Wrong type found for '$mname$'.  Expecting '$rtype$' but found '" + x.getClass.toString + "'")
+    }
+  case None =>
+    tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
+      "Input error for '" + this.title + "': No value found for '$mname$'")       
+}
+>>
+
+outdef_is_valid_entry(key, rtype) ::= <<
+if(job ? $key$ && !job($key$).isInstanceOf[$rtype$]) {
+  tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, 
+    "Output error for '" + this.title + "': Wrong type found for $key$.  Expecting '$rtype$' but found '" + 
+    job($key$).getClass.toString + "'")
+} 
+>>
+
+outdef_key_not_found(key, mname) ::= <<
+if(!(job ? $key; separator=") && !(job ? "$)) {
+  tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
+    "Output error for '" + this.title + "': No entry found for '$mname$'. Expecting ($key; separator=" or "$)") 
+}
+>>
+
+key(keyname,value) ::= <<
+val $keyname$ = "$value$"
+>>
+
+user_class(package, imports, cname, mname) ::= <<
+/** The following class will be called reflectively.  Create the file 
+  * $cname$.scala in the directory corresponding to $package$
+  * and paste the code into it
+  */
+package $package$
+
+//import $imports$
+
+class $cname$ (val job : PipelineJob, info : PipelineJobModuleInfo) extends $mname$ {
+  // add implementation here
+}
+/*********** END *************/
+>>
+

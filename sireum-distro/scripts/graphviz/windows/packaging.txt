@@ -1,0 +1,34 @@
+Download windows distribution.
+
+.sapp:
+|-bin
+| |-dot
+| |-cdt.dll
+| |-config6
+| |-dot.exe
+| |-freetype6.dll
+| |-graph.dll
+| |-gvc.dll
+| |-gvplugin_core.dll
+| |-gvplugin_dot_layout.dll
+| |-gvplugin_pango.dll
+| |-intl.dll
+| |-libcairo-2.dll
+| |-libexpat-1.dll
+| |-libexpat.dll
+| |-libfontconfig-1.dll
+| |-libglib-2.0-0.dll
+| |-libgmodule-2.0-0.dll
+| |-libgobject-2.0-0.dll
+| |-libgthread-2.0-0.dll
+| |-libpango-1.0-0.dll
+| |-libpangocairo-1.0-0.dll
+| |-libpangoft2-1.0-0.dll
+| |-libpangowin32-1.0-0.dll
+| |-libpng12.dll
+| |-libpng14-14.dll
+| |-ltdl.dll
+| |-Pathplan.dll
+| |-zlib1.dll
+|
+|-license.txt

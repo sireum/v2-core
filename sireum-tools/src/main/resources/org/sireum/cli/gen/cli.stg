@@ -1,0 +1,281 @@
+topLevel(packageName, imports, className, topMethod, entry) ::= <<
+$if(packageName)$package $packageName$$endif$
+
+$imports; separator="\n"$
+import org.sireum.util._
+import java.io.PrintWriter
+
+object $className$ extends App{
+
+  args.foreach(c => print(c + " "))
+  println()
+  
+  val opt = new $className$().parse(args)
+
+  import java.io._
+  opt.printTags(new PrintWriter(new OutputStreamWriter(scala.Console.out)),
+      new PrintWriter(new OutputStreamWriter(scala.Console.err)))
+}
+
+class $className$ {
+  val result = new CliResult()
+  
+  def parse(args: Seq[String]) : CliResult = {
+    parse$topMethod$(args, 0)
+    return result  
+  }
+  
+$entry; separator="\n"$
+
+$process()$
+
+$tagRoutines()$
+}
+
+class CliResult {
+  var status : Boolean = true
+  var className : String = ""
+  var featureName : String = ""
+  var options : scala.Option[AnyRef] = None
+  val tags : MBuffer[Tag] = marrayEmpty[Tag]
+
+  def printTags(out : PrintWriter, err : PrintWriter) {
+    for (t @ InfoTag(mt, Some(desc)) <- tags) {
+      mt match {
+        case OptionUtil.ErrorMarker =>
+          err.println(desc)
+          err.flush
+        case _ =>
+          out.println(desc)
+          out.flush
+      }
+    }
+  }
+}
+>>
+
+imports(p) ::= <<
+import $p$._
+>>
+
+mode(name, desc) ::= <<
+$name$ $if(desc)$$desc$$endif$
+>>
+
+parseMode(className, header, mode, caseMode, name) ::= <<
+def parse$className$(args : Seq[String], i : Int) {
+  if (i == args.length) {
+    addInfoTag("""$header$""".trim
+$if(mode)$
++ "\n\n" + """
+Available Modes:
+  $mode; separator="\n"$
+""".trim
+$endif$
+)
+  } else {
+    args(i) match {
+      $caseMode; separator="\n"$
+      case s =>
+        addErrorTag(s + " is not a mode of $name$")
+    }
+  }
+}  
+>>
+
+caseMode(modeName, className) ::= <<
+case "$modeName$" =>
+  parse$className$(args, i + 1)
+>>
+
+usage(name, arg, optArg, hasOptions) ::= <<
+Usage:
+  $name; separator=" "$ $if(hasOptions)$[options] $endif$<$arg; separator="> <"$> $if(optArg)$[<$optArg; separator=">] [<"$>]$endif$
+$if(hasOptions)$
+
+where the available options are:$endif$
+>>
+
+optblock(opt) ::= <<
+$opt; separator="\n"$
+>>
+  
+parseMain(className, header, featureName, targetName, caseOpt, name, caseArg, nummeth, key, optCheck, hasVarg, nonempty) ::= <<
+def parse$className$(args : Seq[String], i : Int) {
+  $if(nonempty)$if (i == args.length) {
+    addInfoTag("""$header; separator="\n\n"$""".trim) 
+  } else $endif${
+    val opt = $className$()
+    result.options = Some(opt)
+    result.className = "$targetName$"
+    result.featureName = "$featureName$"
+    val keys = List[String]("$key; separator="\", \""$")
+    var j = i
+    var k = -1
+    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+    try {
+      while (j < args.length) {
+        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
+          addErrorTag(args(j) + " is not an option")
+        }
+        if(k == -1 && keys.contains(args(j))){
+          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          args(j) match {
+            $caseOpt; separator="\n"$
+            case _ =>
+          }
+        } else { 
+          k = k + 1
+          k match {
+            $caseArg; separator="\n"$
+            
+            $if(!hasVarg)$
+            case _ =>
+              addErrorTag("Too many arguments starting at " + args(j))
+            $endif$
+          }
+        }
+        j = j + 1
+      }
+    } catch {
+      case e: Exception => addErrorTag(e.toString)
+    }
+    
+    if(k+1 < $nummeth$) {
+      addErrorTag("Missing required arguments")
+    }
+    
+    $if(optCheck)$result.status &= $optCheck$$endif$
+  }
+}  
+>>
+
+process() ::= <<
+  def process(key : String, value : String, keys : Seq[String], clazz : Any) : scala.Option[Any] = {
+    var messages = Seq[Tag]()
+    var v : scala.Option[Any] = None 
+
+    if (keys.contains(value)) {
+      addErrorTag("Error while parsing " + key + ". " + value + " is a key ")
+    }
+    
+    try {
+      clazz match {
+        case s : Int =>
+          v = Some(Int.box(Integer.parseInt(value)))
+        case s : String =>
+          v = Some(value)
+        case s : java.lang.Boolean =>
+          v = Some(true)          
+        case s : org.sireum.util.Enum#EnumElem =>
+          s.elements collectFirst
+          { case s if s.toString.toLowerCase == value.toLowerCase => s } match {
+          case Some(valid) =>
+            v = Some(valid)
+          case _ =>
+            addErrorTag(value + " is not a member")
+          }
+        case s : Seq[_] =>
+          v = Some(value.split(",").toList)
+        case _ =>
+          addErrorTag("Unknown option type " + clazz)
+      }
+    } catch {
+      case e =>
+        addErrorTag("wrong argument type supplied " + e.toString())
+    }
+    return v
+  }
+>>
+
+optionsetCheck(shortkey, longkey) ::= <<  
+if(seenopts.exists(s => s == "$longkey$" | s == "$shortkey$")){
+  addWarningTag("Option already set: %s".format(args(j)))
+}
+else {
+  seenopts += "$longkey$"
+  seenopts += "$shortkey$"
+}
+>>
+
+
+caseProcess(matching, guard, value, instance, f, gname, fname, type, optCheck, isVarg, isArg, optioncheck) ::= <<
+case $matching; separator=" | "$ $if(guard)$ $guard$ $endif$=> 
+  $optioncheck$
+  val v = process(args(j), $value$, keys, $instance$ $if(f)$, Some($f$) $endif$)
+  if(result.status){
+    $lhs(gname, fname)$ $if(isVarg)$:+$endif$= v.get.asInstanceOf[$type$]
+    $if(optCheck)$result.status &= $optCheck$$endif$
+    $if(!isArg)$j += 1$endif$
+  }
+>>
+  
+matching(g) ::= <<
+$g; separator=" | "$
+>>
+
+matchings(g) ::= <<
+"$g; separator="\" | \""$"
+>>
+
+assign(lhs, rhs) ::= <<
+$lhs$ = $rhs$
+>>
+
+methCall(exp, arg) ::= <<
+$exp$ $if(arg)$($arg; separator=", "$)$endif$
+>>
+
+lhs(gname, fname) ::= <<
+opt.$if(gname)$$gname$.$endif$$fname$ 
+>>
+
+groupy(groupName, option) ::=  <<
+$groupName$
+  $option; separator="\n"$   
+>>
+ 
+option_desc(desc, opt) ::=  <<
+$desc$ $if(opt)$[$opt; separator=", "$]$endif$
+>>
+
+choices(c) ::= <<
+Choices:~($c; separator=", "$)
+>>
+
+defaultval(val) ::= <<
+Default:~$val$
+>>
+
+separator(sep) ::= <<
+Separator:~"$sep$"
+>>
+
+combine(f,s) ::= <<
+$f$ $s$
+>>
+
+array(elem) ::= <<
+ilist($elem; separator=","$)
+>>
+
+tagRoutines() ::= <<
+  def addErrorTag(desc : String) {
+    result.tags += OptionUtil.genTag(OptionUtil.ErrorMarker, desc)
+    result.status = false
+  }
+
+  def addInfoTag(desc : String) {
+    result.tags += OptionUtil.genTag(OptionUtil.InfoMarker, desc)
+  }
+
+  def addWarningTag(desc : String) {
+    result.tags += OptionUtil.genTag(OptionUtil.WarningMarker, desc)
+  }
+>>
+
+   
+    

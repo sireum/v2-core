@@ -1,0 +1,23 @@
+
+
+- ensure only one instant of an annotation e.g. @Main is present for a given class or method
+
+
+#################### Completed ##################################
+- emit tags instead of assertion
+- ensure a main annotation class name attribute is an instant of Runner
+- add parameter to cligen which accepts a list of strings (classes?) 
+which will be used to filter where the options can be found
+
+- rework how check methods are handled
+  Signatures:
+    Class Level
+      check(options: KiasanJavaCheck, l : MBuffer[Tag]) : Boolean
+      
+    Method Level
+      XXXCheck(options: KiasanJavaCheck, l : MBuffer[Tag]) : Boolean
+      
+      where XXX is the option name
+
+- move clibuilder and cli.stg to org.sireum.cli.gen
+      

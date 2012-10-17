@@ -1,0 +1,11 @@
+Download from source, configure using the commands below:
+
+* 32-bit: ./configure --enable-static CC="gcc -arch i386" CXX="g++ -arch i386" CPP="gcc -E" CXXCPP="g++ -E"
+* 64-bit: ./configure --enable-static CC="gcc -arch x86_64" CXX="g++ -arch x86_64" CPP="gcc -E" CXXCPP="g++ -E"
+* 32/64-bit (fat binary): ./configure --enable-static CC="gcc -arch i386 -arch x86_64" CXX="g++ -arch i386 -arch x86_64" CPP="gcc -E" CXXCPP="g++ -E"
+
+.sapp:
+|-bin
+| |-dot
+|
+|-license.txt

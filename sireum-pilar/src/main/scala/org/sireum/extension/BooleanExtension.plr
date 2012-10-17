@@ -1,0 +1,28 @@
+/*
+Copyright (c) 2011 Robby, Kansas State University.        
+All rights reserved. This program and the accompanying materials      
+are made available under the terms of the Eclipse Public License v1.0 
+which accompanies this distribution, and is available at              
+http://www.eclipse.org/legal/epl-v10.html                             
+*/
+
+package org::sireum::extension;
+
+extension Boolean @ExtSpec {
+  typedef Type @NonReferenceType;
+  
+  expdef Boolean.Type not (Boolean.Type b) @Exp !b;
+  
+  expdef Boolean.Type cond_and (Boolean.Type b1, lazy Boolean.Type b2) @Exp b1 && b2;
+  expdef Boolean.Type cond_or (Boolean.Type b1, lazy Boolean.Type b2) @Exp b1 || b2;
+  expdef Boolean.Type cond_implies (Boolean.Type b1, lazy Boolean.Type b2) @Exp b1 ==> b2;
+  expdef Boolean.Type cond_implied (Boolean.Type b1, lazy Boolean.Type b2) @Exp b1 <== b2;
+  
+  expdef Boolean.Type eq (Boolean.Type b1, Boolean.Type b2) @Exp b1 == b2;
+  expdef Boolean.Type ne (Boolean.Type b1, Boolean.Type b2) @Exp b1 != b2;
+
+  expdef Boolean.Type and (Boolean.Type b1, Boolean.Type b2) @Exp b1 &&& b2;
+  expdef Boolean.Type or (Boolean.Type b1, Boolean.Type b2) @Exp b1 ||| b2;
+  expdef Boolean.Type implies (Boolean.Type b1, Boolean.Type b2) @Exp b1 ===> b2;
+  expdef Boolean.Type implied (Boolean.Type b1, Boolean.Type b2) @Exp b1 <=== b2;
+}

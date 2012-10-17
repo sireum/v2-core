@@ -1,0 +1,97 @@
+/*
+Copyright (c) 2011 Robby, Kansas State University.        
+All rights reserved. This program and the accompanying materials      
+are made available under the terms of the Eclipse Public License v1.0 
+which accompanies this distribution, and is available at              
+http://www.eclipse.org/legal/epl-v10.html                             
+*/
+
+classdef(pkg, class, case, visit, enum, mapentry) ::= <<
+/*
+Copyright (c) 2011 Robby, Kansas State University.        
+All rights reserved. This program and the accompanying materials      
+are made available under the terms of the Eclipse Public License v1.0 
+which accompanies this distribution, and is available at              
+http://www.eclipse.org/legal/epl-v10.html                             
+*/
+
+package $pkg$;
+
+import org.antlr.runtime.tree.Tree;
+import java.util.Map;
+import java.util.HashMap;
+
+public class $class$<G> {
+
+  G context;
+  
+  public $class$(G context) {
+    this.context = context;
+  }
+
+$if(enum)$  
+  public enum Token {
+    $enum; separator=",\n "$;
+    
+    static Map<Integer, Token> typeToTokenMap = new HashMap<Integer, Token>();
+    static{
+      $mapentry; separator=";\n"$;
+    }
+         
+    private int type;
+    private Token(int type){
+      this.type = type;
+    }
+    
+    public int getType(){
+      return this.type;
+    }
+  }
+
+  public static Token getToken(int type){
+    return Token.typeToTokenMap.get(type);
+  }
+$endif$
+  
+  public void visit(Tree t) {
+    switch (t.getType()) {
+        $case; separator="\n"$
+        default:
+          defaultCase(t);
+    }
+  }
+  
+  $visit; separator="\n\n"$
+
+  protected boolean defaultCase(Tree t) {
+    return true;
+  }
+
+  protected void visitChildren(Tree t) {
+    int count = t.getChildCount();
+    for (int i = 0; i < count; i++) {
+      visit(t.getChild(i));
+    }
+  }
+}
+>>
+
+casedef(name,value) ::= <<
+case $value$:
+  if (visit$name$(t)) visitChildren(t);
+  return;
+>>
+
+visitdef(name) ::= <<
+protected boolean visit$name$(Tree t) {
+  return defaultCase(t);
+}
+>>
+
+enumdef(name, value) ::= <<
+$name$($value$)
+>>
+
+mapentry(name, value) ::= <<
+Token.typeToTokenMap.put($value$, Token.$name$)
+>>
