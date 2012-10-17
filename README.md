@@ -1,4 +1,4 @@
 sireum-core
 ===========
 
-This repository stores some of the core components of the Sireum software analysis platform.
+This repository stores some of the core components of the Sireum (v2) software analysis platform.
