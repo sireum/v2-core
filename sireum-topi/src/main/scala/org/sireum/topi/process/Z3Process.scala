@@ -58,7 +58,7 @@ class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPart*) ex
     exec(script + "(check-sat)\n(exit)\n") match {
       case Exec.Timeout =>
         TIMEOUT
-      case Exec.StringResult(s) =>
+      case Exec.StringResult(s, _) =>
         s.trim match {
           case "sat"     => SAT
           case "unsat"   => UNSAT
@@ -79,7 +79,7 @@ class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPart*) ex
     val script = translate(conjuncts)
     exec(script + "(check-sat)\n(get-model)\n(exit)\n") match {
       case Exec.Timeout             => None
-      case Exec.StringResult(s)     => Some(Z3Process.parseModel(s))
+      case Exec.StringResult(s, _)  => Some(Z3Process.parseModel(s))
       case Exec.ExceptionRaised(ex) => throw ex
     }
   }

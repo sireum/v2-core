@@ -5,4 +5,4 @@ cat sireum-header.bat ../src/main/scala/SireumDistro.scala > sireum.bat
 [ ! -e ../test ] && mkdir ../test
 cp sireum ../test/
 cp sireum.bat ../test/
-cp ../src/main/scala/SireumDistro.scala ../../../../project/
+cp ../src/main/scala/SireumDistro.scala ../../../sireum-internal/sireumv2/project/
