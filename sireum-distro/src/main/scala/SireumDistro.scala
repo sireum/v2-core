@@ -793,9 +793,9 @@ object SireumDistro extends App {
       val f = new File(appDir, fBackup.getName)
       if (!f.exists) {
         if (fBackup.isDirectory) {
-          f.mkdir
           copyBackupDiff(f, fBackup)
         } else if (allowableCopyDiff(fBackup)) {
+          f.getParentFile.mkdirs
           copyFile(fBackup, f)
         }
       } else if (fBackup.isDirectory && f.isDirectory)
