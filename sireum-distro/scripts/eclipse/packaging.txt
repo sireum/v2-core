@@ -8,10 +8,10 @@ For each supported platform:
 
 4. Add the link files for: 
 
-     asm, byteviz, egit, elt, gef, mylyn, subversive, texlipse
+     asm, egit, elt, gef, mylyn, subclipse, texlipse
      
      Each link file contains the following: path=../eclipse-plugins-essential/<name>
-       where <name> is either asm, byteviz, egit, elt, gef, mylyn, subversive, or
+       where <name> is either asm, egit, elt, gef, mylyn, subclipse, or
        texlipse, respectively
 
 5. In eclipse.ini, change the following arguments:
