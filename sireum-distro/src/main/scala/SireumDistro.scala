@@ -122,6 +122,11 @@ object SireumDistro extends App {
   var unmanagedDir = new File(System.getProperty("user.home"))
 
   try {
+    if (util.Properties.versionString.substring(8) != "2.9.2") {
+      out.println("This version of Sireum requires Scala 2.9.2")
+      out.flush
+      sys.exit(-1)
+    }
     if (getOsString == "unsupported") {
       out.println("Running on an unsupported platform: some features maybe unavailable")
       out.println
