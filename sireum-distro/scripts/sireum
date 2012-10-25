@@ -6,7 +6,7 @@ if [ $0 -nt $0.jar ]
     echo "Please wait while Sireum is loading..."
     echo
 fi
-exec scala -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME $@
+exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME $@
 !#
 SireumDistro.main(argv)
 /*

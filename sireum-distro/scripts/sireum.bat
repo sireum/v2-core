@@ -1,5 +1,8 @@
 ::#!
 @echo off
+IF NOT DEFINED SCALA_BIN (
+  SET SCALA_BIN=scala
+)
 SET SIREUM_DIST=true
 SET SIREUM_HOME=%~dp0
 SET SCRIPT=%SIREUM_HOME%\%~nx0
