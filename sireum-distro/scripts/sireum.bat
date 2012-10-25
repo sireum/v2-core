@@ -17,7 +17,7 @@ IF %NEWEST%==%~nx0 (
   ECHO Please wait while Sireum is loading... 
 )
 :END
-CALL scala -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+CALL %SCALA_BIN% -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 GOTO :eof
 ::!#
 SireumDistro.main(argv)
