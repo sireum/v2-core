@@ -701,10 +701,12 @@ trait SemanticsExtensionModule[S, V, R, C, SR] extends EvaluatorModule[S, V, R, 
     def create(ec : EvaluatorConfiguration[S, V, R, C, SR]) : Extension[S, V, R, C, SR]
   }
 
-  val seic =
+  private val _seic =
     new SemanticsExtensionInitImpl[S, V, R, C, SR] //
     with SemanticsExtensionConsumerImpl[S, V, R, C, SR] // 
     with SemanticsExtensionInitConsumer[S, V, R, C, SR]
+  
+  def seic = _seic
 
   def miners = ilist(ExtensionMiner.mine[S, V, R, C, SR] _)
 

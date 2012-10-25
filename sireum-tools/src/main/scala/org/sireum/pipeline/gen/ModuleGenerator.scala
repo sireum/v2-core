@@ -158,7 +158,7 @@ class ModuleGenerator {
       val params = new Array[AnyRef](const.getParameterTypes.length)
       for (i <- 0 until const.getParameterTypes.length) {
         try {
-          val mname = "init$default$" + (i + 1)
+          val mname = "$lessinit$greater$default$" + (i + 1)
           params(i) = c.getMethod(mname).invoke(null)
 
           // get the method corresponding to 'i' (the field name and method name
@@ -323,7 +323,7 @@ class ModuleGenerator {
             init.add("set_mod_name", extSetName)
             init.add("spec_name", c.getName)
             init.add("mname", m.getName)
-            init.add("static_mname", "init$default$" + index)
+            init.add("static_mname", "$lessinit$greater$default$" + index)
             init.add("rtype", rt)
             modLevel.add("init", init)
           }

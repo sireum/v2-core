@@ -18,6 +18,7 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.HashSet
+import scala.language.reflectiveCalls
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -122,6 +123,16 @@ object SireumDistro extends App {
   var unmanagedDir = new File(System.getProperty("user.home"))
 
   try {
+    if ((util.Properties.javaVersion.charAt(2) - '0') < 7) {
+      out.println("This version of Sireum requires at least Java 7")
+      out.flush
+      sys.exit(-1)
+    }
+    if (util.Properties.versionString.substring(8, 12) != "2.10") {
+      out.println("This version of Sireum requires Scala 2.10")
+      out.flush
+      sys.exit(-1)
+    }
     if (getOsString == "unsupported") {
       out.println("Running on an unsupported platform: some features maybe unavailable")
       out.println
@@ -185,7 +196,7 @@ object SireumDistro extends App {
         parseArgs(Seq("."))
     }
   } catch {
-    case e => logError("Error: ", e)
+    case e : Throwable => logError("Error: ", e)
   }
 
   def logError(text : String, e : Throwable) {
@@ -204,7 +215,7 @@ object SireumDistro extends App {
       out.println("Written: " + f.getAbsolutePath)
       out.flush
     } catch {
-      case e =>
+      case e : Throwable =>
         err.println("Error: " + e.getMessage)
         err.flush
     }
@@ -662,7 +673,7 @@ object SireumDistro extends App {
             NoUpdate
       }
     catch {
-      case e =>
+      case e : Throwable =>
         err.println("Failed to update " + file.getAbsolutePath)
         err.println("Reason: " + e.getMessage)
         err.println
@@ -779,7 +790,7 @@ object SireumDistro extends App {
       out.println("... done!")
       out.flush
     } catch {
-      case e =>
+      case e : Throwable =>
         logError("Error installing app: ", e)
         abnormalExit
     }
@@ -942,7 +953,7 @@ object SireumDistro extends App {
 
       _checksums
     } catch {
-      case e =>
+      case e : Throwable =>
         err.println("Could not connect to update site.")
         err.println
         err.flush
@@ -995,7 +1006,7 @@ object SireumDistro extends App {
       }
       _features
     } catch {
-      case e =>
+      case e : Throwable =>
         err.println("Could not connect to Sireum update site.")
         err.println
         err.flush
