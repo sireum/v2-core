@@ -1,0 +1,16 @@
+Rank,Test Case ,Kiasan Status,Spark Status,Test Case Description
+1,Max2Int,proves 3/3,proves 4/4,
+2,Exchange,proves 1/1,proves 4/4,simple proc using ~
+3,Inc_Upto_Last,proves 1/1,proves 2/2,simplified version (fixed bounds): Inc_Upto_100 - proves 1/1 - proves 2/2
+4,Odometer,proves 6/6,proves 11/11,multiple functions and proc (using only basic types)
+5,Count_Up,proves 4/4 Bounds Exceeded (BE),proves 8/8,simple loop making use of scalar values
+6,Swap_Elements,proves ?/?,proves 16/16,simple proc using an array type;strong variant not yet supported
+7,Value_Present,proves 11/11,proves all: 4/7 auto; 3/7 manually,arrays + loop in body
+8,Find,proves 3/3,proves 4/7,arrays + loop in body.
+9,Factorial,proves ?/?,proves 4/9,loop + proof function; not in test suites
+10,Array_Utilities,proves ?/?,proves 36/59,multiple proof functions and procedures
+11,Flip_Flop,proves ?/?,proves 8/10,proof functions and refinement
+12,The_Stack,not-tried,proves ?/?,"proof type, proof functions and refinement"
+13,Integer_Set0,not-tried,proves 33/43 (10 left), Integer_Set without package spec contracts.
+14,Integer_Set,not-tried,proves 42/69 (27 left),
+15,Array_Set,proves 21/21 for Delete; 21/21 for GetValue; 1/1 for Init,proves 99/112 (13 left), Kiason: partial coverage on Init; Add not supported

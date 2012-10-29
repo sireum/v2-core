@@ -1,0 +1,1644 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package ProcedureTest01
+@PackageAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theSparkName = ProcedureTest01,
+  thePilarSparkName = ProcedureTest01,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 1,
+  theOffset = 390),
+  theEndCaret = 
+  @Caret(
+  theLine = 40,
+  theCol = 21,
+  theOffset = 935),
+  theOptionalSource = "procedure_test.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 1,
+  theOffset = 390),
+  theEndCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 29,
+  theOffset = 417),
+  theOptionalSource = "procedure_test.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure P 
+      (Standard::Integer a @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 15,
+  theOffset = 437),
+  theEndCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 16,
+  theOffset = 437),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer b @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 30,
+  theOffset = 452),
+  theEndCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 31,
+  theOffset = 452),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer c @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 49,
+  theOffset = 471),
+  theEndCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 50,
+  theOffset = 471),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(a,
+            b),
+      theOptionalOutParameters = @List(b,
+          c)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 3,
+      theOffset = 425),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 9,
+      theOffset = 537),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 13,
+      theOffset = 435),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 14,
+      theOffset = 435),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 3,
+      theOffset = 425),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 64,
+      theOffset = 485),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := a;
+  #l2.  temp$2 := b;
+  #l3.  temp$3 := (temp$1 + temp$2);
+  #l4. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 5,
+      theOffset = 502),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 16,
+      theOffset = 512),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  b := temp$3;
+  #l5.  temp$4 := a;
+  #l6.  temp$5 := b;
+  #l7.  temp$6 := (temp$4 + temp$5);
+  #l8. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l8,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 5,
+      theOffset = 518),
+      theEndCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 16,
+      theOffset = 528),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  c := temp$6;
+  #l9.  return;
+}
+procedure helper 
+      (Standard::Integer x @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 20,
+  theOffset = 559),
+  theEndCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 21,
+  theOffset = 559),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 39,
+  theOffset = 578),
+  theEndCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 40,
+  theOffset = 578),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(x),
+      theOptionalOutParameters = @List(x,
+          y)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 3,
+      theOffset = 542),
+      theEndCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 14,
+      theOffset = 678),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 13,
+      theOffset = 552),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 19,
+      theOffset = 557),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 3,
+      theOffset = 542),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 54,
+      theOffset = 592),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer arg0 @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 26,
+      theCol = 5,
+      theOffset = 601),
+      theEndCaret = 
+      @Caret(
+      theLine = 26,
+      theCol = 9,
+      theOffset = 604),
+      theOptionalSource = "procedure_test.ada"
+    )
+    );
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l10.  temp$1 := 1;
+  #l11. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l10,
+      endLabel = l11,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 28,
+      theCol = 9,
+      theOffset = 632),
+      theEndCaret = 
+      @Caret(
+      theLine = 28,
+      theCol = 19,
+      theOffset = 641),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  arg0 := temp$1;
+  #l12.  temp$2 := arg0;
+  #l13.  temp$3 := x;
+  #l15.  temp$4 := y;
+  #l17. <@ProcedureCallStatementAnnotation(
+    optCopyBackPart = @Mark(
+    startLabel = l14,
+    endLabel = l16,
+    optRS = @NONE
+  ),
+      mark = @Mark(
+      startLabel = l12,
+      endLabel = l17,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 9,
+      theOffset = 651),
+      theEndCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 23,
+      theOffset = 664),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  call  ProcedureTest01::P (temp$2, temp$3, temp$4);
+  #l14. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l14,
+      endLabel = l14,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 17,
+      theOffset = 659),
+      theEndCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 18,
+      theOffset = 659),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  x := temp$3;
+  #l16. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l16,
+      endLabel = l16,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 20,
+      theOffset = 662),
+      theEndCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 21,
+      theOffset = 662),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  y := temp$4;
+  #l18.  return;
+}
+procedure Q 
+      (Standard::Integer S @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 15,
+  theOffset = 695),
+  theEndCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 16,
+  theOffset = 695),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer T @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 30,
+  theOffset = 710),
+  theEndCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 31,
+  theOffset = 710),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer R @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 46,
+  theOffset = 726),
+  theEndCaret = 
+  @Caret(
+  theLine = 32,
+  theCol = 47,
+  theOffset = 726),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(S),
+      theOptionalOutParameters = @List(T,
+          R)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 3,
+      theOffset = 683),
+      theEndCaret = 
+      @Caret(
+      theLine = 39,
+      theCol = 9,
+      theOffset = 914),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 13,
+      theOffset = 693),
+      theEndCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 14,
+      theOffset = 693),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 3,
+      theOffset = 683),
+      theEndCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 61,
+      theOffset = 740),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer L1 @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 33,
+      theCol = 6,
+      theOffset = 750),
+      theEndCaret = 
+      @Caret(
+      theLine = 33,
+      theCol = 8,
+      theOffset = 751),
+      theOptionalSource = "procedure_test.ada"
+    )
+    );
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l19.  temp$1 := S;
+  #l20. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l19,
+      endLabel = l20,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 6,
+      theOffset = 777),
+      theEndCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 14,
+      theOffset = 784),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  L1 := temp$1;
+  #l21.  temp$2 := 2;
+  #l22.  temp$3 := L1;
+  #l24.  temp$4 := T;
+  #l26. <@ProcedureCallStatementAnnotation(
+    optCopyBackPart = @Mark(
+    startLabel = l23,
+    endLabel = l25,
+    optRS = @NONE
+  ),
+      mark = @Mark(
+      startLabel = l21,
+      endLabel = l26,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 6,
+      theOffset = 815),
+      theEndCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 18,
+      theOffset = 826),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  call  ProcedureTest01::P (temp$2, temp$3, temp$4);
+  #l23. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l23,
+      endLabel = l23,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 11,
+      theOffset = 820),
+      theEndCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 13,
+      theOffset = 821),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  L1 := temp$3;
+  #l25. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l25,
+      endLabel = l25,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 15,
+      theOffset = 824),
+      theEndCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 16,
+      theOffset = 824),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  T := temp$4;
+  #l27.  temp$5 := 5;
+  #l28. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l27,
+      endLabel = l28,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 37,
+      theCol = 6,
+      theOffset = 857),
+      theEndCaret = 
+      @Caret(
+      theLine = 37,
+      theCol = 13,
+      theOffset = 863),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  R := temp$5;
+  #l29.  temp$6 := T;
+  #l30.  temp$7 := L1;
+  #l31.  temp$8 := (temp$6 + temp$7);
+  #l32. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l29,
+      endLabel = l32,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 38,
+      theCol = 6,
+      theOffset = 870),
+      theEndCaret = 
+      @Caret(
+      theLine = 38,
+      theCol = 18,
+      theOffset = 881),
+      theOptionalSource = "procedure_test.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  T := temp$8;
+  #l33.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package ProcedureTest01
+@PackageAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theSparkName = ProcedureTest01,
+  thePilarSparkName = ProcedureTest01,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 21,
+  theOffset = 387),
+  theOptionalSource = "procedure_test.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 24,
+  theOffset = 22),
+  theOptionalSource = "procedure_test.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure P 
+      (Standard::Integer a @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 15,
+  theOffset = 42),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 16,
+  theOffset = 42),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer b @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 30,
+  theOffset = 57),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 31,
+  theOffset = 57),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer c @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 49,
+  theOffset = 76),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 50,
+  theOffset = 76),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(a,
+            b),
+      theOptionalOutParameters = @List(b,
+          c)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = c,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 15,
+                          theOffset = 107),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 16,
+                          theOffset = 107),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = a,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 22,
+                          theOffset = 114),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 23,
+                          theOffset = 114),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = b,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 25,
+                          theOffset = 117),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 26,
+                          theOffset = 117),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 4,
+                  theCol = 15,
+                  theOffset = 107),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 4,
+                  theCol = 26,
+                  theOffset = 117),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = b,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 15,
+                          theOffset = 135),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 16,
+                          theOffset = 135),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = a,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 22,
+                          theOffset = 142),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 23,
+                          theOffset = 142),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = b,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 25,
+                          theOffset = 145),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 5,
+                          theCol = 26,
+                          theOffset = 145),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 5,
+                  theCol = 15,
+                  theOffset = 135),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 5,
+                  theCol = 26,
+                  theOffset = 145),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 4,
+              theCol = 7,
+              theOffset = 99),
+              theEndCaret = 
+              @Caret(
+              theLine = 5,
+              theCol = 27,
+              theOffset = 146),
+              theOptionalSource = "procedure_test.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 3,
+      theOffset = 30),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 65,
+      theOffset = 91),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 13,
+      theOffset = 40),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 14,
+      theOffset = 40),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 3,
+      theOffset = 30),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 64,
+      theOffset = 90),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{ #locret. return;}
+procedure helper 
+      (Standard::Integer x @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 20,
+  theOffset = 168),
+  theEndCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 21,
+  theOffset = 168),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 39,
+  theOffset = 187),
+  theEndCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 40,
+  theOffset = 187),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(x),
+      theOptionalOutParameters = @List(x,
+          y)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = x,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 15,
+                          theOffset = 218),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 16,
+                          theOffset = 218),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = x,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 25,
+                          theOffset = 228),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 26,
+                          theOffset = 228),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = x,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 15,
+                          theOffset = 218),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 16,
+                          theOffset = 218),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 15,
+                  theOffset = 218),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 26,
+                  theOffset = 228),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 15,
+                          theOffset = 246),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 16,
+                          theOffset = 246),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = x,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 22,
+                          theOffset = 253),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 23,
+                          theOffset = 253),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 9,
+                  theCol = 15,
+                  theOffset = 246),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 9,
+                  theCol = 23,
+                  theOffset = 253),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 8,
+              theCol = 7,
+              theOffset = 210),
+              theEndCaret = 
+              @Caret(
+              theLine = 9,
+              theCol = 24,
+              theOffset = 254),
+              theOptionalSource = "procedure_test.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 3,
+      theOffset = 151),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 55,
+      theOffset = 202),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 13,
+      theOffset = 161),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 19,
+      theOffset = 166),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 3,
+      theOffset = 151),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 54,
+      theOffset = 201),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{ #locret. return;}
+procedure Q 
+      (Standard::Integer S @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 15,
+  theOffset = 271),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 16,
+  theOffset = 271),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer T @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 30,
+  theOffset = 286),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 31,
+  theOffset = 286),
+  theOptionalSource = "procedure_test.ada"
+),
+       Standard::Integer R @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 46,
+  theOffset = 302),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 47,
+  theOffset = 302),
+  theOptionalSource = "procedure_test.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "procedure_test.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(S),
+      theOptionalOutParameters = @List(T,
+          R)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = T,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 15,
+                          theOffset = 333),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 16,
+                          theOffset = 333),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = S,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 22,
+                          theOffset = 340),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 23,
+                          theOffset = 340),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 12,
+                  theCol = 15,
+                  theOffset = 333),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 12,
+                  theCol = 23,
+                  theOffset = 340),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = R,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 15,
+                          theOffset = 358),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 16,
+                          theOffset = 358),
+                          theOptionalSource = "procedure_test.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @NONE
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 15,
+                  theOffset = 358),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 21,
+                  theOffset = 363),
+                  theOptionalSource = "procedure_test.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 12,
+              theCol = 7,
+              theOffset = 325),
+              theEndCaret = 
+              @Caret(
+              theLine = 13,
+              theCol = 23,
+              theOffset = 365),
+              theOptionalSource = "procedure_test.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 3,
+      theOffset = 259),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 62,
+      theOffset = 317),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 13,
+      theOffset = 269),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 14,
+      theOffset = 269),
+      theOptionalSource = "procedure_test.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 3,
+      theOffset = 259),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 61,
+      theOffset = 316),
+      theOptionalSource = "procedure_test.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

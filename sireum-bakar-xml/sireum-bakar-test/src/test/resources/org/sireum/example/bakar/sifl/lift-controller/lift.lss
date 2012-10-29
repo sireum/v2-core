@@ -1,0 +1,32 @@
+          *******************************************************
+                           Listing of SPARK Text
+       SPARK95 Examiner with VC and RTC Generator Release 7.4 / 01.07
+                           Demonstration Version
+          *******************************************************
+
+
+                       DATE : 18-DEC-2008 19:20:22.71
+
+Line
+   1  
+   2  
+   3  with Building;
+   4  --# inherit Building;
+   5  package Lift
+   6  --# own State;
+   7  is
+   8     function Present_Floor return Building.Floor_Type;
+   9     --# global State;
+  10  
+  11     procedure Initialize_Lift_State;
+  12     --# global out State;
+  13     --# derives State from ;
+  14  
+  15     procedure Move(Next_Stop: in Building.Floor_Type);
+  16     --# global out State;
+  17     --# derives State from Next_Stop;
+  18  
+  19  end Lift;
+
+
+--End of file--------------------------------------------------

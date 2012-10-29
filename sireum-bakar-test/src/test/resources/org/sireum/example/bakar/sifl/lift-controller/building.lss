@@ -1,0 +1,39 @@
+          *******************************************************
+                           Listing of SPARK Text
+       SPARK95 Examiner with VC and RTC Generator Release 7.4 / 01.07
+                           Demonstration Version
+          *******************************************************
+
+
+                       DATE : 18-DEC-2008 19:20:22.67
+
+Line
+   1  -- Section 13.2a
+   2  -- package specifications of lift system
+   3  -- plus complete main subprogram
+   4  -- including subunits
+   5  
+   6  
+   7  package Building
+   8  --# own Door_History;
+   9  is
+  10     type Direction_Type is (Up, Down);
+  11     type Floor_Type is (Floor_0, Floor_1, Floor_2, Floor_3);
+  12  
+  13     procedure Initialize_Door_States;
+  14     --# global out Door_History;
+  15     --# derives Door_History from ;
+  16     --  postcondition: all doors closed;
+  17  
+  18     procedure Open_Door(Floor: in Floor_Type);
+  19     --# global in out Door_History;
+  20     --# derives Door_History from Door_History, Floor;
+  21  
+  22     procedure Close_Door(Floor: in Floor_Type);
+  23     --# global in out Door_History;
+  24     --# derives Door_History from Door_History, Floor;
+  25  
+  26  end Building;
+
+
+--End of file--------------------------------------------------

@@ -1,0 +1,6 @@
+building                   specification is in building.ads
+buttons                    specification is in buttons.ads
+lift                       specification is in lift.ads
+lift_control               main_program  is in lift_control.adb
+lift_control.traverse      subunit       is in lift_control-traverse.adb
+lift_control.traverse.poll subunit       is in lift_control-traverse-poll.adb

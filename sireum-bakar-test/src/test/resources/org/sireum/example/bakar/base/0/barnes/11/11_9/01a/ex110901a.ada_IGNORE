@@ -1,0 +1,27 @@
+-- Array element initializer
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   subtype Index is Integer range 1 .. 10;
+   type AType is array (Index) of Integer;
+
+   procedure Idarr (A : out AType)
+   --# derives A from ;
+   --# post for all M in Index => (A (M) = M);  
+   is
+   begin
+      for I in Index loop
+         A (I) := I;
+         --# assert I in Index and
+         --#        (for all M in Index range Index'First .. I => (A (M) = M));
+      end loop;
+   end Idarr;
+
+end P;
+
+
+

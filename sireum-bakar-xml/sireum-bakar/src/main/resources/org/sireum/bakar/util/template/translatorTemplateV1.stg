@@ -1,0 +1,1082 @@
+/******************************************************************************
+ * Copyright (c) 2008 Kansas State University, and others.                    *
+ * All rights reserved. This program and the accompanying materials           *
+ * are made available under the terms of the Eclipse Public License v1.0      *
+ * which accompanies this distribution, and is available at                   *
+ * http://www.eclipse.org/legal/epl-v10.html                                  *
+ *                                                                            *
+ * Contributors:                                                              *
+ *     Jon Hoag, Jason Belt - initial design and implementation               *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * !!!  WARNING  !!!
+ *
+ * this template may be used and/or extended by several clients so please keep 
+ * this in mind when you modify/refactor anything in here
+ *
+ * Known clients as of Dec 2009
+ *   - org.sireum.profile.spark.compiler.translator.SymbolTableBuilder
+ *   - org.sireum.profile.spark.compiler.translator.PilarTranslator
+ *   - org.sireum.kiasan.profile.spark.contract.ContractGenerator
+ *
+ ******************************************************************************/
+
+group SPARK_2_PILAR_MODEL;
+
+/****************************************************************
+ * H E L P E R   M E T H O D S                                  *
+ ****************************************************************/
+
+BlockComment(comment) ::= <<
+/****************************************************************
+ *  $comment; separator="\n"$
+ ****************************************************************/
+>>
+
+pair(fst, snd) ::= <<
+@Pair(
+  fst = $fst$, 
+  snd = $snd$
+)
+>>
+
+handleNull(theExp) ::= <<
+$if(theExp)$$theExp$$else$$NONE()$$endif$
+>>
+
+NOT_IMPLEMENTED_YET() ::= <<
+@NOT_IMPLEMENTED_YET
+>>
+
+NONE() ::= <<
+@NONE
+>>
+
+SingleLineComment(comment) ::= <<
+// $comment; separator="\n// "$
+>>
+
+ListAnnotation(element) ::= <<
+$if(element)$@List($element; separator=",\n      "$)
+$else$@EmptyList$endif$
+>>
+
+/******************************************************************************
+ * LOCATIONS
+ *****************************************************************************/
+
+locGoto(locLabel, gotoLoc) ::= <<
+$locLabel$ goto $gotoLoc$;
+>>
+
+locCondJump(locLabel, cond, jumpLoc) ::= <<
+$locLabel$ if $cond$ then goto $jumpLoc$;
+>>
+
+locLabeledWithOptAnnot(theLocLabel, theOptLocAnnotation) ::= <<
+#$theLocLabel$.$if(theOptLocAnnotation)$ <$theOptLocAnnotation; separator=" "$>$endif$ 
+>>
+
+locLabeled(label) ::= <<
+$locLabeledWithOptAnnot(theLocLabel=label)$
+>>
+
+/****************************************************************
+ * M E T A D A T A   A N N O T A T I O N S                      *
+ ****************************************************************/
+
+Profile(profile) ::= <<
+@Profile $profile$
+>>
+
+CompilerOption(option,value) ::= <<
+@CompilerOption("$option$","$value$")
+>>
+
+SPARKCompilerMetaDataFile(version,compileTime,options) ::= <<
+$BlockComment(comment="C o m p i l e r   M e t a d a t a")$
+
+@SPARKCompilerMetaDataFile(
+  version = "$version$",
+  compileTime = "$compileTime$",
+  options = 
+    $options$)
+>>
+
+
+
+
+/****************************************************************
+ * P A C K A G E   A N N O T A T I O N S                        *
+ ****************************************************************/
+
+
+PackageAnnotation(theSourceFileName, 
+                  theSparkName, 
+                  thePilarSparkName,
+                  theOptionalParent,
+                  thePackageKind,
+                  theHierarchyType,
+                  theOptionalSymbolMapping,
+                  thePackageHeaderAnnotation,
+                  thePackageSelection, 
+                  thePackageHeaderSelection) ::= <<
+@PackageAnnotation(
+  theSourceFileName = "$theSourceFileName$",
+  theSparkName = $theSparkName$,
+  thePilarSparkName = $thePilarSparkName$,
+  theOptionalParent = $handleNull(theOptionalParent)$,
+  thePackageKind = $thePackageKind$,
+  theHierarchyType = $theHierarchyType$,
+  theOptionalSymbolMapping = $handleNull(theOptionalSymbolMapping)$,
+  thePackageSelection = $thePackageSelection$,
+  thePackageHeaderSelection = $thePackageHeaderSelection$,
+  thePackageHeaderAnnotation = $thePackageHeaderAnnotation$)
+>>
+
+PackageHeaderAnnotation(theOptionalContextClause) ::= <<
+  theOptionalContextClause = $handleNull(theOptionalContextClause)$  
+>>
+
+PackageSpecificationHeaderAnnotation(theOptionalContextClause,
+                                     theOptionalPackageSpecificationAnnotation,
+                                     theOptionalInheritClause) ::= <<
+@PackageSpecificationHeaderAnnotation(
+  $PackageHeaderAnnotation(theOptionalContextClause=theOptionalContextClause)$,  
+  theOptionalPackageSpecificationAnnotation = 
+    $handleNull(theOptionalPackageSpecificationAnnotation)$,
+  theOptionalInheritClause = 
+    $handleNull(theOptionalInheritClause)$
+)
+>>
+
+PackageBodyHeaderAnnotation(theOptionalContextClause,
+                            theOptionalRefinementDefinition) ::= <<
+@PackageBodyHeaderAnnotation(
+  $PackageHeaderAnnotation(theOptionalContextClause=theOptionalContextClause)$,
+  theOptionalRefinementDefinition = 
+    $theOptionalRefinementDefinition$
+)
+>>  
+
+MainProgramHeaderAnnotation(theOptionalContextClause,
+                            theOptionalInheritClause) ::= <<
+@MainProgramHeaderAnnotation(
+  $PackageHeaderAnnotation(theOptionalContextClause=theOptionalContextClause)$,
+  theOptionalInheritClause =
+    $handleNull(theOptionalInheritClause)$
+)    
+>>
+
+SymbolEntry(sparkID,pilarSparkID,originTag,kindTag) ::= <<
+@SymbolEntry(sparkID = "$sparkID$",pilarSparkID = $pilarSparkID$,originTag = $originTag$,kindTag = $kindTag$)
+>>
+
+OwnStatement(theOwnClauses, theOwnStatementSelection) ::= <<
+@OwnStatement(
+  theOwnClauses = 
+    $theOwnClauses$,
+  theOwnStatementSelection = 
+    $theOwnStatementSelection$
+)
+>>
+
+OwnClause(theOptionalDeclaredType, theOwnVariables, theOwnClauseSelection) ::= <<
+@OwnClause(
+  theOptionalDeclaredType = $handleNull(theOptionalDeclaredType)$,
+  theOwnVariables = 
+    $theOwnVariables$,
+  theOwnClauseSelection =
+    $theOwnClauseSelection$
+)
+>>
+
+OwnVariable(varName,mode,ownCategory, theOwnVariableSelection) ::= <<
+@OwnVariable(
+  varName = $varName$,
+  mode = $mode$,
+  ownCategory = $ownCategory$,
+  theOwnVariableSelection = 
+    $theOwnVariableSelection$
+)
+>>
+
+GlobalVarAnnotion(symbolEntry, loc) ::= <<
+@GlobalVarAnnotation(
+  symbolEntry = $symbolEntry$,
+  loc = $if(loc)$$loc$$else$@NONE$endif$
+)
+>>
+
+PackageSpecificationAnnotation(theOptionalOwnStatement, theOptionalVarInitClause) ::= <<
+@PackageSpecificationAnnotation(
+  theOptionalOwnStatement = $handleNull(theOptionalOwnStatement)$,
+  theOptionalVarInitClause = $handleNull(theOptionalVarInitClause)$
+)
+>>
+
+ContextClause(theOptionalWithClauses, theOptionalUseTypeClauses) ::= <<
+@ContextClause(
+  theOptionalWithClauses = $handleNull(theOptionalWithClauses)$,
+  theOptionalUseTypeClauses = $handleNull(theOptionalUseTypeClauses)$
+)
+>>
+
+
+
+RefinementDefinition(theRefinementClauses, theRefinementDefinitionSelection) ::= <<
+@RefinementDefinition(
+  theRefinementClauses = 
+    $theRefinementClauses$,
+  theRefinementDefinitionSelection = 
+    $theRefinementDefinitionSelection$
+)
+>>
+
+RefinementClause(theSubject, theSubjectSelection,
+                 theConstituents,
+                 theRefinementClauseSelection) ::= <<
+@RefinementClause(
+  theSubject = $theSubject$,
+  theSubjectSelection = 
+    $theSubjectSelection$,
+  theConstituents = 
+    $theConstituents$,
+  theRefinementClauseSelection = 
+    $theRefinementClauseSelection$
+)
+>>
+
+RefinementConstituent(theMode, theConstituent, theRefinementConstituentSelection) ::= <<
+@RefinementConstituent(
+  theMode = $theMode$,
+  theConstituent = $theConstituent$,
+  theRefinementConstituentSelection = 
+    $theRefinementConstituentSelection$
+)
+>>
+
+
+AttributeRepresentationClause(theName, theAttribute) ::= <<
+theName = $theName$,
+theAttribute = $theAttribute$
+>>
+  
+AttributeRepresentationClauseUseExp(theName, theAttribute, arg) ::= <<
+@AttributeRepresentationClauseUseExp(
+  $AttributeRepresentationClause(theName=theName,
+                                 theAttribute=theAttribute)$,
+  theUseExp = $arg$
+)
+>>
+
+AttributeRepresentationClauseUseName(theName, theAttribute, arg) ::= <<
+@AttributeRepresentationClauseUseName(
+  $AttributeRepresentationClause(theName=theName,
+                                 theAttribute=theAttribute)$,
+  theUseName = $arg$
+)
+>>
+
+/****************************************************************
+ * T Y P E  D E C L A R A T I O N S                             *
+ ****************************************************************/
+  
+TypeDeclaration(id,type,records) ::= <<
+record $id$
+  $type$
+$if(records)${
+  $records; separator = "\n"$
+}
+$else${}
+$endif$
+>>
+
+BaseTypeDeclaration(origin,loc,fullyQualifiedName) ::= <<
+origin = $origin$,
+loc = $loc$,
+fullyQualifiedName = $fullyQualifiedName$
+>>
+
+FullTypeDeclaration(origin,loc,fullyQualifiedName,typeDefinition) ::= <<
+@FullTypeDeclaration(
+  $BaseTypeDeclaration(origin=origin,
+                       loc=loc,
+                       fullyQualifiedName=fullyQualifiedName)$,
+  typeDefinition = 
+    $typeDefinition$)
+>>
+
+SubTypeDeclaration(origin,loc,fullyQualifiedName,type,constraint) ::= <<
+@SubTypeDeclaration(
+  $BaseTypeDeclaration(origin=origin,
+                       loc=loc,
+                       fullyQualifiedName=fullyQualifiedName)$,
+  type =
+    ^ $type$,
+  constraint = 
+    $if(constraint)$@Some($constraint$)$else$@None$endif$)
+>>
+
+PrivateTypeDeclaration(origin,loc,fullyQualifiedName,typeDefinition,
+                       theDeclarationLoc,tagged,limited) ::= <<
+@PrivateTypeDeclaration(
+  $BaseTypeDeclaration(origin=origin,
+                       loc=loc,
+                       fullyQualifiedName=fullyQualifiedName)$,
+  tagged = $tagged$,
+  limited = $limited$,
+  theDeclarationLoc = 
+    $theDeclarationLoc$,
+  typeDefinition = 
+    $typeDefinition$)
+>>
+
+
+AbstractTypeDefinition() ::= <<
+@AbstractTypeDefinition
+>>
+
+ArrayTypeDefinition(theDimensions, theComponentSubType) ::= <<
+theDimensions = 
+  $theDimensions$,
+theComponentSubType = 
+  ^ $theComponentSubType$
+>>
+
+ConstrainedArrayDefinition(theDimensions,theComponentSubType,theDiscreteSubTypes) ::= <<
+@ConstrainedArrayDefinition(
+  $ArrayTypeDefinition(
+    theDimensions=theDimensions,
+    theComponentSubType=theComponentSubType
+  )$,
+  theDiscreteSubTypes = 
+    $theDiscreteSubTypes$
+)
+>>
+
+UnconstrainedArrayDefinition(theDimensions,theComponentSubType,theIndexSubTypes) ::= <<
+@UnconstrainedArrayDefinition(
+  $ArrayTypeDefinition(
+    theDimensions=theDimensions,
+    theComponentSubType=theComponentSubType
+  )$,
+  theIndexSubTypes = 
+    $theIndexSubTypes$
+)
+>>
+
+SignedIntegerTypeDefinition(theLowRangeExp,theHighRangeExp) ::= <<
+@SignedIntegerTypeDefinition(
+  theLowRangeExp = $theLowRangeExp$,
+  theHighRangeExp = $theHighRangeExp$)
+>>
+
+ModularTypeDefinition(theModExp) ::=<<
+@ModularTypeDefinition(
+  theModExp = $theModExp$)
+>>
+
+OrdinaryFixedPointDefinition(theDigits, theLowRangeExp, theHighRangeExp) ::= <<
+@OrdinaryFixedPointDefinition(
+  theDigitsExp = $theDigitsExp$,
+  theLowRangeExp = $theLowRangeExp$,
+  theHighRangeExp = $theHighRangeExp$)
+>>
+
+FloatingPointDefinition(theDigitsExp, theOptionalLowRangeExp, theOptionalHighRangeExp) ::= <<
+@FloatingPointDefinition(
+  theDigitsExp = $theDigitsExp$,
+  theOptionalLowRangeExp = $handleNull(theOptionalLowRangeExp)$,
+  theOptionalHighRangeExp = $handleNull(theOptionalHighRangeExp)$)
+>>
+
+RecordTypeDefinition(tagged, optParent) ::= <<
+@RecordTypeDefinition(
+  tagged = $tagged$,
+  parentType=$if(optParent)$$optParent$$else$@NONE$endif$)
+>>
+
+RecordTypeDefinitionComponent(componentType,
+                              componentID,
+                              annotation) ::= <<
+$componentType$ $componentID$ $annotation$;
+>>
+
+RecordComponentAnnotation(sparkID) ::= <<
+@RecordComponentAnnotation(
+  sparkID = $sparkID$
+)
+>>
+
+EnumerationTypeDefinition(enumerationValues) ::= <<
+@EnumerationTypeDefinition(
+  enumerationValues = 
+    $enumerationValues$)
+>>
+
+EnumerationValue(tag) ::= <<
+@EnumerationValue(tag = $tag$)
+>>
+
+
+
+IndexConstraint(subtypeMarks) ::= <<
+@IndexConstraint(
+  subtypeMarks = 
+    $subtypeMarks$)
+>>
+
+SimpleRangeConstraint(upperBound,lowerBound) ::= <<
+@SimpleRangeConstraint(
+  upperBound = $upperBound$,
+  lowerBound = $lowerBound$)
+>>
+
+
+/****************************************************************
+ * O B J E C T  D E C L A R A T I O N S                         *
+ ****************************************************************/
+
+ObjectDeclaration(origin) ::= <<
+@ObjectDeclaration(
+  origin = 
+    $origin$)
+>>
+
+NumberDeclaration(origin) ::= <<
+@NumberDeclaration(
+  origin = 
+    $origin$)
+>>
+
+/****************************************************************
+ * C O N S T  D E C L A R A T I O N S  ( N O - A U T O G E N )  *
+ ****************************************************************/
+
+ConstantDeclaration(constName, constElement) ::= <<
+const $constName$ {
+  $constElement; separator = "\n"$
+}
+>>
+
+constElement(constElementName, castType, staticInitializingExp, annotation) ::= <<
+$constElementName$ = ($castType$) ($staticInitializingExp$) $annotation$;
+>>
+
+ConstantAnnotation(theOrigin, theLoc) ::= <<
+@ConstantAnnotation(
+  theOrigin =
+    $theOrigin$,
+  theLoc = 
+    $theLoc$)
+>>
+
+/****************************************************************
+ * P R O C E D U R E   A N N O T A T I O N S                    *
+ ****************************************************************/
+
+MethodAnnotation(theSourceFileName,
+                 theAdaMethodAnnotation, 
+                 theOptionalSPARKMethodAnnotation,
+                 theMethodSelection,
+                 theMethodNameSelection,
+                 theMethodSpecificationSelection) ::= <<
+@MethodAnnotation(
+  theSourceFileName = "$theSourceFileName$",
+  theAdaMethodAnnotation = 
+    $theAdaMethodAnnotation$,
+  theOptionalSPARKMethodAnnotation = 
+    $handleNull(theOptionalSPARKMethodAnnotation)$,
+  theMethodSelection = 
+    $theMethodSelection$,
+  theMethodNameSelection = 
+    $theMethodNameSelection$,
+  theMethodSpecificationSelection = 
+    $theMethodSpecificationSelection$
+)
+>>
+
+
+AdaMethodAnnotation(theOrigin, theOptionalInParameters) ::= <<
+theOrigin = $theOrigin$,
+theOptionalInParameters = $handleNull(theOptionalInParameters)$
+>>
+
+AdaProcedureAnnotation(theOrigin, theOptionalInParameters,
+                       theOptionalOutParameters) ::= <<
+@AdaProcedureAnnotation(
+  $AdaMethodAnnotation(theOrigin=theOrigin,
+                       theOptionalInParameters=theOptionalInParameters)$,
+  theOptionalOutParameters = $handleNull(theOptionalOutParameters)$
+)
+>>
+
+AdaFunctionAnnotation(theOrigin, theOptionalInParameters) ::= <<
+@AdaFunctionAnnotation(
+  $AdaMethodAnnotation(theOrigin=theOrigin,
+                       theOptionalInParameters=theOptionalInParameters)$
+)
+>>
+
+SPARKMethodAnnotation(theOptionalPrecondition, 
+                      theOptionalGlobalDefinitions,
+                      theOptionalGlobalDefinitionsSelection,
+                      theOptionalInGlobals) ::= <<
+theOptionalPreCondition = 
+  $handleNull(theOptionalPrecondition)$,
+theOptionalGlobalDefinitions = 
+  $handleNull(theOptionalGlobalDefinitions)$,
+theOptionalGlobalDefinitionsSelection = 
+  $handleNull(theOptionalGlobalDefinitionsSelection)$,
+theOptionalInGlobals = $handleNull(theOptionalInGlobals)$
+>>                      
+
+FunctionAnnotation(theOptionalPrecondition, 
+                   theOptionalGlobalDefinitions,
+                   theOptionalGlobalDefinitionsSelection,
+                   theOptionalInGlobals, 
+                   theOptionalReturnAnnotation) ::= <<
+@FunctionAnnotation(
+  $SPARKMethodAnnotation(theOptionalPrecondition=theOptionalPrecondition, 
+                         theOptionalGlobalDefinitions=theOptionalGlobalDefinitions,
+                         theOptionalGlobalDefinitionsSelection=theOptionalGlobalDefinitionsSelection, 
+                         theOptionalInGlobals=theOptionalInGlobals)$,
+  theOptionalReturnAnnotation = 
+    $handleNull(theOptionalReturnAnnotation)$
+)
+>>
+
+ProcedureAnnotation(theOptionalPrecondition, 
+                    theOptionalGlobalDefinitions,
+                    theOptionalGlobalDefinitionsSelection,
+                    theOptionalInGlobals, 
+                    theOptionalOutGlobals,
+                    theOptionalDependencyRelation, 
+                    theOptionalPostcondition) ::= <<
+@ProcedureAnnotation(
+  $SPARKMethodAnnotation(theOptionalPrecondition=theOptionalPrecondition, 
+                         theOptionalGlobalDefinitions=theOptionalGlobalDefinitions,
+                         theOptionalGlobalDefinitionsSelection=theOptionalGlobalDefinitionsSelection,
+                         theOptionalInGlobals=theOptionalInGlobals)$,
+  theOptionalPostCondition = 
+    $handleNull(theOptionalPostcondition)$,
+  theOptionalOutGlobals = $handleNull(theOptionalOutGlobals)$,
+  theOptionalDependencyRelation = 
+    $handleNull(theOptionalDependencyRelation)$
+)
+>>
+  
+ProofFunctionAnnotation(theOptionalPrecondition, 
+                        theOptionalGlobalDefinitions,
+                        theOptionalGlobalDefinitionsSelection,
+                        theOptionalInGlobals, 
+                        isImplicit) ::= <<
+@ProofFunctionAnnotation(
+  $SPARKMethodAnnotation(theOptionalPrecondition=theOptionalPrecondition, 
+                         theOptionalGlobalDefinitions=theOptionalGlobalDefinitions,
+                         theOptionalGlobalDefinitionsSelection=theOptionalGlobalDefinitionsSelection,
+                         theOptionalInGlobals=theOptionalInGlobals)$,
+  isImplicit = $isImplicit$
+)
+>>
+
+                         
+AnnotationVariable(id,loc) ::= <<
+@AnnotationVariable(
+  id = $id$,
+  loc =
+    $loc$
+)
+>>
+
+
+
+DependencyRelation(theDependencyClauses, theDependencyRelationRegionSelection) ::= <<
+@DependencyRelation(
+  theDependencyClauses = 
+    $theDependencyClauses$,
+  theDependencyRelationRegionSelection = 
+    $theDependencyRelationRegionSelection$  
+)
+>>
+
+DependencyClause(theDependencyClauseMembers, theDependencyClauseRegionSelection) ::= <<
+@DependencyClause(
+  theDependencyClauseMembers = 
+    $theDependencyClauseMembers$,
+  theDependencyClauseRegionSelection = 
+    $theDependencyClauseRegionSelection$
+)  
+>>
+
+DependencyClauseMember(theOutVariable,theOptionalInVariables) ::= <<
+@DependencyClauseMember(
+  theOutVariable = 
+    $theOutVariable$,
+  theOptionalInVariables = 
+    $handleNull(theOptionalInVariables)$
+)
+>>
+
+NullDependencyClauseMember(theInVariables) ::= <<
+@NullDependencyClauseMember(
+  theInVariables = 
+    $theInVariables$
+)
+>>
+
+ContractPredicate(theType, theExp, theLoc) ::= <<
+@ContractPredicate(
+  theType = $theType$,
+  theExp = $theExp$,
+  theLoc = $theLoc$
+)
+>>
+
+/****************************************************************
+ * P A C K A G E   S T R U C T U R E   (N O - A U T O G E N )   *
+ ****************************************************************/
+model(annotationList, packageDeclaration) ::= <<
+$if(annotationList)$$annotationList; separator="\n"$
+
+$endif$
+$packageDeclaration; separator="\n\n"$
+>>
+
+packageDeclaration(name, annotationList, packageElement) ::= <<
+package $name$
+$annotationList$;
+
+$packageElement; separator="\n"$
+>>
+
+globals(global) ::= <<
+$if(global)$
+  $global; separator="\n"$$endif$
+  
+>>
+
+global(global, annotation) ::= <<
+  global $global$$if(annotation)$ $annotation$$endif$;
+>>
+
+procedureSpecification(type, ID, params, annotationList, location) ::= <<
+procedure$if(type)$ $type$$endif$ $ID$$if(params)$ 
+      ($params; separator=",\n       "$)$endif$
+$annotationList; separator="\n"$ 
+{ #locret. return;}
+>>
+
+procedureImplementation(type, ID, params, annotationList, localVarDeclaration, location) ::= <<
+procedure$if(type)$ $type$$endif$ $ID$$if(params)$ 
+      ($params; separator=",\n       "$)$endif$
+$annotationList; separator="\n"$ 
+{
+$if(localVarDeclaration)$
+
+  local
+    $localVarDeclaration; separator="\n"$
+$endif$
+
+
+  $location; separator="\n"$
+
+}
+>>
+
+localVarDeclaration(type, name, annotation) ::= <<
+$type$ $name$ $annotation$;
+>>
+
+localVarDeclarationAnnotation(theKind, theOptionalLoc) ::= <<
+@LocalVarDeclarationAnnotation(
+  theKind = $theKind$,
+  theOptionalLoc = $handleNull(theOptionalLoc)$
+)
+>>
+
+assertStatement(theAnnotatedLoc, theExp, annotation) ::= <<
+$theAnnotatedLoc$ assert $theExp$ $annotation$;
+>>
+
+nullStatement(locLabel, theSelection) ::= <<
+$locLabel$ <
+$theSelection$
+@NullStatement
+>
+>>
+
+assignmentStatement(locLabel, lhs, rhs, annotationList) ::= <<
+$locLabel$ $lhs; separator=", "$ := $rhs; separator=","$$if(annotationList)$ $annotationList$$endif$;
+>>
+
+SparkStatementLabelAnnotation(theStartLocLabel,
+                              theEndLocLabel,
+                              theLabelList) ::= <<
+@SparkStatementLabelAnnotation(
+  theStartLocLabel = $theStartLocLabel$,
+  theEndLocLabel = $theEndLocLabel$,
+  theLabelList = $theLabelList$
+)
+>>
+
+
+/****************************************************************
+ * SELECTION MODEL                                              *
+ ****************************************************************/
+Mark(startLabel, endLabel, optRS) ::= <<
+@Mark(
+  startLabel = $startLabel$,
+  endLabel = $endLabel$,
+  optRS = $handleNull(optRS)$
+)
+>>
+
+StatementAnnotation(mark, optSparkLabelList) ::= <<
+  mark = $mark$,
+  optSparkLabelList = $handleNull(optSparkLabelList)$
+>>
+
+AssignmentStatementAnnotation(mark, optSparkLabelList) ::= <<
+@AssignmentStatementAnnotation(
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$ 
+)
+>>
+
+DeclarativePartStatementAnnotation(mark) ::= <<
+@DeclarativePartStatementAnnotation(
+  $StatementAnnotation(mark = mark)$
+)
+>>
+
+CopyBackStatementAnnotation(mark) ::= <<
+@CopyBackStatementAnnotation(
+  $StatementAnnotation(mark = mark)$
+)
+>>
+
+ExitStatementAnnotation(mark, hasWhen, optSparkLabelList) ::= <<
+@ExitStatementAnnotation(
+  hasWhen = $hasWhen$,
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+NullStatementAnnotation(mark, optSparkLabelList) ::= <<
+@NullStatementAnnotation(
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+ProcedureCallStatementAnnotation(optCopyBackPart, mark, optSparkLabelList) ::= <<
+@ProcedureCallStatementAnnotation(
+  optCopyBackPart = $handleNull(optCopyBackPart)$,
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+ReturnStatementAnnotation(mark, optSparkLabelList) ::= <<
+@ReturnStatementAnnotation(
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+AssertStatementAnnotation(mark, optSparkLabelList) ::= <<
+@AssertStatementAnnotation(
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+CheckStatementAnnotation(mark, optSparkLabelList) ::= <<
+@CheckStatementAnnotation(
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+CaseStatementAnnotation(optWhenOthers,
+                        caseStatementAlternatives,
+                        mark,
+                        optSparkLabelList) ::= <<
+@CaseStatementAnnotation(
+  caseStatementAlternatives = $caseStatementAlternatives$,
+  optWhenOthers = $handleNull(optWhenOthers)$,
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$
+)                        
+>>
+
+IfStatementAnnotation(ifPart,
+                      thenPart,
+                      optElsIfParts,
+                      optElsePart,
+                      mark,
+                      optSparkLabelList) ::= <<
+@IfStatementAnnotation(
+  ifPart = $ifPart$,
+  thenPart= $thenPart$,
+  optElsIfParts = $handleNull(optElsIfParts)$,
+  optElsePart = $handleNull(optElsePart)$,
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$  
+)
+>>
+
+LoopStatementAnnotation(optLoopId,
+                          body,
+                          mark,
+                          optSparkLabelList) ::= <<
+  optLoopId = $handleNull(optLoopId)$,
+  body = $body$,
+  $StatementAnnotation(mark = mark,
+                       optSparkLabelList = optSparkLabelList)$  
+>>
+
+DefaultLoopStatementAnnotation(optLoopId,
+                               body,
+                               mark,
+                               optSparkLabelList) ::= <<
+@DefaultLoopStatementAnnotation(
+  $LoopStatementAnnotation(optLoopId = optLoopId,
+                             body = body,
+                             mark = mark,
+                             optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+WhileLoopStatementAnnotation(condPart,
+                             optLoopId,
+                             body,
+                             mark,
+                             optSparkLabelList) ::= <<
+@WhileLoopStatementAnnotation(
+  condPart = $condPart$,
+  $LoopStatementAnnotation(optLoopId = optLoopId,
+                             body = body,
+                             mark = mark,
+                             optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+ForLoopStatementAnnotation(sparkIterVarID,
+                           pilarIterVarID,
+                           initPart,
+                           isRev,
+                           optLoopId,
+                           body,
+                           mark,
+                           optSparkLabelList) ::= <<
+@ForLoopStatementAnnotation(
+  sparkIterVarID = $sparkIterVarID$,
+  pilarIterVarID = $pilarIterVarID$,
+  initPart = $initPart$,
+  isRev = $isRev$,
+  $LoopStatementAnnotation(optLoopId = optLoopId,
+                             body = body,
+                             mark = mark,
+                             optSparkLabelList = optSparkLabelList)$
+)
+>>
+
+/******************************************************************************
+ * BRANCHING
+ *****************************************************************************/ 
+
+ifStatement(locLabel, locAnnot, ifCond, elseBranchLoc) ::= <<
+$locLabel$ if !($ifCond$) then goto $elseBranchLoc$; 
+>>
+
+
+// non-short circuit and or or 
+condBinary_AND_OR(resultVar,
+                  lhsVar, lhsStatements, 
+                  rhsVar, rhsStatements, resultVar, 
+                  op, 
+                  loc2,
+                  locAnnot,
+                  annotationList) ::= <<
+$lhsStatements$
+$rhsStatements$
+#$loc2$. $if(locAnnot)$<$locAnnot$>$endif$ $resultVar$ := $lhsVar$ $op$ $rhsVar$ $annotationList$;
+>>
+
+
+// short circuit 'and then'
+condBinary_AND_THEN(resultVar,
+                    lhsVar, lhsStatements,
+                    rhsVar, rhsStatements, 
+                    loc1, lhsLoc, rhsLoc, loc2, endLoc) ::= <<
+#$loc1$. $resultVar$ := false;
+$lhsStatements$
+$lhsLoc$ if (!$lhsVar$) then goto $endLoc$;
+$rhsStatements$
+$rhsLoc$ if (!$rhsVar$) then goto $endLoc$;
+#$loc2$. $resultVar$ := true;
+#$endLoc$.
+>>
+
+// short circuit 'or else'
+condBinary_OR_ELSE(resultVar,
+                   lhsVar, lhsStatements, 
+                   rhsVar, rhsStatements, 
+                   loc1, lhsLoc, rhsLoc, loc2, endLoc, trueLoc) ::= <<
+#$loc1$. $resultVar$ := false;
+$lhsStatements$
+$lhsLoc$ if ($lhsVar$) then goto $trueLoc$;
+$rhsStatements$
+$rhsLoc$ if (!$rhsVar$) then goto $endLoc$;
+#$trueLoc$.
+#$loc2$. $resultVar$ := true;
+#$endLoc$.
+>>
+
+
+
+LocationContainer(location) ::= <<
+  $location; separator="\n"$
+>>
+
+binaryExp(binop, exp1, exp2) ::= <<
+($exp1$ $binop$ $exp2$)
+>>
+
+funBinaryExp(binop,exp1,exp2) ::= <<
+$binop$($exp1$,$exp2$)
+>>
+
+/******************************************************************************
+ * DECORATED NAME
+ *****************************************************************************/
+decorated_name(decorated_uif_name, name) ::= <<
+($decorated_uif_name$($name$))
+>>
+ 
+/******************************************************************************
+ * SELECTED COMPONENTS
+ *****************************************************************************/
+selectedComponent(prefix, id) ::= <<
+$prefix$.$id$
+>>
+ 
+/******************************************************************************
+ * INDEXED COMPONENTS
+ *****************************************************************************/
+callExp(componentName, argument, annotation) ::= <<
+$componentName$ ($argument; separator=", "$)
+>>
+
+callTransformation(annotation, componentName, assVar, argument) ::= <<
+$if(annotation)$($annotation$) $endif$call $if(assVar)$$assVar$ :=$endif$ $componentName$ ($argument; separator=", "$)
+>>
+
+callWrapper(locLabel, theCallExp) ::= <<
+$locLabel$ $theCallExp$;
+>>
+
+arrayAccess(componentName, argument) ::= <<
+$componentName$ [$argument; separator=", "$]
+>>
+
+castExp(componentName, argument) ::= <<
+($componentName$) ($argument$)
+>>
+
+// END INDEXED COMPONENTS
+ 
+
+unaryExp(unop, exp) ::= <<
+$unop$($exp$)
+>>
+
+returnStatement(locLabel, theOptRetExp, annotation) ::= <<
+$locLabel$ return$if(theOptRetExp)$ $theOptRetExp$$endif$$if(annotation)$ $annotation$$endif$;
+>>
+
+same(ID) ::= <<
+$ID$
+>>
+
+
+/******************************************************************************
+ * ARRAY UPDATES
+ ******************************************************************************/
+CompositeUpdateExp(componentUpdateUIF, thePrefix, entry, annotation) ::= <<
+$componentUpdateUIF$ ($thePrefix$, ^{$entry; separator=", "$}) 
+>>
+
+CompositeUpdateExpEntry(choice, choiceIsField, value) ::= <<
+$if(choiceIsField)$:$endif$$choice$ -> $value$
+>>
+
+
+/******************************************************************************
+ * AGGREGATES
+ ******************************************************************************/
+
+arrayAggregateQualifiedExp(theType, theAggregate) ::= <<
+^$theType$ ($theAggregate$)
+>>
+
+recordAggregateQualifiedExp(theType, theAggregate) ::= <<
+^$theType$ {$theAggregate$}
+>>
+
+namedArrayAggregate(theIndexType, indexVar, arrayComponentAssociation, optionalAggregateItem) ::= << 
+$theIndexType$ $indexVar$ => 
+  switch $indexVar$ 
+    $arrayComponentAssociation; separator="\n"$
+    $if(optionalAggregateItem)$default => ($optionalAggregateItem$)$endif$
+>>
+
+namedRecordAggregate(recordComponentAssociation) ::= <<
+$recordComponentAssociation; separator=",\n"$
+>>
+
+recordComponentAssociation(selectorName, exp) ::= <<
+$selectorName$ = $exp$
+>>
+
+// used for aggregate translations
+switchCase(choice, actionExp) ::= <<
+case $choice$ => ($actionExp$)
+>>
+
+choiceRange(low, high) ::= <<
+($low$, $high$)
+>>
+
+Choice() ::= <<
+@Choice
+>>
+
+/*******************************************************************************
+ * RETURN ANNOTATION PRED
+ ******************************************************************************/
+returnAnnotationPred(theResultVarType, theResultVar, thePredicate) ::= <<
+($theResultVarType$ $theResultVar$ => $thePredicate$)
+>>
+
+quantExpRanged(quantType, iterVarTypeName, iterVar, optRange, predicate) ::= <<
+$quantType$ ($iterVarTypeName$ $iterVar$ => 
+  switch $iterVar$
+    case $optRange$ => $predicate$
+    default => true)
+>>
+
+
+ 
+/*******************************************************************************
+ * ATTRIBUTE
+ ******************************************************************************/
+attribute(attribute, isNameExp, typeName, optExp) ::= <<
+$attribute$($if(!isNameExp)$^$endif$$typeName$$if(optExp)$, $optExp; separator=", "$$endif$)
+>>

@@ -1,0 +1,512 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package RecordShape
+@PackageAnnotation(
+  theSourceFileName = "record_tagged_test.ada",
+  theSparkName = RecordShape,
+  thePilarSparkName = RecordShape,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 17,
+  theOffset = 196),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 20,
+  theOffset = 18),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+const $Const {
+  anObject = (RecordShape::Object) (`RecordShape::Object {
+    x_coord = 0.0,
+    y_coord = 0.0
+  }) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 8,
+        theCol = 3,
+        theOffset = 106),
+        theEndCaret = 
+        @Caret(
+        theLine = 8,
+        theCol = 11,
+        theOffset = 113),
+        theOptionalSource = "record_tagged_test.ada"
+      ));
+  anInt = (Standard::Integer) (3) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 10,
+        theCol = 3,
+        theOffset = 159),
+        theEndCaret = 
+        @Caret(
+        theLine = 10,
+        theCol = 8,
+        theOffset = 163),
+        theOptionalSource = "record_tagged_test.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Object
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 3,
+      theOffset = 26),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 14,
+      theOffset = 99),
+      theOptionalSource = "record_tagged_test.ada"
+    ),
+    fullyQualifiedName = RecordShape::Object,
+    typeDefinition = 
+      @RecordTypeDefinition(
+        tagged = true,
+        parentType=@NONE))
+{
+  Standard::Float x_coord @RecordComponentAnnotation(
+    sparkID = X_Coord
+  );
+  Standard::Float y_coord @RecordComponentAnnotation(
+    sparkID = Y_Coord
+  );
+}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package RecordShape_C_TrianglePackage
+@PackageAnnotation(
+  theSourceFileName = "record_tagged_test.ada",
+  theSparkName = TrianglePackage,
+  thePilarSparkName = RecordShape_C_TrianglePackage,
+  theOptionalParent = RecordShape,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @CHILD,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 26,
+  theCol = 13,
+  theOffset = 483),
+  theEndCaret = 
+  @Caret(
+  theLine = 35,
+  theCol = 33,
+  theOffset = 729),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 27,
+  theCol = 1,
+  theOffset = 496),
+  theEndCaret = 
+  @Caret(
+  theLine = 27,
+  theCol = 36,
+  theOffset = 530),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @List(RecordShape)
+));
+
+const $Const {
+  aTriangle = (RecordShape_C_TrianglePackage::Triangle) (`RecordShape_C_TrianglePackage::Triangle {
+    x_coord = 0.0,
+    y_coord = 0.0,
+    a = 3.0,
+    b = 4.0,
+    c = 5.0
+  }) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 34,
+        theCol = 3,
+        theOffset = 630),
+        theEndCaret = 
+        @Caret(
+        theLine = 34,
+        theCol = 12,
+        theOffset = 638),
+        theOptionalSource = "record_tagged_test.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Triangle
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 3,
+      theOffset = 537),
+      theEndCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 14,
+      theOffset = 623),
+      theOptionalSource = "record_tagged_test.ada"
+    ),
+    fullyQualifiedName = RecordShape_C_TrianglePackage::Triangle,
+    typeDefinition = 
+      @RecordTypeDefinition(
+        tagged = false,
+        parentType=RecordShape::Object))
+{
+  Standard::Float x_coord @RecordComponentAnnotation(
+    sparkID = X_Coord
+  );
+  Standard::Float y_coord @RecordComponentAnnotation(
+    sparkID = Y_Coord
+  );
+  Standard::Float a @RecordComponentAnnotation(
+    sparkID = A
+  );
+  Standard::Float b @RecordComponentAnnotation(
+    sparkID = B
+  );
+  Standard::Float c @RecordComponentAnnotation(
+    sparkID = C
+  );
+}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package RecordShape_C_CirclePackage
+@PackageAnnotation(
+  theSourceFileName = "record_tagged_test.ada",
+  theSparkName = CirclePackage,
+  thePilarSparkName = RecordShape_C_CirclePackage,
+  theOptionalParent = RecordShape,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @CHILD,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 14,
+  theCol = 13,
+  theOffset = 212),
+  theEndCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 31,
+  theOffset = 467),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 1,
+  theOffset = 225),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 34,
+  theOffset = 257),
+  theOptionalSource = "record_tagged_test.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @List(RecordShape)
+));
+
+const $Const {
+  aCircle = (RecordShape_C_CirclePackage::Circle) (`RecordShape_C_CirclePackage::Circle {
+    Radius = 1.0,
+    X_Coord = 1.0,
+    Y_Coord = 1.0
+  }) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 22,
+        theCol = 3,
+        theOffset = 354),
+        theEndCaret = 
+        @Caret(
+        theLine = 22,
+        theCol = 10,
+        theOffset = 360),
+        theOptionalSource = "record_tagged_test.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Circle
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 17,
+      theCol = 3,
+      theOffset = 264),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 14,
+      theOffset = 347),
+      theOptionalSource = "record_tagged_test.ada"
+    ),
+    fullyQualifiedName = RecordShape_C_CirclePackage::Circle,
+    typeDefinition = 
+      @RecordTypeDefinition(
+        tagged = false,
+        parentType=RecordShape::Object))
+{
+  Standard::Float x_coord @RecordComponentAnnotation(
+    sparkID = X_Coord
+  );
+  Standard::Float y_coord @RecordComponentAnnotation(
+    sparkID = Y_Coord
+  );
+  Standard::Float radius @RecordComponentAnnotation(
+    sparkID = Radius
+  );
+}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

@@ -1,0 +1,1760 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package for_loops
+@PackageAnnotation(
+  theSourceFileName = "for_loops.ada",
+  theSparkName = for_loops,
+  thePilarSparkName = for_loops,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 1,
+  theOffset = 373),
+  theEndCaret = 
+  @Caret(
+  theLine = 68,
+  theCol = 16,
+  theOffset = 1565),
+  theOptionalSource = "for_loops.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 1,
+  theOffset = 373),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 23,
+  theOffset = 394),
+  theOptionalSource = "for_loops.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Stupid 
+      (for_loops::Index_Range Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 21,
+  theOffset = 420),
+  theEndCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 22,
+  theOffset = 420),
+  theOptionalSource = "for_loops.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "for_loops.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(Z),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 4,
+      theOffset = 403),
+      theEndCaret = 
+      @Caret(
+      theLine = 66,
+      theCol = 15,
+      theOffset = 1545),
+      theOptionalSource = "for_loops.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 14,
+      theOffset = 413),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 20,
+      theOffset = 418),
+      theOptionalSource = "for_loops.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 4,
+      theOffset = 403),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 40,
+      theOffset = 438),
+      theOptionalSource = "for_loops.ada"
+    )
+) 
+{
+
+  local
+    for_loops::Index_Range I @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$11 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$12 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$13 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$14 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$15 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$16 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$17 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$18 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$19 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$20 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$21 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$22 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$23 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$24 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$25 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$26 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$27 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$28 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$29 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$30 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$31 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$32 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$33 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$34 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$35 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$36 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$37 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$38 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$39 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$40 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$41 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$42 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$43 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$44 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$45 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$46 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$47 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$48 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$49 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$50 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$51 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$52 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$53 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$54 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$55 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$56 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$57 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$58 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range I$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$59 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$60 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$61 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$62 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$63 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    for_loops::Index_Range temp$64 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    #l3.  temp$1 := $First(`for_loops::Index_Range);
+    #l4.  temp$2 := $Last(`for_loops::Index_Range);
+    #l5.  if (temp$1 > temp$2) then goto l2;
+    #l6.  I := temp$1;
+    #l1. 
+    #l7.  temp$3 := I;
+    #l8.  temp$4 := 1;
+    #l9. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l7,
+        endLabel = l9,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 24,
+        theCol = 8,
+        theOffset = 496),
+        theEndCaret = 
+        @Caret(
+        theLine = 24,
+        theCol = 18,
+        theOffset = 505),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$3] := temp$4;
+    #l10.  temp$5 := (I == temp$2);
+    #l11.  if temp$5 then goto l2;
+    #l12.  temp$6 := I + 1;
+    #l13.  I := temp$6;
+    #l14.  goto l1;
+    #l2. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I,
+      initPart = @Mark(
+      startLabel = l3,
+      endLabel = l6,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 6,
+      theOffset = 463),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 31,
+      theOffset = 487),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l3,
+          endLabel = l2,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 23,
+          theCol = 6,
+          theOffset = 463),
+          theEndCaret = 
+          @Caret(
+          theLine = 25,
+          theCol = 15,
+          theOffset = 520),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l17.  temp$7 := $First(`for_loops::Index_Range);
+    #l18.  temp$8 := $Last(`for_loops::Index_Range);
+    #l19.  if (temp$7 > temp$8) then goto l16;
+    #l20.  I$2 := temp$8;
+    #l15. 
+    #l21.  temp$9 := I$2;
+    #l22.  temp$10 := 1;
+    #l23. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l21,
+        endLabel = l23,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 28,
+        theCol = 8,
+        theOffset = 574),
+        theEndCaret = 
+        @Caret(
+        theLine = 28,
+        theCol = 18,
+        theOffset = 583),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$9] := temp$10;
+    #l24.  temp$11 := (I$2 == temp$7);
+    #l25.  if temp$11 then goto l16;
+    #l26.  temp$12 := I$2 - 1;
+    #l27.  I$2 := temp$12;
+    #l28.  goto l15;
+    #l16. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$2,
+      initPart = @Mark(
+      startLabel = l17,
+      endLabel = l20,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 27,
+      theCol = 6,
+      theOffset = 533),
+      theEndCaret = 
+      @Caret(
+      theLine = 27,
+      theCol = 39,
+      theOffset = 565),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = true,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l17,
+          endLabel = l16,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 27,
+          theCol = 6,
+          theOffset = 533),
+          theEndCaret = 
+          @Caret(
+          theLine = 29,
+          theCol = 15,
+          theOffset = 598),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l31.  temp$13 := 3;
+    #l32.  temp$14 := 1;
+    #l33.  if (temp$14 > temp$13) then goto l30;
+    #l34.  I$3 := temp$14;
+    #l29. 
+    #l35.  temp$15 := I$3;
+    #l36.  temp$16 := 1;
+    #l37. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l35,
+        endLabel = l37,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 32,
+        theCol = 8,
+        theOffset = 657),
+        theEndCaret = 
+        @Caret(
+        theLine = 32,
+        theCol = 18,
+        theOffset = 666),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$15] := temp$16;
+    #l38.  temp$17 := (I$3 == temp$13);
+    #l39.  if temp$17 then goto l30;
+    #l40.  temp$18 := I$3 + 1;
+    #l41.  I$3 := temp$18;
+    #l42.  goto l29;
+    #l30. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$3,
+      initPart = @Mark(
+      startLabel = l31,
+      endLabel = l34,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 6,
+      theOffset = 611),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 44,
+      theOffset = 648),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l31,
+          endLabel = l30,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 31,
+          theCol = 6,
+          theOffset = 611),
+          theEndCaret = 
+          @Caret(
+          theLine = 33,
+          theCol = 15,
+          theOffset = 681),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l45.  temp$19 := Z;
+    #l46.  temp$20 := 1;
+    #l47.  if (temp$20 > temp$19) then goto l44;
+    #l48.  I$4 := temp$19;
+    #l43. 
+    #l49.  temp$21 := I$4;
+    #l50.  temp$22 := 1;
+    #l51. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l49,
+        endLabel = l51,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 36,
+        theCol = 8,
+        theOffset = 748),
+        theEndCaret = 
+        @Caret(
+        theLine = 36,
+        theCol = 18,
+        theOffset = 757),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$21] := temp$22;
+    #l52.  temp$23 := (I$4 == temp$20);
+    #l53.  if temp$23 then goto l44;
+    #l54.  temp$24 := I$4 - 1;
+    #l55.  I$4 := temp$24;
+    #l56.  goto l43;
+    #l44. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$4,
+      initPart = @Mark(
+      startLabel = l45,
+      endLabel = l48,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 6,
+      theOffset = 694),
+      theEndCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 52,
+      theOffset = 739),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = true,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l45,
+          endLabel = l44,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 35,
+          theCol = 6,
+          theOffset = 694),
+          theEndCaret = 
+          @Caret(
+          theLine = 37,
+          theCol = 15,
+          theOffset = 772),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l59.  temp$25 := Z;
+    #l60.  temp$26 := $First(`for_loops::Index_Range);
+    #l61.  temp$27 := 10;
+    #l62.  temp$28 := (temp$26 + temp$27);
+    #l63.  if (temp$28 > temp$25) then goto l58;
+    #l64.  I$5 := temp$28;
+    #l57. 
+    #l65.  temp$29 := I$5;
+    #l66.  temp$30 := I$5;
+    #l67.  temp$31 := for_loops::@@A [temp$30];
+    #l68. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l65,
+        endLabel = l68,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 8,
+        theOffset = 907),
+        theEndCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 21,
+        theOffset = 919),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$29] := temp$31;
+    #l69.  temp$32 := (I$5 == temp$25);
+    #l70.  if temp$32 then goto l58;
+    #l71.  temp$33 := I$5 + 1;
+    #l72.  I$5 := temp$33;
+    #l73.  goto l57;
+    #l58. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$5,
+      initPart = @Mark(
+      startLabel = l59,
+      endLabel = l64,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 40,
+      theCol = 6,
+      theOffset = 840),
+      theEndCaret = 
+      @Caret(
+      theLine = 40,
+      theCol = 65,
+      theOffset = 898),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l59,
+          endLabel = l58,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 40,
+          theCol = 6,
+          theOffset = 840),
+          theEndCaret = 
+          @Caret(
+          theLine = 42,
+          theCol = 15,
+          theOffset = 934),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l76.  temp$34 := Z;
+    #l77.  temp$35 := $First(`for_loops::Index_Range);
+    #l78.  temp$36 := 10;
+    #l79.  temp$37 := (temp$35 + temp$36);
+    #l80.  if (temp$37 > temp$34) then goto l75;
+    #l81.  I$6 := temp$34;
+    #l74. 
+    #l82.  temp$38 := I$6;
+    #l83.  temp$39 := I$6;
+    #l84.  temp$40 := for_loops::@@A [temp$39];
+    #l85. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l82,
+        endLabel = l85,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 46,
+        theCol = 8,
+        theOffset = 1077),
+        theEndCaret = 
+        @Caret(
+        theLine = 46,
+        theCol = 21,
+        theOffset = 1089),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$38] := temp$40;
+    #l86.  temp$41 := (I$6 == temp$37);
+    #l87.  if temp$41 then goto l75;
+    #l88.  temp$42 := I$6 - 1;
+    #l89.  I$6 := temp$42;
+    #l90.  goto l74;
+    #l75. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$6,
+      initPart = @Mark(
+      startLabel = l76,
+      endLabel = l81,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 45,
+      theCol = 6,
+      theOffset = 1002),
+      theEndCaret = 
+      @Caret(
+      theLine = 45,
+      theCol = 73,
+      theOffset = 1068),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = true,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l76,
+          endLabel = l75,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 45,
+          theCol = 6,
+          theOffset = 1002),
+          theEndCaret = 
+          @Caret(
+          theLine = 47,
+          theCol = 15,
+          theOffset = 1104),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l93.  if ($First(`for_loops::Vector) > $Last(`for_loops::Vector)) then goto l92;
+    #l94.  I$7 := $First(`for_loops::Vector);
+    #l91. 
+    #l95.  temp$43 := I$7;
+    #l96.  temp$44 := I$7;
+    #l97.  temp$45 := for_loops::@@A [temp$44];
+    #l98. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l95,
+        endLabel = l98,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 51,
+        theCol = 8,
+        theOffset = 1214),
+        theEndCaret = 
+        @Caret(
+        theLine = 51,
+        theCol = 21,
+        theOffset = 1226),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$43] := temp$45;
+    #l99.  temp$46 := (I$7 == $Last(`for_loops::Vector));
+    #l100.  if temp$46 then goto l92;
+    #l101.  temp$47 := I$7 + 1;
+    #l102.  I$7 := temp$47;
+    #l103.  goto l91;
+    #l92. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$7,
+      initPart = @Mark(
+      startLabel = l93,
+      endLabel = l94,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 6,
+      theOffset = 1167),
+      theEndCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 45,
+      theOffset = 1205),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l93,
+          endLabel = l92,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 50,
+          theCol = 6,
+          theOffset = 1167),
+          theEndCaret = 
+          @Caret(
+          theLine = 52,
+          theCol = 15,
+          theOffset = 1241),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l106.  if ($First(`for_loops::Vector) > $Last(`for_loops::Vector)) then goto l105;
+    #l107.  I$8 := $Last(`for_loops::Vector);
+    #l104. 
+    #l108.  temp$48 := I$8;
+    #l109.  temp$49 := I$8;
+    #l110.  temp$50 := for_loops::@@A [temp$49];
+    #l111. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l108,
+        endLabel = l111,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 55,
+        theCol = 8,
+        theOffset = 1309),
+        theEndCaret = 
+        @Caret(
+        theLine = 55,
+        theCol = 21,
+        theOffset = 1321),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$48] := temp$50;
+    #l112.  temp$51 := (I$8 == $First(`for_loops::Vector));
+    #l113.  if temp$51 then goto l105;
+    #l114.  temp$52 := I$8 - 1;
+    #l115.  I$8 := temp$52;
+    #l116.  goto l104;
+    #l105. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$8,
+      initPart = @Mark(
+      startLabel = l106,
+      endLabel = l107,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 54,
+      theCol = 6,
+      theOffset = 1254),
+      theEndCaret = 
+      @Caret(
+      theLine = 54,
+      theCol = 53,
+      theOffset = 1300),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = true,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l106,
+          endLabel = l105,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 54,
+          theCol = 6,
+          theOffset = 1254),
+          theEndCaret = 
+          @Caret(
+          theLine = 56,
+          theCol = 15,
+          theOffset = 1336),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l119.  temp$53 := 1;
+    #l120.  if ($First(`for_loops::Vector, temp$53) > $Last(`for_loops::Vector, temp$53)) then goto l118;
+    #l121.  I$9 := $First(`for_loops::Vector, temp$53);
+    #l117. 
+    #l122.  temp$54 := I$9;
+    #l123.  temp$55 := I$9;
+    #l124.  temp$56 := for_loops::@@A [temp$55];
+    #l125. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l122,
+        endLabel = l125,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 59,
+        theCol = 8,
+        theOffset = 1399),
+        theEndCaret = 
+        @Caret(
+        theLine = 59,
+        theCol = 21,
+        theOffset = 1411),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$54] := temp$56;
+    #l126.  temp$57 := (I$9 == $Last(`for_loops::Vector, temp$53));
+    #l127.  if temp$57 then goto l118;
+    #l128.  temp$58 := I$9 + 1;
+    #l129.  I$9 := temp$58;
+    #l130.  goto l117;
+    #l118. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$9,
+      initPart = @Mark(
+      startLabel = l119,
+      endLabel = l121,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 58,
+      theCol = 6,
+      theOffset = 1349),
+      theEndCaret = 
+      @Caret(
+      theLine = 58,
+      theCol = 48,
+      theOffset = 1390),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l119,
+          endLabel = l118,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 58,
+          theCol = 6,
+          theOffset = 1349),
+          theEndCaret = 
+          @Caret(
+          theLine = 60,
+          theCol = 15,
+          theOffset = 1426),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+    #l133.  temp$59 := 1;
+    #l134.  if ($First(`for_loops::Vector, temp$59) > $Last(`for_loops::Vector, temp$59)) then goto l132;
+    #l135.  I$10 := $Last(`for_loops::Vector, temp$59);
+    #l131. 
+    #l136.  temp$60 := I$10;
+    #l137.  temp$61 := I$10;
+    #l138.  temp$62 := for_loops::@@A [temp$61];
+    #l139. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l136,
+        endLabel = l139,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 63,
+        theCol = 8,
+        theOffset = 1497),
+        theEndCaret = 
+        @Caret(
+        theLine = 63,
+        theCol = 21,
+        theOffset = 1509),
+        theOptionalSource = "for_loops.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  for_loops::@@A [temp$60] := temp$62;
+    #l140.  temp$63 := (I$10 == $First(`for_loops::Vector, temp$59));
+    #l141.  if temp$63 then goto l132;
+    #l142.  temp$64 := I$10 - 1;
+    #l143.  I$10 := temp$64;
+    #l144.  goto l131;
+    #l132. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I$10,
+      initPart = @Mark(
+      startLabel = l133,
+      endLabel = l135,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 6,
+      theOffset = 1439),
+      theEndCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 56,
+      theOffset = 1488),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      isRev = true,
+        optLoopId = @NONE,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l133,
+          endLabel = l132,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 62,
+          theCol = 6,
+          theOffset = 1439),
+          theEndCaret = 
+          @Caret(
+          theLine = 64,
+          theCol = 15,
+          theOffset = 1524),
+          theOptionalSource = "for_loops.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+  #l145.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package for_loops
+@PackageAnnotation(
+  theSourceFileName = "for_loops.ada",
+  theSparkName = for_loops,
+  thePilarSparkName = for_loops,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "A",pilarSparkID = for_loops::@@A,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 15,
+  theOffset = 369),
+  theOptionalSource = "for_loops.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 18,
+  theOffset = 16),
+  theOptionalSource = "for_loops.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = for_loops::@@A,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 9,
+                  theOffset = 27),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 10,
+                  theOffset = 27),
+                  theOptionalSource = "for_loops.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 9,
+              theOffset = 27),
+              theEndCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 10,
+              theOffset = 28),
+              theOptionalSource = "for_loops.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 5,
+          theOffset = 23),
+          theEndCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 10,
+          theOffset = 28),
+          theOptionalSource = "for_loops.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(for_loops::@@A)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+const $Const {
+  aFloatConst = (Standard::Float) ((3.0 + 7.3)) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 5,
+        theCol = 4,
+        theOffset = 55),
+        theEndCaret = 
+        @Caret(
+        theLine = 5,
+        theCol = 15,
+        theOffset = 65),
+        theOptionalSource = "for_loops.ada"
+      ));
+  aIntConst = (Standard::Integer) ((1 + 3)) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 6,
+        theCol = 4,
+        theOffset = 95),
+        theEndCaret = 
+        @Caret(
+        theLine = 6,
+        theCol = 13,
+        theOffset = 103),
+        theOptionalSource = "for_loops.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Index_Range
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 4,
+      theOffset = 129),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 38,
+      theOffset = 162),
+      theOptionalSource = "for_loops.ada"
+    ),
+    fullyQualifiedName = for_loops::Index_Range,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 1,
+        theHighRangeExp = 100))
+{}
+record Vector
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 4,
+      theOffset = 167),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 49,
+      theOffset = 211),
+      theOptionalSource = "for_loops.ada"
+    ),
+    fullyQualifiedName = for_loops::Vector,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`for_loops::Index_Range)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global for_loops::Vector @@A @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "A",pilarSparkID = for_loops::@@A,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 9,
+    theCol = 4,
+    theOffset = 216),
+    theEndCaret = 
+    @Caret(
+    theLine = 9,
+    theCol = 5,
+    theOffset = 216),
+    theOptionalSource = "for_loops.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$sinit
+ 
+{
+  #l1. <@DeclarativePartStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l1,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 18,
+      theOffset = 230),
+      theEndCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 38,
+      theOffset = 249),
+      theOptionalSource = "for_loops.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  for_loops::@@A := `for_loops::Vector (
+     
+    {
+      for_loops::Index_Range iter0 => 
+        switch iter0 
+    | => (1)
+    }
+  );
+  #locret. return;
+}
+procedure Stupid 
+      (for_loops::Index_Range Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 21,
+  theOffset = 278),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 22,
+  theOffset = 278),
+  theOptionalSource = "for_loops.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "for_loops.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(Z),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = for_loops::@@A,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 12,
+              theCol = 22,
+              theOffset = 320),
+              theEndCaret = 
+              @Caret(
+              theLine = 12,
+              theCol = 23,
+              theOffset = 320),
+              theOptionalSource = "for_loops.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 12,
+          theCol = 8,
+          theOffset = 306),
+          theEndCaret = 
+          @Caret(
+          theLine = 12,
+          theCol = 24,
+          theOffset = 321),
+          theOptionalSource = "for_loops.ada"
+        ),
+      theOptionalInGlobals = @List(for_loops::@@A),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(for_loops::@@A),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = for_loops::@@A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 16,
+                          theOffset = 338),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 17,
+                          theOffset = 338),
+                          theOptionalSource = "for_loops.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 26,
+                          theOffset = 348),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 27,
+                          theOffset = 348),
+                          theOptionalSource = "for_loops.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = for_loops::@@A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 16,
+                          theOffset = 338),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 13,
+                          theCol = 17,
+                          theOffset = 338),
+                          theOptionalSource = "for_loops.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 16,
+                  theOffset = 338),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 27,
+                  theOffset = 348),
+                  theOptionalSource = "for_loops.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 13,
+              theCol = 8,
+              theOffset = 330),
+              theEndCaret = 
+              @Caret(
+              theLine = 13,
+              theCol = 28,
+              theOffset = 349),
+              theOptionalSource = "for_loops.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 4,
+      theOffset = 261),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 41,
+      theOffset = 297),
+      theOptionalSource = "for_loops.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 14,
+      theOffset = 271),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 20,
+      theOffset = 276),
+      theOptionalSource = "for_loops.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 4,
+      theOffset = 261),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 40,
+      theOffset = 296),
+      theOptionalSource = "for_loops.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

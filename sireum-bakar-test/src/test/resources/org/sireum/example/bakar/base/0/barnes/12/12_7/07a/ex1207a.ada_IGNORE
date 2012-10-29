@@ -1,0 +1,20 @@
+-- Use of parameterless functions for read-only state
+package V_Const is
+   type T is range 0..65535;
+   function V_Data return  T;
+end V_Const;
+
+package body V_Const
+is
+   --# hide V_Const;
+   V_Temp : T;
+   for V_Temp'Address use 16#DEAD_BEEF#;
+
+   function V_Data return T is
+   begin
+      return V_Temp;
+   end V_Data;
+end V_Const;
+
+
+

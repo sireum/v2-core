@@ -1,0 +1,30 @@
+`Array_Dim_Fun::Matrix { 
+  Array_Dim_Fun::Index iter0 => 
+    switch iter0 
+      | (1, 5) => ( 
+        Array_Dim_Fun::Index iter1 => 
+        switch iter1 
+          | (1, 5) => ( 
+          Array_Dim_Fun::Index iter2 => 
+            switch iter2 
+              | (1, 5) => (10)
+          | => (20))
+        | => ( 
+        Array_Dim_Fun::Index iter3 => 
+          switch iter3 
+        | => (30)))
+      | (6, 9) => ( 
+        Array_Dim_Fun::Index iter4 => 
+          switch iter4 
+        | => ( 
+          Array_Dim_Fun::Index iter5 => 
+          switch iter5 
+          | => (-(66))))
+      | => ( 
+        Array_Dim_Fun::Index iter6 => 
+        switch iter6 
+          | => ( 
+          Array_Dim_Fun::Index iter7 => 
+            switch iter7 
+              | => (-(77))))
+} 

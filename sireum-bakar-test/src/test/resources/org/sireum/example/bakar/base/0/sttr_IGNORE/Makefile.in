@@ -1,0 +1,50 @@
+# File: Makefile.in
+#
+
+#------------------------------------------------------------------------------
+
+ifndef SPARK_BIN
+SPARK_BIN=/pkg/s/sparkada/bin
+endif
+# Spark tools call other Spark tools so we need to have $(SPARK_BIN) in PATH.
+# In case $(SPARK_BIN) isn't already in PATH we add it here:
+PATH+=:$(SPARK_BIN)
+
+UL=ulimit -s 20000
+SPARK=$(UL); $(SPARK_BIN)/spark
+TARGET?=*.ada
+
+default_for_makedefs: spark_target
+
+#------------------------------------------------------------------------------
+
+spark_target:
+	-$(SPARK) -config_file=$(BASEDIR)Standard.ada -exp $(TARGET)
+	-$(SPARK_BIN)/sparksimp
+	-$(SPARK_BIN)/pogs
+	-@[ -e $(POGS_FILE_NAME).sum ] && tail -12 $(POGS_FILE_NAME).sum
+
+simp:
+	-$(SPARK_BIN)/sparksimp
+
+pogs:
+	-$(SPARK_BIN)/pogs
+
+clean:
+	@# Only removed subdirectories that start with
+	@# lowercase letters.
+	@-for d in `find . -type d -name "[a-z]*"`; do \
+		echo "removing $$d"; rm -Rf $$d; \
+		done
+	@-rm \
+		*~ \
+		*.fdl \
+		*.lst \
+		*.rep \
+		*.rls \
+		*.siv \
+		*.slg \
+		*.sum \
+		*.vcg > /dev/null 2>&1;
+
+# End of file

@@ -1,0 +1,26 @@
+-- Partial correctness of Factorial algorithm
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   --# function Fact (N : Natural) return Natural;
+
+   function Factorial (N : Natural) return Natural
+   --# pre N >= 0;
+   --# return Fact (N);
+   is
+      Result : Natural := 1;
+   begin
+      for Term in Integer range 1 .. N loop
+         Result := Result * Term;
+         --# assert Term > 0 and Result = Fact (Term);
+      end loop;
+      return Result;
+   end Factorial;
+end P;
+
+
+

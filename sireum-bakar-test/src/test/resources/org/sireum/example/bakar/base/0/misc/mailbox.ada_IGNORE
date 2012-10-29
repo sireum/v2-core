@@ -1,0 +1,320 @@
+-- This is a SPARK-Ada version of the simple C mailbox example
+-- provided by Rockwell Collins. The example is enriched with
+-- SPARK annotations. The purpose of this simple program is to
+-- transmit data from one entity to another through a mediator
+-- (the mailbox).
+-- @author Edwin Rodr?guez
+
+
+package Mailbox
+--# own CHARACTER_INPUT_0_READY, CHARACTER_INPUT_0_DATA,
+--#     CHARACTER_OUTPUT_0_READY, CHARACTER_OUTPUT_0_DATA,
+--#     CHARACTER_INPUT_1_READY, CHARACTER_INPUT_1_DATA,
+--#     CHARACTER_OUTPUT_1_READY, CHARACTER_OUTPUT_1_DATA;
+--# initializes CHARACTER_INPUT_0_READY, CHARACTER_INPUT_0_DATA,
+--#     CHARACTER_OUTPUT_0_READY, CHARACTER_OUTPUT_0_DATA,
+--#     CHARACTER_INPUT_1_READY, CHARACTER_INPUT_1_DATA,
+--#     CHARACTER_OUTPUT_1_READY, CHARACTER_OUTPUT_1_DATA;
+
+is
+
+ CHARACTER_INPUT_0_READY : BOOLEAN := TRUE;
+ CHARACTER_INPUT_0_DATA : CHARACTER := ' ';
+ CHARACTER_OUTPUT_0_READY : BOOLEAN := TRUE;
+ CHARACTER_OUTPUT_0_DATA : CHARACTER := ' ';
+
+ CHARACTER_INPUT_1_READY : BOOLEAN := TRUE;
+ CHARACTER_INPUT_1_DATA : CHARACTER := ' ';
+ CHARACTER_OUTPUT_1_READY : BOOLEAN := TRUE;
+ CHARACTER_OUTPUT_1_DATA : CHARACTER := ' ';
+
+ function INPUT_0_CONSUMED return BOOLEAN;
+ --# global in CHARACTER_INPUT_0_READY;
+
+ function INPUT_0_READY return BOOLEAN;
+ --# global in CHARACTER_INPUT_0_READY;
+
+ function OUTPUT_0_CONSUMED return BOOLEAN;
+ --# global in CHARACTER_OUTPUT_0_READY;
+
+ function OUTPUT_0_READY return BOOLEAN;
+ --# global in CHARACTER_OUTPUT_0_READY;
+
+ function INPUT_1_CONSUMED return BOOLEAN;
+ --# global in CHARACTER_INPUT_1_READY;
+
+ function INPUT_1_READY return BOOLEAN;
+ --# global in CHARACTER_INPUT_1_READY;
+
+ function OUTPUT_1_CONSUMED return BOOLEAN;
+ --# global in CHARACTER_OUTPUT_1_READY;
+
+ function OUTPUT_1_READY return BOOLEAN;
+ --# global in CHARACTER_OUTPUT_1_READY;
+
+ procedure NOTIFY_INPUT_0_CONSUMED;
+ --# global out CHARACTER_INPUT_0_READY;
+ --# derives CHARACTER_INPUT_0_READY from ;
+
+ procedure NOTIFY_INPUT_0_READY;
+ --# global out CHARACTER_INPUT_0_READY;
+ --# derives CHARACTER_INPUT_0_READY from ;
+
+ procedure NOTIFY_OUTPUT_0_CONSUMED;
+ --# global out CHARACTER_OUTPUT_0_READY;
+ --# derives CHARACTER_OUTPUT_0_READY from ;
+
+ procedure NOTIFY_OUTPUT_0_READY;
+ --# global out CHARACTER_OUTPUT_0_READY;
+ --# derives CHARACTER_OUTPUT_0_READY from ;
+
+ procedure NOTIFY_INPUT_1_CONSUMED;
+ --# global out CHARACTER_INPUT_1_READY;
+ --# derives CHARACTER_INPUT_1_READY from ;
+
+ procedure NOTIFY_INPUT_1_READY;
+ --# global out CHARACTER_INPUT_1_READY;
+ --# derives CHARACTER_INPUT_1_READY from ;
+
+ procedure NOTIFY_OUTPUT_1_CONSUMED;
+ --# global out CHARACTER_OUTPUT_1_READY;
+ --# derives CHARACTER_OUTPUT_1_READY from ;
+
+ procedure NOTIFY_OUTPUT_1_READY;
+ --# global out CHARACTER_OUTPUT_1_READY;
+ --# derives CHARACTER_OUTPUT_1_READY from ;
+
+ function READ_INPUT_0 return CHARACTER;
+ --# global in CHARACTER_INPUT_0_DATA;
+
+ function READ_OUTPUT_0 return CHARACTER;
+ --# global in CHARACTER_OUTPUT_0_DATA;
+
+ function READ_INPUT_1 return CHARACTER;
+ --# global in CHARACTER_INPUT_1_DATA;
+
+ function READ_OUTPUT_1 return CHARACTER;
+ --# global in CHARACTER_OUTPUT_1_DATA;
+
+ procedure WRITE_INPUT_0(Data : in CHARACTER);
+ --# global out CHARACTER_INPUT_0_DATA;
+ --# derives CHARACTER_INPUT_0_DATA from Data;
+
+ procedure WRITE_OUTPUT_0(Data : in CHARACTER);
+ --# global out CHARACTER_OUTPUT_0_DATA;
+ --# derives CHARACTER_OUTPUT_0_DATA from Data;
+
+ procedure WRITE_INPUT_1(Data : in CHARACTER);
+ --# global out CHARACTER_INPUT_1_DATA;
+ --# derives CHARACTER_INPUT_1_DATA from Data;
+
+ procedure WRITE_OUTPUT_1(Data : in CHARACTER);
+ --# global out CHARACTER_OUTPUT_1_DATA;
+ --# derives CHARACTER_OUTPUT_1_DATA from Data;
+
+end Mailbox;
+
+package body Mailbox
+is
+
+ function INPUT_0_CONSUMED return BOOLEAN is
+ begin
+   return not CHARACTER_INPUT_0_READY;
+ end INPUT_0_CONSUMED;
+
+ function INPUT_0_READY return BOOLEAN is
+ begin
+   return CHARACTER_INPUT_0_READY;
+ end INPUT_0_READY;
+
+ function OUTPUT_0_CONSUMED return BOOLEAN is
+ begin
+   return not CHARACTER_OUTPUT_0_READY;
+ end OUTPUT_0_CONSUMED;
+
+ function OUTPUT_0_READY return BOOLEAN is
+ begin
+   return CHARACTER_OUTPUT_0_READY;
+ end OUTPUT_0_READY;
+
+ function INPUT_1_CONSUMED return BOOLEAN is
+ begin
+   return not CHARACTER_INPUT_1_READY;
+ end INPUT_1_CONSUMED;
+
+ function INPUT_1_READY return BOOLEAN is
+ begin
+   return CHARACTER_INPUT_1_READY;
+ end INPUT_1_READY;
+
+ function OUTPUT_1_CONSUMED return BOOLEAN is
+ begin
+   return not CHARACTER_OUTPUT_1_READY;
+ end OUTPUT_1_CONSUMED;
+
+ function OUTPUT_1_READY return BOOLEAN is
+ begin
+   return CHARACTER_OUTPUT_1_READY;
+ end OUTPUT_1_READY;
+
+ procedure NOTIFY_INPUT_0_CONSUMED is
+ begin
+   CHARACTER_INPUT_0_READY := FALSE;
+ end NOTIFY_INPUT_0_CONSUMED;
+
+ procedure NOTIFY_INPUT_0_READY is
+ begin
+   CHARACTER_INPUT_0_READY := TRUE;
+ end NOTIFY_INPUT_0_READY;
+
+ procedure NOTIFY_OUTPUT_0_CONSUMED is
+ begin
+   CHARACTER_OUTPUT_0_READY := FALSE;
+ end NOTIFY_OUTPUT_0_CONSUMED;
+
+ procedure NOTIFY_OUTPUT_0_READY is
+ begin
+   CHARACTER_OUTPUT_0_READY := TRUE;
+ end NOTIFY_OUTPUT_0_READY;
+
+ procedure NOTIFY_INPUT_1_CONSUMED is
+ begin
+   CHARACTER_INPUT_1_READY := FALSE;
+ end NOTIFY_INPUT_1_CONSUMED;
+
+ procedure NOTIFY_INPUT_1_READY is
+ begin
+   CHARACTER_INPUT_1_READY := TRUE;
+ end NOTIFY_INPUT_1_READY;
+
+ procedure NOTIFY_OUTPUT_1_CONSUMED is
+ begin
+   CHARACTER_OUTPUT_1_READY := FALSE;
+ end NOTIFY_OUTPUT_1_CONSUMED;
+
+ procedure NOTIFY_OUTPUT_1_READY is
+ begin
+   CHARACTER_OUTPUT_1_READY := TRUE;
+ end NOTIFY_OUTPUT_1_READY;
+
+ function READ_INPUT_0 return CHARACTER is
+ begin
+   return CHARACTER_INPUT_0_DATA;
+ end READ_INPUT_0;
+
+ function READ_OUTPUT_0 return CHARACTER is
+ begin
+   return CHARACTER_OUTPUT_0_DATA;
+ end READ_OUTPUT_0;
+
+ function READ_INPUT_1 return CHARACTER is
+ begin
+   return CHARACTER_INPUT_1_DATA;
+ end READ_INPUT_1;
+
+ function READ_OUTPUT_1 return CHARACTER is
+ begin
+   return CHARACTER_OUTPUT_1_DATA;
+ end READ_OUTPUT_1;
+
+ procedure WRITE_INPUT_0(Data : in CHARACTER) is
+ begin
+   CHARACTER_INPUT_0_DATA := Data;
+ end WRITE_INPUT_0;
+
+ procedure WRITE_OUTPUT_0(Data : in CHARACTER) is
+ begin
+   CHARACTER_OUTPUT_0_DATA := Data;
+ end WRITE_OUTPUT_0;
+
+ procedure WRITE_INPUT_1(Data : in CHARACTER) is
+ begin
+   CHARACTER_INPUT_1_DATA := Data;
+ end WRITE_INPUT_1;
+
+ procedure WRITE_OUTPUT_1(Data : in CHARACTER) is
+ begin
+   CHARACTER_OUTPUT_1_DATA := Data;
+ end WRITE_OUTPUT_1;
+
+end Mailbox;
+
+with Mailbox;
+--# inherit Mailbox;
+--# main_program;
+ procedure Main
+ --# global in out Mailbox.CHARACTER_INPUT_0_READY,
+ --#               Mailbox.CHARACTER_INPUT_1_READY,
+ --#               Mailbox.CHARACTER_OUTPUT_0_READY,
+ --#               Mailbox.CHARACTER_OUTPUT_1_READY,
+ --#               Mailbox.CHARACTER_OUTPUT_0_DATA,
+ --#               Mailbox.CHARACTER_OUTPUT_1_DATA;
+ --#        in     Mailbox.CHARACTER_INPUT_0_DATA,
+ --#               Mailbox.CHARACTER_INPUT_1_DATA;
+ --# derives Mailbox.CHARACTER_OUTPUT_0_DATA from Mailbox.CHARACTER_INPUT_1_DATA,
+ --#                                              Mailbox.CHARACTER_OUTPUT_0_READY,
+ --#                                              Mailbox.CHARACTER_OUTPUT_0_DATA,
+ --#                                              Mailbox.CHARACTER_INPUT_1_READY &
+ --#         Mailbox.CHARACTER_OUTPUT_1_DATA from Mailbox.CHARACTER_INPUT_0_DATA,
+ --#                                              Mailbox.CHARACTER_INPUT_0_READY,
+ --#                                              Mailbox.CHARACTER_OUTPUT_1_DATA,
+ --#                                              Mailbox.CHARACTER_OUTPUT_1_READY &
+ --#         Mailbox.CHARACTER_INPUT_0_READY from Mailbox.CHARACTER_INPUT_0_READY,
+ --#                                              Mailbox.CHARACTER_OUTPUT_1_READY &
+ --#         Mailbox.CHARACTER_INPUT_1_READY from Mailbox.CHARACTER_INPUT_1_READY,
+ --#                                              Mailbox.CHARACTER_OUTPUT_0_READY &
+ --#         Mailbox.CHARACTER_OUTPUT_0_READY from Mailbox.CHARACTER_OUTPUT_0_READY,
+ --#                                               Mailbox.CHARACTER_INPUT_1_READY &
+ --#         Mailbox.CHARACTER_OUTPUT_1_READY from Mailbox.CHARACTER_OUTPUT_1_READY,
+ --#                                               Mailbox.CHARACTER_INPUT_0_READY;
+ is
+
+   procedure MACHINE_STEP
+   --# global in out Mailbox.CHARACTER_INPUT_0_READY,
+   --#               Mailbox.CHARACTER_INPUT_1_READY,
+   --#               Mailbox.CHARACTER_OUTPUT_0_READY,
+   --#               Mailbox.CHARACTER_OUTPUT_1_READY,
+   --#               Mailbox.CHARACTER_OUTPUT_0_DATA,
+   --#               Mailbox.CHARACTER_OUTPUT_1_DATA;
+   --#        in     Mailbox.CHARACTER_INPUT_0_DATA,
+   --#               Mailbox.CHARACTER_INPUT_1_DATA;
+   --# derives Mailbox.CHARACTER_OUTPUT_0_DATA from Mailbox.CHARACTER_INPUT_1_DATA,
+   --#                                              Mailbox.CHARACTER_OUTPUT_0_READY,
+   --#                                              Mailbox.CHARACTER_OUTPUT_0_DATA,
+   --#                                              Mailbox.CHARACTER_INPUT_1_READY &
+   --#         Mailbox.CHARACTER_OUTPUT_1_DATA from Mailbox.CHARACTER_INPUT_0_DATA,
+   --#                                              Mailbox.CHARACTER_INPUT_0_READY,
+   --#                                              Mailbox.CHARACTER_OUTPUT_1_DATA,
+   --#                                              Mailbox.CHARACTER_OUTPUT_1_READY &
+   --#         Mailbox.CHARACTER_INPUT_0_READY from Mailbox.CHARACTER_INPUT_0_READY,
+   --#                                              Mailbox.CHARACTER_OUTPUT_1_READY &
+   --#         Mailbox.CHARACTER_INPUT_1_READY from Mailbox.CHARACTER_INPUT_1_READY,
+   --#                                              Mailbox.CHARACTER_OUTPUT_0_READY &
+   --#         Mailbox.CHARACTER_OUTPUT_0_READY from Mailbox.CHARACTER_OUTPUT_0_READY,
+   --#                                               Mailbox.CHARACTER_INPUT_1_READY &
+   --#         Mailbox.CHARACTER_OUTPUT_1_READY from Mailbox.CHARACTER_OUTPUT_1_READY,
+   --#                                               Mailbox.CHARACTER_INPUT_0_READY;
+   is
+     DATA_0 : CHARACTER;
+     DATA_1 : CHARACTER;
+   begin
+     if Mailbox.INPUT_0_READY and Mailbox.OUTPUT_1_CONSUMED then
+       DATA_0 := Mailbox.READ_INPUT_0;
+       Mailbox.NOTIFY_INPUT_0_CONSUMED;
+       Mailbox.WRITE_OUTPUT_1(DATA_0);
+       Mailbox.NOTIFY_OUTPUT_1_READY;
+     end if;
+
+     if Mailbox.INPUT_1_READY and Mailbox.OUTPUT_0_CONSUMED then
+       DATA_1 := Mailbox.READ_INPUT_1;
+       Mailbox.NOTIFY_INPUT_1_CONSUMED;
+       Mailbox.WRITE_OUTPUT_0(DATA_1);
+       Mailbox.NOTIFY_OUTPUT_0_READY;
+     end if;
+   end MACHINE_STEP;
+
+ begin
+   loop
+     MACHINE_STEP;
+   end loop;
+ end Main;

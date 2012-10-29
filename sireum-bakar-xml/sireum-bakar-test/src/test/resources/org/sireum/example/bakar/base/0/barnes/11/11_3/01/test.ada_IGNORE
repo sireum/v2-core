@@ -1,0 +1,21 @@
+-- Simple demonstration of RTC VC generation
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   subtype Index is Integer range 1 .. 1000;
+
+   procedure Checks (I : in Index; J : out Integer; K : out Index)
+   --# derives J, K from I;
+   is
+   begin
+      J := I;
+      K := J * J;
+   end Checks;
+end P;
+
+
+

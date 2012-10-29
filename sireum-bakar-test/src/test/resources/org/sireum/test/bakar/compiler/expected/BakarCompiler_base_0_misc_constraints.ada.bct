@@ -1,0 +1,873 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Constraints
+@PackageAnnotation(
+  theSourceFileName = "constraints.ada",
+  theSparkName = Constraints,
+  thePilarSparkName = Constraints,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 14,
+  theCol = 17,
+  theOffset = 407),
+  theOptionalSource = "constraints.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 20,
+  theOffset = 18),
+  theOptionalSource = "constraints.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+const $Const {
+  Int_Low_Const = (Constraints::Sub_Int) (0) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 4,
+        theCol = 3,
+        theOffset = 70),
+        theEndCaret = 
+        @Caret(
+        theLine = 4,
+        theCol = 16,
+        theOffset = 82),
+        theOptionalSource = "constraints.ada"
+      ));
+  Int_High_Const = (Standard::Integer) (100) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 5,
+        theCol = 3,
+        theOffset = 110),
+        theEndCaret = 
+        @Caret(
+        theLine = 5,
+        theCol = 17,
+        theOffset = 123),
+        theOptionalSource = "constraints.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Sub_Int
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 3,
+      theOffset = 26),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 44,
+      theOffset = 66),
+      theOptionalSource = "constraints.ada"
+    ),
+    fullyQualifiedName = Constraints::Sub_Int,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = 10,
+        lowerBound = 0)))
+{}
+record Int_Range
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 3,
+      theOffset = 145),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 59,
+      theOffset = 200),
+      theOptionalSource = "constraints.ada"
+    ),
+    fullyQualifiedName = Constraints::Int_Range,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = Constraints::$Const.Int_Low_Const,
+        theHighRangeExp = Constraints::$Const.Int_High_Const))
+{}
+record Day
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 207),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 52,
+      theOffset = 255),
+      theOptionalSource = "constraints.ada"
+    ),
+    fullyQualifiedName = Constraints::Day,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = Mon),
+                @EnumerationValue(tag = Tue),
+                @EnumerationValue(tag = Wed),
+                @EnumerationValue(tag = Thur),
+                @EnumerationValue(tag = Fri),
+                @EnumerationValue(tag = Sat),
+                @EnumerationValue(tag = Sun))))
+{}
+record Weekday
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 3,
+      theOffset = 259),
+      theEndCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 43,
+      theOffset = 298),
+      theOptionalSource = "constraints.ada"
+    ),
+    fullyQualifiedName = Constraints::Weekday,
+    type = `Constraints::Day,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = Constraints::Day.Fri,
+        lowerBound = Constraints::Day.Mon)))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure foo 
+      (Standard::Integer a @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 17,
+  theOffset = 319),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 18,
+  theOffset = 319),
+  theOptionalSource = "constraints.ada"
+),
+       Constraints::Day dayVar @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 37,
+  theOffset = 339),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 43,
+  theOffset = 344),
+  theOptionalSource = "constraints.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "constraints.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(a,
+            dayVar),
+      theOptionalOutParameters = @List(a)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = a,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 15,
+                          theOffset = 371),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 16,
+                          theOffset = 371),
+                          theOptionalSource = "constraints.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = a,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 22,
+                          theOffset = 378),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 23,
+                          theOffset = 378),
+                          theOptionalSource = "constraints.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = dayVar,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 25,
+                          theOffset = 381),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 12,
+                          theCol = 31,
+                          theOffset = 386),
+                          theOptionalSource = "constraints.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 12,
+                  theCol = 15,
+                  theOffset = 371),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 12,
+                  theCol = 31,
+                  theOffset = 386),
+                  theOptionalSource = "constraints.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 12,
+              theCol = 7,
+              theOffset = 363),
+              theEndCaret = 
+              @Caret(
+              theLine = 12,
+              theCol = 32,
+              theOffset = 387),
+              theOptionalSource = "constraints.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 3,
+      theOffset = 305),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 54,
+      theOffset = 355),
+      theOptionalSource = "constraints.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 13,
+      theOffset = 315),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 16,
+      theOffset = 317),
+      theOptionalSource = "constraints.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 3,
+      theOffset = 305),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 53,
+      theOffset = 354),
+      theOptionalSource = "constraints.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package Constraints
+@PackageAnnotation(
+  theSourceFileName = "constraints.ada",
+  theSparkName = Constraints,
+  thePilarSparkName = Constraints,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 1,
+  theOffset = 411),
+  theEndCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 17,
+  theOffset = 708),
+  theOptionalSource = "constraints.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 1,
+  theOffset = 411),
+  theEndCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 25,
+  theOffset = 434),
+  theOptionalSource = "constraints.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure foo 
+      (Standard::Integer a @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 15,
+  theOffset = 454),
+  theEndCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 16,
+  theOffset = 454),
+  theOptionalSource = "constraints.ada"
+),
+       Constraints::Day dayVar @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 35,
+  theOffset = 474),
+  theEndCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 41,
+  theOffset = 479),
+  theOptionalSource = "constraints.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "constraints.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(a,
+            dayVar),
+      theOptionalOutParameters = @List(a)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 1,
+      theOffset = 440),
+      theEndCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 9,
+      theOffset = 690),
+      theOptionalSource = "constraints.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 11,
+      theOffset = 450),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 14,
+      theOffset = 452),
+      theOptionalSource = "constraints.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 1,
+      theOffset = 440),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 51,
+      theOffset = 489),
+      theOptionalSource = "constraints.ada"
+    )
+) 
+{
+
+  local
+    Constraints::Day temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Constraints::Day temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Constraints::Day temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Constraints::Day temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Constraints::Day temp$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$11 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$12 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$13 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$14 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$15 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$16 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$17 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := dayVar;
+  #l2.  temp$2 := Constraints::Day.Tue;
+  #l3.  temp$3 := (temp$1 == temp$2);
+  #l4.  temp$4 := !(temp$3);
+  #l5.  if !(temp$4) then goto l6; 
+  #l7.  temp$5 := a;
+  #l8.  temp$6 := 2;
+  #l9.  temp$7 := (temp$5 + temp$6);
+  #l10. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l7,
+      endLabel = l10,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 5,
+      theOffset = 533),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 16,
+      theOffset = 543),
+      theOptionalSource = "constraints.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  a := temp$7;
+  #l11.  goto l27;
+  #l6. 
+  #l13.  temp$8 := dayVar;
+  #l14.  temp$9 := $Succ(`Constraints::Day, temp$8);
+  #l15.  temp$10 := Constraints::Day.Wed;
+  #l16.  temp$11 := (temp$9 == temp$10);
+  #l17.  if !(temp$11) then goto l12; 
+  #l18.  temp$12 := a;
+  #l19.  temp$13 := 1;
+  #l20.  temp$14 := (temp$12 - temp$13);
+  #l21. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l18,
+      endLabel = l21,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 5,
+      theOffset = 623),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 16,
+      theOffset = 633),
+      theOptionalSource = "constraints.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  a := temp$14;
+  #l22.  goto l27;
+  #l12. 
+  #l23.  temp$15 := a;
+  #l24.  temp$16 := 1;
+  #l25.  temp$17 := (temp$15 * temp$16);
+  #l26. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l23,
+      endLabel = l26,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 27,
+      theCol = 5,
+      theOffset = 646),
+      theEndCaret = 
+      @Caret(
+      theLine = 27,
+      theCol = 16,
+      theOffset = 656),
+      theOptionalSource = "constraints.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  a := temp$17;
+  #l27. <@IfStatementAnnotation(
+    ifPart = @Mark(
+    startLabel = l1,
+    endLabel = l5,
+    optRS = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 22,
+    theCol = 3,
+    theOffset = 502),
+    theEndCaret = 
+    @Caret(
+    theLine = 22,
+    theCol = 24,
+    theOffset = 522),
+    theOptionalSource = "constraints.ada"
+  )
+  ),
+    thenPart= @MARK_PLACEHOLDER,
+    optElsIfParts = @List(@Pair(
+    fst = @Mark(
+    startLabel = l13,
+    endLabel = l17,
+    optRS = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 24,
+    theCol = 3,
+    theOffset = 547),
+    theEndCaret = 
+    @Caret(
+    theLine = 24,
+    theCol = 31,
+    theOffset = 574),
+    theOptionalSource = "constraints.ada"
+  )
+  ), 
+    snd = @MARK_PLACEHOLDER
+  )),
+    optElsePart = @MARK_PLACEHOLDER,
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l27,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 3,
+      theOffset = 502),
+      theEndCaret = 
+      @Caret(
+      theLine = 28,
+      theCol = 10,
+      theOffset = 681),
+      theOptionalSource = "constraints.ada"
+    )
+    ),
+      optSparkLabelList = @NONE  
+  )> 
+  #l28.  return;
+}

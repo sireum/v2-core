@@ -1,0 +1,12 @@
+digraph G {
+  rankdir=BT
+  node [shape=record]
+  edge [arrowhead=onormal]
+  "Node" [label="{Node|}"]
+  "SPARKCompilationUnit" [label="{SPARKCompilationUnit|thePackageName : String\ntheSparkSourceFilename : String\ntheContextClause : org.sireum.bakar.compiler.model.ContextClause\ntheCompilationUnit : org.sireum.bakar.compiler.model.CompilationUnit\ntheCompilationUnitType : SPARKCompilationUnitType\ntheOptionalLibraryItemType : SPARKLibraryItemType\ntheOptionalWithNames : ArrayList\<String\>\ntheOptionalUseNames : ArrayList\<String\>\ntheOptionalInheritNames : ArrayList\<String\>}"]
+  "SPARKCompilationUnit" -> "Node"
+  "SPARKParserResult" [label="{SPARKParserResult|theSparkSourceFilenames : String[]\ntheOptionalMainCompilationUnit : SPARKCompilationUnit\nthePackageNameToSpecBodyNodes : HashMap\<String, SPARKSpecBodyUnit\>}"]
+  "SPARKParserResult" -> "Node"
+  "SPARKSpecBodyUnit" [label="{SPARKSpecBodyUnit|thePackageName : String\ntheOptionalPackageSpecification : SPARKCompilationUnit\ntheOptionalPackageBody : SPARKCompilationUnit}"]
+  "SPARKSpecBodyUnit" -> "Node"
+}

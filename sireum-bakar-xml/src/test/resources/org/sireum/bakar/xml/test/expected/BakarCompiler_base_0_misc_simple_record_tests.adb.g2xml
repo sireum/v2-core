@@ -1,0 +1,81 @@
+test_case_10.ads.xml
+Compilation_Unit(Source_Location(1,1,5,17),Element_List(List()),Element(DataRecord(package_declaration,<package_declaration>
+         <sloc endcol="17" endline="5" col="1" line="1"></sloc>
+         <names_ql>
+            <defining_identifier def="ada://package/Test_Case_10-1:9" def_name="Test_Case_10">
+               <sloc endcol="20" endline="1" col="9" line="1"></sloc>
+            </defining_identifier>
+         </names_ql>
+         <visible_part_declarative_items_ql>
+            <procedure_declaration>
+               <sloc endcol="65" endline="2" col="5" line="2"></sloc>
+               <names_ql>
+                  <defining_identifier def="ada://procedure/Test_Case_10-1:9/P1-2:15" def_name="P1">
+                     <sloc endcol="16" endline="2" col="15" line="2"></sloc>
+                  </defining_identifier>
+               </names_ql>
+               <parameter_profile_ql>
+                  <parameter_specification mode="AN_IN_MODE">
+                     <sloc endcol="41" endline="2" col="19" line="2"></sloc>
+                     <names_ql>
+                        <defining_identifier def="ada://parameter/Test_Case_10-1:9/P1-2:15/I1-2:19" def_name="I1">
+                           <sloc endcol="20" endline="2" col="19" line="2"></sloc>
+                        </defining_identifier>
+                        <defining_identifier def="ada://parameter/Test_Case_10-1:9/P1-2:15/I2-2:23" def_name="I2">
+                           <sloc endcol="24" endline="2" col="23" line="2"></sloc>
+                        </defining_identifier>
+                        <defining_identifier def="ada://parameter/Test_Case_10-1:9/P1-2:15/I3-2:27" def_name="I3">
+                           <sloc endcol="28" endline="2" col="27" line="2"></sloc>
+                        </defining_identifier>
+                     </names_ql>
+                     <aliased_q>
+                        <not_an_element>
+                           <sloc endcol="41" endline="2" col="35" line="2"></sloc>
+                        </not_an_element>
+                     </aliased_q>
+                     <object_declaration_view_q>
+                        <identifier type="null" ref="ada://ordinary_type/Standard-1:1/Integer-1:1" ref_name="Integer">
+                           <sloc endcol="41" endline="2" col="35" line="2"></sloc>
+                        </identifier>
+                     </object_declaration_view_q>
+                     <initialization_expression_q>
+                        <not_an_element>
+                           <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                        </not_an_element>
+                     </initialization_expression_q>
+                  </parameter_specification>
+                  <parameter_specification mode="AN_OUT_MODE">
+                     <sloc endcol="63" endline="2" col="44" line="2"></sloc>
+                     <names_ql>
+                        <defining_identifier def="ada://parameter/Test_Case_10-1:9/P1-2:15/O1-2:44" def_name="O1">
+                           <sloc endcol="45" endline="2" col="44" line="2"></sloc>
+                        </defining_identifier>
+                        <defining_identifier def="ada://parameter/Test_Case_10-1:9/P1-2:15/O2-2:48" def_name="O2">
+                           <sloc endcol="49" endline="2" col="48" line="2"></sloc>
+                        </defining_identifier>
+                     </names_ql>
+                     <aliased_q>
+                        <not_an_element>
+                           <sloc endcol="63" endline="2" col="57" line="2"></sloc>
+                        </not_an_element>
+                     </aliased_q>
+                     <object_declaration_view_q>
+                        <identifier type="null" ref="ada://ordinary_type/Standard-1:1/Integer-1:1" ref_name="Integer">
+                           <sloc endcol="63" endline="2" col="57" line="2"></sloc>
+                        </identifier>
+                     </object_declaration_view_q>
+                     <initialization_expression_q>
+                        <not_an_element>
+                           <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                        </not_an_element>
+                     </initialization_expression_q>
+                  </parameter_specification>
+               </parameter_profile_ql>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
+            </procedure_declaration>
+         </visible_part_declarative_items_ql>
+         <private_part_declarative_items_ql>
+         </private_part_declarative_items_ql>
+      </package_declaration>)),Test_Case_10,test_case_10.ads)
+

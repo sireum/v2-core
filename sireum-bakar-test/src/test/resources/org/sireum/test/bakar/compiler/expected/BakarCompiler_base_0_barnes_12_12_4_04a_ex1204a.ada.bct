@@ -1,0 +1,1706 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Power
+@PackageAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theSparkName = Power,
+  thePilarSparkName = Power,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 28,
+  theCol = 13,
+  theOffset = 584),
+  theEndCaret = 
+  @Caret(
+  theLine = 45,
+  theCol = 11,
+  theOffset = 1030),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 29,
+  theCol = 1,
+  theOffset = 610),
+  theEndCaret = 
+  @Caret(
+  theLine = 29,
+  theCol = 14,
+  theOffset = 622),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @List(Voltage,
+          Current,
+          Phase)
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Read_Power 
+      (Standard::Integer Level @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 25,
+  theOffset = 654),
+  theEndCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 30,
+  theOffset = 658),
+  theOptionalSource = "ex1204a.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(Level)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = Voltage::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 22,
+              theOffset = 698),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 35,
+              theOffset = 710),
+              theOptionalSource = "ex1204a.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = Current::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 37,
+              theOffset = 713),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 50,
+              theOffset = 725),
+              theOptionalSource = "ex1204a.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = Phase::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 52,
+              theOffset = 728),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 63,
+              theOffset = 738),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 32,
+          theCol = 8,
+          theOffset = 684),
+          theEndCaret = 
+          @Caret(
+          theLine = 32,
+          theCol = 64,
+          theOffset = 739),
+          theOptionalSource = "ex1204a.ada"
+        ),
+      theOptionalInGlobals = @List(Voltage::@@$State,
+            Current::@@$State,
+            Phase::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(Voltage::@@$State,
+          Current::@@$State,
+          Phase::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Level,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 34,
+                          theCol = 14,
+                          theOffset = 771),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 34,
+                          theCol = 19,
+                          theOffset = 775),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 36,
+                          theCol = 18,
+                          theOffset = 814),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 36,
+                          theCol = 31,
+                          theOffset = 826),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 18,
+                          theOffset = 847),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 31,
+                          theOffset = 859),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 18,
+                          theOffset = 880),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 29,
+                          theOffset = 890),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 34,
+                  theCol = 14,
+                  theOffset = 771),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 38,
+                  theCol = 29,
+                  theOffset = 890),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 39,
+                          theCol = 14,
+                          theOffset = 908),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 39,
+                          theCol = 27,
+                          theOffset = 920),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 39,
+                          theCol = 14,
+                          theOffset = 908),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 39,
+                          theCol = 27,
+                          theOffset = 920),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 40,
+                          theCol = 14,
+                          theOffset = 937),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 40,
+                          theCol = 27,
+                          theOffset = 949),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 40,
+                          theCol = 14,
+                          theOffset = 937),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 40,
+                          theCol = 27,
+                          theOffset = 949),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 41,
+                          theCol = 14,
+                          theOffset = 966),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 41,
+                          theCol = 25,
+                          theOffset = 976),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 41,
+                          theCol = 14,
+                          theOffset = 966),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 41,
+                          theCol = 25,
+                          theOffset = 976),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 39,
+                  theCol = 14,
+                  theOffset = 908),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 42,
+                  theCol = 18,
+                  theOffset = 995),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 33,
+              theCol = 8,
+              theOffset = 749),
+              theEndCaret = 
+              @Caret(
+              theLine = 43,
+              theCol = 20,
+              theOffset = 1016),
+              theOptionalSource = "ex1204a.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 4,
+      theOffset = 633),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 46,
+      theOffset = 674),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 14,
+      theOffset = 643),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 24,
+      theOffset = 652),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 4,
+      theOffset = 633),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 45,
+      theOffset = 673),
+      theOptionalSource = "ex1204a.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Voltage
+@PackageAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theSparkName = Voltage,
+  thePilarSparkName = Voltage,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = Voltage::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 13,
+  theOffset = 187),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 16,
+  theOffset = 14),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = Voltage::@@$State,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 11,
+                  theOffset = 27),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 16,
+                  theOffset = 31),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 11,
+              theOffset = 27),
+              theEndCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 16,
+              theOffset = 32),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 7,
+          theOffset = 23),
+          theEndCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 16,
+          theOffset = 32),
+          theOptionalSource = "ex1204a.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(Voltage::@@$State)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record State__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 2,
+      theCol = 11,
+      theOffset = 27),
+      theEndCaret = 
+      @Caret(
+      theLine = 2,
+      theCol = 16,
+      theOffset = 31),
+      theOptionalSource = "ex1204a.ada"
+    ),
+    fullyQualifiedName = Voltage::State__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Voltage::State__type @@$State @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = Voltage::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 2,
+    theCol = 11,
+    theOffset = 27),
+    theEndCaret = 
+    @Caret(
+    theLine = 2,
+    theCol = 16,
+    theOffset = 31),
+    theOptionalSource = "ex1204a.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Read 
+      (Standard::Integer Level @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 5,
+  theCol = 19,
+  theOffset = 83),
+  theEndCaret = 
+  @Caret(
+  theLine = 5,
+  theCol = 24,
+  theOffset = 87),
+  theOptionalSource = "ex1204a.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(Level)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = Voltage::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 6,
+              theCol = 22,
+              theOffset = 127),
+              theEndCaret = 
+              @Caret(
+              theLine = 6,
+              theCol = 27,
+              theOffset = 131),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 6,
+          theCol = 8,
+          theOffset = 113),
+          theEndCaret = 
+          @Caret(
+          theLine = 6,
+          theCol = 28,
+          theOffset = 132),
+          theOptionalSource = "ex1204a.ada"
+        ),
+      theOptionalInGlobals = @List(Voltage::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(Voltage::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Level,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 16,
+                          theOffset = 150),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 21,
+                          theOffset = 154),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 34,
+                          theOffset = 168),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 39,
+                          theOffset = 172),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 23,
+                          theOffset = 157),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 28,
+                          theOffset = 161),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Voltage::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 34,
+                          theOffset = 168),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 39,
+                          theOffset = 172),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 7,
+                  theCol = 16,
+                  theOffset = 150),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 7,
+                  theCol = 39,
+                  theOffset = 172),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 8,
+              theOffset = 142),
+              theEndCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 40,
+              theOffset = 173),
+              theOptionalSource = "ex1204a.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 4,
+      theOffset = 68),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 40,
+      theOffset = 103),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 14,
+      theOffset = 78),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 18,
+      theOffset = 81),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 4,
+      theOffset = 68),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 39,
+      theOffset = 102),
+      theOptionalSource = "ex1204a.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Current
+@PackageAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theSparkName = Current,
+  thePilarSparkName = Current,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = Current::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 192),
+  theEndCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 13,
+  theOffset = 379),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 192),
+  theEndCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 16,
+  theOffset = 206),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = Current::@@$State,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 11,
+                  theCol = 11,
+                  theOffset = 219),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 11,
+                  theCol = 16,
+                  theOffset = 223),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 11,
+              theCol = 11,
+              theOffset = 219),
+              theEndCaret = 
+              @Caret(
+              theLine = 11,
+              theCol = 16,
+              theOffset = 224),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 11,
+          theCol = 7,
+          theOffset = 215),
+          theEndCaret = 
+          @Caret(
+          theLine = 11,
+          theCol = 16,
+          theOffset = 224),
+          theOptionalSource = "ex1204a.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(Current::@@$State)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record State__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 11,
+      theOffset = 219),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 16,
+      theOffset = 223),
+      theOptionalSource = "ex1204a.ada"
+    ),
+    fullyQualifiedName = Current::State__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Current::State__type @@$State @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = Current::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 11,
+    theCol = 11,
+    theOffset = 219),
+    theEndCaret = 
+    @Caret(
+    theLine = 11,
+    theCol = 16,
+    theOffset = 223),
+    theOptionalSource = "ex1204a.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Read 
+      (Standard::Integer Level @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 14,
+  theCol = 19,
+  theOffset = 275),
+  theEndCaret = 
+  @Caret(
+  theLine = 14,
+  theCol = 24,
+  theOffset = 279),
+  theOptionalSource = "ex1204a.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(Level)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = Current::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 22,
+              theOffset = 319),
+              theEndCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 27,
+              theOffset = 323),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 15,
+          theCol = 8,
+          theOffset = 305),
+          theEndCaret = 
+          @Caret(
+          theLine = 15,
+          theCol = 28,
+          theOffset = 324),
+          theOptionalSource = "ex1204a.ada"
+        ),
+      theOptionalInGlobals = @List(Current::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(Current::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Level,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 16,
+                          theOffset = 342),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 21,
+                          theOffset = 346),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 34,
+                          theOffset = 360),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 39,
+                          theOffset = 364),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 23,
+                          theOffset = 349),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 28,
+                          theOffset = 353),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Current::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 34,
+                          theOffset = 360),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 16,
+                          theCol = 39,
+                          theOffset = 364),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 16,
+                  theCol = 16,
+                  theOffset = 342),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 16,
+                  theCol = 39,
+                  theOffset = 364),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 16,
+              theCol = 8,
+              theOffset = 334),
+              theEndCaret = 
+              @Caret(
+              theLine = 16,
+              theCol = 40,
+              theOffset = 365),
+              theOptionalSource = "ex1204a.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 4,
+      theOffset = 260),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 40,
+      theOffset = 295),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 14,
+      theOffset = 270),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 18,
+      theOffset = 273),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 4,
+      theOffset = 260),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 39,
+      theOffset = 294),
+      theOptionalSource = "ex1204a.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Phase
+@PackageAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theSparkName = Phase,
+  thePilarSparkName = Phase,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = Phase::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 1,
+  theOffset = 384),
+  theEndCaret = 
+  @Caret(
+  theLine = 26,
+  theCol = 11,
+  theOffset = 567),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 1,
+  theOffset = 384),
+  theEndCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 14,
+  theOffset = 396),
+  theOptionalSource = "ex1204a.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = Phase::@@$State,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 11,
+                  theOffset = 409),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 16,
+                  theOffset = 413),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 20,
+              theCol = 11,
+              theOffset = 409),
+              theEndCaret = 
+              @Caret(
+              theLine = 20,
+              theCol = 16,
+              theOffset = 414),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 20,
+          theCol = 7,
+          theOffset = 405),
+          theEndCaret = 
+          @Caret(
+          theLine = 20,
+          theCol = 16,
+          theOffset = 414),
+          theOptionalSource = "ex1204a.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(Phase::@@$State)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record State__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 11,
+      theOffset = 409),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 16,
+      theOffset = 413),
+      theOptionalSource = "ex1204a.ada"
+    ),
+    fullyQualifiedName = Phase::State__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Phase::State__type @@$State @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = Phase::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 20,
+    theCol = 11,
+    theOffset = 409),
+    theEndCaret = 
+    @Caret(
+    theLine = 20,
+    theCol = 16,
+    theOffset = 413),
+    theOptionalSource = "ex1204a.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Read 
+      (Standard::Integer Level @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 19,
+  theOffset = 465),
+  theEndCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 24,
+  theOffset = 469),
+  theOptionalSource = "ex1204a.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex1204a.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(Level)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = Phase::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 22,
+              theOffset = 509),
+              theEndCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 27,
+              theOffset = 513),
+              theOptionalSource = "ex1204a.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 24,
+          theCol = 8,
+          theOffset = 495),
+          theEndCaret = 
+          @Caret(
+          theLine = 24,
+          theCol = 28,
+          theOffset = 514),
+          theOptionalSource = "ex1204a.ada"
+        ),
+      theOptionalInGlobals = @List(Phase::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(Phase::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Level,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 16,
+                          theOffset = 532),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 21,
+                          theOffset = 536),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 34,
+                          theOffset = 550),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 39,
+                          theOffset = 554),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 23,
+                          theOffset = 539),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 28,
+                          theOffset = 543),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Phase::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 34,
+                          theOffset = 550),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 39,
+                          theOffset = 554),
+                          theOptionalSource = "ex1204a.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 25,
+                  theCol = 16,
+                  theOffset = 532),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 25,
+                  theCol = 39,
+                  theOffset = 554),
+                  theOptionalSource = "ex1204a.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 25,
+              theCol = 8,
+              theOffset = 524),
+              theEndCaret = 
+              @Caret(
+              theLine = 25,
+              theCol = 40,
+              theOffset = 555),
+              theOptionalSource = "ex1204a.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 4,
+      theOffset = 450),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 40,
+      theOffset = 485),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 14,
+      theOffset = 460),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 18,
+      theOffset = 463),
+      theOptionalSource = "ex1204a.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 4,
+      theOffset = 450),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 39,
+      theOffset = 484),
+      theOptionalSource = "ex1204a.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

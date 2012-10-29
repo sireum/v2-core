@@ -1,0 +1,21 @@
+package Lexis is
+   Start : constant Float := 0.0;
+   Stop  : constant Float := 16#0.FFFF#E+8;
+
+   procedure Check(F : in Float ; B : out Boolean);
+   --# derives B
+   -- note that B only depends on F
+   --  and not on Stop and Start
+   --# from F;
+
+end Lexis;
+
+package body Lexis is
+
+   procedure Check(F : in Float; B : out Boolean) is
+   begin
+      B := F > Start and B < Stop;
+   end Check;
+
+end Lexis;
+

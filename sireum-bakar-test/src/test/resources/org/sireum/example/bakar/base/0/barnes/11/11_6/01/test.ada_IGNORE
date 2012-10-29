@@ -1,0 +1,32 @@
+-- Partial correctness of GCD algorithm using proof functions
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   --# function Gcd(A, B : Natural) return Natural;
+
+   procedure G_C_D (M, N : in Natural; G : out Natural)
+   --# derives G from M, N;
+   --# pre M >= 0 and N > 0;
+   --# post G = Gcd(M, N);
+   is
+      C, D : Integer;
+      R    : Integer;
+   begin
+      C := M;
+      D := N;
+      while D /= 0 loop
+         --# assert C >= 0 and D > 0 and Gcd(C,D) = Gcd (M,N);
+         R := C rem D;
+         C := D;
+         D := R;
+      end loop;
+      G := C;
+   end G_C_D;
+end P;
+
+
+

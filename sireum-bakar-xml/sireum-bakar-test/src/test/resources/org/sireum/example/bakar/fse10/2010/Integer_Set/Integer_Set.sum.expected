@@ -1,0 +1,317 @@
+-------------------------------------------------------------------------------
+                          Semantic Analysis Summary                            
+                                POGS GPL 2010                                  
+            Copyright (C) 2010 Altran Praxis Limited, Bath, U.K.               
+-------------------------------------------------------------------------------
+
+Summary of:
+
+Verification Condition files (.vcg)
+Simplified Verification Condition files (.siv)
+Proof Logs (.plg)
+Dead Path Conjecture files (.dpc)
+Summary Dead Path files (.sdp)
+
+"status" column keys:
+    1st character:
+        '-' - No VC
+        'S' - No SIV
+        'U' - Undischarged
+        'E' - Proved by Examiner
+        'I' - Proved by Simplifier by Inference
+        'X' - Proved by Simplifier by Contradiction
+        'P' - Proved by Simplifier using User Defined Proof Rules
+        'C' - Proved by Checker
+        'R' - Proved by Review
+        'F' - VC is False
+    2nd character:
+        '-' - No DPC
+        'S' - No SDP
+        'U' - Unchecked
+        'D' - Dead path
+        'L' - Live path
+
+in the directory:
+/Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set
+
+Summary produced: 14-SEP-2010 14:09:58.54
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/add.vcg
+procedure Integer_Set.Add
+
+VCs generated 14-SEP-2010 14:09:53
+
+VCs simplified 14-SEP-2010 14:09:54
+
+VCs for procedure_add :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 136     | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 138     | Inference          | No DPC    |   I-   |
+| 3   | start | rtc check @ 139     | Inference          | No DPC    |   I-   |
+| 4   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+| 5   | start |    assert @ finish  | Contradiction      | No DPC    |   X-   |
+| 6   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+| 7   |       | refinement          | Undischarged       | No DPC    |   U-   |
+| 8   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/empty.vcg
+procedure Integer_Set.Empty
+
+VCs generated 14-SEP-2010 14:09:54
+
+VCs simplified 14-SEP-2010 14:09:54
+
+VCs for procedure_empty :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 172     | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 173     | Inference          | No DPC    |   I-   |
+| 3   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+| 4   |       | refinement          | Examiner           | No DPC    |   E-   |
+| 5   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/get_element_index.vcg
+function Integer_Set.Get_Element_Index
+
+VCs generated 14-SEP-2010 14:09:53
+
+VCs simplified 14-SEP-2010 14:09:54
+
+VCs for function_get_element_index :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 102     | Inference          | No DPC    |   I-   |
+| 2   | 103   | rtc check @ 102     | Undischarged       | No DPC    |   U-   |
+| 3   | start |    assert @ 103     | Inference          | No DPC    |   I-   |
+| 4   | 103   |    assert @ 103     | Undischarged       | No DPC    |   U-   |
+| 5   | 103   | rtc check @ 107     | Inference          | No DPC    |   I-   |
+| 6   | start | rtc check @ 110     | Inference          | No DPC    |   I-   |
+| 7   | 103   | rtc check @ 110     | Inference          | No DPC    |   I-   |
+| 8   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 9   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 10  | 103   |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 11  | 103   |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/isfull.vcg
+function Integer_Set.isFull
+
+VCs generated 14-SEP-2010 14:09:53
+
+VCs simplified 14-SEP-2010 14:09:54
+
+VCs for function_isfull :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 2   |       | refinement          | Examiner           | No DPC    |   E-   |
+| 3   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/ismember.vcg
+function Integer_Set.isMember
+
+VCs generated 14-SEP-2010 14:09:53
+
+VCs simplified 14-SEP-2010 14:09:55
+
+VCs for function_ismember :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 122     | Inference          | No DPC    |   I-   |
+| 2   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 3   |       | refinement          | Examiner           | No DPC    |   E-   |
+| 4   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/remove.vcg
+procedure Integer_Set.Remove
+
+VCs generated 14-SEP-2010 14:09:54
+
+VCs simplified 14-SEP-2010 14:09:55
+
+VCs for procedure_remove :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 158     | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 158     | Inference          | No DPC    |   I-   |
+| 3   | start | rtc check @ 160     | Inference          | No DPC    |   I-   |
+| 4   | start | rtc check @ 161     | Inference          | No DPC    |   I-   |
+| 5   | start | rtc check @ 162     | Inference          | No DPC    |   I-   |
+| 6   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 7   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 8   |       | refinement          | Undischarged       | No DPC    |   U-   |
+| 9   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/size.vcg
+function Integer_Set.Size
+
+VCs generated 14-SEP-2010 14:09:53
+
+VCs simplified 14-SEP-2010 14:09:55
+
+VCs for function_size :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+| 2   |       | refinement          | Examiner           | No DPC    |   E-   |
+| 3   |       | refinement          | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set_/ptf/invariant.vcg
+function PTF.Invariant
+
+VCs generated 14-SEP-2010 14:09:56
+
+VCs simplified 14-SEP-2010 14:09:57
+
+VCs for function_invariant :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set_/ptf/rep_invariant.vcg
+function PTF.Rep_Invariant
+
+VCs generated 14-SEP-2010 14:09:56
+
+VCs simplified 14-SEP-2010 14:09:57
+
+VCs for function_rep_invariant :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 56      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 56      | Inference          | No DPC    |   I-   |
+| 3   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 4   | 68    | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 5   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 6   | 68    | rtc check @ 59      | Undischarged       | No DPC    |   U-   |
+| 7   | start | rtc check @ 62      | Inference          | No DPC    |   I-   |
+| 8   | 63    | rtc check @ 62      | Inference          | No DPC    |   I-   |
+| 9   | 68    | rtc check @ 62      | Inference          | No DPC    |   I-   |
+| 10  | start |    assert @ 63      | Undischarged       | No DPC    |   U-   |
+| 11  | 63    |    assert @ 63      | Undischarged       | No DPC    |   U-   |
+| 12  | 68    |    assert @ 63      | Undischarged       | No DPC    |   U-   |
+| 13  | start |    assert @ 68      | Inference          | No DPC    |   I-   |
+| 14  | 63    |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 15  | 68    |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 16  | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+| 17  | 68    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set_/ptf/represents.vcg
+function PTF.Represents
+
+VCs generated 14-SEP-2010 14:09:56
+
+VCs simplified 14-SEP-2010 14:09:58
+
+VCs for function_represents :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 40      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 40      | Inference          | No DPC    |   I-   |
+| 3   | start | rtc check @ 43      | Inference          | No DPC    |   I-   |
+| 4   | 44    | rtc check @ 43      | Inference          | No DPC    |   I-   |
+| 5   | start |    assert @ 44      | Undischarged       | No DPC    |   U-   |
+| 6   | 44    |    assert @ 44      | Undischarged       | No DPC    |   U-   |
+| 7   | start |    assert @ finish  | Examiner           | No DPC    |   E-   |
+| 8   | 44    |    assert @ finish  | Examiner           | No DPC    |   E-   |
+ -----------------------------------------------------------------------------
+
+
+===============================================================================
+Summary:
+
+The following subprograms have undischarged VCs (excluding those proved false):
+
+   2  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/add.vcg
+   1  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/empty.vcg
+   6  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/get_element_index.vcg
+   2  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/isfull.vcg
+   2  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/ismember.vcg
+   4  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/remove.vcg
+   1  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/size.vcg
+   7  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set_/ptf/rep_invariant.vcg
+   2  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set_/ptf/represents.vcg
+
+The following subprograms have VCs proved by contradiction:
+
+   1  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Integer_Set/integer_set/add.vcg
+
+Proof strategies used by subprograms
+-------------------------------------------------------------------------
+Total subprograms with at least one VC proved by examiner:              5
+Total subprograms with at least one VC proved by simplifier:            9
+Total subprograms with at least one VC proved by contradiction:         1
+Total subprograms with at least one VC proved with user proof rule:     0
+Total subprograms with at least one VC proved using checker:            0
+Total subprograms with at least one VC discharged by review:            0
+
+Maximum extent of strategies used for fully proved subprograms:
+-------------------------------------------------------------------------
+Total subprograms with proof completed by examiner:                     0
+Total subprograms with proof completed by simplifier:                   1
+Total subprograms with proof completed with user defined rules:         0
+Total subprograms with proof completed by checker:                      0
+Total subprograms with VCs discharged by review:                        0
+
+Overall subprogram summary:
+-------------------------------------------------------------------------
+Total subprograms fully proved:                                         1
+Total subprograms with at least one undischarged VC:                    9  <<<
+Total subprograms with at least one false VC:                           0
+                                                                    -----
+Total subprograms for which VCs have been generated:                   10
+
+
+ZombieScope Summary:
+-------------------------------------------------------------------------
+Total subprograms for which DPCs have been generated:                   0
+Total number subprograms with dead paths found:                         0
+Total number of dead paths found:                                       0
+
+
+VC summary:
+-------------------------------------------------------------------------
+Note: U/R denotes where the Simplifier has proved VCs using one or more user-
+defined proof rules.
+
+Total VCs by type:                                       
+                            -----------Proved By Or Using------------
+                     Total  Examiner Simp(U/R)  Checker Review False Undiscgd
+Assert or Post:         28      2      9              0      0      0      17
+Precondition check:      0      0      0              0      0      0       0
+Check statement:         0      0      0              0      0      0       0
+Runtime check:          29      0     27              0      0      0       2
+Refinement VCs:         12      4      0              0      0      0       8
+Inheritance VCs:         0      0      0              0      0      0       0
+===============================================================================
+Totals:                 69      6     36              0      0      0      27  <<<
+% Totals:                       9%    52%             0%     0%     0%     39% <<<
+===================== End of Semantic Analysis Summary ========================

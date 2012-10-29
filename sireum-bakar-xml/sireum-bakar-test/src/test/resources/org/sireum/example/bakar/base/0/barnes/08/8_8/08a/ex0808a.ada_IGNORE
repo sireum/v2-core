@@ -1,0 +1,36 @@
+package Secure_Hash is
+   type Byte is mod 256;
+   type Buffer_Index is range 1..1024;
+   type Result_Index is range 1..20;
+   type Buffer_Type is array(Buffer_Index) of Byte;
+   type Result_Type is array(Result_Index) of Byte;
+   subtype Error_Code is Integer range 0..3;
+
+   procedure SHA_1(Data   : in Buffer_Type;
+                   Result : out Result_Type;
+                   Error  : out Error_Code);
+   --# derives Result, Error from Data;
+end Secure_Hash;
+
+with Interfaces.C;  -- used in Ada, not SPARK, so no inherit
+package body Secure_Hash is
+   procedure SHA_1(Data   : in Buffer_Type;
+                   Result : out Result_Type;
+                   Error  : out Error_Code)
+   is
+      --# hide SHA_1;
+      function Internal_SHA_1(Data : in Buffer_Type;
+                              Result : access Result_Type)
+                             return Interfaces.C.int;
+      pragma Import(C,Internal_SHA_1,"sha_1");
+
+      Local_Result : aliased Result_Type;
+      Local_Error  : Interfaces.C.int;
+   begin
+      Local_Error := Internal_SHA_1(Data,Local_Result'Access);
+      Error := Error_Code(Local_Error);  -- type conversion
+      Result := Local_Result;
+   end SHA_1;
+end Secure_Hash;
+
+

@@ -1,0 +1,43 @@
+          *******************************************************
+                           Listing of SPARK Text
+       SPARK95 Examiner with VC and RTC Generator Release 7.4 / 01.07
+                           Demonstration Version
+          *******************************************************
+
+
+                       DATE : 18-DEC-2008 19:20:22.69
+
+Line
+   1  
+   2  
+   3  with Building;
+   4  --# inherit Building;
+   5  package Buttons
+   6  --# own Button_History;
+   7  --# initializes Button_History;
+   8  is
+   9     procedure Inspect_Floor_Button(Direction: in Building.Direction_Type;
+  10                                    Floor: in Building.Floor_Type;
+  11                                    Call_Found: out Boolean);
+  12     --# global in out Button_History;
+  13     --# derives Call_Found from Direction, Floor, Button_History &
+  14     --#         Button_History from Button_History;
+  15  
+  16     procedure Inspect_Lift_Button(Floor: in Building.Floor_Type;
+  17                                   Call_Found: out Boolean);
+  18     --# global in out Button_History;
+  19     --# derives Call_Found from Floor, Button_History &
+  20     --#         Button_History from Button_History;
+  21     procedure Clear_Floor_Button(Direction: in Building.Direction_Type;
+  22                                  Floor: in Building.Floor_Type);
+  23     --# global in out Button_History;
+  24     --# derives Button_History from Direction, Floor, Button_History;
+  25  
+  26     procedure Clear_Lift_Button(Floor: in Building.Floor_Type);
+  27     --# global in out Button_History;
+  28     --# derives Button_History from Floor, Button_History;
+  29  
+  30  end Buttons;
+
+
+--End of file--------------------------------------------------

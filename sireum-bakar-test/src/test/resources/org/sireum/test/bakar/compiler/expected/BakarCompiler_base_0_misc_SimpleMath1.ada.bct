@@ -1,0 +1,702 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package SimpleMath1
+@PackageAnnotation(
+  theSourceFileName = "SimpleMath1.ada",
+  theSparkName = SimpleMath1,
+  thePilarSparkName = SimpleMath1,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 17,
+  theOffset = 240),
+  theOptionalSource = "SimpleMath1.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 20,
+  theOffset = 18),
+  theOptionalSource = "SimpleMath1.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = SimpleMath1::@@B,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 9,
+                  theOffset = 29),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 10,
+                  theOffset = 29),
+                  theOptionalSource = "SimpleMath1.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 9,
+              theOffset = 29),
+              theEndCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 10,
+              theOffset = 30),
+              theOptionalSource = "SimpleMath1.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 5,
+          theOffset = 25),
+          theEndCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 10,
+          theOffset = 30),
+          theOptionalSource = "SimpleMath1.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(SimpleMath1::@@B)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Inc 
+      (Standard::Integer I @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 17,
+  theOffset = 108),
+  theEndCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 18,
+  theOffset = 108),
+  theOptionalSource = "SimpleMath1.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "SimpleMath1.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(I),
+      theOptionalOutParameters = @List(I)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @ContractPredicate(
+          theType = @PRE,
+          theExp = (I < $Last(`Standard::Integer)),
+          theLoc = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 9,
+          theCol = 7,
+          theOffset = 180),
+          theEndCaret = 
+          @Caret(
+          theLine = 9,
+          theCol = 28,
+          theOffset = 200),
+          theOptionalSource = "SimpleMath1.ada"
+        )
+        ),
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = SimpleMath1::@@B,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 17,
+              theOffset = 144),
+              theEndCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 18,
+              theOffset = 144),
+              theOptionalSource = "SimpleMath1.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 7,
+          theCol = 7,
+          theOffset = 134),
+          theEndCaret = 
+          @Caret(
+          theLine = 7,
+          theCol = 19,
+          theOffset = 145),
+          theOptionalSource = "SimpleMath1.ada"
+        ),
+      theOptionalInGlobals = @List(SimpleMath1::@@B),
+      theOptionalPostCondition = 
+        @ContractPredicate(
+          theType = @POST,
+          theExp = (I == (($OLD(I)) + 1)),
+          theLoc = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 10,
+          theCol = 7,
+          theOffset = 208),
+          theEndCaret = 
+          @Caret(
+          theLine = 10,
+          theCol = 23,
+          theOffset = 223),
+          theOptionalSource = "SimpleMath1.ada"
+        )
+        ),
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = I,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 15,
+                          theOffset = 161),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 16,
+                          theOffset = 161),
+                          theOptionalSource = "SimpleMath1.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = I,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 22,
+                          theOffset = 168),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 23,
+                          theOffset = 168),
+                          theOptionalSource = "SimpleMath1.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = SimpleMath1::@@B,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 25,
+                          theOffset = 171),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 26,
+                          theOffset = 171),
+                          theOptionalSource = "SimpleMath1.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 15,
+                  theOffset = 161),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 26,
+                  theOffset = 171),
+                  theOptionalSource = "SimpleMath1.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 8,
+              theCol = 7,
+              theOffset = 153),
+              theEndCaret = 
+              @Caret(
+              theLine = 8,
+              theCol = 27,
+              theOffset = 172),
+              theOptionalSource = "SimpleMath1.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 3,
+      theOffset = 94),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 36,
+      theOffset = 126),
+      theOptionalSource = "SimpleMath1.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 13,
+      theOffset = 104),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 16,
+      theOffset = 106),
+      theOptionalSource = "SimpleMath1.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 3,
+      theOffset = 94),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 35,
+      theOffset = 125),
+      theOptionalSource = "SimpleMath1.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package SimpleMath1
+@PackageAnnotation(
+  theSourceFileName = "SimpleMath1.ada",
+  theSparkName = SimpleMath1,
+  thePilarSparkName = SimpleMath1,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "B",pilarSparkID = SimpleMath1::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 243),
+  theEndCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 17,
+  theOffset = 467),
+  theOptionalSource = "SimpleMath1.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 243),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 25,
+  theOffset = 266),
+  theOptionalSource = "SimpleMath1.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@B @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "B",pilarSparkID = SimpleMath1::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 18,
+    theCol = 3,
+    theOffset = 363),
+    theEndCaret = 
+    @Caret(
+    theLine = 18,
+    theCol = 4,
+    theOffset = 363),
+    theOptionalSource = "SimpleMath1.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := 0;
+  #l2. <@DeclarativePartStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 18,
+      theOffset = 378),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 19,
+      theOffset = 378),
+      theOptionalSource = "SimpleMath1.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  SimpleMath1::@@B := temp$1;
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Inc 
+      (Standard::Integer I @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 17,
+  theOffset = 397),
+  theEndCaret = 
+  @Caret(
+  theLine = 19,
+  theCol = 18,
+  theOffset = 397),
+  theOptionalSource = "SimpleMath1.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "SimpleMath1.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(I),
+      theOptionalOutParameters = @List(I)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 3,
+      theOffset = 383),
+      theEndCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 11,
+      theOffset = 450),
+      theOptionalSource = "SimpleMath1.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 13,
+      theOffset = 393),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 16,
+      theOffset = 395),
+      theOptionalSource = "SimpleMath1.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 3,
+      theOffset = 383),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 35,
+      theOffset = 414),
+      theOptionalSource = "SimpleMath1.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l3.  temp$1 := I;
+  #l4.  temp$2 := SimpleMath1::@@B;
+  #l5.  temp$3 := (temp$1 + temp$2);
+  #l6. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l6,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 5,
+      theOffset = 431),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 14,
+      theOffset = 439),
+      theOptionalSource = "SimpleMath1.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  I := temp$3;
+  #l7.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

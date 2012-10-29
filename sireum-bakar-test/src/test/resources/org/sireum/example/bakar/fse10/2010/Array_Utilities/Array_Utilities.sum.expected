@@ -1,0 +1,262 @@
+-------------------------------------------------------------------------------
+                          Semantic Analysis Summary                            
+                                POGS GPL 2010                                  
+            Copyright (C) 2010 Altran Praxis Limited, Bath, U.K.               
+-------------------------------------------------------------------------------
+
+Summary of:
+
+Verification Condition files (.vcg)
+Simplified Verification Condition files (.siv)
+Proof Logs (.plg)
+Dead Path Conjecture files (.dpc)
+Summary Dead Path files (.sdp)
+
+"status" column keys:
+    1st character:
+        '-' - No VC
+        'S' - No SIV
+        'U' - Undischarged
+        'E' - Proved by Examiner
+        'I' - Proved by Simplifier by Inference
+        'X' - Proved by Simplifier by Contradiction
+        'P' - Proved by Simplifier using User Defined Proof Rules
+        'C' - Proved by Checker
+        'R' - Proved by Review
+        'F' - VC is False
+    2nd character:
+        '-' - No DPC
+        'S' - No SDP
+        'U' - Unchecked
+        'D' - Dead path
+        'L' - Live path
+
+in the directory:
+/Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities
+
+Summary produced: 14-SEP-2010 14:05:22.89
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort.vcg
+procedure Array_Utilities.Sort
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:20
+
+VCs for procedure_sort :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 63      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 63      | Inference          | No DPC    |   I-   |
+| 3   | start | pre check @ 64      | Inference          | No DPC    |   I-   |
+| 4   | 68    | pre check @ 64      | Inference          | No DPC    |   I-   |
+| 5   | start | rtc check @ 64      | Inference          | No DPC    |   I-   |
+| 6   | 68    | rtc check @ 64      | Inference          | No DPC    |   I-   |
+| 7   | start | rtc check @ 66      | Inference          | No DPC    |   I-   |
+| 8   | 68    | rtc check @ 66      | Inference          | No DPC    |   I-   |
+| 9   | start |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 10  | start |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 11  | 68    |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 12  | 68    |    assert @ 68      | Undischarged       | No DPC    |   U-   |
+| 13  | start |    assert @ finish  | Contradiction      | No DPC    |   X-   |
+| 14  | 68    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort/find_smallest.vcg
+function Array_Utilities.Sort.Find_Smallest
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:18
+
+VCs for function_find_smallest :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 37      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 38      | Undischarged       | No DPC    |   U-   |
+| 3   | start | rtc check @ 38      | Inference          | No DPC    |   I-   |
+| 4   | start | rtc check @ 39      | Inference          | No DPC    |   I-   |
+| 5   | 42    | rtc check @ 39      | Inference          | No DPC    |   I-   |
+| 6   | start | rtc check @ 40      | Inference          | No DPC    |   I-   |
+| 7   | 42    | rtc check @ 40      | Inference          | No DPC    |   I-   |
+| 8   | start |    assert @ 42      | Undischarged       | No DPC    |   U-   |
+| 9   | start |    assert @ 42      | Undischarged       | No DPC    |   U-   |
+| 10  | 42    |    assert @ 42      | Undischarged       | No DPC    |   U-   |
+| 11  | 42    |    assert @ 42      | Undischarged       | No DPC    |   U-   |
+| 12  | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 13  | 42    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort/swap_elements.vcg
+procedure Array_Utilities.Sort.Swap_Elements
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:20
+
+VCs for procedure_swap_elements :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 3   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 4   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/elem_count.vcg
+function PTF.Elem_Count
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:21
+
+VCs for function_elem_count :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 59      | Inference          | No DPC    |   I-   |
+| 2   | start |    assert @ finish  | Inference          | No DPC    |   I-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/elem_count_in_range.vcg
+function PTF.Elem_Count_In_Range
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:21
+
+VCs for function_elem_count_in_range :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 48      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 48      | Inference          | No DPC    |   I-   |
+| 3   | start |    assert @ 48      | Inference          | No DPC    |   I-   |
+| 4   | 48    |    assert @ 48      | Inference          | No DPC    |   I-   |
+| 5   | 48    |    assert @ 48      | Inference          | No DPC    |   I-   |
+| 6   | 48    | rtc check @ 49      | Inference          | No DPC    |   I-   |
+| 7   | 48    | rtc check @ 50      | Undischarged       | No DPC    |   U-   |
+| 8   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 9   | 48    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 10  | 48    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/ordered.vcg
+function PTF.Ordered
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:21
+
+VCs for function_ordered :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 68      | Inference          | No DPC    |   I-   |
+| 2   | start | rtc check @ 68      | Undischarged       | No DPC    |   U-   |
+| 3   | start |    assert @ 68      | Inference          | No DPC    |   I-   |
+| 4   | 68    |    assert @ 68      | Inference          | No DPC    |   I-   |
+| 5   | 68    |    assert @ 68      | Inference          | No DPC    |   I-   |
+| 6   | 68    | rtc check @ 69      | Inference          | No DPC    |   I-   |
+| 7   | start |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 8   | 68    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 9   | 68    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/perm.vcg
+function PTF.Perm
+
+VCs generated 14-SEP-2010 14:05:18
+
+VCs simplified 14-SEP-2010 14:05:22
+
+VCs for function_perm :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start |    assert @ 79      | Inference          | No DPC    |   I-   |
+| 2   | 79    |    assert @ 79      | Inference          | No DPC    |   I-   |
+| 3   | 79    |    assert @ 79      | Inference          | No DPC    |   I-   |
+| 4   | 79    | rtc check @ 80      | Inference          | No DPC    |   I-   |
+| 5   | 79    | rtc check @ 80      | Inference          | No DPC    |   I-   |
+| 6   | 79    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+| 7   | 79    |    assert @ finish  | Undischarged       | No DPC    |   U-   |
+ -----------------------------------------------------------------------------
+
+
+===============================================================================
+Summary:
+
+The following subprograms have undischarged VCs (excluding those proved false):
+
+   5  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort.vcg
+   7  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort/find_smallest.vcg
+   1  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort/swap_elements.vcg
+   4  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/elem_count_in_range.vcg
+   4  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/ordered.vcg
+   2  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities_/ptf/perm.vcg
+
+The following subprograms have VCs proved by contradiction:
+
+   1  /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Array_Utilities/array_utilities/sort.vcg
+
+Proof strategies used by subprograms
+-------------------------------------------------------------------------
+Total subprograms with at least one VC proved by examiner:              0
+Total subprograms with at least one VC proved by simplifier:            7
+Total subprograms with at least one VC proved by contradiction:         1
+Total subprograms with at least one VC proved with user proof rule:     0
+Total subprograms with at least one VC proved using checker:            0
+Total subprograms with at least one VC discharged by review:            0
+
+Maximum extent of strategies used for fully proved subprograms:
+-------------------------------------------------------------------------
+Total subprograms with proof completed by examiner:                     0
+Total subprograms with proof completed by simplifier:                   1
+Total subprograms with proof completed with user defined rules:         0
+Total subprograms with proof completed by checker:                      0
+Total subprograms with VCs discharged by review:                        0
+
+Overall subprogram summary:
+-------------------------------------------------------------------------
+Total subprograms fully proved:                                         1
+Total subprograms with at least one undischarged VC:                    6  <<<
+Total subprograms with at least one false VC:                           0
+                                                                    -----
+Total subprograms for which VCs have been generated:                    7
+
+
+ZombieScope Summary:
+-------------------------------------------------------------------------
+Total subprograms for which DPCs have been generated:                   0
+Total number subprograms with dead paths found:                         0
+Total number of dead paths found:                                       0
+
+
+VC summary:
+-------------------------------------------------------------------------
+Note: U/R denotes where the Simplifier has proved VCs using one or more user-
+defined proof rules.
+
+Total VCs by type:                                       
+                            -----------Proved By Or Using------------
+                     Total  Examiner Simp(U/R)  Checker Review False Undiscgd
+Assert or Post:         31      0     11              0      0      0      20
+Precondition check:      2      0      2              0      0      0       0
+Check statement:         0      0      0              0      0      0       0
+Runtime check:          26      0     23              0      0      0       3
+Refinement VCs:          0      0      0              0      0      0       0
+Inheritance VCs:         0      0      0              0      0      0       0
+===============================================================================
+Totals:                 59      0     36              0      0      0      23  <<<
+% Totals:                       0%    61%             0%     0%     0%     39% <<<
+===================== End of Semantic Analysis Summary ========================

@@ -1,0 +1,31 @@
+-- Array element initializer
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   subtype Index is Integer range 1 .. 10;
+   type AType is array (Index) of Integer;
+
+   function Max_Value (A : AType) return Integer
+   --# return X => (for all M in Index => (A (M) <= X)) and
+   --#             (for some M in Index => (A (M) = X));
+   is
+      M : Index;
+   begin
+      M := Index'First;
+      for I in Index range Index'First + 1 .. Index'Last loop
+         if A (I) > A (M) then
+            M := I;
+         end if;
+         --# assert I in Index and M in Index and
+         --#        (for all J in Index range Index'First .. I => (A (J) <= A (M)));
+      end loop;
+      return A (M);
+   end Max_Value;
+end P;
+
+
+

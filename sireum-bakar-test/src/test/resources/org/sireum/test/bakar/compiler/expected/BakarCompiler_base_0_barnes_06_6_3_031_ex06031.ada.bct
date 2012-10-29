@@ -1,0 +1,776 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "ex06031.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 206),
+  theEndCaret = 
+  @Caret(
+  theLine = 27,
+  theCol = 7,
+  theOffset = 523),
+  theOptionalSource = "ex06031.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 206),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 15,
+  theOffset = 219),
+  theOptionalSource = "ex06031.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Foo 
+      (P::T A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 18,
+  theOffset = 244),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 19,
+  theOffset = 244),
+  theOptionalSource = "ex06031.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex06031.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(A),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 4,
+      theOffset = 230),
+      theEndCaret = 
+      @Caret(
+      theLine = 26,
+      theCol = 12,
+      theOffset = 515),
+      theOptionalSource = "ex06031.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 14,
+      theOffset = 240),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 17,
+      theOffset = 242),
+      theOptionalSource = "ex06031.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 4,
+      theOffset = 230),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 31,
+      theOffset = 256),
+      theOptionalSource = "ex06031.ada"
+    )
+) 
+{
+
+  local
+    P::R I @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$11 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$12 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$13 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$14 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$15 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$16 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::R temp$17 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    #l3.  temp$1 := 100;
+    #l4.  temp$2 := 1;
+    #l5.  if (temp$2 > temp$1) then goto l2;
+    #l6.  I := temp$2;
+    #l1. 
+    #l7.  temp$3 := I;
+    #l8.  temp$4 := I;
+    #l9.  temp$5 := A [temp$4];
+    #l10.  temp$6 := 1;
+    #l11.  temp$7 := (temp$5 + temp$6);
+    #l12. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l7,
+        endLabel = l12,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 20,
+        theCol = 10,
+        theOffset = 373),
+        theEndCaret = 
+        @Caret(
+        theLine = 20,
+        theCol = 27,
+        theOffset = 389),
+        theOptionalSource = "ex06031.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  A [temp$3] := temp$7;
+    #l13.  temp$8 := I;
+    #l14.  temp$9 := A [temp$8];
+    #l15.  temp$10 := 10;
+    #l16.  temp$11 := (temp$9 == temp$10);
+    #l17.  if !(temp$11) then goto l18; 
+    #l19. <@ExitStatementAnnotation(
+      hasWhen = false,
+        mark = @Mark(
+        startLabel = l19,
+        endLabel = l19,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 22,
+        theCol = 13,
+        theOffset = 432),
+        theEndCaret = 
+        @Caret(
+        theLine = 22,
+        theCol = 18,
+        theOffset = 436),
+        theOptionalSource = "ex06031.ada"
+      )
+      ),
+        optSparkLabelList = @NONE
+    )>  goto l2;
+    #l20.  goto l21;
+    #l18. 
+    #l21. <@IfStatementAnnotation(
+      ifPart = @Mark(
+      startLabel = l13,
+      endLabel = l17,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 10,
+      theOffset = 401),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 22,
+      theOffset = 412),
+      theOptionalSource = "ex06031.ada"
+    )
+    ),
+      thenPart= @MARK_PLACEHOLDER,
+      optElsIfParts = @NONE,
+      optElsePart = @NONE,
+        mark = @Mark(
+        startLabel = l13,
+        endLabel = l21,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 21,
+        theCol = 10,
+        theOffset = 401),
+        theEndCaret = 
+        @Caret(
+        theLine = 23,
+        theCol = 17,
+        theOffset = 454),
+        theOptionalSource = "ex06031.ada"
+      )
+      ),
+        optSparkLabelList = @NONE  
+    )> 
+    #l22.  temp$12 := I;
+    #l23.  temp$13 := 1;
+    #l24.  temp$14 := (temp$12 + temp$13);
+    #l25.  temp$15 := 0;
+    #l26. <@AssignmentStatementAnnotation(
+        mark = @Mark(
+        startLabel = l22,
+        endLabel = l26,
+        optRS = @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 24,
+        theCol = 10,
+        theOffset = 466),
+        theEndCaret = 
+        @Caret(
+        theLine = 24,
+        theCol = 22,
+        theOffset = 477),
+        theOptionalSource = "ex06031.ada"
+      )
+      ),
+        optSparkLabelList = @NONE 
+    )>  A [temp$14] := temp$15;
+    #l27.  temp$16 := (I == temp$1);
+    #l28.  if temp$16 then goto l2;
+    #l29.  temp$17 := I + 1;
+    #l30.  I := temp$17;
+    #l31.  goto l1;
+    #l2. <@ForLoopStatementAnnotation(
+      sparkIterVarID = I,
+      pilarIterVarID = I,
+      initPart = @Mark(
+      startLabel = l3,
+      endLabel = l6,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 7,
+      theOffset = 298),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 35,
+      theOffset = 325),
+      theOptionalSource = "ex06031.ada"
+    )
+    ),
+      isRev = false,
+        optLoopId = My_Loop,
+        body = @MARK_PLACEHOLDER,
+          mark = @Mark(
+          startLabel = l3,
+          endLabel = l2,
+          optRS = @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 18,
+          theCol = 7,
+          theOffset = 282),
+          theEndCaret = 
+          @Caret(
+          theLine = 25,
+          theCol = 24,
+          theOffset = 502),
+          theOptionalSource = "ex06031.ada"
+        )
+        ),
+          optSparkLabelList = @NONE  
+    )> 
+  #l32.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "ex06031.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 1,
+  theOffset = 54),
+  theEndCaret = 
+  @Caret(
+  theLine = 11,
+  theCol = 7,
+  theOffset = 201),
+  theOptionalSource = "ex06031.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 1,
+  theOffset = 54),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 10,
+  theOffset = 62),
+  theOptionalSource = "ex06031.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record R
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 4,
+      theOffset = 73),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 27,
+      theOffset = 95),
+      theOptionalSource = "ex06031.ada"
+    ),
+    fullyQualifiedName = P::R,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = 255))
+{}
+record T
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 4,
+      theOffset = 101),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 34,
+      theOffset = 130),
+      theOptionalSource = "ex06031.ada"
+    ),
+    fullyQualifiedName = P::T,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`P::R)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Foo 
+      (P::T A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 18,
+  theOffset = 152),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 19,
+  theOffset = 152),
+  theOptionalSource = "ex06031.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex06031.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(A),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 16,
+                          theOffset = 183),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 17,
+                          theOffset = 183),
+                          theOptionalSource = "ex06031.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 23,
+                          theOffset = 190),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 9,
+                          theCol = 24,
+                          theOffset = 190),
+                          theOptionalSource = "ex06031.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 9,
+                  theCol = 16,
+                  theOffset = 183),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 9,
+                  theCol = 24,
+                  theOffset = 190),
+                  theOptionalSource = "ex06031.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 9,
+              theCol = 8,
+              theOffset = 175),
+              theEndCaret = 
+              @Caret(
+              theLine = 9,
+              theCol = 25,
+              theOffset = 191),
+              theOptionalSource = "ex06031.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 4,
+      theOffset = 138),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 32,
+      theOffset = 165),
+      theOptionalSource = "ex06031.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 14,
+      theOffset = 148),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 17,
+      theOffset = 150),
+      theOptionalSource = "ex06031.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 4,
+      theOffset = 138),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 31,
+      theOffset = 164),
+      theOptionalSource = "ex06031.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

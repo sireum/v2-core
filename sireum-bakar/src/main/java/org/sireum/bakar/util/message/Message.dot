@@ -1,0 +1,16 @@
+digraph G {
+  rankdir=BT
+  node [shape=record]
+  edge [arrowhead=onormal]
+  "Message" [label="{Message|theMessageText : String}"]
+  "InternalErrorMessage" [label="{InternalErrorMessage|stackTraces : ArrayList\<StackTraceElement\>}"]
+  "InternalErrorMessage" -> "Message"
+  "UserMessage" [label="{UserMessage|theLineNumber : int\ntheColumnNumber : int\ntheOptionalEndLineNumber : int\ntheOptionalEndColumnNumber : int\ntheOptionalSource : String}"]
+  "UserMessage" -> "Message"
+  "ErrorMessage" [label="{ErrorMessage|}"]
+  "ErrorMessage" -> "UserMessage"
+  "InformationalMessage" [label="{InformationalMessage|}"]
+  "InformationalMessage" -> "UserMessage"
+  "WarningMessage" [label="{WarningMessage|}"]
+  "WarningMessage" -> "UserMessage"
+}

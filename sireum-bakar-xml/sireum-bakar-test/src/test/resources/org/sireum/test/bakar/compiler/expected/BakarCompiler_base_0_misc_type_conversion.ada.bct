@@ -1,0 +1,542 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package Type_Conversion
+@PackageAnnotation(
+  theSourceFileName = "type_conversion.ada",
+  theSparkName = Type_Conversion,
+  thePilarSparkName = Type_Conversion,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 1,
+  theOffset = 124),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 21,
+  theOffset = 277),
+  theOptionalSource = "type_conversion.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 1,
+  theOffset = 124),
+  theEndCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 29,
+  theOffset = 151),
+  theOptionalSource = "type_conversion.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Convert 
+      (Standard::Float Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 22,
+  theOffset = 177),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 23,
+  theOffset = 177),
+  theOptionalSource = "type_conversion.ada"
+),
+       Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 33,
+  theOffset = 188),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 34,
+  theOffset = 188),
+  theOptionalSource = "type_conversion.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "type_conversion.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(Y),
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 4,
+      theOffset = 159),
+      theEndCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 16,
+      theOffset = 256),
+      theOptionalSource = "type_conversion.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 14,
+      theOffset = 169),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 21,
+      theOffset = 175),
+      theOptionalSource = "type_conversion.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 4,
+      theOffset = 159),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 49,
+      theOffset = 203),
+      theOptionalSource = "type_conversion.ada"
+    )
+) 
+{
+
+  local
+    Standard::Float temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := Y;
+  #l2.  temp$2 := (Standard::Integer) (temp$1);
+  #l3. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l3,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 6,
+      theOffset = 225),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 22,
+      theOffset = 240),
+      theOptionalSource = "type_conversion.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  X := temp$2;
+  #l4.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Type_Conversion
+@PackageAnnotation(
+  theSourceFileName = "type_conversion.ada",
+  theSparkName = Type_Conversion,
+  thePilarSparkName = Type_Conversion,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 5,
+  theCol = 21,
+  theOffset = 121),
+  theOptionalSource = "type_conversion.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 24,
+  theOffset = 22),
+  theOptionalSource = "type_conversion.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Convert 
+      (Standard::Float Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 22,
+  theOffset = 48),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 23,
+  theOffset = 48),
+  theOptionalSource = "type_conversion.ada"
+),
+       Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 33,
+  theOffset = 59),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 34,
+  theOffset = 59),
+  theOptionalSource = "type_conversion.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "type_conversion.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(Y),
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 16,
+                          theOffset = 92),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 17,
+                          theOffset = 92),
+                          theOptionalSource = "type_conversion.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 23,
+                          theOffset = 99),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 4,
+                          theCol = 24,
+                          theOffset = 99),
+                          theOptionalSource = "type_conversion.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 4,
+                  theCol = 16,
+                  theOffset = 92),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 4,
+                  theCol = 24,
+                  theOffset = 99),
+                  theOptionalSource = "type_conversion.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 4,
+              theCol = 8,
+              theOffset = 84),
+              theEndCaret = 
+              @Caret(
+              theLine = 4,
+              theCol = 25,
+              theOffset = 100),
+              theOptionalSource = "type_conversion.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 4,
+      theOffset = 30),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 50,
+      theOffset = 75),
+      theOptionalSource = "type_conversion.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 14,
+      theOffset = 40),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 21,
+      theOffset = 46),
+      theOptionalSource = "type_conversion.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 4,
+      theOffset = 30),
+      theEndCaret = 
+      @Caret(
+      theLine = 3,
+      theCol = 49,
+      theOffset = 74),
+      theOptionalSource = "type_conversion.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

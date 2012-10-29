@@ -1,0 +1,2091 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Array_Dim_Fun
+@PackageAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theSparkName = Array_Dim_Fun,
+  thePilarSparkName = Array_Dim_Fun,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 1,
+  theOffset = 52),
+  theEndCaret = 
+  @Caret(
+  theLine = 58,
+  theCol = 19,
+  theOffset = 2241),
+  theOptionalSource = "array_dim_fun.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 1,
+  theOffset = 52),
+  theEndCaret = 
+  @Caret(
+  theLine = 3,
+  theCol = 22,
+  theOffset = 72),
+  theOptionalSource = "array_dim_fun.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+const $Const {
+  matrixConst = (Array_Dim_Fun::Matrix) (`Array_Dim_Fun::Matrix (
+     
+    {
+      Array_Dim_Fun::Index iter0 => 
+        switch iter0 
+            | (1, 5) => (
+                 
+                {
+                  Array_Dim_Fun::Index iter1 => 
+                    switch iter1 
+                        | (1, 5) => (
+                             
+                            {
+                              Array_Dim_Fun::Index iter2 => 
+                                switch iter2 
+                                    | (1, 5) => (
+                                        10
+                                      )
+                            | => (20)
+                            }
+                          )
+                | => ( 
+                {
+                  Array_Dim_Fun::Index iter3 => 
+                    switch iter3 
+                | => (30)
+                })
+                }
+              )
+            | (6, 9) => (
+                 
+                {
+                  Array_Dim_Fun::Index iter4 => 
+                    switch iter4 
+                | => ( 
+                {
+                  Array_Dim_Fun::Index iter5 => 
+                    switch iter5 
+                | => (-(66))
+                })
+                }
+              )
+    | => ( 
+    {
+      Array_Dim_Fun::Index iter6 => 
+        switch iter6 
+    | => ( 
+    {
+      Array_Dim_Fun::Index iter7 => 
+        switch iter7 
+    | => (-(77))
+    })
+    })
+    }
+  )) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 12,
+        theCol = 3,
+        theOffset = 383),
+        theEndCaret = 
+        @Caret(
+        theLine = 12,
+        theCol = 14,
+        theOffset = 393),
+        theOptionalSource = "array_dim_fun.ada"
+      ));
+  rank3Const = (Array_Dim_Fun::rank3) (`Array_Dim_Fun::rank3 (
+     
+    {
+      Array_Dim_Fun::Index iter8 => 
+        switch iter8 
+            | (1, 5) => (
+                `Array_Dim_Fun::rank2 (
+                   
+                  {
+                    Array_Dim_Fun::Index iter9 => 
+                      switch iter9 
+                          | (1, 5) => (
+                              `Array_Dim_Fun::rank1 (
+                                 
+                                {
+                                  Array_Dim_Fun::Index iter10 => 
+                                    switch iter10 
+                                        | (1, 5) => (
+                                            10
+                                          )
+                                | => (20)
+                                }
+                              )
+                            )
+                  | => (`Array_Dim_Fun::rank1 (
+                     
+                    {
+                      Array_Dim_Fun::Index iter11 => 
+                        switch iter11 
+                    | => (30)
+                    }
+                  ))
+                  }
+                )
+              )
+            | (6, 9) => (
+                `Array_Dim_Fun::rank2 (
+                   
+                  {
+                    Array_Dim_Fun::Index iter12 => 
+                      switch iter12 
+                  | => (`Array_Dim_Fun::rank1 (
+                     
+                    {
+                      Array_Dim_Fun::Index iter13 => 
+                        switch iter13 
+                    | => (-(66))
+                    }
+                  ))
+                  }
+                )
+              )
+    | => (`Array_Dim_Fun::rank2 (
+       
+      {
+        Array_Dim_Fun::Index iter14 => 
+          switch iter14 
+      | => (`Array_Dim_Fun::rank1 (
+         
+        {
+          Array_Dim_Fun::Index iter15 => 
+            switch iter15 
+        | => (-(77))
+        }
+      ))
+      }
+    ))
+    }
+  )) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 27,
+        theCol = 3,
+        theOffset = 1011),
+        theEndCaret = 
+        @Caret(
+        theLine = 27,
+        theCol = 13,
+        theOffset = 1020),
+        theOptionalSource = "array_dim_fun.ada"
+      ));
+  mix2Const = (Array_Dim_Fun::mix2) (`Array_Dim_Fun::mix2 (
+     
+    {
+      Array_Dim_Fun::Index iter16 => 
+        switch iter16 
+            | (1, 5) => (
+                `Array_Dim_Fun::mix1 (
+                   
+                  {
+                    Array_Dim_Fun::Index iter17 => 
+                      switch iter17 
+                          | (1, 5) => (
+                               
+                              {
+                                Array_Dim_Fun::Index iter18 => 
+                                  switch iter18 
+                                      | (1, 5) => (
+                                          10
+                                        )
+                              | => (20)
+                              }
+                            )
+                  | => ( 
+                  {
+                    Array_Dim_Fun::Index iter19 => 
+                      switch iter19 
+                  | => (30)
+                  })
+                  }
+                )
+              )
+            | (6, 9) => (
+                `Array_Dim_Fun::mix1 (
+                   
+                  {
+                    Array_Dim_Fun::Index iter20 => 
+                      switch iter20 
+                  | => ( 
+                  {
+                    Array_Dim_Fun::Index iter21 => 
+                      switch iter21 
+                  | => (-(66))
+                  })
+                  }
+                )
+              )
+    | => (`Array_Dim_Fun::mix1 (
+       
+      {
+        Array_Dim_Fun::Index iter22 => 
+          switch iter22 
+      | => ( 
+      {
+        Array_Dim_Fun::Index iter23 => 
+          switch iter23 
+      | => (-(77))
+      })
+      }
+    ))
+    }
+  )) @ConstantAnnotation(
+    theOrigin =
+      @PACKAGE_SPEC_PUBLIC,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 3,
+        theOffset = 1658),
+        theEndCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 12,
+        theOffset = 1666),
+        theOptionalSource = "array_dim_fun.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Index
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 3,
+      theOffset = 79),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 42,
+      theOffset = 117),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::Index,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = 10,
+        lowerBound = 1)))
+{}
+record Matrix
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 3,
+      theOffset = 324),
+      theEndCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 56,
+      theOffset = 376),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::Matrix,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          3,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index,
+                `Array_Dim_Fun::Index,
+                `Array_Dim_Fun::Index)
+      ))
+{}
+record rank1
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 3,
+      theOffset = 889),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 41,
+      theOffset = 926),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::rank1,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index)
+      ))
+{}
+record rank2
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 3,
+      theOffset = 930),
+      theEndCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 39,
+      theOffset = 965),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::rank2,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Array_Dim_Fun::rank1,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index)
+      ))
+{}
+record rank3
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 3,
+      theOffset = 969),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 39,
+      theOffset = 1004),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::rank3,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Array_Dim_Fun::rank2,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index)
+      ))
+{}
+record mix1
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 38,
+      theCol = 3,
+      theOffset = 1569),
+      theEndCaret = 
+      @Caret(
+      theLine = 38,
+      theCol = 47,
+      theOffset = 1612),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::mix1,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          2,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index,
+                `Array_Dim_Fun::Index)
+      ))
+{}
+record mix2
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 39,
+      theCol = 3,
+      theOffset = 1616),
+      theEndCaret = 
+      @Caret(
+      theLine = 39,
+      theCol = 37,
+      theOffset = 1649),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+    fullyQualifiedName = Array_Dim_Fun::mix2,
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Array_Dim_Fun::mix1,
+        theDiscreteSubTypes = 
+          @List(`Array_Dim_Fun::Index)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure dummy 
+      (Array_Dim_Fun::Matrix A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 19,
+  theOffset = 1983),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 20,
+  theOffset = 1983),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 38,
+  theOffset = 2002),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 39,
+  theOffset = 2002),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 40,
+  theOffset = 2004),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 41,
+  theOffset = 2004),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 42,
+  theOffset = 2006),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 43,
+  theOffset = 2006),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 15,
+                          theOffset = 2032),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 16,
+                          theOffset = 2032),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 22,
+                          theOffset = 2039),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 23,
+                          theOffset = 2039),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 24,
+                          theOffset = 2041),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 25,
+                          theOffset = 2041),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 26,
+                          theOffset = 2043),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 27,
+                          theOffset = 2043),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 28,
+                          theOffset = 2045),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 50,
+                          theCol = 29,
+                          theOffset = 2045),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 50,
+                  theCol = 15,
+                  theOffset = 2032),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 50,
+                  theCol = 29,
+                  theOffset = 2045),
+                  theOptionalSource = "array_dim_fun.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 50,
+              theCol = 7,
+              theOffset = 2024),
+              theEndCaret = 
+              @Caret(
+              theLine = 50,
+              theCol = 30,
+              theOffset = 2046),
+              theOptionalSource = "array_dim_fun.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 3,
+      theOffset = 1967),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 53,
+      theOffset = 2016),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 13,
+      theOffset = 1977),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 18,
+      theOffset = 1981),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 3,
+      theOffset = 1967),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 52,
+      theOffset = 2015),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{ #locret. return;}
+procedure dummy2 
+      (Array_Dim_Fun::rank3 A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 20,
+  theOffset = 2070),
+  theEndCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 21,
+  theOffset = 2070),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 38,
+  theOffset = 2088),
+  theEndCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 39,
+  theOffset = 2088),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 40,
+  theOffset = 2090),
+  theEndCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 41,
+  theOffset = 2090),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 42,
+  theOffset = 2092),
+  theEndCaret = 
+  @Caret(
+  theLine = 52,
+  theCol = 43,
+  theOffset = 2092),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 15,
+                          theOffset = 2118),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 16,
+                          theOffset = 2118),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 22,
+                          theOffset = 2125),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 23,
+                          theOffset = 2125),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 24,
+                          theOffset = 2127),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 25,
+                          theOffset = 2127),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 26,
+                          theOffset = 2129),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 27,
+                          theOffset = 2129),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 28,
+                          theOffset = 2131),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 53,
+                          theCol = 29,
+                          theOffset = 2131),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 53,
+                  theCol = 15,
+                  theOffset = 2118),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 53,
+                  theCol = 29,
+                  theOffset = 2131),
+                  theOptionalSource = "array_dim_fun.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 53,
+              theCol = 7,
+              theOffset = 2110),
+              theEndCaret = 
+              @Caret(
+              theLine = 53,
+              theCol = 30,
+              theOffset = 2132),
+              theOptionalSource = "array_dim_fun.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 3,
+      theOffset = 2053),
+      theEndCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 53,
+      theOffset = 2102),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 13,
+      theOffset = 2063),
+      theEndCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 19,
+      theOffset = 2068),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 3,
+      theOffset = 2053),
+      theEndCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 52,
+      theOffset = 2101),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{ #locret. return;}
+procedure dummy3 
+      (Array_Dim_Fun::mix2 A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 20,
+  theOffset = 2158),
+  theEndCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 21,
+  theOffset = 2158),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 37,
+  theOffset = 2175),
+  theEndCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 38,
+  theOffset = 2175),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 39,
+  theOffset = 2177),
+  theEndCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 40,
+  theOffset = 2177),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 41,
+  theOffset = 2179),
+  theEndCaret = 
+  @Caret(
+  theLine = 55,
+  theCol = 42,
+  theOffset = 2179),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 15,
+                          theOffset = 2205),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 16,
+                          theOffset = 2205),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = A,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 22,
+                          theOffset = 2212),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 23,
+                          theOffset = 2212),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 24,
+                          theOffset = 2214),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 25,
+                          theOffset = 2214),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 26,
+                          theOffset = 2216),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 27,
+                          theOffset = 2216),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 28,
+                          theOffset = 2218),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 56,
+                          theCol = 29,
+                          theOffset = 2218),
+                          theOptionalSource = "array_dim_fun.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 56,
+                  theCol = 15,
+                  theOffset = 2205),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 56,
+                  theCol = 29,
+                  theOffset = 2218),
+                  theOptionalSource = "array_dim_fun.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 56,
+              theCol = 7,
+              theOffset = 2197),
+              theEndCaret = 
+              @Caret(
+              theLine = 56,
+              theCol = 30,
+              theOffset = 2219),
+              theOptionalSource = "array_dim_fun.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 3,
+      theOffset = 2141),
+      theEndCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 52,
+      theOffset = 2189),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 13,
+      theOffset = 2151),
+      theEndCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 19,
+      theOffset = 2156),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 3,
+      theOffset = 2141),
+      theEndCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 51,
+      theOffset = 2188),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package Array_Dim_Fun
+@PackageAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theSparkName = Array_Dim_Fun,
+  thePilarSparkName = Array_Dim_Fun,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 60,
+  theCol = 1,
+  theOffset = 2244),
+  theEndCaret = 
+  @Caret(
+  theLine = 93,
+  theCol = 19,
+  theOffset = 3001),
+  theOptionalSource = "array_dim_fun.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 60,
+  theCol = 1,
+  theOffset = 2244),
+  theEndCaret = 
+  @Caret(
+  theLine = 60,
+  theCol = 27,
+  theOffset = 2269),
+  theOptionalSource = "array_dim_fun.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure dummy 
+      (Array_Dim_Fun::Matrix A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 19,
+  theOffset = 2292),
+  theEndCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 20,
+  theOffset = 2292),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 38,
+  theOffset = 2311),
+  theEndCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 39,
+  theOffset = 2311),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 40,
+  theOffset = 2313),
+  theEndCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 41,
+  theOffset = 2313),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 42,
+  theOffset = 2315),
+  theEndCaret = 
+  @Caret(
+  theLine = 61,
+  theCol = 43,
+  theOffset = 2315),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 61,
+      theCol = 3,
+      theOffset = 2276),
+      theEndCaret = 
+      @Caret(
+      theLine = 74,
+      theCol = 13,
+      theOffset = 2683),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 61,
+      theCol = 13,
+      theOffset = 2286),
+      theEndCaret = 
+      @Caret(
+      theLine = 61,
+      theCol = 18,
+      theOffset = 2290),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 61,
+      theCol = 3,
+      theOffset = 2276),
+      theEndCaret = 
+      @Caret(
+      theLine = 61,
+      theCol = 52,
+      theOffset = 2324),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{
+
+  local
+    Array_Dim_Fun::Matrix Q @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 63,
+      theCol = 5,
+      theOffset = 2335),
+      theEndCaret = 
+      @Caret(
+      theLine = 63,
+      theCol = 6,
+      theOffset = 2335),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    );
+    Array_Dim_Fun::Matrix temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := A;
+  #l2. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 66,
+      theCol = 5,
+      theOffset = 2380),
+      theEndCaret = 
+      @Caret(
+      theLine = 66,
+      theCol = 12,
+      theOffset = 2386),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Q := temp$1;
+  #l3.  temp$2 := X;
+  #l4.  temp$3 := Y;
+  #l5.  temp$4 := Z;
+  #l6.  temp$5 := Z;
+  #l7.  temp$6 := Y;
+  #l8.  temp$7 := X;
+  #l9.  temp$8 := Q [temp$5, temp$6, temp$7];
+  #l10. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l10,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 73,
+      theCol = 5,
+      theOffset = 2648),
+      theEndCaret = 
+      @Caret(
+      theLine = 73,
+      theCol = 28,
+      theOffset = 2670),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  A [temp$2, temp$3, temp$4] := temp$8;
+  #l11.  return;
+}
+procedure dummy2 
+      (Array_Dim_Fun::rank3 A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 20,
+  theOffset = 2707),
+  theEndCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 21,
+  theOffset = 2707),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 38,
+  theOffset = 2725),
+  theEndCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 39,
+  theOffset = 2725),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 40,
+  theOffset = 2727),
+  theEndCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 41,
+  theOffset = 2727),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 42,
+  theOffset = 2729),
+  theEndCaret = 
+  @Caret(
+  theLine = 76,
+  theCol = 43,
+  theOffset = 2729),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 3,
+      theOffset = 2690),
+      theEndCaret = 
+      @Caret(
+      theLine = 84,
+      theCol = 14,
+      theOffset = 2849),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 13,
+      theOffset = 2700),
+      theEndCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 19,
+      theOffset = 2705),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 3,
+      theOffset = 2690),
+      theEndCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 52,
+      theOffset = 2738),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{
+
+  local
+    Array_Dim_Fun::rank2 M @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 78,
+      theCol = 5,
+      theOffset = 2749),
+      theEndCaret = 
+      @Caret(
+      theLine = 78,
+      theCol = 6,
+      theOffset = 2749),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    );
+    Array_Dim_Fun::rank1 N @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 79,
+      theCol = 5,
+      theOffset = 2764),
+      theEndCaret = 
+      @Caret(
+      theLine = 79,
+      theCol = 6,
+      theOffset = 2764),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    );
+    Array_Dim_Fun::Index temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::rank2 temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::rank1 temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l12.  temp$1 := X;
+  #l13.  temp$2 := A [temp$1];
+  #l14. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l12,
+      endLabel = l14,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 81,
+      theCol = 5,
+      theOffset = 2787),
+      theEndCaret = 
+      @Caret(
+      theLine = 81,
+      theCol = 15,
+      theOffset = 2796),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  M := temp$2;
+  #l15.  temp$3 := Y;
+  #l16.  temp$4 := M [temp$3];
+  #l17. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l15,
+      endLabel = l17,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 82,
+      theCol = 5,
+      theOffset = 2802),
+      theEndCaret = 
+      @Caret(
+      theLine = 82,
+      theCol = 15,
+      theOffset = 2811),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  N := temp$4;
+  #l18.  temp$5 := X;
+  #l19.  temp$6 := Y;
+  #l20.  temp$7 := Z;
+  #l21.  temp$8 := Z;
+  #l22.  temp$9 := N [temp$8];
+  #l23. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l18,
+      endLabel = l23,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 83,
+      theCol = 5,
+      theOffset = 2817),
+      theEndCaret = 
+      @Caret(
+      theLine = 83,
+      theCol = 24,
+      theOffset = 2835),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  A [temp$5] [temp$6] [temp$7] := temp$9;
+  #l24.  return;
+}
+procedure dummy3 
+      (Array_Dim_Fun::mix2 A @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 20,
+  theOffset = 2871),
+  theEndCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 21,
+  theOffset = 2871),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 37,
+  theOffset = 2888),
+  theEndCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 38,
+  theOffset = 2888),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 39,
+  theOffset = 2890),
+  theEndCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 40,
+  theOffset = 2890),
+  theOptionalSource = "array_dim_fun.ada"
+),
+       Array_Dim_Fun::Index Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 41,
+  theOffset = 2892),
+  theEndCaret = 
+  @Caret(
+  theLine = 86,
+  theCol = 42,
+  theOffset = 2892),
+  theOptionalSource = "array_dim_fun.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_dim_fun.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(A,
+            X,
+            Y,
+            Z),
+      theOptionalOutParameters = @List(A)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 86,
+      theCol = 3,
+      theOffset = 2854),
+      theEndCaret = 
+      @Caret(
+      theLine = 92,
+      theCol = 14,
+      theOffset = 2982),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 86,
+      theCol = 13,
+      theOffset = 2864),
+      theEndCaret = 
+      @Caret(
+      theLine = 86,
+      theCol = 19,
+      theOffset = 2869),
+      theOptionalSource = "array_dim_fun.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 86,
+      theCol = 3,
+      theOffset = 2854),
+      theEndCaret = 
+      @Caret(
+      theLine = 86,
+      theCol = 51,
+      theOffset = 2901),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+) 
+{
+
+  local
+    Array_Dim_Fun::mix1 Q @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 88,
+      theCol = 5,
+      theOffset = 2912),
+      theEndCaret = 
+      @Caret(
+      theLine = 88,
+      theCol = 6,
+      theOffset = 2912),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    );
+    Array_Dim_Fun::Index temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::mix1 temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_Dim_Fun::Index temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l25.  temp$1 := X;
+  #l26.  temp$2 := A [temp$1];
+  #l27. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l25,
+      endLabel = l27,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 90,
+      theCol = 5,
+      theOffset = 2934),
+      theEndCaret = 
+      @Caret(
+      theLine = 90,
+      theCol = 15,
+      theOffset = 2943),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Q := temp$2;
+  #l28.  temp$3 := X;
+  #l29.  temp$4 := Y;
+  #l30.  temp$5 := Z;
+  #l31.  temp$6 := Y;
+  #l32.  temp$7 := Z;
+  #l33.  temp$8 := Q [temp$6, temp$7];
+  #l34. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l28,
+      endLabel = l34,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 91,
+      theCol = 5,
+      theOffset = 2949),
+      theEndCaret = 
+      @Caret(
+      theLine = 91,
+      theCol = 25,
+      theOffset = 2968),
+      theOptionalSource = "array_dim_fun.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  A [temp$3] [temp$4, temp$5] := temp$8;
+  #l35.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

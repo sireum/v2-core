@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<project name="test-utils" default="default">
+	<property name="base.dir" value="." />
+  <property name="result.dir" value="${base.dir}/src/test/resources/org/sireum/test/bakar/compiler/results" />
+
+	<target name="clean-result-dir">
+		<delete includeEmptyDirs="true" failonerror="false" verbose="true">
+		  <fileset dir="${result.dir}" includes="**/*.*" excludes=".gitignore" /> 
+		</delete>
+		
+		<!-- use the same jvm as eclipse to prevent an error for the following -->
+    <eclipse.refreshLocal resource="sireum-bakar-compiler/src" depth="infinite"/>    
+	</target>
+
+	<target name="default" >
+		<antcall target="clean-result-dir" />
+	</target>
+</project>

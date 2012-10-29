@@ -1,0 +1,1558 @@
+@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "Y",pilarSparkID = P::@@Y,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE),
+      @SymbolEntry(sparkID = "C",pilarSparkID = P::@@C,originTag = @PACKAGE_SPEC_PRIVATE,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 7,
+  theOffset = 240),
+  theOptionalSource = "function_simple.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 10,
+  theOffset = 8),
+  theOptionalSource = "function_simple.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = P::@@Y,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 9,
+                  theOffset = 18),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 10,
+                  theOffset = 18),
+                  theOptionalSource = "function_simple.ada"
+                )
+            ),
+                  @OwnVariable(
+              varName = P::@@B,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 12,
+                  theOffset = 21),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 13,
+                  theOffset = 21),
+                  theOptionalSource = "function_simple.ada"
+                )
+            ),
+                  @OwnVariable(
+              varName = P::@@C,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 15,
+                  theOffset = 24),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 16,
+                  theOffset = 24),
+                  theOptionalSource = "function_simple.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 9,
+              theOffset = 18),
+              theEndCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 16,
+              theOffset = 25),
+              theOptionalSource = "function_simple.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 5,
+          theOffset = 14),
+          theEndCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 16,
+          theOffset = 25),
+          theOptionalSource = "function_simple.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(P::@@Y,
+          P::@@B,
+          P::@@C)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@Y @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "Y",pilarSparkID = P::@@Y,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 6,
+    theCol = 4,
+    theOffset = 119),
+    theEndCaret = 
+    @Caret(
+    theLine = 6,
+    theCol = 5,
+    theOffset = 119),
+    theOptionalSource = "function_simple.ada"
+  )
+  );
+    global Standard::Integer @@C @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "C",pilarSparkID = P::@@C,originTag = @PACKAGE_SPEC_PRIVATE,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 12,
+    theCol = 4,
+    theOffset = 223),
+    theEndCaret = 
+    @Caret(
+    theLine = 12,
+    theCol = 5,
+    theOffset = 223),
+    theOptionalSource = "function_simple.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Standard::Integer F1 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 15,
+  theOffset = 146),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 16,
+  theOffset = 146),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 30,
+  theOffset = 161),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 31,
+  theOffset = 161),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaFunctionAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(X,
+            Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @FunctionAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 9,
+              theCol = 17,
+              theOffset = 208),
+              theEndCaret = 
+              @Caret(
+              theLine = 9,
+              theCol = 18,
+              theOffset = 208),
+              theOptionalSource = "function_simple.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 9,
+          theCol = 7,
+          theOffset = 198),
+          theEndCaret = 
+          @Caret(
+          theLine = 9,
+          theCol = 19,
+          theOffset = 209),
+          theOptionalSource = "function_simple.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@Y),
+      theOptionalReturnAnnotation = 
+        @NONE
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 134),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 60,
+      theOffset = 190),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 12,
+      theOffset = 143),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 14,
+      theOffset = 144),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 134),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 59,
+      theOffset = 189),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{ #locret. return;}
+procedure Standard::Integer F1 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 15,
+  theOffset = 146),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 16,
+  theOffset = 146),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 30,
+  theOffset = 161),
+  theEndCaret = 
+  @Caret(
+  theLine = 8,
+  theCol = 31,
+  theOffset = 161),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer implicit__y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 17,
+  theOffset = 208),
+  theEndCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 18,
+  theOffset = 208),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaFunctionAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(X,
+            Z,
+            implicit__y)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProofFunctionAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      isImplicit = true
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 134),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 60,
+      theOffset = 190),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 134),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 60,
+      theOffset = 190),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 3,
+      theOffset = 134),
+      theEndCaret = 
+      @Caret(
+      theLine = 8,
+      theCol = 60,
+      theOffset = 190),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 1,
+  theOffset = 243),
+  theEndCaret = 
+  @Caret(
+  theLine = 43,
+  theCol = 7,
+  theOffset = 722),
+  theOptionalSource = "function_simple.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 1,
+  theOffset = 243),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 15,
+  theOffset = 256),
+  theOptionalSource = "function_simple.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@B @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 16,
+    theCol = 3,
+    theOffset = 263),
+    theEndCaret = 
+    @Caret(
+    theLine = 16,
+    theCol = 4,
+    theOffset = 263),
+    theOptionalSource = "function_simple.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := 1;
+  #l2. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 40,
+      theCol = 4,
+      theOffset = 687),
+      theEndCaret = 
+      @Caret(
+      theLine = 40,
+      theCol = 11,
+      theOffset = 693),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@Y := temp$1;
+  #l3.  temp$2 := 0;
+  #l4. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 4,
+      theOffset = 698),
+      theEndCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 11,
+      theOffset = 704),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@B := temp$2;
+  #l5.  temp$3 := 0;
+  #l6. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l6,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 42,
+      theCol = 4,
+      theOffset = 709),
+      theEndCaret = 
+      @Caret(
+      theLine = 42,
+      theCol = 11,
+      theOffset = 715),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@C := temp$3;
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Standard::Integer F1 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 15,
+  theOffset = 290),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 16,
+  theOffset = 290),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 30,
+  theOffset = 305),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 31,
+  theOffset = 305),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaFunctionAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X,
+            Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 3,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 10,
+      theOffset = 377),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 12,
+      theOffset = 287),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 14,
+      theOffset = 288),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 3,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 59,
+      theOffset = 333),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l7.  temp$1 := X;
+  #l8.  temp$2 := Z;
+  #l9.  temp$3 := (temp$1 + temp$2);
+  #l10.  temp$4 := P::@@Y;
+  #l11.  temp$5 := (temp$3 + temp$4);
+  #l12. <@ReturnStatementAnnotation(
+      mark = @Mark(
+      startLabel = l7,
+      endLabel = l12,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 6,
+      theOffset = 351),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 23,
+      theOffset = 367),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  return temp$5;
+}
+procedure Standard::Integer F1 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 15,
+  theOffset = 290),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 16,
+  theOffset = 290),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 30,
+  theOffset = 305),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 31,
+  theOffset = 305),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer implicit__y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 17,
+  theOffset = 208),
+  theEndCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 18,
+  theOffset = 208),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaFunctionAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X,
+            Z,
+            implicit__y)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProofFunctionAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      isImplicit = true
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 3,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 10,
+      theOffset = 377),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 3,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 10,
+      theOffset = 377),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 3,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 10,
+      theOffset = 377),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{ #locret. return;}
+procedure P1 
+      (Standard::Integer M @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 16,
+  theOffset = 395),
+  theEndCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 17,
+  theOffset = 395),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer N @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 31,
+  theOffset = 410),
+  theEndCaret = 
+  @Caret(
+  theLine = 23,
+  theCol = 32,
+  theOffset = 410),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(M,
+            N),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 17,
+              theOffset = 441),
+              theEndCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 18,
+              theOffset = 441),
+              theOptionalSource = "function_simple.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@B,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 24,
+              theOffset = 448),
+              theEndCaret = 
+              @Caret(
+              theLine = 24,
+              theCol = 25,
+              theOffset = 448),
+              theOptionalSource = "function_simple.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 24,
+          theCol = 7,
+          theOffset = 431),
+          theEndCaret = 
+          @Caret(
+          theLine = 24,
+          theCol = 26,
+          theOffset = 449),
+          theOptionalSource = "function_simple.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@Y),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(P::@@B),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = P::@@B,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 15,
+                          theOffset = 465),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 16,
+                          theOffset = 465),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = M,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 22,
+                          theOffset = 472),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 23,
+                          theOffset = 472),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = N,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 25,
+                          theOffset = 475),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 26,
+                          theOffset = 475),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 28,
+                          theOffset = 478),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 25,
+                          theCol = 29,
+                          theOffset = 478),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 25,
+                  theCol = 15,
+                  theOffset = 465),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 25,
+                  theCol = 29,
+                  theOffset = 478),
+                  theOptionalSource = "function_simple.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 25,
+              theCol = 7,
+              theOffset = 457),
+              theEndCaret = 
+              @Caret(
+              theLine = 25,
+              theCol = 30,
+              theOffset = 479),
+              theOptionalSource = "function_simple.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 3,
+      theOffset = 382),
+      theEndCaret = 
+      @Caret(
+      theLine = 29,
+      theCol = 10,
+      theOffset = 521),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 13,
+      theOffset = 392),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 15,
+      theOffset = 393),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 3,
+      theOffset = 382),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 45,
+      theOffset = 423),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l13.  temp$1 := M;
+  #l14.  temp$2 := N;
+  #l15.  call temp$3 := P::F1 (temp$1, temp$2);
+  #l16. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l13,
+      endLabel = l16,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 28,
+      theCol = 6,
+      theOffset = 499),
+      theEndCaret = 
+      @Caret(
+      theLine = 28,
+      theCol = 19,
+      theOffset = 511),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@B := temp$3;
+  #l17.  return;
+}
+procedure P2 
+      (Standard::Integer M @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 16,
+  theOffset = 539),
+  theEndCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 17,
+  theOffset = 539),
+  theOptionalSource = "function_simple.ada"
+),
+       Standard::Integer N @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 31,
+  theOffset = 554),
+  theEndCaret = 
+  @Caret(
+  theLine = 31,
+  theCol = 32,
+  theOffset = 554),
+  theOptionalSource = "function_simple.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "function_simple.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(M,
+            N),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@C,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 17,
+              theOffset = 585),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 18,
+              theOffset = 585),
+              theOptionalSource = "function_simple.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 20,
+              theOffset = 588),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 21,
+              theOffset = 588),
+              theOptionalSource = "function_simple.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@B,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 27,
+              theOffset = 595),
+              theEndCaret = 
+              @Caret(
+              theLine = 32,
+              theCol = 28,
+              theOffset = 595),
+              theOptionalSource = "function_simple.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 32,
+          theCol = 7,
+          theOffset = 575),
+          theEndCaret = 
+          @Caret(
+          theLine = 32,
+          theCol = 29,
+          theOffset = 596),
+          theOptionalSource = "function_simple.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@C,
+            P::@@Y),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(P::@@B),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = P::@@B,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 15,
+                          theOffset = 612),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 16,
+                          theOffset = 612),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = M,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 22,
+                          theOffset = 619),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 23,
+                          theOffset = 619),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = N,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 25,
+                          theOffset = 622),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 26,
+                          theOffset = 622),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@C,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 28,
+                          theOffset = 625),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 29,
+                          theOffset = 625),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 31,
+                          theOffset = 628),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 33,
+                          theCol = 32,
+                          theOffset = 628),
+                          theOptionalSource = "function_simple.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 33,
+                  theCol = 15,
+                  theOffset = 612),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 33,
+                  theCol = 32,
+                  theOffset = 628),
+                  theOptionalSource = "function_simple.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 33,
+              theCol = 7,
+              theOffset = 604),
+              theEndCaret = 
+              @Caret(
+              theLine = 33,
+              theCol = 33,
+              theOffset = 629),
+              theOptionalSource = "function_simple.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 3,
+      theOffset = 526),
+      theEndCaret = 
+      @Caret(
+      theLine = 37,
+      theCol = 10,
+      theOffset = 675),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 13,
+      theOffset = 536),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 15,
+      theOffset = 537),
+      theOptionalSource = "function_simple.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 3,
+      theOffset = 526),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 45,
+      theOffset = 567),
+      theOptionalSource = "function_simple.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l18.  temp$1 := M;
+  #l19.  temp$2 := N;
+  #l20.  call temp$3 := P::F1 (temp$1, temp$2);
+  #l21.  temp$4 := P::@@C;
+  #l22.  temp$5 := (temp$3 + temp$4);
+  #l23. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l18,
+      endLabel = l23,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 6,
+      theOffset = 649),
+      theEndCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 23,
+      theOffset = 665),
+      theOptionalSource = "function_simple.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@B := temp$5;
+  #l24.  return;
+}

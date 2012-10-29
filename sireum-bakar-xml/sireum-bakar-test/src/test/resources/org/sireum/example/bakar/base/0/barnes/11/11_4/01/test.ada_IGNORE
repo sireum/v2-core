@@ -1,0 +1,25 @@
+-- Simple demonstration of VC generation
+package P
+is
+   pragma Elaborate_Body (P);
+end P;
+
+package body P
+is
+   function Max (X, Y : Integer) return Integer
+   --# return M => (X > Y -> M = X) and
+   --#             (Y > X -> M = Y);
+   is
+      Result : Integer;
+   begin
+      if X > Y then
+        Result := X;
+      else
+         Result := Y;
+      end if;
+      return Result;
+   end Max;
+end P;
+
+
+

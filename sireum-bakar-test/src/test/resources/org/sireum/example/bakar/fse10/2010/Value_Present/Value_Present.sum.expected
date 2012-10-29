@@ -1,0 +1,138 @@
+-------------------------------------------------------------------------------
+                          Semantic Analysis Summary                            
+                                POGS GPL 2010                                  
+            Copyright (C) 2010 Altran Praxis Limited, Bath, U.K.               
+-------------------------------------------------------------------------------
+
+Summary of:
+
+Verification Condition files (.vcg)
+Simplified Verification Condition files (.siv)
+Proof Logs (.plg)
+Dead Path Conjecture files (.dpc)
+Summary Dead Path files (.sdp)
+
+"status" column keys:
+    1st character:
+        '-' - No VC
+        'S' - No SIV
+        'U' - Undischarged
+        'E' - Proved by Examiner
+        'I' - Proved by Simplifier by Inference
+        'X' - Proved by Simplifier by Contradiction
+        'P' - Proved by Simplifier using User Defined Proof Rules
+        'C' - Proved by Checker
+        'R' - Proved by Review
+        'F' - VC is False
+    2nd character:
+        '-' - No DPC
+        'S' - No SDP
+        'U' - Unchecked
+        'D' - Dead path
+        'L' - Live path
+
+in the directory:
+/Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Value_Present
+
+Summary produced: 17-SEP-2010 11:58:21.03
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Value_Present/value_present_pkg/Value_Present.vcg
+function Value_Present_Pkg.Value_Present
+
+VCs generated 17-SEP-2010 11:58:18
+
+VCs simplified 17-SEP-2010 11:58:19
+
+VCs proved 17-SEP-2010 11:58:19
+
+VCs for function_value_present :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 19      | Inference          | No DPC    |   I-   |
+| 2   | 23    | rtc check @ 19      | Inference          | No DPC    |   I-   |
+| 3   | start |    assert @ 23      | Inference          | No DPC    |   I-   |
+| 4   | 23    |    assert @ 23      | Inference          | No DPC    |   I-   |
+| 5   | start |    assert @ finish  | Checker            | No DPC    |   C-   |
+| 6   | 23    |    assert @ finish  | Checker            | No DPC    |   C-   |
+| 7   | 23    |    assert @ finish  | Checker            | No DPC    |   C-   |
+ -----------------------------------------------------------------------------
+
+
+File /Users/chalin/wkspdirs/36/sireum/sireum-spark-examples/src/org/sireum/profile/spark/examples/fse10/2010/Value_Present/value_present_pkg/value_present.vcg
+function Value_Present_Pkg.Value_Present
+
+VCs generated 17-SEP-2010 11:58:18
+
+VCs simplified 17-SEP-2010 11:58:19
+
+VCs proved 17-SEP-2010 11:58:19
+
+VCs for function_value_present :
+ -----------------------------------------------------------------------------
+| #   | From  | To                  | Proved By          | Dead Path | Status |
+|-----------------------------------------------------------------------------
+| 1   | start | rtc check @ 19      | Inference          | No DPC    |   I-   |
+| 2   | 23    | rtc check @ 19      | Inference          | No DPC    |   I-   |
+| 3   | start |    assert @ 23      | Inference          | No DPC    |   I-   |
+| 4   | 23    |    assert @ 23      | Inference          | No DPC    |   I-   |
+| 5   | start |    assert @ finish  | Checker            | No DPC    |   C-   |
+| 6   | 23    |    assert @ finish  | Checker            | No DPC    |   C-   |
+| 7   | 23    |    assert @ finish  | Checker            | No DPC    |   C-   |
+ -----------------------------------------------------------------------------
+
+
+===============================================================================
+Summary:
+
+Proof strategies used by subprograms
+-------------------------------------------------------------------------
+Total subprograms with at least one VC proved by examiner:              0
+Total subprograms with at least one VC proved by simplifier:            2
+Total subprograms with at least one VC proved by contradiction:         0
+Total subprograms with at least one VC proved with user proof rule:     0
+Total subprograms with at least one VC proved using checker:            2
+Total subprograms with at least one VC discharged by review:            0
+
+Maximum extent of strategies used for fully proved subprograms:
+-------------------------------------------------------------------------
+Total subprograms with proof completed by examiner:                     0
+Total subprograms with proof completed by simplifier:                   0
+Total subprograms with proof completed with user defined rules:         0
+Total subprograms with proof completed by checker:                      2
+Total subprograms with VCs discharged by review:                        0
+
+Overall subprogram summary:
+-------------------------------------------------------------------------
+Total subprograms fully proved:                                         2
+Total subprograms with at least one undischarged VC:                    0
+Total subprograms with at least one false VC:                           0
+                                                                    -----
+Total subprograms for which VCs have been generated:                    2
+
+
+ZombieScope Summary:
+-------------------------------------------------------------------------
+Total subprograms for which DPCs have been generated:                   0
+Total number subprograms with dead paths found:                         0
+Total number of dead paths found:                                       0
+
+
+VC summary:
+-------------------------------------------------------------------------
+Note: U/R denotes where the Simplifier has proved VCs using one or more user-
+defined proof rules.
+
+Total VCs by type:                                       
+                            -----------Proved By Or Using------------
+                     Total  Examiner Simp(U/R)  Checker Review False Undiscgd
+Assert or Post:         10      0      4              6      0      0       0
+Precondition check:      0      0      0              0      0      0       0
+Check statement:         0      0      0              0      0      0       0
+Runtime check:           4      0      4              0      0      0       0
+Refinement VCs:          0      0      0              0      0      0       0
+Inheritance VCs:         0      0      0              0      0      0       0
+===============================================================================
+Totals:                 14      0      8              6      0      0       0
+% Totals:                       0%    57%            43%     0%     0%      0%
+===================== End of Semantic Analysis Summary ========================

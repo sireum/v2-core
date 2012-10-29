@@ -1,0 +1,12 @@
+digraph G {
+  rankdir=BT
+  node [shape=record]
+  edge [arrowhead=onormal]
+  "SelectionNode" [label="{SelectionNode|}"]
+  "Caret" [label="{Caret|theLine : int\ntheCol : int\ntheOffset : int}"]
+  "Caret" -> "SelectionNode"
+  "NullSelection" [label="{NullSelection|}"]
+  "NullSelection" -> "SelectionNode"
+  "RegionSelection" [label="{RegionSelection|theOptionalSource : String\ntheStartCaret : Caret\ntheEndCaret : Caret}"]
+  "RegionSelection" -> "SelectionNode"
+}
