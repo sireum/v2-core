@@ -11,2209 +11,6 @@
 /****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package P_E_P2
-@PackageAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theSparkName = P2,
-  thePilarSparkName = P_E_P2,
-  theOptionalParent = P,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @EMBEDDED,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "AbsQ",pilarSparkID = P_E_P2::@@$AbsQ,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 20,
-  theCol = 16,
-  theOffset = 347),
-  theEndCaret = 
-  @Caret(
-  theLine = 28,
-  theCol = 11,
-  theOffset = 559),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 21,
-  theCol = 4,
-  theOffset = 353),
-  theEndCaret = 
-  @Caret(
-  theLine = 21,
-  theCol = 14,
-  theOffset = 362),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @PackageSpecificationAnnotation(
-      theOptionalOwnStatement = @OwnStatement(
-      theOwnClauses = 
-        @List(@OwnClause(
-          theOptionalDeclaredType = @NONE,
-          theOwnVariables = 
-            @List(@OwnVariable(
-              varName = P_E_P2::@@D,
-              mode = @NONE,
-              ownCategory = @CONCRETE,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 22,
-                  theCol = 14,
-                  theOffset = 377),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 22,
-                  theCol = 15,
-                  theOffset = 377),
-                  theOptionalSource = "p_complex.ada"
-                )
-            ),
-                  @OwnVariable(
-              varName = P_E_P2::@@$AbsQ,
-              mode = @NONE,
-              ownCategory = @ABSTRACT,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 22,
-                  theCol = 17,
-                  theOffset = 380),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 22,
-                  theCol = 21,
-                  theOffset = 383),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )),
-          theOwnClauseSelection =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 22,
-              theCol = 14,
-              theOffset = 377),
-              theEndCaret = 
-              @Caret(
-              theLine = 22,
-              theCol = 21,
-              theOffset = 384),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theOwnStatementSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 22,
-          theCol = 10,
-          theOffset = 373),
-          theEndCaret = 
-          @Caret(
-          theLine = 22,
-          theCol = 21,
-          theOffset = 384),
-          theOptionalSource = "p_complex.ada"
-        )
-    ),
-      theOptionalVarInitClause = @List(P_E_P2::@@D,
-          P_E_P2::@@$AbsQ)
-    ),
-  theOptionalInheritClause = 
-    @List(P)
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record AbsQ__type
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 22,
-      theCol = 17,
-      theOffset = 380),
-      theEndCaret = 
-      @Caret(
-      theLine = 22,
-      theCol = 21,
-      theOffset = 383),
-      theOptionalSource = "p_complex.ada"
-    ),
-    fullyQualifiedName = P_E_P2::AbsQ__type,
-    typeDefinition = 
-      @AbstractTypeDefinition)
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global P_E_P2::AbsQ__type @@$AbsQ @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "AbsQ",pilarSparkID = P_E_P2::@@$AbsQ,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 22,
-    theCol = 17,
-    theOffset = 380),
-    theEndCaret = 
-    @Caret(
-    theLine = 22,
-    theCol = 21,
-    theOffset = 383),
-    theOptionalSource = "p_complex.ada"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure R 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 25,
-  theCol = 19,
-  theOffset = 440),
-  theEndCaret = 
-  @Caret(
-  theLine = 25,
-  theCol = 20,
-  theOffset = 440),
-  theOptionalSource = "p_complex.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @NONE,
-      theOptionalOutParameters = @List(X)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = P::@@Y,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 21,
-              theOffset = 477),
-              theEndCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 24,
-              theOffset = 479),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P::@@B,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 26,
-              theOffset = 482),
-              theEndCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 29,
-              theOffset = 484),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P::@@C,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 31,
-              theOffset = 487),
-              theEndCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 34,
-              theOffset = 489),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P_E_P2::@@D,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 36,
-              theOffset = 492),
-              theEndCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 37,
-              theOffset = 492),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P_E_P2::@@$AbsQ,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 39,
-              theOffset = 495),
-              theEndCaret = 
-              @Caret(
-              theLine = 26,
-              theCol = 43,
-              theOffset = 498),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 26,
-          theCol = 11,
-          theOffset = 467),
-          theEndCaret = 
-          @Caret(
-          theLine = 26,
-          theCol = 44,
-          theOffset = 499),
-          theOptionalSource = "p_complex.ada"
-        ),
-      theOptionalInGlobals = @List(P::@@Y,
-            P::@@B,
-            P::@@C,
-            P_E_P2::@@D,
-            P_E_P2::@@$AbsQ),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @NONE,
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 19,
-                          theOffset = 519),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 20,
-                          theOffset = 519),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = P::@@Y,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 26,
-                          theOffset = 526),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 29,
-                          theOffset = 528),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P::@@B,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 31,
-                          theOffset = 531),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 34,
-                          theOffset = 533),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P::@@C,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 36,
-                          theOffset = 536),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 39,
-                          theOffset = 538),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P_E_P2::@@D,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 41,
-                          theOffset = 541),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 42,
-                          theOffset = 541),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P_E_P2::@@$AbsQ,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 44,
-                          theOffset = 544),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 27,
-                          theCol = 48,
-                          theOffset = 547),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 27,
-                  theCol = 19,
-                  theOffset = 519),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 27,
-                  theCol = 48,
-                  theOffset = 547),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 27,
-              theCol = 11,
-              theOffset = 511),
-              theEndCaret = 
-              @Caret(
-              theLine = 27,
-              theCol = 49,
-              theOffset = 548),
-              theOptionalSource = "p_complex.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 7,
-      theOffset = 428),
-      theEndCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 35,
-      theOffset = 455),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 17,
-      theOffset = 438),
-      theEndCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 18,
-      theOffset = 438),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 7,
-      theOffset = 428),
-      theEndCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 34,
-      theOffset = 454),
-      theOptionalSource = "p_complex.ada"
-    )
-) 
-{ #locret. return;}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
- ****************************************************************/
-package P
-@PackageAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theSparkName = P,
-  thePilarSparkName = P,
-  theOptionalParent = @NONE,
-  thePackageKind = @BODY,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 1,
-  theOffset = 242),
-  theEndCaret = 
-  @Caret(
-  theLine = 81,
-  theCol = 7,
-  theOffset = 1530),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 1,
-  theOffset = 242),
-  theEndCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 15,
-  theOffset = 255),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
-    @RefinementDefinition(
-      theRefinementClauses = 
-        @List(@RefinementClause(
-          theSubject = P::@@$AbsD,
-          theSubjectSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 14,
-              theCol = 11,
-              theOffset = 267),
-              theEndCaret = 
-              @Caret(
-              theLine = 14,
-              theCol = 15,
-              theOffset = 270),
-              theOptionalSource = "p_complex.ada"
-            ),
-          theConstituents = 
-            @List(@RefinementConstituent(
-              theMode = @NONE,
-              theConstituent = P_E_P2::@@D,
-              theRefinementConstituentSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 14,
-                  theCol = 19,
-                  theOffset = 275),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 14,
-                  theCol = 23,
-                  theOffset = 278),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )),
-          theRefinementClauseSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 14,
-              theCol = 11,
-              theOffset = 267),
-              theEndCaret = 
-              @Caret(
-              theLine = 14,
-              theCol = 23,
-              theOffset = 278),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @RefinementClause(
-          theSubject = P::@@$AbsAbsQ,
-          theSubjectSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 15,
-              theCol = 11,
-              theOffset = 292),
-              theEndCaret = 
-              @Caret(
-              theLine = 15,
-              theCol = 18,
-              theOffset = 298),
-              theOptionalSource = "p_complex.ada"
-            ),
-          theConstituents = 
-            @List(@RefinementConstituent(
-              theMode = @NONE,
-              theConstituent = P_E_P2::@@$AbsQ,
-              theRefinementConstituentSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 15,
-                  theCol = 22,
-                  theOffset = 303),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 15,
-                  theCol = 29,
-                  theOffset = 309),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )),
-          theRefinementClauseSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 15,
-              theCol = 11,
-              theOffset = 292),
-              theEndCaret = 
-              @Caret(
-              theLine = 15,
-              theCol = 29,
-              theOffset = 309),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theRefinementDefinitionSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 14,
-          theCol = 7,
-          theOffset = 263),
-          theEndCaret = 
-          @Caret(
-          theLine = 15,
-          theCol = 30,
-          theOffset = 310),
-          theOptionalSource = "p_complex.ada"
-        )
-    )
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global Standard::Integer @@B @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 18,
-    theCol = 4,
-    theOffset = 319),
-    theEndCaret = 
-    @Caret(
-    theLine = 18,
-    theCol = 5,
-    theOffset = 319),
-    theOptionalSource = "p_complex.ada"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure $$binit
- 
-{
-
-  local
-    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l1.  temp$1 := 1;
-  #l2. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l1,
-      endLabel = l2,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 78,
-      theCol = 4,
-      theOffset = 1495),
-      theEndCaret = 
-      @Caret(
-      theLine = 78,
-      theCol = 11,
-      theOffset = 1501),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  P::@@Y := temp$1;
-  #l3.  temp$2 := 0;
-  #l4. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l3,
-      endLabel = l4,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 79,
-      theCol = 4,
-      theOffset = 1506),
-      theEndCaret = 
-      @Caret(
-      theLine = 79,
-      theCol = 11,
-      theOffset = 1512),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  P::@@B := temp$2;
-  #l5.  temp$3 := 0;
-  #l6. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l5,
-      endLabel = l6,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 80,
-      theCol = 4,
-      theOffset = 1517),
-      theEndCaret = 
-      @Caret(
-      theLine = 80,
-      theCol = 11,
-      theOffset = 1523),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  P::@@C := temp$3;
-  #locret. return;
-}
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure Q 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 71,
-  theCol = 15,
-  theOffset = 1415),
-  theEndCaret = 
-  @Caret(
-  theLine = 71,
-  theCol = 16,
-  theOffset = 1415),
-  theOptionalSource = "p_complex.ada"
-),
-       Standard::Integer Z @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 71,
-  theCol = 30,
-  theOffset = 1430),
-  theEndCaret = 
-  @Caret(
-  theLine = 71,
-  theCol = 31,
-  theOffset = 1430),
-  theOptionalSource = "p_complex.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @List(Z)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 71,
-      theCol = 3,
-      theOffset = 1403),
-      theEndCaret = 
-      @Caret(
-      theLine = 75,
-      theCol = 9,
-      theOffset = 1483),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 71,
-      theCol = 13,
-      theOffset = 1413),
-      theEndCaret = 
-      @Caret(
-      theLine = 71,
-      theCol = 14,
-      theOffset = 1413),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 71,
-      theCol = 3,
-      theOffset = 1403),
-      theEndCaret = 
-      @Caret(
-      theLine = 71,
-      theCol = 45,
-      theOffset = 1444),
-      theOptionalSource = "p_complex.ada"
-    )
-) 
-{
-
-  local
-    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l31.  temp$1 := X;
-  #l32.  temp$2 := P::@@B;
-  #l33.  temp$3 := (temp$1 + temp$2);
-  #l34. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l31,
-      endLabel = l34,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 74,
-      theCol = 6,
-      theOffset = 1464),
-      theEndCaret = 
-      @Caret(
-      theLine = 74,
-      theCol = 17,
-      theOffset = 1474),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Z := temp$3;
-  #l35.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
- ****************************************************************/
-package P_E_P2
-@PackageAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theSparkName = P2,
-  thePilarSparkName = P_E_P2,
-  theOptionalParent = P,
-  thePackageKind = @BODY,
-  theHierarchyType = @EMBEDDED,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "D",pilarSparkID = P_E_P2::@@D,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 4,
-  theOffset = 565),
-  theEndCaret = 
-  @Caret(
-  theLine = 69,
-  theCol = 10,
-  theOffset = 1398),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 4,
-  theOffset = 565),
-  theEndCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 19,
-  theOffset = 579),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
-    @RefinementDefinition(
-      theRefinementClauses = 
-        @List(@RefinementClause(
-          theSubject = P_E_P2::@@$AbsQ,
-          theSubjectSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 31,
-              theCol = 14,
-              theOffset = 594),
-              theEndCaret = 
-              @Caret(
-              theLine = 31,
-              theCol = 18,
-              theOffset = 597),
-              theOptionalSource = "p_complex.ada"
-            ),
-          theConstituents = 
-            @List(@RefinementConstituent(
-              theMode = @NONE,
-              theConstituent = P_E_P2_E_P3::@@Q,
-              theRefinementConstituentSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 31,
-                  theCol = 22,
-                  theOffset = 602),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 31,
-                  theCol = 26,
-                  theOffset = 605),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )),
-          theRefinementClauseSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 31,
-              theCol = 14,
-              theOffset = 594),
-              theEndCaret = 
-              @Caret(
-              theLine = 31,
-              theCol = 26,
-              theOffset = 605),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theRefinementDefinitionSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 31,
-          theCol = 10,
-          theOffset = 590),
-          theEndCaret = 
-          @Caret(
-          theLine = 31,
-          theCol = 27,
-          theOffset = 606),
-          theOptionalSource = "p_complex.ada"
-        )
-    )
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global Standard::Integer @@D @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "D",pilarSparkID = P_E_P2::@@D,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 33,
-    theCol = 6,
-    theOffset = 619),
-    theEndCaret = 
-    @Caret(
-    theLine = 33,
-    theCol = 7,
-    theOffset = 619),
-    theOptionalSource = "p_complex.ada"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure $$binit
- 
-{
-
-  local
-    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l7.  temp$4 := 0;
-  #l8. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l7,
-      endLabel = l8,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 68,
-      theCol = 6,
-      theOffset = 1382),
-      theEndCaret = 
-      @Caret(
-      theLine = 68,
-      theCol = 13,
-      theOffset = 1388),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  P_E_P2::@@D := temp$4;
-  #locret. return;
-}
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure R 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 59,
-  theCol = 18,
-  theOffset = 1179),
-  theEndCaret = 
-  @Caret(
-  theLine = 59,
-  theCol = 19,
-  theOffset = 1179),
-  theOptionalSource = "p_complex.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @NONE,
-      theOptionalOutParameters = @List(X)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = P::@@Y,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 22,
-              theOffset = 1216),
-              theEndCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 25,
-              theOffset = 1218),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P::@@B,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 27,
-              theOffset = 1221),
-              theEndCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 30,
-              theOffset = 1223),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P::@@C,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 32,
-              theOffset = 1226),
-              theEndCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 35,
-              theOffset = 1228),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P_E_P2::@@D,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 37,
-              theOffset = 1231),
-              theEndCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 38,
-              theOffset = 1231),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P_E_P2_E_P3::@@Q,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 40,
-              theOffset = 1234),
-              theEndCaret = 
-              @Caret(
-              theLine = 60,
-              theCol = 44,
-              theOffset = 1237),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 60,
-          theCol = 12,
-          theOffset = 1206),
-          theEndCaret = 
-          @Caret(
-          theLine = 60,
-          theCol = 45,
-          theOffset = 1238),
-          theOptionalSource = "p_complex.ada"
-        ),
-      theOptionalInGlobals = @List(P::@@Y,
-            P::@@B,
-            P::@@C,
-            P_E_P2::@@D,
-            P_E_P2_E_P3::@@Q),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @NONE,
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 20,
-                          theOffset = 1259),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 21,
-                          theOffset = 1259),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = P::@@Y,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 27,
-                          theOffset = 1266),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 30,
-                          theOffset = 1268),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P::@@B,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 32,
-                          theOffset = 1271),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 35,
-                          theOffset = 1273),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P::@@C,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 37,
-                          theOffset = 1276),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 40,
-                          theOffset = 1278),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P_E_P2::@@D,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 42,
-                          theOffset = 1281),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 43,
-                          theOffset = 1281),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P_E_P2_E_P3::@@Q,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 45,
-                          theOffset = 1284),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 61,
-                          theCol = 49,
-                          theOffset = 1287),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 61,
-                  theCol = 20,
-                  theOffset = 1259),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 61,
-                  theCol = 49,
-                  theOffset = 1287),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 61,
-              theCol = 12,
-              theOffset = 1251),
-              theEndCaret = 
-              @Caret(
-              theLine = 61,
-              theCol = 50,
-              theOffset = 1288),
-              theOptionalSource = "p_complex.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 59,
-      theCol = 6,
-      theOffset = 1167),
-      theEndCaret = 
-      @Caret(
-      theLine = 65,
-      theCol = 12,
-      theOffset = 1366),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 59,
-      theCol = 16,
-      theOffset = 1177),
-      theEndCaret = 
-      @Caret(
-      theLine = 59,
-      theCol = 17,
-      theOffset = 1177),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 59,
-      theCol = 6,
-      theOffset = 1167),
-      theEndCaret = 
-      @Caret(
-      theLine = 59,
-      theCol = 33,
-      theOffset = 1193),
-      theOptionalSource = "p_complex.ada"
-    )
-) 
-{
-
-  local
-    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$7 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l20.  temp$1 := P::@@Y;
-  #l21.  temp$2 := P::@@B;
-  #l22.  temp$3 := (temp$1 + temp$2);
-  #l23.  temp$4 := P::@@C;
-  #l24.  temp$5 := (temp$3 + temp$4);
-  #l25.  temp$6 := P_E_P2::@@D;
-  #l26.  temp$7 := (temp$5 + temp$6);
-  #l27.  temp$8 := P_E_P2_E_P3::@@Q;
-  #l28.  temp$9 := (temp$7 + temp$8);
-  #l29. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l20,
-      endLabel = l29,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 64,
-      theCol = 9,
-      theOffset = 1317),
-      theEndCaret = 
-      @Caret(
-      theLine = 64,
-      theCol = 47,
-      theOffset = 1354),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  X := temp$9;
-  #l30.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
- ****************************************************************/
-package P_E_P2_E_P3
-@PackageAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theSparkName = P3,
-  thePilarSparkName = P_E_P2_E_P3,
-  theOptionalParent = P_E_P2,
-  thePackageKind = @BODY,
-  theHierarchyType = @EMBEDDED,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 47,
-  theCol = 6,
-  theOffset = 944),
-  theEndCaret = 
-  @Caret(
-  theLine = 57,
-  theCol = 13,
-  theOffset = 1159),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 47,
-  theCol = 6,
-  theOffset = 944),
-  theEndCaret = 
-  @Caret(
-  theLine = 47,
-  theCol = 21,
-  theOffset = 958),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure $$binit
- 
-{
-
-  local
-    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l9.  temp$5 := 3;
-  #l10. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l9,
-      endLabel = l10,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 56,
-      theCol = 9,
-      theOffset = 1140),
-      theEndCaret = 
-      @Caret(
-      theLine = 56,
-      theCol = 16,
-      theOffset = 1146),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  P_E_P2_E_P3::@@Q := temp$5;
-  #locret. return;
-}
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure Q2 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 22,
-  theOffset = 985),
-  theEndCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 23,
-  theOffset = 985),
-  theOptionalSource = "p_complex.ada"
-),
-       Standard::Integer Y @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 37,
-  theOffset = 1000),
-  theEndCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 38,
-  theOffset = 1000),
-  theOptionalSource = "p_complex.ada"
-),
-       Standard::Integer Z @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 53,
-  theOffset = 1016),
-  theEndCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 54,
-  theOffset = 1016),
-  theOptionalSource = "p_complex.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @List(Y,
-          Z)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 9,
-      theOffset = 972),
-      theEndCaret = 
-      @Caret(
-      theLine = 53,
-      theCol = 16,
-      theOffset = 1118),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 19,
-      theOffset = 982),
-      theEndCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 21,
-      theOffset = 983),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 9,
-      theOffset = 972),
-      theEndCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 68,
-      theOffset = 1030),
-      theOptionalSource = "p_complex.ada"
-    )
-) 
-{
-
-  local
-    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l11.  temp$1 := X;
-  #l12. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l11,
-      endLabel = l12,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 51,
-      theCol = 12,
-      theOffset = 1060),
-      theEndCaret = 
-      @Caret(
-      theLine = 51,
-      theCol = 19,
-      theOffset = 1066),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Y := temp$1;
-  #l13.  temp$2 := P::@@Y;
-  #l14.  temp$3 := P::@@C;
-  #l15.  temp$4 := (temp$2 + temp$3);
-  #l16.  temp$5 := P_E_P2::@@D;
-  #l17.  temp$6 := (temp$4 + temp$5);
-  #l18. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l13,
-      endLabel = l18,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 52,
-      theCol = 12,
-      theOffset = 1079),
-      theEndCaret = 
-      @Caret(
-      theLine = 52,
-      theCol = 36,
-      theOffset = 1102),
-      theOptionalSource = "p_complex.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Z := temp$6;
-  #l19.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package P_E_P2_E_P3
-@PackageAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theSparkName = P3,
-  thePilarSparkName = P_E_P2_E_P3,
-  theOptionalParent = P_E_P2,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @EMBEDDED,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "Q",pilarSparkID = P_E_P2_E_P3::@@Q,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 35,
-  theCol = 18,
-  theOffset = 649),
-  theEndCaret = 
-  @Caret(
-  theLine = 45,
-  theCol = 13,
-  theOffset = 936),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 36,
-  theCol = 6,
-  theOffset = 661),
-  theEndCaret = 
-  @Caret(
-  theLine = 36,
-  theCol = 16,
-  theOffset = 670),
-  theOptionalSource = "p_complex.ada"
-),
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @PackageSpecificationAnnotation(
-      theOptionalOwnStatement = @OwnStatement(
-      theOwnClauses = 
-        @List(@OwnClause(
-          theOptionalDeclaredType = @NONE,
-          theOwnVariables = 
-            @List(@OwnVariable(
-              varName = P_E_P2_E_P3::@@Q,
-              mode = @NONE,
-              ownCategory = @CONCRETE,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 37,
-                  theCol = 16,
-                  theOffset = 687),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 37,
-                  theCol = 17,
-                  theOffset = 687),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )),
-          theOwnClauseSelection =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 37,
-              theCol = 16,
-              theOffset = 687),
-              theEndCaret = 
-              @Caret(
-              theLine = 37,
-              theCol = 17,
-              theOffset = 688),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theOwnStatementSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 37,
-          theCol = 12,
-          theOffset = 683),
-          theEndCaret = 
-          @Caret(
-          theLine = 37,
-          theCol = 17,
-          theOffset = 688),
-          theOptionalSource = "p_complex.ada"
-        )
-    ),
-      theOptionalVarInitClause = @List(P_E_P2_E_P3::@@Q)
-    ),
-  theOptionalInheritClause = 
-    @List(P,
-          P_E_P2)
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global Standard::Integer @@Q @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "Q",pilarSparkID = P_E_P2_E_P3::@@Q,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 40,
-    theCol = 9,
-    theOffset = 732),
-    theEndCaret = 
-    @Caret(
-    theLine = 40,
-    theCol = 10,
-    theOffset = 732),
-    theOptionalSource = "p_complex.ada"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure Q2 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 22,
-  theOffset = 765),
-  theEndCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 23,
-  theOffset = 765),
-  theOptionalSource = "p_complex.ada"
-),
-       Standard::Integer Y @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 37,
-  theOffset = 780),
-  theEndCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 38,
-  theOffset = 780),
-  theOptionalSource = "p_complex.ada"
-),
-       Standard::Integer Z @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 53,
-  theOffset = 796),
-  theEndCaret = 
-  @Caret(
-  theLine = 41,
-  theCol = 54,
-  theOffset = 796),
-  theOptionalSource = "p_complex.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "p_complex.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @List(Y,
-          Z)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = P::@@Y,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 23,
-              theOffset = 835),
-              theEndCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 26,
-              theOffset = 837),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P::@@C,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 28,
-              theOffset = 840),
-              theEndCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 31,
-              theOffset = 842),
-              theOptionalSource = "p_complex.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = P_E_P2::@@D,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 33,
-              theOffset = 845),
-              theEndCaret = 
-              @Caret(
-              theLine = 42,
-              theCol = 37,
-              theOffset = 848),
-              theOptionalSource = "p_complex.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 42,
-          theCol = 13,
-          theOffset = 825),
-          theEndCaret = 
-          @Caret(
-          theLine = 42,
-          theCol = 38,
-          theOffset = 849),
-          theOptionalSource = "p_complex.ada"
-        ),
-      theOptionalInGlobals = @List(P::@@Y,
-            P::@@C,
-            P_E_P2::@@D),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @NONE,
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Y,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 43,
-                          theCol = 21,
-                          theOffset = 871),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 43,
-                          theCol = 22,
-                          theOffset = 871),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 43,
-                          theCol = 28,
-                          theOffset = 878),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 43,
-                          theCol = 29,
-                          theOffset = 878),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 43,
-                  theCol = 21,
-                  theOffset = 871),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 43,
-                  theCol = 29,
-                  theOffset = 878),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )  ,
-                  @DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Z,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 21,
-                          theOffset = 902),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 22,
-                          theOffset = 902),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = P::@@Y,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 28,
-                          theOffset = 909),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 31,
-                          theOffset = 911),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P::@@C,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 33,
-                          theOffset = 914),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 36,
-                          theOffset = 916),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = P_E_P2::@@D,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 38,
-                          theOffset = 919),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 44,
-                          theCol = 42,
-                          theOffset = 922),
-                          theOptionalSource = "p_complex.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 44,
-                  theCol = 21,
-                  theOffset = 902),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 44,
-                  theCol = 42,
-                  theOffset = 922),
-                  theOptionalSource = "p_complex.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 43,
-              theCol = 13,
-              theOffset = 863),
-              theEndCaret = 
-              @Caret(
-              theLine = 44,
-              theCol = 43,
-              theOffset = 923),
-              theOptionalSource = "p_complex.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 9,
-      theOffset = 752),
-      theEndCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 69,
-      theOffset = 811),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 19,
-      theOffset = 762),
-      theEndCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 21,
-      theOffset = 763),
-      theOptionalSource = "p_complex.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 9,
-      theOffset = 752),
-      theEndCaret = 
-      @Caret(
-      theLine = 41,
-      theCol = 68,
-      theOffset = 810),
-      theOptionalSource = "p_complex.ada"
-    )
-) 
-{ #locret. return;}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
 package Standard
 @PackageAnnotation(
   theSourceFileName = "StandardPackage.java",
@@ -2885,4 +682,2207 @@ procedure Q
       theOptionalSource = "p_complex.ada"
     )
 ) 
-{ #locret. return;}
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 242),
+  theEndCaret = 
+  @Caret(
+  theLine = 81,
+  theCol = 7,
+  theOffset = 1530),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 1,
+  theOffset = 242),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 15,
+  theOffset = 255),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @RefinementDefinition(
+      theRefinementClauses = 
+        @List(@RefinementClause(
+          theSubject = P::@@$AbsD,
+          theSubjectSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 14,
+              theCol = 11,
+              theOffset = 267),
+              theEndCaret = 
+              @Caret(
+              theLine = 14,
+              theCol = 15,
+              theOffset = 270),
+              theOptionalSource = "p_complex.ada"
+            ),
+          theConstituents = 
+            @List(@RefinementConstituent(
+              theMode = @NONE,
+              theConstituent = P_E_P2::@@D,
+              theRefinementConstituentSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 14,
+                  theCol = 19,
+                  theOffset = 275),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 14,
+                  theCol = 23,
+                  theOffset = 278),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )),
+          theRefinementClauseSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 14,
+              theCol = 11,
+              theOffset = 267),
+              theEndCaret = 
+              @Caret(
+              theLine = 14,
+              theCol = 23,
+              theOffset = 278),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @RefinementClause(
+          theSubject = P::@@$AbsAbsQ,
+          theSubjectSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 11,
+              theOffset = 292),
+              theEndCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 18,
+              theOffset = 298),
+              theOptionalSource = "p_complex.ada"
+            ),
+          theConstituents = 
+            @List(@RefinementConstituent(
+              theMode = @NONE,
+              theConstituent = P_E_P2::@@$AbsQ,
+              theRefinementConstituentSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 15,
+                  theCol = 22,
+                  theOffset = 303),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 15,
+                  theCol = 29,
+                  theOffset = 309),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )),
+          theRefinementClauseSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 11,
+              theOffset = 292),
+              theEndCaret = 
+              @Caret(
+              theLine = 15,
+              theCol = 29,
+              theOffset = 309),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theRefinementDefinitionSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 14,
+          theCol = 7,
+          theOffset = 263),
+          theEndCaret = 
+          @Caret(
+          theLine = 15,
+          theCol = 30,
+          theOffset = 310),
+          theOptionalSource = "p_complex.ada"
+        )
+    )
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@B @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "B",pilarSparkID = P::@@B,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 18,
+    theCol = 4,
+    theOffset = 319),
+    theEndCaret = 
+    @Caret(
+    theLine = 18,
+    theCol = 5,
+    theOffset = 319),
+    theOptionalSource = "p_complex.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := 1;
+  #l2. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 78,
+      theCol = 4,
+      theOffset = 1495),
+      theEndCaret = 
+      @Caret(
+      theLine = 78,
+      theCol = 11,
+      theOffset = 1501),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@Y := temp$1;
+  #l3.  temp$2 := 0;
+  #l4. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 79,
+      theCol = 4,
+      theOffset = 1506),
+      theEndCaret = 
+      @Caret(
+      theLine = 79,
+      theCol = 11,
+      theOffset = 1512),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@B := temp$2;
+  #l5.  temp$3 := 0;
+  #l6. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l6,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 80,
+      theCol = 4,
+      theOffset = 1517),
+      theEndCaret = 
+      @Caret(
+      theLine = 80,
+      theCol = 11,
+      theOffset = 1523),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P::@@C := temp$3;
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Q 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 71,
+  theCol = 15,
+  theOffset = 1415),
+  theEndCaret = 
+  @Caret(
+  theLine = 71,
+  theCol = 16,
+  theOffset = 1415),
+  theOptionalSource = "p_complex.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 71,
+  theCol = 30,
+  theOffset = 1430),
+  theEndCaret = 
+  @Caret(
+  theLine = 71,
+  theCol = 31,
+  theOffset = 1430),
+  theOptionalSource = "p_complex.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @List(Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 71,
+      theCol = 3,
+      theOffset = 1403),
+      theEndCaret = 
+      @Caret(
+      theLine = 75,
+      theCol = 9,
+      theOffset = 1483),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 71,
+      theCol = 13,
+      theOffset = 1413),
+      theEndCaret = 
+      @Caret(
+      theLine = 71,
+      theCol = 14,
+      theOffset = 1413),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 71,
+      theCol = 3,
+      theOffset = 1403),
+      theEndCaret = 
+      @Caret(
+      theLine = 71,
+      theCol = 45,
+      theOffset = 1444),
+      theOptionalSource = "p_complex.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l31.  temp$1 := X;
+  #l32.  temp$2 := P::@@B;
+  #l33.  temp$3 := (temp$1 + temp$2);
+  #l34. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l31,
+      endLabel = l34,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 74,
+      theCol = 6,
+      theOffset = 1464),
+      theEndCaret = 
+      @Caret(
+      theLine = 74,
+      theCol = 17,
+      theOffset = 1474),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Z := temp$3;
+  #l35.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package P_E_P2
+@PackageAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theSparkName = P2,
+  thePilarSparkName = P_E_P2,
+  theOptionalParent = P,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @EMBEDDED,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "AbsQ",pilarSparkID = P_E_P2::@@$AbsQ,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 20,
+  theCol = 16,
+  theOffset = 347),
+  theEndCaret = 
+  @Caret(
+  theLine = 28,
+  theCol = 11,
+  theOffset = 559),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 21,
+  theCol = 4,
+  theOffset = 353),
+  theEndCaret = 
+  @Caret(
+  theLine = 21,
+  theCol = 14,
+  theOffset = 362),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = P_E_P2::@@D,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 22,
+                  theCol = 14,
+                  theOffset = 377),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 22,
+                  theCol = 15,
+                  theOffset = 377),
+                  theOptionalSource = "p_complex.ada"
+                )
+            ),
+                  @OwnVariable(
+              varName = P_E_P2::@@$AbsQ,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 22,
+                  theCol = 17,
+                  theOffset = 380),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 22,
+                  theCol = 21,
+                  theOffset = 383),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 22,
+              theCol = 14,
+              theOffset = 377),
+              theEndCaret = 
+              @Caret(
+              theLine = 22,
+              theCol = 21,
+              theOffset = 384),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 22,
+          theCol = 10,
+          theOffset = 373),
+          theEndCaret = 
+          @Caret(
+          theLine = 22,
+          theCol = 21,
+          theOffset = 384),
+          theOptionalSource = "p_complex.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(P_E_P2::@@D,
+          P_E_P2::@@$AbsQ)
+    ),
+  theOptionalInheritClause = 
+    @List(P)
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record AbsQ__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 17,
+      theOffset = 380),
+      theEndCaret = 
+      @Caret(
+      theLine = 22,
+      theCol = 21,
+      theOffset = 383),
+      theOptionalSource = "p_complex.ada"
+    ),
+    fullyQualifiedName = P_E_P2::AbsQ__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global P_E_P2::AbsQ__type @@$AbsQ @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "AbsQ",pilarSparkID = P_E_P2::@@$AbsQ,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 22,
+    theCol = 17,
+    theOffset = 380),
+    theEndCaret = 
+    @Caret(
+    theLine = 22,
+    theCol = 21,
+    theOffset = 383),
+    theOptionalSource = "p_complex.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure R 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 19,
+  theOffset = 440),
+  theEndCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 20,
+  theOffset = 440),
+  theOptionalSource = "p_complex.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 21,
+              theOffset = 477),
+              theEndCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 24,
+              theOffset = 479),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@B,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 26,
+              theOffset = 482),
+              theEndCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 29,
+              theOffset = 484),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@C,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 31,
+              theOffset = 487),
+              theEndCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 34,
+              theOffset = 489),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P_E_P2::@@D,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 36,
+              theOffset = 492),
+              theEndCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 37,
+              theOffset = 492),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P_E_P2::@@$AbsQ,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 39,
+              theOffset = 495),
+              theEndCaret = 
+              @Caret(
+              theLine = 26,
+              theCol = 43,
+              theOffset = 498),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 26,
+          theCol = 11,
+          theOffset = 467),
+          theEndCaret = 
+          @Caret(
+          theLine = 26,
+          theCol = 44,
+          theOffset = 499),
+          theOptionalSource = "p_complex.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@Y,
+            P::@@B,
+            P::@@C,
+            P_E_P2::@@D,
+            P_E_P2::@@$AbsQ),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 19,
+                          theOffset = 519),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 20,
+                          theOffset = 519),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = P::@@Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 26,
+                          theOffset = 526),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 29,
+                          theOffset = 528),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@B,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 31,
+                          theOffset = 531),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 34,
+                          theOffset = 533),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@C,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 36,
+                          theOffset = 536),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 39,
+                          theOffset = 538),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P_E_P2::@@D,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 41,
+                          theOffset = 541),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 42,
+                          theOffset = 541),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P_E_P2::@@$AbsQ,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 44,
+                          theOffset = 544),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 27,
+                          theCol = 48,
+                          theOffset = 547),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 27,
+                  theCol = 19,
+                  theOffset = 519),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 27,
+                  theCol = 48,
+                  theOffset = 547),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 27,
+              theCol = 11,
+              theOffset = 511),
+              theEndCaret = 
+              @Caret(
+              theLine = 27,
+              theCol = 49,
+              theOffset = 548),
+              theOptionalSource = "p_complex.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 7,
+      theOffset = 428),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 35,
+      theOffset = 455),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 17,
+      theOffset = 438),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 18,
+      theOffset = 438),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 7,
+      theOffset = 428),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 34,
+      theOffset = 454),
+      theOptionalSource = "p_complex.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P_E_P2
+@PackageAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theSparkName = P2,
+  thePilarSparkName = P_E_P2,
+  theOptionalParent = P,
+  thePackageKind = @BODY,
+  theHierarchyType = @EMBEDDED,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "D",pilarSparkID = P_E_P2::@@D,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 4,
+  theOffset = 565),
+  theEndCaret = 
+  @Caret(
+  theLine = 69,
+  theCol = 10,
+  theOffset = 1398),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 4,
+  theOffset = 565),
+  theEndCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 19,
+  theOffset = 579),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @RefinementDefinition(
+      theRefinementClauses = 
+        @List(@RefinementClause(
+          theSubject = P_E_P2::@@$AbsQ,
+          theSubjectSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 31,
+              theCol = 14,
+              theOffset = 594),
+              theEndCaret = 
+              @Caret(
+              theLine = 31,
+              theCol = 18,
+              theOffset = 597),
+              theOptionalSource = "p_complex.ada"
+            ),
+          theConstituents = 
+            @List(@RefinementConstituent(
+              theMode = @NONE,
+              theConstituent = P_E_P2_E_P3::@@Q,
+              theRefinementConstituentSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 31,
+                  theCol = 22,
+                  theOffset = 602),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 31,
+                  theCol = 26,
+                  theOffset = 605),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )),
+          theRefinementClauseSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 31,
+              theCol = 14,
+              theOffset = 594),
+              theEndCaret = 
+              @Caret(
+              theLine = 31,
+              theCol = 26,
+              theOffset = 605),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theRefinementDefinitionSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 31,
+          theCol = 10,
+          theOffset = 590),
+          theEndCaret = 
+          @Caret(
+          theLine = 31,
+          theCol = 27,
+          theOffset = 606),
+          theOptionalSource = "p_complex.ada"
+        )
+    )
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@D @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "D",pilarSparkID = P_E_P2::@@D,originTag = @PACKAGE_BODY,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 33,
+    theCol = 6,
+    theOffset = 619),
+    theEndCaret = 
+    @Caret(
+    theLine = 33,
+    theCol = 7,
+    theOffset = 619),
+    theOptionalSource = "p_complex.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l7.  temp$4 := 0;
+  #l8. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l7,
+      endLabel = l8,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 68,
+      theCol = 6,
+      theOffset = 1382),
+      theEndCaret = 
+      @Caret(
+      theLine = 68,
+      theCol = 13,
+      theOffset = 1388),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P_E_P2::@@D := temp$4;
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure R 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 59,
+  theCol = 18,
+  theOffset = 1179),
+  theEndCaret = 
+  @Caret(
+  theLine = 59,
+  theCol = 19,
+  theOffset = 1179),
+  theOptionalSource = "p_complex.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 22,
+              theOffset = 1216),
+              theEndCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 25,
+              theOffset = 1218),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@B,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 27,
+              theOffset = 1221),
+              theEndCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 30,
+              theOffset = 1223),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@C,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 32,
+              theOffset = 1226),
+              theEndCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 35,
+              theOffset = 1228),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P_E_P2::@@D,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 37,
+              theOffset = 1231),
+              theEndCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 38,
+              theOffset = 1231),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P_E_P2_E_P3::@@Q,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 40,
+              theOffset = 1234),
+              theEndCaret = 
+              @Caret(
+              theLine = 60,
+              theCol = 44,
+              theOffset = 1237),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 60,
+          theCol = 12,
+          theOffset = 1206),
+          theEndCaret = 
+          @Caret(
+          theLine = 60,
+          theCol = 45,
+          theOffset = 1238),
+          theOptionalSource = "p_complex.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@Y,
+            P::@@B,
+            P::@@C,
+            P_E_P2::@@D,
+            P_E_P2_E_P3::@@Q),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 20,
+                          theOffset = 1259),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 21,
+                          theOffset = 1259),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = P::@@Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 27,
+                          theOffset = 1266),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 30,
+                          theOffset = 1268),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@B,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 32,
+                          theOffset = 1271),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 35,
+                          theOffset = 1273),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@C,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 37,
+                          theOffset = 1276),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 40,
+                          theOffset = 1278),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P_E_P2::@@D,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 42,
+                          theOffset = 1281),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 43,
+                          theOffset = 1281),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P_E_P2_E_P3::@@Q,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 45,
+                          theOffset = 1284),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 61,
+                          theCol = 49,
+                          theOffset = 1287),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 61,
+                  theCol = 20,
+                  theOffset = 1259),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 61,
+                  theCol = 49,
+                  theOffset = 1287),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 61,
+              theCol = 12,
+              theOffset = 1251),
+              theEndCaret = 
+              @Caret(
+              theLine = 61,
+              theCol = 50,
+              theOffset = 1288),
+              theOptionalSource = "p_complex.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 59,
+      theCol = 6,
+      theOffset = 1167),
+      theEndCaret = 
+      @Caret(
+      theLine = 65,
+      theCol = 12,
+      theOffset = 1366),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 59,
+      theCol = 16,
+      theOffset = 1177),
+      theEndCaret = 
+      @Caret(
+      theLine = 59,
+      theCol = 17,
+      theOffset = 1177),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 59,
+      theCol = 6,
+      theOffset = 1167),
+      theEndCaret = 
+      @Caret(
+      theLine = 59,
+      theCol = 33,
+      theOffset = 1193),
+      theOptionalSource = "p_complex.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l20.  temp$1 := P::@@Y;
+  #l21.  temp$2 := P::@@B;
+  #l22.  temp$3 := (temp$1 + temp$2);
+  #l23.  temp$4 := P::@@C;
+  #l24.  temp$5 := (temp$3 + temp$4);
+  #l25.  temp$6 := P_E_P2::@@D;
+  #l26.  temp$7 := (temp$5 + temp$6);
+  #l27.  temp$8 := P_E_P2_E_P3::@@Q;
+  #l28.  temp$9 := (temp$7 + temp$8);
+  #l29. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l20,
+      endLabel = l29,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 64,
+      theCol = 9,
+      theOffset = 1317),
+      theEndCaret = 
+      @Caret(
+      theLine = 64,
+      theCol = 47,
+      theOffset = 1354),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  X := temp$9;
+  #l30.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package P_E_P2_E_P3
+@PackageAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theSparkName = P3,
+  thePilarSparkName = P_E_P2_E_P3,
+  theOptionalParent = P_E_P2,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @EMBEDDED,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "Q",pilarSparkID = P_E_P2_E_P3::@@Q,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 35,
+  theCol = 18,
+  theOffset = 649),
+  theEndCaret = 
+  @Caret(
+  theLine = 45,
+  theCol = 13,
+  theOffset = 936),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 36,
+  theCol = 6,
+  theOffset = 661),
+  theEndCaret = 
+  @Caret(
+  theLine = 36,
+  theCol = 16,
+  theOffset = 670),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = P_E_P2_E_P3::@@Q,
+              mode = @NONE,
+              ownCategory = @CONCRETE,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 37,
+                  theCol = 16,
+                  theOffset = 687),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 37,
+                  theCol = 17,
+                  theOffset = 687),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 37,
+              theCol = 16,
+              theOffset = 687),
+              theEndCaret = 
+              @Caret(
+              theLine = 37,
+              theCol = 17,
+              theOffset = 688),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 37,
+          theCol = 12,
+          theOffset = 683),
+          theEndCaret = 
+          @Caret(
+          theLine = 37,
+          theCol = 17,
+          theOffset = 688),
+          theOptionalSource = "p_complex.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(P_E_P2_E_P3::@@Q)
+    ),
+  theOptionalInheritClause = 
+    @List(P,
+          P_E_P2)
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global Standard::Integer @@Q @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "Q",pilarSparkID = P_E_P2_E_P3::@@Q,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @CONCRETE_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 40,
+    theCol = 9,
+    theOffset = 732),
+    theEndCaret = 
+    @Caret(
+    theLine = 40,
+    theCol = 10,
+    theOffset = 732),
+    theOptionalSource = "p_complex.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Q2 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 22,
+  theOffset = 765),
+  theEndCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 23,
+  theOffset = 765),
+  theOptionalSource = "p_complex.ada"
+),
+       Standard::Integer Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 37,
+  theOffset = 780),
+  theEndCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 38,
+  theOffset = 780),
+  theOptionalSource = "p_complex.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 53,
+  theOffset = 796),
+  theEndCaret = 
+  @Caret(
+  theLine = 41,
+  theCol = 54,
+  theOffset = 796),
+  theOptionalSource = "p_complex.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @List(Y,
+          Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = P::@@Y,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 23,
+              theOffset = 835),
+              theEndCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 26,
+              theOffset = 837),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P::@@C,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 28,
+              theOffset = 840),
+              theEndCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 31,
+              theOffset = 842),
+              theOptionalSource = "p_complex.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = P_E_P2::@@D,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 33,
+              theOffset = 845),
+              theEndCaret = 
+              @Caret(
+              theLine = 42,
+              theCol = 37,
+              theOffset = 848),
+              theOptionalSource = "p_complex.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 42,
+          theCol = 13,
+          theOffset = 825),
+          theEndCaret = 
+          @Caret(
+          theLine = 42,
+          theCol = 38,
+          theOffset = 849),
+          theOptionalSource = "p_complex.ada"
+        ),
+      theOptionalInGlobals = @List(P::@@Y,
+            P::@@C,
+            P_E_P2::@@D),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 43,
+                          theCol = 21,
+                          theOffset = 871),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 43,
+                          theCol = 22,
+                          theOffset = 871),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 43,
+                          theCol = 28,
+                          theOffset = 878),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 43,
+                          theCol = 29,
+                          theOffset = 878),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 43,
+                  theCol = 21,
+                  theOffset = 871),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 43,
+                  theCol = 29,
+                  theOffset = 878),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 21,
+                          theOffset = 902),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 22,
+                          theOffset = 902),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = P::@@Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 28,
+                          theOffset = 909),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 31,
+                          theOffset = 911),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P::@@C,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 33,
+                          theOffset = 914),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 36,
+                          theOffset = 916),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = P_E_P2::@@D,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 38,
+                          theOffset = 919),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 44,
+                          theCol = 42,
+                          theOffset = 922),
+                          theOptionalSource = "p_complex.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 44,
+                  theCol = 21,
+                  theOffset = 902),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 44,
+                  theCol = 42,
+                  theOffset = 922),
+                  theOptionalSource = "p_complex.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 43,
+              theCol = 13,
+              theOffset = 863),
+              theEndCaret = 
+              @Caret(
+              theLine = 44,
+              theCol = 43,
+              theOffset = 923),
+              theOptionalSource = "p_complex.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 9,
+      theOffset = 752),
+      theEndCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 69,
+      theOffset = 811),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 19,
+      theOffset = 762),
+      theEndCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 21,
+      theOffset = 763),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 9,
+      theOffset = 752),
+      theEndCaret = 
+      @Caret(
+      theLine = 41,
+      theCol = 68,
+      theOffset = 810),
+      theOptionalSource = "p_complex.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P_E_P2_E_P3
+@PackageAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theSparkName = P3,
+  thePilarSparkName = P_E_P2_E_P3,
+  theOptionalParent = P_E_P2,
+  thePackageKind = @BODY,
+  theHierarchyType = @EMBEDDED,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 47,
+  theCol = 6,
+  theOffset = 944),
+  theEndCaret = 
+  @Caret(
+  theLine = 57,
+  theCol = 13,
+  theOffset = 1159),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 47,
+  theCol = 6,
+  theOffset = 944),
+  theEndCaret = 
+  @Caret(
+  theLine = 47,
+  theCol = 21,
+  theOffset = 958),
+  theOptionalSource = "p_complex.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l9.  temp$5 := 3;
+  #l10. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l9,
+      endLabel = l10,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 56,
+      theCol = 9,
+      theOffset = 1140),
+      theEndCaret = 
+      @Caret(
+      theLine = 56,
+      theCol = 16,
+      theOffset = 1146),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  P_E_P2_E_P3::@@Q := temp$5;
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Q2 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 22,
+  theOffset = 985),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 23,
+  theOffset = 985),
+  theOptionalSource = "p_complex.ada"
+),
+       Standard::Integer Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 37,
+  theOffset = 1000),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 38,
+  theOffset = 1000),
+  theOptionalSource = "p_complex.ada"
+),
+       Standard::Integer Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 53,
+  theOffset = 1016),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 54,
+  theOffset = 1016),
+  theOptionalSource = "p_complex.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "p_complex.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @List(Y,
+          Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 9,
+      theOffset = 972),
+      theEndCaret = 
+      @Caret(
+      theLine = 53,
+      theCol = 16,
+      theOffset = 1118),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 19,
+      theOffset = 982),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 21,
+      theOffset = 983),
+      theOptionalSource = "p_complex.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 9,
+      theOffset = 972),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 68,
+      theOffset = 1030),
+      theOptionalSource = "p_complex.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l11.  temp$1 := X;
+  #l12. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l11,
+      endLabel = l12,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 51,
+      theCol = 12,
+      theOffset = 1060),
+      theEndCaret = 
+      @Caret(
+      theLine = 51,
+      theCol = 19,
+      theOffset = 1066),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Y := temp$1;
+  #l13.  temp$2 := P::@@Y;
+  #l14.  temp$3 := P::@@C;
+  #l15.  temp$4 := (temp$2 + temp$3);
+  #l16.  temp$5 := P_E_P2::@@D;
+  #l17.  temp$6 := (temp$4 + temp$5);
+  #l18. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l13,
+      endLabel = l18,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 12,
+      theOffset = 1079),
+      theEndCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 36,
+      theOffset = 1102),
+      theOptionalSource = "p_complex.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Z := temp$6;
+  #l19.  return;
+}

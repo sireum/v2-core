@@ -1,598 +1,4 @@
-package SPARK_MAIN_PROGRAM
-@PackageAnnotation(
-  theSourceFileName = "ex1207c.ada",
-  theSparkName = SPARK_MAIN_PROGRAM,
-  thePilarSparkName = SPARK_MAIN_PROGRAM,
-  theOptionalParent = @NONE,
-  thePackageKind = @BODY,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 13,
-  theOffset = 336),
-  theEndCaret = 
-  @Caret(
-  theLine = 25,
-  theCol = 15,
-  theOffset = 742),
-  theOptionalSource = "ex1207c.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 13,
-  theOffset = 336),
-  theEndCaret = 
-  @Caret(
-  theLine = 25,
-  theCol = 15,
-  theOffset = 742),
-  theOptionalSource = "ex1207c.ada"
-),
-  thePackageHeaderAnnotation = @MainProgramHeaderAnnotation(
-    theOptionalContextClause = @ContextClause(
-    theOptionalWithClauses = @List(C),
-    theOptionalUseTypeClauses = @NONE
-  )  ,
-  theOptionalInheritClause =
-    @List(C)
-)    );
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-procedure Two_Press 
-      (Standard::Integer Raw_1 @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 21,
-  theOffset = 379),
-  theEndCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 26,
-  theOffset = 383),
-  theOptionalSource = "ex1207c.ada"
-),
-       Standard::Integer Raw_2 @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 28,
-  theOffset = 386),
-  theEndCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 33,
-  theOffset = 390),
-  theOptionalSource = "ex1207c.ada"
-),
-       Standard::Integer Cal_1 @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 21,
-  theOffset = 427),
-  theEndCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 26,
-  theOffset = 431),
-  theOptionalSource = "ex1207c.ada"
-),
-       Standard::Integer Cal_2 @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 28,
-  theOffset = 434),
-  theEndCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 33,
-  theOffset = 438),
-  theOptionalSource = "ex1207c.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "ex1207c.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(Raw_1,
-            Raw_2),
-      theOptionalOutParameters = @List(Cal_1,
-          Cal_2)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = C::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 17,
-              theOffset = 472),
-              theEndCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 24,
-              theOffset = 478),
-              theOptionalSource = "ex1207c.ada"
-            )
-        ),
-              @AnnotationVariable(
-          id = C::@@$Test_Point,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 33,
-              theOffset = 488),
-              theEndCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 45,
-              theOffset = 499),
-              theOptionalSource = "ex1207c.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 17,
-          theCol = 7,
-          theOffset = 462),
-          theEndCaret = 
-          @Caret(
-          theLine = 17,
-          theCol = 46,
-          theOffset = 500),
-          theOptionalSource = "ex1207c.ada"
-        ),
-      theOptionalInGlobals = @List(C::@@$State,
-            C::@@$Test_Point),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(C::@@$Test_Point),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Cal_1,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 15,
-                          theOffset = 517),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 20,
-                          theOffset = 521),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = Raw_1,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 26,
-                          theOffset = 528),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 31,
-                          theOffset = 532),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = C::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 33,
-                          theOffset = 535),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 18,
-                          theCol = 40,
-                          theOffset = 541),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 18,
-                  theCol = 15,
-                  theOffset = 517),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 18,
-                  theCol = 40,
-                  theOffset = 541),
-                  theOptionalSource = "ex1207c.ada"
-                )
-            )  ,
-                  @DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Cal_2,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 15,
-                          theOffset = 560),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 20,
-                          theOffset = 564),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = Raw_2,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 26,
-                          theOffset = 571),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 31,
-                          theOffset = 575),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = C::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 33,
-                          theOffset = 578),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 19,
-                          theCol = 40,
-                          theOffset = 584),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 19,
-                  theCol = 15,
-                  theOffset = 560),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 19,
-                  theCol = 40,
-                  theOffset = 584),
-                  theOptionalSource = "ex1207c.ada"
-                )
-            )  ,
-                  @DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = C::@@$Test_Point,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 15,
-                          theOffset = 603),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 27,
-                          theOffset = 614),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = Raw_1,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 33,
-                          theOffset = 621),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 38,
-                          theOffset = 625),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = Raw_2,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 39,
-                          theOffset = 627),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 44,
-                          theOffset = 631),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = C::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 46,
-                          theOffset = 634),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 53,
-                          theOffset = 640),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = C::@@$Test_Point,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 55,
-                          theOffset = 643),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 67,
-                          theOffset = 654),
-                          theOptionalSource = "ex1207c.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 20,
-                  theCol = 15,
-                  theOffset = 603),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 20,
-                  theCol = 67,
-                  theOffset = 654),
-                  theOptionalSource = "ex1207c.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 18,
-              theCol = 7,
-              theOffset = 509),
-              theEndCaret = 
-              @Caret(
-              theLine = 20,
-              theCol = 68,
-              theOffset = 655),
-              theOptionalSource = "ex1207c.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 1,
-      theOffset = 359),
-      theEndCaret = 
-      @Caret(
-      theLine = 25,
-      theCol = 15,
-      theOffset = 742),
-      theOptionalSource = "ex1207c.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 11,
-      theOffset = 369),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 20,
-      theOffset = 377),
-      theOptionalSource = "ex1207c.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 1,
-      theOffset = 359),
-      theEndCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 48,
-      theOffset = 453),
-      theOptionalSource = "ex1207c.ada"
-    )
-) 
-{
-
-  local
-    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l1.  temp$1 := Raw_1;
-  #l2.  temp$2 := Cal_1;
-  #l4. <@ProcedureCallStatementAnnotation(
-    optCopyBackPart = @Mark(
-    startLabel = l3,
-    endLabel = l3,
-    optRS = @NONE
-  ),
-      mark = @Mark(
-      startLabel = l1,
-      endLabel = l4,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 23,
-      theCol = 4,
-      theOffset = 672),
-      theEndCaret = 
-      @Caret(
-      theLine = 23,
-      theCol = 29,
-      theOffset = 696),
-      theOptionalSource = "ex1207c.ada"
-    )
-    ),
-      optSparkLabelList = @NONE
-  )>  call  C::Calibrate (temp$1, temp$2);
-  #l3. <@CopyBackStatementAnnotation(
-      mark = @Mark(
-      startLabel = l3,
-      endLabel = l3,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 23,
-      theCol = 22,
-      theOffset = 690),
-      theEndCaret = 
-      @Caret(
-      theLine = 23,
-      theCol = 27,
-      theOffset = 694),
-      theOptionalSource = "ex1207c.ada"
-    )
-    ),
-      optSparkLabelList = @NONE
-  )>  Cal_1 := temp$2;
-  #l5.  temp$3 := Raw_2;
-  #l6.  temp$4 := Cal_2;
-  #l8. <@ProcedureCallStatementAnnotation(
-    optCopyBackPart = @Mark(
-    startLabel = l7,
-    endLabel = l7,
-    optRS = @NONE
-  ),
-      mark = @Mark(
-      startLabel = l5,
-      endLabel = l8,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 24,
-      theCol = 4,
-      theOffset = 702),
-      theEndCaret = 
-      @Caret(
-      theLine = 24,
-      theCol = 29,
-      theOffset = 726),
-      theOptionalSource = "ex1207c.ada"
-    )
-    ),
-      optSparkLabelList = @NONE
-  )>  call  C::Calibrate (temp$3, temp$4);
-  #l7. <@CopyBackStatementAnnotation(
-      mark = @Mark(
-      startLabel = l7,
-      endLabel = l7,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 24,
-      theCol = 22,
-      theOffset = 720),
-      theEndCaret = 
-      @Caret(
-      theLine = 24,
-      theCol = 27,
-      theOffset = 724),
-      theOptionalSource = "ex1207c.ada"
-    )
-    ),
-      optSparkLabelList = @NONE
-  )>  Cal_2 := temp$4;
-  #l9.  return;
-}@Profile org::sireum::profile::spark
+@Profile org::sireum::profile::spark
 /****************************************************************
  *  C o m p i l e r   M e t a d a t a
  ****************************************************************/
@@ -1253,4 +659,598 @@ procedure Calibrate
       theOptionalSource = "ex1207c.ada"
     )
 ) 
-{ #locret. return;}
+{ #locret. return;}package SPARK_MAIN_PROGRAM
+@PackageAnnotation(
+  theSourceFileName = "ex1207c.ada",
+  theSparkName = SPARK_MAIN_PROGRAM,
+  thePilarSparkName = SPARK_MAIN_PROGRAM,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 13,
+  theOffset = 336),
+  theEndCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 15,
+  theOffset = 742),
+  theOptionalSource = "ex1207c.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 13,
+  theOffset = 336),
+  theEndCaret = 
+  @Caret(
+  theLine = 25,
+  theCol = 15,
+  theOffset = 742),
+  theOptionalSource = "ex1207c.ada"
+),
+  thePackageHeaderAnnotation = @MainProgramHeaderAnnotation(
+    theOptionalContextClause = @ContextClause(
+    theOptionalWithClauses = @List(C),
+    theOptionalUseTypeClauses = @NONE
+  )  ,
+  theOptionalInheritClause =
+    @List(C)
+)    );
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+procedure Two_Press 
+      (Standard::Integer Raw_1 @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 21,
+  theOffset = 379),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 26,
+  theOffset = 383),
+  theOptionalSource = "ex1207c.ada"
+),
+       Standard::Integer Raw_2 @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 28,
+  theOffset = 386),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 33,
+  theOffset = 390),
+  theOptionalSource = "ex1207c.ada"
+),
+       Standard::Integer Cal_1 @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 21,
+  theOffset = 427),
+  theEndCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 26,
+  theOffset = 431),
+  theOptionalSource = "ex1207c.ada"
+),
+       Standard::Integer Cal_2 @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 28,
+  theOffset = 434),
+  theEndCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 33,
+  theOffset = 438),
+  theOptionalSource = "ex1207c.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex1207c.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(Raw_1,
+            Raw_2),
+      theOptionalOutParameters = @List(Cal_1,
+          Cal_2)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = C::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 17,
+              theOffset = 472),
+              theEndCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 24,
+              theOffset = 478),
+              theOptionalSource = "ex1207c.ada"
+            )
+        ),
+              @AnnotationVariable(
+          id = C::@@$Test_Point,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 33,
+              theOffset = 488),
+              theEndCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 45,
+              theOffset = 499),
+              theOptionalSource = "ex1207c.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 17,
+          theCol = 7,
+          theOffset = 462),
+          theEndCaret = 
+          @Caret(
+          theLine = 17,
+          theCol = 46,
+          theOffset = 500),
+          theOptionalSource = "ex1207c.ada"
+        ),
+      theOptionalInGlobals = @List(C::@@$State,
+            C::@@$Test_Point),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(C::@@$Test_Point),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Cal_1,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 15,
+                          theOffset = 517),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 20,
+                          theOffset = 521),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Raw_1,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 26,
+                          theOffset = 528),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 31,
+                          theOffset = 532),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = C::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 33,
+                          theOffset = 535),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 18,
+                          theCol = 40,
+                          theOffset = 541),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 18,
+                  theCol = 15,
+                  theOffset = 517),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 18,
+                  theCol = 40,
+                  theOffset = 541),
+                  theOptionalSource = "ex1207c.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Cal_2,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 15,
+                          theOffset = 560),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 20,
+                          theOffset = 564),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Raw_2,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 26,
+                          theOffset = 571),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 31,
+                          theOffset = 575),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = C::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 33,
+                          theOffset = 578),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 19,
+                          theCol = 40,
+                          theOffset = 584),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 19,
+                  theCol = 15,
+                  theOffset = 560),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 19,
+                  theCol = 40,
+                  theOffset = 584),
+                  theOptionalSource = "ex1207c.ada"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = C::@@$Test_Point,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 15,
+                          theOffset = 603),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 27,
+                          theOffset = 614),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Raw_1,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 33,
+                          theOffset = 621),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 38,
+                          theOffset = 625),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Raw_2,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 39,
+                          theOffset = 627),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 44,
+                          theOffset = 631),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = C::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 46,
+                          theOffset = 634),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 53,
+                          theOffset = 640),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = C::@@$Test_Point,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 55,
+                          theOffset = 643),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 67,
+                          theOffset = 654),
+                          theOptionalSource = "ex1207c.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 15,
+                  theOffset = 603),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 67,
+                  theOffset = 654),
+                  theOptionalSource = "ex1207c.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 18,
+              theCol = 7,
+              theOffset = 509),
+              theEndCaret = 
+              @Caret(
+              theLine = 20,
+              theCol = 68,
+              theOffset = 655),
+              theOptionalSource = "ex1207c.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 1,
+      theOffset = 359),
+      theEndCaret = 
+      @Caret(
+      theLine = 25,
+      theCol = 15,
+      theOffset = 742),
+      theOptionalSource = "ex1207c.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 11,
+      theOffset = 369),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 20,
+      theOffset = 377),
+      theOptionalSource = "ex1207c.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 1,
+      theOffset = 359),
+      theEndCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 48,
+      theOffset = 453),
+      theOptionalSource = "ex1207c.ada"
+    )
+) 
+{
+
+  local
+    Standard::Integer temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := Raw_1;
+  #l2.  temp$2 := Cal_1;
+  #l4. <@ProcedureCallStatementAnnotation(
+    optCopyBackPart = @Mark(
+    startLabel = l3,
+    endLabel = l3,
+    optRS = @NONE
+  ),
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 4,
+      theOffset = 672),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 29,
+      theOffset = 696),
+      theOptionalSource = "ex1207c.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  call  C::Calibrate (temp$1, temp$2);
+  #l3. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l3,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 22,
+      theOffset = 690),
+      theEndCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 27,
+      theOffset = 694),
+      theOptionalSource = "ex1207c.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  Cal_1 := temp$2;
+  #l5.  temp$3 := Raw_2;
+  #l6.  temp$4 := Cal_2;
+  #l8. <@ProcedureCallStatementAnnotation(
+    optCopyBackPart = @Mark(
+    startLabel = l7,
+    endLabel = l7,
+    optRS = @NONE
+  ),
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l8,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 4,
+      theOffset = 702),
+      theEndCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 29,
+      theOffset = 726),
+      theOptionalSource = "ex1207c.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  call  C::Calibrate (temp$3, temp$4);
+  #l7. <@CopyBackStatementAnnotation(
+      mark = @Mark(
+      startLabel = l7,
+      endLabel = l7,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 22,
+      theOffset = 720),
+      theEndCaret = 
+      @Caret(
+      theLine = 24,
+      theCol = 27,
+      theOffset = 724),
+      theOptionalSource = "ex1207c.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  Cal_2 := temp$4;
+  #l9.  return;
+}

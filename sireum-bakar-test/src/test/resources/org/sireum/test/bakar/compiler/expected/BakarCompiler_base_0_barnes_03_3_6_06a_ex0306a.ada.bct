@@ -9,260 +9,126 @@
   options = 
     @EmptyList)
 /****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package P
+package Standard
 @PackageAnnotation(
-  theSourceFileName = "ex0306a.ada",
-  theSparkName = P,
-  thePilarSparkName = P,
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
   theOptionalParent = @NONE,
-  thePackageKind = @BODY,
+  thePackageKind = @SPECIFICATION,
   theHierarchyType = @ROOT,
   theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 1,
-  theOffset = 158),
-  theEndCaret = 
-  @Caret(
-  theLine = 22,
-  theCol = 7,
-  theOffset = 352),
-  theOptionalSource = "ex0306a.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 1,
-  theOffset = 158),
-  theEndCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 15,
-  theOffset = 171),
-  theOptionalSource = "ex0306a.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
     @NONE
 ));
 
 /****************************************************************
  *  T y p e   D e c l a r a t i o n s
  ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
 /****************************************************************
  *  G l o b a l   D e c l a r a t i o n s
  ****************************************************************/
   
 /****************************************************************
  *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure Exchange 
-      (Standard::Float X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 23,
-  theOffset = 201),
-  theEndCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 24,
-  theOffset = 201),
-  theOptionalSource = "ex0306a.ada"
-),
-       Standard::Float Y @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 26,
-  theOffset = 204),
-  theEndCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 27,
-  theOffset = 204),
-  theOptionalSource = "ex0306a.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "ex0306a.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X,
-            Y),
-      theOptionalOutParameters = @List(X,
-          Y)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 4,
-      theOffset = 182),
-      theEndCaret = 
-      @Caret(
-      theLine = 20,
-      theCol = 17,
-      theOffset = 342),
-      theOptionalSource = "ex0306a.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 14,
-      theOffset = 192),
-      theEndCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 22,
-      theOffset = 199),
-      theOptionalSource = "ex0306a.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 4,
-      theOffset = 182),
-      theEndCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 43,
-      theOffset = 220),
-      theOptionalSource = "ex0306a.ada"
-    )
-) 
-{
-
-  local
-    Standard::Float T @LocalVarDeclarationAnnotation(
-      theKind = @CONCRETE_VARIABLE,
-      theOptionalLoc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 6,
-      theOffset = 235),
-      theEndCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 7,
-      theOffset = 235),
-      theOptionalSource = "ex0306a.ada"
-    )
-    );
-    Standard::Float temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Float temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Float temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l1.  temp$1 := X;
-  #l2. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l1,
-      endLabel = l2,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 7,
-      theOffset = 263),
-      theEndCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 14,
-      theOffset = 269),
-      theOptionalSource = "ex0306a.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  T := temp$1;
-  #l3.  temp$2 := Y;
-  #l4. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l3,
-      endLabel = l4,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 17,
-      theCol = 7,
-      theOffset = 278),
-      theEndCaret = 
-      @Caret(
-      theLine = 17,
-      theCol = 14,
-      theOffset = 284),
-      theOptionalSource = "ex0306a.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  X := temp$2;
-  #l5. <@CheckStatementAnnotation(
-      mark = @Mark(
-      startLabel = l5,
-      endLabel = l5,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 11,
-      theOffset = 297),
-      theEndCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 24,
-      theOffset = 309),
-      theOptionalSource = "ex0306a.ada"
-    )
-    ),
-      optSparkLabelList = @NONE
-  )>  assert (X == ($OLD(Y))) ;
-  #l6.  temp$3 := T;
-  #l7. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l6,
-      endLabel = l7,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 19,
-      theCol = 7,
-      theOffset = 318),
-      theEndCaret = 
-      @Caret(
-      theLine = 19,
-      theCol = 14,
-      theOffset = 324),
-      theOptionalSource = "ex0306a.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Y := temp$3;
-  #l8.  return;
-}@Profile org::sireum::profile::spark
+ ****************************************************************/@Profile org::sireum::profile::spark
 /****************************************************************
  *  C o m p i l e r   M e t a d a t a
  ****************************************************************/
@@ -576,119 +442,52 @@ procedure Exchange
   options = 
     @EmptyList)
 /****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
  ****************************************************************/
-package Standard
+package P
 @PackageAnnotation(
-  theSourceFileName = "StandardPackage.java",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
+  theSourceFileName = "ex0306a.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
   theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
+  thePackageKind = @BODY,
   theHierarchyType = @ROOT,
   theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 158),
+  theEndCaret = 
+  @Caret(
+  theLine = 22,
+  theCol = 7,
+  theOffset = 352),
+  theOptionalSource = "ex0306a.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 158),
+  theEndCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 15,
+  theOffset = 171),
+  theOptionalSource = "ex0306a.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
     @NONE
 ));
 
 /****************************************************************
  *  T y p e   D e c l a r a t i o n s
  ****************************************************************/
-record Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
-{}
 /****************************************************************
  *  G l o b a l   D e c l a r a t i o n s
  ****************************************************************/
@@ -696,3 +495,204 @@ record String
 /****************************************************************
  *  I n i t i a l i z a t i o n   P r o c e d u r e
  ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Exchange 
+      (Standard::Float X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 23,
+  theOffset = 201),
+  theEndCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 24,
+  theOffset = 201),
+  theOptionalSource = "ex0306a.ada"
+),
+       Standard::Float Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 26,
+  theOffset = 204),
+  theEndCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 27,
+  theOffset = 204),
+  theOptionalSource = "ex0306a.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex0306a.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X,
+            Y),
+      theOptionalOutParameters = @List(X,
+          Y)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 4,
+      theOffset = 182),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 17,
+      theOffset = 342),
+      theOptionalSource = "ex0306a.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 14,
+      theOffset = 192),
+      theEndCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 22,
+      theOffset = 199),
+      theOptionalSource = "ex0306a.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 4,
+      theOffset = 182),
+      theEndCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 43,
+      theOffset = 220),
+      theOptionalSource = "ex0306a.ada"
+    )
+) 
+{
+
+  local
+    Standard::Float T @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 6,
+      theOffset = 235),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 7,
+      theOffset = 235),
+      theOptionalSource = "ex0306a.ada"
+    )
+    );
+    Standard::Float temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Float temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Float temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := X;
+  #l2. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 7,
+      theOffset = 263),
+      theEndCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 14,
+      theOffset = 269),
+      theOptionalSource = "ex0306a.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  T := temp$1;
+  #l3.  temp$2 := Y;
+  #l4. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 17,
+      theCol = 7,
+      theOffset = 278),
+      theEndCaret = 
+      @Caret(
+      theLine = 17,
+      theCol = 14,
+      theOffset = 284),
+      theOptionalSource = "ex0306a.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  X := temp$2;
+  #l5. <@CheckStatementAnnotation(
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l5,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 11,
+      theOffset = 297),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 24,
+      theOffset = 309),
+      theOptionalSource = "ex0306a.ada"
+    )
+    ),
+      optSparkLabelList = @NONE
+  )>  assert (X == ($OLD(Y))) ;
+  #l6.  temp$3 := T;
+  #l7. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l6,
+      endLabel = l7,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 7,
+      theOffset = 318),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 14,
+      theOffset = 324),
+      theOptionalSource = "ex0306a.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Y := temp$3;
+  #l8.  return;
+}

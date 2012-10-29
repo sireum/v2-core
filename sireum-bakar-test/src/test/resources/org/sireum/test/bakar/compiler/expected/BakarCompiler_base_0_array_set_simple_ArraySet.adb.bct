@@ -355,148 +355,6 @@ record Response_Type
 /****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package Standard
-@PackageAnnotation(
-  theSourceFileName = "ArraySet.cfg",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 3,
-      theOffset = 76),
-      theEndCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 43,
-      theOffset = 115),
-      theOptionalSource = "ArraySet.cfg"
-    ),
-    fullyQualifiedName = Standard::Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = -($POW(2,15)),
-        theHighRangeExp = ($POW(2,15) - 1)))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
 package ArraySetUnsigned
 @PackageAnnotation(
   theSourceFileName = "ArraySetUnsigned.ads",
@@ -594,1175 +452,6 @@ record Long
 /****************************************************************
  *  I n i t i a l i z a t i o n   P r o c e d u r e
  ****************************************************************/@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package ArraySet
-@PackageAnnotation(
-  theSourceFileName = "ArraySet.ads",
-  theSparkName = ArraySet,
-  thePilarSparkName = ArraySet,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = ArraySet::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 2,
-  theCol = 13,
-  theOffset = 32),
-  theEndCaret = 
-  @Caret(
-  theLine = 66,
-  theCol = 14,
-  theOffset = 2129),
-  theOptionalSource = "ArraySet.ads"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 4,
-  theCol = 1,
-  theOffset = 78),
-  theEndCaret = 
-  @Caret(
-  theLine = 4,
-  theCol = 17,
-  theOffset = 93),
-  theOptionalSource = "ArraySet.ads"
-),
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @ContextClause(
-    theOptionalWithClauses = @List(ArraySetDefs),
-    theOptionalUseTypeClauses = @NONE
-  )  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @PackageSpecificationAnnotation(
-      theOptionalOwnStatement = @OwnStatement(
-      theOwnClauses = 
-        @List(@OwnClause(
-          theOptionalDeclaredType = @NONE,
-          theOwnVariables = 
-            @List(@OwnVariable(
-              varName = ArraySet::@@$State,
-              mode = @NONE,
-              ownCategory = @ABSTRACT,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 5,
-                  theCol = 11,
-                  theOffset = 106),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 5,
-                  theCol = 16,
-                  theOffset = 110),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )),
-          theOwnClauseSelection =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 5,
-              theCol = 11,
-              theOffset = 106),
-              theEndCaret = 
-              @Caret(
-              theLine = 5,
-              theCol = 16,
-              theOffset = 111),
-              theOptionalSource = "ArraySet.ads"
-            )
-        )),
-      theOwnStatementSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 5,
-          theCol = 7,
-          theOffset = 102),
-          theEndCaret = 
-          @Caret(
-          theLine = 5,
-          theCol = 16,
-          theOffset = 111),
-          theOptionalSource = "ArraySet.ads"
-        )
-    ),
-      theOptionalVarInitClause = @NONE
-    ),
-  theOptionalInheritClause = 
-    @List(ArraySetDefs,
-          ArraySetUnsigned)
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record State__type
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 11,
-      theOffset = 106),
-      theEndCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 16,
-      theOffset = 110),
-      theOptionalSource = "ArraySet.ads"
-    ),
-    fullyQualifiedName = ArraySet::State__type,
-    typeDefinition = 
-      @AbstractTypeDefinition)
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global ArraySet::State__type @@$State @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = ArraySet::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 5,
-    theCol = 11,
-    theOffset = 106),
-    theEndCaret = 
-    @Caret(
-    theLine = 5,
-    theCol = 16,
-    theOffset = 110),
-    theOptionalSource = "ArraySet.ads"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure Get_Value 
-      (ArraySetDefs::ID_Type ID @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 6,
-  theOffset = 465),
-  theEndCaret = 
-  @Caret(
-  theLine = 16,
-  theCol = 8,
-  theOffset = 466),
-  theOptionalSource = "ArraySet.ads"
-),
-       ArraySetDefs::Value_Type Value @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 17,
-  theCol = 5,
-  theOffset = 510),
-  theEndCaret = 
-  @Caret(
-  theLine = 17,
-  theCol = 10,
-  theOffset = 514),
-  theOptionalSource = "ArraySet.ads"
-),
-       Standard::Boolean Found @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 18,
-  theCol = 5,
-  theOffset = 559),
-  theEndCaret = 
-  @Caret(
-  theLine = 18,
-  theCol = 10,
-  theOffset = 563),
-  theOptionalSource = "ArraySet.ads"
-))
-@MethodAnnotation(
-  theSourceFileName = "ArraySet.ads",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(ID),
-      theOptionalOutParameters = @List(Value,
-          Found)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = ArraySet::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 19,
-              theCol = 17,
-              theOffset = 605),
-              theEndCaret = 
-              @Caret(
-              theLine = 19,
-              theCol = 22,
-              theOffset = 609),
-              theOptionalSource = "ArraySet.ads"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 19,
-          theCol = 7,
-          theOffset = 595),
-          theEndCaret = 
-          @Caret(
-          theLine = 19,
-          theCol = 23,
-          theOffset = 610),
-          theOptionalSource = "ArraySet.ads"
-        ),
-      theOptionalInGlobals = @List(ArraySet::@@$State),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @NONE,
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Value,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 15,
-                          theOffset = 627),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 20,
-                          theOffset = 631),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 33,
-                          theOffset = 645),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 35,
-                          theOffset = 646),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 37,
-                          theOffset = 649),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 42,
-                          theOffset = 653),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                ),
-                      @DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Found,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 22,
-                          theOffset = 634),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 27,
-                          theOffset = 638),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 33,
-                          theOffset = 645),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 35,
-                          theOffset = 646),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 37,
-                          theOffset = 649),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 20,
-                          theCol = 42,
-                          theOffset = 653),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 20,
-                  theCol = 15,
-                  theOffset = 627),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 20,
-                  theCol = 42,
-                  theOffset = 653),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 20,
-              theCol = 7,
-              theOffset = 619),
-              theEndCaret = 
-              @Caret(
-              theLine = 20,
-              theCol = 43,
-              theOffset = 654),
-              theOptionalSource = "ArraySet.ads"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 3,
-      theOffset = 439),
-      theEndCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 33,
-      theOffset = 586),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 13,
-      theOffset = 449),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 22,
-      theOffset = 457),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 3,
-      theOffset = 439),
-      theEndCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 32,
-      theOffset = 585),
-      theOptionalSource = "ArraySet.ads"
-    )
-) 
-{ #locret. return;}
-procedure Add 
-      (ArraySetDefs::ID_Type ID @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 33,
-  theCol = 6,
-  theOffset = 1021),
-  theEndCaret = 
-  @Caret(
-  theLine = 33,
-  theCol = 8,
-  theOffset = 1022),
-  theOptionalSource = "ArraySet.ads"
-),
-       ArraySetDefs::Value_Type Value @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 34,
-  theCol = 5,
-  theOffset = 1066),
-  theEndCaret = 
-  @Caret(
-  theLine = 34,
-  theCol = 10,
-  theOffset = 1070),
-  theOptionalSource = "ArraySet.ads"
-),
-       ArraySetDefs::Response_Type Response @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 35,
-  theCol = 5,
-  theOffset = 1115),
-  theEndCaret = 
-  @Caret(
-  theLine = 35,
-  theCol = 13,
-  theOffset = 1122),
-  theOptionalSource = "ArraySet.ads"
-))
-@MethodAnnotation(
-  theSourceFileName = "ArraySet.ads",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(ID,
-            Value),
-      theOptionalOutParameters = @List(Response)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = ArraySet::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 36,
-              theCol = 21,
-              theOffset = 1184),
-              theEndCaret = 
-              @Caret(
-              theLine = 36,
-              theCol = 26,
-              theOffset = 1188),
-              theOptionalSource = "ArraySet.ads"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 36,
-          theCol = 7,
-          theOffset = 1170),
-          theEndCaret = 
-          @Caret(
-          theLine = 36,
-          theCol = 27,
-          theOffset = 1189),
-          theOptionalSource = "ArraySet.ads"
-        ),
-      theOptionalInGlobals = @List(ArraySet::@@$State),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(ArraySet::@@$State),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 15,
-                          theOffset = 1206),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 20,
-                          theOffset = 1210),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 29,
-                          theOffset = 1220),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 31,
-                          theOffset = 1221),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = Value,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 33,
-                          theOffset = 1224),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 38,
-                          theOffset = 1228),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 40,
-                          theOffset = 1231),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 37,
-                          theCol = 45,
-                          theOffset = 1235),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 37,
-                  theCol = 15,
-                  theOffset = 1206),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 37,
-                  theCol = 45,
-                  theOffset = 1235),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )  ,
-                  @DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Response,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 15,
-                          theOffset = 1254),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 23,
-                          theOffset = 1261),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 29,
-                          theOffset = 1268),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 31,
-                          theOffset = 1269),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 33,
-                          theOffset = 1272),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 38,
-                          theCol = 38,
-                          theOffset = 1276),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 38,
-                  theCol = 15,
-                  theOffset = 1254),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 38,
-                  theCol = 38,
-                  theOffset = 1276),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 37,
-              theCol = 7,
-              theOffset = 1198),
-              theEndCaret = 
-              @Caret(
-              theLine = 38,
-              theCol = 40,
-              theOffset = 1278),
-              theOptionalSource = "ArraySet.ads"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 3,
-      theOffset = 1001),
-      theEndCaret = 
-      @Caret(
-      theLine = 35,
-      theCol = 52,
-      theOffset = 1161),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 13,
-      theOffset = 1011),
-      theEndCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 16,
-      theOffset = 1013),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 3,
-      theOffset = 1001),
-      theEndCaret = 
-      @Caret(
-      theLine = 35,
-      theCol = 51,
-      theOffset = 1160),
-      theOptionalSource = "ArraySet.ads"
-    )
-) 
-{ #locret. return;}
-procedure Delete 
-      (ArraySetDefs::ID_Type ID @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 48,
-  theCol = 6,
-  theOffset = 1561),
-  theEndCaret = 
-  @Caret(
-  theLine = 48,
-  theCol = 8,
-  theOffset = 1562),
-  theOptionalSource = "ArraySet.ads"
-),
-       ArraySetDefs::Response_Type Response @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 5,
-  theOffset = 1602),
-  theEndCaret = 
-  @Caret(
-  theLine = 49,
-  theCol = 13,
-  theOffset = 1609),
-  theOptionalSource = "ArraySet.ads"
-))
-@MethodAnnotation(
-  theSourceFileName = "ArraySet.ads",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(ID),
-      theOptionalOutParameters = @List(Response)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = ArraySet::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 50,
-              theCol = 21,
-              theOffset = 1667),
-              theEndCaret = 
-              @Caret(
-              theLine = 50,
-              theCol = 26,
-              theOffset = 1671),
-              theOptionalSource = "ArraySet.ads"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 50,
-          theCol = 7,
-          theOffset = 1653),
-          theEndCaret = 
-          @Caret(
-          theLine = 50,
-          theCol = 27,
-          theOffset = 1672),
-          theOptionalSource = "ArraySet.ads"
-        ),
-      theOptionalInGlobals = @List(ArraySet::@@$State),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(ArraySet::@@$State),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Response,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 15,
-                          theOffset = 1689),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 23,
-                          theOffset = 1696),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 36,
-                          theOffset = 1710),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 38,
-                          theOffset = 1711),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 40,
-                          theOffset = 1714),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 45,
-                          theOffset = 1718),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                ),
-                      @DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 25,
-                          theOffset = 1699),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 30,
-                          theOffset = 1703),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = ID,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 36,
-                          theOffset = 1710),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 38,
-                          theOffset = 1711),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 40,
-                          theOffset = 1714),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 51,
-                          theCol = 45,
-                          theOffset = 1718),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 51,
-                  theCol = 15,
-                  theOffset = 1689),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 51,
-                  theCol = 45,
-                  theOffset = 1718),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 51,
-              theCol = 7,
-              theOffset = 1681),
-              theEndCaret = 
-              @Caret(
-              theLine = 51,
-              theCol = 46,
-              theOffset = 1719),
-              theOptionalSource = "ArraySet.ads"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 3,
-      theOffset = 1538),
-      theEndCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 48,
-      theOffset = 1644),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 13,
-      theOffset = 1548),
-      theEndCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 19,
-      theOffset = 1553),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 3,
-      theOffset = 1538),
-      theEndCaret = 
-      @Caret(
-      theLine = 49,
-      theCol = 47,
-      theOffset = 1643),
-      theOptionalSource = "ArraySet.ads"
-    )
-) 
-{ #locret. return;}
-procedure Init
-@MethodAnnotation(
-  theSourceFileName = "ArraySet.ads",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @NONE,
-      theOptionalOutParameters = @NONE
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = ArraySet::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 63,
-              theCol = 18,
-              theOffset = 2077),
-              theEndCaret = 
-              @Caret(
-              theLine = 63,
-              theCol = 23,
-              theOffset = 2081),
-              theOptionalSource = "ArraySet.ads"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 63,
-          theCol = 7,
-          theOffset = 2066),
-          theEndCaret = 
-          @Caret(
-          theLine = 63,
-          theCol = 24,
-          theOffset = 2082),
-          theOptionalSource = "ArraySet.ads"
-        ),
-      theOptionalInGlobals = @NONE,
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(ArraySet::@@$State),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = ArraySet::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 64,
-                          theCol = 15,
-                          theOffset = 2099),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 64,
-                          theCol = 20,
-                          theOffset = 2103),
-                          theOptionalSource = "ArraySet.ads"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @NONE
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 64,
-                  theCol = 15,
-                  theOffset = 2099),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 64,
-                  theCol = 25,
-                  theOffset = 2108),
-                  theOptionalSource = "ArraySet.ads"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 64,
-              theCol = 7,
-              theOffset = 2091),
-              theEndCaret = 
-              @Caret(
-              theLine = 64,
-              theCol = 27,
-              theOffset = 2110),
-              theOptionalSource = "ArraySet.ads"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 3,
-      theOffset = 2043),
-      theEndCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 18,
-      theOffset = 2057),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 13,
-      theOffset = 2053),
-      theEndCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 17,
-      theOffset = 2056),
-      theOptionalSource = "ArraySet.ads"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 3,
-      theOffset = 2043),
-      theEndCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 17,
-      theOffset = 2056),
-      theOptionalSource = "ArraySet.ads"
-    )
-) 
-{ #locret. return;}@Profile org::sireum::profile::spark
 /****************************************************************
  *  C o m p i l e r   M e t a d a t a
  ****************************************************************/
@@ -9219,4 +7908,1315 @@ procedure Init
       optSparkLabelList = @NONE 
   )>  ArraySet::@@Used_Head := temp$24;
   #l398.  return;
-}
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package ArraySet
+@PackageAnnotation(
+  theSourceFileName = "ArraySet.ads",
+  theSparkName = ArraySet,
+  thePilarSparkName = ArraySet,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = ArraySet::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 2,
+  theCol = 13,
+  theOffset = 32),
+  theEndCaret = 
+  @Caret(
+  theLine = 66,
+  theCol = 14,
+  theOffset = 2129),
+  theOptionalSource = "ArraySet.ads"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 4,
+  theCol = 1,
+  theOffset = 78),
+  theEndCaret = 
+  @Caret(
+  theLine = 4,
+  theCol = 17,
+  theOffset = 93),
+  theOptionalSource = "ArraySet.ads"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @ContextClause(
+    theOptionalWithClauses = @List(ArraySetDefs),
+    theOptionalUseTypeClauses = @NONE
+  )  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = ArraySet::@@$State,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 5,
+                  theCol = 11,
+                  theOffset = 106),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 5,
+                  theCol = 16,
+                  theOffset = 110),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 5,
+              theCol = 11,
+              theOffset = 106),
+              theEndCaret = 
+              @Caret(
+              theLine = 5,
+              theCol = 16,
+              theOffset = 111),
+              theOptionalSource = "ArraySet.ads"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 5,
+          theCol = 7,
+          theOffset = 102),
+          theEndCaret = 
+          @Caret(
+          theLine = 5,
+          theCol = 16,
+          theOffset = 111),
+          theOptionalSource = "ArraySet.ads"
+        )
+    ),
+      theOptionalVarInitClause = @NONE
+    ),
+  theOptionalInheritClause = 
+    @List(ArraySetDefs,
+          ArraySetUnsigned)
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record State__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 11,
+      theOffset = 106),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 16,
+      theOffset = 110),
+      theOptionalSource = "ArraySet.ads"
+    ),
+    fullyQualifiedName = ArraySet::State__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global ArraySet::State__type @@$State @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = ArraySet::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 5,
+    theCol = 11,
+    theOffset = 106),
+    theEndCaret = 
+    @Caret(
+    theLine = 5,
+    theCol = 16,
+    theOffset = 110),
+    theOptionalSource = "ArraySet.ads"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Get_Value 
+      (ArraySetDefs::ID_Type ID @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 6,
+  theOffset = 465),
+  theEndCaret = 
+  @Caret(
+  theLine = 16,
+  theCol = 8,
+  theOffset = 466),
+  theOptionalSource = "ArraySet.ads"
+),
+       ArraySetDefs::Value_Type Value @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 5,
+  theOffset = 510),
+  theEndCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 10,
+  theOffset = 514),
+  theOptionalSource = "ArraySet.ads"
+),
+       Standard::Boolean Found @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 5,
+  theOffset = 559),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 10,
+  theOffset = 563),
+  theOptionalSource = "ArraySet.ads"
+))
+@MethodAnnotation(
+  theSourceFileName = "ArraySet.ads",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(ID),
+      theOptionalOutParameters = @List(Value,
+          Found)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = ArraySet::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 19,
+              theCol = 17,
+              theOffset = 605),
+              theEndCaret = 
+              @Caret(
+              theLine = 19,
+              theCol = 22,
+              theOffset = 609),
+              theOptionalSource = "ArraySet.ads"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 19,
+          theCol = 7,
+          theOffset = 595),
+          theEndCaret = 
+          @Caret(
+          theLine = 19,
+          theCol = 23,
+          theOffset = 610),
+          theOptionalSource = "ArraySet.ads"
+        ),
+      theOptionalInGlobals = @List(ArraySet::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Value,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 15,
+                          theOffset = 627),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 20,
+                          theOffset = 631),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 33,
+                          theOffset = 645),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 35,
+                          theOffset = 646),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 37,
+                          theOffset = 649),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 42,
+                          theOffset = 653),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Found,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 22,
+                          theOffset = 634),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 27,
+                          theOffset = 638),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 33,
+                          theOffset = 645),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 35,
+                          theOffset = 646),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 37,
+                          theOffset = 649),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 20,
+                          theCol = 42,
+                          theOffset = 653),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 15,
+                  theOffset = 627),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 20,
+                  theCol = 42,
+                  theOffset = 653),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 20,
+              theCol = 7,
+              theOffset = 619),
+              theEndCaret = 
+              @Caret(
+              theLine = 20,
+              theCol = 43,
+              theOffset = 654),
+              theOptionalSource = "ArraySet.ads"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 3,
+      theOffset = 439),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 33,
+      theOffset = 586),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 13,
+      theOffset = 449),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 22,
+      theOffset = 457),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 3,
+      theOffset = 439),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 32,
+      theOffset = 585),
+      theOptionalSource = "ArraySet.ads"
+    )
+) 
+{ #locret. return;}
+procedure Add 
+      (ArraySetDefs::ID_Type ID @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 33,
+  theCol = 6,
+  theOffset = 1021),
+  theEndCaret = 
+  @Caret(
+  theLine = 33,
+  theCol = 8,
+  theOffset = 1022),
+  theOptionalSource = "ArraySet.ads"
+),
+       ArraySetDefs::Value_Type Value @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 34,
+  theCol = 5,
+  theOffset = 1066),
+  theEndCaret = 
+  @Caret(
+  theLine = 34,
+  theCol = 10,
+  theOffset = 1070),
+  theOptionalSource = "ArraySet.ads"
+),
+       ArraySetDefs::Response_Type Response @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 35,
+  theCol = 5,
+  theOffset = 1115),
+  theEndCaret = 
+  @Caret(
+  theLine = 35,
+  theCol = 13,
+  theOffset = 1122),
+  theOptionalSource = "ArraySet.ads"
+))
+@MethodAnnotation(
+  theSourceFileName = "ArraySet.ads",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(ID,
+            Value),
+      theOptionalOutParameters = @List(Response)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = ArraySet::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 36,
+              theCol = 21,
+              theOffset = 1184),
+              theEndCaret = 
+              @Caret(
+              theLine = 36,
+              theCol = 26,
+              theOffset = 1188),
+              theOptionalSource = "ArraySet.ads"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 36,
+          theCol = 7,
+          theOffset = 1170),
+          theEndCaret = 
+          @Caret(
+          theLine = 36,
+          theCol = 27,
+          theOffset = 1189),
+          theOptionalSource = "ArraySet.ads"
+        ),
+      theOptionalInGlobals = @List(ArraySet::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(ArraySet::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 15,
+                          theOffset = 1206),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 20,
+                          theOffset = 1210),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 29,
+                          theOffset = 1220),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 31,
+                          theOffset = 1221),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Value,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 33,
+                          theOffset = 1224),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 38,
+                          theOffset = 1228),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 40,
+                          theOffset = 1231),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 37,
+                          theCol = 45,
+                          theOffset = 1235),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 37,
+                  theCol = 15,
+                  theOffset = 1206),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 37,
+                  theCol = 45,
+                  theOffset = 1235),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )  ,
+                  @DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Response,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 15,
+                          theOffset = 1254),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 23,
+                          theOffset = 1261),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 29,
+                          theOffset = 1268),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 31,
+                          theOffset = 1269),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 33,
+                          theOffset = 1272),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 38,
+                          theCol = 38,
+                          theOffset = 1276),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 38,
+                  theCol = 15,
+                  theOffset = 1254),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 38,
+                  theCol = 38,
+                  theOffset = 1276),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 37,
+              theCol = 7,
+              theOffset = 1198),
+              theEndCaret = 
+              @Caret(
+              theLine = 38,
+              theCol = 40,
+              theOffset = 1278),
+              theOptionalSource = "ArraySet.ads"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 3,
+      theOffset = 1001),
+      theEndCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 52,
+      theOffset = 1161),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 13,
+      theOffset = 1011),
+      theEndCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 16,
+      theOffset = 1013),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 3,
+      theOffset = 1001),
+      theEndCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 51,
+      theOffset = 1160),
+      theOptionalSource = "ArraySet.ads"
+    )
+) 
+{ #locret. return;}
+procedure Delete 
+      (ArraySetDefs::ID_Type ID @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 48,
+  theCol = 6,
+  theOffset = 1561),
+  theEndCaret = 
+  @Caret(
+  theLine = 48,
+  theCol = 8,
+  theOffset = 1562),
+  theOptionalSource = "ArraySet.ads"
+),
+       ArraySetDefs::Response_Type Response @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 5,
+  theOffset = 1602),
+  theEndCaret = 
+  @Caret(
+  theLine = 49,
+  theCol = 13,
+  theOffset = 1609),
+  theOptionalSource = "ArraySet.ads"
+))
+@MethodAnnotation(
+  theSourceFileName = "ArraySet.ads",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(ID),
+      theOptionalOutParameters = @List(Response)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = ArraySet::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 50,
+              theCol = 21,
+              theOffset = 1667),
+              theEndCaret = 
+              @Caret(
+              theLine = 50,
+              theCol = 26,
+              theOffset = 1671),
+              theOptionalSource = "ArraySet.ads"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 50,
+          theCol = 7,
+          theOffset = 1653),
+          theEndCaret = 
+          @Caret(
+          theLine = 50,
+          theCol = 27,
+          theOffset = 1672),
+          theOptionalSource = "ArraySet.ads"
+        ),
+      theOptionalInGlobals = @List(ArraySet::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(ArraySet::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Response,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 15,
+                          theOffset = 1689),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 23,
+                          theOffset = 1696),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 36,
+                          theOffset = 1710),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 38,
+                          theOffset = 1711),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 40,
+                          theOffset = 1714),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 45,
+                          theOffset = 1718),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 25,
+                          theOffset = 1699),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 30,
+                          theOffset = 1703),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = ID,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 36,
+                          theOffset = 1710),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 38,
+                          theOffset = 1711),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 40,
+                          theOffset = 1714),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 51,
+                          theCol = 45,
+                          theOffset = 1718),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 51,
+                  theCol = 15,
+                  theOffset = 1689),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 51,
+                  theCol = 45,
+                  theOffset = 1718),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 51,
+              theCol = 7,
+              theOffset = 1681),
+              theEndCaret = 
+              @Caret(
+              theLine = 51,
+              theCol = 46,
+              theOffset = 1719),
+              theOptionalSource = "ArraySet.ads"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 3,
+      theOffset = 1538),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 48,
+      theOffset = 1644),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 13,
+      theOffset = 1548),
+      theEndCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 19,
+      theOffset = 1553),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 3,
+      theOffset = 1538),
+      theEndCaret = 
+      @Caret(
+      theLine = 49,
+      theCol = 47,
+      theOffset = 1643),
+      theOptionalSource = "ArraySet.ads"
+    )
+) 
+{ #locret. return;}
+procedure Init
+@MethodAnnotation(
+  theSourceFileName = "ArraySet.ads",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = ArraySet::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 63,
+              theCol = 18,
+              theOffset = 2077),
+              theEndCaret = 
+              @Caret(
+              theLine = 63,
+              theCol = 23,
+              theOffset = 2081),
+              theOptionalSource = "ArraySet.ads"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 63,
+          theCol = 7,
+          theOffset = 2066),
+          theEndCaret = 
+          @Caret(
+          theLine = 63,
+          theCol = 24,
+          theOffset = 2082),
+          theOptionalSource = "ArraySet.ads"
+        ),
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(ArraySet::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = ArraySet::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 64,
+                          theCol = 15,
+                          theOffset = 2099),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 64,
+                          theCol = 20,
+                          theOffset = 2103),
+                          theOptionalSource = "ArraySet.ads"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @NONE
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 64,
+                  theCol = 15,
+                  theOffset = 2099),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 64,
+                  theCol = 25,
+                  theOffset = 2108),
+                  theOptionalSource = "ArraySet.ads"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 64,
+              theCol = 7,
+              theOffset = 2091),
+              theEndCaret = 
+              @Caret(
+              theLine = 64,
+              theCol = 27,
+              theOffset = 2110),
+              theOptionalSource = "ArraySet.ads"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 3,
+      theOffset = 2043),
+      theEndCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 18,
+      theOffset = 2057),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 13,
+      theOffset = 2053),
+      theEndCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 17,
+      theOffset = 2056),
+      theOptionalSource = "ArraySet.ads"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 3,
+      theOffset = 2043),
+      theEndCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 17,
+      theOffset = 2056),
+      theOptionalSource = "ArraySet.ads"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "ArraySet.cfg",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 3,
+      theOffset = 76),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 43,
+      theOffset = 115),
+      theOptionalSource = "ArraySet.cfg"
+    ),
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = -($POW(2,15)),
+        theHighRangeExp = ($POW(2,15) - 1)))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/

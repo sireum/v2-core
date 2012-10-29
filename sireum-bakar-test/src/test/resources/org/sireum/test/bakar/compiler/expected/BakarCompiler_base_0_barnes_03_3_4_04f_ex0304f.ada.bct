@@ -9,237 +9,6 @@
   options = 
     @EmptyList)
 /****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
- ****************************************************************/
-package P
-@PackageAnnotation(
-  theSourceFileName = "ex0304f.ada",
-  theSparkName = P,
-  thePilarSparkName = P,
-  theOptionalParent = @NONE,
-  thePackageKind = @BODY,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 9,
-  theCol = 1,
-  theOffset = 120),
-  theEndCaret = 
-  @Caret(
-  theLine = 17,
-  theCol = 7,
-  theOffset = 269),
-  theOptionalSource = "ex0304f.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 9,
-  theCol = 1,
-  theOffset = 120),
-  theEndCaret = 
-  @Caret(
-  theLine = 9,
-  theCol = 15,
-  theOffset = 133),
-  theOptionalSource = "ex0304f.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure Inc 
-      (P::T X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 18,
-  theOffset = 156),
-  theEndCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 19,
-  theOffset = 156),
-  theOptionalSource = "ex0304f.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "ex0304f.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @List(X)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 10,
-      theCol = 4,
-      theOffset = 142),
-      theEndCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 12,
-      theOffset = 261),
-      theOptionalSource = "ex0304f.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 10,
-      theCol = 14,
-      theOffset = 152),
-      theEndCaret = 
-      @Caret(
-      theLine = 10,
-      theCol = 17,
-      theOffset = 154),
-      theOptionalSource = "ex0304f.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 10,
-      theCol = 4,
-      theOffset = 142),
-      theEndCaret = 
-      @Caret(
-      theLine = 10,
-      theCol = 31,
-      theOffset = 168),
-      theOptionalSource = "ex0304f.ada"
-    )
-) 
-{
-
-  local
-    P::T temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    P::T temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Boolean temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    P::T temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    P::T temp$6 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l1.  temp$1 := X;
-  #l2.  temp$2 := $Last(`P::T);
-  #l3.  temp$3 := (temp$1 < temp$2);
-  #l4.  if !(temp$3) then goto l5; 
-  #l6.  temp$4 := X;
-  #l7.  temp$5 := 1;
-  #l8.  temp$6 := (temp$4 + temp$5);
-  #l9. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l6,
-      endLabel = l9,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 10,
-      theOffset = 223),
-      theEndCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 21,
-      theOffset = 233),
-      theOptionalSource = "ex0304f.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  X := temp$6;
-  #l10.  goto l11;
-  #l5. 
-  #l11. <@IfStatementAnnotation(
-    ifPart = @Mark(
-    startLabel = l1,
-    endLabel = l4,
-    optRS = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 13,
-    theCol = 7,
-    theOffset = 194),
-    theEndCaret = 
-    @Caret(
-    theLine = 13,
-    theCol = 20,
-    theOffset = 206),
-    theOptionalSource = "ex0304f.ada"
-  )
-  ),
-    thenPart= @MARK_PLACEHOLDER,
-    optElsIfParts = @NONE,
-    optElsePart = @NONE,
-      mark = @Mark(
-      startLabel = l1,
-      endLabel = l11,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 13,
-      theCol = 7,
-      theOffset = 194),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 14,
-      theOffset = 248),
-      theOptionalSource = "ex0304f.ada"
-    )
-    ),
-      optSparkLabelList = @NONE  
-  )> 
-  #l12.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
 package Standard
@@ -598,4 +367,235 @@ procedure Inc
       theOptionalSource = "ex0304f.ada"
     )
 ) 
-{ #locret. return;}
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package P
+@PackageAnnotation(
+  theSourceFileName = "ex0304f.ada",
+  theSparkName = P,
+  thePilarSparkName = P,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 1,
+  theOffset = 120),
+  theEndCaret = 
+  @Caret(
+  theLine = 17,
+  theCol = 7,
+  theOffset = 269),
+  theOptionalSource = "ex0304f.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 1,
+  theOffset = 120),
+  theEndCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 15,
+  theOffset = 133),
+  theOptionalSource = "ex0304f.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure Inc 
+      (P::T X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 18,
+  theOffset = 156),
+  theEndCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 19,
+  theOffset = 156),
+  theOptionalSource = "ex0304f.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex0304f.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 4,
+      theOffset = 142),
+      theEndCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 12,
+      theOffset = 261),
+      theOptionalSource = "ex0304f.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 14,
+      theOffset = 152),
+      theEndCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 17,
+      theOffset = 154),
+      theOptionalSource = "ex0304f.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 4,
+      theOffset = 142),
+      theEndCaret = 
+      @Caret(
+      theLine = 10,
+      theCol = 31,
+      theOffset = 168),
+      theOptionalSource = "ex0304f.ada"
+    )
+) 
+{
+
+  local
+    P::T temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::T temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Boolean temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::T temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    P::T temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$1 := X;
+  #l2.  temp$2 := $Last(`P::T);
+  #l3.  temp$3 := (temp$1 < temp$2);
+  #l4.  if !(temp$3) then goto l5; 
+  #l6.  temp$4 := X;
+  #l7.  temp$5 := 1;
+  #l8.  temp$6 := (temp$4 + temp$5);
+  #l9. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l6,
+      endLabel = l9,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 10,
+      theOffset = 223),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 21,
+      theOffset = 233),
+      theOptionalSource = "ex0304f.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  X := temp$6;
+  #l10.  goto l11;
+  #l5. 
+  #l11. <@IfStatementAnnotation(
+    ifPart = @Mark(
+    startLabel = l1,
+    endLabel = l4,
+    optRS = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 13,
+    theCol = 7,
+    theOffset = 194),
+    theEndCaret = 
+    @Caret(
+    theLine = 13,
+    theCol = 20,
+    theOffset = 206),
+    theOptionalSource = "ex0304f.ada"
+  )
+  ),
+    thenPart= @MARK_PLACEHOLDER,
+    optElsIfParts = @NONE,
+    optElsePart = @NONE,
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l11,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 13,
+      theCol = 7,
+      theOffset = 194),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 14,
+      theOffset = 248),
+      theOptionalSource = "ex0304f.ada"
+    )
+    ),
+      optSparkLabelList = @NONE  
+  )> 
+  #l12.  return;
+}

@@ -9,6 +9,479 @@
   options = 
     @EmptyList)
 /****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package MyMatrix
+@PackageAnnotation(
+  theSourceFileName = "matrix.ada",
+  theSparkName = MyMatrix,
+  thePilarSparkName = MyMatrix,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 13,
+  theCol = 14,
+  theOffset = 331),
+  theOptionalSource = "matrix.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 17,
+  theOffset = 15),
+  theOptionalSource = "matrix.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Matrix_Index
+  @PrivateTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 3,
+      theOffset = 222),
+      theEndCaret = 
+      @Caret(
+      theLine = 11,
+      theCol = 35,
+      theOffset = 253),
+      theOptionalSource = "matrix.ada"
+    ),
+    fullyQualifiedName = MyMatrix::Matrix_Index,
+    tagged = false,
+    limited = true,
+    theDeclarationLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 3,
+        theCol = 3,
+        theOffset = 22),
+        theEndCaret = 
+        @Caret(
+        theLine = 3,
+        theCol = 40,
+        theOffset = 58),
+        theOptionalSource = "matrix.ada"
+      ),
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = 9))
+{}
+record Matrix
+  @PrivateTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 3,
+      theOffset = 257),
+      theEndCaret = 
+      @Caret(
+      theLine = 12,
+      theCol = 64,
+      theOffset = 317),
+      theOptionalSource = "matrix.ada"
+    ),
+    fullyQualifiedName = MyMatrix::Matrix,
+    tagged = false,
+    limited = true,
+    theDeclarationLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 4,
+        theCol = 3,
+        theOffset = 62),
+        theEndCaret = 
+        @Caret(
+        theLine = 4,
+        theCol = 34,
+        theOffset = 92),
+        theOptionalSource = "matrix.ada"
+      ),
+    typeDefinition = 
+      @ConstrainedArrayDefinition(
+        theDimensions = 
+          2,
+        theComponentSubType = 
+          `Standard::Integer,
+        theDiscreteSubTypes = 
+          @List(`MyMatrix::Matrix_Index,
+                `MyMatrix::Matrix_Index)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Multiply 
+      (MyMatrix::Matrix X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 22,
+  theOffset = 118),
+  theEndCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 23,
+  theOffset = 118),
+  theOptionalSource = "matrix.ada"
+),
+       MyMatrix::Matrix Y @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 25,
+  theOffset = 121),
+  theEndCaret = 
+  @Caret(
+  theLine = 6,
+  theCol = 26,
+  theOffset = 121),
+  theOptionalSource = "matrix.ada"
+),
+       MyMatrix::Matrix Z @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 22,
+  theOffset = 161),
+  theEndCaret = 
+  @Caret(
+  theLine = 7,
+  theCol = 23,
+  theOffset = 161),
+  theOptionalSource = "matrix.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "matrix.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(X,
+            Y),
+      theOptionalOutParameters = @List(Z)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @NONE,
+      theOptionalGlobalDefinitionsSelection = 
+        @NONE,
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @NONE,
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Z,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 15,
+                          theOffset = 198),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 16,
+                          theOffset = 198),
+                          theOptionalSource = "matrix.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 22,
+                          theOffset = 205),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 23,
+                          theOffset = 205),
+                          theOptionalSource = "matrix.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = Y,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 25,
+                          theOffset = 208),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 8,
+                          theCol = 26,
+                          theOffset = 208),
+                          theOptionalSource = "matrix.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 15,
+                  theOffset = 198),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 8,
+                  theCol = 26,
+                  theOffset = 208),
+                  theOptionalSource = "matrix.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 8,
+              theCol = 7,
+              theOffset = 190),
+              theEndCaret = 
+              @Caret(
+              theLine = 8,
+              theCol = 27,
+              theOffset = 209),
+              theOptionalSource = "matrix.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 3,
+      theOffset = 99),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 44,
+      theOffset = 182),
+      theOptionalSource = "matrix.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 13,
+      theOffset = 109),
+      theEndCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 21,
+      theOffset = 116),
+      theOptionalSource = "matrix.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 6,
+      theCol = 3,
+      theOffset = 99),
+      theEndCaret = 
+      @Caret(
+      theLine = 7,
+      theCol = 43,
+      theOffset = 181),
+      theOptionalSource = "matrix.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
  *  S P A R K   P a c k a g e   B o d yM e t a d a t a
  ****************************************************************/
 package MyMatrix
@@ -507,477 +980,4 @@ procedure Multiply
           optSparkLabelList = @NONE  
     )> 
   #l49.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package Standard
-@PackageAnnotation(
-  theSourceFileName = "StandardPackage.java",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package MyMatrix
-@PackageAnnotation(
-  theSourceFileName = "matrix.ada",
-  theSparkName = MyMatrix,
-  thePilarSparkName = MyMatrix,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 1,
-  theOffset = 0),
-  theEndCaret = 
-  @Caret(
-  theLine = 13,
-  theCol = 14,
-  theOffset = 331),
-  theOptionalSource = "matrix.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 1,
-  theOffset = 0),
-  theEndCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 17,
-  theOffset = 15),
-  theOptionalSource = "matrix.ada"
-),
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record Matrix_Index
-  @PrivateTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 11,
-      theCol = 3,
-      theOffset = 222),
-      theEndCaret = 
-      @Caret(
-      theLine = 11,
-      theCol = 35,
-      theOffset = 253),
-      theOptionalSource = "matrix.ada"
-    ),
-    fullyQualifiedName = MyMatrix::Matrix_Index,
-    tagged = false,
-    limited = true,
-    theDeclarationLoc = 
-      @RegionSelection(
-        theStartCaret = 
-        @Caret(
-        theLine = 3,
-        theCol = 3,
-        theOffset = 22),
-        theEndCaret = 
-        @Caret(
-        theLine = 3,
-        theCol = 40,
-        theOffset = 58),
-        theOptionalSource = "matrix.ada"
-      ),
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = 0,
-        theHighRangeExp = 9))
-{}
-record Matrix
-  @PrivateTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 3,
-      theOffset = 257),
-      theEndCaret = 
-      @Caret(
-      theLine = 12,
-      theCol = 64,
-      theOffset = 317),
-      theOptionalSource = "matrix.ada"
-    ),
-    fullyQualifiedName = MyMatrix::Matrix,
-    tagged = false,
-    limited = true,
-    theDeclarationLoc = 
-      @RegionSelection(
-        theStartCaret = 
-        @Caret(
-        theLine = 4,
-        theCol = 3,
-        theOffset = 62),
-        theEndCaret = 
-        @Caret(
-        theLine = 4,
-        theCol = 34,
-        theOffset = 92),
-        theOptionalSource = "matrix.ada"
-      ),
-    typeDefinition = 
-      @ConstrainedArrayDefinition(
-        theDimensions = 
-          2,
-        theComponentSubType = 
-          `Standard::Integer,
-        theDiscreteSubTypes = 
-          @List(`MyMatrix::Matrix_Index,
-                `MyMatrix::Matrix_Index)
-      ))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure Multiply 
-      (MyMatrix::Matrix X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 6,
-  theCol = 22,
-  theOffset = 118),
-  theEndCaret = 
-  @Caret(
-  theLine = 6,
-  theCol = 23,
-  theOffset = 118),
-  theOptionalSource = "matrix.ada"
-),
-       MyMatrix::Matrix Y @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 6,
-  theCol = 25,
-  theOffset = 121),
-  theEndCaret = 
-  @Caret(
-  theLine = 6,
-  theCol = 26,
-  theOffset = 121),
-  theOptionalSource = "matrix.ada"
-),
-       MyMatrix::Matrix Z @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 7,
-  theCol = 22,
-  theOffset = 161),
-  theEndCaret = 
-  @Caret(
-  theLine = 7,
-  theCol = 23,
-  theOffset = 161),
-  theOptionalSource = "matrix.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "matrix.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(X,
-            Y),
-      theOptionalOutParameters = @List(Z)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @NONE,
-      theOptionalGlobalDefinitionsSelection = 
-        @NONE,
-      theOptionalInGlobals = @NONE,
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @NONE,
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Z,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 15,
-                          theOffset = 198),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 16,
-                          theOffset = 198),
-                          theOptionalSource = "matrix.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 22,
-                          theOffset = 205),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 23,
-                          theOffset = 205),
-                          theOptionalSource = "matrix.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = Y,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 25,
-                          theOffset = 208),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 8,
-                          theCol = 26,
-                          theOffset = 208),
-                          theOptionalSource = "matrix.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 8,
-                  theCol = 15,
-                  theOffset = 198),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 8,
-                  theCol = 26,
-                  theOffset = 208),
-                  theOptionalSource = "matrix.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 8,
-              theCol = 7,
-              theOffset = 190),
-              theEndCaret = 
-              @Caret(
-              theLine = 8,
-              theCol = 27,
-              theOffset = 209),
-              theOptionalSource = "matrix.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 6,
-      theCol = 3,
-      theOffset = 99),
-      theEndCaret = 
-      @Caret(
-      theLine = 7,
-      theCol = 44,
-      theOffset = 182),
-      theOptionalSource = "matrix.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 6,
-      theCol = 13,
-      theOffset = 109),
-      theEndCaret = 
-      @Caret(
-      theLine = 6,
-      theCol = 21,
-      theOffset = 116),
-      theOptionalSource = "matrix.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 6,
-      theCol = 3,
-      theOffset = 99),
-      theEndCaret = 
-      @Caret(
-      theLine = 7,
-      theCol = 43,
-      theOffset = 181),
-      theOptionalSource = "matrix.ada"
-    )
-) 
-{ #locret. return;}
+}

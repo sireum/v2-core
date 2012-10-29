@@ -11,101 +11,21 @@
 /****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package Output_Port
+package Standard
 @PackageAnnotation(
-  theSourceFileName = "ex0803b.ada",
-  theSparkName = Output_Port,
-  thePilarSparkName = Output_Port,
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
   theOptionalParent = @NONE,
   thePackageKind = @SPECIFICATION,
   theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "Outputs",pilarSparkID = Output_Port::@@$Outputs,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 1,
-  theOffset = 259),
-  theEndCaret = 
-  @Caret(
-  theLine = 18,
-  theCol = 17,
-  theOffset = 450),
-  theOptionalSource = "ex0803b.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 1,
-  theOffset = 259),
-  theEndCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 20,
-  theOffset = 277),
-  theOptionalSource = "ex0803b.ada"
-),
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
   thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
     theOptionalContextClause = @NONE  ,  
   theOptionalPackageSpecificationAnnotation = 
-    @PackageSpecificationAnnotation(
-      theOptionalOwnStatement = @OwnStatement(
-      theOwnClauses = 
-        @List(@OwnClause(
-          theOptionalDeclaredType = @NONE,
-          theOwnVariables = 
-            @List(@OwnVariable(
-              varName = Output_Port::@@$Outputs,
-              mode = @OUT,
-              ownCategory = @ABSTRACT,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 13,
-                  theCol = 11,
-                  theOffset = 290),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 13,
-                  theCol = 22,
-                  theOffset = 300),
-                  theOptionalSource = "ex0803b.ada"
-                )
-            )),
-          theOwnClauseSelection =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 13,
-              theCol = 11,
-              theOffset = 290),
-              theEndCaret = 
-              @Caret(
-              theLine = 13,
-              theCol = 22,
-              theOffset = 301),
-              theOptionalSource = "ex0803b.ada"
-            )
-        )),
-      theOwnStatementSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 13,
-          theCol = 7,
-          theOffset = 286),
-          theEndCaret = 
-          @Caret(
-          theLine = 13,
-          theCol = 22,
-          theOffset = 301),
-          theOptionalSource = "ex0803b.ada"
-        )
-    ),
-      theOptionalVarInitClause = @NONE
-    ),
+    @NONE,
   theOptionalInheritClause = 
     @NONE
 ));
@@ -113,229 +33,102 @@ package Output_Port
 /****************************************************************
  *  T y p e   D e c l a r a t i o n s
  ****************************************************************/
-record Outputs__type
+record Integer
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 13,
-      theCol = 11,
-      theOffset = 290),
-      theEndCaret = 
-      @Caret(
-      theLine = 13,
-      theCol = 22,
-      theOffset = 300),
-      theOptionalSource = "ex0803b.ada"
-    ),
-    fullyQualifiedName = Output_Port::Outputs__type,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
     typeDefinition = 
-      @AbstractTypeDefinition)
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
 {}
 /****************************************************************
  *  G l o b a l   D e c l a r a t i o n s
  ****************************************************************/
-    global Output_Port::Outputs__type @@$Outputs @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "Outputs",pilarSparkID = Output_Port::@@$Outputs,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 13,
-    theCol = 11,
-    theOffset = 290),
-    theEndCaret = 
-    @Caret(
-    theLine = 13,
-    theCol = 22,
-    theOffset = 300),
-    theOptionalSource = "ex0803b.ada"
-  )
-  );
   
 /****************************************************************
  *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure Write_To_Port 
-      (Standard::Integer Output_Value @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 28,
-  theOffset = 335),
-  theEndCaret = 
-  @Caret(
-  theLine = 15,
-  theCol = 40,
-  theOffset = 346),
-  theOptionalSource = "ex0803b.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "ex0803b.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(Output_Value),
-      theOptionalOutParameters = @NONE
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = Output_Port::@@$Outputs,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 16,
-              theCol = 19,
-              theOffset = 382),
-              theEndCaret = 
-              @Caret(
-              theLine = 16,
-              theCol = 26,
-              theOffset = 388),
-              theOptionalSource = "ex0803b.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 16,
-          theCol = 8,
-          theOffset = 371),
-          theEndCaret = 
-          @Caret(
-          theLine = 16,
-          theCol = 27,
-          theOffset = 389),
-          theOptionalSource = "ex0803b.ada"
-        ),
-      theOptionalInGlobals = @NONE,
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(Output_Port::@@$Outputs),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = Output_Port::@@$Outputs,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 17,
-                          theCol = 16,
-                          theOffset = 407),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 17,
-                          theCol = 23,
-                          theOffset = 413),
-                          theOptionalSource = "ex0803b.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = Output_Value,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 17,
-                          theCol = 29,
-                          theOffset = 420),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 17,
-                          theCol = 41,
-                          theOffset = 431),
-                          theOptionalSource = "ex0803b.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 17,
-                  theCol = 16,
-                  theOffset = 407),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 17,
-                  theCol = 41,
-                  theOffset = 431),
-                  theOptionalSource = "ex0803b.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 8,
-              theOffset = 399),
-              theEndCaret = 
-              @Caret(
-              theLine = 17,
-              theCol = 42,
-              theOffset = 432),
-              theOptionalSource = "ex0803b.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 4,
-      theOffset = 311),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 55,
-      theOffset = 361),
-      theOptionalSource = "ex0803b.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 14,
-      theOffset = 321),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 27,
-      theOffset = 333),
-      theOptionalSource = "ex0803b.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 4,
-      theOffset = 311),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 54,
-      theOffset = 360),
-      theOptionalSource = "ex0803b.ada"
-    )
-) 
-{ #locret. return;}@Profile org::sireum::profile::spark
+ ****************************************************************/@Profile org::sireum::profile::spark
 /****************************************************************
  *  C o m p i l e r   M e t a d a t a
  ****************************************************************/
@@ -853,21 +646,101 @@ procedure Standard::Boolean End_Of_Input
 /****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package Standard
+package Output_Port
 @PackageAnnotation(
-  theSourceFileName = "StandardPackage.java",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
+  theSourceFileName = "ex0803b.ada",
+  theSparkName = Output_Port,
+  thePilarSparkName = Output_Port,
   theOptionalParent = @NONE,
   thePackageKind = @SPECIFICATION,
   theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "Outputs",pilarSparkID = Output_Port::@@$Outputs,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 1,
+  theOffset = 259),
+  theEndCaret = 
+  @Caret(
+  theLine = 18,
+  theCol = 17,
+  theOffset = 450),
+  theOptionalSource = "ex0803b.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 1,
+  theOffset = 259),
+  theEndCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 20,
+  theOffset = 277),
+  theOptionalSource = "ex0803b.ada"
+),
   thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
     theOptionalContextClause = @NONE  ,  
   theOptionalPackageSpecificationAnnotation = 
-    @NONE,
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = Output_Port::@@$Outputs,
+              mode = @OUT,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 11,
+                  theOffset = 290),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 13,
+                  theCol = 22,
+                  theOffset = 300),
+                  theOptionalSource = "ex0803b.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 13,
+              theCol = 11,
+              theOffset = 290),
+              theEndCaret = 
+              @Caret(
+              theLine = 13,
+              theCol = 22,
+              theOffset = 301),
+              theOptionalSource = "ex0803b.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 13,
+          theCol = 7,
+          theOffset = 286),
+          theEndCaret = 
+          @Caret(
+          theLine = 13,
+          theCol = 22,
+          theOffset = 301),
+          theOptionalSource = "ex0803b.ada"
+        )
+    ),
+      theOptionalVarInitClause = @NONE
+    ),
   theOptionalInheritClause = 
     @NONE
 ));
@@ -875,99 +748,226 @@ package Standard
 /****************************************************************
  *  T y p e   D e c l a r a t i o n s
  ****************************************************************/
-record Integer
+record Outputs__type
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Integer,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 13,
+      theCol = 11,
+      theOffset = 290),
+      theEndCaret = 
+      @Caret(
+      theLine = 13,
+      theCol = 22,
+      theOffset = 300),
+      theOptionalSource = "ex0803b.ada"
+    ),
+    fullyQualifiedName = Output_Port::Outputs__type,
     typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
+      @AbstractTypeDefinition)
 {}
 /****************************************************************
  *  G l o b a l   D e c l a r a t i o n s
  ****************************************************************/
+    global Output_Port::Outputs__type @@$Outputs @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "Outputs",pilarSparkID = Output_Port::@@$Outputs,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 13,
+    theCol = 11,
+    theOffset = 290),
+    theEndCaret = 
+    @Caret(
+    theLine = 13,
+    theCol = 22,
+    theOffset = 300),
+    theOptionalSource = "ex0803b.ada"
+  )
+  );
   
 /****************************************************************
  *  I n i t i a l i z a t i o n   P r o c e d u r e
  ****************************************************************/
+procedure Write_To_Port 
+      (Standard::Integer Output_Value @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 28,
+  theOffset = 335),
+  theEndCaret = 
+  @Caret(
+  theLine = 15,
+  theCol = 40,
+  theOffset = 346),
+  theOptionalSource = "ex0803b.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "ex0803b.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(Output_Value),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = Output_Port::@@$Outputs,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 16,
+              theCol = 19,
+              theOffset = 382),
+              theEndCaret = 
+              @Caret(
+              theLine = 16,
+              theCol = 26,
+              theOffset = 388),
+              theOptionalSource = "ex0803b.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 16,
+          theCol = 8,
+          theOffset = 371),
+          theEndCaret = 
+          @Caret(
+          theLine = 16,
+          theCol = 27,
+          theOffset = 389),
+          theOptionalSource = "ex0803b.ada"
+        ),
+      theOptionalInGlobals = @NONE,
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(Output_Port::@@$Outputs),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = Output_Port::@@$Outputs,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 17,
+                          theCol = 16,
+                          theOffset = 407),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 17,
+                          theCol = 23,
+                          theOffset = 413),
+                          theOptionalSource = "ex0803b.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = Output_Value,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 17,
+                          theCol = 29,
+                          theOffset = 420),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 17,
+                          theCol = 41,
+                          theOffset = 431),
+                          theOptionalSource = "ex0803b.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 17,
+                  theCol = 16,
+                  theOffset = 407),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 17,
+                  theCol = 41,
+                  theOffset = 431),
+                  theOptionalSource = "ex0803b.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 8,
+              theOffset = 399),
+              theEndCaret = 
+              @Caret(
+              theLine = 17,
+              theCol = 42,
+              theOffset = 432),
+              theOptionalSource = "ex0803b.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 4,
+      theOffset = 311),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 55,
+      theOffset = 361),
+      theOptionalSource = "ex0803b.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 14,
+      theOffset = 321),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 27,
+      theOffset = 333),
+      theOptionalSource = "ex0803b.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 4,
+      theOffset = 311),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 54,
+      theOffset = 360),
+      theOptionalSource = "ex0803b.ada"
+    )
+) 
+{ #locret. return;}

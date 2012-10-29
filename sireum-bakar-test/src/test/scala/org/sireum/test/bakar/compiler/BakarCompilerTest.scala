@@ -20,7 +20,7 @@ import org.sireum.util.FileResourceUri
 @RunWith(classOf[JUnitRunner])
 class BakarCompilerTest extends BakarTestFileFramework {
   //includes += "BakarCompiler_base_0_array_set_simple_array_set.cfg".r
-  //includes += "array".r
+  //includes += "ArraySet.adb".r
   //excludes += "record".r 
   //excludes += "BakarCompiler_base_0_array_set_simple_array_set.cfg".r
 
@@ -63,7 +63,7 @@ class BakarCompilerTest extends BakarTestFileFramework {
   override def outputSuffix = "bct"
 
   override def writeTestString(job : PipelineJob, w : Writer) = {
-    val sources = BakarCompilerModule.getSources(job.properties)
+    val sources = BakarCompilerModule.getSources(job.properties).sortWith(_ < _)
     sources.foreach(f => {
       //val (c, _) = FileUtil.readFile(f.right.get)
       val (c, _) = FileUtil.readFile(f)

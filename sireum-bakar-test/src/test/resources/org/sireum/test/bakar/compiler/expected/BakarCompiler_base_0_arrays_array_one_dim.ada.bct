@@ -9,724 +9,6 @@
   options = 
     @EmptyList)
 /****************************************************************
- *  S P A R K   P a c k a g e   B o d yM e t a d a t a
- ****************************************************************/
-package Array_One_Dim
-@PackageAnnotation(
-  theSourceFileName = "array_one_dim.ada",
-  theSparkName = Array_One_Dim,
-  thePilarSparkName = Array_One_Dim,
-  theOptionalParent = @NONE,
-  thePackageKind = @BODY,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 28,
-  theCol = 1,
-  theOffset = 583),
-  theEndCaret = 
-  @Caret(
-  theLine = 77,
-  theCol = 19,
-  theOffset = 2642),
-  theOptionalSource = "array_one_dim.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 28,
-  theCol = 1,
-  theOffset = 583),
-  theEndCaret = 
-  @Caret(
-  theLine = 28,
-  theCol = 27,
-  theOffset = 608),
-  theOptionalSource = "array_one_dim.ada"
-),
-  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,
-  theOptionalRefinementDefinition = 
-    @NONE
-));
-
-const $Const__methodDef__dummy2 {
-  Vprime = (Array_One_Dim::dummy2_methodDefType_localConsVector) (`Array_One_Dim::dummy2_methodDefType_localConsVector (
-     
-    {
-      Array_One_Dim::dummy2_methodDefType_locIndex iter0 => 
-        switch iter0 
-    | => (($Last(`Array_One_Dim::dummy2_methodDefType_locIndex) + Array_One_Dim::$Const.I))
-    }
-  )) @ConstantAnnotation(
-    theOrigin =
-      @METHOD,
-    theLoc = 
-      @RegionSelection(
-        theStartCaret = 
-        @Caret(
-        theLine = 53,
-        theCol = 5,
-        theOffset = 1565),
-        theEndCaret = 
-        @Caret(
-        theLine = 53,
-        theCol = 11,
-        theOffset = 1570),
-        theOptionalSource = "array_one_dim.ada"
-      ));
-}
-const $Const__methodDef__dummy {
-  Vprime = (Array_One_Dim::dummy_methodDefType_localConsVector) (`Array_One_Dim::dummy_methodDefType_localConsVector (
-     
-    {
-      Array_One_Dim::dummy_methodDefType_locIndex iter1 => 
-        switch iter1 
-    | => (($Last(`Array_One_Dim::dummy_methodDefType_Naturals) + Array_One_Dim::$Const.I))
-    }
-  )) @ConstantAnnotation(
-    theOrigin =
-      @METHOD,
-    theLoc = 
-      @RegionSelection(
-        theStartCaret = 
-        @Caret(
-        theLine = 38,
-        theCol = 5,
-        theOffset = 929),
-        theEndCaret = 
-        @Caret(
-        theLine = 38,
-        theCol = 11,
-        theOffset = 934),
-        theOptionalSource = "array_one_dim.ada"
-      ));
-  M = (Array_One_Dim::dummy_methodDefType_Naturals) ($Last(`Array_One_Dim::dummy_methodDefType_Naturals)) @ConstantAnnotation(
-    theOrigin =
-      @METHOD,
-    theLoc = 
-      @RegionSelection(
-        theStartCaret = 
-        @Caret(
-        theLine = 41,
-        theCol = 5,
-        theOffset = 1065),
-        theEndCaret = 
-        @Caret(
-        theLine = 41,
-        theCol = 6,
-        theOffset = 1065),
-        theOptionalSource = "array_one_dim.ada"
-      ));
-}
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record dummy2_methodDefType_locIndex
-  @SubTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 51,
-      theCol = 5,
-      theOffset = 1473),
-      theEndCaret = 
-      @Caret(
-      theLine = 51,
-      theCol = 43,
-      theOffset = 1510),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy2_methodDefType_locIndex,
-    type = `Array_One_Dim::Index,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = 10,
-        lowerBound = 1)))
-{}
-record dummy2_methodDefType_localConsVector
-  @SubTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 52,
-      theCol = 5,
-      theOffset = 1516),
-      theEndCaret = 
-      @Caret(
-      theLine = 52,
-      theCol = 49,
-      theOffset = 1559),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy2_methodDefType_localConsVector,
-    type = `Array_One_Dim::Vector,
-    constraint = 
-  @Some(@IndexConstraint(
-        subtypeMarks = 
-          @List(`Array_One_Dim::dummy2_methodDefType_locIndex))))
-{}
-record dummy_methodDefType_Naturals
-  @FullTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 31,
-      theCol = 5,
-      theOffset = 659),
-      theEndCaret = 
-      @Caret(
-      theLine = 31,
-      theCol = 44,
-      theOffset = 697),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_Naturals,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = 0,
-        theHighRangeExp = $Last(`Standard::Integer)))
-{}
-record dummy_methodDefType_Positives
-  @SubTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 5,
-      theOffset = 703),
-      theEndCaret = 
-      @Caret(
-      theLine = 32,
-      theCol = 58,
-      theOffset = 755),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_Positives,
-    type = `Array_One_Dim::dummy_methodDefType_Naturals,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Array_One_Dim::dummy_methodDefType_Naturals),
-        lowerBound = 1)))
-{}
-record dummy_methodDefType_locIndex
-  @SubTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 34,
-      theCol = 5,
-      theOffset = 766),
-      theEndCaret = 
-      @Caret(
-      theLine = 34,
-      theCol = 43,
-      theOffset = 803),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_locIndex,
-    type = `Array_One_Dim::Index,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = 10,
-        lowerBound = 1)))
-{}
-record dummy_methodDefType_localVector
-  @FullTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 35,
-      theCol = 5,
-      theOffset = 809),
-      theEndCaret = 
-      @Caret(
-      theLine = 35,
-      theCol = 61,
-      theOffset = 864),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_localVector,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Array_One_Dim::dummy_methodDefType_Naturals,
-        theIndexSubTypes = 
-          @List(`Standard::Integer)
-      ))
-{}
-record dummy_methodDefType_localConsVector
-  @SubTypeDeclaration(
-    origin = @METHOD,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 36,
-      theCol = 5,
-      theOffset = 870),
-      theEndCaret = 
-      @Caret(
-      theLine = 36,
-      theCol = 54,
-      theOffset = 918),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_localConsVector,
-    type = `Array_One_Dim::dummy_methodDefType_localVector,
-    constraint = 
-  @Some(@IndexConstraint(
-        subtypeMarks = 
-          @List(`Array_One_Dim::dummy_methodDefType_locIndex))))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure $$binit
- 
-{
-
-  local
-    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l1.  temp$3 := 5;
-  #l2. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l1,
-      endLabel = l2,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 66,
-      theCol = 4,
-      theOffset = 2044),
-      theEndCaret = 
-      @Caret(
-      theLine = 66,
-      theCol = 11,
-      theOffset = 2050),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Array_One_Dim::@@F := temp$3;
-  #l3.  temp$4 := 10;
-  #l4. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l3,
-      endLabel = l4,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 67,
-      theCol = 4,
-      theOffset = 2055),
-      theEndCaret = 
-      @Caret(
-      theLine = 67,
-      theCol = 12,
-      theOffset = 2062),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Array_One_Dim::@@G := temp$4;
-  #l5. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l5,
-      endLabel = l5,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 68,
-      theCol = 4,
-      theOffset = 2067),
-      theEndCaret = 
-      @Caret(
-      theLine = 76,
-      theCol = 41,
-      theOffset = 2623),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Array_One_Dim::@@V := `Array_One_Dim::constrainedVector (
-     
-    {
-      Array_One_Dim::Index iter4 => 
-        switch iter4 
-            | (1, (5 - 2)) => (
-                Array_One_Dim::@@F
-              )
-            | 10 => (
-                Array_One_Dim::@@F
-              )
-            | (3 + 1) => (
-                (Array_One_Dim::@@F + 1)
-              )
-            | ($First(`Array_One_Dim::subIndex), $Last(`Array_One_Dim::subIndex)) => (
-                Array_One_Dim::$Const.I
-              )
-            | (11, 20) => (
-                20
-              )
-    | => (3)
-    }
-  );
-  #locret. return;
-}
-/****************************************************************
- *  P r o c e d u r e s / F u n c t i o n s
- ****************************************************************/
-procedure dummy 
-      (Array_One_Dim::highIndex X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 19,
-  theOffset = 634),
-  theEndCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 20,
-  theOffset = 634),
-  theOptionalSource = "array_one_dim.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "array_one_dim.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @NONE
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 30,
-      theCol = 3,
-      theOffset = 618),
-      theEndCaret = 
-      @Caret(
-      theLine = 48,
-      theCol = 13,
-      theOffset = 1425),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 30,
-      theCol = 13,
-      theOffset = 628),
-      theEndCaret = 
-      @Caret(
-      theLine = 30,
-      theCol = 18,
-      theOffset = 632),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 30,
-      theCol = 3,
-      theOffset = 618),
-      theEndCaret = 
-      @Caret(
-      theLine = 30,
-      theCol = 36,
-      theOffset = 650),
-      theOptionalSource = "array_one_dim.ada"
-    )
-) 
-{
-
-  local
-    Array_One_Dim::highIndex temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::dummy_methodDefType_Naturals temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::dummy_methodDefType_Naturals temp$7 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::Index temp$8 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::Index temp$10 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l6.  temp$1 := X;
-  #l7.  temp$2 := 10000;
-  #l8.  temp$3 := (temp$1 + temp$2);
-  #l9.  temp$4 := X;
-  #l10.  temp$5 := Array_One_Dim::$Const__methodDef__dummy.Vprime [temp$4];
-  #l11.  temp$6 := (Standard::Integer) (temp$5);
-  #l12.  temp$7 := (Array_One_Dim::dummy_methodDefType_Naturals) (temp$6);
-  #l13.  temp$8 := (Array_One_Dim::Index) (temp$7);
-  #l14.  temp$9 := Array_One_Dim::$Const.I;
-  #l15.  temp$10 := (temp$8 - temp$9);
-  #l16. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l6,
-      endLabel = l16,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 5,
-      theOffset = 1357),
-      theEndCaret = 
-      @Caret(
-      theLine = 47,
-      theCol = 61,
-      theOffset = 1412),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Array_One_Dim::@@V [temp$3] := temp$10;
-  #l17.  return;
-}
-procedure dummy2 
-      (Array_One_Dim::highIndex X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 50,
-  theCol = 20,
-  theOffset = 1448),
-  theEndCaret = 
-  @Caret(
-  theLine = 50,
-  theCol = 21,
-  theOffset = 1448),
-  theOptionalSource = "array_one_dim.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "array_one_dim.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_BODY,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @NONE
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @NONE,
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 50,
-      theCol = 3,
-      theOffset = 1431),
-      theEndCaret = 
-      @Caret(
-      theLine = 63,
-      theCol = 14,
-      theOffset = 2031),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 50,
-      theCol = 13,
-      theOffset = 1441),
-      theEndCaret = 
-      @Caret(
-      theLine = 50,
-      theCol = 19,
-      theOffset = 1446),
-      theOptionalSource = "array_one_dim.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 50,
-      theCol = 3,
-      theOffset = 1431),
-      theEndCaret = 
-      @Caret(
-      theLine = 50,
-      theCol = 37,
-      theOffset = 1464),
-      theOptionalSource = "array_one_dim.ada"
-    )
-) 
-{
-
-  local
-    Array_One_Dim::highIndex locI @LocalVarDeclarationAnnotation(
-      theKind = @CONCRETE_VARIABLE,
-      theOptionalLoc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 55,
-      theCol = 5,
-      theOffset = 1694),
-      theEndCaret = 
-      @Caret(
-      theLine = 55,
-      theCol = 9,
-      theOffset = 1697),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    );
-    Array_One_Dim::highIndex temp$1 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$3 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$4 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$6 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$7 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Array_One_Dim::highIndex temp$9 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-    Standard::Integer temp$10 @LocalVarDeclarationAnnotation(
-      theKind = @TEMPORARY_VARIABLE,
-      theOptionalLoc = @NONE
-    );
-  #l18.  temp$1 := X;
-  #l19.  temp$2 := 1;
-  #l20.  temp$3 := (temp$1 + temp$2);
-  #l21. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l18,
-      endLabel = l21,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 58,
-      theCol = 5,
-      theOffset = 1727),
-      theEndCaret = 
-      @Caret(
-      theLine = 58,
-      theCol = 19,
-      theOffset = 1740),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  locI := temp$3;
-  #l22.  temp$4 := X;
-  #l23.  temp$5 := 10000;
-  #l24.  temp$6 := (temp$4 + temp$5);
-  #l25.  temp$7 := X;
-  #l26.  temp$8 := Array_One_Dim::$Const__methodDef__dummy2.Vprime [temp$7];
-  #l27.  temp$9 := locI;
-  #l28.  temp$10 := (temp$8 - temp$9);
-  #l29. <@AssignmentStatementAnnotation(
-      mark = @Mark(
-      startLabel = l22,
-      endLabel = l29,
-      optRS = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 5,
-      theOffset = 1985),
-      theEndCaret = 
-      @Caret(
-      theLine = 62,
-      theCol = 38,
-      theOffset = 2017),
-      theOptionalSource = "array_one_dim.ada"
-    )
-    ),
-      optSparkLabelList = @NONE 
-  )>  Array_One_Dim::@@V [temp$6] := temp$10;
-  #l30.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
 package Standard
@@ -1589,4 +871,722 @@ procedure dummy2
       theOptionalSource = "array_one_dim.ada"
     )
 ) 
-{ #locret. return;}
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   B o d yM e t a d a t a
+ ****************************************************************/
+package Array_One_Dim
+@PackageAnnotation(
+  theSourceFileName = "array_one_dim.ada",
+  theSparkName = Array_One_Dim,
+  thePilarSparkName = Array_One_Dim,
+  theOptionalParent = @NONE,
+  thePackageKind = @BODY,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 28,
+  theCol = 1,
+  theOffset = 583),
+  theEndCaret = 
+  @Caret(
+  theLine = 77,
+  theCol = 19,
+  theOffset = 2642),
+  theOptionalSource = "array_one_dim.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 28,
+  theCol = 1,
+  theOffset = 583),
+  theEndCaret = 
+  @Caret(
+  theLine = 28,
+  theCol = 27,
+  theOffset = 608),
+  theOptionalSource = "array_one_dim.ada"
+),
+  thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,
+  theOptionalRefinementDefinition = 
+    @NONE
+));
+
+const $Const__methodDef__dummy2 {
+  Vprime = (Array_One_Dim::dummy2_methodDefType_localConsVector) (`Array_One_Dim::dummy2_methodDefType_localConsVector (
+     
+    {
+      Array_One_Dim::dummy2_methodDefType_locIndex iter0 => 
+        switch iter0 
+    | => (($Last(`Array_One_Dim::dummy2_methodDefType_locIndex) + Array_One_Dim::$Const.I))
+    }
+  )) @ConstantAnnotation(
+    theOrigin =
+      @METHOD,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 53,
+        theCol = 5,
+        theOffset = 1565),
+        theEndCaret = 
+        @Caret(
+        theLine = 53,
+        theCol = 11,
+        theOffset = 1570),
+        theOptionalSource = "array_one_dim.ada"
+      ));
+}
+const $Const__methodDef__dummy {
+  Vprime = (Array_One_Dim::dummy_methodDefType_localConsVector) (`Array_One_Dim::dummy_methodDefType_localConsVector (
+     
+    {
+      Array_One_Dim::dummy_methodDefType_locIndex iter1 => 
+        switch iter1 
+    | => (($Last(`Array_One_Dim::dummy_methodDefType_Naturals) + Array_One_Dim::$Const.I))
+    }
+  )) @ConstantAnnotation(
+    theOrigin =
+      @METHOD,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 38,
+        theCol = 5,
+        theOffset = 929),
+        theEndCaret = 
+        @Caret(
+        theLine = 38,
+        theCol = 11,
+        theOffset = 934),
+        theOptionalSource = "array_one_dim.ada"
+      ));
+  M = (Array_One_Dim::dummy_methodDefType_Naturals) ($Last(`Array_One_Dim::dummy_methodDefType_Naturals)) @ConstantAnnotation(
+    theOrigin =
+      @METHOD,
+    theLoc = 
+      @RegionSelection(
+        theStartCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 5,
+        theOffset = 1065),
+        theEndCaret = 
+        @Caret(
+        theLine = 41,
+        theCol = 6,
+        theOffset = 1065),
+        theOptionalSource = "array_one_dim.ada"
+      ));
+}
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record dummy2_methodDefType_locIndex
+  @SubTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 51,
+      theCol = 5,
+      theOffset = 1473),
+      theEndCaret = 
+      @Caret(
+      theLine = 51,
+      theCol = 43,
+      theOffset = 1510),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy2_methodDefType_locIndex,
+    type = `Array_One_Dim::Index,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = 10,
+        lowerBound = 1)))
+{}
+record dummy2_methodDefType_localConsVector
+  @SubTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 5,
+      theOffset = 1516),
+      theEndCaret = 
+      @Caret(
+      theLine = 52,
+      theCol = 49,
+      theOffset = 1559),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy2_methodDefType_localConsVector,
+    type = `Array_One_Dim::Vector,
+    constraint = 
+  @Some(@IndexConstraint(
+        subtypeMarks = 
+          @List(`Array_One_Dim::dummy2_methodDefType_locIndex))))
+{}
+record dummy_methodDefType_Naturals
+  @FullTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 5,
+      theOffset = 659),
+      theEndCaret = 
+      @Caret(
+      theLine = 31,
+      theCol = 44,
+      theOffset = 697),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_Naturals,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = $Last(`Standard::Integer)))
+{}
+record dummy_methodDefType_Positives
+  @SubTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 5,
+      theOffset = 703),
+      theEndCaret = 
+      @Caret(
+      theLine = 32,
+      theCol = 58,
+      theOffset = 755),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_Positives,
+    type = `Array_One_Dim::dummy_methodDefType_Naturals,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Array_One_Dim::dummy_methodDefType_Naturals),
+        lowerBound = 1)))
+{}
+record dummy_methodDefType_locIndex
+  @SubTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 34,
+      theCol = 5,
+      theOffset = 766),
+      theEndCaret = 
+      @Caret(
+      theLine = 34,
+      theCol = 43,
+      theOffset = 803),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_locIndex,
+    type = `Array_One_Dim::Index,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = 10,
+        lowerBound = 1)))
+{}
+record dummy_methodDefType_localVector
+  @FullTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 5,
+      theOffset = 809),
+      theEndCaret = 
+      @Caret(
+      theLine = 35,
+      theCol = 61,
+      theOffset = 864),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_localVector,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Array_One_Dim::dummy_methodDefType_Naturals,
+        theIndexSubTypes = 
+          @List(`Standard::Integer)
+      ))
+{}
+record dummy_methodDefType_localConsVector
+  @SubTypeDeclaration(
+    origin = @METHOD,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 5,
+      theOffset = 870),
+      theEndCaret = 
+      @Caret(
+      theLine = 36,
+      theCol = 54,
+      theOffset = 918),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+    fullyQualifiedName = Array_One_Dim::dummy_methodDefType_localConsVector,
+    type = `Array_One_Dim::dummy_methodDefType_localVector,
+    constraint = 
+  @Some(@IndexConstraint(
+        subtypeMarks = 
+          @List(`Array_One_Dim::dummy_methodDefType_locIndex))))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure $$binit
+ 
+{
+
+  local
+    Standard::Integer temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l1.  temp$3 := 5;
+  #l2. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l1,
+      endLabel = l2,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 66,
+      theCol = 4,
+      theOffset = 2044),
+      theEndCaret = 
+      @Caret(
+      theLine = 66,
+      theCol = 11,
+      theOffset = 2050),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Array_One_Dim::@@F := temp$3;
+  #l3.  temp$4 := 10;
+  #l4. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l3,
+      endLabel = l4,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 67,
+      theCol = 4,
+      theOffset = 2055),
+      theEndCaret = 
+      @Caret(
+      theLine = 67,
+      theCol = 12,
+      theOffset = 2062),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Array_One_Dim::@@G := temp$4;
+  #l5. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l5,
+      endLabel = l5,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 68,
+      theCol = 4,
+      theOffset = 2067),
+      theEndCaret = 
+      @Caret(
+      theLine = 76,
+      theCol = 41,
+      theOffset = 2623),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Array_One_Dim::@@V := `Array_One_Dim::constrainedVector (
+     
+    {
+      Array_One_Dim::Index iter4 => 
+        switch iter4 
+            | (1, (5 - 2)) => (
+                Array_One_Dim::@@F
+              )
+            | 10 => (
+                Array_One_Dim::@@F
+              )
+            | (3 + 1) => (
+                (Array_One_Dim::@@F + 1)
+              )
+            | ($First(`Array_One_Dim::subIndex), $Last(`Array_One_Dim::subIndex)) => (
+                Array_One_Dim::$Const.I
+              )
+            | (11, 20) => (
+                20
+              )
+    | => (3)
+    }
+  );
+  #locret. return;
+}
+/****************************************************************
+ *  P r o c e d u r e s / F u n c t i o n s
+ ****************************************************************/
+procedure dummy 
+      (Array_One_Dim::highIndex X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 19,
+  theOffset = 634),
+  theEndCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 20,
+  theOffset = 634),
+  theOptionalSource = "array_one_dim.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_one_dim.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 3,
+      theOffset = 618),
+      theEndCaret = 
+      @Caret(
+      theLine = 48,
+      theCol = 13,
+      theOffset = 1425),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 13,
+      theOffset = 628),
+      theEndCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 18,
+      theOffset = 632),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 3,
+      theOffset = 618),
+      theEndCaret = 
+      @Caret(
+      theLine = 30,
+      theCol = 36,
+      theOffset = 650),
+      theOptionalSource = "array_one_dim.ada"
+    )
+) 
+{
+
+  local
+    Array_One_Dim::highIndex temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::dummy_methodDefType_Naturals temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::dummy_methodDefType_Naturals temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::Index temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::Index temp$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l6.  temp$1 := X;
+  #l7.  temp$2 := 10000;
+  #l8.  temp$3 := (temp$1 + temp$2);
+  #l9.  temp$4 := X;
+  #l10.  temp$5 := Array_One_Dim::$Const__methodDef__dummy.Vprime [temp$4];
+  #l11.  temp$6 := (Standard::Integer) (temp$5);
+  #l12.  temp$7 := (Array_One_Dim::dummy_methodDefType_Naturals) (temp$6);
+  #l13.  temp$8 := (Array_One_Dim::Index) (temp$7);
+  #l14.  temp$9 := Array_One_Dim::$Const.I;
+  #l15.  temp$10 := (temp$8 - temp$9);
+  #l16. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l6,
+      endLabel = l16,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 5,
+      theOffset = 1357),
+      theEndCaret = 
+      @Caret(
+      theLine = 47,
+      theCol = 61,
+      theOffset = 1412),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Array_One_Dim::@@V [temp$3] := temp$10;
+  #l17.  return;
+}
+procedure dummy2 
+      (Array_One_Dim::highIndex X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 50,
+  theCol = 20,
+  theOffset = 1448),
+  theEndCaret = 
+  @Caret(
+  theLine = 50,
+  theCol = 21,
+  theOffset = 1448),
+  theOptionalSource = "array_one_dim.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "array_one_dim.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_BODY,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @NONE,
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 3,
+      theOffset = 1431),
+      theEndCaret = 
+      @Caret(
+      theLine = 63,
+      theCol = 14,
+      theOffset = 2031),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 13,
+      theOffset = 1441),
+      theEndCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 19,
+      theOffset = 1446),
+      theOptionalSource = "array_one_dim.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 3,
+      theOffset = 1431),
+      theEndCaret = 
+      @Caret(
+      theLine = 50,
+      theCol = 37,
+      theOffset = 1464),
+      theOptionalSource = "array_one_dim.ada"
+    )
+) 
+{
+
+  local
+    Array_One_Dim::highIndex locI @LocalVarDeclarationAnnotation(
+      theKind = @CONCRETE_VARIABLE,
+      theOptionalLoc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 5,
+      theOffset = 1694),
+      theEndCaret = 
+      @Caret(
+      theLine = 55,
+      theCol = 9,
+      theOffset = 1697),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    );
+    Array_One_Dim::highIndex temp$1 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$2 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$3 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$4 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$5 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$6 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$7 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$8 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Array_One_Dim::highIndex temp$9 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+    Standard::Integer temp$10 @LocalVarDeclarationAnnotation(
+      theKind = @TEMPORARY_VARIABLE,
+      theOptionalLoc = @NONE
+    );
+  #l18.  temp$1 := X;
+  #l19.  temp$2 := 1;
+  #l20.  temp$3 := (temp$1 + temp$2);
+  #l21. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l18,
+      endLabel = l21,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 58,
+      theCol = 5,
+      theOffset = 1727),
+      theEndCaret = 
+      @Caret(
+      theLine = 58,
+      theCol = 19,
+      theOffset = 1740),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  locI := temp$3;
+  #l22.  temp$4 := X;
+  #l23.  temp$5 := 10000;
+  #l24.  temp$6 := (temp$4 + temp$5);
+  #l25.  temp$7 := X;
+  #l26.  temp$8 := Array_One_Dim::$Const__methodDef__dummy2.Vprime [temp$7];
+  #l27.  temp$9 := locI;
+  #l28.  temp$10 := (temp$8 - temp$9);
+  #l29. <@AssignmentStatementAnnotation(
+      mark = @Mark(
+      startLabel = l22,
+      endLabel = l29,
+      optRS = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 5,
+      theOffset = 1985),
+      theEndCaret = 
+      @Caret(
+      theLine = 62,
+      theCol = 38,
+      theOffset = 2017),
+      theOptionalSource = "array_one_dim.ada"
+    )
+    ),
+      optSparkLabelList = @NONE 
+  )>  Array_One_Dim::@@V [temp$6] := temp$10;
+  #l30.  return;
+}

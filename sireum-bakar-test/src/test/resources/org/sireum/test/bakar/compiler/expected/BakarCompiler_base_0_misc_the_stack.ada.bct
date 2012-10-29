@@ -9,6 +9,708 @@
   options = 
     @EmptyList)
 /****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package Standard
+@PackageAnnotation(
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
+{}
+record Float
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
+    typeDefinition = 
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
+{}
+record Boolean
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
+{}
+record Character
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
+    typeDefinition = 
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
+{}
+record String
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
+    typeDefinition = 
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package The_Stack
+@PackageAnnotation(
+  theSourceFileName = "the_stack_praxis.ada",
+  theSparkName = The_Stack,
+  thePilarSparkName = The_Stack,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = The_Stack::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 12,
+  theCol = 15,
+  theOffset = 312),
+  theOptionalSource = "the_stack_praxis.ada"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 1,
+  theOffset = 0),
+  theEndCaret = 
+  @Caret(
+  theLine = 1,
+  theCol = 18,
+  theOffset = 16),
+  theOptionalSource = "the_stack_praxis.ada"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @PackageSpecificationAnnotation(
+      theOptionalOwnStatement = @OwnStatement(
+      theOwnClauses = 
+        @List(@OwnClause(
+          theOptionalDeclaredType = @NONE,
+          theOwnVariables = 
+            @List(@OwnVariable(
+              varName = The_Stack::@@$State,
+              mode = @NONE,
+              ownCategory = @ABSTRACT,
+              theOwnVariableSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 11,
+                  theOffset = 29),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 2,
+                  theCol = 16,
+                  theOffset = 33),
+                  theOptionalSource = "the_stack_praxis.ada"
+                )
+            )),
+          theOwnClauseSelection =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 11,
+              theOffset = 29),
+              theEndCaret = 
+              @Caret(
+              theLine = 2,
+              theCol = 16,
+              theOffset = 34),
+              theOptionalSource = "the_stack_praxis.ada"
+            )
+        )),
+      theOwnStatementSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 7,
+          theOffset = 25),
+          theEndCaret = 
+          @Caret(
+          theLine = 2,
+          theCol = 16,
+          theOffset = 34),
+          theOptionalSource = "the_stack_praxis.ada"
+        )
+    ),
+      theOptionalVarInitClause = @List(The_Stack::@@$State)
+    ),
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record State__type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 2,
+      theCol = 11,
+      theOffset = 29),
+      theEndCaret = 
+      @Caret(
+      theLine = 2,
+      theCol = 16,
+      theOffset = 33),
+      theOptionalSource = "the_stack_praxis.ada"
+    ),
+    fullyQualifiedName = The_Stack::State__type,
+    typeDefinition = 
+      @AbstractTypeDefinition)
+{}
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+    global The_Stack::State__type @@$State @GlobalVarAnnotation(
+    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = The_Stack::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
+    loc = @RegionSelection(
+    theStartCaret = 
+    @Caret(
+    theLine = 2,
+    theCol = 11,
+    theOffset = 29),
+    theEndCaret = 
+    @Caret(
+    theLine = 2,
+    theCol = 16,
+    theOffset = 33),
+    theOptionalSource = "the_stack_praxis.ada"
+  )
+  );
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
+procedure Push 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 5,
+  theCol = 19,
+  theOffset = 108),
+  theEndCaret = 
+  @Caret(
+  theLine = 5,
+  theCol = 20,
+  theOffset = 108),
+  theOptionalSource = "the_stack_praxis.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "the_stack_praxis.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @List(X),
+      theOptionalOutParameters = @NONE
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = The_Stack::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 6,
+              theCol = 22,
+              theOffset = 147),
+              theEndCaret = 
+              @Caret(
+              theLine = 6,
+              theCol = 27,
+              theOffset = 151),
+              theOptionalSource = "the_stack_praxis.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 6,
+          theCol = 8,
+          theOffset = 133),
+          theEndCaret = 
+          @Caret(
+          theLine = 6,
+          theCol = 28,
+          theOffset = 152),
+          theOptionalSource = "the_stack_praxis.ada"
+        ),
+      theOptionalInGlobals = @List(The_Stack::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(The_Stack::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = The_Stack::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 16,
+                          theOffset = 170),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 21,
+                          theOffset = 174),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = The_Stack::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 27,
+                          theOffset = 181),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 32,
+                          theOffset = 185),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ),
+                          @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 34,
+                          theOffset = 188),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 7,
+                          theCol = 35,
+                          theOffset = 188),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 7,
+                  theCol = 16,
+                  theOffset = 170),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 7,
+                  theCol = 35,
+                  theOffset = 188),
+                  theOptionalSource = "the_stack_praxis.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 8,
+              theOffset = 162),
+              theEndCaret = 
+              @Caret(
+              theLine = 7,
+              theCol = 36,
+              theOffset = 189),
+              theOptionalSource = "the_stack_praxis.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 4,
+      theOffset = 93),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 35,
+      theOffset = 123),
+      theOptionalSource = "the_stack_praxis.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 14,
+      theOffset = 103),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 18,
+      theOffset = 106),
+      theOptionalSource = "the_stack_praxis.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 4,
+      theOffset = 93),
+      theEndCaret = 
+      @Caret(
+      theLine = 5,
+      theCol = 34,
+      theOffset = 122),
+      theOptionalSource = "the_stack_praxis.ada"
+    )
+) 
+{ #locret. return;}
+procedure Pop 
+      (Standard::Integer X @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 18,
+  theOffset = 214),
+  theEndCaret = 
+  @Caret(
+  theLine = 9,
+  theCol = 19,
+  theOffset = 214),
+  theOptionalSource = "the_stack_praxis.ada"
+))
+@MethodAnnotation(
+  theSourceFileName = "the_stack_praxis.ada",
+  theAdaMethodAnnotation = 
+    @AdaProcedureAnnotation(
+      theOrigin = @PACKAGE_SPEC_PUBLIC,
+      theOptionalInParameters = @NONE,
+      theOptionalOutParameters = @List(X)
+    ),
+  theOptionalSPARKMethodAnnotation = 
+    @ProcedureAnnotation(
+      theOptionalPreCondition = 
+        @NONE,
+      theOptionalGlobalDefinitions = 
+        @List(@AnnotationVariable(
+          id = The_Stack::@@$State,
+          loc =
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 10,
+              theCol = 22,
+              theOffset = 254),
+              theEndCaret = 
+              @Caret(
+              theLine = 10,
+              theCol = 27,
+              theOffset = 258),
+              theOptionalSource = "the_stack_praxis.ada"
+            )
+        )),
+      theOptionalGlobalDefinitionsSelection = 
+        @RegionSelection(
+          theStartCaret = 
+          @Caret(
+          theLine = 10,
+          theCol = 8,
+          theOffset = 240),
+          theEndCaret = 
+          @Caret(
+          theLine = 10,
+          theCol = 28,
+          theOffset = 259),
+          theOptionalSource = "the_stack_praxis.ada"
+        ),
+      theOptionalInGlobals = @List(The_Stack::@@$State),
+      theOptionalPostCondition = 
+        @NONE,
+      theOptionalOutGlobals = @List(The_Stack::@@$State),
+      theOptionalDependencyRelation = 
+        @DependencyRelation(
+          theDependencyClauses = 
+            @List(@DependencyClause(
+              theDependencyClauseMembers = 
+                @List(@DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = The_Stack::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 16,
+                          theOffset = 277),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 21,
+                          theOffset = 281),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = The_Stack::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 30,
+                          theOffset = 291),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 35,
+                          theOffset = 295),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ))
+                ),
+                      @DependencyClauseMember(
+                  theOutVariable = 
+                    @AnnotationVariable(
+                      id = X,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 23,
+                          theOffset = 284),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 24,
+                          theOffset = 284),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ),
+                  theOptionalInVariables = 
+                    @List(@AnnotationVariable(
+                      id = The_Stack::@@$State,
+                      loc =
+                        @RegionSelection(
+                          theStartCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 30,
+                          theOffset = 291),
+                          theEndCaret = 
+                          @Caret(
+                          theLine = 11,
+                          theCol = 35,
+                          theOffset = 295),
+                          theOptionalSource = "the_stack_praxis.ada"
+                        )
+                    ))
+                )),
+              theDependencyClauseRegionSelection = 
+                @RegionSelection(
+                  theStartCaret = 
+                  @Caret(
+                  theLine = 11,
+                  theCol = 16,
+                  theOffset = 277),
+                  theEndCaret = 
+                  @Caret(
+                  theLine = 11,
+                  theCol = 35,
+                  theOffset = 295),
+                  theOptionalSource = "the_stack_praxis.ada"
+                )
+            )  ),
+          theDependencyRelationRegionSelection = 
+            @RegionSelection(
+              theStartCaret = 
+              @Caret(
+              theLine = 11,
+              theCol = 8,
+              theOffset = 269),
+              theEndCaret = 
+              @Caret(
+              theLine = 11,
+              theCol = 36,
+              theOffset = 296),
+              theOptionalSource = "the_stack_praxis.ada"
+            )  
+        )
+    ),
+  theMethodSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 4,
+      theOffset = 200),
+      theEndCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 35,
+      theOffset = 230),
+      theOptionalSource = "the_stack_praxis.ada"
+    ),
+  theMethodNameSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 14,
+      theOffset = 210),
+      theEndCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 17,
+      theOffset = 212),
+      theOptionalSource = "the_stack_praxis.ada"
+    ),
+  theMethodSpecificationSelection = 
+    @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 4,
+      theOffset = 200),
+      theEndCaret = 
+      @Caret(
+      theLine = 9,
+      theCol = 34,
+      theOffset = 229),
+      theOptionalSource = "the_stack_praxis.ada"
+    )
+) 
+{ #locret. return;}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
  *  S P A R K   P a c k a g e   B o d yM e t a d a t a
  ****************************************************************/
 package The_Stack
@@ -1030,706 +1732,4 @@ procedure Pop
       optSparkLabelList = @NONE 
   )>  The_Stack::@@Pointer := temp$5;
   #l19.  return;
-}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package The_Stack
-@PackageAnnotation(
-  theSourceFileName = "the_stack_praxis.ada",
-  theSparkName = The_Stack,
-  thePilarSparkName = The_Stack,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @List(@SymbolEntry(sparkID = "State",pilarSparkID = The_Stack::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE)),
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 1,
-  theOffset = 0),
-  theEndCaret = 
-  @Caret(
-  theLine = 12,
-  theCol = 15,
-  theOffset = 312),
-  theOptionalSource = "the_stack_praxis.ada"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 1,
-  theOffset = 0),
-  theEndCaret = 
-  @Caret(
-  theLine = 1,
-  theCol = 18,
-  theOffset = 16),
-  theOptionalSource = "the_stack_praxis.ada"
-),
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @PackageSpecificationAnnotation(
-      theOptionalOwnStatement = @OwnStatement(
-      theOwnClauses = 
-        @List(@OwnClause(
-          theOptionalDeclaredType = @NONE,
-          theOwnVariables = 
-            @List(@OwnVariable(
-              varName = The_Stack::@@$State,
-              mode = @NONE,
-              ownCategory = @ABSTRACT,
-              theOwnVariableSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 2,
-                  theCol = 11,
-                  theOffset = 29),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 2,
-                  theCol = 16,
-                  theOffset = 33),
-                  theOptionalSource = "the_stack_praxis.ada"
-                )
-            )),
-          theOwnClauseSelection =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 2,
-              theCol = 11,
-              theOffset = 29),
-              theEndCaret = 
-              @Caret(
-              theLine = 2,
-              theCol = 16,
-              theOffset = 34),
-              theOptionalSource = "the_stack_praxis.ada"
-            )
-        )),
-      theOwnStatementSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 2,
-          theCol = 7,
-          theOffset = 25),
-          theEndCaret = 
-          @Caret(
-          theLine = 2,
-          theCol = 16,
-          theOffset = 34),
-          theOptionalSource = "the_stack_praxis.ada"
-        )
-    ),
-      theOptionalVarInitClause = @List(The_Stack::@@$State)
-    ),
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record State__type
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 2,
-      theCol = 11,
-      theOffset = 29),
-      theEndCaret = 
-      @Caret(
-      theLine = 2,
-      theCol = 16,
-      theOffset = 33),
-      theOptionalSource = "the_stack_praxis.ada"
-    ),
-    fullyQualifiedName = The_Stack::State__type,
-    typeDefinition = 
-      @AbstractTypeDefinition)
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-    global The_Stack::State__type @@$State @GlobalVarAnnotation(
-    symbolEntry = @SymbolEntry(sparkID = "State",pilarSparkID = The_Stack::@@$State,originTag = @PACKAGE_SPEC_PUBLIC,kindTag = @ABSTRACT_VARIABLE),
-    loc = @RegionSelection(
-    theStartCaret = 
-    @Caret(
-    theLine = 2,
-    theCol = 11,
-    theOffset = 29),
-    theEndCaret = 
-    @Caret(
-    theLine = 2,
-    theCol = 16,
-    theOffset = 33),
-    theOptionalSource = "the_stack_praxis.ada"
-  )
-  );
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
-procedure Push 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 5,
-  theCol = 19,
-  theOffset = 108),
-  theEndCaret = 
-  @Caret(
-  theLine = 5,
-  theCol = 20,
-  theOffset = 108),
-  theOptionalSource = "the_stack_praxis.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "the_stack_praxis.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @List(X),
-      theOptionalOutParameters = @NONE
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = The_Stack::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 6,
-              theCol = 22,
-              theOffset = 147),
-              theEndCaret = 
-              @Caret(
-              theLine = 6,
-              theCol = 27,
-              theOffset = 151),
-              theOptionalSource = "the_stack_praxis.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 6,
-          theCol = 8,
-          theOffset = 133),
-          theEndCaret = 
-          @Caret(
-          theLine = 6,
-          theCol = 28,
-          theOffset = 152),
-          theOptionalSource = "the_stack_praxis.ada"
-        ),
-      theOptionalInGlobals = @List(The_Stack::@@$State),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(The_Stack::@@$State),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = The_Stack::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 16,
-                          theOffset = 170),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 21,
-                          theOffset = 174),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = The_Stack::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 27,
-                          theOffset = 181),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 32,
-                          theOffset = 185),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ),
-                          @AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 34,
-                          theOffset = 188),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 7,
-                          theCol = 35,
-                          theOffset = 188),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 7,
-                  theCol = 16,
-                  theOffset = 170),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 7,
-                  theCol = 35,
-                  theOffset = 188),
-                  theOptionalSource = "the_stack_praxis.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 7,
-              theCol = 8,
-              theOffset = 162),
-              theEndCaret = 
-              @Caret(
-              theLine = 7,
-              theCol = 36,
-              theOffset = 189),
-              theOptionalSource = "the_stack_praxis.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 4,
-      theOffset = 93),
-      theEndCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 35,
-      theOffset = 123),
-      theOptionalSource = "the_stack_praxis.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 14,
-      theOffset = 103),
-      theEndCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 18,
-      theOffset = 106),
-      theOptionalSource = "the_stack_praxis.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 4,
-      theOffset = 93),
-      theEndCaret = 
-      @Caret(
-      theLine = 5,
-      theCol = 34,
-      theOffset = 122),
-      theOptionalSource = "the_stack_praxis.ada"
-    )
-) 
-{ #locret. return;}
-procedure Pop 
-      (Standard::Integer X @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 9,
-  theCol = 18,
-  theOffset = 214),
-  theEndCaret = 
-  @Caret(
-  theLine = 9,
-  theCol = 19,
-  theOffset = 214),
-  theOptionalSource = "the_stack_praxis.ada"
-))
-@MethodAnnotation(
-  theSourceFileName = "the_stack_praxis.ada",
-  theAdaMethodAnnotation = 
-    @AdaProcedureAnnotation(
-      theOrigin = @PACKAGE_SPEC_PUBLIC,
-      theOptionalInParameters = @NONE,
-      theOptionalOutParameters = @List(X)
-    ),
-  theOptionalSPARKMethodAnnotation = 
-    @ProcedureAnnotation(
-      theOptionalPreCondition = 
-        @NONE,
-      theOptionalGlobalDefinitions = 
-        @List(@AnnotationVariable(
-          id = The_Stack::@@$State,
-          loc =
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 10,
-              theCol = 22,
-              theOffset = 254),
-              theEndCaret = 
-              @Caret(
-              theLine = 10,
-              theCol = 27,
-              theOffset = 258),
-              theOptionalSource = "the_stack_praxis.ada"
-            )
-        )),
-      theOptionalGlobalDefinitionsSelection = 
-        @RegionSelection(
-          theStartCaret = 
-          @Caret(
-          theLine = 10,
-          theCol = 8,
-          theOffset = 240),
-          theEndCaret = 
-          @Caret(
-          theLine = 10,
-          theCol = 28,
-          theOffset = 259),
-          theOptionalSource = "the_stack_praxis.ada"
-        ),
-      theOptionalInGlobals = @List(The_Stack::@@$State),
-      theOptionalPostCondition = 
-        @NONE,
-      theOptionalOutGlobals = @List(The_Stack::@@$State),
-      theOptionalDependencyRelation = 
-        @DependencyRelation(
-          theDependencyClauses = 
-            @List(@DependencyClause(
-              theDependencyClauseMembers = 
-                @List(@DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = The_Stack::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 16,
-                          theOffset = 277),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 21,
-                          theOffset = 281),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = The_Stack::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 30,
-                          theOffset = 291),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 35,
-                          theOffset = 295),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ))
-                ),
-                      @DependencyClauseMember(
-                  theOutVariable = 
-                    @AnnotationVariable(
-                      id = X,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 23,
-                          theOffset = 284),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 24,
-                          theOffset = 284),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ),
-                  theOptionalInVariables = 
-                    @List(@AnnotationVariable(
-                      id = The_Stack::@@$State,
-                      loc =
-                        @RegionSelection(
-                          theStartCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 30,
-                          theOffset = 291),
-                          theEndCaret = 
-                          @Caret(
-                          theLine = 11,
-                          theCol = 35,
-                          theOffset = 295),
-                          theOptionalSource = "the_stack_praxis.ada"
-                        )
-                    ))
-                )),
-              theDependencyClauseRegionSelection = 
-                @RegionSelection(
-                  theStartCaret = 
-                  @Caret(
-                  theLine = 11,
-                  theCol = 16,
-                  theOffset = 277),
-                  theEndCaret = 
-                  @Caret(
-                  theLine = 11,
-                  theCol = 35,
-                  theOffset = 295),
-                  theOptionalSource = "the_stack_praxis.ada"
-                )
-            )  ),
-          theDependencyRelationRegionSelection = 
-            @RegionSelection(
-              theStartCaret = 
-              @Caret(
-              theLine = 11,
-              theCol = 8,
-              theOffset = 269),
-              theEndCaret = 
-              @Caret(
-              theLine = 11,
-              theCol = 36,
-              theOffset = 296),
-              theOptionalSource = "the_stack_praxis.ada"
-            )  
-        )
-    ),
-  theMethodSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 4,
-      theOffset = 200),
-      theEndCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 35,
-      theOffset = 230),
-      theOptionalSource = "the_stack_praxis.ada"
-    ),
-  theMethodNameSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 14,
-      theOffset = 210),
-      theEndCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 17,
-      theOffset = 212),
-      theOptionalSource = "the_stack_praxis.ada"
-    ),
-  theMethodSpecificationSelection = 
-    @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 4,
-      theOffset = 200),
-      theEndCaret = 
-      @Caret(
-      theLine = 9,
-      theCol = 34,
-      theOffset = 229),
-      theOptionalSource = "the_stack_praxis.ada"
-    )
-) 
-{ #locret. return;}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package Standard
-@PackageAnnotation(
-  theSourceFileName = "StandardPackage.java",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/
+}

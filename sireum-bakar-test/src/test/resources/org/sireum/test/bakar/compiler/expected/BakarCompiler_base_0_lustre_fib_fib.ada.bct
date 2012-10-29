@@ -11,41 +11,17 @@
 /****************************************************************
  *  S P A R K   P a c k a g e   S p e cM e t a d a t a
  ****************************************************************/
-package fib_Decls
+package Standard
 @PackageAnnotation(
-  theSourceFileName = "fib_decls.ads",
-  theSparkName = fib_Decls,
-  thePilarSparkName = fib_Decls,
+  theSourceFileName = "StandardPackage.java",
+  theSparkName = Standard,
+  thePilarSparkName = Standard,
   theOptionalParent = @NONE,
   thePackageKind = @SPECIFICATION,
   theHierarchyType = @ROOT,
   theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 1,
-  theOffset = 397),
-  theEndCaret = 
-  @Caret(
-  theLine = 30,
-  theCol = 15,
-  theOffset = 1200),
-  theOptionalSource = "fib_decls.ads"
-),
-  thePackageHeaderSelection = @RegionSelection(
-  theStartCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 1,
-  theOffset = 397),
-  theEndCaret = 
-  @Caret(
-  theLine = 10,
-  theCol = 18,
-  theOffset = 413),
-  theOptionalSource = "fib_decls.ads"
-),
+  thePackageSelection = @EMPTY_REGION_SELECTION,
+  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
   thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
     theOptionalContextClause = @NONE  ,  
   theOptionalPackageSpecificationAnnotation = 
@@ -57,230 +33,95 @@ package fib_Decls
 /****************************************************************
  *  T y p e   D e c l a r a t i o n s
  ****************************************************************/
-record rlt_int32
+record Integer
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 13,
-      theCol = 4,
-      theOffset = 424),
-      theEndCaret = 
-      @Caret(
-      theLine = 13,
-      theCol = 54,
-      theOffset = 473),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_int32,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Integer,
     typeDefinition = 
       @SignedIntegerTypeDefinition(
-        theLowRangeExp = -($POW(2,31)),
-        theHighRangeExp = ($POW(2,31) - 1)))
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
 {}
-record rlt_uint32
+record Natural
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Natural,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 0)))
+{}
+record Positive
+  @SubTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Positive,
+    type = `Standard::Integer,
+    constraint = 
+  @Some(@SimpleRangeConstraint(
+        upperBound = $Last(`Standard::Integer),
+        lowerBound = 1)))
+{}
+record Long_Integer
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 4,
-      theOffset = 505),
-      theEndCaret = 
-      @Caret(
-      theLine = 14,
-      theCol = 48,
-      theOffset = 548),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_uint32,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Long_Integer,
     typeDefinition = 
       @SignedIntegerTypeDefinition(
-        theLowRangeExp = 0,
-        theHighRangeExp = ($POW(2,32) - 1)))
+        theLowRangeExp = $NEG_INFTY (),
+        theHighRangeExp = $POS_INFTY ()))
 {}
-record rlt_mod32
+record Float
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 4,
-      theOffset = 581),
-      theEndCaret = 
-      @Caret(
-      theLine = 15,
-      theCol = 34,
-      theOffset = 610),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_mod32,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Float,
     typeDefinition = 
-      @ModularTypeDefinition(
-        theModExp = $POW(2,32)))
+      @FloatingPointDefinition(
+        theDigitsExp = $UNDEFINED (),
+        theOptionalLowRangeExp = $NEG_INFTY (),
+        theOptionalHighRangeExp = $POS_INFTY ()))
 {}
-record rlt_int16
+record Boolean
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 4,
-      theOffset = 642),
-      theEndCaret = 
-      @Caret(
-      theLine = 16,
-      theCol = 54,
-      theOffset = 691),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_int16,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Boolean,
     typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = -($POW(2,15)),
-        theHighRangeExp = ($POW(2,15) - 1)))
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @List(@EnumerationValue(tag = False),
+                @EnumerationValue(tag = True))))
 {}
-record rlt_uint16
+record Character
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 17,
-      theCol = 4,
-      theOffset = 723),
-      theEndCaret = 
-      @Caret(
-      theLine = 17,
-      theCol = 48,
-      theOffset = 766),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_uint16,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::Character,
     typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = 0,
-        theHighRangeExp = ($POW(2,16) - 1)))
+      @EnumerationTypeDefinition(
+        enumerationValues = 
+          @EmptyList))
 {}
-record rlt_mod16
+record String
   @FullTypeDeclaration(
     origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 4,
-      theOffset = 799),
-      theEndCaret = 
-      @Caret(
-      theLine = 18,
-      theCol = 34,
-      theOffset = 828),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_mod16,
+    loc = @EMPTY_REGION_SELECTION,
+    fullyQualifiedName = Standard::String,
     typeDefinition = 
-      @ModularTypeDefinition(
-        theModExp = $POW(2,16)))
+      @UnconstrainedArrayDefinition(
+        theDimensions = 
+          1,
+        theComponentSubType = 
+          `Standard::Character,
+        theIndexSubTypes = 
+          @List(`Standard::Positive)
+      ))
 {}
-record rlt_int8
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 19,
-      theCol = 4,
-      theOffset = 860),
-      theEndCaret = 
-      @Caret(
-      theLine = 19,
-      theCol = 51,
-      theOffset = 906),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_int8,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = -($POW(2,7)),
-        theHighRangeExp = ($POW(2,7) - 1)))
-{}
-record rlt_uint8
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 20,
-      theCol = 4,
-      theOffset = 936),
-      theEndCaret = 
-      @Caret(
-      theLine = 20,
-      theCol = 46,
-      theOffset = 977),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_uint8,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = 0,
-        theHighRangeExp = ($POW(2,8) - 1)))
-{}
-record rlt_mod8
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 21,
-      theCol = 4,
-      theOffset = 1008),
-      theEndCaret = 
-      @Caret(
-      theLine = 21,
-      theCol = 32,
-      theOffset = 1035),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_mod8,
-    typeDefinition = 
-      @ModularTypeDefinition(
-        theModExp = $POW(2,8)))
-{}
-record rlt_fib_State_Type
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @RegionSelection(
-      theStartCaret = 
-      @Caret(
-      theLine = 23,
-      theCol = 4,
-      theOffset = 1066),
-      theEndCaret = 
-      @Caret(
-      theLine = 27,
-      theCol = 16,
-      theOffset = 1182),
-      theOptionalSource = "fib_decls.ads"
-    ),
-    fullyQualifiedName = fib_Decls::rlt_fib_State_Type,
-    typeDefinition = 
-      @RecordTypeDefinition(
-        tagged = false,
-        parentType=@NONE))
-{
-  fib_Decls::rlt_int32 unit_delay @RecordComponentAnnotation(
-    sparkID = unit_delay
-  );
-  fib_Decls::rlt_int32 unit_delay1 @RecordComponentAnnotation(
-    sparkID = unit_delay1
-  );
-}
 /****************************************************************
  *  G l o b a l   D e c l a r a t i o n s
  ****************************************************************/
@@ -460,136 +301,6 @@ procedure fib
     )
 ) 
 { #locret. return;}@Profile org::sireum::profile::spark
-/****************************************************************
- *  C o m p i l e r   M e t a d a t a
- ****************************************************************/
-
-@SPARKCompilerMetaDataFile(
-  version = "1.0",
-  compileTime = "REGRESSION_SUPPRESSED",
-  options = 
-    @EmptyList)
-/****************************************************************
- *  S P A R K   P a c k a g e   S p e cM e t a d a t a
- ****************************************************************/
-package Standard
-@PackageAnnotation(
-  theSourceFileName = "StandardPackage.java",
-  theSparkName = Standard,
-  thePilarSparkName = Standard,
-  theOptionalParent = @NONE,
-  thePackageKind = @SPECIFICATION,
-  theHierarchyType = @ROOT,
-  theOptionalSymbolMapping = @NONE,
-  thePackageSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderSelection = @EMPTY_REGION_SELECTION,
-  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
-    theOptionalContextClause = @NONE  ,  
-  theOptionalPackageSpecificationAnnotation = 
-    @NONE,
-  theOptionalInheritClause = 
-    @NONE
-));
-
-/****************************************************************
- *  T y p e   D e c l a r a t i o n s
- ****************************************************************/
-record Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Natural
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Natural,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 0)))
-{}
-record Positive
-  @SubTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Positive,
-    type = `Standard::Integer,
-    constraint = 
-  @Some(@SimpleRangeConstraint(
-        upperBound = $Last(`Standard::Integer),
-        lowerBound = 1)))
-{}
-record Long_Integer
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Long_Integer,
-    typeDefinition = 
-      @SignedIntegerTypeDefinition(
-        theLowRangeExp = $NEG_INFTY (),
-        theHighRangeExp = $POS_INFTY ()))
-{}
-record Float
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Float,
-    typeDefinition = 
-      @FloatingPointDefinition(
-        theDigitsExp = $UNDEFINED (),
-        theOptionalLowRangeExp = $NEG_INFTY (),
-        theOptionalHighRangeExp = $POS_INFTY ()))
-{}
-record Boolean
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Boolean,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @List(@EnumerationValue(tag = False),
-                @EnumerationValue(tag = True))))
-{}
-record Character
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::Character,
-    typeDefinition = 
-      @EnumerationTypeDefinition(
-        enumerationValues = 
-          @EmptyList))
-{}
-record String
-  @FullTypeDeclaration(
-    origin = @PACKAGE_SPEC_PUBLIC,
-    loc = @EMPTY_REGION_SELECTION,
-    fullyQualifiedName = Standard::String,
-    typeDefinition = 
-      @UnconstrainedArrayDefinition(
-        theDimensions = 
-          1,
-        theComponentSubType = 
-          `Standard::Character,
-        theIndexSubTypes = 
-          @List(`Standard::Positive)
-      ))
-{}
-/****************************************************************
- *  G l o b a l   D e c l a r a t i o n s
- ****************************************************************/
-  
-/****************************************************************
- *  I n i t i a l i z a t i o n   P r o c e d u r e
- ****************************************************************/@Profile org::sireum::profile::spark
 /****************************************************************
  *  C o m p i l e r   M e t a d a t a
  ****************************************************************/
@@ -968,4 +679,293 @@ procedure fib
       optSparkLabelList = @NONE 
   )>  rlt_node_state.unit_delay1 := temp$10;
   #l21.  return;
+}@Profile org::sireum::profile::spark
+/****************************************************************
+ *  C o m p i l e r   M e t a d a t a
+ ****************************************************************/
+
+@SPARKCompilerMetaDataFile(
+  version = "1.0",
+  compileTime = "REGRESSION_SUPPRESSED",
+  options = 
+    @EmptyList)
+/****************************************************************
+ *  S P A R K   P a c k a g e   S p e cM e t a d a t a
+ ****************************************************************/
+package fib_Decls
+@PackageAnnotation(
+  theSourceFileName = "fib_decls.ads",
+  theSparkName = fib_Decls,
+  thePilarSparkName = fib_Decls,
+  theOptionalParent = @NONE,
+  thePackageKind = @SPECIFICATION,
+  theHierarchyType = @ROOT,
+  theOptionalSymbolMapping = @NONE,
+  thePackageSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 397),
+  theEndCaret = 
+  @Caret(
+  theLine = 30,
+  theCol = 15,
+  theOffset = 1200),
+  theOptionalSource = "fib_decls.ads"
+),
+  thePackageHeaderSelection = @RegionSelection(
+  theStartCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 1,
+  theOffset = 397),
+  theEndCaret = 
+  @Caret(
+  theLine = 10,
+  theCol = 18,
+  theOffset = 413),
+  theOptionalSource = "fib_decls.ads"
+),
+  thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
+    theOptionalContextClause = @NONE  ,  
+  theOptionalPackageSpecificationAnnotation = 
+    @NONE,
+  theOptionalInheritClause = 
+    @NONE
+));
+
+/****************************************************************
+ *  T y p e   D e c l a r a t i o n s
+ ****************************************************************/
+record rlt_int32
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 13,
+      theCol = 4,
+      theOffset = 424),
+      theEndCaret = 
+      @Caret(
+      theLine = 13,
+      theCol = 54,
+      theOffset = 473),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_int32,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = -($POW(2,31)),
+        theHighRangeExp = ($POW(2,31) - 1)))
+{}
+record rlt_uint32
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 4,
+      theOffset = 505),
+      theEndCaret = 
+      @Caret(
+      theLine = 14,
+      theCol = 48,
+      theOffset = 548),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_uint32,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = ($POW(2,32) - 1)))
+{}
+record rlt_mod32
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 4,
+      theOffset = 581),
+      theEndCaret = 
+      @Caret(
+      theLine = 15,
+      theCol = 34,
+      theOffset = 610),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_mod32,
+    typeDefinition = 
+      @ModularTypeDefinition(
+        theModExp = $POW(2,32)))
+{}
+record rlt_int16
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 4,
+      theOffset = 642),
+      theEndCaret = 
+      @Caret(
+      theLine = 16,
+      theCol = 54,
+      theOffset = 691),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_int16,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = -($POW(2,15)),
+        theHighRangeExp = ($POW(2,15) - 1)))
+{}
+record rlt_uint16
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 17,
+      theCol = 4,
+      theOffset = 723),
+      theEndCaret = 
+      @Caret(
+      theLine = 17,
+      theCol = 48,
+      theOffset = 766),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_uint16,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = ($POW(2,16) - 1)))
+{}
+record rlt_mod16
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 4,
+      theOffset = 799),
+      theEndCaret = 
+      @Caret(
+      theLine = 18,
+      theCol = 34,
+      theOffset = 828),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_mod16,
+    typeDefinition = 
+      @ModularTypeDefinition(
+        theModExp = $POW(2,16)))
+{}
+record rlt_int8
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 4,
+      theOffset = 860),
+      theEndCaret = 
+      @Caret(
+      theLine = 19,
+      theCol = 51,
+      theOffset = 906),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_int8,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = -($POW(2,7)),
+        theHighRangeExp = ($POW(2,7) - 1)))
+{}
+record rlt_uint8
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 4,
+      theOffset = 936),
+      theEndCaret = 
+      @Caret(
+      theLine = 20,
+      theCol = 46,
+      theOffset = 977),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_uint8,
+    typeDefinition = 
+      @SignedIntegerTypeDefinition(
+        theLowRangeExp = 0,
+        theHighRangeExp = ($POW(2,8) - 1)))
+{}
+record rlt_mod8
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 4,
+      theOffset = 1008),
+      theEndCaret = 
+      @Caret(
+      theLine = 21,
+      theCol = 32,
+      theOffset = 1035),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_mod8,
+    typeDefinition = 
+      @ModularTypeDefinition(
+        theModExp = $POW(2,8)))
+{}
+record rlt_fib_State_Type
+  @FullTypeDeclaration(
+    origin = @PACKAGE_SPEC_PUBLIC,
+    loc = @RegionSelection(
+      theStartCaret = 
+      @Caret(
+      theLine = 23,
+      theCol = 4,
+      theOffset = 1066),
+      theEndCaret = 
+      @Caret(
+      theLine = 27,
+      theCol = 16,
+      theOffset = 1182),
+      theOptionalSource = "fib_decls.ads"
+    ),
+    fullyQualifiedName = fib_Decls::rlt_fib_State_Type,
+    typeDefinition = 
+      @RecordTypeDefinition(
+        tagged = false,
+        parentType=@NONE))
+{
+  fib_Decls::rlt_int32 unit_delay @RecordComponentAnnotation(
+    sparkID = unit_delay
+  );
+  fib_Decls::rlt_int32 unit_delay1 @RecordComponentAnnotation(
+    sparkID = unit_delay1
+  );
 }
+/****************************************************************
+ *  G l o b a l   D e c l a r a t i o n s
+ ****************************************************************/
+  
+/****************************************************************
+ *  I n i t i a l i z a t i o n   P r o c e d u r e
+ ****************************************************************/
