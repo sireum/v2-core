@@ -6,7 +6,7 @@ if [ $0 -nt $0.jar ]
     echo "Please wait while Sireum is loading..."
     echo
 fi
-exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME $@
+exec ${SCALA_BIN:=scala} -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME $@
 !#
 SireumDistro.main(argv)
 /*
@@ -29,7 +29,6 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.HashSet
-import scala.language.reflectiveCalls
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

@@ -17,7 +17,7 @@ IF %NEWEST%==%~nx0 (
   ECHO Please wait while Sireum is loading... 
 )
 :END
-CALL %SCALA_BIN% -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 GOTO :eof
 ::!#
 SireumDistro.main(argv)
@@ -41,7 +41,6 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.HashSet
-import scala.language.reflectiveCalls
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

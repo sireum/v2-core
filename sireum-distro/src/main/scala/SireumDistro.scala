@@ -18,7 +18,6 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.HashSet
-import scala.language.reflectiveCalls
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
