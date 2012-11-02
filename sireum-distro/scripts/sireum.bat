@@ -144,10 +144,15 @@ object SireumDistro extends App {
   val sireumDir = new File(args(0))
   var unmanagedDir = new File(System.getProperty("user.home"))
 
+  def deleteJar {
+    new File(sireumDir, scriptName + ".jar").deleteOnExit
+  }
+
   try {
     if (util.Properties.versionString.substring(8) != "2.9.2") {
       out.println("This version of Sireum requires Scala 2.9.2")
       out.flush
+      deleteJar
       sys.exit(-1)
     }
     if (getOsString == "unsupported") {
@@ -187,14 +192,14 @@ object SireumDistro extends App {
         out.println("Sireum v2 (Build " + readBuild + ")")
         out.flush
       case Array(_, "install") =>
-        out.println("Please specify a feature to install")
+        out.println("Please specify features to install")
         out.flush
       case _ if args.length >= 3 && args(1) == "install" =>
         args(2) match {
           case "-d" =>
             if (args.length >= 5) {
               unmanagedDir = new File(args(3))
-              install(args.slice(4, args.length).deep.mkString(" "))
+              install(args.slice(4, args.length) : _*)
             } else {
               err.println("Missing install argument")
               err.flush()
@@ -203,7 +208,7 @@ object SireumDistro extends App {
             err.println(arg + " is not an option of install")
             err.flush()
           case _ =>
-            install(args.slice(2, args.length).deep.mkString(" "))
+            install(args.slice(2, args.length) : _*)
         }
       case _ if args.length >= 3 && args(1) == "uninstall" =>
         uninstall(args.slice(2, args.length).deep.mkString(" "))
@@ -242,7 +247,7 @@ object SireumDistro extends App {
     out.println("Sireum Distro")
     out.println
     out.println("""Available Top Level Modes:
-  install <feature> <name>     Install a feature
+  install <feature>+           Install features
     Option: -d <dir>             Installation directory for unmanaged apps
                                  [ Default: user's home dir]
   clean                        Remove stale or backed-up managed apps
@@ -408,34 +413,35 @@ object SireumDistro extends App {
     saveInstalledFeatures(installedFeatures)
   }
 
-  def install(featureName : String) {
+  def install(featureNames : String*) {
     updateClasspath(sireumDir)
 
     if (isDevelopment)
-      return
-
-    var installedFeatures = loadInstalledFeatures
-    if (installedFeatures.contains(featureName))
       return
 
     val features = getFeatures
 
     val newFeatures = new ArrayBuffer[String]()
 
-    if (features.contains(featureName)) {
-      out.println("Installing " + featureName + " feature in " +
-        sireumDir.getAbsolutePath)
-      out.flush
+    for (featureName <- featureNames) {
 
-      val installedFiles = downloadNewFiles(features, installedFeatures.toSet,
-        featureName, newFeatures)
-      update(newFeatures, featureName.endsWith(SAPP_EXT), installedFiles)
-      saveInstalledFeatures(newFeatures.toList ++ installedFeatures)
-    } else {
-      err.println("Invalid feature: " + featureName + "!")
-      err.println
-      err.flush
-      sys.exit
+      val installedFeatures = loadInstalledFeatures
+      if (!installedFeatures.contains(featureName))
+        if (features.contains(featureName)) {
+          out.println("Installing " + featureName + " feature in " +
+            sireumDir.getAbsolutePath)
+          out.flush
+
+          val installedFiles = downloadNewFiles(features, installedFeatures.toSet,
+            featureName, newFeatures)
+          update(newFeatures, featureName.endsWith(SAPP_EXT), installedFiles)
+          saveInstalledFeatures(newFeatures.toList ++ installedFeatures)
+        } else {
+          err.println("Invalid feature: " + featureName + "!")
+          err.println
+          err.flush
+          sys.exit
+        }
     }
   }
 
