@@ -92,15 +92,17 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
   private def inconNextStatesPairs(l : GenSeq[S]) =
     par(true, l).map { s =>
       var inconsistencyCheckRequested = false
-      var l = ilistEmpty[S]
-      for ((s, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled)
-        for (nextS <- evaluator.evalTransformation(s, t)) {
-          l = nextS :: l
+      val nextStates =
+        for {
+          (s2, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled
+          nextS <- evaluator.evalTransformation(s2, t)
+        } yield {
           inconsistencyCheckRequested =
-            inconsistencyCheckRequested || s.inconsistencyCheckRequested
+            inconsistencyCheckRequested || nextS.inconsistencyCheckRequested
+          nextS
         }
 
-      (inconsistencyCheckRequested, l)
+      (inconsistencyCheckRequested, nextStates)
     }
 
   @inline
