@@ -8,9 +8,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.kiasan
 
-import scala.concurrent.forkjoin._
-import scala.collection.parallel._
-
 import org.sireum.pilar.state._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
@@ -61,8 +58,6 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
 
   def parallelThreshold : Int
 
-  def parallelismLevel : Int
-
   def locationProvider : KiasanLocationProvider[S]
 
   def evaluator : Evaluator[S, R, ISeq[S]]
@@ -91,27 +86,21 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
 
   @inline
   private def par[T](shouldParallize : Boolean, l : GenSeq[T]) =
-    if (shouldParallize && parallelThreshold < l.size) {
-      val pl = l.par
-      pl.tasksupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
-      pl
-    } else l
+    if (shouldParallize && parallelThreshold < l.size) l.par else l
 
   @inline
   private def inconNextStatesPairs(l : GenSeq[S]) =
     par(true, l).map { s =>
       var inconsistencyCheckRequested = false
-      val nextStates =
-        for {
-          (s2, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled
-          nextS <- evaluator.evalTransformation(s2, t)
-        } yield {
+      var l = ilistEmpty[S]
+      for ((s, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled)
+        for (nextS <- evaluator.evalTransformation(s, t)) {
+          l = nextS :: l
           inconsistencyCheckRequested =
-            inconsistencyCheckRequested || nextS.inconsistencyCheckRequested
-          nextS
+            inconsistencyCheckRequested || s.inconsistencyCheckRequested
         }
 
-      (inconsistencyCheckRequested, nextStates)
+      (inconsistencyCheckRequested, l)
     }
 
   @inline
