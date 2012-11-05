@@ -6,7 +6,7 @@ if [ $0 -nt $0.jar ]
     echo "Please wait while Sireum is loading..."
     echo
 fi
-exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME $@
+exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 !#
 SireumDistro.main(argv)
 /*
@@ -58,6 +58,7 @@ object SireumDistro extends App {
   val BUILD_FILENAME = "BUILD"
   val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
   val SAPP_EXT = ".sapp"
+  val GUESS_DISTANCE_MAX = 3
 
   val BUFFER_SIZE = 1024
   val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -155,12 +156,12 @@ object SireumDistro extends App {
         cleanApps
       case Array(_, "list") =>
         for (f <- getFeatures.keys.toArray.sortWith { (f1, f2) => f1 <= f2 })
-          out.println(f)
+          out.println(removeSappExt(f))
         out.flush
       case Array(_, "list", m) =>
         if (m == "installed")
           for (f <- loadInstalledFeatures.sortWith { (f1, f2) => f1 <= f2 })
-            out.println(f)
+            out.println(removeSappExt(f))
         else {
           err.println(m + " is not a mode of list")
           err.flush
@@ -243,7 +244,7 @@ object SireumDistro extends App {
   list installed               List installed features
   update                       Update features
   update script                Update Sireum script
-  uninstall <feature> <name>   Uninstall a feature and all features 
+  uninstall <feature>          Uninstall a feature and all features 
                                depending on it
   uninstall all                Uninstall all features and scrub Sireum directory
   version                      Display version
@@ -352,19 +353,24 @@ object SireumDistro extends App {
         err.flush
       }
       return
-    } else if (!installedFeatures.contains(featureName))
-      return
+    }
 
     val features = getFeatures
+    
+    val fName = guessFeatureNames(Seq(featureName), features.keys.toSeq)(0)
+    
+    if (!installedFeatures.contains(fName))
+      return
+
     var seenFeatures = Set[String]()
-    val featuresToDelete = ArrayBuffer[String](featureName)
+    val featuresToDelete = ArrayBuffer[String](fName)
     for ((feature, fPaths) <- features) {
       if (!seenFeatures.contains(feature)) {
         seenFeatures = seenFeatures + feature
         var deleteFiles = false
         val files = ArrayBuffer[String]()
         for (fPath <- fPaths) {
-          if (feature == featureName || all) {
+          if (feature == fName || all) {
             deleteFiles = true
           } else if (featuresToDelete.contains(fPath)) {
             deleteFiles = true
@@ -385,9 +391,7 @@ object SireumDistro extends App {
           for (featureToDelete <- featuresToDelete)
             if (featureToDelete.endsWith(SAPP_EXT)) {
               val featureRelPath = "apps/" +
-                featureToDelete.
-                substring(0, featureToDelete.length - SAPP_EXT.length).
-                toLowerCase
+                removeSappExt(featureToDelete).toLowerCase
               val featureDir = new File(sireumDir, featureRelPath)
               if (featureDir.exists)
                 featureDir.delete
@@ -411,7 +415,7 @@ object SireumDistro extends App {
 
     val newFeatures = new ArrayBuffer[String]()
 
-    for (featureName <- featureNames) {
+    for (featureName <- guessFeatureNames(featureNames, features.keys.toSeq)) {
 
       val installedFeatures = loadInstalledFeatures
       if (!installedFeatures.contains(featureName))
@@ -547,7 +551,7 @@ object SireumDistro extends App {
           else {
             installedFeatures = installedFeatures.filterNot(_ == f)
             if (f.endsWith(SAPP_EXT)) {
-              val file = new File(sireumDir, "apps/" + f.substring(0, f.length - SAPP_EXT.length))
+              val file = new File(sireumDir, "apps/" + removeSappExt(f))
               deleteRec(file, "Deleting obsoelete feature: " + f, true)
             }
           }
@@ -842,7 +846,7 @@ object SireumDistro extends App {
 
   def getAppPath(filePath : String) = {
     var appPath = filePath
-    appPath = appPath.substring(0, appPath.length - SAPP_EXT.length)
+    appPath = removeSappExt(appPath)
     if ((isPlatformSpecific(appPath))) {
       val osString = getOsString
       osString match {
@@ -1213,6 +1217,119 @@ object SireumDistro extends App {
             case e : Exception =>
               caller ! e
           }
+      }
+    }
+  }
+
+  def removeSappExt(s : String) =
+    if (s.endsWith(SAPP_EXT))
+      s.substring(0, s.length - SAPP_EXT.length)
+    else s
+
+  def guessFeatureNames(featureNames : Seq[String], features : Seq[String]) : Seq[String] = {
+      def simpl(s : String) =
+        removeSappExt(s).toLowerCase
+
+    var sFeatures = Map[String, String]()
+    for (f <- features)
+      sFeatures += simpl(f) -> f
+
+    val result = new Array[String](featureNames.length)
+
+    var featureNotFound = false
+    for (i <- 0 until featureNames.length) {
+      val fName = featureNames(i)
+      val sfName = simpl(fName)
+      if (sFeatures.contains(sfName)) {
+        result(i) = sFeatures(sfName)
+      } else {
+        var minSfs = List((GUESS_DISTANCE_MAX + 1, ""))
+        for ((sf, f) <- sFeatures) {
+          val min = minSfs.head._1
+          val d = Levenshtein.distance(sfName, sf, min)
+          if (d == min && d < sf.length) {
+            minSfs = (d, f) :: minSfs
+          } else if (d < min && d < sf.length) {
+            minSfs = List((d, f))
+          }
+        }
+        if (minSfs.length == 1 && minSfs.head._2 != "") {
+          result(i) = minSfs.head._2
+        } else {
+          featureNotFound = true
+          err.println("Invalid feature: " + fName + "!")
+          err.flush
+          if (minSfs.length > 1 && minSfs.forall(_._1 <= GUESS_DISTANCE_MAX)) {
+            out.println("Did you mean one of the following features?")
+            for (minSf <- minSfs) {
+              out.println("  " + removeSappExt(minSf._2))
+            }
+            out.flush
+          }
+          sys.exit(-1)
+        }
+      }
+    }
+
+    result
+  }
+
+  /*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file distributed with this
+ * work for additional information regarding copyright ownership. The ASF
+ * licenses this file to You under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+  object Levenshtein {
+    /* This is based on code from the Apache Commons lang project. */
+    def distance(s : CharSequence, t : CharSequence, max : Int = Int.MaxValue) = {
+      import scala.annotation.tailrec
+        def impl(s : CharSequence, t : CharSequence, n : Int, m : Int) = {
+          val p = new Array[Int](n + 1)
+          val d = new Array[Int](n + 1)
+
+            @tailrec def fillP(i : Int) {
+              p(i) = i
+              if (i < n) fillP(i + 1)
+            }
+          fillP(0)
+
+            @tailrec def eachJ(j : Int, t_j : Char, d : Array[Int], p : Array[Int]) : Int = {
+              d(0) = j
+                @tailrec def eachI(i : Int) {
+                  val a = d(i - 1) + 1
+                  val b = p(i) + 1
+                  d(i) = if (a < b) a else {
+                    val c = if (s.charAt(i - 1) == t_j) p(i - 1) else p(i - 1) + 1
+                    if (b < c) b else c
+                  }
+                  if (i < n)
+                    eachI(i + 1)
+                }
+              eachI(1)
+
+              if (j < m)
+                eachJ(j + 1, t.charAt(j), p, d)
+              else
+                d(n)
+            }
+          eachJ(1, t.charAt(0), d, p)
+        }
+
+      val n = s.length
+      val m = t.length
+      if (n == 0) m else if (m == 0) n else {
+        if (n > m) impl(t, s, m, n) else impl(s, t, n, m)
       }
     }
   }
