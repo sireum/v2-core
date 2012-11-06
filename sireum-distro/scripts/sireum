@@ -83,7 +83,7 @@ object SireumDistro extends App {
   val updateUrl = {
     var url = System.getProperty("sireum.update.url")
     if (url == null) url = System.getenv("SIREUM_UPDATE")
-    if (url == null) url = "http://update.sireum.org/"
+    if (url == null) url = "http://update.sireum.org/dev/latest/"
     if (url != null && !url.startsWith("http://") && !url.startsWith("file://"))
       url = new File(url).toURI.toURL.toExternalForm
     if (url.endsWith("/")) url else url + "/"
