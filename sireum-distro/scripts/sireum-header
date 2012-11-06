@@ -1,10 +1,14 @@
 #!/bin/sh
 export SIREUM_DIST=true
 export SIREUM_HOME=`dirname $(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")`
-if [ $0 -nt $0.jar ]
-  then
+if [ -f $0.jar ]; then
+  if [ $0 -nt $0.jar ]; then
     echo "Please wait while Sireum is loading..."
     echo
+  fi
+else
+  echo "Please wait while Sireum is loading..."
+  echo
 fi
 exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 !#
