@@ -1156,6 +1156,10 @@ object SireumDistro extends App {
         outputFile.setReadable(true)
         outputFile.setWritable(true)
         outputFile.setExecutable(true)
+        
+        val time = entry.getTime
+        if (time != 0)
+          outputFile.setLastModified(time)
       }
   }
 
