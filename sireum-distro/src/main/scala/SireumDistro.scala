@@ -54,8 +54,8 @@ object SireumDistro extends App {
   val CLI_FEATURE = "Sireum CLI"
   val CLI_CLASS = "org.sireum.cli.SireumCli"
 
-  val out = scala.Console.out
-  val err = scala.Console.err
+  lazy val out = scala.Console.out
+  lazy val err = scala.Console.err
 
   val allowableCopyDiffFiles = Set[String]()
 
@@ -345,9 +345,9 @@ object SireumDistro extends App {
     }
 
     val features = getFeatures
-    
+
     val fName = guessFeatureNames(Seq(featureName), features.keys.toSeq)(0)
-    
+
     if (!installedFeatures.contains(fName))
       return
 
@@ -1092,24 +1092,49 @@ object SireumDistro extends App {
 
     StatusPrinter.first
     val zipFile = new ZipFile(file)
-    try
+    val dirLastModMap = scala.collection.mutable.Map[String, Long]()
+    try {
       for (e <- zipFile.entries) {
         if (pw.isDefined)
           pw.get.println(e.getName)
-        unzipEntry(zipFile, e, outputDir)
+        unzipEntry(zipFile, e, outputDir, dirLastModMap)
       }
-    finally zipFile.close
+    } finally zipFile.close
+
+    var i = 0
+    val nextCount = 1000
+      def next = {
+        if (i == nextCount - 1)
+          StatusPrinter.next
+        i = (i + 1) % nextCount
+      }
+    for (
+      path <- dirLastModMap.keys.toSeq.sortWith({
+        (s1, s2) =>
+          next
+          s1.compareTo(s2) > 0
+      })
+    ) {
+      new File(path).setLastModified(dirLastModMap(path))
+      next
+    }
     StatusPrinter.last
   }
 
-  def unzipEntry(zipFile : ZipFile, entry : ZipEntry, outputDir : File) {
+  def unzipEntry(zipFile : ZipFile, entry : ZipEntry, outputDir : File,
+                 dirLastModMap : scala.collection.mutable.Map[String, Long]) {
     if ({
       val n = entry.getName
       n.indexOf("__MACOSX") < 0 && n.indexOf(".DS_Store") < 0
     })
-      if (entry.isDirectory)
-        new File(outputDir, entry.getName).mkdirs
-      else {
+      if (entry.isDirectory) {
+        val dir = new File(outputDir, entry.getName)
+        dir.mkdirs
+        val time = entry.getTime
+        if (time != 0) {
+          dirLastModMap(dir.getAbsolutePath) = time
+        }
+      } else {
 
         val outputFile = new File(outputDir, entry.getName)
         if (!outputFile.getParentFile.exists)
