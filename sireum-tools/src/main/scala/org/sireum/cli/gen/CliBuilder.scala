@@ -530,10 +530,12 @@ class CliBuilder {
   }
 
   def filter(meths : Array[Method], includePrim : Boolean = false) : Array[Method] = {
-    meths.filter(f => !f.getName.startsWith("copy") &&
+    val result = meths.filter(f => !f.getName.startsWith("copy") && !f.getName.startsWith("_") &&
       !f.getName.contains("$") &&
       (includePrim ||
         this.cgm.packages.exists(p => f.getReturnType.getName.startsWith(p))))
+
+    result
   }
 
   def collect[T](ants : Array[java.lang.annotation.Annotation], c : Class[T]) : scala.Option[T] = {
@@ -575,7 +577,7 @@ class CliBuilder {
 
     for (i <- 0 until const.getParameterTypes().length) {
       // static methods created by scala to access the default values
-      var m = c.getMethod("init$default$" + (i + 1))
+      var m = c.getMethod("$lessinit$greater$default$" + (i + 1))
       params(i) = m.invoke(c)
     }
     val inst = const.newInstance(params : _*).asInstanceOf[AnyRef]
