@@ -212,7 +212,7 @@ class SireumCli {
       val opt = LaunchAntlrWorksMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.AntlrWorksLauncher"
-      result.featureName = "SireumDev.sapp"
+      result.featureName = "Antlr.sapp"
       val keys = List[String]("")
       var j = i
       var k = -1
@@ -297,7 +297,7 @@ Available Modes:
       result.options = Some(opt)
       result.className = "org.sireum.cli.gen.CliBuilder"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-p", "--packages", "-d", "--directory", "--min-col", "--max-col", "-c", "--class-name")
+      val keys = List[String]("-d", "--directory", "--min-col", "--max-col", "-c", "--class-name", "-p", "--packages")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -312,19 +312,6 @@ Available Modes:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-p" | "--packages" =>
-
-                if (seenopts.exists(s => s == "--packages" | s == "-p")) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--packages"
-                  seenopts += "-p"
-                }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
-                if (result.status) {
-                  opt.packages = v.get.asInstanceOf[ISeq[String]]
-                  j += 1
-                }
               case "-d" | "--directory" =>
 
                 if (seenopts.exists(s => s == "--directory" | s == "-d")) {
@@ -377,6 +364,19 @@ Available Modes:
                 if (result.status) {
                   opt.genClassName = v.get.asInstanceOf[java.lang.String]
                   result.status &= new org.sireum.option.CliGenOption().genClassNameCheck(opt, result.tags)
+                  j += 1
+                }
+              case "-p" | "--packages" =>
+
+                if (seenopts.exists(s => s == "--packages" | s == "-p")) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--packages"
+                  seenopts += "-p"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.packages = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
               case _ =>
@@ -523,7 +523,7 @@ Available Modes:
       result.options = Some(opt)
       result.className = "org.sireum.tools.antlr.TreeVisitorGen"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-c", "--class-name", "-d", "--directory", "-p", "--package")
+      val keys = List[String]("-d", "--directory", "-c", "--class-name", "-p", "--package")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -538,19 +538,6 @@ Available Modes:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-c" | "--class-name" =>
-
-                if (seenopts.exists(s => s == "--class-name" | s == "-c")) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--class-name"
-                  seenopts += "-c"
-                }
-                val v = process(args(j), args(j + 1), keys, "TreeVisitor")
-                if (result.status) {
-                  opt.className = v.get.asInstanceOf[java.lang.String]
-                  j += 1
-                }
               case "-d" | "--directory" =>
 
                 if (seenopts.exists(s => s == "--directory" | s == "-d")) {
@@ -562,6 +549,19 @@ Available Modes:
                 val v = process(args(j), args(j + 1), keys, "(parent directory of token file)")
                 if (result.status) {
                   opt.dir = v.get.asInstanceOf[java.lang.String]
+                  j += 1
+                }
+              case "-c" | "--class-name" =>
+
+                if (seenopts.exists(s => s == "--class-name" | s == "-c")) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--class-name"
+                  seenopts += "-c"
+                }
+                val v = process(args(j), args(j + 1), keys, "TreeVisitor")
+                if (result.status) {
+                  opt.className = v.get.asInstanceOf[java.lang.String]
                   j += 1
                 }
               case "-p" | "--package" =>
@@ -604,6 +604,63 @@ Available Modes:
 
     }
   }
+  def parseSapperMode(args : Seq[String], i : Int) {
+    if (i == args.length) {
+      addInfoTag("""Usage:
+    sireum tools sapper <file.sapp> <files> 
+
+
+  """.trim)
+    } else {
+      val opt = SapperMode()
+      result.options = Some(opt)
+      result.className = "org.sireum.tools.sapp.Sapper"
+      result.featureName = "Sireum Tools"
+      val keys = List[String]("")
+      var j = i
+      var k = -1
+      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+      try {
+        while (j < args.length) {
+          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          if (k == -1 && keys.contains(args(j))) {
+            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+              addErrorTag(args(j) + " is not an option")
+            }
+            args(j) match {
+              case _ =>
+            }
+          } else {
+            k = k + 1
+            k match {
+              case 0 =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.sappFile = v.get.asInstanceOf[java.lang.String]
+                }
+              case _ =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.files :+= v.get.asInstanceOf[java.lang.String]
+                }
+
+            }
+          }
+          j = j + 1
+        }
+      } catch {
+        case e : Exception => addErrorTag(e.toString)
+      }
+
+      if (k + 1 < 1) {
+        addErrorTag("Missing required arguments")
+      }
+
+    }
+  }
   def parseSireumToolsMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Sireum Tools""".trim
@@ -612,6 +669,7 @@ Available Modes:
   antlr 
   cligen 
   pipeline 
+  sapper 
 """.trim
       )
     } else {
@@ -622,6 +680,8 @@ Available Modes:
           parsePipelineMode(args, i + 1)
         case "antlr" =>
           parseTreeVisitorGenMode(args, i + 1)
+        case "sapper" =>
+          parseSapperMode(args, i + 1)
         case s =>
           addErrorTag(s + " is not a mode of tools")
       }
