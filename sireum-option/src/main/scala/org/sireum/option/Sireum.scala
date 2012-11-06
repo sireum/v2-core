@@ -50,7 +50,8 @@ case class KiasanMode(
 case class SireumToolsMode(
   pipeline : PipelineMode = PipelineMode(),
   cligen : CliGenMode = CliGenMode(),
-  antlr : TreeVisitorGenMode = TreeVisitorGenMode())
+  antlr : TreeVisitorGenMode = TreeVisitorGenMode(),
+  sapper : SapperMode = SapperMode())
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
