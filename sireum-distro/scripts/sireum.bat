@@ -150,6 +150,12 @@ object SireumDistro extends App {
   }
 
   try {
+    if ((util.Properties.javaVersion.charAt(2) - '0') < 7) {
+      out.println("This version of Sireum requires at least Java 7")
+      out.flush
+      deleteJar
+      sys.exit(-1)
+    }
     if (util.Properties.versionString.substring(8) != "2.9.2") {
       out.println("This version of Sireum requires Scala 2.9.2")
       out.flush
