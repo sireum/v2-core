@@ -35,6 +35,7 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.HashSet
+import java.util.regex.Pattern
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -64,7 +65,6 @@ object SireumDistro extends App {
   val BUILD_FILENAME = "BUILD"
   val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
   val SAPP_EXT = ".sapp"
-  val GUESS_DISTANCE_MAX = 3
 
   val BUFFER_SIZE = 1024
   val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -1286,110 +1286,56 @@ object SireumDistro extends App {
     else s
 
   def guessFeatureNames(featureNames : Seq[String], features : Seq[String]) : Seq[String] = {
-      def simpl(s : String) =
-        removeSappExt(s).toLowerCase
-
     var sFeatures = Map[String, String]()
     for (f <- features)
-      sFeatures += simpl(f) -> f
+      sFeatures += removeSappExt(f) -> f
 
     val result = new Array[String](featureNames.length)
 
     var featureNotFound = false
     for (i <- 0 until featureNames.length) {
       val fName = featureNames(i)
-      val sfName = simpl(fName)
+      val sfName = removeSappExt(fName)
       if (sFeatures.contains(sfName)) {
         result(i) = sFeatures(sfName)
       } else {
-        var minSfs = List((GUESS_DISTANCE_MAX + 1, ""))
-        for ((sf, f) <- sFeatures) {
-          val min = minSfs.head._1
-          val d = Levenshtein.distance(sfName, sf, min)
-          if (d == min && d < sf.length) {
-            minSfs = (d, f) :: minSfs
-          } else if (d < min && d < sf.length) {
-            minSfs = List((d, f))
-          }
-        }
-        if (minSfs.length == 1 && minSfs.head._2 != "") {
-          result(i) = minSfs.head._2
+        val camel =
+          if (sfName.forall(_.isLower)) sfName.toUpperCase else sfName
+        val matches = camelMatches(camel, sFeatures)
+        if (matches.size == 1) {
+          result(i) = matches.head
         } else {
           featureNotFound = true
           err.println("Invalid feature: " + fName + "!")
           err.flush
-          if (minSfs.length > 1 && minSfs.forall(_._1 <= GUESS_DISTANCE_MAX)) {
+          if (matches.size > 1) {
             out.println("Did you mean one of the following features?")
-            for (minSf <- minSfs) {
-              out.println("  " + removeSappExt(minSf._2))
+            for (fm <- matches) {
+              out.println("  " + removeSappExt(fm))
             }
             out.flush
           }
-          sys.exit(-1)
         }
       }
     }
+    if (featureNotFound)
+      sys.exit(-1)
 
     result
   }
 
-  /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements. See the NOTICE file distributed with this
- * work for additional information regarding copyright ownership. The ASF
- * licenses this file to You under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
-  object Levenshtein {
-    /* This is based on code from the Apache Commons lang project. */
-    def distance(s : CharSequence, t : CharSequence, max : Int = Int.MaxValue) = {
-      import scala.annotation.tailrec
-        def impl(s : CharSequence, t : CharSequence, n : Int, m : Int) = {
-          val p = new Array[Int](n + 1)
-          val d = new Array[Int](n + 1)
+  def camelMatches(camel : String, m : Map[String, String]) = {
+    var result = List[String]()
+    val query = camel.replaceAll("\\*", ".*?")
+    val re = "\\b(" + query.replaceAll("([A-Z][^A-Z]*)", "$1[^A-Z]*") + ".*?)\\b"
+    val regex = Pattern.compile(re)
 
-            @tailrec def fillP(i : Int) {
-              p(i) = i
-              if (i < n) fillP(i + 1)
-            }
-          fillP(0)
-
-            @tailrec def eachJ(j : Int, t_j : Char, d : Array[Int], p : Array[Int]) : Int = {
-              d(0) = j
-                @tailrec def eachI(i : Int) {
-                  val a = d(i - 1) + 1
-                  val b = p(i) + 1
-                  d(i) = if (a < b) a else {
-                    val c = if (s.charAt(i - 1) == t_j) p(i - 1) else p(i - 1) + 1
-                    if (b < c) b else c
-                  }
-                  if (i < n)
-                    eachI(i + 1)
-                }
-              eachI(1)
-
-              if (j < m)
-                eachJ(j + 1, t.charAt(j), p, d)
-              else
-                d(n)
-            }
-          eachJ(1, t.charAt(0), d, p)
-        }
-
-      val n = s.length
-      val m = t.length
-      if (n == 0) m else if (m == 0) n else {
-        if (n > m) impl(t, s, m, n) else impl(s, t, n, m)
+    for ((sf, f) <- m) {
+      val m = regex.matcher(sf)
+      if (m.find) {
+        result = f :: result
       }
     }
+    result.reverse
   }
 }
