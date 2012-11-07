@@ -6,8 +6,10 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html                             
 */
 
-import java.io._
 import java.net._
+import java.nio.file._
+import java.nio.file.attribute._
+import java.io._
 import java.security._
 import java.text._
 import java.util.Date
@@ -54,8 +56,8 @@ object SireumDistro extends App {
   val CLI_FEATURE = "Sireum CLI"
   val CLI_CLASS = "org.sireum.cli.SireumCli"
 
-  lazy val out = scala.Console.out
-  lazy val err = scala.Console.err
+  val out = scala.Console.out
+  val err = scala.Console.err
 
   val allowableCopyDiffFiles = Set[String]()
 
@@ -78,6 +80,13 @@ object SireumDistro extends App {
     val d = System.getenv("SIREUM_DIST")
     if (d == null) true else false
   }
+
+  val sireumDir = new File(args(0))
+  var unmanagedDir = new File(System.getProperty("user.home"))
+
+  var _features = Map[String, List[String]]()
+  var _checksums = Map[String, String]()
+  var _addedClasspathURLs = Set[String]()
 
   object StatusPrinter {
     val statusSyms = Seq("\b/", "\b-", "\b\\", "\b|")
@@ -105,10 +114,6 @@ object SireumDistro extends App {
     }
   }
 
-  var _features = Map[String, List[String]]()
-  var _checksums = Map[String, String]()
-  var _addedClasspathURLs = Set[String]()
-
   def shouldUpdate(f : String) =
     if (f == scriptName) !isDevelopment else true
 
@@ -118,9 +123,6 @@ object SireumDistro extends App {
   }
 
   import Mode._
-
-  val sireumDir = new File(args(0))
-  var unmanagedDir = new File(System.getProperty("user.home"))
 
   def deleteJar {
     new File(sireumDir, scriptName + ".jar").deleteOnExit
@@ -825,18 +827,8 @@ object SireumDistro extends App {
   }
 
   def copyFile(src : File, dest : File) {
-    val fos = new BufferedOutputStream(new FileOutputStream(dest))
-    try {
-      val fis = new BufferedInputStream(new FileInputStream(src))
-      try {
-        val buffer = new Array[Byte](BUFFER_SIZE)
-        var n = fis.read(buffer)
-        while (n != -1) {
-          fos.write(buffer, 0, n)
-          n = fis.read(buffer)
-        }
-      } finally fis.close
-    } finally fos.close
+    Files.copy(src.toPath, dest.toPath, StandardCopyOption.REPLACE_EXISTING,
+      StandardCopyOption.COPY_ATTRIBUTES, LinkOption.NOFOLLOW_LINKS)
   }
 
   def getAppPath(filePath : String) = {
@@ -1095,15 +1087,26 @@ object SireumDistro extends App {
 
   def unzip(file : File, outputDir : File, pw : Option[PrintWriter]) {
     import scala.collection.JavaConversions._
+    import scala.collection.mutable._
 
     StatusPrinter.first
     val zipFile = new ZipFile(file)
-    val dirLastModMap = scala.collection.mutable.Map[String, Long]()
+    val dirLastModMap = Map[String, Long]()
+    var permMap = Map[String, Int]()
     try {
       for (e <- zipFile.entries) {
         if (pw.isDefined)
           pw.get.println(e.getName)
         unzipEntry(zipFile, e, outputDir, dirLastModMap)
+      }
+      val ze = zipFile.getEntry(".sapp_info")
+      if (ze != null) {
+        val is = zipFile.getInputStream(ze)
+        val p = new Properties
+        p.load(is)
+        for (e <- p.iterator) {
+          permMap(e._1) = e._2.toInt
+        }
       }
     } finally zipFile.close
 
@@ -1114,6 +1117,17 @@ object SireumDistro extends App {
           StatusPrinter.next
         i = (i + 1) % nextCount
       }
+
+    for ((path, mask) <- permMap) {
+      try {
+        Files.setPosixFilePermissions(new File(outputDir, path).toPath,
+          maskToPermSet(mask))
+      } catch {
+        case e : IOException =>
+      }
+      next
+    }
+
     for (
       path <- dirLastModMap.keys.toSeq.sortWith({
         (s1, s2) =>
@@ -1127,11 +1141,24 @@ object SireumDistro extends App {
     StatusPrinter.last
   }
 
+  def maskToPermSet(mask : Int) = {
+    import scala.collection.mutable._
+    val result = Set[PosixFilePermission]()
+    val values = PosixFilePermission.values
+    for (i <- 0 until values.length) {
+      if ((mask & (1 << i)) > 0) {
+        result += values(i)
+      }
+    }
+    result
+  }
+
   def unzipEntry(zipFile : ZipFile, entry : ZipEntry, outputDir : File,
                  dirLastModMap : scala.collection.mutable.Map[String, Long]) {
     if ({
       val n = entry.getName
-      n.indexOf("__MACOSX") < 0 && n.indexOf(".DS_Store") < 0
+      n.indexOf("__MACOSX") < 0 && n.indexOf(".DS_Store") < 0 &&
+        n.indexOf(".sapp_info") < 0
     })
       if (entry.isDirectory) {
         val dir = new File(outputDir, entry.getName)
@@ -1158,7 +1185,7 @@ object SireumDistro extends App {
         outputFile.setReadable(true)
         outputFile.setWritable(true)
         outputFile.setExecutable(true)
-        
+
         val time = entry.getTime
         if (time != 0)
           outputFile.setLastModified(time)
