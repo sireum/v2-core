@@ -691,21 +691,25 @@ object SireumDistro extends App {
   }
 
   def updateFile(checksum : String, filename : String, file : File,
-                 currChecksum : Option[String]) : Mode = {
+                 currChecksum : Option[String]) : Mode =
     try
       checksum match {
         case "0" => deleteFile(file, filename)
         case checksum =>
-          val download = if (!file.exists && !isAppFile(file)) true else {
-            val currentChecksum =
-              if (currChecksum.isDefined) currChecksum.get else getChecksum(file)
-            checksum != currentChecksum
-          }
-          if (download) {
-            downloadFile(file.exists, filename, file)
-            Replaced
-          } else
+          if (isAppFile(file) && !isManaged(file))
             NoUpdate
+          else {
+            val download = if (!file.exists && !isAppFile(file)) true else {
+              val currentChecksum =
+                if (currChecksum.isDefined) currChecksum.get else getChecksum(file)
+              checksum != currentChecksum
+            }
+            if (download) {
+              downloadFile(file.exists, filename, file)
+              Replaced
+            } else
+              NoUpdate
+          }
       }
     catch {
       case e =>
@@ -715,7 +719,6 @@ object SireumDistro extends App {
         err.flush
         Error
     }
-  }
 
   def getMacOsString(filename : String) = {
     val osString = getOsString
