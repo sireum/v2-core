@@ -11,10 +11,6 @@ object Sapper {
   def run(option : SapperMode) {
     new Sapper().execute(option)
   }
-
-  def main(args : Array[String]) {
-    Sapper.run(SapperMode("workspace.sapp", Array("Workspaces/SireumV2")))
-  }
 }
 
 class Sapper {
@@ -28,7 +24,7 @@ class Sapper {
       for (f <- option.files)
         sapp(zos, new File(f), filePermProp)
 
-      val ze = new ZipEntry(".sappperm")
+      val ze = new ZipEntry(".sapp_info")
       zos.putNextEntry(ze)
       filePermProp.store(zos, null)
       zos.closeEntry
