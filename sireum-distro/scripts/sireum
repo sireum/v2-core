@@ -1110,51 +1110,41 @@ object SireumDistro extends App {
     StatusPrinter.first
     val zipFile = new ZipFile(file)
     val dirLastModMap = Map[String, Long]()
-    var permMap = Map[String, Int]()
     try {
       for (e <- zipFile.entries) {
         if (pw.isDefined)
           pw.get.println(e.getName)
         unzipEntry(zipFile, e, outputDir, dirLastModMap)
       }
-      val ze = zipFile.getEntry(".sapp_info")
-      if (ze != null) {
-        val is = zipFile.getInputStream(ze)
-        val p = new Properties
-        p.load(is)
-        for (e <- p.iterator) {
-          permMap(e._1) = e._2.toInt
+
+      if (getOsString.indexOf("win") < 0) {
+        val ze = zipFile.getEntry(".sapp_info")
+        if (ze != null) {
+          val is = zipFile.getInputStream(ze)
+          val p = new Properties
+          p.load(is)
+          for (e <- p) {
+            try {
+              Files.setPosixFilePermissions(new File(outputDir, e._1).toPath,
+                maskToPermSet(e._2.toInt))
+            } catch {
+              case e : IOException =>
+            }
+            StatusPrinter.next
+          }
         }
       }
     } finally zipFile.close
 
-    var i = 0
-    val nextCount = 1000
-      def next = {
-        if (i == nextCount - 1)
-          StatusPrinter.next
-        i = (i + 1) % nextCount
-      }
-
-    for ((path, mask) <- permMap) {
-      try {
-        Files.setPosixFilePermissions(new File(outputDir, path).toPath,
-          maskToPermSet(mask))
-      } catch {
-        case e : IOException =>
-      }
-      next
-    }
-
     for (
       path <- dirLastModMap.keys.toSeq.sortWith({
         (s1, s2) =>
-          next
+          StatusPrinter.next
           s1.compareTo(s2) > 0
       })
     ) {
       new File(path).setLastModified(dirLastModMap(path))
-      next
+      StatusPrinter.next
     }
     StatusPrinter.last
   }
