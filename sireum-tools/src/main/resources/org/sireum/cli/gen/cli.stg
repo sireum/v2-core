@@ -5,7 +5,7 @@ $imports; separator="\n"$
 import org.sireum.util._
 import java.io.PrintWriter
 
-object $className$ extends App{
+object $className$ extends App {
 
   args.foreach(c => print(c + " "))
   println()
@@ -25,11 +25,30 @@ class $className$ {
     return result  
   }
   
-$entry; separator="\n"$
+  def parseModeHelper(parentMode : String, modes : Seq[String],
+                      args : Seq[String], i : Int)(f : String => Unit) {
+    val mode = args(i)
+    val modeMatches = modes.filter(_.startsWith(mode))
+    if (modeMatches.size == 1) f(modeMatches(0))
+    else {
+      val lineSep = System.getProperty("line.separator")
+      addErrorTag(mode + " is not a mode of " + parentMode)
+      val sb = new StringBuilder("Did you mean one of the following modes?")
+      sb.append(lineSep)
+      for (mm <- modeMatches) {
+        sb.append("  ")
+        sb.append(mm)
+        sb.append(lineSep)
+      }
+      addInfoTag(sb.toString)
+    }
+  }
+  
+  $entry; separator="\n\n"$
 
-$process()$
+  $process()$
 
-$tagRoutines()$
+  $tagRoutines()$
 }
 
 class CliResult {
@@ -62,7 +81,7 @@ mode(name, desc) ::= <<
 $name$ $if(desc)$$desc$$endif$
 >>
 
-parseMode(className, header, mode, caseMode, name) ::= <<
+parseMode(className, header, mode, modeName, caseMode, name) ::= <<
 def parse$className$(args : Seq[String], i : Int) {
   if (i == args.length) {
     addInfoTag("""$header$""".trim
@@ -73,13 +92,14 @@ Available Modes:
 """.trim
 $endif$
 )
-  } else {
-    args(i) match {
-      $caseMode; separator="\n"$
-      case s =>
-        addErrorTag(s + " is not a mode of $name$")
+  }$if(modeName)$ else {
+    parseModeHelper("$name$", Seq("$modeName; separator="\", \""$"), args, i) {
+      _ match {
+        $caseMode; separator="\n"$
+      }
     }
   }
+  $endif$
 }  
 >>
 

@@ -105,6 +105,7 @@ class CliBuilder {
             val stcase = stg.getInstanceOf("caseMode")
             stcase.add("modeName", modeName)
             stcase.add("className", m.getReturnType.getSimpleName)
+            stMode.add("modeName", modeName)
             stMode.add("caseMode", stcase)
 
             modeDesc += ((modeName, desc))
