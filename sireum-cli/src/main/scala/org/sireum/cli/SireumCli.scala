@@ -24,17 +24,32 @@ class SireumCli {
     return result
   }
 
+  def parseModeHelper(parentMode : String, modes : Seq[String],
+                      args : Seq[String], i : Int)(f : String => Unit) {
+    val mode = args(i)
+    val modeMatches = modes.filter(_.startsWith(mode))
+    if (modeMatches.size == 1) f(modeMatches(0))
+    else {
+      val lineSep = System.getProperty("line.separator")
+      addErrorTag(mode + " is not a mode of " + parentMode)
+      val sb = new StringBuilder("Did you mean one of the following modes?")
+      sb.append(lineSep)
+      for (mm <- modeMatches) {
+        sb.append("  ")
+        sb.append(mm)
+        sb.append(lineSep)
+      }
+      addInfoTag(sb.toString)
+    }
+  }
+
   def parseSireumDistroMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Sireum Distro""".trim
       )
-    } else {
-      args(i) match {
-        case s =>
-          addErrorTag(s + " is not a mode of distro")
-      }
     }
   }
+
   def parseLaunchEclipseMode(args : Seq[String], i : Int) {
     {
       val opt = LaunchEclipseMode()
@@ -78,6 +93,7 @@ class SireumCli {
 
     }
   }
+
   def parseLaunchSireumDevMode(args : Seq[String], i : Int) {
     {
       val opt = LaunchSireumDevMode()
@@ -121,6 +137,7 @@ class SireumCli {
 
     }
   }
+
   def parseLaunchCompilerDevMode(args : Seq[String], i : Int) {
     {
       val opt = LaunchCompilerDevMode()
@@ -164,6 +181,7 @@ class SireumCli {
 
     }
   }
+
   def parseLaunchBakarV1Mode(args : Seq[String], i : Int) {
     {
       val opt = LaunchBakarV1Mode()
@@ -207,6 +225,7 @@ class SireumCli {
 
     }
   }
+
   def parseLaunchAntlrWorksMode(args : Seq[String], i : Int) {
     {
       val opt = LaunchAntlrWorksMode()
@@ -250,48 +269,50 @@ class SireumCli {
 
     }
   }
+
   def parseSireumLaunchMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Sireum Launcher""".trim
         + "\n\n" + """
-Available Modes:
-  antlrworks   Launch ANTLRWorks
-  bakar        Launch Eclipse with Bakar Plugins
-  compilerdev  Launch Eclipse with Compiler Dev Plugins
-  eclipse      Launch Eclipse
-  sireumdev    Launch Eclipse with Sireum Dev Plugins
-""".trim
+  Available Modes:
+    antlrworks   Launch ANTLRWorks
+    bakar        Launch Eclipse with Bakar Plugins
+    compilerdev  Launch Eclipse with Compiler Dev Plugins
+    eclipse      Launch Eclipse
+    sireumdev    Launch Eclipse with Sireum Dev Plugins
+  """.trim
       )
     } else {
-      args(i) match {
-        case "eclipse" =>
-          parseLaunchEclipseMode(args, i + 1)
-        case "sireumdev" =>
-          parseLaunchSireumDevMode(args, i + 1)
-        case "compilerdev" =>
-          parseLaunchCompilerDevMode(args, i + 1)
-        case "bakar" =>
-          parseLaunchBakarV1Mode(args, i + 1)
-        case "antlrworks" =>
-          parseLaunchAntlrWorksMode(args, i + 1)
-        case s =>
-          addErrorTag(s + " is not a mode of launch")
+      parseModeHelper("launch", Seq("eclipse", "sireumdev", "compilerdev", "bakar", "antlrworks"), args, i) {
+        _ match {
+          case "eclipse" =>
+            parseLaunchEclipseMode(args, i + 1)
+          case "sireumdev" =>
+            parseLaunchSireumDevMode(args, i + 1)
+          case "compilerdev" =>
+            parseLaunchCompilerDevMode(args, i + 1)
+          case "bakar" =>
+            parseLaunchBakarV1Mode(args, i + 1)
+          case "antlrworks" =>
+            parseLaunchAntlrWorksMode(args, i + 1)
+        }
       }
     }
   }
+
   def parseCliGenMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Usage:
-    sireum tools cligen [options] <class-name> 
+      sireum tools cligen [options] <class-name> 
 
-  where the available options are:
+    where the available options are:
 
-  -c | --class-name Fully qualified name for the generated class [Default: "Cli"]
-  -d | --directory  Directory where generated class should be saved [Default: "."]
-  -p | --packages   Package name prefixes used to filter which classes to process
-                    [Separator: ";", Default: ISeq[String]]
-  --max-col         Maximum number of characters per line [Default: 80]
-  --min-col         Column where description should begin [Default: 20]""".trim)
+    -c | --class-name Fully qualified name for the generated class [Default: "Cli"]
+    -d | --directory  Directory where generated class should be saved [Default: "."]
+    -p | --packages   Package name prefixes used to filter which classes to process
+                      [Separator: ";", Default: ISeq[String]]
+    --max-col         Maximum number of characters per line [Default: 80]
+    --min-col         Column where description should begin [Default: 20]""".trim)
     } else {
       val opt = CliGenMode()
       result.options = Some(opt)
@@ -408,21 +429,22 @@ Available Modes:
       result.status &= new org.sireum.option.CliGenOption().check(opt, result.tags)
     }
   }
+
   def parsePipelineMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Usage:
-    sireum tools pipeline [options] <class-names> 
+      sireum tools pipeline [options] <class-names> 
 
-  where the available options are:
+    where the available options are:
 
-  -d   | --directory   Directory where generated class should be saved
-                       [Default: ""]
-  -gcn | --generated-class-name 
-                       Name for the generated class [Default: ""]
-  -ts  | --type-substitutions 
-                       Pairs of fully qualified type names separated by '/' (e.g.
-                       java.lang.Boolean/scala.Boolean) [Separator: ",",
-                       Default: ISeq[String]]""".trim)
+    -d   | --directory   Directory where generated class should be saved
+                         [Default: ""]
+    -gcn | --generated-class-name 
+                         Name for the generated class [Default: ""]
+    -ts  | --type-substitutions 
+                         Pairs of fully qualified type names separated by '/' (e.g.
+                         java.lang.Boolean/scala.Boolean) [Separator: ",",
+                         Default: ISeq[String]]""".trim)
     } else {
       val opt = PipelineMode()
       result.options = Some(opt)
@@ -507,17 +529,18 @@ Available Modes:
 
     }
   }
+
   def parseTreeVisitorGenMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Usage:
-    sireum tools antlr [options] <token-file> 
+      sireum tools antlr [options] <token-file> 
 
-  where the available options are:
+    where the available options are:
 
-  -c | --class-name Name for the generated class [Default: "TreeVisitor"]
-  -d | --directory  Directory for the generated class [Default: "(parent directory
-                    of token file)"]
-  -p | --package    Package name for the generated class [Default: "parser"]""".trim)
+    -c | --class-name Name for the generated class [Default: "TreeVisitor"]
+    -d | --directory  Directory for the generated class [Default: "(parent directory
+                      of token file)"]
+    -p | --package    Package name for the generated class [Default: "parser"]""".trim)
     } else {
       val opt = TreeVisitorGenMode()
       result.options = Some(opt)
@@ -604,13 +627,14 @@ Available Modes:
 
     }
   }
+
   def parseSapperMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Usage:
-    sireum tools sapper <file.sapp> <files> 
+      sireum tools sapper <file.sapp> <files> 
 
 
-  """.trim)
+    """.trim)
     } else {
       val opt = SapperMode()
       result.options = Some(opt)
@@ -661,55 +685,57 @@ Available Modes:
 
     }
   }
+
   def parseSireumToolsMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""Sireum Tools""".trim
         + "\n\n" + """
-Available Modes:
-  antlr 
-  cligen 
-  pipeline 
-  sapper 
-""".trim
+  Available Modes:
+    antlr 
+    cligen 
+    pipeline 
+    sapper 
+  """.trim
       )
     } else {
-      args(i) match {
-        case "cligen" =>
-          parseCliGenMode(args, i + 1)
-        case "pipeline" =>
-          parsePipelineMode(args, i + 1)
-        case "antlr" =>
-          parseTreeVisitorGenMode(args, i + 1)
-        case "sapper" =>
-          parseSapperMode(args, i + 1)
-        case s =>
-          addErrorTag(s + " is not a mode of tools")
+      parseModeHelper("tools", Seq("cligen", "pipeline", "antlr", "sapper"), args, i) {
+        _ match {
+          case "cligen" =>
+            parseCliGenMode(args, i + 1)
+          case "pipeline" =>
+            parsePipelineMode(args, i + 1)
+          case "antlr" =>
+            parseTreeVisitorGenMode(args, i + 1)
+          case "sapper" =>
+            parseSapperMode(args, i + 1)
+        }
       }
     }
   }
+
   def parseSireumMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag("""
-Sireum: A Software Analysis Platform
-(c) 2012, SAnToS Laboratory, Kansas State University
-""".trim
+  Sireum: A Software Analysis Platform
+  (c) 2012, SAnToS Laboratory, Kansas State University
+  """.trim
         + "\n\n" + """
-Available Modes:
-  distro  Sireum Package Manager
-  launch  Sireum Launcher
-  tools   Sireum Development Tools
-""".trim
+  Available Modes:
+    distro  Sireum Package Manager
+    launch  Sireum Launcher
+    tools   Sireum Development Tools
+  """.trim
       )
     } else {
-      args(i) match {
-        case "distro" =>
-          parseSireumDistroMode(args, i + 1)
-        case "launch" =>
-          parseSireumLaunchMode(args, i + 1)
-        case "tools" =>
-          parseSireumToolsMode(args, i + 1)
-        case s =>
-          addErrorTag(s + " is not a mode of sireum")
+      parseModeHelper("sireum", Seq("distro", "launch", "tools"), args, i) {
+        _ match {
+          case "distro" =>
+            parseSireumDistroMode(args, i + 1)
+          case "launch" =>
+            parseSireumLaunchMode(args, i + 1)
+          case "tools" =>
+            parseSireumToolsMode(args, i + 1)
+        }
       }
     }
   }
