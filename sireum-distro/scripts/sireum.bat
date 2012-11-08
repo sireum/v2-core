@@ -171,6 +171,12 @@ object SireumDistro extends App {
       out.println
       out.flush
     }
+    parseDistroArgs
+  } catch {
+    case e : Throwable => logError("Error: ", e)
+  }
+
+  def parseDistroArgs {
     args match {
       case Array(_, "distro") =>
         distroMode
@@ -224,12 +230,10 @@ object SireumDistro extends App {
       case _ if args.length >= 3 && args(1) == "uninstall" =>
         uninstall(args.slice(2, args.length).deep.mkString(" "))
       case _ if args.length > 0 =>
-        parseArgs(args)
+        parseCliArgs(args)
       case _ =>
-        parseArgs(Seq("."))
+        parseCliArgs(Seq("."))
     }
-  } catch {
-    case e : Throwable => logError("Error: ", e)
   }
 
   def logError(text : String, e : Throwable) {
@@ -274,7 +278,7 @@ object SireumDistro extends App {
     out.flush
   }
 
-  def parseArgs(args : Seq[String]) {
+  def parseCliArgs(args : Seq[String]) {
     install(CLI_FEATURE)
     val cli = getCli
     val cliArgs = args.slice(1, args.length)
@@ -1351,7 +1355,7 @@ object SireumDistro extends App {
           err.flush
           if (matches.size > 1) {
             out.println("Did you mean one of the following features?")
-            for (fm <- matches) {
+            for (fm <- matches.toSeq.sortWith((s1, s2) => s1.compareTo(s2) < 0)) {
               out.println("  " + removeSappExt(fm))
             }
             out.flush
@@ -1371,12 +1375,6 @@ object SireumDistro extends App {
     val re = "\\b(" + query.replaceAll("([A-Z][^A-Z]*)", "$1[^A-Z]*") + ".*?)\\b"
     val regex = Pattern.compile(re)
 
-    for ((sf, f) <- m) {
-      val m = regex.matcher(sf)
-      if (m.find) {
-        result = f :: result
-      }
-    }
-    result.reverse
+    m.filter(e => regex.matcher(e._1).find).map(_._2)
   }
 }
