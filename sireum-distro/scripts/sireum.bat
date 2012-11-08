@@ -73,6 +73,8 @@ object SireumDistro extends App {
   val BUILD_FILENAME = "BUILD"
   val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
   val SAPP_EXT = ".sapp"
+  val SAPP_LINK_EXT = ".sapp_link"
+  val SAPP_INFO = ".sapp_info"
 
   val BUFFER_SIZE = 1024
   val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -899,14 +901,20 @@ object SireumDistro extends App {
           delete(f, onExit)
         } else {
           if (onExit) f.deleteOnExit
-          else f.delete
+          else Files.delete(f.toPath)
         }
         StatusPrinter.next
       }
     if (onExit) {
       file.deleteOnExit
       true
-    } else file.delete
+    } else
+      try {
+        Files.delete(file.toPath)
+        true
+      } catch {
+        case e : IOException => false
+      }
   }
 
   def deleteRec(dir : File, msg : String, onExit : Boolean) : Boolean = {
@@ -1171,41 +1179,66 @@ object SireumDistro extends App {
 
   def unzipEntry(zipFile : ZipFile, entry : ZipEntry, outputDir : File,
                  dirLastModMap : scala.collection.mutable.Map[String, Long]) {
-    if ({
-      val n = entry.getName
-      n.indexOf("__MACOSX") < 0 && n.indexOf(".DS_Store") < 0 &&
-        n.indexOf(".sapp_info") < 0
-    })
-      if (entry.isDirectory) {
-        val dir = new File(outputDir, entry.getName)
-        dir.mkdirs
-        val time = entry.getTime
-        if (time != 0) {
-          dirLastModMap(dir.getAbsolutePath) = time
-        }
-      } else {
+    val entryName = entry.getName
+    if (!(entryName.indexOf("__MACOSX") < 0 &&
+      entryName.indexOf(".DS_Store") < 0 &&
+      entryName.indexOf(SAPP_INFO) < 0)) return
 
-        val outputFile = new File(outputDir, entry.getName)
-        if (!outputFile.getParentFile.exists)
-          outputFile.getParentFile.mkdirs
-
-        val is = new BufferedInputStream(zipFile.getInputStream(entry))
-        val os = new BufferedOutputStream(new FileOutputStream(outputFile))
-
-        try transfer(is, os)
-        finally {
-          os.close
-          is.close
-        }
-
-        outputFile.setReadable(true)
-        outputFile.setWritable(true)
-        outputFile.setExecutable(true)
-
-        val time = entry.getTime
-        if (time != 0)
-          outputFile.setLastModified(time)
+    if (entryName.endsWith(SAPP_LINK_EXT)) {
+      val bytes = new Array[Byte](entry.getSize.toInt)
+      val is = zipFile.getInputStream(entry)
+      try {
+        val n = is.read(bytes)
+        assert(n == bytes.length)
+      } finally is.close
+      val outputFile = new File(outputDir,
+        entryName.substring(0, entryName.length - SAPP_LINK_EXT.length))
+      if (outputFile.exists)
+        delete(outputFile, false)
+      val path = new File(new String(bytes)).toPath
+      try {
+        Files.createSymbolicLink(outputFile.toPath, path)
+      } catch {
+        case e : IOException =>
+          err.println("Could not create symbolic link: " +
+            outputFile.getAbsolutePath + " to " + path)
+          err.flush
       }
+      val time = entry.getTime
+      if (time != 0)
+        outputFile.setLastModified(time)
+      return
+    }
+
+    if (entry.isDirectory) {
+      val dir = new File(outputDir, entryName)
+      dir.mkdirs
+      val time = entry.getTime
+      if (time != 0) {
+        dirLastModMap(dir.getAbsolutePath) = time
+      }
+    } else {
+      val outputFile = new File(outputDir, entryName)
+      if (!outputFile.getParentFile.exists)
+        outputFile.getParentFile.mkdirs
+
+      val is = new BufferedInputStream(zipFile.getInputStream(entry))
+      val os = new BufferedOutputStream(new FileOutputStream(outputFile))
+
+      try transfer(is, os)
+      finally {
+        os.close
+        is.close
+      }
+
+      outputFile.setReadable(true)
+      outputFile.setWritable(true)
+      outputFile.setExecutable(true)
+
+      val time = entry.getTime
+      if (time != 0)
+        outputFile.setLastModified(time)
+    }
   }
 
   def transfer(is : InputStream, os : OutputStream) {
