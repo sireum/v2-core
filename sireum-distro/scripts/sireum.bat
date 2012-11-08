@@ -178,7 +178,7 @@ object SireumDistro extends App {
 
   def parseDistroArgs {
     args match {
-      case Array(_, "distro") =>
+      case Array(_, mode) if "distro".startsWith(mode) =>
         distroMode
       case Array(_, "clean") =>
         cleanApps
