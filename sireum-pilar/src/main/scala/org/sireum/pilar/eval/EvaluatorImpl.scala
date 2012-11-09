@@ -109,8 +109,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     r
   }
 
-  // commented out due to https://issues.scala-lang.org/browse/SI-6562
-  // @inline
+  @inline
   private def evalSwitchJump(s : S, j : SwitchJump) : SR = {
     var r : ISeq[S] = ilistEmpty
 
