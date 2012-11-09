@@ -296,7 +296,9 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   }
 
   private def buildExtArgs(s : S, extUri : ResourceUri, arg : Exp) : ISeq[Product] = {
+      @inline
       def mkLazyArg(exp : Exp)(s : S) = eval(s, exp)
+
     val bitMask = sec.extLazyBitMask(extUri)
     val varargs = sec.extVarArgs(extUri)
     val extParamSize = sec.extNumOfArgs(extUri)
@@ -305,31 +307,36 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         case arg : TupleExp if extParamSize == 1 && arg.exps.size == 0 =>
           ilist((s, ilistEmpty[V]))
         case arg : TupleExp if extParamSize - 1 <= arg.exps.size =>
-          var vsss = ilist((ilistEmpty[Any], ilistEmpty[Any], s))
+          case class ExtArgV(state : S,
+                             paramArgs : IList[Any] = ilistEmpty,
+                             paramVarArgs : IList[Any] = ilistEmpty)
+          var eavs = ilist(ExtArgV(s))
           for (i <- 0 until extParamSize - 1) {
             val exp = arg.exps(i)
-            vsss = vsss.flatMap { vss =>
+            eavs = eavs.flatMap { eav =>
               if (bitMask.contains(i))
-                ilist((vss._1, (mkLazyArg(exp) _) :: vss._2, vss._3))
+                ilist(ExtArgV(eav.state, (mkLazyArg(exp) _) :: eav.paramArgs))
               else
-                eval(vss._3, exp).map { re =>
-                  (vss._1, re2v(re) :: vss._2, re2s(re))
+                eval(eav.state, exp).map { re =>
+                  ExtArgV(re2s(re), re2v(re) :: eav.paramArgs)
                 }
             }
           }
           for (i <- extParamSize - 1 until arg.exps.size) {
             val exp = arg.exps(i)
-            vsss = vsss.flatMap { vss =>
+            eavs = eavs.flatMap { vss =>
               if (bitMask.contains(extParamSize - 1))
-                ilist(((mkLazyArg(exp) _) :: vss._1, vss._2, vss._3))
+                ilist(ExtArgV(vss.state, vss.paramArgs,
+                  (mkLazyArg(exp) _) :: vss.paramVarArgs))
               else
-                eval(vss._3, exp).map { re =>
-                  (re2v(re) :: vss._1, vss._2, re2s(re))
+                eval(vss.state, exp).map { re =>
+                  ExtArgV(re2s(re), vss.paramArgs, re2v(re) :: vss.paramVarArgs)
                 }
             }
           }
-          vsss.map { vss =>
-            val args = (vss._3 :: (vss._2.reverse)) ++ ilist(vss._1.reverse.toSeq)
+          eavs.map { vss =>
+            val args = (vss.state :: (vss.paramArgs.reverse)) ++
+              ilist(vss.paramVarArgs.reverse.toSeq)
             TupleHelper.makeTuple(args)
           }
         case _ if !arg.isInstanceOf[TupleExp] && extParamSize == 1 =>
@@ -350,20 +357,22 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
           if (extParamSize == 0)
             ilist(Tuple1(s))
           else {
-            var vsss = ilist((ilistEmpty[Any], s))
+            case class ExtArg(state : S,
+                              paramArgs : IList[Any] = ilistEmpty)
+            var vsss = ilist(ExtArg(s))
             for (i <- 0 until extParamSize) {
               val exp = arg.exps(i)
               vsss = vsss.flatMap { vss =>
                 if (bitMask.contains(i))
-                  ilist(((mkLazyArg(exp) _) :: vss._1, vss._2))
+                  ilist((ExtArg(vss.state, (mkLazyArg(exp) _) :: vss.paramArgs)))
                 else
-                  eval(vss._2, exp).map { re =>
-                    (re2v(re) :: vss._1, re2s(re))
+                  eval(vss.state, exp).map { re =>
+                    ExtArg(re2s(re), re2v(re) :: vss.paramArgs)
                   }
               }
             }
             vsss.map { vss =>
-              val args = vss._2 :: vss._1.reverse
+              val args = vss.state :: vss.paramArgs.reverse
               TupleHelper.makeTuple(args)
             }
           }
