@@ -54,7 +54,17 @@ trait TopiConfig {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait TopiState extends Immutable 
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 trait Topi {
+  def newState : TopiState
+  def compile(conjuncts : Iterable[Exp], ts : TopiState = newState) : TopiState
+  def check(ts : TopiState) : TopiResult.Type
+  def getModel(ts : TopiState) : Option[IMap[String, Value]]
+  
   def check(conjuncts : Iterable[Exp]) : TopiResult.Type
   def getModel(conjuncts : Iterable[Exp]) : Option[IMap[String, Value]]
   def stateRewriter(m : IMap[String, Value]) : RewriteFunction
