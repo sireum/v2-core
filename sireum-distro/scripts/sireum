@@ -163,68 +163,109 @@ object SireumDistro extends App {
       out.println
       out.flush
     }
-    parseDistroArgs
+    if (args.length < 2) parseCliArgs(Seq("."))
+    else parseDistroArgs(1)
   } catch {
     case e : Throwable => logError("Error: ", e)
   }
 
-  def parseDistroArgs {
-    args match {
-      case Array(_, mode) if "distro".startsWith(mode) =>
-        distroMode
-      case Array(_, "clean") =>
-        cleanApps
-      case Array(_, "list") =>
-        for (f <- getFeatures.keys.toArray.sortWith { (f1, f2) => f1 <= f2 })
-          out.println(removeSappExt(f))
-        out.flush
-      case Array(_, "list", m) =>
-        if (m == "installed")
-          for (f <- loadInstalledFeatures.sortWith { (f1, f2) => f1 <= f2 })
-            out.println(removeSappExt(f))
-        else {
-          err.println(m + " is not a mode of list")
-          err.flush
-        }
-        out.flush
-      case Array(_, "update") =>
-        update(new ArrayBuffer[String](), true)
-      case Array(_, "update", m) =>
-        if (m == "script")
-          updateScript
-        else {
-          err.println(m + " is not a mode of update")
-          err.flush
-        }
-      case Array(_, "version") =>
-        install(CLI_FEATURE)
-        out.println("Sireum v2 (Build " + readBuild + ")")
-        out.flush
-      case Array(_, "install") =>
-        out.println("Please specify features to install")
-        out.flush
-      case _ if args.length >= 3 && args(1) == "install" =>
-        args(2) match {
-          case "-d" =>
-            if (args.length >= 5) {
-              unmanagedDir = new File(args(3))
-              install(args.slice(4, args.length) : _*)
-            } else {
-              err.println("Missing install argument")
-              err.flush()
+  def parseDistroArgs(i : Int) {
+      def notMode(mode : String, parentMode : String) {
+        err.println(mode + " is not a mode of " + parentMode)
+        err.flush
+      }
+    val last = i + 1 == args.length
+    val strLe = { (s1 : String, s2 : String) => s1 <= s2 }
+    val appModes = Seq("distro", "launch", "tools")
+    val distroModes = Seq("clean", "install", "list", "uninstall", "update", "version")
+    val mode = args(i)
+    val (parentMode, modes) =
+      if (i == 1) ("sireum", (appModes ++ distroModes).sortWith(strLe))
+      else ("distro", distroModes)
+
+    val modeMatches = modes.filter(_.startsWith(mode))
+    if (modeMatches.size == 1) {
+      modeMatches(0) match {
+        case "distro" =>
+          if (last) distroMode
+          else parseDistroArgs(i + 1)
+        case "clean" =>
+          if (last) cleanApps
+          else notMode(args(i + 1), "clean")
+        case "install" =>
+          if (last) {
+            err.println("Please specify features to install")
+            err.flush
+          } else {
+            args(i + 1) match {
+              case "-d" =>
+                if (args.length > i + 3) {
+                  unmanagedDir = new File(args(i + 2))
+                  if (!unmanagedDir.exists) {
+                    err.println(unmanagedDir.getAbsolutePath + " does not exist")
+                    err.flush
+                  } else if (!unmanagedDir.isDirectory) {
+                    err.println(unmanagedDir.getAbsolutePath + " is not a directory")
+                    err.flush
+                  } else
+                    install(args.slice(i + 3, args.length) : _*)
+                } else if (args.length == i + 2) {
+                  err.println("Missing install option -d argument")
+                  err.flush
+                } else if (args.length == i + 3) {
+                  err.println("Please specify features to install")
+                  err.flush
+                }
+              case arg if arg.startsWith("-") =>
+                err.println(arg + " is not an option of install")
+                err.flush
+              case _ =>
+                install(args.slice(i + 1, args.length) : _*)
             }
-          case arg if arg.startsWith("-") =>
-            err.println(arg + " is not an option of install")
-            err.flush()
-          case _ =>
-            install(args.slice(2, args.length) : _*)
-        }
-      case _ if args.length >= 3 && args(1) == "uninstall" =>
-        uninstall(args.slice(2, args.length).deep.mkString(" "))
-      case _ if args.length > 0 =>
-        parseCliArgs(args)
-      case _ =>
-        parseCliArgs(Seq("."))
+          }
+        case "list" =>
+          if (last) {
+            for (f <- getFeatures.keys.toArray.sortWith(strLe))
+              out.println(removeSappExt(f))
+            out.flush
+          } else {
+            if ("installed".startsWith(args(i + 1))) {
+              for (f <- loadInstalledFeatures.sortWith(strLe))
+                out.println(removeSappExt(f))
+            } else notMode(args(i + 1), "list")
+          }
+        case "uninstall" =>
+          if (last) {
+            err.println("Please specify features to uninstall")
+            err.flush
+          } else {
+            for (j <- i + 1 until args.length)
+              uninstall(args(j))
+          }
+        case "update" =>
+          if (last) {
+            update(new ArrayBuffer[String](), true)
+          } else {
+            if ("script".startsWith(args(i + 1))) {
+              updateScript
+            } else notMode(args(i + 1), "update")
+          }
+        case "version" =>
+          if (last) {
+            install(CLI_FEATURE)
+            out.println("Sireum v2 (Build " + readBuild + ")")
+            out.flush
+          } else notMode(args(i + 1), "version")
+        case _ =>
+          parseCliArgs(args)
+      }
+    } else {
+      notMode(mode, parentMode)
+      out.println("Did you mean one of the following modes?")
+      for (mm <- modeMatches) {
+        out.println("  " + mm)
+      }
+      out.flush
     }
   }
 
@@ -262,8 +303,8 @@ object SireumDistro extends App {
   list installed               List installed features
   update                       Update features
   update script                Update Sireum script
-  uninstall <feature>          Uninstall a feature and all features 
-                               depending on it
+  uninstall <feature>+         Uninstall featuref and all features 
+                               depending on them
   uninstall all                Uninstall all features and scrub Sireum directory
   version                      Display version
 """.trim)
