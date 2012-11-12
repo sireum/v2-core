@@ -17,10 +17,10 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object TopiProcess {
-  type ExpTranslator2 = Exp --> Unit
+  type ExpTranslator = Exp --> Unit
   
   trait BackEndPart {
-    def expTranslator(pw : PrintWriter) : ExpTranslator2
+    def expTranslator(sb : StringBuilder) : ExpTranslator
     def stateRewriter(m : IMap[String, Value]) : RewriteFunction
   }
 }

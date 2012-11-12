@@ -18,77 +18,85 @@ import org.sireum.util.sexp.ast._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
+final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
   def stateRewriter(m : IMap[String, Value]) =
     PartialFunctionUtil.orElses[Any, Any](trans.map { _.stateRewriter(m) })
 
-  def translate(conjuncts : Iterable[Exp]) : String = {
+  def newState = Z3Process.State()
 
-    val sw = new StringWriter
-    val pw = new PrintWriter(sw)
+  def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
+    ts match {
+      case Z3Process.State(s) =>
+        val sb = new StringBuilder(s)
 
-    val t = PartialFunctionUtil.orElses[Exp, Unit](trans.map { _.expTranslator(pw) })
+        val t = PartialFunctionUtil.orElses[Exp, Unit](trans.map { _.expTranslator(sb) })
 
-    for (c <- conjuncts) {
-      assert(t isDefinedAt c, c.toString)
-      t(c)
+        for (c <- conjuncts) {
+          assert(t isDefinedAt c, c.toString)
+          t(c)
+        }
+
+        Z3Process.State(sb.toString)
     }
-
-    sw.toString
-  }
 
   def exec(script : String) = {
     val z3Path = z3.getAbsolutePath
     val args =
-      (OsArchUtil.detect : @unchecked) match {
-        case OsArch.Win64 | OsArch.Win32 =>
-          ilist(z3Path, "/smt2", "/in")
-        case OsArch.Mac64 | OsArch.Mac32 | OsArch.Linux64 | OsArch.Linux32 =>
-          ilist(z3Path, "-smt2", "-in")
+      OsArchUtil.detect match {
+        case OsArch.Win64 | OsArch.Win32 => ilist(z3Path, "/smt2", "/in")
+        case _                           => ilist(z3Path, "-smt2", "-in")
       }
 
     val e = new Exec
     e.run(waitTime, args, Some(script))
   }
 
-  def check(conjuncts : Iterable[Exp]) : TopiResult.Type = {
-    import TopiResult._
-
-    val script = translate(conjuncts)
-    exec(script + "(check-sat)\n(exit)\n") match {
-      case Exec.Timeout =>
-        TIMEOUT
-      case Exec.StringResult(s, _) =>
-        s.trim match {
-          case "sat"     => SAT
-          case "unsat"   => UNSAT
-          case "unknown" => UNKNOWN
-          case s =>
-            scala.Console.err.println(script)
-            scala.Console.err.println(s)
-            scala.Console.err.flush
-            assert(false)
-            sys.error("Unexpected result")
+  def check(ts : TopiState) : TopiResult.Type =
+    ts match {
+      case Z3Process.State(script) =>
+        exec(script + "(check-sat)\n(exit)\n") match {
+          case Exec.Timeout =>
+            TopiResult.TIMEOUT
+          case Exec.StringResult(s, _) =>
+            s.trim match {
+              case "sat"     => TopiResult.SAT
+              case "unsat"   => TopiResult.UNSAT
+              case "unknown" => TopiResult.UNKNOWN
+              case s =>
+                scala.Console.err.println(script)
+                scala.Console.err.println(s)
+                scala.Console.err.flush
+                assert(false)
+                sys.error("Unexpected result")
+            }
+          case Exec.ExceptionRaised(ex) =>
+            throw ex
         }
-      case Exec.ExceptionRaised(ex) =>
-        throw ex
     }
-  }
 
-  def getModel(conjuncts : Iterable[Exp]) : Option[IMap[String, Value]] = {
-    val script = translate(conjuncts)
-    exec(script + "(check-sat)\n(get-model)\n(exit)\n") match {
-      case Exec.Timeout             => None
-      case Exec.StringResult(s, _)  => Some(Z3Process.parseModel(s))
-      case Exec.ExceptionRaised(ex) => throw ex
+  def check(conjuncts : Iterable[Exp]) : TopiResult.Type =
+    check(compile(conjuncts))
+
+  def getModel(ts : TopiState) : Option[IMap[String, Value]] =
+    ts match {
+      case Z3Process.State(script) =>
+        exec(script + "(check-sat)\n(get-model)\n(exit)\n") match {
+          case Exec.Timeout             => None
+          case Exec.StringResult(s, _)  => Some(Z3Process.parseModel(s))
+          case Exec.ExceptionRaised(ex) => throw ex
+        }
     }
-  }
+
+  def getModel(conjuncts : Iterable[Exp]) : Option[IMap[String, Value]] =
+    getModel(compile(conjuncts))
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Z3Process {
+  case class State(z3String : String = "") extends TopiState
+
   def parseModel(model : String) : IMap[String, Value] = {
     val m = mmapEmpty[ResourceUri, Value]
     val e = SExprAst.build(model)

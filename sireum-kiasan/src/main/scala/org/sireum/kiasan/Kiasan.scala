@@ -86,8 +86,26 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
     }
   }
 
-  protected def checkInconsistent(s : S) : Boolean =
-    topi.check(s.pathConditions) == org.sireum.topi.TopiResult.UNSAT
+  case class TopiCache(state : org.sireum.topi.TopiState,
+                       lastCompiledLength : Int) extends Immutable
+
+  @inline
+  protected def check(s : S) = {
+    val topiCachePropKey = "Topi Cache"
+    val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
+    var pcs = s.pathConditions
+    val size = pcs.length - tc.lastCompiledLength
+    var conjuncts = List[Exp]()
+    var i = 0
+    while (i < size) {
+      conjuncts = pcs.head :: conjuncts
+      i += 1
+    }
+    val newTc = TopiCache(topi.compile(conjuncts, tc.state), pcs.length)
+    val s2 = s.setProperty(topiCachePropKey, newTc)
+
+    (s2, topi.check(newTc.state))
+  }
 
   @inline
   private def par[T](shouldParallize : Boolean, l : GenSeq[T]) =
@@ -115,15 +133,18 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
     }
 
   @inline
-  private def filterTerminatingStates(l : GenSeq[S]) =
-    l.filter { s =>
+  private def filterTerminatingStates(gs : GenSeq[S]) =
+    gs.flatMap { s =>
       if (s.callStack.isEmpty) {
         reporter.foundEndState(s)
-        false
+        None
       } else if (s.assertionViolation.isDefined) {
         reporter.foundAssertionViolation(s)
-        false
-      } else
-        !checkInconsistent(s)
+        None
+      } else {
+        val (s2, tr) = check(s)
+        if (tr == org.sireum.topi.TopiResult.UNSAT) None
+        else Some(s2)
+      }
     }
 }
