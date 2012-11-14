@@ -9,8 +9,11 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.topi.process
 
 import java.io._
+import org.sireum.extension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.state._
+import org.sireum.topi._
+import org.sireum.topi.annotation._
 import org.sireum.util._
 
 /**
@@ -18,9 +21,25 @@ import org.sireum.util._
  */
 object TopiProcess {
   type ExpTranslator = Exp --> Unit
-  
+
   trait BackEndPart {
     def expTranslator(sb : StringBuilder) : ExpTranslator
     def stateRewriter(m : IMap[String, Value]) : RewriteFunction
+  }
+
+  def mine(solver : TopiSolver.Type,
+           mode : TopiMode.Type,
+           extensions : ExtensionCompanion*) : ISeq[BackEndPart] = {
+    var result = ilistEmpty[BackEndPart]
+    for (ext <- extensions)
+      for (m <- ext.getClass.getDeclaredMethods)
+        for (ann <- m.getDeclaredAnnotations)
+          ann match {
+            case ann : BackEnd =>
+              if (solver.toString.replace("$", "") == ann.value &&
+                mode.toString.replace("$", "") == ann.mode)
+                result = m.invoke(ext).asInstanceOf[BackEndPart] :: result
+          }
+    result.reverse
   }
 }
