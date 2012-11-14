@@ -127,11 +127,26 @@ trait State[Self <: State[Self]]
   def globalStore : Store
   def closureStoreStack : StoreStack
   def callStack : CallStack
-
+  
   def make(globalStore : Store,
            closureStoreStack : StoreStack,
            callStack : CallStack,
            properties : Property.ImmutableProperties) : Self
+
+  def procedure = {
+    require (!callStack.isEmpty)
+    callStack.head.procedure
+  }
+  
+  def locationUri = {
+    require (!callStack.isEmpty)
+    callStack.head.locationUri
+  }
+  
+  def locationIndex = {
+    require (!callStack.isEmpty)
+    callStack.head.locationIndex
+  }
 
   def variable(varUri : ResourceUri) : Value = {
     import org.sireum.pilar.symbol.H._
@@ -192,7 +207,7 @@ trait State[Self <: State[Self]]
 
   def enterCallFrame(procedureUri : ResourceUri, locationUri : Option[ResourceUri],
                      locationIndex : Int, store : Store = imapEmpty,
-                     returnLocationUri : Option[ResourceUri],
+                     returnLocationUri : Option[ResourceUri] = None,
                      returnLocationIndex : Int = -1,
                      returnVariableUri : Option[ResourceUri] = None) : Self =
     make(globalStore, closureStoreStack,
