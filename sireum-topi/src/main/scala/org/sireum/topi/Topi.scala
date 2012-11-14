@@ -13,15 +13,20 @@ import org.sireum.util._
 import java.io._
 import org.sireum.topi.process._
 import org.sireum.pilar.state._
+import org.sireum.extension._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Topi {
-  def create(config : TopiConfig) : Topi = {
-    (config.solver, config.mode) match {
+  def create(solver : TopiSolver.Type,
+             mode : TopiMode.Type,
+             waitTime : Long,
+             extensions : ExtensionCompanion*) : Topi = {
+    (solver, mode) match {
       case (TopiSolver.Z3, TopiMode.Process) =>
-        new Z3Process(config.exeFile, config.waitTime, config.backEndParts : _*)
+        new Z3Process(TopiSolver.Z3.exeFile, waitTime,
+          TopiProcess.mine(solver, mode, extensions : _*) : _*)
     }
   }
 
@@ -43,18 +48,7 @@ object Topi {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait TopiConfig {
-  def solver : TopiSolver.Type
-  def mode : TopiMode.Type
-  def waitTime : Long
-  def exeFile : File
-  def backEndParts : ISeq[TopiProcess.BackEndPart]
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait TopiState extends Immutable 
+trait TopiState extends Immutable
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -64,7 +58,7 @@ trait Topi {
   def compile(conjuncts : Iterable[Exp], ts : TopiState = newState) : TopiState
   def check(ts : TopiState) : TopiResult.Type
   def getModel(ts : TopiState) : Option[IMap[String, Value]]
-  
+
   def check(conjuncts : Iterable[Exp]) : TopiResult.Type
   def getModel(conjuncts : Iterable[Exp]) : Option[IMap[String, Value]]
   def stateRewriter(m : IMap[String, Value]) : RewriteFunction
