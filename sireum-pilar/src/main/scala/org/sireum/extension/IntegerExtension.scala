@@ -17,7 +17,7 @@ import org.sireum.util._
  */
 object IntegerExtension {
   //  typedef Type @NonReferenceType;
-  val Type = "pilar://typeext/org/sireum/extension/Integer/Type"
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
     
   //  typedef Type @NonReferenceType;
   trait IntegerValue extends NonReferenceValue
