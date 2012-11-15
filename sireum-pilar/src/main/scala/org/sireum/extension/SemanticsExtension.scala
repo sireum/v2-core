@@ -52,6 +52,7 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
   def field(s : S, r : V, f : NameUser) : R
   def index(s : S, a : V, i : V) : R
   def cast(s : S, t : V, typeUri : ResourceUri) : R
+  def canCast(s : S, t : V, typeUri : ResourceUri) : Boolean
   def unaryOp(op : String, s : S, v : V) : R
   def binaryOpMode(op : String) : BinaryOpMode.Type
   def binaryOp(op : String, s : S, v1 : V, v2 : V) : R
@@ -98,6 +99,7 @@ trait SemanticsExtensionInit[S, V, R, C, SR] {
   def addArrayLookup(fieldF : (S, V, V) --> R)
   def addCast(castF : (S, V, ResourceUri) --> R)
   def addUnaryOp(op : String, opF : (S, V) --> R)
+  def addUnaryOps(ops : ISeq[String], opF : (S, String, V) --> R)
   def addBinaryOp(op : String, opF : (S, V, V) --> R)
   def addBinaryOps(ops : ISeq[String], opF : (S, V, String, V) --> R)
   def addLeftLazyBinaryOp(op : String, opF : (S, S => R, V) --> R)
@@ -231,112 +233,120 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     castTA += castF
   }
 
-  protected val unaryOpsA : MMap[String, MArray[(S, V) --> R]] = mmapEmpty.empty
-  protected val unaryOps : MMap[String, (S, V) --> R] = mmapEmpty.empty
+  protected val unaryOpsA : MMap[String, MArray[(S, String, V) --> R]] = mmapEmpty.empty
+  protected val unaryOps : MMap[String, (S, String, V) --> R] = mmapEmpty.empty
 
-  protected val binaryOpsA : MMap[String, MArray[(S, V, V) --> R]] = mmapEmpty.empty
-  protected val binaryOps : MMap[String, (S, V, V) --> R] = mmapEmpty.empty
+  protected val binaryOpsA : MMap[String, MArray[(S, V, String, V) --> R]] = mmapEmpty.empty
+  protected val binaryOps : MMap[String, (S, V, String, V) --> R] = mmapEmpty.empty
 
-  protected val binariesOpsA : MMap[String, MArray[(S, V, String, V) --> R]] = mmapEmpty.empty
-  protected val binariesOps : MMap[String, (S, V, String, V) --> R] = mmapEmpty.empty
+  protected val lLazyBinaryOpsA : MMap[String, MArray[(S, S => R, String, V) --> R]] = mmapEmpty.empty
+  protected val lLazyBinaryOps : MMap[String, (S, S => R, String, V) --> R] = mmapEmpty.empty
 
-  protected val lLazyBinaryOpsA : MMap[String, MArray[(S, S => R, V) --> R]] = mmapEmpty.empty
-  protected val lLazyBinaryOps : MMap[String, (S, S => R, V) --> R] = mmapEmpty.empty
-
-  protected val lLazyBinariesOpsA : MMap[String, MArray[(S, S => R, String, V) --> R]] = mmapEmpty.empty
-  protected val lLazyBinariesOps : MMap[String, (S, S => R, String, V) --> R] = mmapEmpty.empty
-
-  protected val rLazyBinaryOpsA : MMap[String, MArray[(S, V, S => R) --> R]] = mmapEmpty.empty
-  protected val rLazyBinaryOps : MMap[String, (S, V, S => R) --> R] = mmapEmpty.empty
-
-  protected val rLazyBinariesOpsA : MMap[String, MArray[(S, V, String, S => R) --> R]] = mmapEmpty.empty
-  protected val rLazyBinariesOps : MMap[String, (S, V, String, S => R) --> R] = mmapEmpty.empty
+  protected val rLazyBinaryOpsA : MMap[String, MArray[(S, V, String, S => R) --> R]] = mmapEmpty.empty
+  protected val rLazyBinaryOps : MMap[String, (S, V, String, S => R) --> R] = mmapEmpty.empty
 
   def addUnaryOp(op : String, opF : (S, V) --> R) {
     require(!PartialFunctionUtil.empty.equals(opF))
     if (!unaryOpsA.contains(op)) {
-      val l = marrayEmpty[(S, V) --> R]
+      val l = marrayEmpty[(S, String, V) --> R]
       unaryOpsA(op) = l
       unaryOps(op) = PartialFunctionUtil.orElses(l)
     }
-    unaryOpsA(op) += opF
+    unaryOpsA(op) += {
+      case (s, op2, v) if (op == op2 && opF.isDefinedAt(s, v)) => opF(s, v)
+    }
+  }
+
+  def addUnaryOps(ops : ISeq[String], opF : (S, String, V) --> R) {
+    require(!PartialFunctionUtil.empty.equals(opF))
+    for (op <- ops) {
+      if (!unaryOpsA.contains(op)) {
+        val l = marrayEmpty[(S, String, V) --> R]
+        unaryOpsA(op) = l
+        unaryOps(op) = PartialFunctionUtil.orElses(l)
+      }
+      unaryOpsA(op) += opF
+    }
   }
 
   def addBinaryOp(op : String, opF : (S, V, V) --> R) {
-    require(!lLazyBinaryOps.contains(op) && !rLazyBinaryOps.contains(op) &&
-      !lLazyBinariesOps.contains(op) && !rLazyBinariesOps.contains(op))
+    require(!lLazyBinaryOps.contains(op) && !rLazyBinaryOps.contains(op))
     require(!PartialFunctionUtil.empty.equals(opF))
     if (!binaryOpsA.contains(op)) {
-      val l = marrayEmpty[(S, V, V) --> R]
+      val l = marrayEmpty[(S, V, String, V) --> R]
       binaryOpsA(op) = l
       binaryOps(op) = PartialFunctionUtil.orElses(l)
     }
-    binaryOpsA(op) += opF
+    binaryOpsA(op) += {
+      case (s, v1, op2, v2) if (op == op2 && opF.isDefinedAt((s, v1, v2))) =>
+        opF(s, v1, v2)
+    }
   }
 
   def addBinaryOps(ops : ISeq[String], opF : (S, V, String, V) --> R) {
     require(!PartialFunctionUtil.empty.equals(opF))
     for (op <- ops) {
-      require(!lLazyBinaryOps.contains(op) && !rLazyBinaryOps.contains(op) &&
-        !lLazyBinariesOps.contains(op) && !rLazyBinariesOps.contains(op))
-      if (!binariesOpsA.contains(op)) {
+      require(!lLazyBinaryOps.contains(op) && !rLazyBinaryOps.contains(op))
+      if (!binaryOpsA.contains(op)) {
         val l = marrayEmpty[(S, V, String, V) --> R]
-        binariesOpsA(op) = l
-        binariesOps(op) = PartialFunctionUtil.orElses(l)
+        binaryOpsA(op) = l
+        binaryOps(op) = PartialFunctionUtil.orElses(l)
       }
-      binariesOpsA(op) += opF
+      binaryOpsA(op) += opF
     }
   }
 
   def addLeftLazyBinaryOp(op : String, opF : (S, S => R, V) --> R) {
-    require(!binaryOps.contains(op) && !rLazyBinaryOps.contains(op) &&
-      !binariesOps.contains(op) && !rLazyBinariesOps.contains(op))
+    require(!binaryOps.contains(op) && !rLazyBinaryOps.contains(op))
     require(!PartialFunctionUtil.empty.equals(opF))
     if (!lLazyBinaryOpsA.contains(op)) {
-      val l = marrayEmpty[(S, S => R, V) --> R]
+      val l = marrayEmpty[(S, S => R, String, V) --> R]
       lLazyBinaryOpsA(op) = l
       lLazyBinaryOps(op) = PartialFunctionUtil.orElses(l)
     }
-    lLazyBinaryOpsA(op) += opF
+    lLazyBinaryOpsA(op) += {
+      case (s, f, op2, v) if (op == op2 && opF.isDefinedAt((s, f, v))) =>
+        opF(s, f, v)
+    }
   }
 
   def addLeftLazyBinaryOps(ops : ISeq[String], opF : (S, S => R, String, V) --> R) {
     require(!PartialFunctionUtil.empty.equals(opF))
     for (op <- ops) {
-      require(!binaryOps.contains(op) && !rLazyBinaryOps.contains(op) &&
-        !binariesOps.contains(op) && !rLazyBinariesOps.contains(op))
-      if (!lLazyBinariesOpsA.contains(op)) {
+      require(!binaryOps.contains(op) && !rLazyBinaryOps.contains(op))
+      if (!lLazyBinaryOpsA.contains(op)) {
         val l = marrayEmpty[(S, S => R, String, V) --> R]
-        lLazyBinariesOpsA(op) = l
-        lLazyBinariesOps(op) = PartialFunctionUtil.orElses(l)
+        lLazyBinaryOpsA(op) = l
+        lLazyBinaryOps(op) = PartialFunctionUtil.orElses(l)
       }
-      lLazyBinariesOpsA(op) += opF
+      lLazyBinaryOpsA(op) += opF
     }
   }
 
   def addRightLazyBinaryOp(op : String, opF : (S, V, S => R) --> R) {
-    require(!binaryOps.contains(op) && !lLazyBinaryOps.contains(op) &&
-      !binariesOps.contains(op) && !lLazyBinariesOps.contains(op))
+    require(!binaryOps.contains(op) && !lLazyBinaryOps.contains(op))
     require(!PartialFunctionUtil.empty.equals(opF))
     if (!rLazyBinaryOpsA.contains(op)) {
-      val l = marrayEmpty[(S, V, S => R) --> R]
+      val l = marrayEmpty[(S, V, String, S => R) --> R]
       rLazyBinaryOpsA(op) = l
       rLazyBinaryOps(op) = PartialFunctionUtil.orElses(l)
     }
-    rLazyBinaryOpsA(op) += opF
+    rLazyBinaryOpsA(op) += {
+      case (s, v, op2, f) if (op == op2 && opF.isDefinedAt((s, v, f))) =>
+        opF(s, v, f)
+    }
   }
 
   def addRightLazyBinaryOps(ops : ISeq[String], opF : (S, V, String, S => R) --> R) {
     require(!PartialFunctionUtil.empty.equals(opF))
     for (op <- ops) {
-      require(!binaryOps.contains(op) && !lLazyBinaryOps.contains(op) &&
-        !binariesOps.contains(op) && !lLazyBinariesOps.contains(op))
-      if (!rLazyBinariesOpsA.contains(op)) {
+      require(!binaryOps.contains(op) && !lLazyBinaryOps.contains(op))
+      if (!rLazyBinaryOpsA.contains(op)) {
         val l = marrayEmpty[(S, V, String, S => R) --> R]
-        rLazyBinariesOpsA(op) = l
-        rLazyBinariesOps(op) = PartialFunctionUtil.orElses(l)
+        rLazyBinaryOpsA(op) = l
+        rLazyBinaryOps(op) = PartialFunctionUtil.orElses(l)
       }
-      rLazyBinariesOpsA(op) += opF
+      rLazyBinaryOpsA(op) += opF
     }
   }
 
@@ -467,23 +477,17 @@ trait SemanticsExtensionConsumerImpl[S, V, R, C, SR]
   def field(s : S, r : V, f : NameUser) : R = _fieldLookup(s, r, f)
   def index(s : S, a : V, i : V) : R = _arrayLookup(s, a, i)
   def cast(s : S, t : V, typeUri : ResourceUri) : R = castT(s, t, typeUri)
-  def unaryOp(op : String, s : S, v : V) : R = unaryOps(op)(s, v)
+  def canCast(s : S, t : V, typeUri : ResourceUri) : Boolean = castT.isDefinedAt(s, t, typeUri)
+  def unaryOp(op : String, s : S, v : V) : R = unaryOps(op)(s, op, v)
   def binaryOpMode(op : String) : BinaryOpMode.Type =
     if (lLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_LEFT
     else if (rLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_RIGHT
     else BinaryOpMode.REGULAR
-  def binaryOp(op : String, s : S, v1 : V, v2 : V) : R =
-    if (binariesOps.contains(op) && binariesOps(op).isDefinedAt(s, v1, op, v2))
-      binariesOps(op)(s, v1, op, v2)
-    else binaryOps(op)(s, v1, v2)
+  def binaryOp(op : String, s : S, v1 : V, v2 : V) : R = binaryOps(op)(s, v1, op, v2)
   def lazyBinaryOp(op : String, s : S, e : S => R, v : V) : R =
-    if (lLazyBinariesOps.contains(op) && lLazyBinariesOps(op).isDefinedAt(s, e, op, v))
-      lLazyBinariesOps(op)(s, e, op, v)
-    else lLazyBinaryOps(op)(s, e, v)
+    lLazyBinaryOps(op)(s, e, op, v)
   def lazyBinaryOp(op : String, s : S, v : V, e : S => R) : R =
-    if (rLazyBinariesOps.contains(op) && rLazyBinariesOps(op).isDefinedAt(s, v, op, e))
-      rLazyBinariesOps(op)(s, v, op, e)
-    else rLazyBinaryOps(op)(s, v, e)
+    rLazyBinaryOps(op)(s, v, op, e)
   def newList(s : S, elements : ISeq[V]) : R = _newList(s, elements)
   def expExtCall(extUri : ResourceUri, args : Product) : R =
     args match {
@@ -616,6 +620,9 @@ object ExtensionMiner {
       case ann : LBinaries =>
         val extF = m.invoke(ext).asInstanceOf[(S, S => R, String, V) --> R]
         sei.addLeftLazyBinaryOps(ann.value.toList, extF)
+      case ann : Unaries =>
+        val extF = m.invoke(ext).asInstanceOf[(S, String, V) --> R]
+        sei.addUnaryOps(ann.value.toList, extF)
       case ann : Unary =>
         val extF = m.invoke(ext).asInstanceOf[(S, V) --> R]
         sei.addUnaryOp(ann.value, extF)
@@ -705,7 +712,7 @@ trait SemanticsExtensionModule[S, V, R, C, SR] extends EvaluatorModule[S, V, R, 
     new SemanticsExtensionInitImpl[S, V, R, C, SR] //
     with SemanticsExtensionConsumerImpl[S, V, R, C, SR] // 
     with SemanticsExtensionInitConsumer[S, V, R, C, SR]
-  
+
   def seic = _seic
 
   def miners = ilist(ExtensionMiner.mine[S, V, R, C, SR] _)
