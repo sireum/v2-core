@@ -18,7 +18,7 @@ import org.sireum.util._
  */
 object BooleanExtension {
   //  typedef Type @NonReferenceType;
-  val Type = "pilar://typeext/org/sireum/extension/Boolean/Type"
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
     
   //  typedef Type @NonReferenceType;
   trait BooleanValue extends NonReferenceValue
