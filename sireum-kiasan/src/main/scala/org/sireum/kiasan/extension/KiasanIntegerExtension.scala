@@ -34,90 +34,111 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   @BackEnd(value = "Z3", mode = "Process")
   def z3BackEndPart = new TopiProcess.BackEndPart {
-    def expTranslator(sb : StringBuilder, mm : MMap[Immutable, Int]) = {
-      val lineSep = System.getProperty("line.separator")
-      var lastNum = mm.getOrElse(Type, -1)
 
-        @inline
-        implicit def i2s(i : Int) = i.toString
+    class Context(val sb : StringBuilder, var tc : TopiProcess.TypeCounters)
 
-        @inline
-        def println(ss : String*) {
-          for (s <- ss)
-            sb.append(s)
-          sb.append(lineSep)
-        }
+    val lineSep = System.getProperty("line.separator")
 
-        @inline
-        def declareConst(num : Int) {
-          if (num > lastNum) {
-            for (i <- lastNum + 1 to num)
-              println("(declare-const ii!", i, " Int)")
-            lastNum = num
-            mm(Type) = lastNum
-          }
-        }
+    @inline
+    implicit def i2s(i : Int) = i.toString
 
-        @inline
-        def un(freshNum : Int, n : String) {
-          declareConst(freshNum)
-          println("(assert (= ii!", freshNum, " (- ", n, ")))")
-        }
+    @inline
+    def println(ss : String*)(implicit ctx : Context) {
+      for (s <- ss)
+        ctx.sb.append(s)
+      ctx.sb.append(lineSep)
+    }
 
-        @inline
-        def bin(freshNum : Int, n : String, m : String, op : String) {
-          declareConst(freshNum)
-          println("(assert (= ii!", freshNum, " (", op, " ", n, " ", m, ")))")
-        }
-
-        @inline
-        def sbin(v1 : String, v2 : String, op : String) {
-          println("(assert (", op, " ", v1, " ", v2, "))")
-        }
-
-        @inline
-        def nsbin(v1 : String, v2 : String, op : String) {
-          println("(assert (not (", op, " ", v1, " ", v2, ")))")
-        }
-
-        @inline
-        implicit def v2s : Exp --> String = {
-          case e : LiteralExp =>
-            e.literal.toString
-          case ValueExp(c : KonkritIntegerValue) =>
-            val n = c.value
-            if (n < 0)
-              "(- " + (-n).toBigInt + ")"
-            else
-              n.toString
-          case ValueExp(KI(num)) =>
-            declareConst(num)
-            "ii!" + num
-        }
-
-      {
-        case BinaryExp("==", ValueExp(KI(freshNum)), BinaryExp(op, n, m)) // 
-        if (v2s isDefinedAt n) && (v2s isDefinedAt m) && (op == "+" || op == "-" || op == "*" || op == "/" || op == "%") =>
-          op match {
-            case "+" => bin(freshNum, n, m, "+")
-            case "-" => bin(freshNum, n, m, "-")
-            case "*" => bin(freshNum, n, m, "*")
-            case "/" => bin(freshNum, n, m, "div")
-            case "%" => bin(freshNum, n, m, "rem")
-          }
-        case BinaryExp(op, n, m) if (v2s isDefinedAt n) && (v2s isDefinedAt m) &&
-          (op == "==" || op == "!=" || op == "<" || op == "<=" || op == ">" || op == ">=") =>
-          op match {
-            case "==" => sbin(n, m, "=")
-            case "!=" => nsbin(n, m, "=")
-            case ">"  => sbin(n, m, ">")
-            case ">=" => sbin(n, m, ">=")
-            case "<"  => sbin(n, m, "<")
-            case "<=" => sbin(n, m, "<=")
-          }
-        case BinaryExp("==", ValueExp(KI(freshNum)), UnaryExp("-", v)) =>
-          un(freshNum, v)
+    @inline
+    def declareConst(num : Int)(implicit ctx : Context) {
+      val lastNum = ctx.tc.getOrElse(KiasanIntegerExtension.Type, -1)
+      if (num > lastNum) {
+        for (i <- lastNum + 1 to num)
+          println("(declare-const ii!", i, " Int)")
+        ctx.tc = ctx.tc + (KiasanIntegerExtension.Type -> num)
       }
+    }
+
+    @inline
+    def declareEConst(e : Exp)(implicit ctx : Context) {
+      e match {
+        case ValueExp(KI(num)) => declareConst(num)
+        case _                 =>
+      }
+    }
+
+    @inline
+    def un(freshNum : Int, n : String)(implicit ctx : Context) {
+      declareConst(freshNum)
+      println("(assert (= ii!", freshNum, " (- ", n, ")))")
+    }
+
+    @inline
+    def bin(freshNum : Int, n : String,
+            m : String, op : String)(implicit ctx : Context) {
+      declareConst(freshNum)
+      println("(assert (= ii!", freshNum, " (", op, " ", n, " ", m, ")))")
+    }
+
+    @inline
+    def sbin(v1 : String, v2 : String, op : String)(implicit ctx : Context) = {
+      println("(assert (", op, " ", v1, " ", v2, "))")
+    }
+
+    @inline
+    def nsbin(v1 : String, v2 : String, op : String)(implicit ctx : Context) = {
+      println("(assert (not (", op, " ", v1, " ", v2, ")))")
+    }
+
+    @inline
+    implicit def v2s : Exp --> String = {
+      case e : LiteralExp =>
+        e.literal.toString
+      case ValueExp(c : KonkritIntegerValue) =>
+        val n = c.value
+        if (n < 0)
+          "(- " + (-n).toBigInt + ")"
+        else
+          n.toString
+      case ValueExp(KI(num)) =>
+        "ii!" + num
+    }
+
+    def expTranslator = {
+      case (tc, BinaryExp("==", ValueExp(KI(freshNum)), BinaryExp(op, n, m))) //
+      if (v2s isDefinedAt n) && (v2s isDefinedAt m) && (op == "+" || op == "-" || op == "*" || op == "/" || op == "%") =>
+        implicit val ctx = new Context(new StringBuilder, tc)
+        declareEConst(n)
+        declareEConst(m)
+        op match {
+          case "+" => bin(freshNum, n, m, "+")
+          case "-" => bin(freshNum, n, m, "-")
+          case "*" => bin(freshNum, n, m, "*")
+          case "/" => bin(freshNum, n, m, "div")
+          case "%" => bin(freshNum, n, m, "rem")
+        }
+        (ctx.tc, ctx.sb.toString)
+
+      case (tc, BinaryExp(op, n, m)) if (v2s isDefinedAt n) && (v2s isDefinedAt m) &&
+        (op == "==" || op == "!=" || op == "<" || op == "<=" || op == ">" || op == ">=") =>
+        implicit val ctx = new Context(new StringBuilder, tc)
+        declareEConst(n)
+        declareEConst(m)
+        op match {
+          case "==" => sbin(n, m, "=")
+          case "!=" => nsbin(n, m, "=")
+          case ">"  => sbin(n, m, ">")
+          case ">=" => sbin(n, m, ">=")
+          case "<"  => sbin(n, m, "<")
+          case "<=" => sbin(n, m, "<=")
+        }
+        (ctx.tc, ctx.sb.toString)
+
+      case (tc, BinaryExp("==", ValueExp(KI(freshNum)), UnaryExp("-", n))) =>
+        implicit val ctx = new Context(new StringBuilder, tc)
+        declareEConst(n)
+        un(freshNum, n)
+        (ctx.tc, ctx.sb.toString)
     }
 
     def stateRewriter(m : IMap[String, Value]) = {

@@ -20,10 +20,11 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object TopiProcess {
-  type ExpTranslator = Exp --> Unit
+  type TypeCounters = IMap[ResourceUri, Int]
+  type ExpTranslator = (TypeCounters, Exp) --> (TypeCounters, String)
 
   trait BackEndPart {
-    def expTranslator(sb : StringBuilder, m : MMap[Immutable, Int]) : ExpTranslator
+    def expTranslator : ExpTranslator
     def stateRewriter(m : IMap[String, Value]) : RewriteFunction
   }
 
