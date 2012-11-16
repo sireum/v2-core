@@ -23,7 +23,7 @@ object TopiProcess {
   type ExpTranslator = Exp --> Unit
 
   trait BackEndPart {
-    def expTranslator(sb : StringBuilder) : ExpTranslator
+    def expTranslator(sb : StringBuilder, m : MMap[Immutable, Int]) : ExpTranslator
     def stateRewriter(m : IMap[String, Value]) : RewriteFunction
   }
 

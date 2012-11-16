@@ -26,17 +26,21 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
 
   def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
     ts match {
-      case Z3Process.State(s) =>
+      case Z3Process.State(s, m) =>
         val sb = new StringBuilder(s)
 
-        val t = PartialFunctionUtil.orElses[Exp, Unit](trans.map { _.expTranslator(sb) })
+        val mm = new scala.collection.mutable.HashMap[Immutable, Int] {
+          override def default(key : Immutable) : Int = m(key)
+        }
+
+        val t = PartialFunctionUtil.orElses[Exp, Unit](trans.map { _.expTranslator(sb, mm) })
 
         for (c <- conjuncts) {
           assert(t isDefinedAt c, c.toString)
           t(c)
         }
 
-        Z3Process.State(sb.toString)
+        Z3Process.State(sb.toString, mm.toMap)
     }
 
   def exec(script : String) = {
@@ -53,7 +57,7 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
 
   def check(ts : TopiState) : TopiResult.Type =
     ts match {
-      case Z3Process.State(script) =>
+      case Z3Process.State(script, _) =>
         exec(script + "(check-sat)\n(exit)\n") match {
           case Exec.Timeout =>
             TopiResult.TIMEOUT
@@ -79,7 +83,7 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
 
   def getModel(ts : TopiState) : Option[IMap[String, Value]] =
     ts match {
-      case Z3Process.State(script) =>
+      case Z3Process.State(script, _) =>
         exec(script + "(check-sat)\n(get-model)\n(exit)\n") match {
           case Exec.Timeout             => None
           case Exec.StringResult(s, _)  => Some(Z3Process.parseModel(s))
@@ -95,7 +99,8 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Z3Process {
-  case class State(z3String : String = "") extends TopiState
+  case class State(z3String : String = "",
+                   m : IMap[Immutable, Int] = imapEmpty) extends TopiState
 
   def parseModel(model : String) : IMap[String, Value] = {
     val m = mmapEmpty[ResourceUri, Value]

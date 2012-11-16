@@ -16,9 +16,6 @@ import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
 import org.sireum.util._
 import org.sireum.util.math._
-import java.io._
-import scala.Left.apply
-import scala.Right.apply
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -28,21 +25,30 @@ object KonkritBooleanExtension extends ExtensionCompanion {
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritBooleanExtension(config)
 
-  trait KonkritBooleanValue extends BooleanValue with ConcreteValue {
-    def value : Boolean
-  }
-
-  object TT extends KonkritBooleanValue {
-    val typeUri = "pilar://typeext/" + UriUtil.classUri(this)
-    val value = true
-  }
-
-  object FF extends KonkritBooleanValue {
-    val typeUri = "pilar://typeext/" + UriUtil.classUri(this)
-    val value = false
-  }
-
   val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait KonkritBooleanValue extends BooleanValue with ConcreteValue {
+  def value : Boolean
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object TT extends KonkritBooleanValue {
+  val typeUri = KonkritBooleanExtension.Type
+  val value = true
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object FF extends KonkritBooleanValue {
+  val typeUri = KonkritBooleanExtension.Type
+  val value = false
 }
 
 /**
