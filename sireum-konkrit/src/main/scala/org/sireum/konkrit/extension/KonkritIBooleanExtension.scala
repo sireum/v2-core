@@ -31,8 +31,9 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritBooleanValue extends BooleanValue with ConcreteValue {
+trait KonkritBooleanValue extends BooleanValue with ConcreteValue with IsBoolean {
   def value : Boolean
+  def asBoolean = value
 }
 
 /**
@@ -62,13 +63,13 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   val uriPath = UriUtil.classUri(this)
 
-  type KBV = KonkritBooleanValue
+  type KBV = IsBoolean
 
   @inline
   private implicit def re2r(p : (S, Value)) = ilist(p)
 
   @inline
-  private implicit def kbv2boolean(c : KBV) = c.value
+  private implicit def kbv2boolean(c : KBV) = c.asBoolean
 
   @inline
   private def boolean2kbv(b : Boolean) = if (b) TT else FF
@@ -83,10 +84,10 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   @Cond
   def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, b : KBV) => ilist((s, b.value))
+    case (s, b : KBV) => ilist((s, b.asBoolean))
     case (s, v) if se.canCast(s, v, KonkritBooleanExtension.Type) =>
       val r = se.cast(s, v, KonkritBooleanExtension.Type)
-      r.map { p => (p._1, p._2.asInstanceOf[KBV].value) }
+      r.map { p => (p._1, p._2.asInstanceOf[KBV].asBoolean) }
   }
 
   @Literal(value = classOf[Boolean], isTrue = true)
@@ -124,7 +125,7 @@ final class KonkritBooleanExtension[S <: State[S]](
           for {
             (s2, v) <- f(s)
             (s3, kbv) <- se.cast(s2, v, KonkritBooleanExtension.Type)
-          } yield (s3, boolean2kbv(fb(kbv.asInstanceOf[KBV].value)))
+          } yield (s3, boolean2kbv(fb(kbv.asInstanceOf[KBV].asBoolean)))
       }
   }
 
@@ -139,6 +140,6 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   @Unary("!")
   def unopEval : (S, Value) --> ISeq[(S, Value)] = {
-    case (s, b : KBV) => (s, boolean2kbv(!b.value))
+    case (s, b : KBV) => (s, boolean2kbv(!b.asBoolean))
   }
 }

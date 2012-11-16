@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2012 Robby, Kansas State University.        
+`Copyright (c) 2011-2012 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -31,8 +31,9 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritIntegerValue extends IntegerValue with ConcreteValue {
+trait KonkritIntegerValue extends IntegerValue with ConcreteValue with IsInteger {
   def value : Integer
+  def asInteger = value
 }
 
 /**
@@ -52,7 +53,7 @@ trait KonkritIntegerExtension[S <: State[S]]
 
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritIntegerValue
+  type C = IsInteger
 
   @inline
   private implicit def re2r(p : (S, Value)) = ilist(p)
@@ -61,11 +62,11 @@ trait KonkritIntegerExtension[S <: State[S]]
   private implicit def bigint2integer(n : BigInt) = SireumNumber(n)
 
   @inline
-  private implicit def kiv2integer(c : C) = c.value
+  private implicit def kiv2integer(c : C) = c.asInteger
 
   @NativeIndex
   def nativeIndexConverter : Value --> Integer = {
-    case (v : C) => v.value
+    case (v : C) => v.asInteger
   }
 
   @DefaultValue
@@ -173,9 +174,9 @@ final class KonkritIntegerIExtension[S <: State[S]](
 
   @Cond
   def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, i : C) => ilist((s, !i.value.isZero))
+    case (s, i : C) => ilist((s, !i.asInteger.isZero))
     case (s, v) if se.canCast(s, v, KonkritIntegerExtension.Type) =>
       val r = se.cast(s, v, KonkritIntegerExtension.Type)
-      r.map { p => (p._1, !p._2.asInstanceOf[C].value.isZero) }
+      r.map { p => (p._1, !p._2.asInstanceOf[C].asInteger.isZero) }
   }
 }
