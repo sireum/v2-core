@@ -1,170 +1,212 @@
 fib_decls.ads.xml
 Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRecord(package_declaration,<package_declaration>
-         <sloc endcol="14" endline="30" col="1" line="10"></sloc>
+         <sloc endcol="14" endline="30" col="1" line="10"/>
          <names_ql>
             <defining_identifier def="ada://package/fib_Decls-10:9" def_name="fib_Decls">
-               <sloc endcol="17" endline="10" col="9" line="10"></sloc>
+               <sloc endcol="17" endline="10" col="9" line="10"/>
             </defining_identifier>
          </names_ql>
+         <aspect_specifications_ql>
+         </aspect_specifications_ql>
          <visible_part_declarative_items_ql>
             <ordinary_type_declaration>
-               <sloc endcol="53" endline="13" col="4" line="13"></sloc>
+               <sloc endcol="53" endline="13" col="4" line="13"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_int32-13:9" def_name="rlt_int32">
-                     <sloc endcol="17" endline="13" col="9" line="13"></sloc>
+                     <sloc endcol="17" endline="13" col="9" line="13"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="52" endline="13" col="22" line="13"></sloc>
+                     <sloc endcol="52" endline="13" col="22" line="13"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="52" endline="13" col="28" line="13"></sloc>
+                           <sloc endcol="52" endline="13" col="28" line="13"/>
                            <lower_bound_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="35" endline="13" col="28" line="13"></sloc>
+                                 <sloc endcol="35" endline="13" col="28" line="13"/>
                                  <prefix_q>
                                     <unary_minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                       <sloc endcol="28" endline="13" col="28" line="13"></sloc>
+                                       <sloc endcol="28" endline="13" col="28" line="13"/>
                                     </unary_minus_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="35" endline="13" col="29" line="13"></sloc>
+                                       <sloc endcol="35" endline="13" col="29" line="13"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                             <sloc endcol="35" endline="13" col="29" line="13"></sloc>
+                                             <sloc endcol="35" endline="13" col="29" line="13"/>
                                              <expression_parenthesized_q>
                                                 <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="34" endline="13" col="30" line="13"></sloc>
+                                                   <sloc endcol="34" endline="13" col="30" line="13"/>
                                                    <prefix_q>
                                                       <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                         <sloc endcol="32" endline="13" col="31" line="13"></sloc>
+                                                         <sloc endcol="32" endline="13" col="31" line="13"/>
                                                       </exponentiate_operator>
                                                    </prefix_q>
                                                    <function_call_parameters_ql>
                                                       <parameter_association>
-                                                         <sloc endcol="30" endline="13" col="30" line="13"></sloc>
+                                                         <sloc endcol="30" endline="13" col="30" line="13"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="2" type="root numberic type????">
-                                                               <sloc endcol="30" endline="13" col="30" line="13"></sloc>
+                                                               <sloc endcol="30" endline="13" col="30" line="13"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                       <parameter_association>
-                                                         <sloc endcol="34" endline="13" col="33" line="13"></sloc>
+                                                         <sloc endcol="34" endline="13" col="33" line="13"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="31" type="root numberic type????">
-                                                               <sloc endcol="34" endline="13" col="33" line="13"></sloc>
+                                                               <sloc endcol="34" endline="13" col="33" line="13"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                    </function_call_parameters_ql>
+                                                   <is_prefix_call_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_call_q>
+                                                   <is_prefix_notation_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_notation_q>
                                                 </function_call>
                                              </expression_parenthesized_q>
                                           </parenthesized_expression>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="52" endline="13" col="40" line="13"></sloc>
+                                 <sloc endcol="52" endline="13" col="40" line="13"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="51" endline="13" col="41" line="13"></sloc>
+                                       <sloc endcol="51" endline="13" col="41" line="13"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="49" endline="13" col="49" line="13"></sloc>
+                                             <sloc endcol="49" endline="13" col="49" line="13"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="47" endline="13" col="41" line="13"></sloc>
+                                             <sloc endcol="47" endline="13" col="41" line="13"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="47" endline="13" col="41" line="13"></sloc>
+                                                   <sloc endcol="47" endline="13" col="41" line="13"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="46" endline="13" col="42" line="13"></sloc>
+                                                         <sloc endcol="46" endline="13" col="42" line="13"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="44" endline="13" col="43" line="13"></sloc>
+                                                               <sloc endcol="44" endline="13" col="43" line="13"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="42" endline="13" col="42" line="13"></sloc>
+                                                               <sloc endcol="42" endline="13" col="42" line="13"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="42" endline="13" col="42" line="13"></sloc>
+                                                                     <sloc endcol="42" endline="13" col="42" line="13"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="46" endline="13" col="45" line="13"></sloc>
+                                                               <sloc endcol="46" endline="13" col="45" line="13"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="31" type="root numberic type????">
-                                                                     <sloc endcol="46" endline="13" col="45" line="13"></sloc>
+                                                                     <sloc endcol="46" endline="13" col="45" line="13"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="51" endline="13" col="51" line="13"></sloc>
+                                             <sloc endcol="51" endline="13" col="51" line="13"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="51" endline="13" col="51" line="13"></sloc>
+                                                   <sloc endcol="51" endline="13" col="51" line="13"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -173,130 +215,152 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="80" endline="13" col="55" line="13"></sloc>
+               <sloc endcol="80" endline="13" col="55" line="13"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="72" endline="13" col="59" line="13"></sloc>
+                     <sloc endcol="72" endline="13" col="59" line="13"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_int32-13:9" ref_name="rlt_int32">
-                           <sloc endcol="67" endline="13" col="59" line="13"></sloc>
+                           <sloc endcol="67" endline="13" col="59" line="13"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="72" endline="13" col="69" line="13"></sloc>
+                           <sloc endcol="72" endline="13" col="69" line="13"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="32" type="root numberic type????">
-                     <sloc endcol="79" endline="13" col="78" line="13"></sloc>
+                     <sloc endcol="79" endline="13" col="78" line="13"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="47" endline="14" col="4" line="14"></sloc>
+               <sloc endcol="47" endline="14" col="4" line="14"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_uint32-14:9" def_name="rlt_uint32">
-                     <sloc endcol="18" endline="14" col="9" line="14"></sloc>
+                     <sloc endcol="18" endline="14" col="9" line="14"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="46" endline="14" col="23" line="14"></sloc>
+                     <sloc endcol="46" endline="14" col="23" line="14"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="46" endline="14" col="29" line="14"></sloc>
+                           <sloc endcol="46" endline="14" col="29" line="14"/>
                            <lower_bound_q>
                               <integer_literal lit_val="0" type="root numberic type????">
-                                 <sloc endcol="29" endline="14" col="29" line="14"></sloc>
+                                 <sloc endcol="29" endline="14" col="29" line="14"/>
                               </integer_literal>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="46" endline="14" col="34" line="14"></sloc>
+                                 <sloc endcol="46" endline="14" col="34" line="14"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="45" endline="14" col="35" line="14"></sloc>
+                                       <sloc endcol="45" endline="14" col="35" line="14"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="43" endline="14" col="43" line="14"></sloc>
+                                             <sloc endcol="43" endline="14" col="43" line="14"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="41" endline="14" col="35" line="14"></sloc>
+                                             <sloc endcol="41" endline="14" col="35" line="14"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="41" endline="14" col="35" line="14"></sloc>
+                                                   <sloc endcol="41" endline="14" col="35" line="14"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="40" endline="14" col="36" line="14"></sloc>
+                                                         <sloc endcol="40" endline="14" col="36" line="14"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="38" endline="14" col="37" line="14"></sloc>
+                                                               <sloc endcol="38" endline="14" col="37" line="14"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="36" endline="14" col="36" line="14"></sloc>
+                                                               <sloc endcol="36" endline="14" col="36" line="14"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="36" endline="14" col="36" line="14"></sloc>
+                                                                     <sloc endcol="36" endline="14" col="36" line="14"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="40" endline="14" col="39" line="14"></sloc>
+                                                               <sloc endcol="40" endline="14" col="39" line="14"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="32" type="root numberic type????">
-                                                                     <sloc endcol="40" endline="14" col="39" line="14"></sloc>
+                                                                     <sloc endcol="40" endline="14" col="39" line="14"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="45" endline="14" col="45" line="14"></sloc>
+                                             <sloc endcol="45" endline="14" col="45" line="14"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="45" endline="14" col="45" line="14"></sloc>
+                                                   <sloc endcol="45" endline="14" col="45" line="14"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -305,272 +369,326 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="75" endline="14" col="49" line="14"></sloc>
+               <sloc endcol="75" endline="14" col="49" line="14"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="67" endline="14" col="53" line="14"></sloc>
+                     <sloc endcol="67" endline="14" col="53" line="14"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_uint32-14:9" ref_name="rlt_uint32">
-                           <sloc endcol="62" endline="14" col="53" line="14"></sloc>
+                           <sloc endcol="62" endline="14" col="53" line="14"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="67" endline="14" col="64" line="14"></sloc>
+                           <sloc endcol="67" endline="14" col="64" line="14"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="32" type="root numberic type????">
-                     <sloc endcol="74" endline="14" col="73" line="14"></sloc>
+                     <sloc endcol="74" endline="14" col="73" line="14"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="33" endline="15" col="4" line="15"></sloc>
+               <sloc endcol="33" endline="15" col="4" line="15"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_mod32-15:9" def_name="rlt_mod32">
-                     <sloc endcol="17" endline="15" col="9" line="15"></sloc>
+                     <sloc endcol="17" endline="15" col="9" line="15"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <modular_type_definition>
-                     <sloc endcol="32" endline="15" col="22" line="15"></sloc>
+                     <sloc endcol="32" endline="15" col="22" line="15"/>
                      <mod_static_expression_q>
                         <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                           <sloc endcol="32" endline="15" col="26" line="15"></sloc>
+                           <sloc endcol="32" endline="15" col="26" line="15"/>
                            <expression_parenthesized_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="31" endline="15" col="27" line="15"></sloc>
+                                 <sloc endcol="31" endline="15" col="27" line="15"/>
                                  <prefix_q>
                                     <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                       <sloc endcol="29" endline="15" col="28" line="15"></sloc>
+                                       <sloc endcol="29" endline="15" col="28" line="15"/>
                                     </exponentiate_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="27" endline="15" col="27" line="15"></sloc>
+                                       <sloc endcol="27" endline="15" col="27" line="15"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="2" type="root numberic type????">
-                                             <sloc endcol="27" endline="15" col="27" line="15"></sloc>
+                                             <sloc endcol="27" endline="15" col="27" line="15"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                     <parameter_association>
-                                       <sloc endcol="31" endline="15" col="30" line="15"></sloc>
+                                       <sloc endcol="31" endline="15" col="30" line="15"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="32" type="root numberic type????">
-                                             <sloc endcol="31" endline="15" col="30" line="15"></sloc>
+                                             <sloc endcol="31" endline="15" col="30" line="15"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </expression_parenthesized_q>
                         </parenthesized_expression>
                      </mod_static_expression_q>
                   </modular_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="60" endline="15" col="35" line="15"></sloc>
+               <sloc endcol="60" endline="15" col="35" line="15"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="52" endline="15" col="39" line="15"></sloc>
+                     <sloc endcol="52" endline="15" col="39" line="15"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_mod32-15:9" ref_name="rlt_mod32">
-                           <sloc endcol="47" endline="15" col="39" line="15"></sloc>
+                           <sloc endcol="47" endline="15" col="39" line="15"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="52" endline="15" col="49" line="15"></sloc>
+                           <sloc endcol="52" endline="15" col="49" line="15"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="32" type="root numberic type????">
-                     <sloc endcol="59" endline="15" col="58" line="15"></sloc>
+                     <sloc endcol="59" endline="15" col="58" line="15"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="53" endline="16" col="4" line="16"></sloc>
+               <sloc endcol="53" endline="16" col="4" line="16"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_int16-16:9" def_name="rlt_int16">
-                     <sloc endcol="17" endline="16" col="9" line="16"></sloc>
+                     <sloc endcol="17" endline="16" col="9" line="16"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="52" endline="16" col="22" line="16"></sloc>
+                     <sloc endcol="52" endline="16" col="22" line="16"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="52" endline="16" col="28" line="16"></sloc>
+                           <sloc endcol="52" endline="16" col="28" line="16"/>
                            <lower_bound_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="35" endline="16" col="28" line="16"></sloc>
+                                 <sloc endcol="35" endline="16" col="28" line="16"/>
                                  <prefix_q>
                                     <unary_minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                       <sloc endcol="28" endline="16" col="28" line="16"></sloc>
+                                       <sloc endcol="28" endline="16" col="28" line="16"/>
                                     </unary_minus_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="35" endline="16" col="29" line="16"></sloc>
+                                       <sloc endcol="35" endline="16" col="29" line="16"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                             <sloc endcol="35" endline="16" col="29" line="16"></sloc>
+                                             <sloc endcol="35" endline="16" col="29" line="16"/>
                                              <expression_parenthesized_q>
                                                 <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="34" endline="16" col="30" line="16"></sloc>
+                                                   <sloc endcol="34" endline="16" col="30" line="16"/>
                                                    <prefix_q>
                                                       <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                         <sloc endcol="32" endline="16" col="31" line="16"></sloc>
+                                                         <sloc endcol="32" endline="16" col="31" line="16"/>
                                                       </exponentiate_operator>
                                                    </prefix_q>
                                                    <function_call_parameters_ql>
                                                       <parameter_association>
-                                                         <sloc endcol="30" endline="16" col="30" line="16"></sloc>
+                                                         <sloc endcol="30" endline="16" col="30" line="16"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="2" type="root numberic type????">
-                                                               <sloc endcol="30" endline="16" col="30" line="16"></sloc>
+                                                               <sloc endcol="30" endline="16" col="30" line="16"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                       <parameter_association>
-                                                         <sloc endcol="34" endline="16" col="33" line="16"></sloc>
+                                                         <sloc endcol="34" endline="16" col="33" line="16"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="15" type="root numberic type????">
-                                                               <sloc endcol="34" endline="16" col="33" line="16"></sloc>
+                                                               <sloc endcol="34" endline="16" col="33" line="16"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                    </function_call_parameters_ql>
+                                                   <is_prefix_call_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_call_q>
+                                                   <is_prefix_notation_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_notation_q>
                                                 </function_call>
                                              </expression_parenthesized_q>
                                           </parenthesized_expression>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="52" endline="16" col="40" line="16"></sloc>
+                                 <sloc endcol="52" endline="16" col="40" line="16"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="51" endline="16" col="41" line="16"></sloc>
+                                       <sloc endcol="51" endline="16" col="41" line="16"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="49" endline="16" col="49" line="16"></sloc>
+                                             <sloc endcol="49" endline="16" col="49" line="16"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="47" endline="16" col="41" line="16"></sloc>
+                                             <sloc endcol="47" endline="16" col="41" line="16"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="47" endline="16" col="41" line="16"></sloc>
+                                                   <sloc endcol="47" endline="16" col="41" line="16"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="46" endline="16" col="42" line="16"></sloc>
+                                                         <sloc endcol="46" endline="16" col="42" line="16"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="44" endline="16" col="43" line="16"></sloc>
+                                                               <sloc endcol="44" endline="16" col="43" line="16"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="42" endline="16" col="42" line="16"></sloc>
+                                                               <sloc endcol="42" endline="16" col="42" line="16"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="42" endline="16" col="42" line="16"></sloc>
+                                                                     <sloc endcol="42" endline="16" col="42" line="16"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="46" endline="16" col="45" line="16"></sloc>
+                                                               <sloc endcol="46" endline="16" col="45" line="16"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="15" type="root numberic type????">
-                                                                     <sloc endcol="46" endline="16" col="45" line="16"></sloc>
+                                                                     <sloc endcol="46" endline="16" col="45" line="16"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="51" endline="16" col="51" line="16"></sloc>
+                                             <sloc endcol="51" endline="16" col="51" line="16"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="51" endline="16" col="51" line="16"></sloc>
+                                                   <sloc endcol="51" endline="16" col="51" line="16"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -579,130 +697,152 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="80" endline="16" col="55" line="16"></sloc>
+               <sloc endcol="80" endline="16" col="55" line="16"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="72" endline="16" col="59" line="16"></sloc>
+                     <sloc endcol="72" endline="16" col="59" line="16"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_int16-16:9" ref_name="rlt_int16">
-                           <sloc endcol="67" endline="16" col="59" line="16"></sloc>
+                           <sloc endcol="67" endline="16" col="59" line="16"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="72" endline="16" col="69" line="16"></sloc>
+                           <sloc endcol="72" endline="16" col="69" line="16"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="16" type="root numberic type????">
-                     <sloc endcol="79" endline="16" col="78" line="16"></sloc>
+                     <sloc endcol="79" endline="16" col="78" line="16"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="47" endline="17" col="4" line="17"></sloc>
+               <sloc endcol="47" endline="17" col="4" line="17"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_uint16-17:9" def_name="rlt_uint16">
-                     <sloc endcol="18" endline="17" col="9" line="17"></sloc>
+                     <sloc endcol="18" endline="17" col="9" line="17"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="46" endline="17" col="23" line="17"></sloc>
+                     <sloc endcol="46" endline="17" col="23" line="17"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="46" endline="17" col="29" line="17"></sloc>
+                           <sloc endcol="46" endline="17" col="29" line="17"/>
                            <lower_bound_q>
                               <integer_literal lit_val="0" type="root numberic type????">
-                                 <sloc endcol="29" endline="17" col="29" line="17"></sloc>
+                                 <sloc endcol="29" endline="17" col="29" line="17"/>
                               </integer_literal>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="46" endline="17" col="34" line="17"></sloc>
+                                 <sloc endcol="46" endline="17" col="34" line="17"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="45" endline="17" col="35" line="17"></sloc>
+                                       <sloc endcol="45" endline="17" col="35" line="17"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="43" endline="17" col="43" line="17"></sloc>
+                                             <sloc endcol="43" endline="17" col="43" line="17"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="41" endline="17" col="35" line="17"></sloc>
+                                             <sloc endcol="41" endline="17" col="35" line="17"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="41" endline="17" col="35" line="17"></sloc>
+                                                   <sloc endcol="41" endline="17" col="35" line="17"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="40" endline="17" col="36" line="17"></sloc>
+                                                         <sloc endcol="40" endline="17" col="36" line="17"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="38" endline="17" col="37" line="17"></sloc>
+                                                               <sloc endcol="38" endline="17" col="37" line="17"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="36" endline="17" col="36" line="17"></sloc>
+                                                               <sloc endcol="36" endline="17" col="36" line="17"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="36" endline="17" col="36" line="17"></sloc>
+                                                                     <sloc endcol="36" endline="17" col="36" line="17"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="40" endline="17" col="39" line="17"></sloc>
+                                                               <sloc endcol="40" endline="17" col="39" line="17"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="16" type="root numberic type????">
-                                                                     <sloc endcol="40" endline="17" col="39" line="17"></sloc>
+                                                                     <sloc endcol="40" endline="17" col="39" line="17"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="45" endline="17" col="45" line="17"></sloc>
+                                             <sloc endcol="45" endline="17" col="45" line="17"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="45" endline="17" col="45" line="17"></sloc>
+                                                   <sloc endcol="45" endline="17" col="45" line="17"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -711,272 +851,326 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="75" endline="17" col="49" line="17"></sloc>
+               <sloc endcol="75" endline="17" col="49" line="17"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="67" endline="17" col="53" line="17"></sloc>
+                     <sloc endcol="67" endline="17" col="53" line="17"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_uint16-17:9" ref_name="rlt_uint16">
-                           <sloc endcol="62" endline="17" col="53" line="17"></sloc>
+                           <sloc endcol="62" endline="17" col="53" line="17"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="67" endline="17" col="64" line="17"></sloc>
+                           <sloc endcol="67" endline="17" col="64" line="17"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="16" type="root numberic type????">
-                     <sloc endcol="74" endline="17" col="73" line="17"></sloc>
+                     <sloc endcol="74" endline="17" col="73" line="17"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="33" endline="18" col="4" line="18"></sloc>
+               <sloc endcol="33" endline="18" col="4" line="18"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_mod16-18:9" def_name="rlt_mod16">
-                     <sloc endcol="17" endline="18" col="9" line="18"></sloc>
+                     <sloc endcol="17" endline="18" col="9" line="18"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <modular_type_definition>
-                     <sloc endcol="32" endline="18" col="22" line="18"></sloc>
+                     <sloc endcol="32" endline="18" col="22" line="18"/>
                      <mod_static_expression_q>
                         <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                           <sloc endcol="32" endline="18" col="26" line="18"></sloc>
+                           <sloc endcol="32" endline="18" col="26" line="18"/>
                            <expression_parenthesized_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="31" endline="18" col="27" line="18"></sloc>
+                                 <sloc endcol="31" endline="18" col="27" line="18"/>
                                  <prefix_q>
                                     <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                       <sloc endcol="29" endline="18" col="28" line="18"></sloc>
+                                       <sloc endcol="29" endline="18" col="28" line="18"/>
                                     </exponentiate_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="27" endline="18" col="27" line="18"></sloc>
+                                       <sloc endcol="27" endline="18" col="27" line="18"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="2" type="root numberic type????">
-                                             <sloc endcol="27" endline="18" col="27" line="18"></sloc>
+                                             <sloc endcol="27" endline="18" col="27" line="18"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                     <parameter_association>
-                                       <sloc endcol="31" endline="18" col="30" line="18"></sloc>
+                                       <sloc endcol="31" endline="18" col="30" line="18"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="16" type="root numberic type????">
-                                             <sloc endcol="31" endline="18" col="30" line="18"></sloc>
+                                             <sloc endcol="31" endline="18" col="30" line="18"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </expression_parenthesized_q>
                         </parenthesized_expression>
                      </mod_static_expression_q>
                   </modular_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="60" endline="18" col="35" line="18"></sloc>
+               <sloc endcol="60" endline="18" col="35" line="18"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="52" endline="18" col="39" line="18"></sloc>
+                     <sloc endcol="52" endline="18" col="39" line="18"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_mod16-18:9" ref_name="rlt_mod16">
-                           <sloc endcol="47" endline="18" col="39" line="18"></sloc>
+                           <sloc endcol="47" endline="18" col="39" line="18"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="52" endline="18" col="49" line="18"></sloc>
+                           <sloc endcol="52" endline="18" col="49" line="18"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="16" type="root numberic type????">
-                     <sloc endcol="59" endline="18" col="58" line="18"></sloc>
+                     <sloc endcol="59" endline="18" col="58" line="18"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="50" endline="19" col="4" line="19"></sloc>
+               <sloc endcol="50" endline="19" col="4" line="19"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_int8-19:9" def_name="rlt_int8">
-                     <sloc endcol="16" endline="19" col="9" line="19"></sloc>
+                     <sloc endcol="16" endline="19" col="9" line="19"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="49" endline="19" col="21" line="19"></sloc>
+                     <sloc endcol="49" endline="19" col="21" line="19"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="49" endline="19" col="27" line="19"></sloc>
+                           <sloc endcol="49" endline="19" col="27" line="19"/>
                            <lower_bound_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="33" endline="19" col="27" line="19"></sloc>
+                                 <sloc endcol="33" endline="19" col="27" line="19"/>
                                  <prefix_q>
                                     <unary_minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                       <sloc endcol="27" endline="19" col="27" line="19"></sloc>
+                                       <sloc endcol="27" endline="19" col="27" line="19"/>
                                     </unary_minus_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="33" endline="19" col="28" line="19"></sloc>
+                                       <sloc endcol="33" endline="19" col="28" line="19"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                             <sloc endcol="33" endline="19" col="28" line="19"></sloc>
+                                             <sloc endcol="33" endline="19" col="28" line="19"/>
                                              <expression_parenthesized_q>
                                                 <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="32" endline="19" col="29" line="19"></sloc>
+                                                   <sloc endcol="32" endline="19" col="29" line="19"/>
                                                    <prefix_q>
                                                       <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                         <sloc endcol="31" endline="19" col="30" line="19"></sloc>
+                                                         <sloc endcol="31" endline="19" col="30" line="19"/>
                                                       </exponentiate_operator>
                                                    </prefix_q>
                                                    <function_call_parameters_ql>
                                                       <parameter_association>
-                                                         <sloc endcol="29" endline="19" col="29" line="19"></sloc>
+                                                         <sloc endcol="29" endline="19" col="29" line="19"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="2" type="root numberic type????">
-                                                               <sloc endcol="29" endline="19" col="29" line="19"></sloc>
+                                                               <sloc endcol="29" endline="19" col="29" line="19"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                       <parameter_association>
-                                                         <sloc endcol="32" endline="19" col="32" line="19"></sloc>
+                                                         <sloc endcol="32" endline="19" col="32" line="19"/>
                                                          <formal_parameter_q>
                                                             <not_an_element>
-                                                               <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
                                                             </not_an_element>
                                                          </formal_parameter_q>
                                                          <actual_parameter_q>
                                                             <integer_literal lit_val="7" type="root numberic type????">
-                                                               <sloc endcol="32" endline="19" col="32" line="19"></sloc>
+                                                               <sloc endcol="32" endline="19" col="32" line="19"/>
                                                             </integer_literal>
                                                          </actual_parameter_q>
                                                       </parameter_association>
                                                    </function_call_parameters_ql>
+                                                   <is_prefix_call_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_call_q>
+                                                   <is_prefix_notation_q>
+                                                      <not_an_element>
+                                                         <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                      </not_an_element>
+                                                   </is_prefix_notation_q>
                                                 </function_call>
                                              </expression_parenthesized_q>
                                           </parenthesized_expression>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="49" endline="19" col="38" line="19"></sloc>
+                                 <sloc endcol="49" endline="19" col="38" line="19"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="48" endline="19" col="39" line="19"></sloc>
+                                       <sloc endcol="48" endline="19" col="39" line="19"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="46" endline="19" col="46" line="19"></sloc>
+                                             <sloc endcol="46" endline="19" col="46" line="19"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="44" endline="19" col="39" line="19"></sloc>
+                                             <sloc endcol="44" endline="19" col="39" line="19"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="44" endline="19" col="39" line="19"></sloc>
+                                                   <sloc endcol="44" endline="19" col="39" line="19"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="43" endline="19" col="40" line="19"></sloc>
+                                                         <sloc endcol="43" endline="19" col="40" line="19"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="42" endline="19" col="41" line="19"></sloc>
+                                                               <sloc endcol="42" endline="19" col="41" line="19"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="40" endline="19" col="40" line="19"></sloc>
+                                                               <sloc endcol="40" endline="19" col="40" line="19"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="40" endline="19" col="40" line="19"></sloc>
+                                                                     <sloc endcol="40" endline="19" col="40" line="19"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="43" endline="19" col="43" line="19"></sloc>
+                                                               <sloc endcol="43" endline="19" col="43" line="19"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="7" type="root numberic type????">
-                                                                     <sloc endcol="43" endline="19" col="43" line="19"></sloc>
+                                                                     <sloc endcol="43" endline="19" col="43" line="19"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="48" endline="19" col="48" line="19"></sloc>
+                                             <sloc endcol="48" endline="19" col="48" line="19"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="48" endline="19" col="48" line="19"></sloc>
+                                                   <sloc endcol="48" endline="19" col="48" line="19"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -985,130 +1179,152 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="75" endline="19" col="52" line="19"></sloc>
+               <sloc endcol="75" endline="19" col="52" line="19"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="68" endline="19" col="56" line="19"></sloc>
+                     <sloc endcol="68" endline="19" col="56" line="19"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_int8-19:9" ref_name="rlt_int8">
-                           <sloc endcol="63" endline="19" col="56" line="19"></sloc>
+                           <sloc endcol="63" endline="19" col="56" line="19"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="68" endline="19" col="65" line="19"></sloc>
+                           <sloc endcol="68" endline="19" col="65" line="19"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="8" type="root numberic type????">
-                     <sloc endcol="74" endline="19" col="74" line="19"></sloc>
+                     <sloc endcol="74" endline="19" col="74" line="19"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="45" endline="20" col="4" line="20"></sloc>
+               <sloc endcol="45" endline="20" col="4" line="20"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_uint8-20:9" def_name="rlt_uint8">
-                     <sloc endcol="17" endline="20" col="9" line="20"></sloc>
+                     <sloc endcol="17" endline="20" col="9" line="20"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <signed_integer_type_definition>
-                     <sloc endcol="44" endline="20" col="22" line="20"></sloc>
+                     <sloc endcol="44" endline="20" col="22" line="20"/>
                      <integer_constraint_q>
                         <simple_expression_range>
-                           <sloc endcol="44" endline="20" col="28" line="20"></sloc>
+                           <sloc endcol="44" endline="20" col="28" line="20"/>
                            <lower_bound_q>
                               <integer_literal lit_val="0" type="root numberic type????">
-                                 <sloc endcol="28" endline="20" col="28" line="20"></sloc>
+                                 <sloc endcol="28" endline="20" col="28" line="20"/>
                               </integer_literal>
                            </lower_bound_q>
                            <upper_bound_q>
                               <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="44" endline="20" col="33" line="20"></sloc>
+                                 <sloc endcol="44" endline="20" col="33" line="20"/>
                                  <expression_parenthesized_q>
                                     <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                       <sloc endcol="43" endline="20" col="34" line="20"></sloc>
+                                       <sloc endcol="43" endline="20" col="34" line="20"/>
                                        <prefix_q>
                                           <minus_operator type="null" ref="implicit declaration" ref_name="&quot;-&quot;">
-                                             <sloc endcol="41" endline="20" col="41" line="20"></sloc>
+                                             <sloc endcol="41" endline="20" col="41" line="20"/>
                                           </minus_operator>
                                        </prefix_q>
                                        <function_call_parameters_ql>
                                           <parameter_association>
-                                             <sloc endcol="39" endline="20" col="34" line="20"></sloc>
+                                             <sloc endcol="39" endline="20" col="34" line="20"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                                                   <sloc endcol="39" endline="20" col="34" line="20"></sloc>
+                                                   <sloc endcol="39" endline="20" col="34" line="20"/>
                                                    <expression_parenthesized_q>
                                                       <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                                         <sloc endcol="38" endline="20" col="35" line="20"></sloc>
+                                                         <sloc endcol="38" endline="20" col="35" line="20"/>
                                                          <prefix_q>
                                                             <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                                               <sloc endcol="37" endline="20" col="36" line="20"></sloc>
+                                                               <sloc endcol="37" endline="20" col="36" line="20"/>
                                                             </exponentiate_operator>
                                                          </prefix_q>
                                                          <function_call_parameters_ql>
                                                             <parameter_association>
-                                                               <sloc endcol="35" endline="20" col="35" line="20"></sloc>
+                                                               <sloc endcol="35" endline="20" col="35" line="20"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="2" type="root numberic type????">
-                                                                     <sloc endcol="35" endline="20" col="35" line="20"></sloc>
+                                                                     <sloc endcol="35" endline="20" col="35" line="20"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                             <parameter_association>
-                                                               <sloc endcol="38" endline="20" col="38" line="20"></sloc>
+                                                               <sloc endcol="38" endline="20" col="38" line="20"/>
                                                                <formal_parameter_q>
                                                                   <not_an_element>
-                                                                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                                     <sloc endcol="0" endline="0" col="1" line="1"/>
                                                                   </not_an_element>
                                                                </formal_parameter_q>
                                                                <actual_parameter_q>
                                                                   <integer_literal lit_val="8" type="root numberic type????">
-                                                                     <sloc endcol="38" endline="20" col="38" line="20"></sloc>
+                                                                     <sloc endcol="38" endline="20" col="38" line="20"/>
                                                                   </integer_literal>
                                                                </actual_parameter_q>
                                                             </parameter_association>
                                                          </function_call_parameters_ql>
+                                                         <is_prefix_call_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_call_q>
+                                                         <is_prefix_notation_q>
+                                                            <not_an_element>
+                                                               <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                            </not_an_element>
+                                                         </is_prefix_notation_q>
                                                       </function_call>
                                                    </expression_parenthesized_q>
                                                 </parenthesized_expression>
                                              </actual_parameter_q>
                                           </parameter_association>
                                           <parameter_association>
-                                             <sloc endcol="43" endline="20" col="43" line="20"></sloc>
+                                             <sloc endcol="43" endline="20" col="43" line="20"/>
                                              <formal_parameter_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </formal_parameter_q>
                                              <actual_parameter_q>
                                                 <integer_literal lit_val="1" type="root numberic type????">
-                                                   <sloc endcol="43" endline="20" col="43" line="20"></sloc>
+                                                   <sloc endcol="43" endline="20" col="43" line="20"/>
                                                 </integer_literal>
                                              </actual_parameter_q>
                                           </parameter_association>
                                        </function_call_parameters_ql>
+                                       <is_prefix_call_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_call_q>
+                                       <is_prefix_notation_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </is_prefix_notation_q>
                                     </function_call>
                                  </expression_parenthesized_q>
                               </parenthesized_expression>
@@ -1117,169 +1333,203 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                      </integer_constraint_q>
                   </signed_integer_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="71" endline="20" col="47" line="20"></sloc>
+               <sloc endcol="71" endline="20" col="47" line="20"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="64" endline="20" col="51" line="20"></sloc>
+                     <sloc endcol="64" endline="20" col="51" line="20"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_uint8-20:9" ref_name="rlt_uint8">
-                           <sloc endcol="59" endline="20" col="51" line="20"></sloc>
+                           <sloc endcol="59" endline="20" col="51" line="20"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="64" endline="20" col="61" line="20"></sloc>
+                           <sloc endcol="64" endline="20" col="61" line="20"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="8" type="root numberic type????">
-                     <sloc endcol="70" endline="20" col="70" line="20"></sloc>
+                     <sloc endcol="70" endline="20" col="70" line="20"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="31" endline="21" col="4" line="21"></sloc>
+               <sloc endcol="31" endline="21" col="4" line="21"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_mod8-21:9" def_name="rlt_mod8">
-                     <sloc endcol="16" endline="21" col="9" line="21"></sloc>
+                     <sloc endcol="16" endline="21" col="9" line="21"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <modular_type_definition>
-                     <sloc endcol="30" endline="21" col="21" line="21"></sloc>
+                     <sloc endcol="30" endline="21" col="21" line="21"/>
                      <mod_static_expression_q>
                         <parenthesized_expression type="ada://ordinary_type/Universal_Integer-1:1">
-                           <sloc endcol="30" endline="21" col="25" line="21"></sloc>
+                           <sloc endcol="30" endline="21" col="25" line="21"/>
                            <expression_parenthesized_q>
                               <function_call type="ada://ordinary_type/Universal_Integer-1:1">
-                                 <sloc endcol="29" endline="21" col="26" line="21"></sloc>
+                                 <sloc endcol="29" endline="21" col="26" line="21"/>
                                  <prefix_q>
                                     <exponentiate_operator type="null" ref="implicit declaration" ref_name="&quot;**&quot;">
-                                       <sloc endcol="28" endline="21" col="27" line="21"></sloc>
+                                       <sloc endcol="28" endline="21" col="27" line="21"/>
                                     </exponentiate_operator>
                                  </prefix_q>
                                  <function_call_parameters_ql>
                                     <parameter_association>
-                                       <sloc endcol="26" endline="21" col="26" line="21"></sloc>
+                                       <sloc endcol="26" endline="21" col="26" line="21"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="2" type="root numberic type????">
-                                             <sloc endcol="26" endline="21" col="26" line="21"></sloc>
+                                             <sloc endcol="26" endline="21" col="26" line="21"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                     <parameter_association>
-                                       <sloc endcol="29" endline="21" col="29" line="21"></sloc>
+                                       <sloc endcol="29" endline="21" col="29" line="21"/>
                                        <formal_parameter_q>
                                           <not_an_element>
-                                             <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
                                           </not_an_element>
                                        </formal_parameter_q>
                                        <actual_parameter_q>
                                           <integer_literal lit_val="8" type="root numberic type????">
-                                             <sloc endcol="29" endline="21" col="29" line="21"></sloc>
+                                             <sloc endcol="29" endline="21" col="29" line="21"/>
                                           </integer_literal>
                                        </actual_parameter_q>
                                     </parameter_association>
                                  </function_call_parameters_ql>
+                                 <is_prefix_call_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_call_q>
+                                 <is_prefix_notation_q>
+                                    <not_an_element>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
+                                    </not_an_element>
+                                 </is_prefix_notation_q>
                               </function_call>
                            </expression_parenthesized_q>
                         </parenthesized_expression>
                      </mod_static_expression_q>
                   </modular_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
             <attribute_definition_clause>
-               <sloc endcol="56" endline="21" col="33" line="21"></sloc>
+               <sloc endcol="56" endline="21" col="33" line="21"/>
                <representation_clause_name_q>
                   <size_attribute type="null">
-                     <sloc endcol="49" endline="21" col="37" line="21"></sloc>
+                     <sloc endcol="49" endline="21" col="37" line="21"/>
                      <prefix_q>
                         <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_mod8-21:9" ref_name="rlt_mod8">
-                           <sloc endcol="44" endline="21" col="37" line="21"></sloc>
+                           <sloc endcol="44" endline="21" col="37" line="21"/>
                         </identifier>
                      </prefix_q>
                      <attribute_designator_identifier_q>
                         <identifier type="null" ref="null" ref_name="size">
-                           <sloc endcol="49" endline="21" col="46" line="21"></sloc>
+                           <sloc endcol="49" endline="21" col="46" line="21"/>
                         </identifier>
                      </attribute_designator_identifier_q>
                   </size_attribute>
                </representation_clause_name_q>
                <representation_clause_expression_q>
                   <integer_literal lit_val="8" type="root numberic type????">
-                     <sloc endcol="55" endline="21" col="55" line="21"></sloc>
+                     <sloc endcol="55" endline="21" col="55" line="21"/>
                   </integer_literal>
                </representation_clause_expression_q>
             </attribute_definition_clause>
             <ordinary_type_declaration>
-               <sloc endcol="15" endline="27" col="4" line="23"></sloc>
+               <sloc endcol="15" endline="27" col="4" line="23"/>
                <names_ql>
                   <defining_identifier def="ada://ordinary_type/fib_Decls-10:9/rlt_fib_State_Type-23:9" def_name="rlt_fib_State_Type">
-                     <sloc endcol="26" endline="23" col="9" line="23"></sloc>
+                     <sloc endcol="26" endline="23" col="9" line="23"/>
                   </defining_identifier>
                </names_ql>
                <discriminant_part_q>
                   <not_an_element>
-                     <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                     <sloc endcol="0" endline="0" col="1" line="1"/>
                   </not_an_element>
                </discriminant_part_q>
                <type_declaration_view_q>
                   <record_type_definition>
-                     <sloc endcol="13" endline="27" col="4" line="24"></sloc>
-                     <abstract_q>
+                     <sloc endcol="13" endline="27" col="4" line="24"/>
+                     <has_abstract_q>
                         <not_an_element>
-                           <sloc endcol="13" endline="27" col="4" line="24"></sloc>
+                           <sloc endcol="0" endline="0" col="1" line="1"/>
                         </not_an_element>
-                     </abstract_q>
-                     <limited_q>
+                     </has_abstract_q>
+                     <has_limited_q>
                         <not_an_element>
-                           <sloc endcol="13" endline="27" col="4" line="24"></sloc>
+                           <sloc endcol="0" endline="0" col="1" line="1"/>
                         </not_an_element>
-                     </limited_q>
+                     </has_limited_q>
                      <record_definition_q>
                         <record_definition>
-                           <sloc endcol="13" endline="27" col="4" line="24"></sloc>
+                           <sloc endcol="13" endline="27" col="4" line="24"/>
+                           <has_limited_q>
+                              <not_an_element>
+                                 <sloc endcol="0" endline="0" col="1" line="1"/>
+                              </not_an_element>
+                           </has_limited_q>
                            <record_components_ql>
                               <component_declaration>
-                                 <sloc endcol="29" endline="25" col="7" line="25"></sloc>
+                                 <sloc endcol="29" endline="25" col="7" line="25"/>
                                  <names_ql>
                                     <defining_identifier def="ada://component/fib_Decls-10:9/rlt_fib_State_Type-23:9/unit_delay-25:7" def_name="unit_delay">
-                                       <sloc endcol="16" endline="25" col="7" line="25"></sloc>
+                                       <sloc endcol="16" endline="25" col="7" line="25"/>
                                     </defining_identifier>
                                  </names_ql>
-                                 <aliased_q>
+                                 <has_aliased_q>
                                     <not_an_element>
-                                       <sloc endcol="28" endline="25" col="20" line="25"></sloc>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
                                     </not_an_element>
-                                 </aliased_q>
+                                 </has_aliased_q>
                                  <object_declaration_view_q>
                                     <component_definition>
-                                       <sloc endcol="28" endline="25" col="20" line="25"></sloc>
+                                       <sloc endcol="28" endline="25" col="20" line="25"/>
+                                       <has_aliased_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </has_aliased_q>
                                        <component_definition_view_q>
                                           <subtype_indication>
-                                             <sloc endcol="28" endline="25" col="20" line="25"></sloc>
+                                             <sloc endcol="28" endline="25" col="20" line="25"/>
+                                             <has_aliased_q>
+                                                <not_an_element>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                </not_an_element>
+                                             </has_aliased_q>
+                                             <has_null_exclusion_q>
+                                                <not_an_element>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                </not_an_element>
+                                             </has_null_exclusion_q>
                                              <subtype_mark_q>
                                                 <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_int32-13:9" ref_name="rlt_int32">
-                                                   <sloc endcol="28" endline="25" col="20" line="25"></sloc>
+                                                   <sloc endcol="28" endline="25" col="20" line="25"/>
                                                 </identifier>
                                              </subtype_mark_q>
                                              <subtype_constraint_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </subtype_constraint_q>
                                           </subtype_indication>
@@ -1288,36 +1538,53 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                                  </object_declaration_view_q>
                                  <initialization_expression_q>
                                     <not_an_element>
-                                       <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
                                     </not_an_element>
                                  </initialization_expression_q>
+                                 <aspect_specifications_ql>
+                                 </aspect_specifications_ql>
                               </component_declaration>
                               <component_declaration>
-                                 <sloc endcol="30" endline="26" col="7" line="26"></sloc>
+                                 <sloc endcol="30" endline="26" col="7" line="26"/>
                                  <names_ql>
                                     <defining_identifier def="ada://component/fib_Decls-10:9/rlt_fib_State_Type-23:9/unit_delay1-26:7" def_name="unit_delay1">
-                                       <sloc endcol="17" endline="26" col="7" line="26"></sloc>
+                                       <sloc endcol="17" endline="26" col="7" line="26"/>
                                     </defining_identifier>
                                  </names_ql>
-                                 <aliased_q>
+                                 <has_aliased_q>
                                     <not_an_element>
-                                       <sloc endcol="29" endline="26" col="21" line="26"></sloc>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
                                     </not_an_element>
-                                 </aliased_q>
+                                 </has_aliased_q>
                                  <object_declaration_view_q>
                                     <component_definition>
-                                       <sloc endcol="29" endline="26" col="21" line="26"></sloc>
+                                       <sloc endcol="29" endline="26" col="21" line="26"/>
+                                       <has_aliased_q>
+                                          <not_an_element>
+                                             <sloc endcol="0" endline="0" col="1" line="1"/>
+                                          </not_an_element>
+                                       </has_aliased_q>
                                        <component_definition_view_q>
                                           <subtype_indication>
-                                             <sloc endcol="29" endline="26" col="21" line="26"></sloc>
+                                             <sloc endcol="29" endline="26" col="21" line="26"/>
+                                             <has_aliased_q>
+                                                <not_an_element>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                </not_an_element>
+                                             </has_aliased_q>
+                                             <has_null_exclusion_q>
+                                                <not_an_element>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
+                                                </not_an_element>
+                                             </has_null_exclusion_q>
                                              <subtype_mark_q>
                                                 <identifier type="null" ref="ada://ordinary_type/fib_Decls-10:9/rlt_int32-13:9" ref_name="rlt_int32">
-                                                   <sloc endcol="29" endline="26" col="21" line="26"></sloc>
+                                                   <sloc endcol="29" endline="26" col="21" line="26"/>
                                                 </identifier>
                                              </subtype_mark_q>
                                              <subtype_constraint_q>
                                                 <not_an_element>
-                                                   <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                                   <sloc endcol="0" endline="0" col="1" line="1"/>
                                                 </not_an_element>
                                              </subtype_constraint_q>
                                           </subtype_indication>
@@ -1326,18 +1593,22 @@ Compilation_Unit(Source_Location(10,1,30,14),Element_List(List()),Element(DataRe
                                  </object_declaration_view_q>
                                  <initialization_expression_q>
                                     <not_an_element>
-                                       <sloc endcol="0" endline="0" col="1" line="1"></sloc>
+                                       <sloc endcol="0" endline="0" col="1" line="1"/>
                                     </not_an_element>
                                  </initialization_expression_q>
+                                 <aspect_specifications_ql>
+                                 </aspect_specifications_ql>
                               </component_declaration>
                            </record_components_ql>
                         </record_definition>
                      </record_definition_q>
                   </record_type_definition>
                </type_declaration_view_q>
+               <aspect_specifications_ql>
+               </aspect_specifications_ql>
             </ordinary_type_declaration>
          </visible_part_declarative_items_ql>
          <private_part_declarative_items_ql>
          </private_part_declarative_items_ql>
-      </package_declaration>)),fib_Decls,fib_decls.ads)
+      </package_declaration>)),A_Package,A_Public_Declaration,An_Application_Unit,fib_Decls,fib_Decls,fib_decls.ads)
 
