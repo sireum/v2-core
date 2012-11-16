@@ -32,6 +32,12 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
+  @inline
+  def fresh[S <: KiasanStatePart[S]](s : S) = {
+    val (nextS, num) = s.next(KiasanIntegerExtension.Type)
+    (nextS, KI(num))
+  }
+
   @BackEnd(value = "Z3", mode = "Process")
   def z3BackEndPart = new TopiProcess.BackEndPart {
 
@@ -99,7 +105,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
         if (n < 0)
           "(- " + (-n).toBigInt + ")"
         else
-          n.toString
+          n.toBigInt.toString
       case ValueExp(KI(num)) =>
         "ii!" + num
     }
@@ -188,10 +194,7 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
 
   @FreshKiasanValue
   def freshKI : (S, ResourceUri) --> (S, Value) = {
-    case (s, KiasanIntegerExtension.Type) => {
-      val (nextS, num) = s.next(KiasanIntegerExtension.Type)
-      (nextS, KI(num))
-    }
+    case (s, KiasanIntegerExtension.Type) => fresh(s)
   }
 
   @Binaries(Array("+", "-", "*", "/", "%"))
@@ -244,7 +247,7 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
       ">" -> "<=",
       ">=" -> "<",
       "<" -> ">=",
-      "<=" -> ">=")
+      "<=" -> ">")
 }
 
 /**
