@@ -22,25 +22,23 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
   def stateRewriter(m : IMap[String, Value]) =
     PartialFunctionUtil.orElses[Any, Any](trans.map { _.stateRewriter(m) })
 
-  def newState = Z3Process.State()
+  val newState = Z3Process.State()
+  val tran = PartialFunctionUtil.orElses[(TopiProcess.TypeCounters, Exp), (TopiProcess.TypeCounters, String)](trans.map { _.expTranslator })
 
   def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
     ts match {
       case Z3Process.State(s, m) =>
         val sb = new StringBuilder(s)
 
-        val mm = new scala.collection.mutable.HashMap[Immutable, Int] {
-          override def default(key : Immutable) : Int = m(key)
-        }
-
-        val t = PartialFunctionUtil.orElses[Exp, Unit](trans.map { _.expTranslator(sb, mm) })
-
+        var tc = m
         for (c <- conjuncts) {
-          assert(t isDefinedAt c, c.toString)
-          t(c)
+          assert(tran.isDefinedAt(m, c), c.toString)
+          val (tc2, s) = tran(tc, c)
+          sb.append(s)
+          tc = tc2
         }
 
-        Z3Process.State(sb.toString, mm.toMap)
+        Z3Process.State(sb.toString, tc)
     }
 
   def exec(script : String) = {
@@ -100,7 +98,7 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
  */
 object Z3Process {
   case class State(z3String : String = "",
-                   m : IMap[Immutable, Int] = imapEmpty) extends TopiState
+                   m : TopiProcess.TypeCounters = imapEmpty) extends TopiState
 
   def parseModel(model : String) : IMap[String, Value] = {
     val m = mmapEmpty[ResourceUri, Value]
