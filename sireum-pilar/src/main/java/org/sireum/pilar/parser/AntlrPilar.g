@@ -208,18 +208,18 @@ model
 	;
 
 annotationList
-	: annotation*                          -> ^(LIST annotation*)
-	| angleGroupedAnnotationList           -> angleGroupedAnnotationList
+	:                                      -> ^(LIST)
+	| annotation+                          -> ^(LIST annotation+)
 	;
 
 angleGroupedAnnotationList
 	:                                      -> ^(LIST)
-	| '<' annotation+ '>'                  -> ^(LIST annotation*)
+	| '<' annotation+ '>'                  -> ^(LIST annotation+)
 	;
 
 parenGroupedAnnotationList
 	:                                      -> ^(LIST)
-	| '(' annotation+ ')'                  -> ^(LIST annotation*)
+	| '(' annotation+ ')'                  -> ^(LIST annotation+)
 	;
 
 annotation
