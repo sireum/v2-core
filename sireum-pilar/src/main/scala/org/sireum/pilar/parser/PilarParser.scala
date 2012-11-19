@@ -26,14 +26,16 @@ object PilarParser {
 
   def apply[T](source : Either[String, FileResourceUri],
                reporter : ErrorReporter,
-               claz : Class[T] = classOf[Model]) =
-    parse[T](source, reporter, claz)
- 
+               claz : Class[T] = classOf[Model],
+               lineOffset : Int = 0) =
+    parse[T](source, reporter, claz, lineOffset)
+
   def parseProduction[T] //
   (source : Option[FileResourceUri],
    antlrss : ANTLRStringStream,
    reporter : ErrorReporter,
-   claz : Class[T] = classOf[Model]) : Option[T] = {
+   claz : Class[T] = classOf[Model],
+   lineOffset : Int = 0) : Option[T] = {
     var hasParseError = false
     val r = new ErrorReporter {
       override def report(source : Option[FileResourceUri], line : Int,
@@ -43,9 +45,9 @@ object PilarParser {
       }
     }
     val src = if (source.isEmpty) None else Some(source.get.intern)
-    val plexer = new Lexer(src, antlrss, r)
+    val plexer = new Lexer(src, antlrss, r, lineOffset)
     val cts = new CommonTokenStream(plexer)
-    val pparser = new Parser(src, cts, r)
+    val pparser = new Parser(src, cts, r, lineOffset)
     pparser.setTreeAdaptor(new PilarTreeAdaptor)
     val t = (claz.getName match {
       case "org.sireum.pilar.ast.Model"          => pparser.modelFile
@@ -63,72 +65,86 @@ object PilarParser {
       case _        => null
     }
     if (hasParseError) None
-    else Some(transform(t, source, reporter).asInstanceOf[T])
+    else Some(transform(t, source, reporter, lineOffset).asInstanceOf[T])
   }
 
   def parse[T](source : Either[String, FileResourceUri],
                reporter : ErrorReporter,
-               claz : Class[T] = classOf[Model]) =
+               claz : Class[T] = classOf[Model],
+               lineOffset : Int = 0) =
     source match {
       case Left(code) =>
-        parseString(code, reporter, None, claz)
+        parseString(code, reporter, None, claz, lineOffset)
       case Right(fileResourceUri) =>
-        parseLoadFile(fileResourceUri, reporter, claz)
+        parseLoadFile(fileResourceUri, reporter, claz, lineOffset)
     }
 
   def parseWithErrorAsString[T](source : Either[String, FileResourceUri],
-                                claz : Class[T] = classOf[Model]) =
+                                claz : Class[T] = classOf[Model],
+                                lineOffset : Int = 0) =
     source match {
       case Left(code) =>
-        parseStringWithErrorAsString(code, None, claz)
+        parseStringWithErrorAsString(code, None, claz, lineOffset)
       case Right(fileResourceUri) =>
-        parseLoadFileWithErrorAsString(fileResourceUri, claz)
+        parseLoadFileWithErrorAsString(fileResourceUri, claz, lineOffset)
     }
 
   def parseString[T](source : String,
                      reporter : ErrorReporter,
                      sourceFile : Option[FileResourceUri] = None,
-                     claz : Class[T] = classOf[Model]) =
-    parseProduction(None, new ANTLRStringStream(source), reporter, claz)
+                     claz : Class[T] = classOf[Model],
+                     lineOffset : Int = 0) =
+    parseProduction(None, new ANTLRStringStream(source), reporter, claz,
+      lineOffset)
 
   def parseStringWithErrorAsString[T](source : String,
                                       sourceFile : Option[FileResourceUri] = None,
-                                      claz : Class[T] = classOf[Model]) = {
+                                      claz : Class[T] = classOf[Model],
+                                      lineOffset : Int = 0) = {
     val reporter = new StringErrorReporter
-    val n = parseProduction(None, new ANTLRStringStream(source), reporter, claz)
+    val n = parseProduction(None, new ANTLRStringStream(source), reporter, claz,
+      lineOffset)
     (n, reporter.errorAsString)
   }
 
   def parseLoadFile[T](sourceUri : FileResourceUri,
                        reporter : ErrorReporter,
-                       claz : Class[T] = classOf[Model]) = {
+                       claz : Class[T] = classOf[Model],
+                       lineOffset : Int = 0) = {
     val (code, absSourceUri) = FileUtil.readFile(sourceUri)
-    parseProduction(Some(absSourceUri), new ANTLRStringStream(code), reporter, claz)
+    parseProduction(Some(absSourceUri), new ANTLRStringStream(code), reporter,
+      claz, lineOffset)
   }
 
   def parseLoadFileWithErrorAsString[T](sourceUri : FileResourceUri,
-                                        claz : Class[T] = classOf[Model]) = {
+                                        claz : Class[T] = classOf[Model],
+                                        lineOffset : Int = 0) = {
     val reporter = new StringErrorReporter
     val (code, absSourceUri) = FileUtil.readFile(sourceUri)
-    val n = parseProduction(Some(absSourceUri), new ANTLRStringStream(code), reporter, claz)
+    val n = parseProduction(Some(absSourceUri), new ANTLRStringStream(code),
+      reporter, claz, lineOffset)
     (n, reporter.errorAsString)
   }
 
   def parseFile[T](sourceFile : FileResourceUri,
                    reporter : ErrorReporter,
-                   claz : Class[T] = classOf[Model]) =
+                   claz : Class[T] = classOf[Model],
+                   lineOffset : Int = 0) =
     parseProduction(Some(sourceFile),
       new ANTLRFileStream(FileUtil.toFilePath(sourceFile)),
       reporter,
-      claz)
+      claz,
+      lineOffset)
 
   def parseFileWithErrorAsString[T](sourceFile : FileResourceUri,
-                                    claz : Class[T] = classOf[Model]) = {
+                                    claz : Class[T] = classOf[Model],
+                                    lineOffset : Int = 0) = {
     val reporter = new StringErrorReporter
     val n = parseProduction(Some(sourceFile),
       new ANTLRFileStream(FileUtil.toFilePath(sourceFile)),
       reporter,
-      claz)
+      claz,
+      lineOffset)
     (n, reporter.errorAsString)
   }
 
@@ -177,31 +193,35 @@ object PilarParser {
 
   private def transform(t : Tree,
                         source : Option[FileResourceUri],
-                        reporter : ErrorReporter) : PilarAstNode = {
+                        reporter : ErrorReporter,
+                        lineOffset : Int) : PilarAstNode = {
     val vc = new ParserVisitorContext
     vc.source = source
     vc.reporter = reporter
+    vc.lineOffset = lineOffset
     new ParserVisitor(vc).visit(t)
     return vc.popResult[PilarAstNode]
   }
 
   private class Parser //
-  (source : Option[FileResourceUri], input : TokenStream, reporter : ErrorReporter)
+  (source : Option[FileResourceUri], input : TokenStream,
+   reporter : ErrorReporter, lineOffset : Int)
       extends AntlrPilarParser(input) {
 
     override def displayRecognitionError(tokenNames : Array[String],
                                          re : RecognitionException) =
-      reporter.report(source, re.line, re.charPositionInLine + 1,
+      reporter.report(source, lineOffset + re.line, re.charPositionInLine + 1,
         getErrorMessage(re, tokenNames))
   }
 
   private class Lexer //
-  (source : Option[FileResourceUri], input : CharStream, reporter : ErrorReporter)
+  (source : Option[FileResourceUri], input : CharStream,
+   reporter : ErrorReporter, lineOffset : Int)
       extends AntlrPilarLexer(input) {
 
     override def displayRecognitionError(tokenNames : Array[String],
                                          re : RecognitionException) =
-      reporter.report(source, re.line, re.charPositionInLine + 1,
+      reporter.report(source, lineOffset + re.line, re.charPositionInLine + 1,
         getErrorMessage(re, tokenNames))
   }
 
