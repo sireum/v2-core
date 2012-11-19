@@ -43,20 +43,15 @@ object ChunkingPilarParser {
 
     val ps = works.par.map { w =>
       val errors = marrayEmpty[(Int, Int, String)]
-      if (w.content.trim != "") {
-        val r = new PilarParser.ErrorReporter {
-          def report(source : Option[FileResourceUri], line : Int,
-                     column : Int, message : String) {
-            errors += ((line, column, message))
-          }
+      val r = new PilarParser.ErrorReporter {
+        def report(source : Option[FileResourceUri], line : Int,
+                   column : Int, message : String) {
+          errors += ((line, column, message))
         }
-        val mOpt = PilarParser.parseString[Model](w.content, r, mSource,
-          classOf[Model], w.startLine)
-        (w.workNum, mOpt, errors)
-      } else {
-        (w.workNum, Some(Model(mSource, ilistEmpty,
-          ilist(PackageDecl(None, ilistEmpty, ilistEmpty)))), errors)
       }
+      val mOpt = PilarParser.parseString[Model](w.content, r, mSource,
+        classOf[Model], w.startLine)
+      (w.workNum, mOpt, errors)
     }
     val sps = ps.seq.sortWith({ (t1, t2) => t1._1 < t2._1 })
     if (sps.exists(!_._3.isEmpty)) {
