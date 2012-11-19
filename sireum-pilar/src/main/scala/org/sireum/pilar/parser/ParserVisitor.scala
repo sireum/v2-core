@@ -32,6 +32,7 @@ protected final class ParserVisitorContext {
   var reporter : ErrorReporter = null
   var typeSpec : Option[TypeSpec] = None
   var source : Option[FileResourceUri] = None
+  var lineOffset : Int = 0
 
   def noResult() : Boolean = {
     return result eq None
@@ -45,7 +46,7 @@ protected final class ParserVisitorContext {
   def pushResult(r : PilarAstNode, t : Tree) : Unit = {
     assert(noResult)
 
-    r.setLocationLineColumn(t.getLine, t.getCharPositionInLine)
+    r.setLocationLineColumn(lineOffset + t.getLine, t.getCharPositionInLine)
 
     pushResult(r)
   }
