@@ -29,10 +29,6 @@ object PilarParser {
                claz : Class[T] = classOf[Model]) =
     parse[T](source, reporter, claz)
  
-  //////////////////////////////////////////////////////////////////////////////
-  // Implemented Public Methods
-  //////////////////////////////////////////////////////////////////////////////
-
   def parseProduction[T] //
   (source : Option[FileResourceUri],
    antlrss : ANTLRStringStream,
@@ -136,10 +132,6 @@ object PilarParser {
     (n, reporter.errorAsString)
   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // Public Traits and Classess
-  //////////////////////////////////////////////////////////////////////////////
-
   trait ErrorReporter {
     def report(source : Option[FileResourceUri], line : Int,
                column : Int, message : String)
@@ -183,10 +175,6 @@ object PilarParser {
     private val UNKNOWN_FILE : FileResourceUri = "?"
   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Methods
-  //////////////////////////////////////////////////////////////////////////////
-
   private def transform(t : Tree,
                         source : Option[FileResourceUri],
                         reporter : ErrorReporter) : PilarAstNode = {
@@ -196,10 +184,6 @@ object PilarParser {
     new ParserVisitor(vc).visit(t)
     return vc.popResult[PilarAstNode]
   }
-
-  //////////////////////////////////////////////////////////////////////////////
-  // Private Classes
-  //////////////////////////////////////////////////////////////////////////////
 
   private class Parser //
   (source : Option[FileResourceUri], input : TokenStream, reporter : ErrorReporter)
