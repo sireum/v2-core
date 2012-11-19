@@ -1,7 +1,7 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g 2012-07-18 10:27:55
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g 2012-11-19 00:12:50
 
 /*
-Copyright (c) 2011-2012 Robby, Kansas State University.        
+Copyright (c) 2011 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -11,8 +11,10 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.pilar.parser;
 
 import org.antlr.runtime.*;
+import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.HashMap;
 
 import org.antlr.runtime.tree.*;
@@ -312,7 +314,7 @@ public class AntlrPilarParser extends Parser {
   }
 
   public String getGrammarFileName() {
-    return "/Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g";
+    return "/Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g";
   }
 
   public static class modelFile_return extends ParserRuleReturnScope {
@@ -324,7 +326,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "modelFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:163:1: modelFile : model EOF -> model ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:163:1: modelFile : model EOF -> model ;
   public final AntlrPilarParser.modelFile_return modelFile()
       throws RecognitionException {
     AntlrPilarParser.modelFile_return retval = new AntlrPilarParser.modelFile_return();
@@ -344,8 +346,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 1)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:164:2: ( model EOF -> model )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:164:4: model EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:164:2: ( model EOF -> model )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:164:4: model EOF
       {
         pushFollow(FOLLOW_model_in_modelFile658);
         model1 = model();
@@ -415,7 +417,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotationFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:167:1: annotationFile : annotation EOF -> annotation ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:167:1: annotationFile : annotation EOF -> annotation ;
   public final AntlrPilarParser.annotationFile_return annotationFile()
       throws RecognitionException {
     AntlrPilarParser.annotationFile_return retval = new AntlrPilarParser.annotationFile_return();
@@ -435,8 +437,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 2)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:168:2: ( annotation EOF -> annotation )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:168:4: annotation EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:168:2: ( annotation EOF -> annotation )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:168:4: annotation EOF
       {
         pushFollow(FOLLOW_annotation_in_annotationFile702);
         annotation3 = annotation();
@@ -508,7 +510,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "packageDeclarationFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:171:1: packageDeclarationFile : packageDeclaration EOF -> packageDeclaration ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:171:1: packageDeclarationFile : packageDeclaration EOF -> packageDeclaration ;
   public final AntlrPilarParser.packageDeclarationFile_return packageDeclarationFile()
       throws RecognitionException {
     AntlrPilarParser.packageDeclarationFile_return retval = new AntlrPilarParser.packageDeclarationFile_return();
@@ -528,8 +530,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 3)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:172:2: ( packageDeclaration EOF -> packageDeclaration )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:172:4: packageDeclaration EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:172:2: ( packageDeclaration EOF -> packageDeclaration )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:172:4: packageDeclaration EOF
       {
         pushFollow(FOLLOW_packageDeclaration_in_packageDeclarationFile745);
         packageDeclaration5 = packageDeclaration();
@@ -603,7 +605,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "packageElementFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:175:1: packageElementFile : packageElement EOF -> packageElement ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:175:1: packageElementFile : packageElement EOF -> packageElement ;
   public final AntlrPilarParser.packageElementFile_return packageElementFile()
       throws RecognitionException {
     AntlrPilarParser.packageElementFile_return retval = new AntlrPilarParser.packageElementFile_return();
@@ -623,8 +625,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 4)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:176:2: ( packageElement EOF -> packageElement )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:176:4: packageElement EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:176:2: ( packageElement EOF -> packageElement )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:176:4: packageElement EOF
       {
         pushFollow(FOLLOW_packageElement_in_packageElementFile776);
         packageElement7 = packageElement();
@@ -695,7 +697,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "locationFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:179:1: locationFile : location EOF -> location ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:179:1: locationFile : location EOF -> location ;
   public final AntlrPilarParser.locationFile_return locationFile()
       throws RecognitionException {
     AntlrPilarParser.locationFile_return retval = new AntlrPilarParser.locationFile_return();
@@ -715,8 +717,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 5)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:180:2: ( location EOF -> location )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:180:4: location EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:180:2: ( location EOF -> location )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:180:4: location EOF
       {
         pushFollow(FOLLOW_location_in_locationFile811);
         location9 = location();
@@ -786,7 +788,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "transformationFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:183:1: transformationFile : transformation EOF -> transformation ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:183:1: transformationFile : transformation EOF -> transformation ;
   public final AntlrPilarParser.transformationFile_return transformationFile()
       throws RecognitionException {
     AntlrPilarParser.transformationFile_return retval = new AntlrPilarParser.transformationFile_return();
@@ -806,8 +808,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 6)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:184:2: ( transformation EOF -> transformation )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:184:4: transformation EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:184:2: ( transformation EOF -> transformation )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:184:4: transformation EOF
       {
         pushFollow(FOLLOW_transformation_in_transformationFile852);
         transformation11 = transformation();
@@ -878,7 +880,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "actionFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:187:1: actionFile : action EOF -> action ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:187:1: actionFile : action EOF -> action ;
   public final AntlrPilarParser.actionFile_return actionFile()
       throws RecognitionException {
     AntlrPilarParser.actionFile_return retval = new AntlrPilarParser.actionFile_return();
@@ -898,8 +900,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 7)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:188:2: ( action EOF -> action )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:188:4: action EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:188:2: ( action EOF -> action )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:188:4: action EOF
       {
         pushFollow(FOLLOW_action_in_actionFile887);
         action13 = action();
@@ -969,7 +971,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "jumpFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:191:1: jumpFile : jump EOF -> jump ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:191:1: jumpFile : jump EOF -> jump ;
   public final AntlrPilarParser.jumpFile_return jumpFile()
       throws RecognitionException {
     AntlrPilarParser.jumpFile_return retval = new AntlrPilarParser.jumpFile_return();
@@ -989,8 +991,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 8)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:192:2: ( jump EOF -> jump )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:192:4: jump EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:192:2: ( jump EOF -> jump )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:192:4: jump EOF
       {
         pushFollow(FOLLOW_jump_in_jumpFile930);
         jump15 = jump();
@@ -1060,7 +1062,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "expFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:195:1: expFile : exp EOF -> exp ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:195:1: expFile : exp EOF -> exp ;
   public final AntlrPilarParser.expFile_return expFile()
       throws RecognitionException {
     AntlrPilarParser.expFile_return retval = new AntlrPilarParser.expFile_return();
@@ -1080,8 +1082,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 9)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:196:2: ( exp EOF -> exp )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:196:4: exp EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:196:2: ( exp EOF -> exp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:196:4: exp EOF
       {
         pushFollow(FOLLOW_exp_in_expFile975);
         exp17 = exp();
@@ -1151,7 +1153,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeFile"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:199:1: typeFile : type EOF -> type ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:199:1: typeFile : type EOF -> type ;
   public final AntlrPilarParser.typeFile_return typeFile()
       throws RecognitionException {
     AntlrPilarParser.typeFile_return retval = new AntlrPilarParser.typeFile_return();
@@ -1171,8 +1173,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 10)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:200:2: ( type EOF -> type )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:200:4: type EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:200:2: ( type EOF -> type )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:200:4: type EOF
       {
         pushFollow(FOLLOW_type_in_typeFile1021);
         type19 = type();
@@ -1242,7 +1244,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "model"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:203:1: model : annotationList ( packageElement )* ( packageDeclaration )* EOF -> ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:203:1: model : annotationList ( packageElement )* ( packageDeclaration )* EOF -> ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) ) ;
   public final AntlrPilarParser.model_return model()
       throws RecognitionException {
     AntlrPilarParser.model_return retval = new AntlrPilarParser.model_return();
@@ -1270,8 +1272,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 11)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:204:2: ( annotationList ( packageElement )* ( packageDeclaration )* EOF -> ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:204:4: annotationList ( packageElement )* ( packageDeclaration )* EOF
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:204:2: ( annotationList ( packageElement )* ( packageDeclaration )* EOF -> ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:204:4: annotationList ( packageElement )* ( packageDeclaration )* EOF
       {
         pushFollow(FOLLOW_annotationList_in_model1066);
         annotationList21 = annotationList();
@@ -1280,7 +1282,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_annotationList.add(annotationList21.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:205:4: ( packageElement )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:205:4: ( packageElement )*
         loop1: do {
           int alt1 = 2;
           int LA1_0 = input.LA(1);
@@ -1292,7 +1294,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt1) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageElement
             {
               pushFollow(FOLLOW_packageElement_in_model1071);
               packageElement22 = packageElement();
@@ -1310,7 +1312,7 @@ public class AntlrPilarParser extends Parser {
           }
         } while (true);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:206:4: ( packageDeclaration )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:206:4: ( packageDeclaration )*
         loop2: do {
           int alt2 = 2;
           int LA2_0 = input.LA(1);
@@ -1321,7 +1323,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt2) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageDeclaration
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageDeclaration
             {
               pushFollow(FOLLOW_packageDeclaration_in_model1077);
               packageDeclaration23 = packageDeclaration();
@@ -1344,7 +1346,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_EOF.add(EOF24);
 
         // AST REWRITE
-        // elements: annotationList, packageDeclaration, packageElement
+        // elements: packageElement, packageDeclaration, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -1358,7 +1360,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 207:41: -> ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:44: ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:44: ^( MODEL annotationList ^( LIST ( packageElement )* ) ^( LIST ( packageDeclaration )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -1366,14 +1368,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:67: ^( LIST ( packageElement )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:67: ^( LIST ( packageElement )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:74: ( packageElement )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:74: ( packageElement )*
                 while (stream_packageElement.hasNext()) {
                   adaptor.addChild(root_2, stream_packageElement.nextTree());
 
@@ -1382,14 +1384,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:91: ^( LIST ( packageDeclaration )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:91: ^( LIST ( packageDeclaration )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:98: ( packageDeclaration )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:207:98: ( packageDeclaration )*
                 while (stream_packageDeclaration.hasNext()) {
                   adaptor
                       .addChild(root_2, stream_packageDeclaration.nextTree());
@@ -1444,7 +1446,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotationList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:210:1: annotationList : ( ( annotation )* -> ^( LIST ( annotation )* ) | angleGroupedAnnotationList -> angleGroupedAnnotationList );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:210:1: annotationList : ( ( annotation )* -> ^( LIST ( annotation )* ) | angleGroupedAnnotationList -> angleGroupedAnnotationList );
   public final AntlrPilarParser.annotationList_return annotationList()
       throws RecognitionException {
     AntlrPilarParser.annotationList_return retval = new AntlrPilarParser.annotationList_return();
@@ -1464,14 +1466,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 12)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:2: ( ( annotation )* -> ^( LIST ( annotation )* ) | angleGroupedAnnotationList -> angleGroupedAnnotationList )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:2: ( ( annotation )* -> ^( LIST ( annotation )* ) | angleGroupedAnnotationList -> angleGroupedAnnotationList )
       int alt4 = 2;
       alt4 = dfa4.predict(input);
       switch (alt4) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
         {
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
           loop3: do {
             int alt3 = 2;
             int LA3_0 = input.LA(1);
@@ -1487,7 +1489,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt3) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
               {
                 pushFollow(FOLLOW_annotation_in_annotationList1167);
                 annotation25 = annotation();
@@ -1520,14 +1522,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 211:41: -> ^( LIST ( annotation )* )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:44: ^( LIST ( annotation )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:44: ^( LIST ( annotation )* )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:51: ( annotation )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:51: ( annotation )*
                 while (stream_annotation.hasNext()) {
                   adaptor.addChild(root_1, stream_annotation.nextTree());
 
@@ -1544,7 +1546,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:212:4: angleGroupedAnnotationList
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:212:4: angleGroupedAnnotationList
         {
           pushFollow(FOLLOW_angleGroupedAnnotationList_in_annotationList1207);
           angleGroupedAnnotationList26 = angleGroupedAnnotationList();
@@ -1618,7 +1620,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "angleGroupedAnnotationList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:215:1: angleGroupedAnnotationList : ( -> ^( LIST ) | '<' ( annotation )+ '>' -> ^( LIST ( annotation )* ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:215:1: angleGroupedAnnotationList : ( -> ^( LIST ) | '<' ( annotation )+ '>' -> ^( LIST ( annotation )* ) );
   public final AntlrPilarParser.angleGroupedAnnotationList_return angleGroupedAnnotationList()
       throws RecognitionException {
     AntlrPilarParser.angleGroupedAnnotationList_return retval = new AntlrPilarParser.angleGroupedAnnotationList_return();
@@ -1642,7 +1644,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 13)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:2: ( -> ^( LIST ) | '<' ( annotation )+ '>' -> ^( LIST ( annotation )* ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:2: ( -> ^( LIST ) | '<' ( annotation )+ '>' -> ^( LIST ( annotation )* ) )
       int alt6 = 2;
       int LA6_0 = input.LA(1);
 
@@ -1666,7 +1668,7 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt6) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:41: 
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:41: 
         {
 
           // AST REWRITE
@@ -1684,7 +1686,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 216:41: -> ^( LIST )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:44: ^( LIST )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:216:44: ^( LIST )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -1701,7 +1703,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:4: '<' ( annotation )+ '>'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:4: '<' ( annotation )+ '>'
         {
           char_literal27 = (Token) match(
               input,
@@ -1710,7 +1712,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_165.add(char_literal27);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:8: ( annotation )+
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:8: ( annotation )+
           int cnt5 = 0;
           loop5: do {
             int alt5 = 2;
@@ -1722,7 +1724,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt5) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
               {
                 pushFollow(FOLLOW_annotation_in_angleGroupedAnnotationList1280);
                 annotation28 = annotation();
@@ -1769,14 +1771,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 217:41: -> ^( LIST ( annotation )* )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:44: ^( LIST ( annotation )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:44: ^( LIST ( annotation )* )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:51: ( annotation )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:217:51: ( annotation )*
                 while (stream_annotation.hasNext()) {
                   adaptor.addChild(root_1, stream_annotation.nextTree());
 
@@ -1830,7 +1832,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "parenGroupedAnnotationList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:220:1: parenGroupedAnnotationList : ( -> ^( LIST ) | '(' ( annotation )+ ')' -> ^( LIST ( annotation )* ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:220:1: parenGroupedAnnotationList : ( -> ^( LIST ) | '(' ( annotation )+ ')' -> ^( LIST ( annotation )* ) );
   public final AntlrPilarParser.parenGroupedAnnotationList_return parenGroupedAnnotationList()
       throws RecognitionException {
     AntlrPilarParser.parenGroupedAnnotationList_return retval = new AntlrPilarParser.parenGroupedAnnotationList_return();
@@ -1854,7 +1856,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 14)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:2: ( -> ^( LIST ) | '(' ( annotation )+ ')' -> ^( LIST ( annotation )* ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:2: ( -> ^( LIST ) | '(' ( annotation )+ ')' -> ^( LIST ( annotation )* ) )
       int alt8 = 2;
       int LA8_0 = input.LA(1);
 
@@ -1897,7 +1899,7 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt8) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:41: 
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:41: 
         {
 
           // AST REWRITE
@@ -1915,7 +1917,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 221:41: -> ^( LIST )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:44: ^( LIST )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:221:44: ^( LIST )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -1932,7 +1934,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:4: '(' ( annotation )+ ')'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:4: '(' ( annotation )+ ')'
         {
           char_literal30 = (Token) match(
               input,
@@ -1941,7 +1943,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_167.add(char_literal30);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:8: ( annotation )+
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:8: ( annotation )+
           int cnt7 = 0;
           loop7: do {
             int alt7 = 2;
@@ -1953,7 +1955,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt7) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
               {
                 pushFollow(FOLLOW_annotation_in_parenGroupedAnnotationList1368);
                 annotation31 = annotation();
@@ -2000,14 +2002,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 222:41: -> ^( LIST ( annotation )* )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:44: ^( LIST ( annotation )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:44: ^( LIST ( annotation )* )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:51: ( annotation )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:222:51: ( annotation )*
                 while (stream_annotation.hasNext()) {
                   adaptor.addChild(root_1, stream_annotation.nextTree());
 
@@ -2060,7 +2062,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotation"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:225:1: annotation : t= '@' ID ( annotationParams )? -> ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:225:1: annotation : t= '@' ID ( annotationParams )? -> ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) ) ;
   public final AntlrPilarParser.annotation_return annotation()
       throws RecognitionException {
     AntlrPilarParser.annotation_return retval = new AntlrPilarParser.annotation_return();
@@ -2084,8 +2086,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 15)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:2: (t= '@' ID ( annotationParams )? -> ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:4: t= '@' ID ( annotationParams )?
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:2: (t= '@' ID ( annotationParams )? -> ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:4: t= '@' ID ( annotationParams )?
       {
         t = (Token) match(input, 169, FOLLOW_169_in_annotation1410);
         if (state.failed) return retval;
@@ -2095,12 +2097,12 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(ID33);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: ( annotationParams )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: ( annotationParams )?
         int alt9 = 2;
         alt9 = dfa9.predict(input);
         switch (alt9) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotationParams
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotationParams
           {
             pushFollow(FOLLOW_annotationParams_in_annotation1414);
             annotationParams34 = annotationParams();
@@ -2130,7 +2132,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 226:41: -> ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:44: ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:44: ^( ANNOTATION[$t] ID ^( OPTION ( annotationParams )? ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -2138,14 +2140,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_ID.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:64: ^( OPTION ( annotationParams )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:64: ^( OPTION ( annotationParams )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:73: ( annotationParams )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:73: ( annotationParams )?
                 if (stream_annotationParams.hasNext()) {
                   adaptor.addChild(root_2, stream_annotationParams.nextTree());
 
@@ -2199,7 +2201,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotationParams"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:229:1: annotationParams : (t= '(' annotationParam ( ',' annotationParam )* ')' -> ^( LIST[$t] ( annotationParam )+ ) | exp ( ',' exp )* -> ^( LIST ( exp )+ ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:229:1: annotationParams : (t= '(' annotationParam ( ',' annotationParam )* ')' -> ^( LIST[$t] ( annotationParam )+ ) | exp ( ',' exp )* -> ^( LIST ( exp )+ ) );
   public final AntlrPilarParser.annotationParams_return annotationParams()
       throws RecognitionException {
     AntlrPilarParser.annotationParams_return retval = new AntlrPilarParser.annotationParams_return();
@@ -2237,12 +2239,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 16)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:2: (t= '(' annotationParam ( ',' annotationParam )* ')' -> ^( LIST[$t] ( annotationParam )+ ) | exp ( ',' exp )* -> ^( LIST ( exp )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:2: (t= '(' annotationParam ( ',' annotationParam )* ')' -> ^( LIST[$t] ( annotationParam )+ ) | exp ( ',' exp )* -> ^( LIST ( exp )+ ) )
       int alt12 = 2;
       alt12 = dfa12.predict(input);
       switch (alt12) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: t= '(' annotationParam ( ',' annotationParam )* ')'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: t= '(' annotationParam ( ',' annotationParam )* ')'
         {
           t = (Token) match(input, 167, FOLLOW_167_in_annotationParams1458);
           if (state.failed) return retval;
@@ -2255,7 +2257,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0)
             stream_annotationParam.add(annotationParam35.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:8: ( ',' annotationParam )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:8: ( ',' annotationParam )*
           loop10: do {
             int alt10 = 2;
             int LA10_0 = input.LA(1);
@@ -2266,7 +2268,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt10) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:10: ',' annotationParam
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:10: ',' annotationParam
               {
                 char_literal36 = (Token) match(
                     input,
@@ -2313,7 +2315,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 231:41: -> ^( LIST[$t] ( annotationParam )+ )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:44: ^( LIST[$t] ( annotationParam )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:44: ^( LIST[$t] ( annotationParam )+ )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -2339,7 +2341,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:4: exp ( ',' exp )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:4: exp ( ',' exp )*
         {
           pushFollow(FOLLOW_exp_in_annotationParams1497);
           exp39 = exp();
@@ -2347,13 +2349,13 @@ public class AntlrPilarParser extends Parser {
           state._fsp--;
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_exp.add(exp39.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:8: ( ',' exp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:8: ( ',' exp )*
           loop11: do {
             int alt11 = 2;
             alt11 = dfa11.predict(input);
             switch (alt11) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ',' exp
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ',' exp
               {
                 char_literal40 = (Token) match(
                     input,
@@ -2392,7 +2394,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 232:41: -> ^( LIST ( exp )+ )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:44: ^( LIST ( exp )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:44: ^( LIST ( exp )+ )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -2454,7 +2456,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotationParam"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:235:1: annotationParam : (t= ID '=' ( annotation | exp ) -> ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? ) | annotation -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation ) | exp -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:235:1: annotationParam : (t= ID '=' ( annotation | exp ) -> ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? ) | annotation -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation ) | exp -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp ) );
   public final AntlrPilarParser.annotationParam_return annotationParam()
       throws RecognitionException {
     AntlrPilarParser.annotationParam_return retval = new AntlrPilarParser.annotationParam_return();
@@ -2486,7 +2488,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 17)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:2: (t= ID '=' ( annotation | exp ) -> ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? ) | annotation -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation ) | exp -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:2: (t= ID '=' ( annotation | exp ) -> ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? ) | annotation -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation ) | exp -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp ) )
       int alt14 = 3;
       switch (input.LA(1)) {
         case ID: {
@@ -2558,7 +2560,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt14) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:4: t= ID '=' ( annotation | exp )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:4: t= ID '=' ( annotation | exp )
         {
           t = (Token) match(input, ID, FOLLOW_ID_in_annotationParam1549);
           if (state.failed) return retval;
@@ -2571,7 +2573,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_171.add(char_literal42);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:13: ( annotation | exp )
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:13: ( annotation | exp )
           int alt13 = 2;
           int LA13_0 = input.LA(1);
 
@@ -2595,7 +2597,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt13) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:15: annotation
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:15: annotation
             {
               pushFollow(FOLLOW_annotation_in_annotationParam1555);
               annotation43 = annotation();
@@ -2608,7 +2610,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:28: exp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:28: exp
             {
               pushFollow(FOLLOW_exp_in_annotationParam1559);
               exp44 = exp();
@@ -2623,7 +2625,7 @@ public class AntlrPilarParser extends Parser {
           }
 
           // AST REWRITE
-          // elements: exp, annotation, ID
+          // elements: ID, exp, annotation
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -2637,21 +2639,21 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 236:41: -> ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:44: ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:44: ^( ANNOTATION_PARAM_IDED[$t] ^( OPTION ( ID )? ) ( annotation )? ( exp )? )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(ANNOTATION_PARAM_IDED, t),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:72: ^( OPTION ( ID )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:72: ^( OPTION ( ID )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:81: ( ID )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:81: ( ID )?
                   if (stream_ID.hasNext()) {
                     adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -2660,13 +2662,13 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_1, root_2);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:86: ( annotation )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:86: ( annotation )?
                 if (stream_annotation.hasNext()) {
                   adaptor.addChild(root_1, stream_annotation.nextTree());
 
                 }
                 stream_annotation.reset();
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:98: ( exp )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:236:98: ( exp )?
                 if (stream_exp.hasNext()) {
                   adaptor.addChild(root_1, stream_exp.nextTree());
 
@@ -2683,7 +2685,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:4: annotation
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:4: annotation
         {
           pushFollow(FOLLOW_annotation_in_annotationParam1593);
           annotation45 = annotation();
@@ -2708,14 +2710,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 237:41: -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:44: ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:44: ^( ANNOTATION_PARAM_IDED ^( OPTION ) annotation )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot((Object) adaptor.create(
                     ANNOTATION_PARAM_IDED,
                     "ANNOTATION_PARAM_IDED"), root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:68: ^( OPTION )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:237:68: ^( OPTION )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -2736,7 +2738,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:4: exp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:4: exp
         {
           pushFollow(FOLLOW_exp_in_annotationParam1636);
           exp46 = exp();
@@ -2760,14 +2762,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 238:41: -> ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:44: ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:44: ^( ANNOTATION_PARAM_IDED ^( OPTION ) exp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot((Object) adaptor.create(
                     ANNOTATION_PARAM_IDED,
                     "ANNOTATION_PARAM_IDED"), root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:68: ^( OPTION )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:238:68: ^( OPTION )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -2824,7 +2826,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "packageDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:241:1: packageDeclaration : t= 'package' name annotationList ';' ( packageElement )+ -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:241:1: packageDeclaration : t= 'package' name annotationList ';' ( packageElement )* -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )* ) ) ;
   public final AntlrPilarParser.packageDeclaration_return packageDeclaration()
       throws RecognitionException {
     AntlrPilarParser.packageDeclaration_return retval = new AntlrPilarParser.packageDeclaration_return();
@@ -2856,8 +2858,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 18)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:242:2: (t= 'package' name annotationList ';' ( packageElement )+ -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:242:4: t= 'package' name annotationList ';' ( packageElement )+
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:242:2: (t= 'package' name annotationList ';' ( packageElement )* -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:242:4: t= 'package' name annotationList ';' ( packageElement )*
       {
         t = (Token) match(input, 172, FOLLOW_172_in_packageDeclaration1694);
         if (state.failed) return retval;
@@ -2883,8 +2885,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_173.add(char_literal49);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:4: ( packageElement )+
-        int cnt15 = 0;
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:4: ( packageElement )*
         loop15: do {
           int alt15 = 2;
           int LA15_0 = input.LA(1);
@@ -2896,7 +2897,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt15) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: packageElement
             {
               pushFollow(FOLLOW_packageElement_in_packageDeclaration1705);
               packageElement50 = packageElement();
@@ -2910,19 +2911,12 @@ public class AntlrPilarParser extends Parser {
               break;
 
             default:
-              if (cnt15 >= 1) break loop15;
-              if (state.backtracking > 0) {
-                state.failed = true;
-                return retval;
-              }
-              EarlyExitException eee = new EarlyExitException(15, input);
-              throw eee;
+              break loop15;
           }
-          cnt15++;
         } while (true);
 
         // AST REWRITE
-        // elements: annotationList, packageElement, name
+        // elements: name, packageElement, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -2934,9 +2928,9 @@ public class AntlrPilarParser extends Parser {
               adaptor, "rule retval", retval != null ? retval.tree : null);
 
           root_0 = (Object) adaptor.nil();
-          // 243:41: -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )+ ) )
+          // 243:41: -> ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:44: ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:44: ^( PACKAGE[$t] name annotationList ^( LIST ( packageElement )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -2945,16 +2939,14 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_name.nextTree());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:78: ^( LIST ( packageElement )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:78: ^( LIST ( packageElement )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                if (!(stream_packageElement.hasNext())) {
-                  throw new RewriteEarlyExitException();
-                }
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:243:85: ( packageElement )*
                 while (stream_packageElement.hasNext()) {
                   adaptor.addChild(root_2, stream_packageElement.nextTree());
 
@@ -3008,7 +3000,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "packageElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:246:1: packageElement : ( constDeclaration | enumDeclaration | typealiasDeclaration | recordDeclaration | globalVarsDeclaration | procedureDeclaration | virtualSetDeclaration | funexpDeclaration | extDeclaration );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:246:1: packageElement : ( constDeclaration | enumDeclaration | typealiasDeclaration | recordDeclaration | globalVarsDeclaration | procedureDeclaration | virtualSetDeclaration | funexpDeclaration | extDeclaration );
   public final AntlrPilarParser.packageElement_return packageElement()
       throws RecognitionException {
     AntlrPilarParser.packageElement_return retval = new AntlrPilarParser.packageElement_return();
@@ -3038,7 +3030,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 19)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:247:2: ( constDeclaration | enumDeclaration | typealiasDeclaration | recordDeclaration | globalVarsDeclaration | procedureDeclaration | virtualSetDeclaration | funexpDeclaration | extDeclaration )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:247:2: ( constDeclaration | enumDeclaration | typealiasDeclaration | recordDeclaration | globalVarsDeclaration | procedureDeclaration | virtualSetDeclaration | funexpDeclaration | extDeclaration )
       int alt16 = 9;
       switch (input.LA(1)) {
         case 174: {
@@ -3089,7 +3081,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt16) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:247:4: constDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:247:4: constDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3104,7 +3096,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:248:4: enumDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:248:4: enumDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3119,7 +3111,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:249:4: typealiasDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:249:4: typealiasDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3134,7 +3126,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:250:4: recordDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:250:4: recordDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3149,7 +3141,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:251:4: globalVarsDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:251:4: globalVarsDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3164,7 +3156,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 6:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:252:4: procedureDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:252:4: procedureDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3179,7 +3171,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 7:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:253:4: virtualSetDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:253:4: virtualSetDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3194,7 +3186,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 8:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:254:4: funexpDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:254:4: funexpDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3209,7 +3201,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 9:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:255:4: extDeclaration
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:255:4: extDeclaration
         {
           root_0 = (Object) adaptor.nil();
 
@@ -3260,7 +3252,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "constDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:258:1: constDeclaration : t= 'const' ID annotationList '{' ( constElement )+ '}' -> ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:258:1: constDeclaration : t= 'const' ID annotationList '{' ( constElement )+ '}' -> ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) ) ;
   public final AntlrPilarParser.constDeclaration_return constDeclaration()
       throws RecognitionException {
     AntlrPilarParser.constDeclaration_return retval = new AntlrPilarParser.constDeclaration_return();
@@ -3296,8 +3288,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 20)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:259:2: (t= 'const' ID annotationList '{' ( constElement )+ '}' -> ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:259:4: t= 'const' ID annotationList '{' ( constElement )+ '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:259:2: (t= 'const' ID annotationList '{' ( constElement )+ '}' -> ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:259:4: t= 'const' ID annotationList '{' ( constElement )+ '}'
       {
         t = (Token) match(input, 174, FOLLOW_174_in_constDeclaration1810);
         if (state.failed) return retval;
@@ -3321,7 +3313,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal62);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:8: ( constElement )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:8: ( constElement )+
         int cnt17 = 0;
         loop17: do {
           int alt17 = 2;
@@ -3333,7 +3325,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt17) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: constElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: constElement
             {
               pushFollow(FOLLOW_constElement_in_constDeclaration1821);
               constElement63 = constElement();
@@ -3366,7 +3358,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal64);
 
         // AST REWRITE
-        // elements: annotationList, constElement, ID
+        // elements: ID, annotationList, constElement
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -3380,7 +3372,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 260:41: -> ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:44: ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:44: ^( CONST[$t] ID annotationList ^( LIST ( constElement )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -3389,7 +3381,7 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:74: ^( LIST ( constElement )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:260:74: ^( LIST ( constElement )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -3452,7 +3444,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "constElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:263:1: constElement : t= ID '=' exp annotationList ';' -> ^( CONST_ELEMENT[$t] ID exp annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:263:1: constElement : t= ID '=' exp annotationList ';' -> ^( CONST_ELEMENT[$t] ID exp annotationList ) ;
   public final AntlrPilarParser.constElement_return constElement()
       throws RecognitionException {
     AntlrPilarParser.constElement_return retval = new AntlrPilarParser.constElement_return();
@@ -3484,8 +3476,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 21)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:264:2: (t= ID '=' exp annotationList ';' -> ^( CONST_ELEMENT[$t] ID exp annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:264:4: t= ID '=' exp annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:264:2: (t= ID '=' exp annotationList ';' -> ^( CONST_ELEMENT[$t] ID exp annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:264:4: t= ID '=' exp annotationList ';'
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_constElement1870);
         if (state.failed) return retval;
@@ -3519,7 +3511,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal68);
 
         // AST REWRITE
-        // elements: annotationList, exp, ID
+        // elements: ID, exp, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -3533,7 +3525,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 265:41: -> ^( CONST_ELEMENT[$t] ID exp annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:265:44: ^( CONST_ELEMENT[$t] ID exp annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:265:44: ^( CONST_ELEMENT[$t] ID exp annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -3588,7 +3580,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "enumDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:268:1: enumDeclaration : t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}' -> ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:268:1: enumDeclaration : t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}' -> ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) ) ;
   public final AntlrPilarParser.enumDeclaration_return enumDeclaration()
       throws RecognitionException {
     AntlrPilarParser.enumDeclaration_return retval = new AntlrPilarParser.enumDeclaration_return();
@@ -3630,8 +3622,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 22)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:269:2: (t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}' -> ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:269:4: t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:269:2: (t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}' -> ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:269:4: t= 'enum' ID annotationList '{' enumElement ( ',' enumElement )* '}'
       {
         t = (Token) match(input, 177, FOLLOW_177_in_enumDeclaration1922);
         if (state.failed) return retval;
@@ -3662,7 +3654,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_enumElement.add(enumElement72.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:4: ( ',' enumElement )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:4: ( ',' enumElement )*
         loop18: do {
           int alt18 = 2;
           int LA18_0 = input.LA(1);
@@ -3673,7 +3665,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt18) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:6: ',' enumElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:6: ',' enumElement
             {
               char_literal73 = (Token) match(
                   input,
@@ -3706,7 +3698,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal75);
 
         // AST REWRITE
-        // elements: enumElement, ID, annotationList
+        // elements: annotationList, enumElement, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -3720,7 +3712,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 271:41: -> ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:44: ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:44: ^( ENUM[$t] ID annotationList ^( LIST ( enumElement )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -3729,7 +3721,7 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:73: ^( LIST ( enumElement )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:271:73: ^( LIST ( enumElement )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -3792,7 +3784,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "enumElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:274:1: enumElement : t= ID annotationList -> ^( ENUM_ELEMENT[$t] ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:274:1: enumElement : t= ID annotationList -> ^( ENUM_ELEMENT[$t] ID annotationList ) ;
   public final AntlrPilarParser.enumElement_return enumElement()
       throws RecognitionException {
     AntlrPilarParser.enumElement_return retval = new AntlrPilarParser.enumElement_return();
@@ -3812,8 +3804,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 23)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:2: (t= ID annotationList -> ^( ENUM_ELEMENT[$t] ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:4: t= ID annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:2: (t= ID annotationList -> ^( ENUM_ELEMENT[$t] ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:4: t= ID annotationList
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_enumElement1990);
         if (state.failed) return retval;
@@ -3828,7 +3820,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList76.getTree());
 
         // AST REWRITE
-        // elements: annotationList, ID
+        // elements: ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -3842,7 +3834,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 275:41: -> ^( ENUM_ELEMENT[$t] ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:44: ^( ENUM_ELEMENT[$t] ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:275:44: ^( ENUM_ELEMENT[$t] ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -3896,7 +3888,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typealiasDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:278:1: typealiasDeclaration : t= 'typealias' type ID annotationList ';' -> ^( TYPEALIAS[$t] type ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:278:1: typealiasDeclaration : t= 'typealias' type ID annotationList ';' -> ^( TYPEALIAS[$t] type ID annotationList ) ;
   public final AntlrPilarParser.typealiasDeclaration_return typealiasDeclaration()
       throws RecognitionException {
     AntlrPilarParser.typealiasDeclaration_return retval = new AntlrPilarParser.typealiasDeclaration_return();
@@ -3928,8 +3920,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 24)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:279:2: (t= 'typealias' type ID annotationList ';' -> ^( TYPEALIAS[$t] type ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:279:4: t= 'typealias' type ID annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:279:2: (t= 'typealias' type ID annotationList ';' -> ^( TYPEALIAS[$t] type ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:279:4: t= 'typealias' type ID annotationList ';'
       {
         t = (Token) match(input, 178, FOLLOW_178_in_typealiasDeclaration2033);
         if (state.failed) return retval;
@@ -3960,7 +3952,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal80);
 
         // AST REWRITE
-        // elements: type, annotationList, ID
+        // elements: ID, type, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -3974,7 +3966,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 280:41: -> ^( TYPEALIAS[$t] type ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:280:44: ^( TYPEALIAS[$t] type ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:280:44: ^( TYPEALIAS[$t] type ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -4029,7 +4021,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "recordDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:283:1: recordDeclaration : t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}' -> ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:283:1: recordDeclaration : t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}' -> ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) ) ;
   public final AntlrPilarParser.recordDeclaration_return recordDeclaration()
       throws RecognitionException {
     AntlrPilarParser.recordDeclaration_return retval = new AntlrPilarParser.recordDeclaration_return();
@@ -4073,8 +4065,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 25)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:284:2: (t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}' -> ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:284:4: t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:284:2: (t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}' -> ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:284:4: t= 'record' ID ( typeVarTuple )? annotationList ( extendClause )? '{' ( attribute )* '}'
       {
         t = (Token) match(input, 179, FOLLOW_179_in_recordDeclaration2090);
         if (state.failed) return retval;
@@ -4084,7 +4076,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(ID81);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:285:7: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:285:7: ( typeVarTuple )?
         int alt19 = 2;
         int LA19_0 = input.LA(1);
 
@@ -4097,7 +4089,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt19) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_recordDeclaration2097);
             typeVarTuple82 = typeVarTuple();
@@ -4119,7 +4111,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_annotationList.add(annotationList83.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:286:4: ( extendClause )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:286:4: ( extendClause )?
         int alt20 = 2;
         int LA20_0 = input.LA(1);
 
@@ -4128,7 +4120,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt20) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extendClause
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extendClause
           {
             pushFollow(FOLLOW_extendClause_in_recordDeclaration2105);
             extendClause84 = extendClause();
@@ -4150,7 +4142,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal85);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:8: ( attribute )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:8: ( attribute )*
         loop21: do {
           int alt21 = 2;
           int LA21_0 = input.LA(1);
@@ -4161,7 +4153,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt21) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: attribute
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: attribute
             {
               pushFollow(FOLLOW_attribute_in_recordDeclaration2113);
               attribute86 = attribute();
@@ -4187,7 +4179,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal87);
 
         // AST REWRITE
-        // elements: attribute, extendClause, annotationList, typeVarTuple, ID
+        // elements: ID, attribute, annotationList, typeVarTuple, extendClause
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -4201,7 +4193,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 287:41: -> ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:44: ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:44: ^( RECORD[$t] ID ^( OPTION ( typeVarTuple )? ) annotationList ^( OPTION ( extendClause )? ) ^( LIST ( attribute )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -4209,14 +4201,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_ID.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:60: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:60: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:69: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:69: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -4226,14 +4218,14 @@ public class AntlrPilarParser extends Parser {
                 adaptor.addChild(root_1, root_2);
               }
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:99: ^( OPTION ( extendClause )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:99: ^( OPTION ( extendClause )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:108: ( extendClause )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:108: ( extendClause )?
                 if (stream_extendClause.hasNext()) {
                   adaptor.addChild(root_2, stream_extendClause.nextTree());
 
@@ -4242,14 +4234,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:123: ^( LIST ( attribute )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:123: ^( LIST ( attribute )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:130: ( attribute )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:287:130: ( attribute )*
                 while (stream_attribute.hasNext()) {
                   adaptor.addChild(root_2, stream_attribute.nextTree());
 
@@ -4303,7 +4295,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeVarTuple"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:290:1: typeVarTuple : t= '<' typeVar ( ',' typeVar )* '>' -> ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:290:1: typeVarTuple : t= '<' typeVar ( ',' typeVar )* '>' -> ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) ) ;
   public final AntlrPilarParser.typeVarTuple_return typeVarTuple()
       throws RecognitionException {
     AntlrPilarParser.typeVarTuple_return retval = new AntlrPilarParser.typeVarTuple_return();
@@ -4333,8 +4325,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 26)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:2: (t= '<' typeVar ( ',' typeVar )* '>' -> ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:4: t= '<' typeVar ( ',' typeVar )* '>'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:2: (t= '<' typeVar ( ',' typeVar )* '>' -> ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:4: t= '<' typeVar ( ',' typeVar )* '>'
       {
         t = (Token) match(input, 165, FOLLOW_165_in_typeVarTuple2180);
         if (state.failed) return retval;
@@ -4346,7 +4338,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_typeVar.add(typeVar88.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:18: ( ',' typeVar )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:18: ( ',' typeVar )*
         loop22: do {
           int alt22 = 2;
           int LA22_0 = input.LA(1);
@@ -4357,7 +4349,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt22) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:20: ',' typeVar
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:20: ',' typeVar
             {
               char_literal89 = (Token) match(
                   input,
@@ -4404,14 +4396,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 291:41: -> ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:44: ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:44: ^( TYPEVAR_TUPLE[$t] ^( LIST ( typeVar )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(TYPEVAR_TUPLE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:64: ^( LIST ( typeVar )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:291:64: ^( LIST ( typeVar )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -4474,7 +4466,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeVar"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:294:1: typeVar : t= TYPEVARID annotationList -> ^( TYPEVAR[$t] TYPEVARID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:294:1: typeVar : t= TYPEVARID annotationList -> ^( TYPEVAR[$t] TYPEVARID annotationList ) ;
   public final AntlrPilarParser.typeVar_return typeVar()
       throws RecognitionException {
     AntlrPilarParser.typeVar_return retval = new AntlrPilarParser.typeVar_return();
@@ -4494,8 +4486,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 27)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:2: (t= TYPEVARID annotationList -> ^( TYPEVAR[$t] TYPEVARID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:4: t= TYPEVARID annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:2: (t= TYPEVARID annotationList -> ^( TYPEVAR[$t] TYPEVARID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:4: t= TYPEVARID annotationList
       {
         t = (Token) match(input, TYPEVARID, FOLLOW_TYPEVARID_in_typeVar2222);
         if (state.failed) return retval;
@@ -4524,7 +4516,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 295:41: -> ^( TYPEVAR[$t] TYPEVARID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:44: ^( TYPEVAR[$t] TYPEVARID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:295:44: ^( TYPEVAR[$t] TYPEVARID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -4578,7 +4570,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extendClause"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:298:1: extendClause : t= 'extends' extendClauseElement ( ',' extendClauseElement )* -> ^( LIST[$t] ( extendClauseElement )+ ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:298:1: extendClause : t= 'extends' extendClauseElement ( ',' extendClauseElement )* -> ^( LIST[$t] ( extendClauseElement )+ ) ;
   public final AntlrPilarParser.extendClause_return extendClause()
       throws RecognitionException {
     AntlrPilarParser.extendClause_return retval = new AntlrPilarParser.extendClause_return();
@@ -4604,8 +4596,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 28)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:299:2: (t= 'extends' extendClauseElement ( ',' extendClauseElement )* -> ^( LIST[$t] ( extendClauseElement )+ ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:299:4: t= 'extends' extendClauseElement ( ',' extendClauseElement )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:299:2: (t= 'extends' extendClauseElement ( ',' extendClauseElement )* -> ^( LIST[$t] ( extendClauseElement )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:299:4: t= 'extends' extendClauseElement ( ',' extendClauseElement )*
       {
         t = (Token) match(input, 180, FOLLOW_180_in_extendClause2258);
         if (state.failed) return retval;
@@ -4618,7 +4610,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_extendClauseElement.add(extendClauseElement93.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:4: ( ',' extendClauseElement )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:4: ( ',' extendClauseElement )*
         loop23: do {
           int alt23 = 2;
           int LA23_0 = input.LA(1);
@@ -4629,7 +4621,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt23) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:6: ',' extendClauseElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:6: ',' extendClauseElement
             {
               char_literal94 = (Token) match(
                   input,
@@ -4669,7 +4661,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 300:41: -> ^( LIST[$t] ( extendClauseElement )+ )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:44: ^( LIST[$t] ( extendClauseElement )+ )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:300:44: ^( LIST[$t] ( extendClauseElement )+ )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -4729,7 +4721,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extendClauseElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:303:1: extendClauseElement : name ( typeTuple )? annotationList -> ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:303:1: extendClauseElement : name ( typeTuple )? annotationList -> ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList ) ;
   public final AntlrPilarParser.extendClauseElement_return extendClauseElement()
       throws RecognitionException {
     AntlrPilarParser.extendClauseElement_return retval = new AntlrPilarParser.extendClauseElement_return();
@@ -4753,8 +4745,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 29)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:2: ( name ( typeTuple )? annotationList -> ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:4: name ( typeTuple )? annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:2: ( name ( typeTuple )? annotationList -> ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:4: name ( typeTuple )? annotationList
       {
         pushFollow(FOLLOW_name_in_extendClauseElement2301);
         name96 = name();
@@ -4762,7 +4754,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_name.add(name96.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:9: ( typeTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:9: ( typeTuple )?
         int alt24 = 2;
         int LA24_0 = input.LA(1);
 
@@ -4775,7 +4767,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt24) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
           {
             pushFollow(FOLLOW_typeTuple_in_extendClauseElement2303);
             typeTuple97 = typeTuple();
@@ -4799,7 +4791,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList98.getTree());
 
         // AST REWRITE
-        // elements: name, typeTuple, annotationList
+        // elements: annotationList, typeTuple, name
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -4813,7 +4805,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 304:41: -> ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:44: ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:44: ^( EXTENDCLAUSE_ELEMENT name ^( OPTION ( typeTuple )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot((Object) adaptor.create(
@@ -4821,14 +4813,14 @@ public class AntlrPilarParser extends Parser {
                   "EXTENDCLAUSE_ELEMENT"), root_1);
 
               adaptor.addChild(root_1, stream_name.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:72: ^( OPTION ( typeTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:72: ^( OPTION ( typeTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:81: ( typeTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:304:81: ( typeTuple )?
                 if (stream_typeTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeTuple.nextTree());
 
@@ -4883,7 +4875,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeTuple"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:307:1: typeTuple : t= '<' type ( ',' type )* '>' -> ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:307:1: typeTuple : t= '<' type ( ',' type )* '>' -> ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) ) ;
   public final AntlrPilarParser.typeTuple_return typeTuple()
       throws RecognitionException {
     AntlrPilarParser.typeTuple_return retval = new AntlrPilarParser.typeTuple_return();
@@ -4913,8 +4905,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 30)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:2: (t= '<' type ( ',' type )* '>' -> ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:4: t= '<' type ( ',' type )* '>'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:2: (t= '<' type ( ',' type )* '>' -> ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:4: t= '<' type ( ',' type )* '>'
       {
         t = (Token) match(input, 165, FOLLOW_165_in_typeTuple2343);
         if (state.failed) return retval;
@@ -4926,7 +4918,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_type.add(type99.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:15: ( ',' type )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:15: ( ',' type )*
         loop25: do {
           int alt25 = 2;
           int LA25_0 = input.LA(1);
@@ -4937,7 +4929,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt25) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:17: ',' type
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:17: ',' type
             {
               char_literal100 = (Token) match(
                   input,
@@ -4980,14 +4972,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 308:41: -> ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:44: ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:44: ^( TYPE_TUPLE[$t] ^( LIST ( type )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(TYPE_TUPLE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:61: ^( LIST ( type )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:308:61: ^( LIST ( type )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -5050,7 +5042,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "attribute"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:311:1: attribute : ( type )? attributeFragment ( ',' attributeFragment )* ';' -> ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:311:1: attribute : ( type )? attributeFragment ( ',' attributeFragment )* ';' -> ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) ) ;
   public final AntlrPilarParser.attribute_return attribute()
       throws RecognitionException {
     AntlrPilarParser.attribute_return retval = new AntlrPilarParser.attribute_return();
@@ -5080,10 +5072,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 31)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:2: ( ( type )? attributeFragment ( ',' attributeFragment )* ';' -> ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:4: ( type )? attributeFragment ( ',' attributeFragment )* ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:2: ( ( type )? attributeFragment ( ',' attributeFragment )* ';' -> ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:4: ( type )? attributeFragment ( ',' attributeFragment )* ';'
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:312:4: ( type )?
         int alt26 = 2;
         int LA26_0 = input.LA(1);
 
@@ -5105,7 +5097,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt26) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_attribute2389);
             type103 = type();
@@ -5126,7 +5118,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_attributeFragment.add(attributeFragment104.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:4: ( ',' attributeFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:4: ( ',' attributeFragment )*
         loop27: do {
           int alt27 = 2;
           int LA27_0 = input.LA(1);
@@ -5137,7 +5129,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt27) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:6: ',' attributeFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:6: ',' attributeFragment
             {
               char_literal105 = (Token) match(
                   input,
@@ -5181,21 +5173,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 313:41: -> ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:44: ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:44: ^( ATTRIBUTE ^( OPTION ( type )? ) ^( LIST ( attributeFragment )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(ATTRIBUTE, "ATTRIBUTE"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:56: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:56: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:65: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:65: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -5204,7 +5196,7 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:72: ^( LIST ( attributeFragment )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:313:72: ^( LIST ( attributeFragment )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -5267,7 +5259,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "attributeFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:316:1: attributeFragment : t= ID annotationList ( '=' name )? -> ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:316:1: attributeFragment : t= ID annotationList ( '=' name )? -> ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) ) ;
   public final AntlrPilarParser.attributeFragment_return attributeFragment()
       throws RecognitionException {
     AntlrPilarParser.attributeFragment_return retval = new AntlrPilarParser.attributeFragment_return();
@@ -5295,8 +5287,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 32)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:2: (t= ID annotationList ( '=' name )? -> ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:4: t= ID annotationList ( '=' name )?
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:2: (t= ID annotationList ( '=' name )? -> ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:4: t= ID annotationList ( '=' name )?
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_attributeFragment2445);
         if (state.failed) return retval;
@@ -5309,7 +5301,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_annotationList.add(annotationList108.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:24: ( '=' name )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:24: ( '=' name )?
         int alt28 = 2;
         int LA28_0 = input.LA(1);
 
@@ -5318,7 +5310,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt28) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:26: '=' name
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:26: '=' name
           {
             char_literal109 = (Token) match(
                 input,
@@ -5340,7 +5332,7 @@ public class AntlrPilarParser extends Parser {
         }
 
         // AST REWRITE
-        // elements: ID, name, annotationList
+        // elements: name, annotationList, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -5354,7 +5346,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 317:41: -> ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:44: ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:44: ^( ATTRIBUTE_FRAGMENT[$t] ID annotationList ^( OPTION ( name )? ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -5363,14 +5355,14 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:87: ^( OPTION ( name )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:87: ^( OPTION ( name )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:96: ( name )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:317:96: ( name )?
                 if (stream_name.hasNext()) {
                   adaptor.addChild(root_2, stream_name.nextTree());
 
@@ -5425,7 +5417,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "globalVarsDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:320:1: globalVarsDeclaration : 'global' ( globalVarDeclaration )+ -> ( globalVarDeclaration )+ ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:320:1: globalVarsDeclaration : 'global' ( globalVarDeclaration )+ -> ( globalVarDeclaration )+ ;
   public final AntlrPilarParser.globalVarsDeclaration_return globalVarsDeclaration()
       throws RecognitionException {
     AntlrPilarParser.globalVarsDeclaration_return retval = new AntlrPilarParser.globalVarsDeclaration_return();
@@ -5445,8 +5437,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 33)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:2: ( 'global' ( globalVarDeclaration )+ -> ( globalVarDeclaration )+ )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:4: 'global' ( globalVarDeclaration )+
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:2: ( 'global' ( globalVarDeclaration )+ -> ( globalVarDeclaration )+ )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:4: 'global' ( globalVarDeclaration )+
       {
         string_literal111 = (Token) match(
             input,
@@ -5455,7 +5447,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_181.add(string_literal111);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:13: ( globalVarDeclaration )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:321:13: ( globalVarDeclaration )+
         int cnt29 = 0;
         loop29: do {
           int alt29 = 2;
@@ -5467,7 +5459,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt29) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: globalVarDeclaration
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: globalVarDeclaration
             {
               pushFollow(FOLLOW_globalVarDeclaration_in_globalVarsDeclaration2490);
               globalVarDeclaration112 = globalVarDeclaration();
@@ -5558,7 +5550,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "globalVarDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:324:1: globalVarDeclaration : ( type )? globalVarFragment ( ',' globalVarFragment )* ';' -> ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:324:1: globalVarDeclaration : ( type )? globalVarFragment ( ',' globalVarFragment )* ';' -> ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) ) ;
   public final AntlrPilarParser.globalVarDeclaration_return globalVarDeclaration()
       throws RecognitionException {
     AntlrPilarParser.globalVarDeclaration_return retval = new AntlrPilarParser.globalVarDeclaration_return();
@@ -5588,10 +5580,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 34)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:2: ( ( type )? globalVarFragment ( ',' globalVarFragment )* ';' -> ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:4: ( type )? globalVarFragment ( ',' globalVarFragment )* ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:2: ( ( type )? globalVarFragment ( ',' globalVarFragment )* ';' -> ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:4: ( type )? globalVarFragment ( ',' globalVarFragment )* ';'
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:325:4: ( type )?
         int alt30 = 2;
         int LA30_0 = input.LA(1);
 
@@ -5600,7 +5592,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt30) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_globalVarDeclaration2513);
             type113 = type();
@@ -5621,7 +5613,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_globalVarFragment.add(globalVarFragment114.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:4: ( ',' globalVarFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:4: ( ',' globalVarFragment )*
         loop31: do {
           int alt31 = 2;
           int LA31_0 = input.LA(1);
@@ -5632,7 +5624,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt31) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:6: ',' globalVarFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:6: ',' globalVarFragment
             {
               char_literal115 = (Token) match(
                   input,
@@ -5679,21 +5671,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 326:41: -> ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:44: ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:44: ^( GLOBAL ^( OPTION ( type )? ) ^( LIST ( globalVarFragment )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(GLOBAL, "GLOBAL"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:53: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:53: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:62: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:62: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -5702,7 +5694,7 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:69: ^( LIST ( globalVarFragment )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:326:69: ^( LIST ( globalVarFragment )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -5765,7 +5757,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "globalVarFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:329:1: globalVarFragment : t= GLOBALID annotationList -> ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:329:1: globalVarFragment : t= GLOBALID annotationList -> ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList ) ;
   public final AntlrPilarParser.globalVarFragment_return globalVarFragment()
       throws RecognitionException {
     AntlrPilarParser.globalVarFragment_return retval = new AntlrPilarParser.globalVarFragment_return();
@@ -5785,8 +5777,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 35)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:2: (t= GLOBALID annotationList -> ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:4: t= GLOBALID annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:2: (t= GLOBALID annotationList -> ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:4: t= GLOBALID annotationList
       {
         t = (Token) match(
             input,
@@ -5818,7 +5810,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 330:41: -> ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:44: ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:330:44: ^( GLOBAL_FRAGMENT[$t] GLOBALID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -5872,7 +5864,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "procedureDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:333:1: procedureDeclaration : t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body -> ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:333:1: procedureDeclaration : t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body -> ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body ) ;
   public final AntlrPilarParser.procedureDeclaration_return procedureDeclaration()
       throws RecognitionException {
     AntlrPilarParser.procedureDeclaration_return retval = new AntlrPilarParser.procedureDeclaration_return();
@@ -5930,14 +5922,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 36)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:2: (t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body -> ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:4: t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:2: (t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body -> ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:4: t= 'procedure' ( typeVarTuple )? ( type )? p= ID ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )? annotationList body
       {
         t = (Token) match(input, 182, FOLLOW_182_in_procedureDeclaration2607);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_182.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:18: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:334:18: ( typeVarTuple )?
         int alt32 = 2;
         int LA32_0 = input.LA(1);
 
@@ -5946,7 +5938,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt32) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_procedureDeclaration2609);
             typeVarTuple119 = typeVarTuple();
@@ -5961,7 +5953,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:335:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:335:4: ( type )?
         int alt33 = 2;
         int LA33_0 = input.LA(1);
 
@@ -5998,7 +5990,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt33) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_procedureDeclaration2615);
             type120 = type();
@@ -6016,7 +6008,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(p);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:337:4: ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:337:4: ( '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')' )?
         int alt37 = 2;
         int LA37_0 = input.LA(1);
 
@@ -6025,7 +6017,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt37) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:337:6: '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:337:6: '(' ( paramVariable | ( paramList ( ',' paramVariable )? )? ) ')'
           {
             char_literal121 = (Token) match(
                 input,
@@ -6034,7 +6026,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_167.add(char_literal121);
 
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:6: ( paramVariable | ( paramList ( ',' paramVariable )? )? )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:6: ( paramVariable | ( paramList ( ',' paramVariable )? )? )
             int alt36 = 2;
             switch (input.LA(1)) {
               case TYPEVARID: {
@@ -6130,7 +6122,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt36) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: paramVariable
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: paramVariable
               {
                 pushFollow(FOLLOW_paramVariable_in_procedureDeclaration2641);
                 paramVariable122 = paramVariable();
@@ -6143,9 +6135,9 @@ public class AntlrPilarParser extends Parser {
               }
                 break;
               case 2:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:8: ( paramList ( ',' paramVariable )? )?
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:8: ( paramList ( ',' paramVariable )? )?
               {
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:8: ( paramList ( ',' paramVariable )? )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:8: ( paramList ( ',' paramVariable )? )?
                 int alt35 = 2;
                 int LA35_0 = input.LA(1);
 
@@ -6154,7 +6146,7 @@ public class AntlrPilarParser extends Parser {
                 }
                 switch (alt35) {
                   case 1:
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:10: paramList ( ',' paramVariable )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:339:10: paramList ( ',' paramVariable )?
                   {
                     pushFollow(FOLLOW_paramList_in_procedureDeclaration2652);
                     paramList123 = paramList();
@@ -6163,7 +6155,7 @@ public class AntlrPilarParser extends Parser {
                     if (state.failed) return retval;
                     if (state.backtracking == 0)
                       stream_paramList.add(paramList123.getTree());
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:340:12: ( ',' paramVariable )?
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:340:12: ( ',' paramVariable )?
                     int alt34 = 2;
                     int LA34_0 = input.LA(1);
 
@@ -6172,7 +6164,7 @@ public class AntlrPilarParser extends Parser {
                     }
                     switch (alt34) {
                       case 1:
-                      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:340:14: ',' paramVariable
+                      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:340:14: ',' paramVariable
                       {
                         char_literal124 = (Token) match(
                             input,
@@ -6232,7 +6224,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_body.add(body128.getTree());
 
         // AST REWRITE
-        // elements: p, paramList, typeVarTuple, annotationList, body, type, paramVariable
+        // elements: p, annotationList, typeVarTuple, paramVariable, type, body, paramList
         // token labels: p
         // rule labels: retval
         // token list labels: 
@@ -6248,21 +6240,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 344:41: -> ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:44: ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:44: ^( PROCEDURE[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) $p ^( LIST ( paramList )? ( paramVariable )? ) annotationList body )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(PROCEDURE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:60: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:60: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:69: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:69: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -6271,14 +6263,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:84: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:84: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:93: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:93: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -6288,20 +6280,20 @@ public class AntlrPilarParser extends Parser {
                 adaptor.addChild(root_1, root_2);
               }
               adaptor.addChild(root_1, stream_p.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:103: ^( LIST ( paramList )? ( paramVariable )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:103: ^( LIST ( paramList )? ( paramVariable )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:110: ( paramList )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:110: ( paramList )?
                 if (stream_paramList.hasNext()) {
                   adaptor.addChild(root_2, stream_paramList.nextTree());
 
                 }
                 stream_paramList.reset();
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:121: ( paramVariable )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:344:121: ( paramVariable )?
                 if (stream_paramVariable.hasNext()) {
                   adaptor.addChild(root_2, stream_paramVariable.nextTree());
 
@@ -6357,7 +6349,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "paramList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:347:1: paramList : param ( ',' param )* -> ( param )+ ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:347:1: paramList : param ( ',' param )* -> ( param )+ ;
   public final AntlrPilarParser.paramList_return paramList()
       throws RecognitionException {
     AntlrPilarParser.paramList_return retval = new AntlrPilarParser.paramList_return();
@@ -6379,8 +6371,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 37)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:2: ( param ( ',' param )* -> ( param )+ )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:4: param ( ',' param )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:2: ( param ( ',' param )* -> ( param )+ )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:4: param ( ',' param )*
       {
         pushFollow(FOLLOW_param_in_paramList2786);
         param129 = param();
@@ -6388,7 +6380,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_param.add(param129.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:10: ( ',' param )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:10: ( ',' param )*
         loop38: do {
           int alt38 = 2;
           int LA38_0 = input.LA(1);
@@ -6404,7 +6396,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt38) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ',' param
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ',' param
             {
               char_literal130 = (Token) match(
                   input,
@@ -6494,7 +6486,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "param"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:351:1: param : ( type )? ID annotationList -> ^( PARAM ^( OPTION ( type )? ) ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:351:1: param : ( type )? ID annotationList -> ^( PARAM ^( OPTION ( type )? ) ID annotationList ) ;
   public final AntlrPilarParser.param_return param()
       throws RecognitionException {
     AntlrPilarParser.param_return retval = new AntlrPilarParser.param_return();
@@ -6518,10 +6510,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 38)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:2: ( ( type )? ID annotationList -> ^( PARAM ^( OPTION ( type )? ) ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:4: ( type )? ID annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:2: ( ( type )? ID annotationList -> ^( PARAM ^( OPTION ( type )? ) ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:4: ( type )? ID annotationList
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:4: ( type )?
         int alt39 = 2;
         int LA39_0 = input.LA(1);
 
@@ -6543,7 +6535,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt39) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_param2827);
             type132 = type();
@@ -6570,7 +6562,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList134.getTree());
 
         // AST REWRITE
-        // elements: annotationList, ID, type
+        // elements: ID, type, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -6584,21 +6576,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 352:41: -> ^( PARAM ^( OPTION ( type )? ) ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:44: ^( PARAM ^( OPTION ( type )? ) ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:44: ^( PARAM ^( OPTION ( type )? ) ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(PARAM, "PARAM"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:52: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:52: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:61: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:352:61: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -6654,7 +6646,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "paramVariable"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:355:1: paramVariable : ( type )? ID '...' annotationList -> ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:355:1: paramVariable : ( type )? ID '...' annotationList -> ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList ) ;
   public final AntlrPilarParser.paramVariable_return paramVariable()
       throws RecognitionException {
     AntlrPilarParser.paramVariable_return retval = new AntlrPilarParser.paramVariable_return();
@@ -6682,10 +6674,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 39)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:2: ( ( type )? ID '...' annotationList -> ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:4: ( type )? ID '...' annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:2: ( ( type )? ID '...' annotationList -> ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:4: ( type )? ID '...' annotationList
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:4: ( type )?
         int alt40 = 2;
         int LA40_0 = input.LA(1);
 
@@ -6701,7 +6693,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt40) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_paramVariable2873);
             type135 = type();
@@ -6735,7 +6727,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList138.getTree());
 
         // AST REWRITE
-        // elements: ID, annotationList, type
+        // elements: annotationList, ID, type
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -6749,21 +6741,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 356:41: -> ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:44: ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:44: ^( PARAM_VARIABLE ^( OPTION ( type )? ) ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(PARAM_VARIABLE, "PARAM_VARIABLE"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:61: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:61: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:70: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:356:70: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -6820,7 +6812,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "virtualSetDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:359:1: virtualSetDeclaration : t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}' -> ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:359:1: virtualSetDeclaration : t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}' -> ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) ) ;
   public final AntlrPilarParser.virtualSetDeclaration_return virtualSetDeclaration()
       throws RecognitionException {
     AntlrPilarParser.virtualSetDeclaration_return retval = new AntlrPilarParser.virtualSetDeclaration_return();
@@ -6862,8 +6854,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 40)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:360:2: (t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}' -> ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:360:4: t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:360:2: (t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}' -> ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:360:4: t= 'vset' ID annotationList '{' vsetElement ( ',' vsetElement )* '}'
       {
         t = (Token) match(input, 184, FOLLOW_184_in_virtualSetDeclaration2918);
         if (state.failed) return retval;
@@ -6894,7 +6886,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_vsetElement.add(vsetElement142.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:362:16: ( ',' vsetElement )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:362:16: ( ',' vsetElement )*
         loop41: do {
           int alt41 = 2;
           int LA41_0 = input.LA(1);
@@ -6905,7 +6897,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt41) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:362:18: ',' vsetElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:362:18: ',' vsetElement
             {
               char_literal143 = (Token) match(
                   input,
@@ -6938,7 +6930,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal145);
 
         // AST REWRITE
-        // elements: ID, annotationList, vsetElement
+        // elements: ID, vsetElement, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -6952,7 +6944,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 363:41: -> ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:363:44: ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:363:44: ^( VSET[$t] ID annotationList ^( LIST ( vsetElement )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -6961,7 +6953,7 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:363:73: ^( LIST ( vsetElement )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:363:73: ^( LIST ( vsetElement )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -7024,7 +7016,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "vsetElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:366:1: vsetElement : name annotationList -> ^( VSET_ELEMENT name annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:366:1: vsetElement : name annotationList -> ^( VSET_ELEMENT name annotationList ) ;
   public final AntlrPilarParser.vsetElement_return vsetElement()
       throws RecognitionException {
     AntlrPilarParser.vsetElement_return retval = new AntlrPilarParser.vsetElement_return();
@@ -7044,8 +7036,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 41)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:2: ( name annotationList -> ^( VSET_ELEMENT name annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:4: name annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:2: ( name annotationList -> ^( VSET_ELEMENT name annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:4: name annotationList
       {
         pushFollow(FOLLOW_name_in_vsetElement3008);
         name146 = name();
@@ -7076,7 +7068,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 367:41: -> ^( VSET_ELEMENT name annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:44: ^( VSET_ELEMENT name annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:367:44: ^( VSET_ELEMENT name annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -7130,7 +7122,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "funexpDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:370:1: funexpDeclaration : t= 'fun' ID annotationList '=' funExp -> ^( FUN[$t] ID annotationList funExp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:370:1: funexpDeclaration : t= 'fun' ID annotationList '=' funExp -> ^( FUN[$t] ID annotationList funExp ) ;
   public final AntlrPilarParser.funexpDeclaration_return funexpDeclaration()
       throws RecognitionException {
     AntlrPilarParser.funexpDeclaration_return retval = new AntlrPilarParser.funexpDeclaration_return();
@@ -7162,8 +7154,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 42)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:371:2: (t= 'fun' ID annotationList '=' funExp -> ^( FUN[$t] ID annotationList funExp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:371:4: t= 'fun' ID annotationList '=' funExp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:371:2: (t= 'fun' ID annotationList '=' funExp -> ^( FUN[$t] ID annotationList funExp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:371:4: t= 'fun' ID annotationList '=' funExp
       {
         t = (Token) match(input, 185, FOLLOW_185_in_funexpDeclaration3050);
         if (state.failed) return retval;
@@ -7195,7 +7187,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_funExp.add(funExp151.getTree());
 
         // AST REWRITE
-        // elements: funExp, annotationList, ID
+        // elements: ID, funExp, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -7209,7 +7201,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 372:41: -> ^( FUN[$t] ID annotationList funExp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:372:44: ^( FUN[$t] ID annotationList funExp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:372:44: ^( FUN[$t] ID annotationList funExp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -7264,7 +7256,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:375:1: extDeclaration : t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}' -> ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:375:1: extDeclaration : t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}' -> ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) ) ;
   public final AntlrPilarParser.extDeclaration_return extDeclaration()
       throws RecognitionException {
     AntlrPilarParser.extDeclaration_return retval = new AntlrPilarParser.extDeclaration_return();
@@ -7304,14 +7296,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 43)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:2: (t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}' -> ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:4: t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:2: (t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}' -> ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:4: t= 'extension' ( typeVarTuple )? ID annotationList '{' ( extElement )+ '}'
       {
         t = (Token) match(input, 186, FOLLOW_186_in_extDeclaration3117);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_186.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:18: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:376:18: ( typeVarTuple )?
         int alt42 = 2;
         int LA42_0 = input.LA(1);
 
@@ -7320,7 +7312,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt42) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_extDeclaration3119);
             typeVarTuple152 = typeVarTuple();
@@ -7353,7 +7345,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal155);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:8: ( extElement )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:8: ( extElement )+
         int cnt43 = 0;
         loop43: do {
           int alt43 = 2;
@@ -7365,7 +7357,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt43) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extElement
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extElement
             {
               pushFollow(FOLLOW_extElement_in_extDeclaration3134);
               extElement156 = extElement();
@@ -7398,7 +7390,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal157);
 
         // AST REWRITE
-        // elements: typeVarTuple, ID, annotationList, extElement
+        // elements: ID, annotationList, extElement, typeVarTuple
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -7412,21 +7404,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 378:41: -> ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:44: ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:44: ^( EXTENSION[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( LIST ( extElement )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(EXTENSION, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:60: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:60: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:69: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:69: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -7437,7 +7429,7 @@ public class AntlrPilarParser extends Parser {
               }
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:102: ^( LIST ( extElement )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:378:102: ^( LIST ( extElement )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -7500,7 +7492,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extElement"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:381:1: extElement : ( typeExtension | actionExtension | expExtension | procExtension );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:381:1: extElement : ( typeExtension | actionExtension | expExtension | procExtension );
   public final AntlrPilarParser.extElement_return extElement()
       throws RecognitionException {
     AntlrPilarParser.extElement_return retval = new AntlrPilarParser.extElement_return();
@@ -7520,7 +7512,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 44)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:382:2: ( typeExtension | actionExtension | expExtension | procExtension )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:382:2: ( typeExtension | actionExtension | expExtension | procExtension )
       int alt44 = 4;
       switch (input.LA(1)) {
         case 187: {
@@ -7551,7 +7543,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt44) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:382:4: typeExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:382:4: typeExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -7566,7 +7558,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:383:4: actionExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:383:4: actionExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -7581,7 +7573,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:384:4: expExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:384:4: expExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -7596,7 +7588,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:385:4: procExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:385:4: procExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -7647,7 +7639,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeExtension"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:388:1: typeExtension : t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' ) -> ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:388:1: typeExtension : t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' ) -> ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) ) ;
   public final AntlrPilarParser.typeExtension_return typeExtension()
       throws RecognitionException {
     AntlrPilarParser.typeExtension_return retval = new AntlrPilarParser.typeExtension_return();
@@ -7695,14 +7687,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 45)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:2: (t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' ) -> ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:4: t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:2: (t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' ) -> ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:4: t= 'typedef' ( typeVarTuple )? ID annotationList ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' )
       {
         t = (Token) match(input, 187, FOLLOW_187_in_typeExtension3221);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_187.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:16: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:389:16: ( typeVarTuple )?
         int alt45 = 2;
         int LA45_0 = input.LA(1);
 
@@ -7711,7 +7703,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt45) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_typeExtension3223);
             typeVarTuple162 = typeVarTuple();
@@ -7737,7 +7729,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_annotationList.add(annotationList164.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:391:4: ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:391:4: ( ';' | ( extendClause )? '{' ( typeExtensionMember )* '}' )
         int alt48 = 2;
         int LA48_0 = input.LA(1);
 
@@ -7756,7 +7748,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt48) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:391:6: ';'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:391:6: ';'
           {
             char_literal165 = (Token) match(
                 input,
@@ -7768,9 +7760,9 @@ public class AntlrPilarParser extends Parser {
           }
             break;
           case 2:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:392:6: ( extendClause )? '{' ( typeExtensionMember )* '}'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:392:6: ( extendClause )? '{' ( typeExtensionMember )* '}'
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:392:6: ( extendClause )?
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:392:6: ( extendClause )?
             int alt46 = 2;
             int LA46_0 = input.LA(1);
 
@@ -7779,7 +7771,7 @@ public class AntlrPilarParser extends Parser {
             }
             switch (alt46) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extendClause
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extendClause
               {
                 pushFollow(FOLLOW_extendClause_in_typeExtension3245);
                 extendClause166 = extendClause();
@@ -7801,7 +7793,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_175.add(char_literal167);
 
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:10: ( typeExtensionMember )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:10: ( typeExtensionMember )*
             loop47: do {
               int alt47 = 2;
               int LA47_0 = input.LA(1);
@@ -7812,7 +7804,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt47) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeExtensionMember
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeExtensionMember
                 {
                   pushFollow(FOLLOW_typeExtensionMember_in_typeExtension3255);
                   typeExtensionMember168 = typeExtensionMember();
@@ -7844,7 +7836,7 @@ public class AntlrPilarParser extends Parser {
         }
 
         // AST REWRITE
-        // elements: extendClause, annotationList, typeVarTuple, typeExtensionMember, ID
+        // elements: ID, extendClause, annotationList, typeVarTuple, typeExtensionMember
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -7858,21 +7850,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 393:41: -> ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:44: ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:44: ^( TYPE_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID annotationList ^( OPTION ( extendClause )? ) ^( LIST ( typeExtensionMember )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(TYPE_EXT, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:59: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:59: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:68: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:68: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -7883,14 +7875,14 @@ public class AntlrPilarParser extends Parser {
               }
               adaptor.addChild(root_1, stream_ID.nextNode());
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:101: ^( OPTION ( extendClause )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:101: ^( OPTION ( extendClause )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:110: ( extendClause )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:110: ( extendClause )?
                 if (stream_extendClause.hasNext()) {
                   adaptor.addChild(root_2, stream_extendClause.nextTree());
 
@@ -7899,14 +7891,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:126: ^( LIST ( typeExtensionMember )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:126: ^( LIST ( typeExtensionMember )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:133: ( typeExtensionMember )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:393:133: ( typeExtensionMember )*
                 while (stream_typeExtensionMember.hasNext()) {
                   adaptor.addChild(
                       root_2,
@@ -7962,7 +7954,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeExtensionMember"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:396:1: typeExtensionMember : ( typeExtensionAttributeBinding | actionExtension | expExtension | procExtension );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:396:1: typeExtensionMember : ( typeExtensionAttributeBinding | actionExtension | expExtension | procExtension );
   public final AntlrPilarParser.typeExtensionMember_return typeExtensionMember()
       throws RecognitionException {
     AntlrPilarParser.typeExtensionMember_return retval = new AntlrPilarParser.typeExtensionMember_return();
@@ -7982,7 +7974,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 46)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:397:2: ( typeExtensionAttributeBinding | actionExtension | expExtension | procExtension )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:397:2: ( typeExtensionAttributeBinding | actionExtension | expExtension | procExtension )
       int alt49 = 4;
       switch (input.LA(1)) {
         case ID: {
@@ -8013,7 +8005,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt49) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:397:4: typeExtensionAttributeBinding
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:397:4: typeExtensionAttributeBinding
         {
           root_0 = (Object) adaptor.nil();
 
@@ -8029,7 +8021,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:398:4: actionExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:398:4: actionExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -8044,7 +8036,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:399:4: expExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:399:4: expExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -8059,7 +8051,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:400:4: procExtension
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:400:4: procExtension
         {
           root_0 = (Object) adaptor.nil();
 
@@ -8111,7 +8103,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeExtensionAttributeBinding"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:403:1: typeExtensionAttributeBinding : id1= ID '=' id2= ID annotationList ';' -> ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:403:1: typeExtensionAttributeBinding : id1= ID '=' id2= ID annotationList ';' -> ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList ) ;
   public final AntlrPilarParser.typeExtensionAttributeBinding_return typeExtensionAttributeBinding()
       throws RecognitionException {
     AntlrPilarParser.typeExtensionAttributeBinding_return retval = new AntlrPilarParser.typeExtensionAttributeBinding_return();
@@ -8141,8 +8133,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 47)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:404:2: (id1= ID '=' id2= ID annotationList ';' -> ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:404:4: id1= ID '=' id2= ID annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:404:2: (id1= ID '=' id2= ID annotationList ';' -> ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:404:4: id1= ID '=' id2= ID annotationList ';'
       {
         id1 = (Token) match(
             input,
@@ -8180,7 +8172,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal176);
 
         // AST REWRITE
-        // elements: id2, id1, annotationList
+        // elements: id2, annotationList, id1
         // token labels: id2, id1
         // rule labels: retval
         // token list labels: 
@@ -8198,7 +8190,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 405:41: -> ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:405:44: ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:405:44: ^( TYPE_EXT_ATTRIBUTE_BINDING[$id1] $id1 $id2 annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -8253,7 +8245,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "actionExtension"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:408:1: actionExtension : t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:408:1: actionExtension : t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
   public final AntlrPilarParser.actionExtension_return actionExtension()
       throws RecognitionException {
     AntlrPilarParser.actionExtension_return retval = new AntlrPilarParser.actionExtension_return();
@@ -8297,14 +8289,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 48)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:2: (t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:4: t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:2: (t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:4: t= 'actiondef' ( typeVarTuple )? ID ( '(' extParamList ')' )? annotationList ';'
       {
         t = (Token) match(input, 188, FOLLOW_188_in_actionExtension3396);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_188.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:18: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:409:18: ( typeVarTuple )?
         int alt50 = 2;
         int LA50_0 = input.LA(1);
 
@@ -8313,7 +8305,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt50) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_actionExtension3398);
             typeVarTuple177 = typeVarTuple();
@@ -8332,7 +8324,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(ID178);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:410:4: ( '(' extParamList ')' )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:410:4: ( '(' extParamList ')' )?
         int alt51 = 2;
         int LA51_0 = input.LA(1);
 
@@ -8341,7 +8333,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt51) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:410:6: '(' extParamList ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:410:6: '(' extParamList ')'
           {
             char_literal179 = (Token) match(
                 input,
@@ -8384,7 +8376,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal183);
 
         // AST REWRITE
-        // elements: typeVarTuple, ID, annotationList, extParamList
+        // elements: annotationList, typeVarTuple, extParamList, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -8398,21 +8390,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 411:41: -> ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:44: ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:44: ^( ACTION_EXT[$t] ^( OPTION ( typeVarTuple )? ) ID ^( OPTION ( extParamList )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(ACTION_EXT, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:61: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:61: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:70: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:70: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -8422,14 +8414,14 @@ public class AntlrPilarParser extends Parser {
                 adaptor.addChild(root_1, root_2);
               }
               adaptor.addChild(root_1, stream_ID.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:88: ^( OPTION ( extParamList )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:88: ^( OPTION ( extParamList )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:97: ( extParamList )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:411:97: ( extParamList )?
                 if (stream_extParamList.hasNext()) {
                   adaptor.addChild(root_2, stream_extParamList.nextTree());
 
@@ -8484,7 +8476,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "expExtension"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:414:1: expExtension : t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:414:1: expExtension : t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
   public final AntlrPilarParser.expExtension_return expExtension()
       throws RecognitionException {
     AntlrPilarParser.expExtension_return retval = new AntlrPilarParser.expExtension_return();
@@ -8532,14 +8524,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 49)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:2: (t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:4: t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:2: (t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:4: t= 'expdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';'
       {
         t = (Token) match(input, 189, FOLLOW_189_in_expExtension3478);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_189.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:15: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:15: ( typeVarTuple )?
         int alt52 = 2;
         int LA52_0 = input.LA(1);
 
@@ -8548,7 +8540,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt52) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_expExtension3480);
             typeVarTuple184 = typeVarTuple();
@@ -8563,7 +8555,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:29: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:415:29: ( type )?
         int alt53 = 2;
         int LA53_0 = input.LA(1);
 
@@ -8585,7 +8577,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt53) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_expExtension3483);
             type185 = type();
@@ -8603,7 +8595,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(ID186);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:416:4: ( '(' extParamList ')' )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:416:4: ( '(' extParamList ')' )?
         int alt54 = 2;
         int LA54_0 = input.LA(1);
 
@@ -8612,7 +8604,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt54) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:416:6: '(' extParamList ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:416:6: '(' extParamList ')'
           {
             char_literal187 = (Token) match(
                 input,
@@ -8655,7 +8647,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal191);
 
         // AST REWRITE
-        // elements: annotationList, extParamList, type, typeVarTuple, ID
+        // elements: type, typeVarTuple, annotationList, ID, extParamList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -8669,21 +8661,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 417:41: -> ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:44: ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:44: ^( EXP_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(EXP_EXT, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:58: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:58: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:67: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:67: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -8692,14 +8684,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:82: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:82: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:91: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:91: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -8709,14 +8701,14 @@ public class AntlrPilarParser extends Parser {
                 adaptor.addChild(root_1, root_2);
               }
               adaptor.addChild(root_1, stream_ID.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:101: ^( OPTION ( extParamList )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:101: ^( OPTION ( extParamList )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:110: ( extParamList )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:417:110: ( extParamList )?
                 if (stream_extParamList.hasNext()) {
                   adaptor.addChild(root_2, stream_extParamList.nextTree());
 
@@ -8771,7 +8763,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "procExtension"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:420:1: procExtension : t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:420:1: procExtension : t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) ;
   public final AntlrPilarParser.procExtension_return procExtension()
       throws RecognitionException {
     AntlrPilarParser.procExtension_return retval = new AntlrPilarParser.procExtension_return();
@@ -8819,14 +8811,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 50)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:2: (t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:4: t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:2: (t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';' -> ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:4: t= 'procdef' ( typeVarTuple )? ( type )? ID ( '(' extParamList ')' )? annotationList ';'
       {
         t = (Token) match(input, 190, FOLLOW_190_in_procExtension3571);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_190.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:16: ( typeVarTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:16: ( typeVarTuple )?
         int alt55 = 2;
         int LA55_0 = input.LA(1);
 
@@ -8835,7 +8827,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt55) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeVarTuple
           {
             pushFollow(FOLLOW_typeVarTuple_in_procExtension3573);
             typeVarTuple192 = typeVarTuple();
@@ -8850,7 +8842,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:30: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:421:30: ( type )?
         int alt56 = 2;
         int LA56_0 = input.LA(1);
 
@@ -8872,7 +8864,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt56) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_procExtension3576);
             type193 = type();
@@ -8890,7 +8882,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(ID194);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:422:4: ( '(' extParamList ')' )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:422:4: ( '(' extParamList ')' )?
         int alt57 = 2;
         int LA57_0 = input.LA(1);
 
@@ -8899,7 +8891,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt57) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:422:6: '(' extParamList ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:422:6: '(' extParamList ')'
           {
             char_literal195 = (Token) match(
                 input,
@@ -8942,7 +8934,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal199);
 
         // AST REWRITE
-        // elements: type, annotationList, ID, typeVarTuple, extParamList
+        // elements: type, extParamList, annotationList, typeVarTuple, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -8956,21 +8948,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 423:41: -> ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:44: ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:44: ^( PROC_EXT[$t] ^( OPTION ( typeVarTuple )? ) ^( OPTION ( type )? ) ID ^( OPTION ( extParamList )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(PROC_EXT, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:59: ^( OPTION ( typeVarTuple )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:59: ^( OPTION ( typeVarTuple )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:68: ( typeVarTuple )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:68: ( typeVarTuple )?
                 if (stream_typeVarTuple.hasNext()) {
                   adaptor.addChild(root_2, stream_typeVarTuple.nextTree());
 
@@ -8979,14 +8971,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:83: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:83: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:92: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:92: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -8996,14 +8988,14 @@ public class AntlrPilarParser extends Parser {
                 adaptor.addChild(root_1, root_2);
               }
               adaptor.addChild(root_1, stream_ID.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:102: ^( OPTION ( extParamList )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:102: ^( OPTION ( extParamList )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:111: ( extParamList )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:423:111: ( extParamList )?
                 if (stream_extParamList.hasNext()) {
                   adaptor.addChild(root_2, stream_extParamList.nextTree());
 
@@ -9058,7 +9050,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extParamList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:426:1: extParamList : ( extParamVariable -> ^( LIST ( extParamVariable )? ) | extParam ( ',' extParam )* ( extParamVariable )? -> ^( LIST ( extParam )+ ( extParamVariable )? ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:426:1: extParamList : ( extParamVariable -> ^( LIST ( extParamVariable )? ) | extParam ( ',' extParam )* ( extParamVariable )? -> ^( LIST ( extParam )+ ( extParamVariable )? ) );
   public final AntlrPilarParser.extParamList_return extParamList()
       throws RecognitionException {
     AntlrPilarParser.extParamList_return retval = new AntlrPilarParser.extParamList_return();
@@ -9086,12 +9078,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 51)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:2: ( extParamVariable -> ^( LIST ( extParamVariable )? ) | extParam ( ',' extParam )* ( extParamVariable )? -> ^( LIST ( extParam )+ ( extParamVariable )? ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:2: ( extParamVariable -> ^( LIST ( extParamVariable )? ) | extParam ( ',' extParam )* ( extParamVariable )? -> ^( LIST ( extParam )+ ( extParamVariable )? ) )
       int alt60 = 2;
       alt60 = dfa60.predict(input);
       switch (alt60) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: extParamVariable
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: extParamVariable
         {
           pushFollow(FOLLOW_extParamVariable_in_extParamList3662);
           extParamVariable200 = extParamVariable();
@@ -9116,14 +9108,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 427:41: -> ^( LIST ( extParamVariable )? )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:44: ^( LIST ( extParamVariable )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:44: ^( LIST ( extParamVariable )? )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:51: ( extParamVariable )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:51: ( extParamVariable )?
                 if (stream_extParamVariable.hasNext()) {
                   adaptor.addChild(root_1, stream_extParamVariable.nextTree());
 
@@ -9140,7 +9132,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:4: extParam ( ',' extParam )* ( extParamVariable )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:4: extParam ( ',' extParam )* ( extParamVariable )?
         {
           pushFollow(FOLLOW_extParam_in_extParamList3696);
           extParam201 = extParam();
@@ -9149,7 +9141,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0)
             stream_extParam.add(extParam201.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:13: ( ',' extParam )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:13: ( ',' extParam )*
           loop58: do {
             int alt58 = 2;
             int LA58_0 = input.LA(1);
@@ -9160,7 +9152,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt58) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:15: ',' extParam
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:428:15: ',' extParam
               {
                 char_literal202 = (Token) match(
                     input,
@@ -9185,7 +9177,7 @@ public class AntlrPilarParser extends Parser {
             }
           } while (true);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:4: ( extParamVariable )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:4: ( extParamVariable )?
           int alt59 = 2;
           int LA59_0 = input.LA(1);
 
@@ -9195,7 +9187,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt59) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extParamVariable
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: extParamVariable
             {
               pushFollow(FOLLOW_extParamVariable_in_extParamList3710);
               extParamVariable204 = extParamVariable();
@@ -9225,7 +9217,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 429:41: -> ^( LIST ( extParam )+ ( extParamVariable )? )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:44: ^( LIST ( extParam )+ ( extParamVariable )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:44: ^( LIST ( extParam )+ ( extParamVariable )? )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -9240,7 +9232,7 @@ public class AntlrPilarParser extends Parser {
 
                 }
                 stream_extParam.reset();
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:61: ( extParamVariable )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:429:61: ( extParamVariable )?
                 if (stream_extParamVariable.hasNext()) {
                   adaptor.addChild(root_1, stream_extParamVariable.nextTree());
 
@@ -9293,7 +9285,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extParam"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:432:1: extParam : ( type )? ( ID )? annotationList -> ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:432:1: extParam : ( type )? ( ID )? annotationList -> ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) ;
   public final AntlrPilarParser.extParam_return extParam()
       throws RecognitionException {
     AntlrPilarParser.extParam_return retval = new AntlrPilarParser.extParam_return();
@@ -9317,15 +9309,15 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 52)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:2: ( ( type )? ( ID )? annotationList -> ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )? ( ID )? annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:2: ( ( type )? ( ID )? annotationList -> ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )? ( ID )? annotationList
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )?
         int alt61 = 2;
         alt61 = dfa61.predict(input);
         switch (alt61) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_extParam3753);
             type205 = type();
@@ -9339,7 +9331,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ( ID )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ( ID )?
         int alt62 = 2;
         int LA62_0 = input.LA(1);
 
@@ -9352,7 +9344,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt62) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
           {
             ID206 = (Token) match(input, ID, FOLLOW_ID_in_extParam3756);
             if (state.failed) return retval;
@@ -9372,7 +9364,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList207.getTree());
 
         // AST REWRITE
-        // elements: annotationList, type, ID
+        // elements: type, annotationList, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -9386,21 +9378,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 433:41: -> ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:44: ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:44: ^( EXT_PARAM ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(EXT_PARAM, "EXT_PARAM"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:56: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:56: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:65: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:65: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -9409,14 +9401,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:72: ^( OPTION ( ID )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:72: ^( OPTION ( ID )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:81: ( ID )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:81: ( ID )?
                 if (stream_ID.hasNext()) {
                   adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -9471,7 +9463,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extParamVariable"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:436:1: extParamVariable : ( type )? ( ID )? '...' annotationList -> ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:436:1: extParamVariable : ( type )? ( ID )? '...' annotationList -> ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) ;
   public final AntlrPilarParser.extParamVariable_return extParamVariable()
       throws RecognitionException {
     AntlrPilarParser.extParamVariable_return retval = new AntlrPilarParser.extParamVariable_return();
@@ -9499,10 +9491,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 53)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:2: ( ( type )? ( ID )? '...' annotationList -> ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )? ( ID )? '...' annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:2: ( ( type )? ( ID )? '...' annotationList -> ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )? ( ID )? '...' annotationList
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )?
         int alt63 = 2;
         int LA63_0 = input.LA(1);
 
@@ -9517,7 +9509,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt63) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_extParamVariable3804);
             type208 = type();
@@ -9531,7 +9523,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:10: ( ID )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:10: ( ID )?
         int alt64 = 2;
         int LA64_0 = input.LA(1);
 
@@ -9540,7 +9532,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt64) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
           {
             ID209 = (Token) match(input, ID, FOLLOW_ID_in_extParamVariable3807);
             if (state.failed) return retval;
@@ -9567,7 +9559,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList211.getTree());
 
         // AST REWRITE
-        // elements: ID, type, annotationList
+        // elements: type, ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -9581,21 +9573,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 438:41: -> ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:44: ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:44: ^( EXT_PARAM_VARIABLE ^( OPTION ( type )? ) ^( OPTION ( ID )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot((Object) adaptor.create(
                   EXT_PARAM_VARIABLE,
                   "EXT_PARAM_VARIABLE"), root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:65: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:65: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:74: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:74: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -9604,14 +9596,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:81: ^( OPTION ( ID )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:81: ^( OPTION ( ID )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:90: ( ID )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:438:90: ( ID )?
                 if (stream_ID.hasNext()) {
                   adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -9666,7 +9658,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "body"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:441:1: body : t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}' -> ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:441:1: body : t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}' -> ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) ) ;
   public final AntlrPilarParser.body_return body() throws RecognitionException {
     AntlrPilarParser.body_return retval = new AntlrPilarParser.body_return();
     retval.start = input.LT(1);
@@ -9697,14 +9689,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 54)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:2: (t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}' -> ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:4: t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:2: (t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}' -> ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:4: t= '{' ( localVarsDeclaration )? ( location )+ ( catchClause )* '}'
       {
         t = (Token) match(input, 175, FOLLOW_175_in_body3868);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:10: ( localVarsDeclaration )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:442:10: ( localVarsDeclaration )?
         int alt65 = 2;
         int LA65_0 = input.LA(1);
 
@@ -9713,7 +9705,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt65) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: localVarsDeclaration
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: localVarsDeclaration
           {
             pushFollow(FOLLOW_localVarsDeclaration_in_body3870);
             localVarsDeclaration212 = localVarsDeclaration();
@@ -9729,7 +9721,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:443:4: ( location )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:443:4: ( location )+
         int cnt66 = 0;
         loop66: do {
           int alt66 = 2;
@@ -9741,7 +9733,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt66) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: location
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: location
             {
               pushFollow(FOLLOW_location_in_body3877);
               location213 = location();
@@ -9766,7 +9758,7 @@ public class AntlrPilarParser extends Parser {
           cnt66++;
         } while (true);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:4: ( catchClause )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:4: ( catchClause )*
         loop67: do {
           int alt67 = 2;
           int LA67_0 = input.LA(1);
@@ -9777,7 +9769,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt67) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: catchClause
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: catchClause
             {
               pushFollow(FOLLOW_catchClause_in_body3884);
               catchClause214 = catchClause();
@@ -9800,7 +9792,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal215);
 
         // AST REWRITE
-        // elements: location, catchClause, localVarsDeclaration
+        // elements: localVarsDeclaration, location, catchClause
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -9814,21 +9806,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 444:41: -> ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:44: ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:44: ^( BODY[$t] ^( OPTION ( localVarsDeclaration )? ) ^( LIST ( location )+ ) ^( LIST ( catchClause )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(BODY, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:55: ^( OPTION ( localVarsDeclaration )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:55: ^( OPTION ( localVarsDeclaration )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:64: ( localVarsDeclaration )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:64: ( localVarsDeclaration )?
                 if (stream_localVarsDeclaration.hasNext()) {
                   adaptor.addChild(
                       root_2,
@@ -9839,7 +9831,7 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:87: ^( LIST ( location )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:87: ^( LIST ( location )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -9857,14 +9849,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:105: ^( LIST ( catchClause )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:105: ^( LIST ( catchClause )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:112: ( catchClause )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:444:112: ( catchClause )*
                 while (stream_catchClause.hasNext()) {
                   adaptor.addChild(root_2, stream_catchClause.nextTree());
 
@@ -9918,7 +9910,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "localVarsDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:447:1: localVarsDeclaration : t= 'local' ( localVarDeclaration )+ -> ^( LIST[$t] ( localVarDeclaration )+ ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:447:1: localVarsDeclaration : t= 'local' ( localVarDeclaration )+ -> ^( LIST[$t] ( localVarDeclaration )+ ) ;
   public final AntlrPilarParser.localVarsDeclaration_return localVarsDeclaration()
       throws RecognitionException {
     AntlrPilarParser.localVarsDeclaration_return retval = new AntlrPilarParser.localVarsDeclaration_return();
@@ -9938,14 +9930,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 55)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:2: (t= 'local' ( localVarDeclaration )+ -> ^( LIST[$t] ( localVarDeclaration )+ ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:4: t= 'local' ( localVarDeclaration )+
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:2: (t= 'local' ( localVarDeclaration )+ -> ^( LIST[$t] ( localVarDeclaration )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:4: t= 'local' ( localVarDeclaration )+
       {
         t = (Token) match(input, 191, FOLLOW_191_in_localVarsDeclaration3948);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_191.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:14: ( localVarDeclaration )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:14: ( localVarDeclaration )+
         int cnt68 = 0;
         loop68: do {
           int alt68 = 2;
@@ -9957,7 +9949,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt68) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: localVarDeclaration
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: localVarDeclaration
             {
               pushFollow(FOLLOW_localVarDeclaration_in_localVarsDeclaration3950);
               localVarDeclaration216 = localVarDeclaration();
@@ -9998,7 +9990,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 448:41: -> ^( LIST[$t] ( localVarDeclaration )+ )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:44: ^( LIST[$t] ( localVarDeclaration )+ )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:448:44: ^( LIST[$t] ( localVarDeclaration )+ )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -10058,7 +10050,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "localVarDeclaration"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:451:1: localVarDeclaration : ( type )? localVarFragment ( ',' localVarFragment )* ';' -> ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:451:1: localVarDeclaration : ( type )? localVarFragment ( ',' localVarFragment )* ';' -> ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) ) ;
   public final AntlrPilarParser.localVarDeclaration_return localVarDeclaration()
       throws RecognitionException {
     AntlrPilarParser.localVarDeclaration_return retval = new AntlrPilarParser.localVarDeclaration_return();
@@ -10088,10 +10080,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 56)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:2: ( ( type )? localVarFragment ( ',' localVarFragment )* ';' -> ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:4: ( type )? localVarFragment ( ',' localVarFragment )* ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:2: ( ( type )? localVarFragment ( ',' localVarFragment )* ';' -> ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:4: ( type )? localVarFragment ( ',' localVarFragment )* ';'
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:452:4: ( type )?
         int alt69 = 2;
         int LA69_0 = input.LA(1);
 
@@ -10113,7 +10105,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt69) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_localVarDeclaration3978);
             type217 = type();
@@ -10134,7 +10126,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_localVarFragment.add(localVarFragment218.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:4: ( ',' localVarFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:4: ( ',' localVarFragment )*
         loop70: do {
           int alt70 = 2;
           int LA70_0 = input.LA(1);
@@ -10145,7 +10137,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt70) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:6: ',' localVarFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:6: ',' localVarFragment
             {
               char_literal219 = (Token) match(
                   input,
@@ -10192,21 +10184,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 453:41: -> ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:44: ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:44: ^( LOCAL ^( OPTION ( type )? ) ^( LIST ( localVarFragment )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(LOCAL, "LOCAL"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:52: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:52: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:61: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:61: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -10215,7 +10207,7 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:68: ^( LIST ( localVarFragment )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:453:68: ^( LIST ( localVarFragment )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -10278,7 +10270,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "localVarFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:456:1: localVarFragment : t= ID annotationList -> ^( LOCAL_FRAGMENT[$t] ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:456:1: localVarFragment : t= ID annotationList -> ^( LOCAL_FRAGMENT[$t] ID annotationList ) ;
   public final AntlrPilarParser.localVarFragment_return localVarFragment()
       throws RecognitionException {
     AntlrPilarParser.localVarFragment_return retval = new AntlrPilarParser.localVarFragment_return();
@@ -10298,8 +10290,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 57)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:2: (t= ID annotationList -> ^( LOCAL_FRAGMENT[$t] ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:4: t= ID annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:2: (t= ID annotationList -> ^( LOCAL_FRAGMENT[$t] ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:4: t= ID annotationList
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_localVarFragment4036);
         if (state.failed) return retval;
@@ -10314,7 +10306,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList222.getTree());
 
         // AST REWRITE
-        // elements: ID, annotationList
+        // elements: annotationList, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -10328,7 +10320,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 457:41: -> ^( LOCAL_FRAGMENT[$t] ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:44: ^( LOCAL_FRAGMENT[$t] ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:457:44: ^( LOCAL_FRAGMENT[$t] ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -10382,7 +10374,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "location"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:460:1: location : t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )? -> ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:460:1: location : t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )? -> ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) ) ;
   public final AntlrPilarParser.location_return location()
       throws RecognitionException {
     AntlrPilarParser.location_return retval = new AntlrPilarParser.location_return();
@@ -10412,8 +10404,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 58)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:461:2: (t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )? -> ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:461:4: t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )?
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:461:2: (t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )? -> ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:461:4: t= LOCID angleGroupedAnnotationList ( transformation ( '|' transformation )* )?
       {
         t = (Token) match(input, LOCID, FOLLOW_LOCID_in_location4088);
         if (state.failed) return retval;
@@ -10427,7 +10419,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0)
           stream_angleGroupedAnnotationList.add(angleGroupedAnnotationList223
               .getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:4: ( transformation ( '|' transformation )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:4: ( transformation ( '|' transformation )* )?
         int alt72 = 2;
         switch (input.LA(1)) {
           case HEX_LIT:
@@ -10504,7 +10496,7 @@ public class AntlrPilarParser extends Parser {
 
         switch (alt72) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: transformation ( '|' transformation )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: transformation ( '|' transformation )*
           {
             pushFollow(FOLLOW_transformation_in_location4098);
             transformation224 = transformation();
@@ -10513,7 +10505,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0)
               stream_transformation.add(transformation224.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:6: ( '|' transformation )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:6: ( '|' transformation )*
             loop71: do {
               int alt71 = 2;
               int LA71_0 = input.LA(1);
@@ -10524,7 +10516,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt71) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:8: '|' transformation
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:8: '|' transformation
                 {
                   char_literal225 = (Token) match(
                       input,
@@ -10555,7 +10547,7 @@ public class AntlrPilarParser extends Parser {
         }
 
         // AST REWRITE
-        // elements: LOCID, angleGroupedAnnotationList, transformation
+        // elements: transformation, angleGroupedAnnotationList, LOCID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -10569,7 +10561,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 464:41: -> ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:44: ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:44: ^( LOCATION[$t] LOCID angleGroupedAnnotationList ^( LIST ( transformation )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -10580,14 +10572,14 @@ public class AntlrPilarParser extends Parser {
               adaptor.addChild(
                   root_1,
                   stream_angleGroupedAnnotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:92: ^( LIST ( transformation )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:92: ^( LIST ( transformation )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:99: ( transformation )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:464:99: ( transformation )*
                 while (stream_transformation.hasNext()) {
                   adaptor.addChild(root_2, stream_transformation.nextTree());
 
@@ -10641,7 +10633,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "transformation"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:467:1: transformation : parenGroupedAnnotationList ( guard )? seqTransformation -> ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:467:1: transformation : parenGroupedAnnotationList ( guard )? seqTransformation -> ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation ) ;
   public final AntlrPilarParser.transformation_return transformation()
       throws RecognitionException {
     AntlrPilarParser.transformation_return retval = new AntlrPilarParser.transformation_return();
@@ -10665,8 +10657,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 59)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:2: ( parenGroupedAnnotationList ( guard )? seqTransformation -> ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:4: parenGroupedAnnotationList ( guard )? seqTransformation
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:2: ( parenGroupedAnnotationList ( guard )? seqTransformation -> ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:4: parenGroupedAnnotationList ( guard )? seqTransformation
       {
         pushFollow(FOLLOW_parenGroupedAnnotationList_in_transformation4195);
         parenGroupedAnnotationList227 = parenGroupedAnnotationList();
@@ -10676,12 +10668,12 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0)
           stream_parenGroupedAnnotationList.add(parenGroupedAnnotationList227
               .getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: ( guard )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: ( guard )?
         int alt73 = 2;
         alt73 = dfa73.predict(input);
         switch (alt73) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: guard
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: guard
           {
             pushFollow(FOLLOW_guard_in_transformation4197);
             guard228 = guard();
@@ -10704,7 +10696,7 @@ public class AntlrPilarParser extends Parser {
           stream_seqTransformation.add(seqTransformation229.getTree());
 
         // AST REWRITE
-        // elements: guard, seqTransformation, parenGroupedAnnotationList
+        // elements: parenGroupedAnnotationList, guard, seqTransformation
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -10718,7 +10710,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 469:41: -> ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:44: ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:44: ^( TRANSFORMATION parenGroupedAnnotationList ^( OPTION ( guard )? ) seqTransformation )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -10728,14 +10720,14 @@ public class AntlrPilarParser extends Parser {
               adaptor.addChild(
                   root_1,
                   stream_parenGroupedAnnotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:88: ^( OPTION ( guard )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:88: ^( OPTION ( guard )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:97: ( guard )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:469:97: ( guard )?
                 if (stream_guard.hasNext()) {
                   adaptor.addChild(root_2, stream_guard.nextTree());
 
@@ -10790,7 +10782,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "guard"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:472:1: guard : ( exp annotationList '+>' -> ^( EXP_GUARD exp annotationList ) | t= 'else' annotationList -> ^( ELSE_GUARD[$t] annotationList ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:472:1: guard : ( exp annotationList '+>' -> ^( EXP_GUARD exp annotationList ) | t= 'else' annotationList -> ^( ELSE_GUARD[$t] annotationList ) );
   public final AntlrPilarParser.guard_return guard()
       throws RecognitionException {
     AntlrPilarParser.guard_return retval = new AntlrPilarParser.guard_return();
@@ -10820,7 +10812,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 60)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:2: ( exp annotationList '+>' -> ^( EXP_GUARD exp annotationList ) | t= 'else' annotationList -> ^( ELSE_GUARD[$t] annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:2: ( exp annotationList '+>' -> ^( EXP_GUARD exp annotationList ) | t= 'else' annotationList -> ^( ELSE_GUARD[$t] annotationList ) )
       int alt74 = 2;
       int LA74_0 = input.LA(1);
 
@@ -10842,7 +10834,7 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt74) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:4: exp annotationList '+>'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:4: exp annotationList '+>'
         {
           pushFollow(FOLLOW_exp_in_guard4252);
           exp230 = exp();
@@ -10876,7 +10868,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 473:41: -> ^( EXP_GUARD exp annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:44: ^( EXP_GUARD exp annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:473:44: ^( EXP_GUARD exp annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -10896,7 +10888,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:474:4: t= 'else' annotationList
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:474:4: t= 'else' annotationList
         {
           t = (Token) match(input, 194, FOLLOW_194_in_guard4286);
           if (state.failed) return retval;
@@ -10925,7 +10917,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 474:41: -> ^( ELSE_GUARD[$t] annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:474:44: ^( ELSE_GUARD[$t] annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:474:44: ^( ELSE_GUARD[$t] annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -10980,7 +10972,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "lhsList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:477:1: lhsList : lhs ( ',' lhs )* -> ^( LIST ( lhs )+ ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:477:1: lhsList : lhs ( ',' lhs )* -> ^( LIST ( lhs )+ ) ;
   public final AntlrPilarParser.lhsList_return lhsList()
       throws RecognitionException {
     AntlrPilarParser.lhsList_return retval = new AntlrPilarParser.lhsList_return();
@@ -11002,8 +10994,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 61)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:2: ( lhs ( ',' lhs )* -> ^( LIST ( lhs )+ ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:4: lhs ( ',' lhs )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:2: ( lhs ( ',' lhs )* -> ^( LIST ( lhs )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:4: lhs ( ',' lhs )*
       {
         pushFollow(FOLLOW_lhs_in_lhsList4321);
         lhs234 = lhs();
@@ -11011,7 +11003,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_lhs.add(lhs234.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:8: ( ',' lhs )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:8: ( ',' lhs )*
         loop75: do {
           int alt75 = 2;
           int LA75_0 = input.LA(1);
@@ -11022,7 +11014,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt75) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:10: ',' lhs
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:10: ',' lhs
             {
               char_literal235 = (Token) match(
                   input,
@@ -11061,7 +11053,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 478:41: -> ^( LIST ( lhs )+ )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:44: ^( LIST ( lhs )+ )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:478:44: ^( LIST ( lhs )+ )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -11121,7 +11113,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "lhs"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:481:1: lhs : exp annotationList -> ^( LHS exp annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:481:1: lhs : exp annotationList -> ^( LHS exp annotationList ) ;
   public final AntlrPilarParser.lhs_return lhs() throws RecognitionException {
     AntlrPilarParser.lhs_return retval = new AntlrPilarParser.lhs_return();
     retval.start = input.LT(1);
@@ -11140,8 +11132,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 62)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:2: ( exp annotationList -> ^( LHS exp annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:4: exp annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:2: ( exp annotationList -> ^( LHS exp annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:4: exp annotationList
       {
         pushFollow(FOLLOW_exp_in_lhs4370);
         exp237 = exp();
@@ -11158,7 +11150,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList238.getTree());
 
         // AST REWRITE
-        // elements: exp, annotationList
+        // elements: annotationList, exp
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -11172,7 +11164,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 482:41: -> ^( LHS exp annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:44: ^( LHS exp annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:482:44: ^( LHS exp annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -11226,7 +11218,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "seqTransformation"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:485:1: seqTransformation : ( action )* ( jump )? -> ^( LIST ( action )* ) ^( OPTION ( jump )? ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:485:1: seqTransformation : ( action )* ( jump )? -> ^( LIST ( action )* ) ^( OPTION ( jump )? ) ;
   public final AntlrPilarParser.seqTransformation_return seqTransformation()
       throws RecognitionException {
     AntlrPilarParser.seqTransformation_return retval = new AntlrPilarParser.seqTransformation_return();
@@ -11246,16 +11238,16 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 63)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:2: ( ( action )* ( jump )? -> ^( LIST ( action )* ) ^( OPTION ( jump )? ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )* ( jump )?
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:2: ( ( action )* ( jump )? -> ^( LIST ( action )* ) ^( OPTION ( jump )? ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )* ( jump )?
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )*
         loop76: do {
           int alt76 = 2;
           alt76 = dfa76.predict(input);
           switch (alt76) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: action
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: action
             {
               pushFollow(FOLLOW_action_in_seqTransformation4412);
               action239 = action();
@@ -11273,7 +11265,7 @@ public class AntlrPilarParser extends Parser {
           }
         } while (true);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:12: ( jump )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:12: ( jump )?
         int alt77 = 2;
         int LA77_0 = input.LA(1);
 
@@ -11282,7 +11274,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt77) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: jump
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: jump
           {
             pushFollow(FOLLOW_jump_in_seqTransformation4415);
             jump240 = jump();
@@ -11311,14 +11303,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 486:41: -> ^( LIST ( action )* ) ^( OPTION ( jump )? )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:45: ^( LIST ( action )* )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:45: ^( LIST ( action )* )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(LIST, "LIST"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:52: ( action )*
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:52: ( action )*
               while (stream_action.hasNext()) {
                 adaptor.addChild(root_1, stream_action.nextTree());
 
@@ -11327,14 +11319,14 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_0, root_1);
             }
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:61: ^( OPTION ( jump )? )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:61: ^( OPTION ( jump )? )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(OPTION, "OPTION"),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:70: ( jump )?
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:70: ( jump )?
               if (stream_jump.hasNext()) {
                 adaptor.addChild(root_1, stream_jump.nextTree());
 
@@ -11385,7 +11377,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "action"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:489:1: action : (t= 'assert' exp annotationList ';' -> ^( ASSERT[$t] exp annotationList ) | t= 'assume' exp annotationList ';' -> ^( ASSUME[$t] exp annotationList ) | t= 'throw' exp annotationList ';' -> ^( THROW[$t] exp annotationList ) | assignment | startThread | extCall );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:489:1: action : (t= 'assert' exp annotationList ';' -> ^( ASSERT[$t] exp annotationList ) | t= 'assume' exp annotationList ';' -> ^( ASSUME[$t] exp annotationList ) | t= 'throw' exp annotationList ';' -> ^( THROW[$t] exp annotationList ) | assignment | startThread | extCall );
   public final AntlrPilarParser.action_return action()
       throws RecognitionException {
     AntlrPilarParser.action_return retval = new AntlrPilarParser.action_return();
@@ -11435,12 +11427,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 64)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:2: (t= 'assert' exp annotationList ';' -> ^( ASSERT[$t] exp annotationList ) | t= 'assume' exp annotationList ';' -> ^( ASSUME[$t] exp annotationList ) | t= 'throw' exp annotationList ';' -> ^( THROW[$t] exp annotationList ) | assignment | startThread | extCall )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:2: (t= 'assert' exp annotationList ';' -> ^( ASSERT[$t] exp annotationList ) | t= 'assume' exp annotationList ';' -> ^( ASSUME[$t] exp annotationList ) | t= 'throw' exp annotationList ';' -> ^( THROW[$t] exp annotationList ) | assignment | startThread | extCall )
       int alt78 = 6;
       alt78 = dfa78.predict(input);
       switch (alt78) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:4: t= 'assert' exp annotationList ';'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:4: t= 'assert' exp annotationList ';'
         {
           t = (Token) match(input, 195, FOLLOW_195_in_action4469);
           if (state.failed) return retval;
@@ -11478,7 +11470,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 490:41: -> ^( ASSERT[$t] exp annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:44: ^( ASSERT[$t] exp annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:490:44: ^( ASSERT[$t] exp annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -11498,7 +11490,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:491:4: t= 'assume' exp annotationList ';'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:491:4: t= 'assume' exp annotationList ';'
         {
           t = (Token) match(input, 196, FOLLOW_196_in_action4496);
           if (state.failed) return retval;
@@ -11536,7 +11528,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 491:41: -> ^( ASSUME[$t] exp annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:491:44: ^( ASSUME[$t] exp annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:491:44: ^( ASSUME[$t] exp annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -11556,7 +11548,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:492:4: t= 'throw' exp annotationList ';'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:492:4: t= 'throw' exp annotationList ';'
         {
           t = (Token) match(input, 197, FOLLOW_197_in_action4523);
           if (state.failed) return retval;
@@ -11594,7 +11586,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 492:41: -> ^( THROW[$t] exp annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:492:44: ^( THROW[$t] exp annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:492:44: ^( THROW[$t] exp annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -11614,7 +11606,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: assignment
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: assignment
         {
           root_0 = (Object) adaptor.nil();
 
@@ -11629,7 +11621,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:494:4: startThread
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:494:4: startThread
         {
           root_0 = (Object) adaptor.nil();
 
@@ -11644,7 +11636,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 6:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:495:4: extCall
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:495:4: extCall
         {
           root_0 = (Object) adaptor.nil();
 
@@ -11695,7 +11687,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "assignment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:498:1: assignment : lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';' -> ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:498:1: assignment : lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';' -> ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList ) ;
   public final AntlrPilarParser.assignment_return assignment()
       throws RecognitionException {
     AntlrPilarParser.assignment_return retval = new AntlrPilarParser.assignment_return();
@@ -11735,8 +11727,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 65)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:499:2: ( lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';' -> ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:499:4: lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:499:2: ( lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';' -> ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:499:4: lhsList (t= ':=' | t= ACTION_EXT_OP ) rhs ( ',' rhs )* annotationList ';'
       {
         pushFollow(FOLLOW_lhsList_in_assignment4571);
         lhsList253 = lhsList();
@@ -11744,7 +11736,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_lhsList.add(lhsList253.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:500:4: (t= ':=' | t= ACTION_EXT_OP )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:500:4: (t= ':=' | t= ACTION_EXT_OP )
         int alt79 = 2;
         int LA79_0 = input.LA(1);
 
@@ -11763,7 +11755,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt79) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:500:6: t= ':='
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:500:6: t= ':='
           {
             t = (Token) match(input, 198, FOLLOW_198_in_assignment4581);
             if (state.failed) return retval;
@@ -11772,7 +11764,7 @@ public class AntlrPilarParser extends Parser {
           }
             break;
           case 2:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:501:6: t= ACTION_EXT_OP
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:501:6: t= ACTION_EXT_OP
           {
             t = (Token) match(
                 input,
@@ -11792,7 +11784,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_rhs.add(rhs254.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:502:8: ( ',' rhs )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:502:8: ( ',' rhs )*
         loop80: do {
           int alt80 = 2;
           int LA80_0 = input.LA(1);
@@ -11803,7 +11795,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt80) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:502:10: ',' rhs
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:502:10: ',' rhs
             {
               char_literal255 = (Token) match(
                   input,
@@ -11842,7 +11834,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal258);
 
         // AST REWRITE
-        // elements: lhsList, t, annotationList, rhs
+        // elements: t, rhs, lhsList, annotationList
         // token labels: t
         // rule labels: retval
         // token list labels: 
@@ -11858,7 +11850,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 503:41: -> ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:503:44: ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:503:44: ^( ASSIGN lhsList $t ^( LIST ( rhs )+ ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -11867,7 +11859,7 @@ public class AntlrPilarParser extends Parser {
 
               adaptor.addChild(root_1, stream_lhsList.nextTree());
               adaptor.addChild(root_1, stream_t.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:503:64: ^( LIST ( rhs )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:503:64: ^( LIST ( rhs )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -11931,7 +11923,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "rhs"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:506:1: rhs : annotationList exp -> ^( RHS annotationList exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:506:1: rhs : annotationList exp -> ^( RHS annotationList exp ) ;
   public final AntlrPilarParser.rhs_return rhs() throws RecognitionException {
     AntlrPilarParser.rhs_return retval = new AntlrPilarParser.rhs_return();
     retval.start = input.LT(1);
@@ -11950,8 +11942,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 66)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:2: ( annotationList exp -> ^( RHS annotationList exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:4: annotationList exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:2: ( annotationList exp -> ^( RHS annotationList exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:4: annotationList exp
       {
         pushFollow(FOLLOW_annotationList_in_rhs4662);
         annotationList259 = annotationList();
@@ -11982,7 +11974,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 507:41: -> ^( RHS annotationList exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:44: ^( RHS annotationList exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:507:44: ^( RHS annotationList exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -12036,7 +12028,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "startThread"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:510:1: startThread : t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';' -> ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:510:1: startThread : t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';' -> ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList ) ;
   public final AntlrPilarParser.startThread_return startThread()
       throws RecognitionException {
     AntlrPilarParser.startThread_return retval = new AntlrPilarParser.startThread_return();
@@ -12078,8 +12070,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 67)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:511:2: (t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';' -> ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:511:4: t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:511:2: (t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';' -> ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:511:4: t= 'start' name ( '[' num= exp ']' )? (arg= exp )? annotationList ';'
       {
         t = (Token) match(input, 199, FOLLOW_199_in_startThread4705);
         if (state.failed) return retval;
@@ -12091,7 +12083,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_name.add(name261.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:512:4: ( '[' num= exp ']' )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:512:4: ( '[' num= exp ']' )?
         int alt81 = 2;
         int LA81_0 = input.LA(1);
 
@@ -12100,7 +12092,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt81) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:512:6: '[' num= exp ']'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:512:6: '[' num= exp ']'
           {
             char_literal262 = (Token) match(
                 input,
@@ -12127,7 +12119,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:513:4: (arg= exp )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:513:4: (arg= exp )?
         int alt82 = 2;
         int LA82_0 = input.LA(1);
 
@@ -12140,7 +12132,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt82) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:513:5: arg= exp
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:513:5: arg= exp
           {
             pushFollow(FOLLOW_exp_in_startThread4731);
             arg = exp();
@@ -12169,7 +12161,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal265);
 
         // AST REWRITE
-        // elements: num, arg, name, annotationList
+        // elements: num, annotationList, arg, name
         // token labels: 
         // rule labels: arg, retval, num
         // token list labels: 
@@ -12187,7 +12179,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 514:41: -> ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:44: ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:44: ^( START[$t] name ^( OPTION ( $num)? ) ^( OPTION ( $arg)? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -12195,14 +12187,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_name.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:61: ^( OPTION ( $num)? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:61: ^( OPTION ( $num)? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:70: ( $num)?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:70: ( $num)?
                 if (stream_num.hasNext()) {
                   adaptor.addChild(root_2, stream_num.nextTree());
 
@@ -12211,14 +12203,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:77: ^( OPTION ( $arg)? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:77: ^( OPTION ( $arg)? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:86: ( $arg)?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:514:86: ( $arg)?
                 if (stream_arg.hasNext()) {
                   adaptor.addChild(root_2, stream_arg.nextTree());
 
@@ -12273,7 +12265,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "extCall"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:517:1: extCall : exp annotationList ';' -> ^( ACTION_EXT_CALL exp annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:517:1: extCall : exp annotationList ';' -> ^( ACTION_EXT_CALL exp annotationList ) ;
   public final AntlrPilarParser.extCall_return extCall()
       throws RecognitionException {
     AntlrPilarParser.extCall_return retval = new AntlrPilarParser.extCall_return();
@@ -12297,8 +12289,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 68)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:2: ( exp annotationList ';' -> ^( ACTION_EXT_CALL exp annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:4: exp annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:2: ( exp annotationList ';' -> ^( ACTION_EXT_CALL exp annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:4: exp annotationList ';'
       {
         pushFollow(FOLLOW_exp_in_extCall4798);
         exp266 = exp();
@@ -12332,7 +12324,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 518:41: -> ^( ACTION_EXT_CALL exp annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:44: ^( ACTION_EXT_CALL exp annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:518:44: ^( ACTION_EXT_CALL exp annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -12386,7 +12378,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "jump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:521:1: jump : ( gotoJump | returnJump | ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';' -> ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList ) | t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';' -> ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList ) | t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )? -> ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:521:1: jump : ( gotoJump | returnJump | ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';' -> ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList ) | t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';' -> ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList ) | t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )? -> ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList ) );
   public final AntlrPilarParser.jump_return jump() throws RecognitionException {
     AntlrPilarParser.jump_return retval = new AntlrPilarParser.jump_return();
     retval.start = input.LT(1);
@@ -12463,7 +12455,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 69)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:522:2: ( gotoJump | returnJump | ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';' -> ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList ) | t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';' -> ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList ) | t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )? -> ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:522:2: ( gotoJump | returnJump | ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';' -> ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList ) | t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';' -> ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList ) | t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )? -> ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList ) )
       int alt89 = 5;
       switch (input.LA(1)) {
         case 204: {
@@ -12498,7 +12490,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt89) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:522:4: gotoJump
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:522:4: gotoJump
         {
           root_0 = (Object) adaptor.nil();
 
@@ -12513,7 +12505,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:523:4: returnJump
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:523:4: returnJump
         {
           root_0 = (Object) adaptor.nil();
 
@@ -12528,7 +12520,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:524:4: ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:524:4: ifThenJump ( 'else' ifThenJump )* ( ifElseJump )? annotationList ';'
         {
           pushFollow(FOLLOW_ifThenJump_in_jump4847);
           ifThenJump271 = ifThenJump();
@@ -12537,7 +12529,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0)
             stream_ifThenJump.add(ifThenJump271.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:525:4: ( 'else' ifThenJump )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:525:4: ( 'else' ifThenJump )*
           loop83: do {
             int alt83 = 2;
             int LA83_0 = input.LA(1);
@@ -12553,7 +12545,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt83) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:525:6: 'else' ifThenJump
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:525:6: 'else' ifThenJump
               {
                 string_literal272 = (Token) match(
                     input,
@@ -12578,7 +12570,7 @@ public class AntlrPilarParser extends Parser {
             }
           } while (true);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:526:4: ( ifElseJump )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:526:4: ( ifElseJump )?
           int alt84 = 2;
           int LA84_0 = input.LA(1);
 
@@ -12587,7 +12579,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt84) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ifElseJump
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ifElseJump
             {
               pushFollow(FOLLOW_ifElseJump_in_jump4864);
               ifElseJump274 = ifElseJump();
@@ -12614,7 +12606,7 @@ public class AntlrPilarParser extends Parser {
           if (state.backtracking == 0) stream_173.add(char_literal276);
 
           // AST REWRITE
-          // elements: ifThenJump, annotationList, ifElseJump
+          // elements: annotationList, ifElseJump, ifThenJump
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -12628,14 +12620,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 527:41: -> ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:44: ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:44: ^( IF_JUMP ^( LIST ( ifThenJump )+ ) ^( OPTION ( ifElseJump )? ) annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(IF_JUMP, "IF_JUMP"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:54: ^( LIST ( ifThenJump )+ )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:54: ^( LIST ( ifThenJump )+ )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -12653,14 +12645,14 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_1, root_2);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:74: ^( OPTION ( ifElseJump )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:74: ^( OPTION ( ifElseJump )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:83: ( ifElseJump )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:527:83: ( ifElseJump )?
                   if (stream_ifElseJump.hasNext()) {
                     adaptor.addChild(root_2, stream_ifElseJump.nextTree());
 
@@ -12681,7 +12673,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:528:4: t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:528:4: t= 'switch' exp ( switchCaseJump )+ ( switchDefaultJump )? annotationList ';'
         {
           t = (Token) match(input, 202, FOLLOW_202_in_jump4920);
           if (state.failed) return retval;
@@ -12693,7 +12685,7 @@ public class AntlrPilarParser extends Parser {
           state._fsp--;
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_exp.add(exp277.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:528:19: ( switchCaseJump )+
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:528:19: ( switchCaseJump )+
           int cnt85 = 0;
           loop85: do {
             int alt85 = 2;
@@ -12715,7 +12707,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt85) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchCaseJump
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchCaseJump
               {
                 pushFollow(FOLLOW_switchCaseJump_in_jump4924);
                 switchCaseJump278 = switchCaseJump();
@@ -12740,7 +12732,7 @@ public class AntlrPilarParser extends Parser {
             cnt85++;
           } while (true);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:529:4: ( switchDefaultJump )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:529:4: ( switchDefaultJump )?
           int alt86 = 2;
           int LA86_0 = input.LA(1);
 
@@ -12749,7 +12741,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt86) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchDefaultJump
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchDefaultJump
             {
               pushFollow(FOLLOW_switchDefaultJump_in_jump4936);
               switchDefaultJump279 = switchDefaultJump();
@@ -12776,7 +12768,7 @@ public class AntlrPilarParser extends Parser {
           if (state.backtracking == 0) stream_173.add(char_literal281);
 
           // AST REWRITE
-          // elements: annotationList, switchDefaultJump, switchCaseJump, exp
+          // elements: exp, switchDefaultJump, annotationList, switchCaseJump
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -12790,7 +12782,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 530:41: -> ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:44: ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:44: ^( SWITCH_JUMP[$t] exp ^( LIST ( switchCaseJump )+ ) ^( OPTION ( switchDefaultJump )? ) annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -12798,7 +12790,7 @@ public class AntlrPilarParser extends Parser {
                     root_1);
 
                 adaptor.addChild(root_1, stream_exp.nextTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:66: ^( LIST ( switchCaseJump )+ )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:66: ^( LIST ( switchCaseJump )+ )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -12816,14 +12808,14 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_1, root_2);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:90: ^( OPTION ( switchDefaultJump )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:90: ^( OPTION ( switchDefaultJump )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:99: ( switchDefaultJump )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:530:99: ( switchDefaultJump )?
                   if (stream_switchDefaultJump.hasNext()) {
                     adaptor.addChild(
                         root_2,
@@ -12846,18 +12838,18 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:531:4: t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:531:4: t= 'call' ( nameExp ':=' )? exp annotationList ';' ( gotoJump )?
         {
           t = (Token) match(input, 203, FOLLOW_203_in_jump4994);
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_203.add(t);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:532:4: ( nameExp ':=' )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:532:4: ( nameExp ':=' )?
           int alt87 = 2;
           alt87 = dfa87.predict(input);
           switch (alt87) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:532:6: nameExp ':='
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:532:6: nameExp ':='
             {
               pushFollow(FOLLOW_nameExp_in_jump5001);
               nameExp282 = nameExp();
@@ -12895,7 +12887,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_173.add(char_literal286);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:4: ( gotoJump )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:4: ( gotoJump )?
           int alt88 = 2;
           int LA88_0 = input.LA(1);
 
@@ -12904,7 +12896,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt88) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:6: gotoJump
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:6: gotoJump
             {
               pushFollow(FOLLOW_gotoJump_in_jump5022);
               gotoJump287 = gotoJump();
@@ -12920,7 +12912,7 @@ public class AntlrPilarParser extends Parser {
           }
 
           // AST REWRITE
-          // elements: nameExp, annotationList, gotoJump, exp
+          // elements: annotationList, gotoJump, nameExp, exp
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -12934,21 +12926,21 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 534:41: -> ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:44: ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:44: ^( CALL_JUMP[$t] ^( OPTION ( nameExp )? ) exp ^( OPTION ( gotoJump )? ) annotationList )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(CALL_JUMP, t),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:60: ^( OPTION ( nameExp )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:60: ^( OPTION ( nameExp )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:69: ( nameExp )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:69: ( nameExp )?
                   if (stream_nameExp.hasNext()) {
                     adaptor.addChild(root_2, stream_nameExp.nextTree());
 
@@ -12958,14 +12950,14 @@ public class AntlrPilarParser extends Parser {
                   adaptor.addChild(root_1, root_2);
                 }
                 adaptor.addChild(root_1, stream_exp.nextTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:83: ^( OPTION ( gotoJump )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:83: ^( OPTION ( gotoJump )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:92: ( gotoJump )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:534:92: ( gotoJump )?
                   if (stream_gotoJump.hasNext()) {
                     adaptor.addChild(root_2, stream_gotoJump.nextTree());
 
@@ -13022,7 +13014,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "gotoJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:537:1: gotoJump : t= 'goto' ID annotationList ';' -> ^( GOTO[$t] ID annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:537:1: gotoJump : t= 'goto' ID annotationList ';' -> ^( GOTO[$t] ID annotationList ) ;
   public final AntlrPilarParser.gotoJump_return gotoJump()
       throws RecognitionException {
     AntlrPilarParser.gotoJump_return retval = new AntlrPilarParser.gotoJump_return();
@@ -13050,8 +13042,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 70)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:2: (t= 'goto' ID annotationList ';' -> ^( GOTO[$t] ID annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:4: t= 'goto' ID annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:2: (t= 'goto' ID annotationList ';' -> ^( GOTO[$t] ID annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:4: t= 'goto' ID annotationList ';'
       {
         t = (Token) match(input, 204, FOLLOW_204_in_gotoJump5087);
         if (state.failed) return retval;
@@ -13073,7 +13065,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_173.add(char_literal290);
 
         // AST REWRITE
-        // elements: annotationList, ID
+        // elements: ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -13087,7 +13079,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 538:41: -> ^( GOTO[$t] ID annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:44: ^( GOTO[$t] ID annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:538:44: ^( GOTO[$t] ID annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -13141,7 +13133,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "returnJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:541:1: returnJump : t= 'return' ( exp )? annotationList ';' -> ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:541:1: returnJump : t= 'return' ( exp )? annotationList ';' -> ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList ) ;
   public final AntlrPilarParser.returnJump_return returnJump()
       throws RecognitionException {
     AntlrPilarParser.returnJump_return retval = new AntlrPilarParser.returnJump_return();
@@ -13169,14 +13161,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 71)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:2: (t= 'return' ( exp )? annotationList ';' -> ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:4: t= 'return' ( exp )? annotationList ';'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:2: (t= 'return' ( exp )? annotationList ';' -> ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:4: t= 'return' ( exp )? annotationList ';'
       {
         t = (Token) match(input, 205, FOLLOW_205_in_returnJump5123);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_205.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:15: ( exp )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:15: ( exp )?
         int alt90 = 2;
         int LA90_0 = input.LA(1);
 
@@ -13189,7 +13181,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt90) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: exp
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: exp
           {
             pushFollow(FOLLOW_exp_in_returnJump5125);
             exp291 = exp();
@@ -13232,21 +13224,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 542:41: -> ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:44: ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:44: ^( RETURN[$t] ^( OPTION ( exp )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(RETURN, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:57: ^( OPTION ( exp )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:57: ^( OPTION ( exp )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:66: ( exp )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:542:66: ( exp )?
                 if (stream_exp.hasNext()) {
                   adaptor.addChild(root_2, stream_exp.nextTree());
 
@@ -13301,7 +13293,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "ifThenJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:545:1: ifThenJump : t= 'if' exp 'then' annotationList 'goto' ID -> ^( IF_THEN_JUMP[$t] exp annotationList ID ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:545:1: ifThenJump : t= 'if' exp 'then' annotationList 'goto' ID -> ^( IF_THEN_JUMP[$t] exp annotationList ID ) ;
   public final AntlrPilarParser.ifThenJump_return ifThenJump()
       throws RecognitionException {
     AntlrPilarParser.ifThenJump_return retval = new AntlrPilarParser.ifThenJump_return();
@@ -13337,8 +13329,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 72)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:546:2: (t= 'if' exp 'then' annotationList 'goto' ID -> ^( IF_THEN_JUMP[$t] exp annotationList ID ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:546:4: t= 'if' exp 'then' annotationList 'goto' ID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:546:2: (t= 'if' exp 'then' annotationList 'goto' ID -> ^( IF_THEN_JUMP[$t] exp annotationList ID ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:546:4: t= 'if' exp 'then' annotationList 'goto' ID
       {
         t = (Token) match(input, 206, FOLLOW_206_in_ifThenJump5161);
         if (state.failed) return retval;
@@ -13376,7 +13368,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_ID.add(ID298);
 
         // AST REWRITE
-        // elements: ID, annotationList, exp
+        // elements: exp, annotationList, ID
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -13390,7 +13382,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 547:41: -> ^( IF_THEN_JUMP[$t] exp annotationList ID )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:547:44: ^( IF_THEN_JUMP[$t] exp annotationList ID )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:547:44: ^( IF_THEN_JUMP[$t] exp annotationList ID )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -13445,7 +13437,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "ifElseJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:550:1: ifElseJump : t= 'else' annotationList 'goto' ID -> ^( IF_ELSE_JUMP[$t] annotationList ID ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:550:1: ifElseJump : t= 'else' annotationList 'goto' ID -> ^( IF_ELSE_JUMP[$t] annotationList ID ) ;
   public final AntlrPilarParser.ifElseJump_return ifElseJump()
       throws RecognitionException {
     AntlrPilarParser.ifElseJump_return retval = new AntlrPilarParser.ifElseJump_return();
@@ -13473,8 +13465,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 73)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:2: (t= 'else' annotationList 'goto' ID -> ^( IF_ELSE_JUMP[$t] annotationList ID ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:4: t= 'else' annotationList 'goto' ID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:2: (t= 'else' annotationList 'goto' ID -> ^( IF_ELSE_JUMP[$t] annotationList ID ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:4: t= 'else' annotationList 'goto' ID
       {
         t = (Token) match(input, 194, FOLLOW_194_in_ifElseJump5228);
         if (state.failed) return retval;
@@ -13499,7 +13491,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_ID.add(ID301);
 
         // AST REWRITE
-        // elements: annotationList, ID
+        // elements: ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -13513,7 +13505,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 551:41: -> ^( IF_ELSE_JUMP[$t] annotationList ID )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:44: ^( IF_ELSE_JUMP[$t] annotationList ID )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:551:44: ^( IF_ELSE_JUMP[$t] annotationList ID )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -13567,7 +13559,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "switchCaseJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:554:1: switchCaseJump : t= '|' exp '=>' annotationList 'goto' ID -> ^( SWITCH_CASE_JUMP[$t] exp annotationList ID ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:554:1: switchCaseJump : t= '|' exp '=>' annotationList 'goto' ID -> ^( SWITCH_CASE_JUMP[$t] exp annotationList ID ) ;
   public final AntlrPilarParser.switchCaseJump_return switchCaseJump()
       throws RecognitionException {
     AntlrPilarParser.switchCaseJump_return retval = new AntlrPilarParser.switchCaseJump_return();
@@ -13603,8 +13595,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 74)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:555:2: (t= '|' exp '=>' annotationList 'goto' ID -> ^( SWITCH_CASE_JUMP[$t] exp annotationList ID ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:555:4: t= '|' exp '=>' annotationList 'goto' ID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:555:2: (t= '|' exp '=>' annotationList 'goto' ID -> ^( SWITCH_CASE_JUMP[$t] exp annotationList ID ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:555:4: t= '|' exp '=>' annotationList 'goto' ID
       {
         t = (Token) match(input, 192, FOLLOW_192_in_switchCaseJump5261);
         if (state.failed) return retval;
@@ -13642,7 +13634,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_ID.add(ID306);
 
         // AST REWRITE
-        // elements: exp, annotationList, ID
+        // elements: exp, ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -13656,7 +13648,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 556:41: -> ^( SWITCH_CASE_JUMP[$t] exp annotationList ID )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:556:44: ^( SWITCH_CASE_JUMP[$t] exp annotationList ID )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:556:44: ^( SWITCH_CASE_JUMP[$t] exp annotationList ID )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -13711,7 +13703,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "switchDefaultJump"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:559:1: switchDefaultJump : t= '|' '=>' annotationList 'goto' ID -> ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:559:1: switchDefaultJump : t= '|' '=>' annotationList 'goto' ID -> ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID ) ;
   public final AntlrPilarParser.switchDefaultJump_return switchDefaultJump()
       throws RecognitionException {
     AntlrPilarParser.switchDefaultJump_return retval = new AntlrPilarParser.switchDefaultJump_return();
@@ -13743,8 +13735,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 75)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:2: (t= '|' '=>' annotationList 'goto' ID -> ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:4: t= '|' '=>' annotationList 'goto' ID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:2: (t= '|' '=>' annotationList 'goto' ID -> ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:4: t= '|' '=>' annotationList 'goto' ID
       {
         t = (Token) match(input, 192, FOLLOW_192_in_switchDefaultJump5309);
         if (state.failed) return retval;
@@ -13776,7 +13768,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_ID.add(ID310);
 
         // AST REWRITE
-        // elements: annotationList, ID
+        // elements: ID, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -13790,7 +13782,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 560:41: -> ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:44: ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:560:44: ^( SWITCH_DEFAULT_JUMP[$t] annotationList ID )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -13844,7 +13836,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "catchClause"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:563:1: catchClause : t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump -> ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:563:1: catchClause : t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump -> ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? ) ;
   public final AntlrPilarParser.catchClause_return catchClause()
       throws RecognitionException {
     AntlrPilarParser.catchClause_return retval = new AntlrPilarParser.catchClause_return();
@@ -13896,8 +13888,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 76)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:564:2: (t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump -> ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:564:4: t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:564:2: (t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump -> ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:564:4: t= 'catch' annotationList ( type )? (local= ID )? '@' '[' from= ID '..' to= ID ']' jump
       {
         t = (Token) match(input, 209, FOLLOW_209_in_catchClause5342);
         if (state.failed) return retval;
@@ -13910,7 +13902,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_annotationList.add(annotationList311.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: ( type )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: ( type )?
         int alt91 = 2;
         int LA91_0 = input.LA(1);
 
@@ -13925,7 +13917,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt91) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: type
           {
             pushFollow(FOLLOW_type_in_catchClause5349);
             type312 = type();
@@ -13939,7 +13931,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:10: (local= ID )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:10: (local= ID )?
         int alt92 = 2;
         int LA92_0 = input.LA(1);
 
@@ -13948,7 +13940,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt92) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:11: local= ID
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:11: local= ID
           {
             local = (Token) match(input, ID, FOLLOW_ID_in_catchClause5355);
             if (state.failed) return retval;
@@ -14003,8 +13995,8 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_jump.add(jump317.getTree());
 
         // AST REWRITE
-        // elements: jump, type, annotationList, local, to, from
-        // token labels: to, from, local
+        // elements: annotationList, to, from, jump, type, local
+        // token labels: to, local, from
         // rule labels: retval
         // token list labels: 
         // rule list labels: 
@@ -14013,17 +14005,17 @@ public class AntlrPilarParser extends Parser {
           retval.tree = root_0;
           RewriteRuleTokenStream stream_to = new RewriteRuleTokenStream(
               adaptor, "token to", to);
-          RewriteRuleTokenStream stream_from = new RewriteRuleTokenStream(
-              adaptor, "token from", from);
           RewriteRuleTokenStream stream_local = new RewriteRuleTokenStream(
               adaptor, "token local", local);
+          RewriteRuleTokenStream stream_from = new RewriteRuleTokenStream(
+              adaptor, "token from", from);
           RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
               adaptor, "rule retval", retval != null ? retval.tree : null);
 
           root_0 = (Object) adaptor.nil();
           // 568:41: -> ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:44: ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:44: ^( CATCH_CLAUSE[$t] annotationList ^( OPTION ( type )? ) ^( OPTION ( $local)? ) $from $to ( jump )? )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -14031,14 +14023,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_annotationList.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:78: ^( OPTION ( type )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:78: ^( OPTION ( type )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:87: ( type )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:87: ( type )?
                 if (stream_type.hasNext()) {
                   adaptor.addChild(root_2, stream_type.nextTree());
 
@@ -14047,14 +14039,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:94: ^( OPTION ( $local)? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:94: ^( OPTION ( $local)? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:103: ( $local)?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:103: ( $local)?
                 if (stream_local.hasNext()) {
                   adaptor.addChild(root_2, stream_local.nextNode());
 
@@ -14065,7 +14057,7 @@ public class AntlrPilarParser extends Parser {
               }
               adaptor.addChild(root_1, stream_from.nextNode());
               adaptor.addChild(root_1, stream_to.nextNode());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:122: ( jump )?
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:568:122: ( jump )?
               if (stream_jump.hasNext()) {
                 adaptor.addChild(root_1, stream_jump.nextTree());
 
@@ -14116,7 +14108,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "exp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:571:1: exp : conditionalExp ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:571:1: exp : conditionalExp ;
   public final AntlrPilarParser.exp_return exp() throws RecognitionException {
     AntlrPilarParser.exp_return retval = new AntlrPilarParser.exp_return();
     retval.start = input.LT(1);
@@ -14129,8 +14121,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 77)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:572:2: ( conditionalExp )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:572:4: conditionalExp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:572:2: ( conditionalExp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:572:4: conditionalExp
       {
         root_0 = (Object) adaptor.nil();
 
@@ -14179,7 +14171,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "conditionalExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:575:1: conditionalExp : ( conditionalImplyExp | ifThenExp ( 'else' ifThenExp )* ifElseExp -> ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp ) | 'switch' exp ( switchCaseExp )* ( switchDefaultExp )? -> ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:575:1: conditionalExp : ( conditionalImplyExp | ifThenExp ( 'else' ifThenExp )* ifElseExp -> ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp ) | 'switch' exp ( switchCaseExp )* ( switchDefaultExp )? -> ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) ) );
   public final AntlrPilarParser.conditionalExp_return conditionalExp()
       throws RecognitionException {
     AntlrPilarParser.conditionalExp_return retval = new AntlrPilarParser.conditionalExp_return();
@@ -14223,7 +14215,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 78)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:576:2: ( conditionalImplyExp | ifThenExp ( 'else' ifThenExp )* ifElseExp -> ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp ) | 'switch' exp ( switchCaseExp )* ( switchDefaultExp )? -> ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:576:2: ( conditionalImplyExp | ifThenExp ( 'else' ifThenExp )* ifElseExp -> ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp ) | 'switch' exp ( switchCaseExp )* ( switchDefaultExp )? -> ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) ) )
       int alt96 = 3;
       switch (input.LA(1)) {
         case HEX_LIT:
@@ -14273,7 +14265,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt96) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:576:4: conditionalImplyExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:576:4: conditionalImplyExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -14288,7 +14280,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:577:4: ifThenExp ( 'else' ifThenExp )* ifElseExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:577:4: ifThenExp ( 'else' ifThenExp )* ifElseExp
         {
           pushFollow(FOLLOW_ifThenExp_in_conditionalExp5479);
           ifThenExp320 = ifThenExp();
@@ -14297,7 +14289,7 @@ public class AntlrPilarParser extends Parser {
           if (state.failed) return retval;
           if (state.backtracking == 0)
             stream_ifThenExp.add(ifThenExp320.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:4: ( 'else' ifThenExp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:4: ( 'else' ifThenExp )*
           loop93: do {
             int alt93 = 2;
             int LA93_0 = input.LA(1);
@@ -14313,7 +14305,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt93) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: 'else' ifThenExp
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: 'else' ifThenExp
               {
                 string_literal321 = (Token) match(
                     input,
@@ -14361,14 +14353,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 579:41: -> ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:579:44: ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:579:44: ^( IF_EXP ^( LIST ( ifThenExp )+ ) ifElseExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(IF_EXP, "IF_EXP"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:579:53: ^( LIST ( ifThenExp )+ )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:579:53: ^( LIST ( ifThenExp )+ )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -14398,7 +14390,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:4: 'switch' exp ( switchCaseExp )* ( switchDefaultExp )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:4: 'switch' exp ( switchCaseExp )* ( switchDefaultExp )?
         {
           string_literal324 = (Token) match(
               input,
@@ -14413,7 +14405,7 @@ public class AntlrPilarParser extends Parser {
           state._fsp--;
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_exp.add(exp325.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: ( switchCaseExp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: ( switchCaseExp )*
           loop94: do {
             int alt94 = 2;
             int LA94_0 = input.LA(1);
@@ -14429,7 +14421,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt94) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchCaseExp
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchCaseExp
               {
                 pushFollow(FOLLOW_switchCaseExp_in_conditionalExp5545);
                 switchCaseExp326 = switchCaseExp();
@@ -14447,7 +14439,7 @@ public class AntlrPilarParser extends Parser {
             }
           } while (true);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: ( switchDefaultExp )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: ( switchDefaultExp )?
           int alt95 = 2;
           int LA95_0 = input.LA(1);
 
@@ -14460,7 +14452,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt95) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchDefaultExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: switchDefaultExp
             {
               pushFollow(FOLLOW_switchDefaultExp_in_conditionalExp5561);
               switchDefaultExp327 = switchDefaultExp();
@@ -14476,7 +14468,7 @@ public class AntlrPilarParser extends Parser {
           }
 
           // AST REWRITE
-          // elements: exp, switchCaseExp, switchDefaultExp
+          // elements: switchCaseExp, switchDefaultExp, exp
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -14490,7 +14482,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 581:41: -> ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:44: ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:44: ^( SWITCH_EXP exp ^( LIST ( switchCaseExp )* ) ^( OPTION ( switchDefaultExp )? ) )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -14498,14 +14490,14 @@ public class AntlrPilarParser extends Parser {
                     root_1);
 
                 adaptor.addChild(root_1, stream_exp.nextTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:61: ^( LIST ( switchCaseExp )* )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:61: ^( LIST ( switchCaseExp )* )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(LIST, "LIST"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:68: ( switchCaseExp )*
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:68: ( switchCaseExp )*
                   while (stream_switchCaseExp.hasNext()) {
                     adaptor.addChild(root_2, stream_switchCaseExp.nextTree());
 
@@ -14514,14 +14506,14 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_1, root_2);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:84: ^( OPTION ( switchDefaultExp )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:84: ^( OPTION ( switchDefaultExp )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:93: ( switchDefaultExp )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:93: ( switchDefaultExp )?
                   if (stream_switchDefaultExp.hasNext()) {
                     adaptor
                         .addChild(root_2, stream_switchDefaultExp.nextTree());
@@ -14578,7 +14570,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "ifThenExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:584:1: ifThenExp : t= 'if' e1= exp 'then' annotationList e2= exp -> ^( IF_THEN_EXP[$t] $e1 annotationList $e2) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:584:1: ifThenExp : t= 'if' e1= exp 'then' annotationList e2= exp -> ^( IF_THEN_EXP[$t] $e1 annotationList $e2) ;
   public final AntlrPilarParser.ifThenExp_return ifThenExp()
       throws RecognitionException {
     AntlrPilarParser.ifThenExp_return retval = new AntlrPilarParser.ifThenExp_return();
@@ -14608,8 +14600,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 79)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:585:2: (t= 'if' e1= exp 'then' annotationList e2= exp -> ^( IF_THEN_EXP[$t] $e1 annotationList $e2) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:585:4: t= 'if' e1= exp 'then' annotationList e2= exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:585:2: (t= 'if' e1= exp 'then' annotationList e2= exp -> ^( IF_THEN_EXP[$t] $e1 annotationList $e2) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:585:4: t= 'if' e1= exp 'then' annotationList e2= exp
       {
         t = (Token) match(input, 206, FOLLOW_206_in_ifThenExp5616);
         if (state.failed) return retval;
@@ -14643,7 +14635,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_exp.add(e2.getTree());
 
         // AST REWRITE
-        // elements: e1, annotationList, e2
+        // elements: e1, e2, annotationList
         // token labels: 
         // rule labels: retval, e1, e2
         // token list labels: 
@@ -14661,7 +14653,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 586:41: -> ^( IF_THEN_EXP[$t] $e1 annotationList $e2)
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:586:44: ^( IF_THEN_EXP[$t] $e1 annotationList $e2)
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:586:44: ^( IF_THEN_EXP[$t] $e1 annotationList $e2)
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -14716,7 +14708,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "ifElseExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:589:1: ifElseExp : t= 'else' annotationList exp -> ^( IF_ELSE_EXP[$t] annotationList exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:589:1: ifElseExp : t= 'else' annotationList exp -> ^( IF_ELSE_EXP[$t] annotationList exp ) ;
   public final AntlrPilarParser.ifElseExp_return ifElseExp()
       throws RecognitionException {
     AntlrPilarParser.ifElseExp_return retval = new AntlrPilarParser.ifElseExp_return();
@@ -14740,8 +14732,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 80)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:2: (t= 'else' annotationList exp -> ^( IF_ELSE_EXP[$t] annotationList exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:4: t= 'else' annotationList exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:2: (t= 'else' annotationList exp -> ^( IF_ELSE_EXP[$t] annotationList exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:4: t= 'else' annotationList exp
       {
         t = (Token) match(input, 194, FOLLOW_194_in_ifElseExp5690);
         if (state.failed) return retval;
@@ -14776,7 +14768,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 590:41: -> ^( IF_ELSE_EXP[$t] annotationList exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:44: ^( IF_ELSE_EXP[$t] annotationList exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:590:44: ^( IF_ELSE_EXP[$t] annotationList exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -14830,7 +14822,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "switchCaseExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:593:1: switchCaseExp : t= '|' e1= exp '=>' annotationList e2= exp -> ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:593:1: switchCaseExp : t= '|' e1= exp '=>' annotationList e2= exp -> ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2) ;
   public final AntlrPilarParser.switchCaseExp_return switchCaseExp()
       throws RecognitionException {
     AntlrPilarParser.switchCaseExp_return retval = new AntlrPilarParser.switchCaseExp_return();
@@ -14860,8 +14852,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 81)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:594:2: (t= '|' e1= exp '=>' annotationList e2= exp -> ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:594:4: t= '|' e1= exp '=>' annotationList e2= exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:594:2: (t= '|' e1= exp '=>' annotationList e2= exp -> ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:594:4: t= '|' e1= exp '=>' annotationList e2= exp
       {
         t = (Token) match(input, 192, FOLLOW_192_in_switchCaseExp5728);
         if (state.failed) return retval;
@@ -14895,7 +14887,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_exp.add(e2.getTree());
 
         // AST REWRITE
-        // elements: e2, annotationList, e1
+        // elements: annotationList, e2, e1
         // token labels: 
         // rule labels: retval, e1, e2
         // token list labels: 
@@ -14913,7 +14905,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 595:41: -> ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2)
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:595:44: ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2)
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:595:44: ^( SWITCH_CASE_EXP[$t] $e1 annotationList $e2)
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -14968,7 +14960,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "switchDefaultExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:598:1: switchDefaultExp : t= '|' '=>' annotationList exp -> ^( SWITCH_DEFAULT_EXP[$t] annotationList exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:598:1: switchDefaultExp : t= '|' '=>' annotationList exp -> ^( SWITCH_DEFAULT_EXP[$t] annotationList exp ) ;
   public final AntlrPilarParser.switchDefaultExp_return switchDefaultExp()
       throws RecognitionException {
     AntlrPilarParser.switchDefaultExp_return retval = new AntlrPilarParser.switchDefaultExp_return();
@@ -14996,8 +14988,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 82)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:2: (t= '|' '=>' annotationList exp -> ^( SWITCH_DEFAULT_EXP[$t] annotationList exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:4: t= '|' '=>' annotationList exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:2: (t= '|' '=>' annotationList exp -> ^( SWITCH_DEFAULT_EXP[$t] annotationList exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:4: t= '|' '=>' annotationList exp
       {
         t = (Token) match(input, 192, FOLLOW_192_in_switchDefaultExp5786);
         if (state.failed) return retval;
@@ -15039,7 +15031,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 599:41: -> ^( SWITCH_DEFAULT_EXP[$t] annotationList exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:44: ^( SWITCH_DEFAULT_EXP[$t] annotationList exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:599:44: ^( SWITCH_DEFAULT_EXP[$t] annotationList exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -15093,7 +15085,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "conditionalImplyExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:602:1: conditionalImplyExp : (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:602:1: conditionalImplyExp : (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )* ;
   public final AntlrPilarParser.conditionalImplyExp_return conditionalImplyExp()
       throws RecognitionException {
     AntlrPilarParser.conditionalImplyExp_return retval = new AntlrPilarParser.conditionalImplyExp_return();
@@ -15117,11 +15109,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 83)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:2: ( (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:4: (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:2: ( (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:4: (c1= conditionalOrExp -> $c1) (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:4: (c1= conditionalOrExp -> $c1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:6: c1= conditionalOrExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:4: (c1= conditionalOrExp -> $c1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:603:6: c1= conditionalOrExp
         {
           pushFollow(FOLLOW_conditionalOrExp_in_conditionalImplyExp5825);
           c1 = conditionalOrExp();
@@ -15156,7 +15148,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:6: (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:6: (t= '==>' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) | t= '<==' c2= conditionalOrExp -> ^( BINARY $t $conditionalImplyExp $c2) )*
         loop97: do {
           int alt97 = 3;
           int LA97_0 = input.LA(1);
@@ -15179,7 +15171,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt97) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: t= '==>' c2= conditionalOrExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: t= '==>' c2= conditionalOrExp
             {
               t = (Token) match(
                   input,
@@ -15215,7 +15207,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 604:41: -> ^( BINARY $t $conditionalImplyExp $c2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:44: ^( BINARY $t $conditionalImplyExp $c2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:44: ^( BINARY $t $conditionalImplyExp $c2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -15236,7 +15228,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: t= '<==' c2= conditionalOrExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: t= '<==' c2= conditionalOrExp
             {
               t = (Token) match(
                   input,
@@ -15254,7 +15246,7 @@ public class AntlrPilarParser extends Parser {
                 stream_conditionalOrExp.add(c2.getTree());
 
               // AST REWRITE
-              // elements: c2, conditionalImplyExp, t
+              // elements: conditionalImplyExp, c2, t
               // token labels: t
               // rule labels: retval, c2
               // token list labels: 
@@ -15272,7 +15264,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 605:41: -> ^( BINARY $t $conditionalImplyExp $c2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:44: ^( BINARY $t $conditionalImplyExp $c2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:44: ^( BINARY $t $conditionalImplyExp $c2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -15335,7 +15327,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "conditionalOrExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:609:1: conditionalOrExp : (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:609:1: conditionalOrExp : (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )* ;
   public final AntlrPilarParser.conditionalOrExp_return conditionalOrExp()
       throws RecognitionException {
     AntlrPilarParser.conditionalOrExp_return retval = new AntlrPilarParser.conditionalOrExp_return();
@@ -15357,11 +15349,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 84)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:2: ( (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:4: (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:2: ( (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:4: (c1= conditionalAndExp -> $c1) (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:4: (c1= conditionalAndExp -> $c1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:6: c1= conditionalAndExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:4: (c1= conditionalAndExp -> $c1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:610:6: c1= conditionalAndExp
         {
           pushFollow(FOLLOW_conditionalAndExp_in_conditionalOrExp5939);
           c1 = conditionalAndExp();
@@ -15396,7 +15388,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:6: (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:6: (t= COND_OR_OP c2= conditionalAndExp -> ^( BINARY $t $conditionalOrExp $c2) )*
         loop98: do {
           int alt98 = 2;
           int LA98_0 = input.LA(1);
@@ -15412,7 +15404,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt98) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: t= COND_OR_OP c2= conditionalAndExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: t= COND_OR_OP c2= conditionalAndExp
             {
               t = (Token) match(
                   input,
@@ -15430,7 +15422,7 @@ public class AntlrPilarParser extends Parser {
                 stream_conditionalAndExp.add(c2.getTree());
 
               // AST REWRITE
-              // elements: t, conditionalOrExp, c2
+              // elements: c2, conditionalOrExp, t
               // token labels: t
               // rule labels: retval, c2
               // token list labels: 
@@ -15448,7 +15440,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 612:41: -> ^( BINARY $t $conditionalOrExp $c2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:612:44: ^( BINARY $t $conditionalOrExp $c2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:612:44: ^( BINARY $t $conditionalOrExp $c2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -15511,7 +15503,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "conditionalAndExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:616:1: conditionalAndExp : (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:616:1: conditionalAndExp : (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )* ;
   public final AntlrPilarParser.conditionalAndExp_return conditionalAndExp()
       throws RecognitionException {
     AntlrPilarParser.conditionalAndExp_return retval = new AntlrPilarParser.conditionalAndExp_return();
@@ -15533,11 +15525,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 85)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:2: ( (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:4: (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:2: ( (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:4: (i1= inclusiveOrExp -> $i1) (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:4: (i1= inclusiveOrExp -> $i1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:6: i1= inclusiveOrExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:4: (i1= inclusiveOrExp -> $i1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:617:6: i1= inclusiveOrExp
         {
           pushFollow(FOLLOW_inclusiveOrExp_in_conditionalAndExp6032);
           i1 = inclusiveOrExp();
@@ -15571,7 +15563,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:6: (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:6: (t= COND_AND_OP i2= inclusiveOrExp -> ^( BINARY $t $conditionalAndExp $i2) )*
         loop99: do {
           int alt99 = 2;
           int LA99_0 = input.LA(1);
@@ -15587,7 +15579,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt99) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: t= COND_AND_OP i2= inclusiveOrExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: t= COND_AND_OP i2= inclusiveOrExp
             {
               t = (Token) match(
                   input,
@@ -15605,7 +15597,7 @@ public class AntlrPilarParser extends Parser {
                 stream_inclusiveOrExp.add(i2.getTree());
 
               // AST REWRITE
-              // elements: i2, conditionalAndExp, t
+              // elements: conditionalAndExp, i2, t
               // token labels: t
               // rule labels: retval, i2
               // token list labels: 
@@ -15623,7 +15615,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 618:41: -> ^( BINARY $t $conditionalAndExp $i2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:44: ^( BINARY $t $conditionalAndExp $i2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:44: ^( BINARY $t $conditionalAndExp $i2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -15686,7 +15678,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "inclusiveOrExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:622:1: inclusiveOrExp : (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:622:1: inclusiveOrExp : (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )* ;
   public final AntlrPilarParser.inclusiveOrExp_return inclusiveOrExp()
       throws RecognitionException {
     AntlrPilarParser.inclusiveOrExp_return retval = new AntlrPilarParser.inclusiveOrExp_return();
@@ -15708,11 +15700,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 86)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:2: ( (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:4: (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:2: ( (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:4: (e1= exclusiveOrExp -> $e1) (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:4: (e1= exclusiveOrExp -> $e1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:6: e1= exclusiveOrExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:4: (e1= exclusiveOrExp -> $e1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:623:6: e1= exclusiveOrExp
         {
           pushFollow(FOLLOW_exclusiveOrExp_in_inclusiveOrExp6108);
           e1 = exclusiveOrExp();
@@ -15746,7 +15738,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:6: (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:6: (t= OR_OP e2= exclusiveOrExp -> ^( BINARY $t $inclusiveOrExp $e2) )*
         loop100: do {
           int alt100 = 2;
           int LA100_0 = input.LA(1);
@@ -15762,7 +15754,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt100) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: t= OR_OP e2= exclusiveOrExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: t= OR_OP e2= exclusiveOrExp
             {
               t = (Token) match(
                   input,
@@ -15780,7 +15772,7 @@ public class AntlrPilarParser extends Parser {
                 stream_exclusiveOrExp.add(e2.getTree());
 
               // AST REWRITE
-              // elements: t, inclusiveOrExp, e2
+              // elements: e2, inclusiveOrExp, t
               // token labels: t
               // rule labels: retval, e2
               // token list labels: 
@@ -15798,7 +15790,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 624:41: -> ^( BINARY $t $inclusiveOrExp $e2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:44: ^( BINARY $t $inclusiveOrExp $e2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:44: ^( BINARY $t $inclusiveOrExp $e2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -15861,7 +15853,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "exclusiveOrExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:629:1: exclusiveOrExp : (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:629:1: exclusiveOrExp : (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )* ;
   public final AntlrPilarParser.exclusiveOrExp_return exclusiveOrExp()
       throws RecognitionException {
     AntlrPilarParser.exclusiveOrExp_return retval = new AntlrPilarParser.exclusiveOrExp_return();
@@ -15883,11 +15875,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 87)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:2: ( (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:4: (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:2: ( (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:4: (a1= andExp -> $a1) (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:4: (a1= andExp -> $a1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:6: a1= andExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:4: (a1= andExp -> $a1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:630:6: a1= andExp
         {
           pushFollow(FOLLOW_andExp_in_exclusiveOrExp6191);
           a1 = andExp();
@@ -15921,7 +15913,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:6: (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:6: (t= XOR_OP a2= andExp -> ^( BINARY $t $exclusiveOrExp $a2) )*
         loop101: do {
           int alt101 = 2;
           int LA101_0 = input.LA(1);
@@ -15937,7 +15929,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt101) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: t= XOR_OP a2= andExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: t= XOR_OP a2= andExp
             {
               t = (Token) match(
                   input,
@@ -15954,7 +15946,7 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0) stream_andExp.add(a2.getTree());
 
               // AST REWRITE
-              // elements: t, a2, exclusiveOrExp
+              // elements: a2, exclusiveOrExp, t
               // token labels: t
               // rule labels: retval, a2
               // token list labels: 
@@ -15972,7 +15964,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 631:41: -> ^( BINARY $t $exclusiveOrExp $a2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:44: ^( BINARY $t $exclusiveOrExp $a2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:44: ^( BINARY $t $exclusiveOrExp $a2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16035,7 +16027,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "andExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:635:1: andExp : (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:635:1: andExp : (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )* ;
   public final AntlrPilarParser.andExp_return andExp()
       throws RecognitionException {
     AntlrPilarParser.andExp_return retval = new AntlrPilarParser.andExp_return();
@@ -16057,11 +16049,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 88)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:2: ( (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:4: (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:2: ( (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:4: (e1= equalityExp -> $e1) (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:4: (e1= equalityExp -> $e1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:6: e1= equalityExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:4: (e1= equalityExp -> $e1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:636:6: e1= equalityExp
         {
           pushFollow(FOLLOW_equalityExp_in_andExp6288);
           e1 = equalityExp();
@@ -16095,7 +16087,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:6: (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:6: (t= AND_OP e2= equalityExp -> ^( BINARY $t $andExp $e2) )*
         loop102: do {
           int alt102 = 2;
           int LA102_0 = input.LA(1);
@@ -16111,7 +16103,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt102) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: t= AND_OP e2= equalityExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: t= AND_OP e2= equalityExp
             {
               t = (Token) match(input, AND_OP, FOLLOW_AND_OP_in_andExp6324);
               if (state.failed) return retval;
@@ -16126,7 +16118,7 @@ public class AntlrPilarParser extends Parser {
                 stream_equalityExp.add(e2.getTree());
 
               // AST REWRITE
-              // elements: t, e2, andExp
+              // elements: e2, andExp, t
               // token labels: t
               // rule labels: retval, e2
               // token list labels: 
@@ -16144,7 +16136,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 637:41: -> ^( BINARY $t $andExp $e2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:44: ^( BINARY $t $andExp $e2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:44: ^( BINARY $t $andExp $e2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16207,7 +16199,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "equalityExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:641:1: equalityExp : (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:641:1: equalityExp : (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )* ;
   public final AntlrPilarParser.equalityExp_return equalityExp()
       throws RecognitionException {
     AntlrPilarParser.equalityExp_return retval = new AntlrPilarParser.equalityExp_return();
@@ -16229,11 +16221,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 89)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:2: ( (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:4: (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:2: ( (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:4: (t1= typeTestExp -> $t1) (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:4: (t1= typeTestExp -> $t1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:6: t1= typeTestExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:4: (t1= typeTestExp -> $t1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:642:6: t1= typeTestExp
         {
           pushFollow(FOLLOW_typeTestExp_in_equalityExp6375);
           t1 = typeTestExp();
@@ -16267,7 +16259,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:6: (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:6: (t= EQ_OP t2= typeTestExp -> ^( BINARY $t $equalityExp $t2) )*
         loop103: do {
           int alt103 = 2;
           int LA103_0 = input.LA(1);
@@ -16283,7 +16275,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt103) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: t= EQ_OP t2= typeTestExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: t= EQ_OP t2= typeTestExp
             {
               t = (Token) match(input, EQ_OP, FOLLOW_EQ_OP_in_equalityExp6411);
               if (state.failed) return retval;
@@ -16298,7 +16290,7 @@ public class AntlrPilarParser extends Parser {
                 stream_typeTestExp.add(t2.getTree());
 
               // AST REWRITE
-              // elements: t2, t, equalityExp
+              // elements: equalityExp, t, t2
               // token labels: t
               // rule labels: t2, retval
               // token list labels: 
@@ -16316,7 +16308,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 643:41: -> ^( BINARY $t $equalityExp $t2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:44: ^( BINARY $t $equalityExp $t2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:44: ^( BINARY $t $equalityExp $t2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16379,7 +16371,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeTestExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:647:1: typeTestExp : (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:647:1: typeTestExp : (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )* ;
   public final AntlrPilarParser.typeTestExp_return typeTestExp()
       throws RecognitionException {
     AntlrPilarParser.typeTestExp_return retval = new AntlrPilarParser.typeTestExp_return();
@@ -16401,11 +16393,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 90)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:2: ( (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:4: (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:2: ( (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:4: (r1= relationalExp -> $r1) (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:4: (r1= relationalExp -> $r1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:6: r1= relationalExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:4: (r1= relationalExp -> $r1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:648:6: r1= relationalExp
         {
           pushFollow(FOLLOW_relationalExp_in_typeTestExp6465);
           r1 = relationalExp();
@@ -16439,7 +16431,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:6: (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:6: (t= COLON_OP r2= relationalExp -> ^( BINARY $t $typeTestExp $r2) )*
         loop104: do {
           int alt104 = 2;
           int LA104_0 = input.LA(1);
@@ -16455,7 +16447,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt104) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: t= COLON_OP r2= relationalExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: t= COLON_OP r2= relationalExp
             {
               t = (Token) match(
                   input,
@@ -16473,7 +16465,7 @@ public class AntlrPilarParser extends Parser {
                 stream_relationalExp.add(r2.getTree());
 
               // AST REWRITE
-              // elements: typeTestExp, t, r2
+              // elements: r2, t, typeTestExp
               // token labels: t
               // rule labels: retval, r2
               // token list labels: 
@@ -16491,7 +16483,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 649:41: -> ^( BINARY $t $typeTestExp $r2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:44: ^( BINARY $t $typeTestExp $r2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:44: ^( BINARY $t $typeTestExp $r2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16554,7 +16546,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "relationalExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:653:1: relationalExp : (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:653:1: relationalExp : (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )* ;
   public final AntlrPilarParser.relationalExp_return relationalExp()
       throws RecognitionException {
     AntlrPilarParser.relationalExp_return retval = new AntlrPilarParser.relationalExp_return();
@@ -16580,11 +16572,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 91)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:2: ( (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:4: (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:2: ( (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:4: (s1= shiftExp -> $s1) (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:4: (s1= shiftExp -> $s1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:6: s1= shiftExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:4: (s1= shiftExp -> $s1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:654:6: s1= shiftExp
         {
           pushFollow(FOLLOW_shiftExp_in_relationalExp6547);
           s1 = shiftExp();
@@ -16618,7 +16610,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:6: (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:6: (t= REL_OP s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '<' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) | t= '>' s2= shiftExp -> ^( BINARY $t $relationalExp $s2) )*
         loop105: do {
           int alt105 = 4;
           switch (input.LA(1)) {
@@ -16654,7 +16646,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt105) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: t= REL_OP s2= shiftExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: t= REL_OP s2= shiftExp
             {
               t = (Token) match(
                   input,
@@ -16689,7 +16681,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 655:41: -> ^( BINARY $t $relationalExp $s2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:44: ^( BINARY $t $relationalExp $s2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:44: ^( BINARY $t $relationalExp $s2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16710,7 +16702,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: t= '<' s2= shiftExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: t= '<' s2= shiftExp
             {
               t = (Token) match(input, 165, FOLLOW_165_in_relationalExp6628);
               if (state.failed) return retval;
@@ -16742,7 +16734,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 656:41: -> ^( BINARY $t $relationalExp $s2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:44: ^( BINARY $t $relationalExp $s2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:44: ^( BINARY $t $relationalExp $s2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16763,7 +16755,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 3:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: t= '>' s2= shiftExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: t= '>' s2= shiftExp
             {
               t = (Token) match(input, 166, FOLLOW_166_in_relationalExp6673);
               if (state.failed) return retval;
@@ -16777,7 +16769,7 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0) stream_shiftExp.add(s2.getTree());
 
               // AST REWRITE
-              // elements: relationalExp, s2, t
+              // elements: s2, relationalExp, t
               // token labels: t
               // rule labels: retval, s2
               // token list labels: 
@@ -16795,7 +16787,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 657:41: -> ^( BINARY $t $relationalExp $s2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:44: ^( BINARY $t $relationalExp $s2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:44: ^( BINARY $t $relationalExp $s2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -16858,7 +16850,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "shiftExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:661:1: shiftExp : (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:661:1: shiftExp : (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )* ;
   public final AntlrPilarParser.shiftExp_return shiftExp()
       throws RecognitionException {
     AntlrPilarParser.shiftExp_return retval = new AntlrPilarParser.shiftExp_return();
@@ -16880,11 +16872,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 92)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:2: ( (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:4: (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:2: ( (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:4: (a1= additiveExp -> $a1) (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:4: (a1= additiveExp -> $a1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:6: a1= additiveExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:4: (a1= additiveExp -> $a1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:662:6: a1= additiveExp
         {
           pushFollow(FOLLOW_additiveExp_in_shiftExp6730);
           a1 = additiveExp();
@@ -16918,7 +16910,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:6: (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:6: (t= SHIFT_OP a2= additiveExp -> ^( BINARY $t $shiftExp $a2) )*
         loop106: do {
           int alt106 = 2;
           int LA106_0 = input.LA(1);
@@ -16934,7 +16926,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt106) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: t= SHIFT_OP a2= additiveExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: t= SHIFT_OP a2= additiveExp
             {
               t = (Token) match(
                   input,
@@ -16952,7 +16944,7 @@ public class AntlrPilarParser extends Parser {
                 stream_additiveExp.add(a2.getTree());
 
               // AST REWRITE
-              // elements: a2, shiftExp, t
+              // elements: a2, t, shiftExp
               // token labels: t
               // rule labels: retval, a2
               // token list labels: 
@@ -16970,7 +16962,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 663:41: -> ^( BINARY $t $shiftExp $a2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:44: ^( BINARY $t $shiftExp $a2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:44: ^( BINARY $t $shiftExp $a2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -17033,7 +17025,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "additiveExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:667:1: additiveExp : (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:667:1: additiveExp : (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )* ;
   public final AntlrPilarParser.additiveExp_return additiveExp()
       throws RecognitionException {
     AntlrPilarParser.additiveExp_return retval = new AntlrPilarParser.additiveExp_return();
@@ -17055,11 +17047,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 93)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:2: ( (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:4: (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:2: ( (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:4: (m1= multiplicativeExp -> $m1) (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:4: (m1= multiplicativeExp -> $m1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:6: m1= multiplicativeExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:4: (m1= multiplicativeExp -> $m1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:668:6: m1= multiplicativeExp
         {
           pushFollow(FOLLOW_multiplicativeExp_in_additiveExp6815);
           m1 = multiplicativeExp();
@@ -17094,7 +17086,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:6: (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:6: (t= ADD_OP m2= multiplicativeExp -> ^( BINARY $t $additiveExp $m2) )*
         loop107: do {
           int alt107 = 2;
           int LA107_0 = input.LA(1);
@@ -17110,7 +17102,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt107) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: t= ADD_OP m2= multiplicativeExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: t= ADD_OP m2= multiplicativeExp
             {
               t = (Token) match(input, ADD_OP, FOLLOW_ADD_OP_in_additiveExp6845);
               if (state.failed) return retval;
@@ -17143,7 +17135,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 669:41: -> ^( BINARY $t $additiveExp $m2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:44: ^( BINARY $t $additiveExp $m2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:44: ^( BINARY $t $additiveExp $m2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -17206,7 +17198,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "multiplicativeExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:673:1: multiplicativeExp : (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:673:1: multiplicativeExp : (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )* ;
   public final AntlrPilarParser.multiplicativeExp_return multiplicativeExp()
       throws RecognitionException {
     AntlrPilarParser.multiplicativeExp_return retval = new AntlrPilarParser.multiplicativeExp_return();
@@ -17230,11 +17222,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 94)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:2: ( (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:4: (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:2: ( (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:4: (u1= unaryExp -> $u1) (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:4: (u1= unaryExp -> $u1)
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:6: u1= unaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:4: (u1= unaryExp -> $u1)
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:674:6: u1= unaryExp
         {
           pushFollow(FOLLOW_unaryExp_in_multiplicativeExp6891);
           u1 = unaryExp();
@@ -17268,7 +17260,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:6: (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:6: (t= MUL_OP u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) | t= '*' u2= unaryExp -> ^( BINARY $t $multiplicativeExp $u2) )*
         loop108: do {
           int alt108 = 3;
           int LA108_0 = input.LA(1);
@@ -17291,7 +17283,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt108) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: t= MUL_OP u2= unaryExp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: t= MUL_OP u2= unaryExp
             {
               t = (Token) match(
                   input,
@@ -17301,59 +17293,6 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0) stream_MUL_OP.add(t);
 
               pushFollow(FOLLOW_unaryExp_in_multiplicativeExp6935);
-              u2 = unaryExp();
-
-              state._fsp--;
-              if (state.failed) return retval;
-              if (state.backtracking == 0) stream_unaryExp.add(u2.getTree());
-
-              // AST REWRITE
-              // elements: u2, multiplicativeExp, t
-              // token labels: t
-              // rule labels: retval, u2
-              // token list labels: 
-              // rule list labels: 
-              // wildcard labels: 
-              if (state.backtracking == 0) {
-                retval.tree = root_0;
-                RewriteRuleTokenStream stream_t = new RewriteRuleTokenStream(
-                    adaptor, "token t", t);
-                RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-                    adaptor, "rule retval", retval != null ? retval.tree : null);
-                RewriteRuleSubtreeStream stream_u2 = new RewriteRuleSubtreeStream(
-                    adaptor, "rule u2", u2 != null ? u2.tree : null);
-
-                root_0 = (Object) adaptor.nil();
-                // 675:41: -> ^( BINARY $t $multiplicativeExp $u2)
-                {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:44: ^( BINARY $t $multiplicativeExp $u2)
-                  {
-                    Object root_1 = (Object) adaptor.nil();
-                    root_1 = (Object) adaptor.becomeRoot(
-                        (Object) adaptor.create(BINARY, "BINARY"),
-                        root_1);
-
-                    adaptor.addChild(root_1, stream_t.nextNode());
-                    adaptor.addChild(root_1, stream_retval.nextTree());
-                    adaptor.addChild(root_1, stream_u2.nextTree());
-
-                    adaptor.addChild(root_0, root_1);
-                  }
-
-                }
-
-                retval.tree = root_0;
-              }
-            }
-              break;
-            case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: t= '*' u2= unaryExp
-            {
-              t = (Token) match(input, 213, FOLLOW_213_in_multiplicativeExp6973);
-              if (state.failed) return retval;
-              if (state.backtracking == 0) stream_213.add(t);
-
-              pushFollow(FOLLOW_unaryExp_in_multiplicativeExp6977);
               u2 = unaryExp();
 
               state._fsp--;
@@ -17377,9 +17316,62 @@ public class AntlrPilarParser extends Parser {
                     adaptor, "rule u2", u2 != null ? u2.tree : null);
 
                 root_0 = (Object) adaptor.nil();
+                // 675:41: -> ^( BINARY $t $multiplicativeExp $u2)
+                {
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:44: ^( BINARY $t $multiplicativeExp $u2)
+                  {
+                    Object root_1 = (Object) adaptor.nil();
+                    root_1 = (Object) adaptor.becomeRoot(
+                        (Object) adaptor.create(BINARY, "BINARY"),
+                        root_1);
+
+                    adaptor.addChild(root_1, stream_t.nextNode());
+                    adaptor.addChild(root_1, stream_retval.nextTree());
+                    adaptor.addChild(root_1, stream_u2.nextTree());
+
+                    adaptor.addChild(root_0, root_1);
+                  }
+
+                }
+
+                retval.tree = root_0;
+              }
+            }
+              break;
+            case 2:
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: t= '*' u2= unaryExp
+            {
+              t = (Token) match(input, 213, FOLLOW_213_in_multiplicativeExp6973);
+              if (state.failed) return retval;
+              if (state.backtracking == 0) stream_213.add(t);
+
+              pushFollow(FOLLOW_unaryExp_in_multiplicativeExp6977);
+              u2 = unaryExp();
+
+              state._fsp--;
+              if (state.failed) return retval;
+              if (state.backtracking == 0) stream_unaryExp.add(u2.getTree());
+
+              // AST REWRITE
+              // elements: u2, t, multiplicativeExp
+              // token labels: t
+              // rule labels: retval, u2
+              // token list labels: 
+              // rule list labels: 
+              // wildcard labels: 
+              if (state.backtracking == 0) {
+                retval.tree = root_0;
+                RewriteRuleTokenStream stream_t = new RewriteRuleTokenStream(
+                    adaptor, "token t", t);
+                RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
+                    adaptor, "rule retval", retval != null ? retval.tree : null);
+                RewriteRuleSubtreeStream stream_u2 = new RewriteRuleSubtreeStream(
+                    adaptor, "rule u2", u2 != null ? u2.tree : null);
+
+                root_0 = (Object) adaptor.nil();
                 // 676:41: -> ^( BINARY $t $multiplicativeExp $u2)
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:44: ^( BINARY $t $multiplicativeExp $u2)
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:44: ^( BINARY $t $multiplicativeExp $u2)
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -17442,7 +17434,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "unaryExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:680:1: unaryExp : (t= UN_OP unaryExp -> ^( UNARY $t unaryExp ) | t= ADD_OP unaryExp -> ^( UNARY $t unaryExp ) | t= MUL_OP unaryExp -> ^( UNARY $t unaryExp ) | t= '*' unaryExp -> ^( UNARY $t unaryExp ) | castExp );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:680:1: unaryExp : (t= UN_OP unaryExp -> ^( UNARY $t unaryExp ) | t= ADD_OP unaryExp -> ^( UNARY $t unaryExp ) | t= MUL_OP unaryExp -> ^( UNARY $t unaryExp ) | t= '*' unaryExp -> ^( UNARY $t unaryExp ) | castExp );
   public final AntlrPilarParser.unaryExp_return unaryExp()
       throws RecognitionException {
     AntlrPilarParser.unaryExp_return retval = new AntlrPilarParser.unaryExp_return();
@@ -17476,7 +17468,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 95)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:2: (t= UN_OP unaryExp -> ^( UNARY $t unaryExp ) | t= ADD_OP unaryExp -> ^( UNARY $t unaryExp ) | t= MUL_OP unaryExp -> ^( UNARY $t unaryExp ) | t= '*' unaryExp -> ^( UNARY $t unaryExp ) | castExp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:2: (t= UN_OP unaryExp -> ^( UNARY $t unaryExp ) | t= ADD_OP unaryExp -> ^( UNARY $t unaryExp ) | t= MUL_OP unaryExp -> ^( UNARY $t unaryExp ) | t= '*' unaryExp -> ^( UNARY $t unaryExp ) | castExp )
       int alt109 = 5;
       switch (input.LA(1)) {
         case UN_OP: {
@@ -17531,7 +17523,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt109) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:4: t= UN_OP unaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:4: t= UN_OP unaryExp
         {
           t = (Token) match(input, UN_OP, FOLLOW_UN_OP_in_unaryExp7036);
           if (state.failed) return retval;
@@ -17562,7 +17554,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 681:41: -> ^( UNARY $t unaryExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:44: ^( UNARY $t unaryExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:681:44: ^( UNARY $t unaryExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -17582,7 +17574,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:682:4: t= ADD_OP unaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:682:4: t= ADD_OP unaryExp
         {
           t = (Token) match(input, ADD_OP, FOLLOW_ADD_OP_in_unaryExp7076);
           if (state.failed) return retval;
@@ -17597,7 +17589,7 @@ public class AntlrPilarParser extends Parser {
             stream_unaryExp.add(unaryExp338.getTree());
 
           // AST REWRITE
-          // elements: unaryExp, t
+          // elements: t, unaryExp
           // token labels: t
           // rule labels: retval
           // token list labels: 
@@ -17613,7 +17605,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 682:41: -> ^( UNARY $t unaryExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:682:44: ^( UNARY $t unaryExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:682:44: ^( UNARY $t unaryExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -17633,7 +17625,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:683:4: t= MUL_OP unaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:683:4: t= MUL_OP unaryExp
         {
           t = (Token) match(input, MUL_OP, FOLLOW_MUL_OP_in_unaryExp7115);
           if (state.failed) return retval;
@@ -17664,7 +17656,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 683:41: -> ^( UNARY $t unaryExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:683:44: ^( UNARY $t unaryExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:683:44: ^( UNARY $t unaryExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -17684,7 +17676,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:684:4: t= '*' unaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:684:4: t= '*' unaryExp
         {
           t = (Token) match(input, 213, FOLLOW_213_in_unaryExp7154);
           if (state.failed) return retval;
@@ -17699,7 +17691,7 @@ public class AntlrPilarParser extends Parser {
             stream_unaryExp.add(unaryExp340.getTree());
 
           // AST REWRITE
-          // elements: t, unaryExp
+          // elements: unaryExp, t
           // token labels: t
           // rule labels: retval
           // token list labels: 
@@ -17715,7 +17707,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 684:41: -> ^( UNARY $t unaryExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:684:44: ^( UNARY $t unaryExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:684:44: ^( UNARY $t unaryExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -17735,7 +17727,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:685:4: castExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:685:4: castExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -17786,7 +17778,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "castExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:688:1: castExp : (t= '(' type ')' primaryExp -> ^( CAST[$t] type primaryExp ) | primaryExp );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:688:1: castExp : (t= '(' type ')' primaryExp -> ^( CAST[$t] type primaryExp ) | primaryExp );
   public final AntlrPilarParser.castExp_return castExp()
       throws RecognitionException {
     AntlrPilarParser.castExp_return retval = new AntlrPilarParser.castExp_return();
@@ -17816,12 +17808,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 96)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:2: (t= '(' type ')' primaryExp -> ^( CAST[$t] type primaryExp ) | primaryExp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:2: (t= '(' type ')' primaryExp -> ^( CAST[$t] type primaryExp ) | primaryExp )
       int alt110 = 2;
       alt110 = dfa110.predict(input);
       switch (alt110) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: t= '(' type ')' primaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: t= '(' type ')' primaryExp
         {
           t = (Token) match(input, 167, FOLLOW_167_in_castExp7207);
           if (state.failed) return retval;
@@ -17860,7 +17852,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 689:41: -> ^( CAST[$t] type primaryExp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:44: ^( CAST[$t] type primaryExp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:44: ^( CAST[$t] type primaryExp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -17880,7 +17872,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:690:4: primaryExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:690:4: primaryExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -17931,7 +17923,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "primaryExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:693:1: primaryExp : (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:693:1: primaryExp : (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )* ;
   public final AntlrPilarParser.primaryExp_return primaryExp()
       throws RecognitionException {
     AntlrPilarParser.primaryExp_return retval = new AntlrPilarParser.primaryExp_return();
@@ -17969,11 +17961,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 97)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:2: ( (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:4: (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:2: ( (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:4: (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:4: (p= primary -> primary )
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:6: p= primary
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:4: (p= primary -> primary )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:694:6: p= primary
         {
           pushFollow(FOLLOW_primary_in_primaryExp7256);
           p = primary();
@@ -18005,13 +17997,13 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:6: (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:6: (t= '[' expList ']' -> ^( INDEXING[$t] $primaryExp expList ) | t= '.' ID -> ^( ACCESS[$t] $primaryExp ID ) | callArg -> ^( CALL $primaryExp callArg ) )*
         loop111: do {
           int alt111 = 4;
           alt111 = dfa111.predict(input);
           switch (alt111) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: t= '[' expList ']'
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: t= '[' expList ']'
             {
               t = (Token) match(input, 200, FOLLOW_200_in_primaryExp7296);
               if (state.failed) return retval;
@@ -18046,7 +18038,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 695:41: -> ^( INDEXING[$t] $primaryExp expList )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:44: ^( INDEXING[$t] $primaryExp expList )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:44: ^( INDEXING[$t] $primaryExp expList )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -18066,7 +18058,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: t= '.' ID
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: t= '.' ID
             {
               t = (Token) match(input, 214, FOLLOW_214_in_primaryExp7338);
               if (state.failed) return retval;
@@ -18077,7 +18069,7 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0) stream_ID.add(ID348);
 
               // AST REWRITE
-              // elements: primaryExp, ID
+              // elements: ID, primaryExp
               // token labels: 
               // rule labels: retval
               // token list labels: 
@@ -18091,7 +18083,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 696:41: -> ^( ACCESS[$t] $primaryExp ID )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:44: ^( ACCESS[$t] $primaryExp ID )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:44: ^( ACCESS[$t] $primaryExp ID )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -18111,7 +18103,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 3:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: callArg
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: callArg
             {
               pushFollow(FOLLOW_callArg_in_primaryExp7385);
               callArg349 = callArg();
@@ -18136,7 +18128,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 697:41: -> ^( CALL $primaryExp callArg )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:44: ^( CALL $primaryExp callArg )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:44: ^( CALL $primaryExp callArg )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -18198,7 +18190,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "expList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:701:1: expList : exp ( ',' exp )* -> ^( LIST ( exp )+ ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:701:1: expList : exp ( ',' exp )* -> ^( LIST ( exp )+ ) ;
   public final AntlrPilarParser.expList_return expList()
       throws RecognitionException {
     AntlrPilarParser.expList_return retval = new AntlrPilarParser.expList_return();
@@ -18220,8 +18212,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 98)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:2: ( exp ( ',' exp )* -> ^( LIST ( exp )+ ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:4: exp ( ',' exp )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:2: ( exp ( ',' exp )* -> ^( LIST ( exp )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:4: exp ( ',' exp )*
       {
         pushFollow(FOLLOW_exp_in_expList7440);
         exp350 = exp();
@@ -18229,7 +18221,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_exp.add(exp350.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:8: ( ',' exp )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:8: ( ',' exp )*
         loop112: do {
           int alt112 = 2;
           int LA112_0 = input.LA(1);
@@ -18240,7 +18232,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt112) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:10: ',' exp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:10: ',' exp
             {
               char_literal351 = (Token) match(
                   input,
@@ -18279,7 +18271,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 702:41: -> ^( LIST ( exp )+ )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:44: ^( LIST ( exp )+ )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:702:44: ^( LIST ( exp )+ )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -18339,7 +18331,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "callArg"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:705:1: callArg : (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )* ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:705:1: callArg : (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )* ;
   public final AntlrPilarParser.callArg_return callArg()
       throws RecognitionException {
     AntlrPilarParser.callArg_return retval = new AntlrPilarParser.callArg_return();
@@ -18373,11 +18365,11 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 99)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:2: ( (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )* )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:4: (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:2: ( (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )* )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:4: (p= primary -> primary ) (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )*
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:4: (p= primary -> primary )
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:6: p= primary
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:4: (p= primary -> primary )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:706:6: p= primary
         {
           pushFollow(FOLLOW_primary_in_callArg7493);
           p = primary();
@@ -18409,7 +18401,7 @@ public class AntlrPilarParser extends Parser {
           }
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:6: (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:6: (t= '[' expList ']' -> ^( INDEXING[$t] $callArg expList ) | t= '.' ID -> ^( ACCESS[$t] $callArg ID ) )*
         loop113: do {
           int alt113 = 3;
           int LA113_0 = input.LA(1);
@@ -18432,7 +18424,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt113) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: t= '[' expList ']'
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: t= '[' expList ']'
             {
               t = (Token) match(input, 200, FOLLOW_200_in_callArg7533);
               if (state.failed) return retval;
@@ -18453,7 +18445,7 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0) stream_201.add(char_literal354);
 
               // AST REWRITE
-              // elements: expList, callArg
+              // elements: callArg, expList
               // token labels: 
               // rule labels: retval
               // token list labels: 
@@ -18467,7 +18459,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 707:41: -> ^( INDEXING[$t] $callArg expList )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:44: ^( INDEXING[$t] $callArg expList )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:44: ^( INDEXING[$t] $callArg expList )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -18487,7 +18479,7 @@ public class AntlrPilarParser extends Parser {
             }
               break;
             case 2:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: t= '.' ID
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: t= '.' ID
             {
               t = (Token) match(input, 214, FOLLOW_214_in_callArg7575);
               if (state.failed) return retval;
@@ -18512,7 +18504,7 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 708:41: -> ^( ACCESS[$t] $callArg ID )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:44: ^( ACCESS[$t] $callArg ID )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:44: ^( ACCESS[$t] $callArg ID )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
@@ -18574,7 +18566,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "primary"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:712:1: primary : ( literal | tuple | nameExp | newListRanged | newList | newMultiArray | newRecord | newSet | newFunction | t= '`' type -> ^( TYPE_EXP[$t] type ) | newExp | funExp | letExp );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:712:1: primary : ( literal | tuple | nameExp | newListRanged | newList | newMultiArray | newRecord | newSet | newFunction | t= '`' type -> ^( TYPE_EXP[$t] type ) | newExp | funExp | letExp );
   public final AntlrPilarParser.primary_return primary()
       throws RecognitionException {
     AntlrPilarParser.primary_return retval = new AntlrPilarParser.primary_return();
@@ -18618,12 +18610,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 100)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:713:2: ( literal | tuple | nameExp | newListRanged | newList | newMultiArray | newRecord | newSet | newFunction | t= '`' type -> ^( TYPE_EXP[$t] type ) | newExp | funExp | letExp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:713:2: ( literal | tuple | nameExp | newListRanged | newList | newMultiArray | newRecord | newSet | newFunction | t= '`' type -> ^( TYPE_EXP[$t] type ) | newExp | funExp | letExp )
       int alt114 = 13;
       alt114 = dfa114.predict(input);
       switch (alt114) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:713:4: literal
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:713:4: literal
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18638,7 +18630,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:714:4: tuple
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:714:4: tuple
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18653,7 +18645,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:715:4: nameExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:715:4: nameExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18668,7 +18660,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: newListRanged
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: newListRanged
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18683,7 +18675,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: newList
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: newList
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18698,7 +18690,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 6:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: newMultiArray
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: newMultiArray
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18713,7 +18705,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 7:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: newRecord
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: newRecord
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18728,7 +18720,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 8:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: newSet
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: newSet
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18743,7 +18735,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 9:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: newFunction
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: newFunction
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18758,7 +18750,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 10:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: t= '`' type
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: t= '`' type
         {
           t = (Token) match(input, 215, FOLLOW_215_in_primary7682);
           if (state.failed) return retval;
@@ -18786,7 +18778,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 722:41: -> ^( TYPE_EXP[$t] type )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:44: ^( TYPE_EXP[$t] type )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:44: ^( TYPE_EXP[$t] type )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -18805,7 +18797,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 11:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:723:4: newExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:723:4: newExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18820,7 +18812,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 12:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:724:4: funExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:724:4: funExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18835,7 +18827,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 13:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:725:4: letExp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:725:4: letExp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -18886,7 +18878,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "nameExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:728:1: nameExp : ( name -> ^( NAME_EXP name ) | globalName -> ^( NAME_EXP globalName ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:728:1: nameExp : ( name -> ^( NAME_EXP name ) | globalName -> ^( NAME_EXP globalName ) );
   public final AntlrPilarParser.nameExp_return nameExp()
       throws RecognitionException {
     AntlrPilarParser.nameExp_return retval = new AntlrPilarParser.nameExp_return();
@@ -18906,12 +18898,12 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 101)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:2: ( name -> ^( NAME_EXP name ) | globalName -> ^( NAME_EXP globalName ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:2: ( name -> ^( NAME_EXP name ) | globalName -> ^( NAME_EXP globalName ) )
       int alt115 = 2;
       alt115 = dfa115.predict(input);
       switch (alt115) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:4: name
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:4: name
         {
           pushFollow(FOLLOW_name_in_nameExp7745);
           name369 = name();
@@ -18935,7 +18927,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 729:41: -> ^( NAME_EXP name )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:44: ^( NAME_EXP name )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:729:44: ^( NAME_EXP name )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -18954,7 +18946,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:730:4: globalName
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:730:4: globalName
         {
           pushFollow(FOLLOW_globalName_in_nameExp7790);
           globalName370 = globalName();
@@ -18979,7 +18971,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 730:41: -> ^( NAME_EXP globalName )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:730:44: ^( NAME_EXP globalName )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:730:44: ^( NAME_EXP globalName )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19034,7 +19026,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "literal"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:733:1: literal : (t= 'true' -> ^( TRUE[$t] ) | t= 'false' -> ^( FALSE[$t] ) | t= 'null' -> ^( NULL[$t] ) | c= CHAR_LIT -> ^( CHAR[$c] $c) | intLiteral | realLiteral | s= STRING_LIT -> ^( STRING[$s] $s) | s= SYMBOL_LIT -> ^( SYMBOL[$s] $s) | r= RAW_LIT -> ^( RAW[$r] $r) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:733:1: literal : (t= 'true' -> ^( TRUE[$t] ) | t= 'false' -> ^( FALSE[$t] ) | t= 'null' -> ^( NULL[$t] ) | c= CHAR_LIT -> ^( CHAR[$c] $c) | intLiteral | realLiteral | s= STRING_LIT -> ^( STRING[$s] $s) | s= SYMBOL_LIT -> ^( SYMBOL[$s] $s) | r= RAW_LIT -> ^( RAW[$r] $r) );
   public final AntlrPilarParser.literal_return literal()
       throws RecognitionException {
     AntlrPilarParser.literal_return retval = new AntlrPilarParser.literal_return();
@@ -19073,7 +19065,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 102)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:2: (t= 'true' -> ^( TRUE[$t] ) | t= 'false' -> ^( FALSE[$t] ) | t= 'null' -> ^( NULL[$t] ) | c= CHAR_LIT -> ^( CHAR[$c] $c) | intLiteral | realLiteral | s= STRING_LIT -> ^( STRING[$s] $s) | s= SYMBOL_LIT -> ^( SYMBOL[$s] $s) | r= RAW_LIT -> ^( RAW[$r] $r) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:2: (t= 'true' -> ^( TRUE[$t] ) | t= 'false' -> ^( FALSE[$t] ) | t= 'null' -> ^( NULL[$t] ) | c= CHAR_LIT -> ^( CHAR[$c] $c) | intLiteral | realLiteral | s= STRING_LIT -> ^( STRING[$s] $s) | s= SYMBOL_LIT -> ^( SYMBOL[$s] $s) | r= RAW_LIT -> ^( RAW[$r] $r) )
       int alt116 = 9;
       switch (input.LA(1)) {
         case 216: {
@@ -19129,7 +19121,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt116) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:4: t= 'true'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:4: t= 'true'
         {
           t = (Token) match(input, 216, FOLLOW_216_in_literal7839);
           if (state.failed) return retval;
@@ -19150,7 +19142,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 734:41: -> ^( TRUE[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:44: ^( TRUE[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:734:44: ^( TRUE[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19167,7 +19159,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:735:4: t= 'false'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:735:4: t= 'false'
         {
           t = (Token) match(input, 217, FOLLOW_217_in_literal7881);
           if (state.failed) return retval;
@@ -19188,7 +19180,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 735:41: -> ^( FALSE[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:735:44: ^( FALSE[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:735:44: ^( FALSE[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19205,7 +19197,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:736:4: t= 'null'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:736:4: t= 'null'
         {
           t = (Token) match(input, 218, FOLLOW_218_in_literal7922);
           if (state.failed) return retval;
@@ -19226,7 +19218,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 736:41: -> ^( NULL[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:736:44: ^( NULL[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:736:44: ^( NULL[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19243,7 +19235,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:737:4: c= CHAR_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:737:4: c= CHAR_LIT
         {
           c = (Token) match(input, CHAR_LIT, FOLLOW_CHAR_LIT_in_literal7964);
           if (state.failed) return retval;
@@ -19266,7 +19258,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 737:41: -> ^( CHAR[$c] $c)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:737:44: ^( CHAR[$c] $c)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:737:44: ^( CHAR[$c] $c)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19285,7 +19277,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:738:4: intLiteral
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:738:4: intLiteral
         {
           root_0 = (Object) adaptor.nil();
 
@@ -19300,7 +19292,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 6:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:739:4: realLiteral
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:739:4: realLiteral
         {
           root_0 = (Object) adaptor.nil();
 
@@ -19315,7 +19307,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 7:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:740:4: s= STRING_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:740:4: s= STRING_LIT
         {
           s = (Token) match(input, STRING_LIT, FOLLOW_STRING_LIT_in_literal8017);
           if (state.failed) return retval;
@@ -19338,7 +19330,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 740:41: -> ^( STRING[$s] $s)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:740:44: ^( STRING[$s] $s)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:740:44: ^( STRING[$s] $s)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19357,7 +19349,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 8:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:741:4: s= SYMBOL_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:741:4: s= SYMBOL_LIT
         {
           s = (Token) match(input, SYMBOL_LIT, FOLLOW_SYMBOL_LIT_in_literal8058);
           if (state.failed) return retval;
@@ -19380,7 +19372,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 741:41: -> ^( SYMBOL[$s] $s)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:741:44: ^( SYMBOL[$s] $s)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:741:44: ^( SYMBOL[$s] $s)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19399,7 +19391,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 9:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:742:4: r= RAW_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:742:4: r= RAW_LIT
         {
           r = (Token) match(input, RAW_LIT, FOLLOW_RAW_LIT_in_literal8099);
           if (state.failed) return retval;
@@ -19422,7 +19414,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 742:41: -> ^( RAW[$r] $r)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:742:44: ^( RAW[$r] $r)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:742:44: ^( RAW[$r] $r)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19477,7 +19469,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "intLiteral"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:745:1: intLiteral : (h= HEX_LIT -> ^( INT[$h] $h) | o= OCT_LIT -> ^( INT[$o] $o) | d= DEC_LIT -> ^( INT[$d] $d) | b= BIN_LIT -> ^( INT[$b] $b) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:745:1: intLiteral : (h= HEX_LIT -> ^( INT[$h] $h) | o= OCT_LIT -> ^( INT[$o] $o) | d= DEC_LIT -> ^( INT[$d] $d) | b= BIN_LIT -> ^( INT[$b] $b) );
   public final AntlrPilarParser.intLiteral_return intLiteral()
       throws RecognitionException {
     AntlrPilarParser.intLiteral_return retval = new AntlrPilarParser.intLiteral_return();
@@ -19507,7 +19499,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 103)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:2: (h= HEX_LIT -> ^( INT[$h] $h) | o= OCT_LIT -> ^( INT[$o] $o) | d= DEC_LIT -> ^( INT[$d] $d) | b= BIN_LIT -> ^( INT[$b] $b) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:2: (h= HEX_LIT -> ^( INT[$h] $h) | o= OCT_LIT -> ^( INT[$o] $o) | d= DEC_LIT -> ^( INT[$d] $d) | b= BIN_LIT -> ^( INT[$b] $b) )
       int alt117 = 4;
       switch (input.LA(1)) {
         case HEX_LIT: {
@@ -19539,7 +19531,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt117) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:4: h= HEX_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:4: h= HEX_LIT
         {
           h = (Token) match(input, HEX_LIT, FOLLOW_HEX_LIT_in_intLiteral8149);
           if (state.failed) return retval;
@@ -19562,7 +19554,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 746:41: -> ^( INT[$h] $h)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:44: ^( INT[$h] $h)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:746:44: ^( INT[$h] $h)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19581,7 +19573,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:747:4: o= OCT_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:747:4: o= OCT_LIT
         {
           o = (Token) match(input, OCT_LIT, FOLLOW_OCT_LIT_in_intLiteral8194);
           if (state.failed) return retval;
@@ -19604,7 +19596,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 747:41: -> ^( INT[$o] $o)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:747:44: ^( INT[$o] $o)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:747:44: ^( INT[$o] $o)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19623,7 +19615,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:748:4: d= DEC_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:748:4: d= DEC_LIT
         {
           d = (Token) match(input, DEC_LIT, FOLLOW_DEC_LIT_in_intLiteral8238);
           if (state.failed) return retval;
@@ -19646,7 +19638,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 748:41: -> ^( INT[$d] $d)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:748:44: ^( INT[$d] $d)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:748:44: ^( INT[$d] $d)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19665,7 +19657,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:749:4: b= BIN_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:749:4: b= BIN_LIT
         {
           b = (Token) match(input, BIN_LIT, FOLLOW_BIN_LIT_in_intLiteral8282);
           if (state.failed) return retval;
@@ -19688,7 +19680,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 749:41: -> ^( INT[$b] $b)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:749:44: ^( INT[$b] $b)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:749:44: ^( INT[$b] $b)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19743,7 +19735,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "realLiteral"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:752:1: realLiteral : (f= FLOAT_LIT -> ^( FLOAT[$f] $f) | r= RATIONAL_LIT -> ^( RATIONAL[$r] $r) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:752:1: realLiteral : (f= FLOAT_LIT -> ^( FLOAT[$f] $f) | r= RATIONAL_LIT -> ^( RATIONAL[$r] $r) );
   public final AntlrPilarParser.realLiteral_return realLiteral()
       throws RecognitionException {
     AntlrPilarParser.realLiteral_return retval = new AntlrPilarParser.realLiteral_return();
@@ -19765,7 +19757,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 104)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:2: (f= FLOAT_LIT -> ^( FLOAT[$f] $f) | r= RATIONAL_LIT -> ^( RATIONAL[$r] $r) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:2: (f= FLOAT_LIT -> ^( FLOAT[$f] $f) | r= RATIONAL_LIT -> ^( RATIONAL[$r] $r) )
       int alt118 = 2;
       int LA118_0 = input.LA(1);
 
@@ -19784,7 +19776,7 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt118) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:4: f= FLOAT_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:4: f= FLOAT_LIT
         {
           f = (Token) match(
               input,
@@ -19810,7 +19802,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 753:41: -> ^( FLOAT[$f] $f)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:44: ^( FLOAT[$f] $f)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:753:44: ^( FLOAT[$f] $f)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19829,7 +19821,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:754:4: r= RATIONAL_LIT
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:754:4: r= RATIONAL_LIT
         {
           r = (Token) match(
               input,
@@ -19855,7 +19847,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 754:41: -> ^( RATIONAL[$r] $r)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:754:44: ^( RATIONAL[$r] $r)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:754:44: ^( RATIONAL[$r] $r)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -19910,7 +19902,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "tuple"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:757:1: tuple : t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')' -> ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:757:1: tuple : t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')' -> ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) ) ;
   public final AntlrPilarParser.tuple_return tuple()
       throws RecognitionException {
     AntlrPilarParser.tuple_return retval = new AntlrPilarParser.tuple_return();
@@ -19940,14 +19932,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 105)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:2: (t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')' -> ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:4: t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:2: (t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')' -> ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:4: t= '(' ( annotatedExp ( ',' annotatedExp )* )? ')'
       {
         t = (Token) match(input, 167, FOLLOW_167_in_tuple8420);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_167.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:10: ( annotatedExp ( ',' annotatedExp )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:10: ( annotatedExp ( ',' annotatedExp )* )?
         int alt120 = 2;
         int LA120_0 = input.LA(1);
 
@@ -19960,7 +19952,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt120) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:12: annotatedExp ( ',' annotatedExp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:758:12: annotatedExp ( ',' annotatedExp )*
           {
             pushFollow(FOLLOW_annotatedExp_in_tuple8424);
             annotatedExp373 = annotatedExp();
@@ -19969,7 +19961,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0)
               stream_annotatedExp.add(annotatedExp373.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:8: ( ',' annotatedExp )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:8: ( ',' annotatedExp )*
             loop119: do {
               int alt119 = 2;
               int LA119_0 = input.LA(1);
@@ -19980,7 +19972,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt119) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:10: ',' annotatedExp
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:10: ',' annotatedExp
                 {
                   char_literal374 = (Token) match(
                       input,
@@ -20029,21 +20021,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 759:41: -> ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:44: ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:44: ^( TUPLE[$t] ^( LIST ( annotatedExp )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(TUPLE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:56: ^( LIST ( annotatedExp )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:56: ^( LIST ( annotatedExp )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:63: ( annotatedExp )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:759:63: ( annotatedExp )*
                 while (stream_annotatedExp.hasNext()) {
                   adaptor.addChild(root_2, stream_annotatedExp.nextTree());
 
@@ -20097,7 +20089,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotatedExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:762:1: annotatedExp : exp annotationList -> ^( ANN_EXP exp annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:762:1: annotatedExp : exp annotationList -> ^( ANN_EXP exp annotationList ) ;
   public final AntlrPilarParser.annotatedExp_return annotatedExp()
       throws RecognitionException {
     AntlrPilarParser.annotatedExp_return retval = new AntlrPilarParser.annotatedExp_return();
@@ -20117,8 +20109,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 106)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:2: ( exp annotationList -> ^( ANN_EXP exp annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:4: exp annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:2: ( exp annotationList -> ^( ANN_EXP exp annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:4: exp annotationList
       {
         pushFollow(FOLLOW_exp_in_annotatedExp8476);
         exp377 = exp();
@@ -20149,7 +20141,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 763:41: -> ^( ANN_EXP exp annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:44: ^( ANN_EXP exp annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:763:44: ^( ANN_EXP exp annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -20203,7 +20195,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:766:1: newExp : t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )* -> ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:766:1: newExp : t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )* -> ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) ) ;
   public final AntlrPilarParser.newExp_return newExp()
       throws RecognitionException {
     AntlrPilarParser.newExp_return retval = new AntlrPilarParser.newExp_return();
@@ -20231,8 +20223,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 107)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:767:2: (t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )* -> ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:767:4: t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:767:2: (t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )* -> ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:767:4: t= 'new' baseType ( newMultiArrayTypeFragment )* ( typeFragment )*
       {
         t = (Token) match(input, 219, FOLLOW_219_in_newExp8519);
         if (state.failed) return retval;
@@ -20245,13 +20237,13 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_baseType.add(baseType379.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: ( newMultiArrayTypeFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: ( newMultiArrayTypeFragment )*
         loop121: do {
           int alt121 = 2;
           alt121 = dfa121.predict(input);
           switch (alt121) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: newMultiArrayTypeFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: newMultiArrayTypeFragment
             {
               pushFollow(FOLLOW_newMultiArrayTypeFragment_in_newExp8526);
               newMultiArrayTypeFragment380 = newMultiArrayTypeFragment();
@@ -20270,13 +20262,13 @@ public class AntlrPilarParser extends Parser {
           }
         } while (true);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: ( typeFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: ( typeFragment )*
         loop122: do {
           int alt122 = 2;
           alt122 = dfa122.predict(input);
           switch (alt122) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeFragment
             {
               pushFollow(FOLLOW_typeFragment_in_newExp8532);
               typeFragment381 = typeFragment();
@@ -20295,7 +20287,7 @@ public class AntlrPilarParser extends Parser {
         } while (true);
 
         // AST REWRITE
-        // elements: typeFragment, newMultiArrayTypeFragment, baseType
+        // elements: newMultiArrayTypeFragment, baseType, typeFragment
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -20309,7 +20301,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 769:41: -> ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:44: ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:44: ^( NEW_EXP[$t] baseType ^( LIST ( newMultiArrayTypeFragment )* ) ^( LIST ( typeFragment )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -20317,14 +20309,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_baseType.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:67: ^( LIST ( newMultiArrayTypeFragment )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:67: ^( LIST ( newMultiArrayTypeFragment )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:74: ( newMultiArrayTypeFragment )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:74: ( newMultiArrayTypeFragment )*
                 while (stream_newMultiArrayTypeFragment.hasNext()) {
                   adaptor.addChild(
                       root_2,
@@ -20335,14 +20327,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:102: ^( LIST ( typeFragment )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:102: ^( LIST ( typeFragment )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:109: ( typeFragment )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:109: ( typeFragment )*
                 while (stream_typeFragment.hasNext()) {
                   adaptor.addChild(root_2, stream_typeFragment.nextTree());
 
@@ -20397,7 +20389,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newMultiArrayTypeFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:772:1: newMultiArrayTypeFragment : t= '[' exp ( ',' exp )* ']' -> ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:772:1: newMultiArrayTypeFragment : t= '[' exp ( ',' exp )* ']' -> ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) ) ;
   public final AntlrPilarParser.newMultiArrayTypeFragment_return newMultiArrayTypeFragment()
       throws RecognitionException {
     AntlrPilarParser.newMultiArrayTypeFragment_return retval = new AntlrPilarParser.newMultiArrayTypeFragment_return();
@@ -20427,8 +20419,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 108)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:2: (t= '[' exp ( ',' exp )* ']' -> ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:4: t= '[' exp ( ',' exp )* ']'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:2: (t= '[' exp ( ',' exp )* ']' -> ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:4: t= '[' exp ( ',' exp )* ']'
       {
         t = (Token) match(
             input,
@@ -20443,7 +20435,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_exp.add(exp382.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:14: ( ',' exp )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:14: ( ',' exp )*
         loop123: do {
           int alt123 = 2;
           int LA123_0 = input.LA(1);
@@ -20454,7 +20446,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt123) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:16: ',' exp
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:16: ',' exp
             {
               char_literal383 = (Token) match(
                   input,
@@ -20500,14 +20492,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 773:41: -> ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:44: ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:44: ^( NEW_MULTI_ARRAY_FRAGMENT[$t] ^( LIST ( exp )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NEW_MULTI_ARRAY_FRAGMENT, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:75: ^( LIST ( exp )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:773:75: ^( LIST ( exp )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -20570,7 +20562,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newListRanged"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:776:1: newListRanged : t= '`' '[' exp '..' exp ']' -> ^( NLIST_RANGE[$t] ( exp )+ ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:776:1: newListRanged : t= '`' '[' exp '..' exp ']' -> ^( NLIST_RANGE[$t] ( exp )+ ) ;
   public final AntlrPilarParser.newListRanged_return newListRanged()
       throws RecognitionException {
     AntlrPilarParser.newListRanged_return retval = new AntlrPilarParser.newListRanged_return();
@@ -20604,8 +20596,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 109)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:2: (t= '`' '[' exp '..' exp ']' -> ^( NLIST_RANGE[$t] ( exp )+ ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:4: t= '`' '[' exp '..' exp ']'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:2: (t= '`' '[' exp '..' exp ']' -> ^( NLIST_RANGE[$t] ( exp )+ ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:4: t= '`' '[' exp '..' exp ']'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newListRanged8646);
         if (state.failed) return retval;
@@ -20659,7 +20651,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 777:41: -> ^( NLIST_RANGE[$t] ( exp )+ )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:44: ^( NLIST_RANGE[$t] ( exp )+ )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:777:44: ^( NLIST_RANGE[$t] ( exp )+ )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -20719,7 +20711,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newMultiArray"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:780:1: newMultiArray : t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']' -> ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:780:1: newMultiArray : t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']' -> ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) ) ;
   public final AntlrPilarParser.newMultiArray_return newMultiArray()
       throws RecognitionException {
     AntlrPilarParser.newMultiArray_return retval = new AntlrPilarParser.newMultiArray_return();
@@ -20753,8 +20745,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 110)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:781:2: (t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']' -> ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:781:4: t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:781:2: (t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']' -> ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:781:4: t= '`' '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )? ']'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newMultiArray8689);
         if (state.failed) return retval;
@@ -20767,7 +20759,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_200.add(char_literal391);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:782:4: ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:782:4: ( newMultiArrayFragment ( ',' newMultiArrayFragment )* )?
         int alt125 = 2;
         int LA125_0 = input.LA(1);
 
@@ -20781,7 +20773,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt125) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:782:6: newMultiArrayFragment ( ',' newMultiArrayFragment )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:782:6: newMultiArrayFragment ( ',' newMultiArrayFragment )*
           {
             pushFollow(FOLLOW_newMultiArrayFragment_in_newMultiArray8699);
             newMultiArrayFragment392 = newMultiArrayFragment();
@@ -20791,7 +20783,7 @@ public class AntlrPilarParser extends Parser {
             if (state.backtracking == 0)
               stream_newMultiArrayFragment.add(newMultiArrayFragment392
                   .getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:783:6: ( ',' newMultiArrayFragment )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:783:6: ( ',' newMultiArrayFragment )*
             loop124: do {
               int alt124 = 2;
               int LA124_0 = input.LA(1);
@@ -20802,7 +20794,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt124) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:783:8: ',' newMultiArrayFragment
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:783:8: ',' newMultiArrayFragment
                 {
                   char_literal393 = (Token) match(
                       input,
@@ -20855,21 +20847,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 784:41: -> ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:44: ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:44: ^( NMULTI_ARRAY[$t] ^( LIST ( newMultiArrayFragment )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NMULTI_ARRAY, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:63: ^( LIST ( newMultiArrayFragment )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:63: ^( LIST ( newMultiArrayFragment )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:70: ( newMultiArrayFragment )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:784:70: ( newMultiArrayFragment )*
                 while (stream_newMultiArrayFragment.hasNext()) {
                   adaptor.addChild(
                       root_2,
@@ -20926,7 +20918,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newMultiArrayFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:787:1: newMultiArrayFragment : (t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']' | exp );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:787:1: newMultiArrayFragment : (t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']' | exp );
   public final AntlrPilarParser.newMultiArrayFragment_return newMultiArrayFragment()
       throws RecognitionException {
     AntlrPilarParser.newMultiArrayFragment_return retval = new AntlrPilarParser.newMultiArrayFragment_return();
@@ -20958,7 +20950,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 111)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:2: (t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']' | exp )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:2: (t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']' | exp )
       int alt128 = 2;
       int LA128_0 = input.LA(1);
 
@@ -20981,13 +20973,13 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt128) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:4: t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:4: t= '[' ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )? ']'
         {
           t = (Token) match(input, 200, FOLLOW_200_in_newMultiArrayFragment8780);
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_200.add(t);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:10: ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:10: ( newMultiArrayFragment ( ',' newMultiArrayFragment )* -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) ) )?
           int alt127 = 2;
           int LA127_0 = input.LA(1);
 
@@ -21001,7 +20993,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt127) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:12: newMultiArrayFragment ( ',' newMultiArrayFragment )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:788:12: newMultiArrayFragment ( ',' newMultiArrayFragment )*
             {
               pushFollow(FOLLOW_newMultiArrayFragment_in_newMultiArrayFragment8784);
               newMultiArrayFragment396 = newMultiArrayFragment();
@@ -21011,7 +21003,7 @@ public class AntlrPilarParser extends Parser {
               if (state.backtracking == 0)
                 stream_newMultiArrayFragment.add(newMultiArrayFragment396
                     .getTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:10: ( ',' newMultiArrayFragment )*
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:10: ( ',' newMultiArrayFragment )*
               loop126: do {
                 int alt126 = 2;
                 int LA126_0 = input.LA(1);
@@ -21022,7 +21014,7 @@ public class AntlrPilarParser extends Parser {
 
                 switch (alt126) {
                   case 1:
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:12: ',' newMultiArrayFragment
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:12: ',' newMultiArrayFragment
                   {
                     char_literal397 = (Token) match(
                         input,
@@ -21064,21 +21056,21 @@ public class AntlrPilarParser extends Parser {
                 root_0 = (Object) adaptor.nil();
                 // 789:41: -> ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) )
                 {
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:44: ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:44: ^( NMULTI_ARRAY_FRAGMENT[$t] ^( LIST ( newMultiArrayFragment )* ) )
                   {
                     Object root_1 = (Object) adaptor.nil();
                     root_1 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(NMULTI_ARRAY_FRAGMENT, t),
                         root_1);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:72: ^( LIST ( newMultiArrayFragment )* )
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:72: ^( LIST ( newMultiArrayFragment )* )
                     {
                       Object root_2 = (Object) adaptor.nil();
                       root_2 = (Object) adaptor.becomeRoot(
                           (Object) adaptor.create(LIST, "LIST"),
                           root_2);
 
-                      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:79: ( newMultiArrayFragment )*
+                      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:789:79: ( newMultiArrayFragment )*
                       while (stream_newMultiArrayFragment.hasNext()) {
                         adaptor.addChild(
                             root_2,
@@ -21112,7 +21104,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:791:4: exp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:791:4: exp
         {
           root_0 = (Object) adaptor.nil();
 
@@ -21163,7 +21155,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newList"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:794:1: newList : t= '`' '[' ( exp ( ',' exp )* )? ']' -> ^( NLIST[$t] ^( LIST ( exp )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:794:1: newList : t= '`' '[' ( exp ( ',' exp )* )? ']' -> ^( NLIST[$t] ^( LIST ( exp )* ) ) ;
   public final AntlrPilarParser.newList_return newList()
       throws RecognitionException {
     AntlrPilarParser.newList_return retval = new AntlrPilarParser.newList_return();
@@ -21197,8 +21189,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 112)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:2: (t= '`' '[' ( exp ( ',' exp )* )? ']' -> ^( NLIST[$t] ^( LIST ( exp )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:4: t= '`' '[' ( exp ( ',' exp )* )? ']'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:2: (t= '`' '[' ( exp ( ',' exp )* )? ']' -> ^( NLIST[$t] ^( LIST ( exp )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:4: t= '`' '[' ( exp ( ',' exp )* )? ']'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newList8849);
         if (state.failed) return retval;
@@ -21208,7 +21200,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_200.add(char_literal401);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:14: ( exp ( ',' exp )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:14: ( exp ( ',' exp )* )?
         int alt130 = 2;
         int LA130_0 = input.LA(1);
 
@@ -21221,7 +21213,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt130) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:16: exp ( ',' exp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:16: exp ( ',' exp )*
           {
             pushFollow(FOLLOW_exp_in_newList8855);
             exp402 = exp();
@@ -21229,7 +21221,7 @@ public class AntlrPilarParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_exp.add(exp402.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:20: ( ',' exp )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:20: ( ',' exp )*
             loop129: do {
               int alt129 = 2;
               int LA129_0 = input.LA(1);
@@ -21240,7 +21232,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt129) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:22: ',' exp
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:22: ',' exp
                 {
                   char_literal403 = (Token) match(
                       input,
@@ -21289,21 +21281,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 795:41: -> ^( NLIST[$t] ^( LIST ( exp )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:44: ^( NLIST[$t] ^( LIST ( exp )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:44: ^( NLIST[$t] ^( LIST ( exp )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NLIST, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:56: ^( LIST ( exp )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:56: ^( LIST ( exp )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:63: ( exp )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:795:63: ( exp )*
                 while (stream_exp.hasNext()) {
                   adaptor.addChild(root_2, stream_exp.nextTree());
 
@@ -21357,7 +21349,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newSet"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:798:1: newSet : t= '`' '{' ( exp ( ',' exp )* )? '}' -> ^( NSET[$t] ^( LIST ( exp )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:798:1: newSet : t= '`' '{' ( exp ( ',' exp )* )? '}' -> ^( NSET[$t] ^( LIST ( exp )* ) ) ;
   public final AntlrPilarParser.newSet_return newSet()
       throws RecognitionException {
     AntlrPilarParser.newSet_return retval = new AntlrPilarParser.newSet_return();
@@ -21391,8 +21383,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 113)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:2: (t= '`' '{' ( exp ( ',' exp )* )? '}' -> ^( NSET[$t] ^( LIST ( exp )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:4: t= '`' '{' ( exp ( ',' exp )* )? '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:2: (t= '`' '{' ( exp ( ',' exp )* )? '}' -> ^( NSET[$t] ^( LIST ( exp )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:4: t= '`' '{' ( exp ( ',' exp )* )? '}'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newSet8897);
         if (state.failed) return retval;
@@ -21402,7 +21394,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal406);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:14: ( exp ( ',' exp )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:14: ( exp ( ',' exp )* )?
         int alt132 = 2;
         int LA132_0 = input.LA(1);
 
@@ -21415,7 +21407,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt132) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:16: exp ( ',' exp )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:16: exp ( ',' exp )*
           {
             pushFollow(FOLLOW_exp_in_newSet8903);
             exp407 = exp();
@@ -21423,7 +21415,7 @@ public class AntlrPilarParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_exp.add(exp407.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:20: ( ',' exp )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:20: ( ',' exp )*
             loop131: do {
               int alt131 = 2;
               int LA131_0 = input.LA(1);
@@ -21434,7 +21426,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt131) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:22: ',' exp
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:22: ',' exp
                 {
                   char_literal408 = (Token) match(
                       input,
@@ -21483,21 +21475,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 799:41: -> ^( NSET[$t] ^( LIST ( exp )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:44: ^( NSET[$t] ^( LIST ( exp )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:44: ^( NSET[$t] ^( LIST ( exp )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NSET, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:55: ^( LIST ( exp )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:55: ^( LIST ( exp )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:62: ( exp )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:799:62: ( exp )*
                 while (stream_exp.hasNext()) {
                   adaptor.addChild(root_2, stream_exp.nextTree());
 
@@ -21551,7 +21543,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newRecord"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:802:1: newRecord : t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}' -> ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:802:1: newRecord : t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}' -> ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) ) ;
   public final AntlrPilarParser.newRecord_return newRecord()
       throws RecognitionException {
     AntlrPilarParser.newRecord_return retval = new AntlrPilarParser.newRecord_return();
@@ -21593,8 +21585,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 114)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:2: (t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}' -> ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:4: t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:2: (t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}' -> ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:4: t= '`' name ( typeTuple )? '{' ( attrInit ( ',' attrInit )* )? '}'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newRecord8945);
         if (state.failed) return retval;
@@ -21606,7 +21598,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_name.add(name411.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:15: ( typeTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:803:15: ( typeTuple )?
         int alt133 = 2;
         int LA133_0 = input.LA(1);
 
@@ -21615,7 +21607,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt133) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
           {
             pushFollow(FOLLOW_typeTuple_in_newRecord8949);
             typeTuple412 = typeTuple();
@@ -21634,7 +21626,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal413);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:8: ( attrInit ( ',' attrInit )* )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:8: ( attrInit ( ',' attrInit )* )?
         int alt135 = 2;
         int LA135_0 = input.LA(1);
 
@@ -21643,7 +21635,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt135) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:10: attrInit ( ',' attrInit )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:10: attrInit ( ',' attrInit )*
           {
             pushFollow(FOLLOW_attrInit_in_newRecord8959);
             attrInit414 = attrInit();
@@ -21652,7 +21644,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0)
               stream_attrInit.add(attrInit414.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:19: ( ',' attrInit )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:19: ( ',' attrInit )*
             loop134: do {
               int alt134 = 2;
               int LA134_0 = input.LA(1);
@@ -21663,7 +21655,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt134) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:21: ',' attrInit
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:804:21: ',' attrInit
                 {
                   char_literal415 = (Token) match(
                       input,
@@ -21698,7 +21690,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal417);
 
         // AST REWRITE
-        // elements: name, attrInit, typeTuple
+        // elements: typeTuple, name, attrInit
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -21712,14 +21704,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 805:41: -> ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:44: ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:44: ^( NRECORD[$t] ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) ) ^( LIST ( attrInit )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NRECORD, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:58: ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:58: ^( NAME_TYPE name ^( OPTION ) ^( OPTION ( typeTuple )? ) )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -21727,7 +21719,7 @@ public class AntlrPilarParser extends Parser {
                     root_2);
 
                 adaptor.addChild(root_2, stream_name.nextTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:75: ^( OPTION )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:75: ^( OPTION )
                 {
                   Object root_3 = (Object) adaptor.nil();
                   root_3 = (Object) adaptor.becomeRoot(
@@ -21736,14 +21728,14 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_2, root_3);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:85: ^( OPTION ( typeTuple )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:85: ^( OPTION ( typeTuple )? )
                 {
                   Object root_3 = (Object) adaptor.nil();
                   root_3 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_3);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:94: ( typeTuple )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:94: ( typeTuple )?
                   if (stream_typeTuple.hasNext()) {
                     adaptor.addChild(root_3, stream_typeTuple.nextTree());
 
@@ -21755,14 +21747,14 @@ public class AntlrPilarParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
               }
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:107: ^( LIST ( attrInit )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:107: ^( LIST ( attrInit )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:114: ( attrInit )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:805:114: ( attrInit )*
                 while (stream_attrInit.hasNext()) {
                   adaptor.addChild(root_2, stream_attrInit.nextTree());
 
@@ -21816,7 +21808,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "attrInit"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:808:1: attrInit : t= ID '=' exp -> ^( ATTR_INIT[$t] ID exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:808:1: attrInit : t= ID '=' exp -> ^( ATTR_INIT[$t] ID exp ) ;
   public final AntlrPilarParser.attrInit_return attrInit()
       throws RecognitionException {
     AntlrPilarParser.attrInit_return retval = new AntlrPilarParser.attrInit_return();
@@ -21840,8 +21832,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 115)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:2: (t= ID '=' exp -> ^( ATTR_INIT[$t] ID exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:4: t= ID '=' exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:2: (t= ID '=' exp -> ^( ATTR_INIT[$t] ID exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:4: t= ID '=' exp
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_attrInit9053);
         if (state.failed) return retval;
@@ -21859,7 +21851,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_exp.add(exp419.getTree());
 
         // AST REWRITE
-        // elements: exp, ID
+        // elements: ID, exp
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -21873,7 +21865,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 809:41: -> ^( ATTR_INIT[$t] ID exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:44: ^( ATTR_INIT[$t] ID exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:809:44: ^( ATTR_INIT[$t] ID exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -21927,7 +21919,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "newFunction"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:812:1: newFunction : t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}' ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:812:1: newFunction : t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}' ;
   public final AntlrPilarParser.newFunction_return newFunction()
       throws RecognitionException {
     AntlrPilarParser.newFunction_return retval = new AntlrPilarParser.newFunction_return();
@@ -21965,8 +21957,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 116)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:2: (t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}' )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:4: t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:2: (t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}' )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:4: t= '`' '{' ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) ) '}'
       {
         t = (Token) match(input, 215, FOLLOW_215_in_newFunction9105);
         if (state.failed) return retval;
@@ -21979,7 +21971,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_175.add(char_literal420);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:14: ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:14: ( '->' -> ^( NFUNCTION[$t] ^( OPTION ) ) | mapping ( ',' mapping )* -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) ) )
         int alt137 = 2;
         int LA137_0 = input.LA(1);
 
@@ -22003,7 +21995,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt137) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:16: '->'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:16: '->'
           {
             string_literal421 = (Token) match(
                 input,
@@ -22027,14 +22019,14 @@ public class AntlrPilarParser extends Parser {
               root_0 = (Object) adaptor.nil();
               // 813:41: -> ^( NFUNCTION[$t] ^( OPTION ) )
               {
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:44: ^( NFUNCTION[$t] ^( OPTION ) )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:44: ^( NFUNCTION[$t] ^( OPTION ) )
                 {
                   Object root_1 = (Object) adaptor.nil();
                   root_1 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(NFUNCTION, t),
                       root_1);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:60: ^( OPTION )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:813:60: ^( OPTION )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
@@ -22054,7 +22046,7 @@ public class AntlrPilarParser extends Parser {
           }
             break;
           case 2:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:10: mapping ( ',' mapping )*
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:10: mapping ( ',' mapping )*
           {
             pushFollow(FOLLOW_mapping_in_newFunction9153);
             mapping422 = mapping();
@@ -22063,7 +22055,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0)
               stream_mapping.add(mapping422.getTree());
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:18: ( ',' mapping )*
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:18: ( ',' mapping )*
             loop136: do {
               int alt136 = 2;
               int LA136_0 = input.LA(1);
@@ -22074,7 +22066,7 @@ public class AntlrPilarParser extends Parser {
 
               switch (alt136) {
                 case 1:
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:20: ',' mapping
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:20: ',' mapping
                 {
                   char_literal423 = (Token) match(
                       input,
@@ -22114,21 +22106,21 @@ public class AntlrPilarParser extends Parser {
               root_0 = (Object) adaptor.nil();
               // 814:41: -> ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) )
               {
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:44: ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:44: ^( NFUNCTION[$t] ^( OPTION ^( LIST ( mapping )+ ) ) )
                 {
                   Object root_1 = (Object) adaptor.nil();
                   root_1 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(NFUNCTION, t),
                       root_1);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:60: ^( OPTION ^( LIST ( mapping )+ ) )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:60: ^( OPTION ^( LIST ( mapping )+ ) )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(OPTION, "OPTION"),
                         root_2);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:69: ^( LIST ( mapping )+ )
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:814:69: ^( LIST ( mapping )+ )
                     {
                       Object root_3 = (Object) adaptor.nil();
                       root_3 = (Object) adaptor.becomeRoot(
@@ -22206,7 +22198,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "mapping"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:818:1: mapping : e1= exp '->' e2= exp -> ^( MAPPING $e1 $e2) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:818:1: mapping : e1= exp '->' e2= exp -> ^( MAPPING $e1 $e2) ;
   public final AntlrPilarParser.mapping_return mapping()
       throws RecognitionException {
     AntlrPilarParser.mapping_return retval = new AntlrPilarParser.mapping_return();
@@ -22228,8 +22220,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 117)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:2: (e1= exp '->' e2= exp -> ^( MAPPING $e1 $e2) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:4: e1= exp '->' e2= exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:2: (e1= exp '->' e2= exp -> ^( MAPPING $e1 $e2) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:4: e1= exp '->' e2= exp
       {
         pushFollow(FOLLOW_exp_in_mapping9210);
         e1 = exp();
@@ -22249,7 +22241,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_exp.add(e2.getTree());
 
         // AST REWRITE
-        // elements: e1, e2
+        // elements: e2, e1
         // token labels: 
         // rule labels: retval, e1, e2
         // token list labels: 
@@ -22267,7 +22259,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 819:41: -> ^( MAPPING $e1 $e2)
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:44: ^( MAPPING $e1 $e2)
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:819:44: ^( MAPPING $e1 $e2)
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -22321,7 +22313,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "funExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:822:1: funExp : t= '{' matching ( '|' matching )* '}' -> ^( FUN_EXP[$t] ^( LIST ( matching )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:822:1: funExp : t= '{' matching ( '|' matching )* '}' -> ^( FUN_EXP[$t] ^( LIST ( matching )+ ) ) ;
   public final AntlrPilarParser.funExp_return funExp()
       throws RecognitionException {
     AntlrPilarParser.funExp_return retval = new AntlrPilarParser.funExp_return();
@@ -22351,8 +22343,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 118)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:823:2: (t= '{' matching ( '|' matching )* '}' -> ^( FUN_EXP[$t] ^( LIST ( matching )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:823:4: t= '{' matching ( '|' matching )* '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:823:2: (t= '{' matching ( '|' matching )* '}' -> ^( FUN_EXP[$t] ^( LIST ( matching )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:823:4: t= '{' matching ( '|' matching )* '}'
       {
         t = (Token) match(input, 175, FOLLOW_175_in_funExp9260);
         if (state.failed) return retval;
@@ -22365,7 +22357,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_matching.add(matching427.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:8: ( '|' matching )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:8: ( '|' matching )*
         loop138: do {
           int alt138 = 2;
           int LA138_0 = input.LA(1);
@@ -22376,7 +22368,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt138) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:10: '|' matching
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:10: '|' matching
             {
               char_literal428 = (Token) match(
                   input,
@@ -22420,14 +22412,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 824:41: -> ^( FUN_EXP[$t] ^( LIST ( matching )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:44: ^( FUN_EXP[$t] ^( LIST ( matching )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:44: ^( FUN_EXP[$t] ^( LIST ( matching )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(FUN_EXP, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:58: ^( LIST ( matching )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:824:58: ^( LIST ( matching )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -22490,7 +22482,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "matching"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:827:1: matching : (t= '=>' exp -> ^( MATCHING[$t] ^( OPTION ) exp ) | paramList '=>' exp -> ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:827:1: matching : (t= '=>' exp -> ^( MATCHING[$t] ^( OPTION ) exp ) | paramList '=>' exp -> ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp ) );
   public final AntlrPilarParser.matching_return matching()
       throws RecognitionException {
     AntlrPilarParser.matching_return retval = new AntlrPilarParser.matching_return();
@@ -22518,7 +22510,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 119)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:2: (t= '=>' exp -> ^( MATCHING[$t] ^( OPTION ) exp ) | paramList '=>' exp -> ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:2: (t= '=>' exp -> ^( MATCHING[$t] ^( OPTION ) exp ) | paramList '=>' exp -> ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp ) )
       int alt139 = 2;
       int LA139_0 = input.LA(1);
 
@@ -22537,7 +22529,7 @@ public class AntlrPilarParser extends Parser {
       }
       switch (alt139) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:4: t= '=>' exp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:4: t= '=>' exp
         {
           t = (Token) match(input, 208, FOLLOW_208_in_matching9318);
           if (state.failed) return retval;
@@ -22565,14 +22557,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 828:41: -> ^( MATCHING[$t] ^( OPTION ) exp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:44: ^( MATCHING[$t] ^( OPTION ) exp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:44: ^( MATCHING[$t] ^( OPTION ) exp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(MATCHING, t),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:59: ^( OPTION )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:828:59: ^( OPTION )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -22593,7 +22585,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:4: paramList '=>' exp
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:4: paramList '=>' exp
         {
           pushFollow(FOLLOW_paramList_in_matching9364);
           paramList432 = paramList();
@@ -22631,21 +22623,21 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 829:41: -> ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:44: ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:44: ^( MATCHING ^( OPTION ^( LIST paramList ) ) exp )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(MATCHING, "MATCHING"),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:55: ^( OPTION ^( LIST paramList ) )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:55: ^( OPTION ^( LIST paramList ) )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:64: ^( LIST paramList )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:829:64: ^( LIST paramList )
                   {
                     Object root_3 = (Object) adaptor.nil();
                     root_3 = (Object) adaptor.becomeRoot(
@@ -22707,7 +22699,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "letExp"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:832:1: letExp : t= 'let' binding ( ',' binding )* 'in' exp -> ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:832:1: letExp : t= 'let' binding ( ',' binding )* 'in' exp -> ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp ) ;
   public final AntlrPilarParser.letExp_return letExp()
       throws RecognitionException {
     AntlrPilarParser.letExp_return retval = new AntlrPilarParser.letExp_return();
@@ -22741,8 +22733,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 120)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:833:2: (t= 'let' binding ( ',' binding )* 'in' exp -> ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:833:4: t= 'let' binding ( ',' binding )* 'in' exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:833:2: (t= 'let' binding ( ',' binding )* 'in' exp -> ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:833:4: t= 'let' binding ( ',' binding )* 'in' exp
       {
         t = (Token) match(input, 221, FOLLOW_221_in_letExp9417);
         if (state.failed) return retval;
@@ -22754,7 +22746,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_binding.add(binding435.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:834:9: ( ',' binding )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:834:9: ( ',' binding )*
         loop140: do {
           int alt140 = 2;
           int LA140_0 = input.LA(1);
@@ -22765,7 +22757,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt140) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:834:11: ',' binding
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:834:11: ',' binding
             {
               char_literal436 = (Token) match(
                   input,
@@ -22816,14 +22808,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 835:41: -> ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:835:44: ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:835:44: ^( LET_EXP[$t] ^( LIST ( binding )+ ) exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(LET_EXP, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:835:58: ^( LIST ( binding )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:835:58: ^( LIST ( binding )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -22887,7 +22879,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "binding"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:838:1: binding : t= ID ( ',' ID )* '=' exp -> ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:838:1: binding : t= ID ( ',' ID )* '=' exp -> ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp ) ;
   public final AntlrPilarParser.binding_return binding()
       throws RecognitionException {
     AntlrPilarParser.binding_return retval = new AntlrPilarParser.binding_return();
@@ -22917,14 +22909,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 121)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:2: (t= ID ( ',' ID )* '=' exp -> ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:4: t= ID ( ',' ID )* '=' exp
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:2: (t= ID ( ',' ID )* '=' exp -> ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:4: t= ID ( ',' ID )* '=' exp
       {
         t = (Token) match(input, ID, FOLLOW_ID_in_binding9501);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_ID.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:9: ( ',' ID )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:9: ( ',' ID )*
         loop141: do {
           int alt141 = 2;
           int LA141_0 = input.LA(1);
@@ -22935,7 +22927,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt141) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:11: ',' ID
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:11: ',' ID
             {
               char_literal440 = (Token) match(
                   input,
@@ -22982,14 +22974,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 839:41: -> ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:44: ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:44: ^( LET_BINDING[$t] ^( LIST ( ID )+ ) exp )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(LET_BINDING, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:62: ^( LIST ( ID )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:839:62: ^( LIST ( ID )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -23053,7 +23045,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "name"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:842:1: name : (ids+= ID '::' )* id= ID -> ^( NAME[$id] ^( LIST ( $ids)* ) $id) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:842:1: name : (ids+= ID '::' )* id= ID -> ^( NAME[$id] ^( LIST ( $ids)* ) $id) ;
   public final AntlrPilarParser.name_return name() throws RecognitionException {
     AntlrPilarParser.name_return retval = new AntlrPilarParser.name_return();
     retval.start = input.LT(1);
@@ -23077,10 +23069,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 122)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:2: ( (ids+= ID '::' )* id= ID -> ^( NAME[$id] ^( LIST ( $ids)* ) $id) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:4: (ids+= ID '::' )* id= ID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:2: ( (ids+= ID '::' )* id= ID -> ^( NAME[$id] ^( LIST ( $ids)* ) $id) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:4: (ids+= ID '::' )* id= ID
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:4: (ids+= ID '::' )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:4: (ids+= ID '::' )*
         loop142: do {
           int alt142 = 2;
           int LA142_0 = input.LA(1);
@@ -23096,7 +23088,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt142) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:5: ids+= ID '::'
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:5: ids+= ID '::'
             {
               ids = (Token) match(input, ID, FOLLOW_ID_in_name9556);
               if (state.failed) return retval;
@@ -23125,7 +23117,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_ID.add(id);
 
         // AST REWRITE
-        // elements: ids, id
+        // elements: id, ids
         // token labels: id
         // rule labels: retval
         // token list labels: ids
@@ -23143,21 +23135,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 843:41: -> ^( NAME[$id] ^( LIST ( $ids)* ) $id)
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:44: ^( NAME[$id] ^( LIST ( $ids)* ) $id)
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:44: ^( NAME[$id] ^( LIST ( $ids)* ) $id)
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NAME, id),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:56: ^( LIST ( $ids)* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:56: ^( LIST ( $ids)* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:63: ( $ids)*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:843:63: ( $ids)*
                 while (stream_ids.hasNext()) {
                   adaptor.addChild(root_2, stream_ids.nextNode());
 
@@ -23212,7 +23204,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "globalName"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:846:1: globalName : ( ID '::' )* t= GLOBALID -> ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:846:1: globalName : ( ID '::' )* t= GLOBALID -> ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID ) ;
   public final AntlrPilarParser.globalName_return globalName()
       throws RecognitionException {
     AntlrPilarParser.globalName_return retval = new AntlrPilarParser.globalName_return();
@@ -23238,10 +23230,10 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 123)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:2: ( ( ID '::' )* t= GLOBALID -> ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:4: ( ID '::' )* t= GLOBALID
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:2: ( ( ID '::' )* t= GLOBALID -> ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:4: ( ID '::' )* t= GLOBALID
       {
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:4: ( ID '::' )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:4: ( ID '::' )*
         loop143: do {
           int alt143 = 2;
           int LA143_0 = input.LA(1);
@@ -23252,7 +23244,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt143) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:7: ID '::'
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:7: ID '::'
             {
               ID445 = (Token) match(input, ID, FOLLOW_ID_in_globalName9611);
               if (state.failed) return retval;
@@ -23292,21 +23284,21 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 847:41: -> ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:44: ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:44: ^( NAME[$t] ^( LIST ( ID )* ) GLOBALID )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(NAME, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:55: ^( LIST ( ID )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:55: ^( LIST ( ID )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:62: ( ID )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:847:62: ( ID )*
                 while (stream_ID.hasNext()) {
                   adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -23361,7 +23353,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "type"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:850:1: type : baseType ( typeFragment )* -> ^( TYPE baseType ^( LIST ( typeFragment )* ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:850:1: type : baseType ( typeFragment )* -> ^( TYPE baseType ^( LIST ( typeFragment )* ) ) ;
   public final AntlrPilarParser.type_return type() throws RecognitionException {
     AntlrPilarParser.type_return retval = new AntlrPilarParser.type_return();
     retval.start = input.LT(1);
@@ -23380,8 +23372,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 124)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:2: ( baseType ( typeFragment )* -> ^( TYPE baseType ^( LIST ( typeFragment )* ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:4: baseType ( typeFragment )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:2: ( baseType ( typeFragment )* -> ^( TYPE baseType ^( LIST ( typeFragment )* ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:4: baseType ( typeFragment )*
       {
         pushFollow(FOLLOW_baseType_in_type9664);
         baseType447 = baseType();
@@ -23390,13 +23382,13 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_baseType.add(baseType447.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: ( typeFragment )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: ( typeFragment )*
         loop144: do {
           int alt144 = 2;
           alt144 = dfa144.predict(input);
           switch (alt144) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeFragment
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeFragment
             {
               pushFollow(FOLLOW_typeFragment_in_type9666);
               typeFragment448 = typeFragment();
@@ -23415,7 +23407,7 @@ public class AntlrPilarParser extends Parser {
         } while (true);
 
         // AST REWRITE
-        // elements: typeFragment, baseType
+        // elements: baseType, typeFragment
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -23429,7 +23421,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 851:41: -> ^( TYPE baseType ^( LIST ( typeFragment )* ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:44: ^( TYPE baseType ^( LIST ( typeFragment )* ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:44: ^( TYPE baseType ^( LIST ( typeFragment )* ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -23437,14 +23429,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_baseType.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:60: ^( LIST ( typeFragment )* )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:60: ^( LIST ( typeFragment )* )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(LIST, "LIST"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:67: ( typeFragment )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:67: ( typeFragment )*
                 while (stream_typeFragment.hasNext()) {
                   adaptor.addChild(root_2, stream_typeFragment.nextTree());
 
@@ -23498,7 +23490,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeFragment"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:854:1: typeFragment : (t= '*' -> ^( ARRAY_FRAGMENT[$t] ) | t= '[' ']' -> ^( LIST_FRAGMENT[$t] ) | t= '[' ( ',' )+ ']' -> ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) ) | t= '{' '}' -> ^( SET_FRAGMENT[$t] ) );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:854:1: typeFragment : (t= '*' -> ^( ARRAY_FRAGMENT[$t] ) | t= '[' ']' -> ^( LIST_FRAGMENT[$t] ) | t= '[' ( ',' )+ ']' -> ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) ) | t= '{' '}' -> ^( SET_FRAGMENT[$t] ) );
   public final AntlrPilarParser.typeFragment_return typeFragment()
       throws RecognitionException {
     AntlrPilarParser.typeFragment_return retval = new AntlrPilarParser.typeFragment_return();
@@ -23534,7 +23526,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 125)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:2: (t= '*' -> ^( ARRAY_FRAGMENT[$t] ) | t= '[' ']' -> ^( LIST_FRAGMENT[$t] ) | t= '[' ( ',' )+ ']' -> ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) ) | t= '{' '}' -> ^( SET_FRAGMENT[$t] ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:2: (t= '*' -> ^( ARRAY_FRAGMENT[$t] ) | t= '[' ']' -> ^( LIST_FRAGMENT[$t] ) | t= '[' ( ',' )+ ']' -> ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) ) | t= '{' '}' -> ^( SET_FRAGMENT[$t] ) )
       int alt146 = 4;
       switch (input.LA(1)) {
         case 213: {
@@ -23577,7 +23569,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt146) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:4: t= '*'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:4: t= '*'
         {
           t = (Token) match(input, 213, FOLLOW_213_in_typeFragment9710);
           if (state.failed) return retval;
@@ -23598,7 +23590,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 855:41: -> ^( ARRAY_FRAGMENT[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:44: ^( ARRAY_FRAGMENT[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:855:44: ^( ARRAY_FRAGMENT[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -23615,7 +23607,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:856:4: t= '[' ']'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:856:4: t= '[' ']'
         {
           t = (Token) match(input, 200, FOLLOW_200_in_typeFragment9755);
           if (state.failed) return retval;
@@ -23643,7 +23635,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 856:41: -> ^( LIST_FRAGMENT[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:856:44: ^( LIST_FRAGMENT[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:856:44: ^( LIST_FRAGMENT[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -23660,13 +23652,13 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:4: t= '[' ( ',' )+ ']'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:4: t= '[' ( ',' )+ ']'
         {
           t = (Token) match(input, 200, FOLLOW_200_in_typeFragment9798);
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_200.add(t);
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:10: ( ',' )+
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:10: ( ',' )+
           int cnt145 = 0;
           loop145: do {
             int alt145 = 2;
@@ -23678,7 +23670,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt145) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ','
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ','
               {
                 char_literal450 = (Token) match(
                     input,
@@ -23724,14 +23716,14 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 857:41: -> ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:44: ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:44: ^( MULTIARRAY_FRAGMENT[$t] ^( LIST ( ',' )+ ) )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(MULTIARRAY_FRAGMENT, t),
                     root_1);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:70: ^( LIST ( ',' )+ )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:857:70: ^( LIST ( ',' )+ )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
@@ -23760,7 +23752,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:858:4: t= '{' '}'
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:858:4: t= '{' '}'
         {
           t = (Token) match(input, 175, FOLLOW_175_in_typeFragment9846);
           if (state.failed) return retval;
@@ -23788,7 +23780,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 858:41: -> ^( SET_FRAGMENT[$t] )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:858:44: ^( SET_FRAGMENT[$t] )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:858:44: ^( SET_FRAGMENT[$t] )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -23841,7 +23833,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "baseType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:861:1: baseType : (t= TYPEVARID -> ^( TYPEVARID_TYPE[$t] $t) | name ( '.' ID )? ( typeTuple )? -> ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) ) | procedureType | tupleType | functionType | relationType );
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:861:1: baseType : (t= TYPEVARID -> ^( TYPEVARID_TYPE[$t] $t) | name ( '.' ID )? ( typeTuple )? -> ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) ) | procedureType | tupleType | functionType | relationType );
   public final AntlrPilarParser.baseType_return baseType()
       throws RecognitionException {
     AntlrPilarParser.baseType_return retval = new AntlrPilarParser.baseType_return();
@@ -23881,7 +23873,7 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 126)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:2: (t= TYPEVARID -> ^( TYPEVARID_TYPE[$t] $t) | name ( '.' ID )? ( typeTuple )? -> ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) ) | procedureType | tupleType | functionType | relationType )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:2: (t= TYPEVARID -> ^( TYPEVARID_TYPE[$t] $t) | name ( '.' ID )? ( typeTuple )? -> ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) ) | procedureType | tupleType | functionType | relationType )
       int alt149 = 6;
       switch (input.LA(1)) {
         case TYPEVARID: {
@@ -23943,7 +23935,7 @@ public class AntlrPilarParser extends Parser {
 
       switch (alt149) {
         case 1:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:4: t= TYPEVARID
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:4: t= TYPEVARID
         {
           t = (Token) match(input, TYPEVARID, FOLLOW_TYPEVARID_in_baseType9895);
           if (state.failed) return retval;
@@ -23966,7 +23958,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 862:41: -> ^( TYPEVARID_TYPE[$t] $t)
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:44: ^( TYPEVARID_TYPE[$t] $t)
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:862:44: ^( TYPEVARID_TYPE[$t] $t)
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -23985,7 +23977,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 2:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:4: name ( '.' ID )? ( typeTuple )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:4: name ( '.' ID )? ( typeTuple )?
         {
           pushFollow(FOLLOW_name_in_baseType9935);
           name453 = name();
@@ -23993,7 +23985,7 @@ public class AntlrPilarParser extends Parser {
           state._fsp--;
           if (state.failed) return retval;
           if (state.backtracking == 0) stream_name.add(name453.getTree());
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:9: ( '.' ID )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:9: ( '.' ID )?
           int alt147 = 2;
           int LA147_0 = input.LA(1);
 
@@ -24010,7 +24002,7 @@ public class AntlrPilarParser extends Parser {
           }
           switch (alt147) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: '.' ID
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: '.' ID
             {
               char_literal454 = (Token) match(
                   input,
@@ -24028,12 +24020,12 @@ public class AntlrPilarParser extends Parser {
 
           }
 
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: ( typeTuple )?
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: ( typeTuple )?
           int alt148 = 2;
           alt148 = dfa148.predict(input);
           switch (alt148) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: typeTuple
             {
               pushFollow(FOLLOW_typeTuple_in_baseType9945);
               typeTuple456 = typeTuple();
@@ -24049,7 +24041,7 @@ public class AntlrPilarParser extends Parser {
           }
 
           // AST REWRITE
-          // elements: typeTuple, ID, name
+          // elements: name, ID, typeTuple
           // token labels: 
           // rule labels: retval
           // token list labels: 
@@ -24063,7 +24055,7 @@ public class AntlrPilarParser extends Parser {
             root_0 = (Object) adaptor.nil();
             // 863:41: -> ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) )
             {
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:44: ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:44: ^( NAME_TYPE name ^( OPTION ( ID )? ) ^( OPTION ( typeTuple )? ) )
               {
                 Object root_1 = (Object) adaptor.nil();
                 root_1 = (Object) adaptor.becomeRoot(
@@ -24071,14 +24063,14 @@ public class AntlrPilarParser extends Parser {
                     root_1);
 
                 adaptor.addChild(root_1, stream_name.nextTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:61: ^( OPTION ( ID )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:61: ^( OPTION ( ID )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:70: ( ID )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:70: ( ID )?
                   if (stream_ID.hasNext()) {
                     adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -24087,14 +24079,14 @@ public class AntlrPilarParser extends Parser {
 
                   adaptor.addChild(root_1, root_2);
                 }
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:75: ^( OPTION ( typeTuple )? )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:75: ^( OPTION ( typeTuple )? )
                 {
                   Object root_2 = (Object) adaptor.nil();
                   root_2 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(OPTION, "OPTION"),
                       root_2);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:84: ( typeTuple )?
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:84: ( typeTuple )?
                   if (stream_typeTuple.hasNext()) {
                     adaptor.addChild(root_2, stream_typeTuple.nextTree());
 
@@ -24114,7 +24106,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 3:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: procedureType
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: procedureType
         {
           root_0 = (Object) adaptor.nil();
 
@@ -24129,7 +24121,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 4:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: tupleType
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: tupleType
         {
           root_0 = (Object) adaptor.nil();
 
@@ -24144,7 +24136,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 5:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: functionType
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: functionType
         {
           root_0 = (Object) adaptor.nil();
 
@@ -24159,7 +24151,7 @@ public class AntlrPilarParser extends Parser {
         }
           break;
         case 6:
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:867:4: relationType
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:867:4: relationType
         {
           root_0 = (Object) adaptor.nil();
 
@@ -24210,7 +24202,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "procedureType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:870:1: procedureType : t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:870:1: procedureType : t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) ) ;
   public final AntlrPilarParser.procedureType_return procedureType()
       throws RecognitionException {
     AntlrPilarParser.procedureType_return retval = new AntlrPilarParser.procedureType_return();
@@ -24264,14 +24256,14 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 127)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:871:2: (t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:871:4: t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:871:2: (t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:871:4: t= '(' ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )? ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) )
       {
         t = (Token) match(input, 167, FOLLOW_167_in_procedureType10011);
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_167.add(t);
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:4: ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:4: ( ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? ) )?
         int alt153 = 2;
         int LA153_0 = input.LA(1);
 
@@ -24280,9 +24272,9 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt153) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:7: ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? )
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:7: ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:7: ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:7: ( procedureTypeParamVariable | typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )? )
             int alt152 = 2;
             switch (input.LA(1)) {
               case TYPEVARID: {
@@ -24374,7 +24366,7 @@ public class AntlrPilarParser extends Parser {
 
             switch (alt152) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: procedureTypeParamVariable
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: procedureTypeParamVariable
               {
                 pushFollow(FOLLOW_procedureTypeParamVariable_in_procedureType10022);
                 procedureTypeParamVariable461 = procedureTypeParamVariable();
@@ -24388,7 +24380,7 @@ public class AntlrPilarParser extends Parser {
               }
                 break;
               case 2:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:873:9: typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )?
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:873:9: typeParam ( ',' typeParam )* ( ',' procedureTypeParamVariable )?
               {
                 pushFollow(FOLLOW_typeParam_in_procedureType10032);
                 typeParam462 = typeParam();
@@ -24397,7 +24389,7 @@ public class AntlrPilarParser extends Parser {
                 if (state.failed) return retval;
                 if (state.backtracking == 0)
                   stream_typeParam.add(typeParam462.getTree());
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:9: ( ',' typeParam )*
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:9: ( ',' typeParam )*
                 loop150: do {
                   int alt150 = 2;
                   int LA150_0 = input.LA(1);
@@ -24413,7 +24405,7 @@ public class AntlrPilarParser extends Parser {
 
                   switch (alt150) {
                     case 1:
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ',' typeParam
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ',' typeParam
                     {
                       char_literal463 = (Token) match(
                           input,
@@ -24439,7 +24431,7 @@ public class AntlrPilarParser extends Parser {
                   }
                 } while (true);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:875:9: ( ',' procedureTypeParamVariable )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:875:9: ( ',' procedureTypeParamVariable )?
                 int alt151 = 2;
                 int LA151_0 = input.LA(1);
 
@@ -24448,7 +24440,7 @@ public class AntlrPilarParser extends Parser {
                 }
                 switch (alt151) {
                   case 1:
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:875:11: ',' procedureTypeParamVariable
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:875:11: ',' procedureTypeParamVariable
                   {
                     char_literal465 = (Token) match(
                         input,
@@ -24482,7 +24474,7 @@ public class AntlrPilarParser extends Parser {
 
         }
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:4: ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) )
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:4: ( '->' ( annotatedType )? ')' -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) | '-!>' ( annotatedType )? ')' -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) ) )
         int alt156 = 2;
         int LA156_0 = input.LA(1);
 
@@ -24502,7 +24494,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt156) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:6: '->' ( annotatedType )? ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:6: '->' ( annotatedType )? ')'
           {
             string_literal467 = (Token) match(
                 input,
@@ -24511,7 +24503,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_220.add(string_literal467);
 
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:11: ( annotatedType )?
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:11: ( annotatedType )?
             int alt154 = 2;
             int LA154_0 = input.LA(1);
 
@@ -24520,7 +24512,7 @@ public class AntlrPilarParser extends Parser {
             }
             switch (alt154) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotatedType
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotatedType
               {
                 pushFollow(FOLLOW_annotatedType_in_procedureType10101);
                 annotatedType468 = annotatedType();
@@ -24543,7 +24535,7 @@ public class AntlrPilarParser extends Parser {
             if (state.backtracking == 0) stream_168.add(char_literal469);
 
             // AST REWRITE
-            // elements: annotatedType, typeParam, procedureTypeParamVariable
+            // elements: procedureTypeParamVariable, typeParam, annotatedType
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -24557,27 +24549,27 @@ public class AntlrPilarParser extends Parser {
               root_0 = (Object) adaptor.nil();
               // 879:41: -> ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
               {
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:44: ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:44: ^( FUN_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
                 {
                   Object root_1 = (Object) adaptor.nil();
                   root_1 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(FUN_TYPE, t),
                       root_1);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:59: ^( LIST ( typeParam )* ( procedureTypeParamVariable )? )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:59: ^( LIST ( typeParam )* ( procedureTypeParamVariable )? )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(LIST, "LIST"),
                         root_2);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:66: ( typeParam )*
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:66: ( typeParam )*
                     while (stream_typeParam.hasNext()) {
                       adaptor.addChild(root_2, stream_typeParam.nextTree());
 
                     }
                     stream_typeParam.reset();
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:77: ( procedureTypeParamVariable )?
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:77: ( procedureTypeParamVariable )?
                     if (stream_procedureTypeParamVariable.hasNext()) {
                       adaptor.addChild(
                           root_2,
@@ -24588,14 +24580,14 @@ public class AntlrPilarParser extends Parser {
 
                     adaptor.addChild(root_1, root_2);
                   }
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:106: ^( OPTION ( annotatedType )? )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:106: ^( OPTION ( annotatedType )? )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(OPTION, "OPTION"),
                         root_2);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:115: ( annotatedType )?
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:879:115: ( annotatedType )?
                     if (stream_annotatedType.hasNext()) {
                       adaptor.addChild(root_2, stream_annotatedType.nextTree());
 
@@ -24615,7 +24607,7 @@ public class AntlrPilarParser extends Parser {
           }
             break;
           case 2:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:6: '-!>' ( annotatedType )? ')'
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:6: '-!>' ( annotatedType )? ')'
           {
             string_literal470 = (Token) match(
                 input,
@@ -24624,7 +24616,7 @@ public class AntlrPilarParser extends Parser {
             if (state.failed) return retval;
             if (state.backtracking == 0) stream_224.add(string_literal470);
 
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:12: ( annotatedType )?
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:12: ( annotatedType )?
             int alt155 = 2;
             int LA155_0 = input.LA(1);
 
@@ -24633,7 +24625,7 @@ public class AntlrPilarParser extends Parser {
             }
             switch (alt155) {
               case 1:
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotatedType
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotatedType
               {
                 pushFollow(FOLLOW_annotatedType_in_procedureType10148);
                 annotatedType471 = annotatedType();
@@ -24656,7 +24648,7 @@ public class AntlrPilarParser extends Parser {
             if (state.backtracking == 0) stream_168.add(char_literal472);
 
             // AST REWRITE
-            // elements: procedureTypeParamVariable, annotatedType, typeParam
+            // elements: annotatedType, procedureTypeParamVariable, typeParam
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -24670,27 +24662,27 @@ public class AntlrPilarParser extends Parser {
               root_0 = (Object) adaptor.nil();
               // 880:41: -> ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
               {
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:44: ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:44: ^( PROCEDURE_TYPE[$t] ^( LIST ( typeParam )* ( procedureTypeParamVariable )? ) ^( OPTION ( annotatedType )? ) )
                 {
                   Object root_1 = (Object) adaptor.nil();
                   root_1 = (Object) adaptor.becomeRoot(
                       (Object) adaptor.create(PROCEDURE_TYPE, t),
                       root_1);
 
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:65: ^( LIST ( typeParam )* ( procedureTypeParamVariable )? )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:65: ^( LIST ( typeParam )* ( procedureTypeParamVariable )? )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(LIST, "LIST"),
                         root_2);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:72: ( typeParam )*
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:72: ( typeParam )*
                     while (stream_typeParam.hasNext()) {
                       adaptor.addChild(root_2, stream_typeParam.nextTree());
 
                     }
                     stream_typeParam.reset();
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:83: ( procedureTypeParamVariable )?
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:83: ( procedureTypeParamVariable )?
                     if (stream_procedureTypeParamVariable.hasNext()) {
                       adaptor.addChild(
                           root_2,
@@ -24701,14 +24693,14 @@ public class AntlrPilarParser extends Parser {
 
                     adaptor.addChild(root_1, root_2);
                   }
-                  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:112: ^( OPTION ( annotatedType )? )
+                  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:112: ^( OPTION ( annotatedType )? )
                   {
                     Object root_2 = (Object) adaptor.nil();
                     root_2 = (Object) adaptor.becomeRoot(
                         (Object) adaptor.create(OPTION, "OPTION"),
                         root_2);
 
-                    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:121: ( annotatedType )?
+                    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:880:121: ( annotatedType )?
                     if (stream_annotatedType.hasNext()) {
                       adaptor.addChild(root_2, stream_annotatedType.nextTree());
 
@@ -24767,7 +24759,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "typeParam"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:884:1: typeParam : type ( ID )? annotationList -> ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:884:1: typeParam : type ( ID )? annotationList -> ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList ) ;
   public final AntlrPilarParser.typeParam_return typeParam()
       throws RecognitionException {
     AntlrPilarParser.typeParam_return retval = new AntlrPilarParser.typeParam_return();
@@ -24791,8 +24783,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 128)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:2: ( type ( ID )? annotationList -> ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:4: type ( ID )? annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:2: ( type ( ID )? annotationList -> ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:4: type ( ID )? annotationList
       {
         pushFollow(FOLLOW_type_in_typeParam10201);
         type473 = type();
@@ -24800,7 +24792,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_type.add(type473.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:9: ( ID )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:9: ( ID )?
         int alt157 = 2;
         int LA157_0 = input.LA(1);
 
@@ -24809,7 +24801,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt157) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
           {
             ID474 = (Token) match(input, ID, FOLLOW_ID_in_typeParam10203);
             if (state.failed) return retval;
@@ -24829,7 +24821,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList475.getTree());
 
         // AST REWRITE
-        // elements: ID, annotationList, type
+        // elements: ID, type, annotationList
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -24843,7 +24835,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 885:41: -> ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:44: ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:44: ^( TYPE_PARAM type ^( OPTION ( ID )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -24851,14 +24843,14 @@ public class AntlrPilarParser extends Parser {
                   root_1);
 
               adaptor.addChild(root_1, stream_type.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:62: ^( OPTION ( ID )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:62: ^( OPTION ( ID )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:71: ( ID )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:885:71: ( ID )?
                 if (stream_ID.hasNext()) {
                   adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -24913,7 +24905,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "annotatedType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:888:1: annotatedType : type annotationList -> ^( ANNOTATED_TYPE type annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:888:1: annotatedType : type annotationList -> ^( ANNOTATED_TYPE type annotationList ) ;
   public final AntlrPilarParser.annotatedType_return annotatedType()
       throws RecognitionException {
     AntlrPilarParser.annotatedType_return retval = new AntlrPilarParser.annotatedType_return();
@@ -24933,8 +24925,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 129)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:2: ( type annotationList -> ^( ANNOTATED_TYPE type annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:4: type annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:2: ( type annotationList -> ^( ANNOTATED_TYPE type annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:4: type annotationList
       {
         pushFollow(FOLLOW_type_in_annotatedType10247);
         type476 = type();
@@ -24951,7 +24943,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList477.getTree());
 
         // AST REWRITE
-        // elements: type, annotationList
+        // elements: annotationList, type
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -24965,7 +24957,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 889:41: -> ^( ANNOTATED_TYPE type annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:44: ^( ANNOTATED_TYPE type annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:889:44: ^( ANNOTATED_TYPE type annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
@@ -25020,7 +25012,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "procedureTypeParamVariable"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:892:1: procedureTypeParamVariable : type ( ID )? '...' annotationList -> ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:892:1: procedureTypeParamVariable : type ( ID )? '...' annotationList -> ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList ) ;
   public final AntlrPilarParser.procedureTypeParamVariable_return procedureTypeParamVariable()
       throws RecognitionException {
     AntlrPilarParser.procedureTypeParamVariable_return retval = new AntlrPilarParser.procedureTypeParamVariable_return();
@@ -25048,8 +25040,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 130)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:2: ( type ( ID )? '...' annotationList -> ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:4: type ( ID )? '...' annotationList
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:2: ( type ( ID )? '...' annotationList -> ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:4: type ( ID )? '...' annotationList
       {
         pushFollow(FOLLOW_type_in_procedureTypeParamVariable10288);
         type478 = type();
@@ -25057,7 +25049,7 @@ public class AntlrPilarParser extends Parser {
         state._fsp--;
         if (state.failed) return retval;
         if (state.backtracking == 0) stream_type.add(type478.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:9: ( ID )?
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:9: ( ID )?
         int alt158 = 2;
         int LA158_0 = input.LA(1);
 
@@ -25066,7 +25058,7 @@ public class AntlrPilarParser extends Parser {
         }
         switch (alt158) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: ID
           {
             ID479 = (Token) match(
                 input,
@@ -25096,7 +25088,7 @@ public class AntlrPilarParser extends Parser {
           stream_annotationList.add(annotationList481.getTree());
 
         // AST REWRITE
-        // elements: ID, annotationList, type
+        // elements: annotationList, ID, type
         // token labels: 
         // rule labels: retval
         // token list labels: 
@@ -25110,7 +25102,7 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 893:41: -> ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:44: ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:44: ^( PROCEDURE_TYPE_PARAM_VARIABLE type ^( OPTION ( ID )? ) annotationList )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot((Object) adaptor.create(
@@ -25118,14 +25110,14 @@ public class AntlrPilarParser extends Parser {
                   "PROCEDURE_TYPE_PARAM_VARIABLE"), root_1);
 
               adaptor.addChild(root_1, stream_type.nextTree());
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:81: ^( OPTION ( ID )? )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:81: ^( OPTION ( ID )? )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
                     (Object) adaptor.create(OPTION, "OPTION"),
                     root_2);
 
-                // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:90: ( ID )?
+                // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:893:90: ( ID )?
                 if (stream_ID.hasNext()) {
                   adaptor.addChild(root_2, stream_ID.nextNode());
 
@@ -25180,7 +25172,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "tupleType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:896:1: tupleType : t= '(' typeParam ( ',' typeParam )* ')' -> ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:896:1: tupleType : t= '(' typeParam ( ',' typeParam )* ')' -> ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) ) ;
   public final AntlrPilarParser.tupleType_return tupleType()
       throws RecognitionException {
     AntlrPilarParser.tupleType_return retval = new AntlrPilarParser.tupleType_return();
@@ -25210,8 +25202,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 131)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:897:2: (t= '(' typeParam ( ',' typeParam )* ')' -> ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:897:4: t= '(' typeParam ( ',' typeParam )* ')'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:897:2: (t= '(' typeParam ( ',' typeParam )* ')' -> ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:897:4: t= '(' typeParam ( ',' typeParam )* ')'
       {
         t = (Token) match(input, 167, FOLLOW_167_in_tupleType10332);
         if (state.failed) return retval;
@@ -25224,7 +25216,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_typeParam.add(typeParam482.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:8: ( ',' typeParam )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:8: ( ',' typeParam )*
         loop159: do {
           int alt159 = 2;
           int LA159_0 = input.LA(1);
@@ -25235,7 +25227,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt159) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:10: ',' typeParam
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:10: ',' typeParam
             {
               char_literal483 = (Token) match(
                   input,
@@ -25282,14 +25274,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 898:41: -> ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:44: ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:44: ^( TUPLE_TYPE[$t] ^( LIST ( typeParam )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(TUPLE_TYPE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:61: ^( LIST ( typeParam )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:898:61: ^( LIST ( typeParam )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -25352,7 +25344,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "functionType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:901:1: functionType : t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}' -> ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:901:1: functionType : t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}' -> ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o) ;
   public final AntlrPilarParser.functionType_return functionType()
       throws RecognitionException {
     AntlrPilarParser.functionType_return retval = new AntlrPilarParser.functionType_return();
@@ -25388,8 +25380,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 132)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:902:2: (t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}' -> ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:902:4: t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:902:2: (t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}' -> ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:902:4: t= '{' i+= typeParam ( ',' i+= typeParam )* '->' o= annotatedType '}'
       {
         t = (Token) match(input, 175, FOLLOW_175_in_functionType10390);
         if (state.failed) return retval;
@@ -25404,7 +25396,7 @@ public class AntlrPilarParser extends Parser {
         if (list_i == null) list_i = new ArrayList();
         list_i.add(i.getTree());
 
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:903:8: ( ',' i+= typeParam )*
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:903:8: ( ',' i+= typeParam )*
         loop160: do {
           int alt160 = 2;
           int LA160_0 = input.LA(1);
@@ -25415,7 +25407,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt160) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:903:10: ',' i+= typeParam
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:903:10: ',' i+= typeParam
             {
               char_literal486 = (Token) match(
                   input,
@@ -25462,7 +25454,7 @@ public class AntlrPilarParser extends Parser {
         if (state.backtracking == 0) stream_176.add(char_literal488);
 
         // AST REWRITE
-        // elements: o, i
+        // elements: i, o
         // token labels: 
         // rule labels: retval, o
         // token list labels: 
@@ -25479,14 +25471,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 904:41: -> ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o)
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:904:44: ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o)
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:904:44: ^( FUNCTION_TYPE[$t] ^( LIST ( $i)+ ) $o)
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(FUNCTION_TYPE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:904:64: ^( LIST ( $i)+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:904:64: ^( LIST ( $i)+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -25550,7 +25542,7 @@ public class AntlrPilarParser extends Parser {
   };
 
   // $ANTLR start "relationType"
-  // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:907:1: relationType : t= '{' typeParam ( ',' typeParam )+ '}' -> ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) ) ;
+  // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:907:1: relationType : t= '{' typeParam ( ',' typeParam )+ '}' -> ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) ) ;
   public final AntlrPilarParser.relationType_return relationType()
       throws RecognitionException {
     AntlrPilarParser.relationType_return retval = new AntlrPilarParser.relationType_return();
@@ -25580,8 +25572,8 @@ public class AntlrPilarParser extends Parser {
       if (state.backtracking > 0 && alreadyParsedRule(input, 133)) {
         return retval;
       }
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:908:2: (t= '{' typeParam ( ',' typeParam )+ '}' -> ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) ) )
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:908:4: t= '{' typeParam ( ',' typeParam )+ '}'
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:908:2: (t= '{' typeParam ( ',' typeParam )+ '}' -> ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) ) )
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:908:4: t= '{' typeParam ( ',' typeParam )+ '}'
       {
         t = (Token) match(input, 175, FOLLOW_175_in_relationType10482);
         if (state.failed) return retval;
@@ -25594,7 +25586,7 @@ public class AntlrPilarParser extends Parser {
         if (state.failed) return retval;
         if (state.backtracking == 0)
           stream_typeParam.add(typeParam489.getTree());
-        // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:8: ( ',' typeParam )+
+        // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:8: ( ',' typeParam )+
         int cnt161 = 0;
         loop161: do {
           int alt161 = 2;
@@ -25606,7 +25598,7 @@ public class AntlrPilarParser extends Parser {
 
           switch (alt161) {
             case 1:
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:10: ',' typeParam
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:10: ',' typeParam
             {
               char_literal490 = (Token) match(
                   input,
@@ -25660,14 +25652,14 @@ public class AntlrPilarParser extends Parser {
           root_0 = (Object) adaptor.nil();
           // 909:41: -> ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) )
           {
-            // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:44: ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) )
+            // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:44: ^( RELATION_TYPE[$t] ^( LIST ( typeParam )+ ) )
             {
               Object root_1 = (Object) adaptor.nil();
               root_1 = (Object) adaptor.becomeRoot(
                   (Object) adaptor.create(RELATION_TYPE, t),
                   root_1);
 
-              // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:64: ^( LIST ( typeParam )+ )
+              // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:909:64: ^( LIST ( typeParam )+ )
               {
                 Object root_2 = (Object) adaptor.nil();
                 root_2 = (Object) adaptor.becomeRoot(
@@ -25723,10 +25715,10 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred4_AntlrPilar
   public final void synpred4_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( ( annotation )* )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( ( annotation )* )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
     {
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:211:4: ( annotation )*
       loop162: do {
         int alt162 = 2;
         int LA162_0 = input.LA(1);
@@ -25737,7 +25729,7 @@ public class AntlrPilarParser extends Parser {
 
         switch (alt162) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:0:0: annotation
           {
             pushFollow(FOLLOW_annotation_in_synpred4_AntlrPilar1167);
             annotation();
@@ -25760,8 +25752,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred9_AntlrPilar
   public final void synpred9_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: ( annotationParams )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: annotationParams
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: ( annotationParams )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:226:13: annotationParams
     {
       pushFollow(FOLLOW_annotationParams_in_synpred9_AntlrPilar1414);
       annotationParams();
@@ -25778,8 +25770,8 @@ public class AntlrPilarParser extends Parser {
   public final void synpred11_AntlrPilar_fragment() throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: (t= '(' annotationParam ( ',' annotationParam )* ')' )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: t= '(' annotationParam ( ',' annotationParam )* ')'
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: (t= '(' annotationParam ( ',' annotationParam )* ')' )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:230:4: t= '(' annotationParam ( ',' annotationParam )* ')'
     {
       t = (Token) match(input, 167, FOLLOW_167_in_synpred11_AntlrPilar1458);
       if (state.failed) return;
@@ -25788,7 +25780,7 @@ public class AntlrPilarParser extends Parser {
 
       state._fsp--;
       if (state.failed) return;
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:8: ( ',' annotationParam )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:8: ( ',' annotationParam )*
       loop163: do {
         int alt163 = 2;
         int LA163_0 = input.LA(1);
@@ -25799,7 +25791,7 @@ public class AntlrPilarParser extends Parser {
 
         switch (alt163) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:10: ',' annotationParam
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:231:10: ',' annotationParam
           {
             match(input, 170, FOLLOW_170_in_synpred11_AntlrPilar1471);
             if (state.failed) return;
@@ -25827,8 +25819,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred12_AntlrPilar
   public final void synpred12_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ( ',' exp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ',' exp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ( ',' exp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:232:10: ',' exp
     {
       match(input, 170, FOLLOW_170_in_synpred12_AntlrPilar1501);
       if (state.failed) return;
@@ -25845,8 +25837,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred42_AntlrPilar
   public final void synpred42_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: ( paramVariable )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: paramVariable
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: ( paramVariable )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:338:8: paramVariable
     {
       pushFollow(FOLLOW_paramVariable_in_synpred42_AntlrPilar2641);
       paramVariable();
@@ -25861,8 +25853,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred46_AntlrPilar
   public final void synpred46_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ( ',' param )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ',' param
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ( ',' param )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:348:12: ',' param
     {
       match(input, 170, FOLLOW_170_in_synpred46_AntlrPilar2790);
       if (state.failed) return;
@@ -25879,8 +25871,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred70_AntlrPilar
   public final void synpred70_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: ( extParamVariable )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: extParamVariable
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: ( extParamVariable )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:427:4: extParamVariable
     {
       pushFollow(FOLLOW_extParamVariable_in_synpred70_AntlrPilar3662);
       extParamVariable();
@@ -25895,8 +25887,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred73_AntlrPilar
   public final void synpred73_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: type
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: ( type )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:4: type
     {
       pushFollow(FOLLOW_type_in_synpred73_AntlrPilar3753);
       type();
@@ -25911,8 +25903,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred74_AntlrPilar
   public final void synpred74_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ( ID )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ID
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ( ID )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:433:10: ID
     {
       match(input, ID, FOLLOW_ID_in_synpred74_AntlrPilar3756);
       if (state.failed) return;
@@ -25924,8 +25916,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred75_AntlrPilar
   public final void synpred75_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: type
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: ( type )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:437:4: type
     {
       pushFollow(FOLLOW_type_in_synpred75_AntlrPilar3804);
       type();
@@ -25940,15 +25932,15 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred84_AntlrPilar
   public final void synpred84_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: ( transformation ( '|' transformation )* )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: transformation ( '|' transformation )*
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: ( transformation ( '|' transformation )* )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:462:6: transformation ( '|' transformation )*
     {
       pushFollow(FOLLOW_transformation_in_synpred84_AntlrPilar4098);
       transformation();
 
       state._fsp--;
       if (state.failed) return;
-      // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:6: ( '|' transformation )*
+      // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:6: ( '|' transformation )*
       loop169: do {
         int alt169 = 2;
         int LA169_0 = input.LA(1);
@@ -25959,7 +25951,7 @@ public class AntlrPilarParser extends Parser {
 
         switch (alt169) {
           case 1:
-          // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:8: '|' transformation
+          // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:463:8: '|' transformation
           {
             match(input, 192, FOLLOW_192_in_synpred84_AntlrPilar4108);
             if (state.failed) return;
@@ -25984,8 +25976,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred85_AntlrPilar
   public final void synpred85_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: ( guard )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: guard
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: ( guard )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:468:31: guard
     {
       pushFollow(FOLLOW_guard_in_synpred85_AntlrPilar4197);
       guard();
@@ -26000,8 +25992,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred88_AntlrPilar
   public final void synpred88_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: action
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: ( action )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:486:4: action
     {
       pushFollow(FOLLOW_action_in_synpred88_AntlrPilar4412);
       action();
@@ -26016,8 +26008,8 @@ public class AntlrPilarParser extends Parser {
 
   // $ANTLR start synpred93_AntlrPilar
   public final void synpred93_AntlrPilar_fragment() throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: ( assignment )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: assignment
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: ( assignment )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:493:4: assignment
     {
       pushFollow(FOLLOW_assignment_in_synpred93_AntlrPilar4549);
       assignment();
@@ -26033,8 +26025,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred110_AntlrPilar
   public final void synpred110_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: ( type )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: type
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: ( type )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:565:4: type
     {
       pushFollow(FOLLOW_type_in_synpred110_AntlrPilar5349);
       type();
@@ -26050,8 +26042,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred113_AntlrPilar
   public final void synpred113_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: ( 'else' ifThenExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: 'else' ifThenExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: ( 'else' ifThenExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:578:5: 'else' ifThenExp
     {
       match(input, 194, FOLLOW_194_in_synpred113_AntlrPilar5485);
       if (state.failed) return;
@@ -26069,8 +26061,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred115_AntlrPilar
   public final void synpred115_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: ( switchCaseExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: switchCaseExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: ( switchCaseExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:580:17: switchCaseExp
     {
       pushFollow(FOLLOW_switchCaseExp_in_synpred115_AntlrPilar5545);
       switchCaseExp();
@@ -26086,8 +26078,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred116_AntlrPilar
   public final void synpred116_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: ( switchDefaultExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: switchDefaultExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: ( switchDefaultExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:581:4: switchDefaultExp
     {
       pushFollow(FOLLOW_switchDefaultExp_in_synpred116_AntlrPilar5561);
       switchDefaultExp();
@@ -26106,8 +26098,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.conditionalOrExp_return c2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: (t= '==>' c2= conditionalOrExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: t= '==>' c2= conditionalOrExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: (t= '==>' c2= conditionalOrExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:604:8: t= '==>' c2= conditionalOrExp
     {
       t = (Token) match(input, 211, FOLLOW_211_in_synpred117_AntlrPilar5856);
       if (state.failed) return;
@@ -26128,8 +26120,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.conditionalOrExp_return c2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: (t= '<==' c2= conditionalOrExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: t= '<==' c2= conditionalOrExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: (t= '<==' c2= conditionalOrExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:605:8: t= '<==' c2= conditionalOrExp
     {
       t = (Token) match(input, 212, FOLLOW_212_in_synpred118_AntlrPilar5891);
       if (state.failed) return;
@@ -26150,8 +26142,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.conditionalAndExp_return c2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: (t= COND_OR_OP c2= conditionalAndExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: t= COND_OR_OP c2= conditionalAndExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: (t= COND_OR_OP c2= conditionalAndExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:611:8: t= COND_OR_OP c2= conditionalAndExp
     {
       t = (Token) match(
           input,
@@ -26175,8 +26167,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.inclusiveOrExp_return i2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: (t= COND_AND_OP i2= inclusiveOrExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: t= COND_AND_OP i2= inclusiveOrExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: (t= COND_AND_OP i2= inclusiveOrExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:618:8: t= COND_AND_OP i2= inclusiveOrExp
     {
       t = (Token) match(
           input,
@@ -26200,8 +26192,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.exclusiveOrExp_return e2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: (t= OR_OP e2= exclusiveOrExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: t= OR_OP e2= exclusiveOrExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: (t= OR_OP e2= exclusiveOrExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:624:8: t= OR_OP e2= exclusiveOrExp
     {
       t = (Token) match(input, OR_OP, FOLLOW_OR_OP_in_synpred121_AntlrPilar6141);
       if (state.failed) return;
@@ -26222,8 +26214,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.andExp_return a2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: (t= XOR_OP a2= andExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: t= XOR_OP a2= andExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: (t= XOR_OP a2= andExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:631:8: t= XOR_OP a2= andExp
     {
       t = (Token) match(
           input,
@@ -26247,8 +26239,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.equalityExp_return e2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: (t= AND_OP e2= equalityExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: t= AND_OP e2= equalityExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: (t= AND_OP e2= equalityExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:637:8: t= AND_OP e2= equalityExp
     {
       t = (Token) match(
           input,
@@ -26272,8 +26264,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.typeTestExp_return t2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: (t= EQ_OP t2= typeTestExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: t= EQ_OP t2= typeTestExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: (t= EQ_OP t2= typeTestExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:643:8: t= EQ_OP t2= typeTestExp
     {
       t = (Token) match(input, EQ_OP, FOLLOW_EQ_OP_in_synpred124_AntlrPilar6411);
       if (state.failed) return;
@@ -26294,8 +26286,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.relationalExp_return r2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: (t= COLON_OP r2= relationalExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: t= COLON_OP r2= relationalExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: (t= COLON_OP r2= relationalExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:649:8: t= COLON_OP r2= relationalExp
     {
       t = (Token) match(
           input,
@@ -26319,8 +26311,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.shiftExp_return s2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: (t= REL_OP s2= shiftExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: t= REL_OP s2= shiftExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: (t= REL_OP s2= shiftExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:655:8: t= REL_OP s2= shiftExp
     {
       t = (Token) match(
           input,
@@ -26344,8 +26336,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.shiftExp_return s2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: (t= '<' s2= shiftExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: t= '<' s2= shiftExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: (t= '<' s2= shiftExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:656:8: t= '<' s2= shiftExp
     {
       t = (Token) match(input, 165, FOLLOW_165_in_synpred127_AntlrPilar6628);
       if (state.failed) return;
@@ -26366,8 +26358,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.shiftExp_return s2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: (t= '>' s2= shiftExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: t= '>' s2= shiftExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: (t= '>' s2= shiftExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:657:8: t= '>' s2= shiftExp
     {
       t = (Token) match(input, 166, FOLLOW_166_in_synpred128_AntlrPilar6673);
       if (state.failed) return;
@@ -26388,8 +26380,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.additiveExp_return a2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: (t= SHIFT_OP a2= additiveExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: t= SHIFT_OP a2= additiveExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: (t= SHIFT_OP a2= additiveExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:663:8: t= SHIFT_OP a2= additiveExp
     {
       t = (Token) match(
           input,
@@ -26413,8 +26405,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.multiplicativeExp_return m2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: (t= ADD_OP m2= multiplicativeExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: t= ADD_OP m2= multiplicativeExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: (t= ADD_OP m2= multiplicativeExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:669:8: t= ADD_OP m2= multiplicativeExp
     {
       t = (Token) match(
           input,
@@ -26438,8 +26430,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.unaryExp_return u2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: (t= MUL_OP u2= unaryExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: t= MUL_OP u2= unaryExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: (t= MUL_OP u2= unaryExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:675:8: t= MUL_OP u2= unaryExp
     {
       t = (Token) match(
           input,
@@ -26463,8 +26455,8 @@ public class AntlrPilarParser extends Parser {
     Token t = null;
     AntlrPilarParser.unaryExp_return u2 = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: (t= '*' u2= unaryExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: t= '*' u2= unaryExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: (t= '*' u2= unaryExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:676:8: t= '*' u2= unaryExp
     {
       t = (Token) match(input, 213, FOLLOW_213_in_synpred132_AntlrPilar6973);
       if (state.failed) return;
@@ -26484,8 +26476,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: (t= '(' type ')' primaryExp )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: t= '(' type ')' primaryExp
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: (t= '(' type ')' primaryExp )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:689:4: t= '(' type ')' primaryExp
     {
       t = (Token) match(input, 167, FOLLOW_167_in_synpred137_AntlrPilar7207);
       if (state.failed) return;
@@ -26512,8 +26504,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: (t= '[' expList ']' )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: t= '[' expList ']'
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: (t= '[' expList ']' )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:695:8: t= '[' expList ']'
     {
       t = (Token) match(input, 200, FOLLOW_200_in_synpred138_AntlrPilar7296);
       if (state.failed) return;
@@ -26535,8 +26527,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: (t= '.' ID )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: t= '.' ID
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: (t= '.' ID )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:696:8: t= '.' ID
     {
       t = (Token) match(input, 214, FOLLOW_214_in_synpred139_AntlrPilar7338);
       if (state.failed) return;
@@ -26551,8 +26543,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred140_AntlrPilar
   public final void synpred140_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: ( callArg )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: callArg
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: ( callArg )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:697:8: callArg
     {
       pushFollow(FOLLOW_callArg_in_synpred140_AntlrPilar7385);
       callArg();
@@ -26570,8 +26562,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: (t= '[' expList ']' )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: t= '[' expList ']'
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: (t= '[' expList ']' )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:707:8: t= '[' expList ']'
     {
       t = (Token) match(input, 200, FOLLOW_200_in_synpred142_AntlrPilar7533);
       if (state.failed) return;
@@ -26593,8 +26585,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: (t= '.' ID )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: t= '.' ID
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: (t= '.' ID )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:708:8: t= '.' ID
     {
       t = (Token) match(input, 214, FOLLOW_214_in_synpred143_AntlrPilar7575);
       if (state.failed) return;
@@ -26609,8 +26601,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred147_AntlrPilar
   public final void synpred147_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: ( newListRanged )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: newListRanged
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: ( newListRanged )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:716:4: newListRanged
     {
       pushFollow(FOLLOW_newListRanged_in_synpred147_AntlrPilar7649);
       newListRanged();
@@ -26626,8 +26618,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred148_AntlrPilar
   public final void synpred148_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: ( newList )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: newList
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: ( newList )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:717:4: newList
     {
       pushFollow(FOLLOW_newList_in_synpred148_AntlrPilar7654);
       newList();
@@ -26643,8 +26635,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred149_AntlrPilar
   public final void synpred149_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: ( newMultiArray )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: newMultiArray
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: ( newMultiArray )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:718:4: newMultiArray
     {
       pushFollow(FOLLOW_newMultiArray_in_synpred149_AntlrPilar7659);
       newMultiArray();
@@ -26660,8 +26652,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred150_AntlrPilar
   public final void synpred150_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: ( newRecord )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: newRecord
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: ( newRecord )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:719:4: newRecord
     {
       pushFollow(FOLLOW_newRecord_in_synpred150_AntlrPilar7664);
       newRecord();
@@ -26677,8 +26669,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred151_AntlrPilar
   public final void synpred151_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: ( newSet )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: newSet
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: ( newSet )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:720:4: newSet
     {
       pushFollow(FOLLOW_newSet_in_synpred151_AntlrPilar7669);
       newSet();
@@ -26694,8 +26686,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred152_AntlrPilar
   public final void synpred152_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: ( newFunction )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: newFunction
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: ( newFunction )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:721:4: newFunction
     {
       pushFollow(FOLLOW_newFunction_in_synpred152_AntlrPilar7674);
       newFunction();
@@ -26713,8 +26705,8 @@ public class AntlrPilarParser extends Parser {
       throws RecognitionException {
     Token t = null;
 
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: (t= '`' type )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: t= '`' type
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: (t= '`' type )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:722:4: t= '`' type
     {
       t = (Token) match(input, 215, FOLLOW_215_in_synpred153_AntlrPilar7682);
       if (state.failed) return;
@@ -26732,8 +26724,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred171_AntlrPilar
   public final void synpred171_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: ( newMultiArrayTypeFragment )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: newMultiArrayTypeFragment
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: ( newMultiArrayTypeFragment )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:768:4: newMultiArrayTypeFragment
     {
       pushFollow(FOLLOW_newMultiArrayTypeFragment_in_synpred171_AntlrPilar8526);
       newMultiArrayTypeFragment();
@@ -26749,8 +26741,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred172_AntlrPilar
   public final void synpred172_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: ( typeFragment )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: typeFragment
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: ( typeFragment )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:769:4: typeFragment
     {
       pushFollow(FOLLOW_typeFragment_in_synpred172_AntlrPilar8532);
       typeFragment();
@@ -26766,8 +26758,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred194_AntlrPilar
   public final void synpred194_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: ( typeFragment )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: typeFragment
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: ( typeFragment )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:851:13: typeFragment
     {
       pushFollow(FOLLOW_typeFragment_in_synpred194_AntlrPilar9666);
       typeFragment();
@@ -26783,8 +26775,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred200_AntlrPilar
   public final void synpred200_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: ( '.' ID )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: '.' ID
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: ( '.' ID )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:11: '.' ID
     {
       match(input, 214, FOLLOW_214_in_synpred200_AntlrPilar9939);
       if (state.failed) return;
@@ -26799,8 +26791,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred201_AntlrPilar
   public final void synpred201_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: ( typeTuple )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: typeTuple
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: ( typeTuple )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:863:20: typeTuple
     {
       pushFollow(FOLLOW_typeTuple_in_synpred201_AntlrPilar9945);
       typeTuple();
@@ -26816,8 +26808,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred203_AntlrPilar
   public final void synpred203_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: ( procedureType )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: procedureType
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: ( procedureType )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:864:4: procedureType
     {
       pushFollow(FOLLOW_procedureType_in_synpred203_AntlrPilar9983);
       procedureType();
@@ -26833,8 +26825,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred204_AntlrPilar
   public final void synpred204_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: ( tupleType )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: tupleType
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: ( tupleType )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:865:4: tupleType
     {
       pushFollow(FOLLOW_tupleType_in_synpred204_AntlrPilar9988);
       tupleType();
@@ -26850,8 +26842,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred205_AntlrPilar
   public final void synpred205_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: ( functionType )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: functionType
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: ( functionType )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:866:4: functionType
     {
       pushFollow(FOLLOW_functionType_in_synpred205_AntlrPilar9993);
       functionType();
@@ -26867,8 +26859,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred206_AntlrPilar
   public final void synpred206_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: ( procedureTypeParamVariable )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: procedureTypeParamVariable
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: ( procedureTypeParamVariable )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:872:9: procedureTypeParamVariable
     {
       pushFollow(FOLLOW_procedureTypeParamVariable_in_synpred206_AntlrPilar10022);
       procedureTypeParamVariable();
@@ -26884,8 +26876,8 @@ public class AntlrPilarParser extends Parser {
   // $ANTLR start synpred207_AntlrPilar
   public final void synpred207_AntlrPilar_fragment()
       throws RecognitionException {
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ( ',' typeParam )
-    // /Users/robby/Repositories/sireum-internal/sireumv2/codebase/core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ',' typeParam
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ( ',' typeParam )
+    // /Users/robby/Repositories/sireum-core/sireum-pilar/src/main/java/org/sireum/pilar/parser/AntlrPilar.g:874:11: ',' typeParam
     {
       match(input, 170, FOLLOW_170_in_synpred207_AntlrPilar10045);
       if (state.failed) return;
@@ -32294,7 +32286,7 @@ public class AntlrPilarParser extends Parser {
       new long[] { 0x0000000000000000L, 0x0000000000000000L,
           0x0000200000000000L });
   public static final BitSet FOLLOW_173_in_packageDeclaration1700 = new BitSet(
-      new long[] { 0x0000000000000000L, 0x0000000000000000L,
+      new long[] { 0x0000000000000002L, 0x0000000000000000L,
           0x076E400000000000L });
   public static final BitSet FOLLOW_packageElement_in_packageDeclaration1705 = new BitSet(
       new long[] { 0x0000000000000002L, 0x0000000000000000L,
