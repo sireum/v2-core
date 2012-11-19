@@ -18,17 +18,6 @@ import org.sireum.util._
  */
 object ChunkingPilarParser {
 
-  def main(args : Array[String]) {
-    val r = new PilarParser.StringErrorReporter(true)
-    val mOpt = parseModel(Right("file:///Users/robby/Downloads/firstapp.pilar"),
-      r)
-    println(r.errorAsString)
-    val fw = new FileWriter("/Users/robby/Downloads/firstapp.txt")
-    val pw = new PrintWriter(fw)
-    pw.println(mOpt.get)
-    fw.close
-  }
-
   def apply(source : Either[String, FileResourceUri],
             reporter : PilarParser.ErrorReporter) =
     parseModel(source, reporter)
