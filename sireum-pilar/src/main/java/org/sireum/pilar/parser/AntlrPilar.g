@@ -240,7 +240,7 @@ annotationParam
 
 packageDeclaration
 	: t='package' name annotationList ';'
-	  packageElement+                      -> ^(PACKAGE[$t] name annotationList ^(LIST packageElement+))
+	  packageElement*                      -> ^(PACKAGE[$t] name annotationList ^(LIST packageElement*))
 	;
 	
 packageElement
