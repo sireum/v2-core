@@ -18,6 +18,12 @@ IF %NEWEST%==%~nx0 (
 )
 :END
 CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+IF ERRORLEVEL 8 (
+  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
+  ECHO Reloading Sireum...
+  ECHO.
+  %SCRIPT% update
+)
 GOTO :eof
 ::!#
 SireumDistro.main(argv)
