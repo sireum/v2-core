@@ -10,6 +10,15 @@ else
   echo "Please wait while Sireum is loading..."
   echo
 fi
-exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+code=$?
+if [[ $code == 8 ]]; then
+  mv -f $0.new $0
+  chmod +x $0
+  echo "Reloading Sireum..."
+  echo
+  exec $0 update
+fi
+exit $code 
 !#
 SireumDistro.main(argv)

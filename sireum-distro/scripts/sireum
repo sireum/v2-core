@@ -10,7 +10,16 @@ else
   echo "Please wait while Sireum is loading..."
   echo
 fi
-exec ${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+${SCALA_BIN:=scala} -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+code=$?
+if [[ $code == 8 ]]; then
+  mv -f $0.new $0
+  chmod +x $0
+  echo "Reloading Sireum..."
+  echo
+  exec $0 update
+fi
+exit $code 
 !#
 SireumDistro.main(argv)
 /*
@@ -44,6 +53,7 @@ object SireumDistro extends App {
   type Cli = {
     def parse(args : Seq[String]) : CliResult
   }
+
   type CliResult = {
     def status : Boolean
     def className : String
@@ -51,12 +61,15 @@ object SireumDistro extends App {
     def options : scala.Option[AnyRef]
     def printTags(out : PrintWriter, err : PrintWriter)
   }
+
   type PRunner = {
     def pipeline : PConfig
   }
+
   type PConfig = {
     def compute(j : PJob) : PJob
   }
+
   type PJob = {
     def setProperty(k : Object, v : Object) : Object
   }
@@ -73,8 +86,30 @@ object SireumDistro extends App {
   val CLI_FEATURE = "Sireum CLI"
   val CLI_CLASS = "org.sireum.cli.SireumCli"
 
-  val out = scala.Console.out
-  val err = scala.Console.err
+  def outPrint(s : String) {
+    scala.Console.out.print(s)
+    scala.Console.out.flush
+  }
+
+  def outPrintln(s : String) {
+    scala.Console.out.println(s)
+    scala.Console.out.flush
+  }
+
+  def outPrintln {
+    scala.Console.out.println
+    scala.Console.out.flush
+  }
+
+  def errPrintln(s : String) {
+    scala.Console.err.println(s)
+    scala.Console.err.flush
+  }
+
+  def errPrintln {
+    scala.Console.err.println
+    scala.Console.err.flush
+  }
 
   val allowableCopyDiffFiles = Set[String]()
 
@@ -105,29 +140,26 @@ object SireumDistro extends App {
   var _checksums = Map[String, String]()
   var _addedClasspathURLs = Set[String]()
 
-  object StatusPrinter {
+  object ProgressPrinter {
     val statusSyms = Seq("\b/", "\b-", "\b\\", "\b|")
     var i = 0
     var lastTime = System.currentTimeMillis
     def first {
       i = 0
       lastTime = System.currentTimeMillis
-      out.print("  ")
-      out.flush
+      outPrint("  ")
       next
     }
     def next {
       val t = System.currentTimeMillis
       if (t - lastTime > 35) {
-        out.print(statusSyms(i))
+        outPrint(statusSyms(i))
         i = (i + 1) % statusSyms.length
         lastTime = t
       }
-      out.flush
     }
     def last {
-      out.print("\b\b")
-      out.flush
+      outPrint("\b\b")
     }
   }
 
@@ -147,21 +179,19 @@ object SireumDistro extends App {
 
   try {
     if ((util.Properties.javaVersion.charAt(2) - '0') < 7) {
-      out.println("This version of Sireum requires at least Java 7")
-      out.flush
+      outPrintln("This version of Sireum requires at least Java 7")
       deleteJar
       sys.exit(-1)
     }
     if (util.Properties.versionString.substring(8) != "2.9.2") {
-      out.println("This version of Sireum requires Scala 2.9.2")
-      out.flush
+      outPrintln("This version of Sireum requires Scala 2.9.2")
       deleteJar
       sys.exit(-1)
     }
     if (getOsString == "unsupported") {
-      out.println("Running on an unsupported platform: some features maybe unavailable")
-      out.println
-      out.flush
+      outPrintln(
+        "Running on an unsupported platform: some features maybe unavailable")
+      outPrintln
     }
     if (args.length < 2) parseCliArgs(Seq("."))
     else parseDistroArgs(1)
@@ -171,13 +201,13 @@ object SireumDistro extends App {
 
   def parseDistroArgs(i : Int) {
       def notMode(mode : String, parentMode : String) {
-        err.println(mode + " is not a mode of " + parentMode)
-        err.flush
+        errPrintln(mode + " is not a mode of " + parentMode)
       }
     val last = i + 1 == args.length
     val strLe = { (s1 : String, s2 : String) => s1 <= s2 }
     val appModes = Seq("distro", "launch", "tools")
-    val distroModes = Seq("clean", "install", "list", "uninstall", "update", "version")
+    val distroModes = Seq("clean", "install", "list", "uninstall", "update",
+      "version")
     val mode = args(i)
     val (parentMode, modes) =
       if (i == 1) ("sireum", (appModes ++ distroModes).sortWith(strLe))
@@ -194,31 +224,26 @@ object SireumDistro extends App {
           else notMode(args(i + 1), "clean")
         case "install" =>
           if (last) {
-            err.println("Please specify features to install")
-            err.flush
+            errPrintln("Please specify features to install")
           } else {
             args(i + 1) match {
               case "-d" =>
                 if (args.length > i + 3) {
                   unmanagedDir = new File(args(i + 2))
                   if (!unmanagedDir.exists) {
-                    err.println(unmanagedDir.getAbsolutePath + " does not exist")
-                    err.flush
+                    errPrintln(unmanagedDir.getAbsolutePath + " does not exist")
                   } else if (!unmanagedDir.isDirectory) {
-                    err.println(unmanagedDir.getAbsolutePath + " is not a directory")
-                    err.flush
+                    errPrintln(unmanagedDir.getAbsolutePath +
+                      " is not a directory")
                   } else
                     install(args.slice(i + 3, args.length) : _*)
                 } else if (args.length == i + 2) {
-                  err.println("Missing install option -d argument")
-                  err.flush
+                  errPrintln("Missing install option -d argument")
                 } else if (args.length == i + 3) {
-                  err.println("Please specify features to install")
-                  err.flush
+                  errPrintln("Please specify features to install")
                 }
               case arg if arg.startsWith("-") =>
-                err.println(arg + " is not an option of install")
-                err.flush
+                errPrintln(arg + " is not an option of install")
               case _ =>
                 install(args.slice(i + 1, args.length) : _*)
             }
@@ -226,54 +251,52 @@ object SireumDistro extends App {
         case "list" =>
           if (last) {
             for (f <- getFeatures.keys.toArray.sortWith(strLe))
-              out.println(removeSappExt(f))
-            out.flush
+              outPrintln(removeSappExt(f))
           } else {
             if ("installed".startsWith(args(i + 1))) {
               for (f <- loadInstalledFeatures.sortWith(strLe))
-                out.println(removeSappExt(f))
+                outPrintln(removeSappExt(f))
             } else notMode(args(i + 1), "list")
           }
         case "uninstall" =>
           if (last) {
-            err.println("Please specify features to uninstall")
-            err.flush
+            errPrintln("Please specify features to uninstall")
           } else {
-            for (j <- i + 1 until args.length)
-              uninstall(args(j))
+            var allFound = false
+            for (j <- i + 1 until args.length if !allFound) {
+              if (args(j) == "all")
+                allFound = true
+            }
+            if (allFound) uninstall("all")
+            else
+              for (j <- i + 1 until args.length)
+                uninstall(args(j))
           }
         case "update" =>
           if (last) {
+            updateScript
             update(new ArrayBuffer[String](), true)
-          } else {
-            if ("script".startsWith(args(i + 1))) {
-              updateScript
-            } else notMode(args(i + 1), "update")
-          }
+          } else notMode(args(i + 1), "update")
         case "version" =>
           if (last) {
             install(CLI_FEATURE)
-            out.println("Sireum v2 (Build " + readBuild + ")")
-            out.flush
+            outPrintln("Sireum v2 (Build " + readBuild + ")")
           } else notMode(args(i + 1), "version")
         case _ =>
           parseCliArgs(args)
       }
     } else {
       notMode(mode, parentMode)
-      out.println("Did you mean one of the following modes?")
+      outPrintln("Did you mean one of the following modes?")
       for (mm <- modeMatches) {
-        out.println("  " + mm)
+        outPrintln("  " + mm)
       }
-      out.flush
     }
   }
 
   def logError(text : String, e : Throwable) {
-    out.println
-    out.flush
-    err.println(text + e.getMessage)
-    err.flush
+    outPrintln
+    errPrintln(text + e.getMessage)
     val f = new File(sireumDir, ".errorlog")
     f.getParentFile.mkdirs
     val fw = new FileWriter(f)
@@ -282,33 +305,30 @@ object SireumDistro extends App {
       pw.println("An error occured on " + timeStamp)
       e.printStackTrace(pw)
       fw.close
-      out.println("Written: " + f.getAbsolutePath)
-      out.flush
+      outPrintln("Written: " + f.getAbsolutePath)
     } catch {
-      case e =>
-        err.println("Error: " + e.getMessage)
-        err.flush
+      case e : Throwable =>
+        errPrintln("Error: " + e.getMessage)
     }
   }
 
   def distroMode {
-    out.println("Sireum Distro")
-    out.println
-    out.println("""Available Top Level Modes:
+    outPrintln("Sireum Distro")
+    outPrintln
+    outPrintln("""Available Top Level Modes:
   install <feature>+           Install features
     Option: -d <dir>             Installation directory for unmanaged apps
                                  [ Default: user's home dir]
+  install all                  Install all features
   clean                        Remove stale or backed-up managed apps
   list                         List available features
   list installed               List installed features
   update                       Update features
-  update script                Update Sireum script
   uninstall <feature>+         Uninstall featuref and all features 
                                depending on them
   uninstall all                Uninstall all features and scrub Sireum directory
   version                      Display version
 """.trim)
-    out.flush
   }
 
   def parseCliArgs(args : Seq[String]) {
@@ -317,8 +337,8 @@ object SireumDistro extends App {
     val cliArgs = args.slice(1, args.length)
     val cr = cli.parse(cliArgs)
 
-    cr.printTags(new PrintWriter(new OutputStreamWriter(out)),
-      new PrintWriter(new OutputStreamWriter(err)))
+    cr.printTags(new PrintWriter(new OutputStreamWriter(scala.Console.out)),
+      new PrintWriter(new OutputStreamWriter(scala.Console.err)))
 
     if (cr.status && cr.className != "") {
       install(cr.featureName)
@@ -391,9 +411,9 @@ object SireumDistro extends App {
     val keepFiles = Set("sireum", "sireum.bat", "README.TXT")
 
     if (all) {
-      out.print("Scrubbing " + sireumDir.getAbsolutePath)
+      outPrint("Scrubbing " + sireumDir.getAbsolutePath)
       var status = true
-      StatusPrinter.first
+      ProgressPrinter.first
       for (f <- sireumDir.listFiles) {
         val fName = f.getName
         if (!keepFiles.contains(fName)) {
@@ -403,13 +423,11 @@ object SireumDistro extends App {
             status = delete(f, false) && status
         }
       }
-      StatusPrinter.last
+      ProgressPrinter.last
       if (status) {
-        out.println("... done!")
-        out.flush
+        outPrintln("... done!")
       } else {
-        err.println("... failed!")
-        err.flush
+        errPrintln("... failed!")
       }
       return
     }
@@ -441,8 +459,7 @@ object SireumDistro extends App {
         }
         if (deleteFiles) {
           if (installedFeatures.contains(feature)) {
-            out.println("Uninstalling feature : " + feature)
-            out.flush
+            outPrintln("Uninstalling feature : " + feature)
             installedFeatures = installedFeatures.filterNot(_ == feature)
           }
           for (f <- files)
@@ -454,7 +471,8 @@ object SireumDistro extends App {
               val featureDir = new File(sireumDir, featureRelPath)
               if (featureDir.exists)
                 featureDir.delete
-              val mFeatureDir = new File(sireumDir, METADATA_DIR + featureRelPath)
+              val mFeatureDir = new File(sireumDir, METADATA_DIR +
+                featureRelPath)
               if (mFeatureDir.exists)
                 delete(mFeatureDir, false)
             }
@@ -479,18 +497,16 @@ object SireumDistro extends App {
       val installedFeatures = loadInstalledFeatures
       if (!installedFeatures.contains(featureName))
         if (features.contains(featureName)) {
-          out.println("Installing " + featureName + " feature in " +
+          outPrintln("Installing " + featureName + " feature in " +
             sireumDir.getAbsolutePath)
-          out.flush
 
-          val installedFiles = downloadNewFiles(features, installedFeatures.toSet,
-            featureName, newFeatures)
+          val installedFiles = downloadNewFiles(features,
+            installedFeatures.toSet, featureName, newFeatures)
           update(newFeatures, featureName.endsWith(SAPP_EXT), installedFiles)
           saveInstalledFeatures(newFeatures.toList ++ installedFeatures)
         } else {
-          err.println("Invalid feature: " + featureName + "!")
-          err.println
-          err.flush
+          errPrintln("Invalid feature: " + featureName + "!")
+          errPrintln
           sys.exit
         }
     }
@@ -501,7 +517,10 @@ object SireumDistro extends App {
                        featureName : String,
                        newFeatures : ArrayBuffer[String]) = {
     var installedFiles = HashSet[String]()
-    for (fPath <- getAllFilenames(features, installedFeatures.toSet, featureName, newFeatures)) {
+    for (
+      fPath <- getAllFilenames(features, installedFeatures.toSet,
+        featureName, newFeatures)
+    ) {
       val file = new File(sireumDir, fPath)
       if (!isDownloaded(file))
         if (downloadFile(false, fPath, file))
@@ -511,55 +530,60 @@ object SireumDistro extends App {
   }
 
   def abnormalExit {
-    out.println("Warning: Sireum maybe in an inconsistent state; " +
+    outPrintln
+    outPrintln("Warning: Sireum maybe in an inconsistent state; " +
       "run clean and update to try to fix the issue.")
-    out.flush
+    outPrintln
     sys.exit
   }
 
   def isDownloaded(f : File) =
     if (f.getName.endsWith(SAPP_EXT))
-      new File(sireumDir, METADATA_DIR + relativize(sireumDir, f) + ".checksum").exists
+      new File(sireumDir, METADATA_DIR + relativize(sireumDir, f) +
+        ".checksum").exists
     else
       f.exists
 
   def updateScript {
-    out.println("Updating Sireum script(s) in " + sireumDir.getAbsolutePath)
-    out.flush
+    val checksums = getChecksums
+
+    val file = new File(sireumDir, scriptName)
+    val checksum = checksums(scriptName)
+
+    if (checksum == getChecksum(file))
+      return
+
+    outPrintln("Updating Sireum script in " + sireumDir.getAbsolutePath)
 
     var replacedCount = 0
     var deleteCount = 0
     var errorCount = 0
 
-    val checksums = getChecksums
-
-      def update(script : String) {
-        val file = new File(sireumDir, script)
-        if (file.exists)
-          updateFile(checksums(script), script, file, None) match {
-            case Replaced =>
-              replacedCount += 1
-            case Deleted =>
-              deleteCount += 1
-            case Error =>
-              errorCount += 1
-            case NoUpdate =>
-          }
-      }
-
-    update("sireum")
-    update("sireum.bat")
+    updateFile(checksum, scriptName, file, None) match {
+      case Replaced =>
+        replacedCount += 1
+      case Deleted =>
+        deleteCount += 1
+      case Error =>
+        errorCount += 1
+      case NoUpdate =>
+    }
 
     printStatus(false, replacedCount, deleteCount, errorCount, 0, Seq())
+
+    if (errorCount == 0) {
+      sys.exit(8)
+    }
+    sys.exit
   }
 
-  def update(newFeatures : ArrayBuffer[String], isApp : Boolean, installedFiles : Set[String] = Set()) {
+  def update(newFeatures : ArrayBuffer[String], isApp : Boolean,
+             installedFiles : Set[String] = Set()) {
     val checksums = getChecksums
     val features = getFeatures
 
     if (installedFiles.isEmpty) {
-      out.println("Updating Sireum in " + sireumDir.getAbsolutePath)
-      out.flush
+      outPrintln("Updating Sireum in " + sireumDir.getAbsolutePath)
     }
 
     val installedFileCount = installedFiles.size
@@ -568,7 +592,8 @@ object SireumDistro extends App {
     var errorCount = 0
     var deleteCount = 0
 
-      def update(filePath : String, f : File, currChecksum : Option[String] = None) {
+      def update(filePath : String, f : File,
+                 currChecksum : Option[String] = None) {
         if (!replacedFiles.contains(filePath) && shouldUpdate(filePath) &&
           checksums.contains(filePath)) {
           updateFile(checksums(filePath), filePath, f, currChecksum) match {
@@ -593,14 +618,17 @@ object SireumDistro extends App {
               if (!features.contains(fPath)) {
                 if (!isAppFile(file))
                   update(fPath, file)
-                else if (isApp && !new File(sireumDir, METADATA_DIR + fPath + ".checksum").exists)
+                else if (isApp && !new File(sireumDir, METADATA_DIR + fPath +
+                  ".checksum").exists)
                   if (downloadFile(false, fPath, file))
                     downloadCount += 1
-              } else if (features.contains(fPath) && !installedFeatures.contains(fPath) &&
+              } else if (features.contains(fPath) &&
+                !installedFeatures.contains(fPath) &&
                 (isApp || !isAppFile(file))) {
                 val newFeatures2 = ArrayBuffer[String]()
                 val installedFiles =
-                  downloadNewFiles(features, installedFeatures.toSet, fPath, newFeatures2)
+                  downloadNewFiles(features, installedFeatures.toSet, fPath,
+                    newFeatures2)
                 downloadCount += installedFiles.size
                 replacedFiles ++= installedFiles
                 installedFeatures ++= newFeatures2
@@ -640,8 +668,10 @@ object SireumDistro extends App {
               if (f.getName.endsWith(".checksum")) {
                 val currentChecksum = readLine(f)
                 var filePath = relativize(metaDir, f)
-                filePath = filePath.substring(0, filePath.length - ".checksum".length)
-                update(filePath, new File(sireumDir, filePath), Some(currentChecksum))
+                filePath = filePath.substring(0, filePath.length -
+                  ".checksum".length)
+                update(filePath, new File(sireumDir, filePath),
+                  Some(currentChecksum))
               }
             }
         }
@@ -659,28 +689,27 @@ object SireumDistro extends App {
   def printStatus(buildDownload : Boolean,
                   replacedCount : Int, deleteCount : Int, errorCount : Int,
                   downloadCount : Int, newFeatures : Seq[String]) {
-    if (replacedCount == 0 && deleteCount == 0 && errorCount == 0 && downloadCount == 0)
-      out.println("There was no update.")
+    if (replacedCount == 0 && deleteCount == 0 && errorCount == 0 &&
+      downloadCount == 0)
+      outPrintln("There was no update.")
     else {
       if (buildDownload)
         downloadBuild
-      out.println
-      out.println("Finished updating Sireum.")
+      outPrintln
+      outPrintln("Finished updating Sireum.")
       if (newFeatures.size > 0) {
-        out.println
-        out.println("Newly installed feature(s): " + newFeatures.size)
+        outPrintln
+        outPrintln("Newly installed feature(s): " + newFeatures.size)
         for (f <- newFeatures)
-          out.println("* " + f)
-        out.println
+          outPrintln("* " + f)
+        outPrintln
       }
-      out.println("File download(s): " + downloadCount)
-      out.println("File update(s): " + replacedCount)
-      out.println("File deletion(s): " + deleteCount)
-      out.println("Error(s): " + errorCount)
-      out.println
-      out.println
+      outPrintln("File download(s): " + downloadCount)
+      outPrintln("File update(s): " + replacedCount)
+      outPrintln("File deletion(s): " + deleteCount)
+      outPrintln("Error(s): " + errorCount)
+      outPrintln
     }
-    out.flush
   }
 
   def downloadBuild {
@@ -721,9 +750,8 @@ object SireumDistro extends App {
         NoUpdate
       }
     } else {
-      out.println("File " + file.getAbsolutePath +
+      outPrintln("File " + file.getAbsolutePath +
         " will be deleted upon exit.")
-      out.flush
       file.deleteOnExit()
       Deleted
     }
@@ -740,22 +768,26 @@ object SireumDistro extends App {
           else {
             val download = if (!file.exists && !isAppFile(file)) true else {
               val currentChecksum =
-                if (currChecksum.isDefined) currChecksum.get else getChecksum(file)
+                if (currChecksum.isDefined) currChecksum.get
+                else getChecksum(file)
               checksum != currentChecksum
             }
             if (download) {
-              downloadFile(file.exists, filename, file)
+              if (file.getName == scriptName && file.getParentFile == sireumDir)
+                downloadFile(file.exists, filename,
+                  new File(sireumDir, scriptName + ".new"))
+              else
+                downloadFile(file.exists, filename, file)
               Replaced
             } else
               NoUpdate
           }
       }
     catch {
-      case e =>
-        err.println("Failed to update " + file.getAbsolutePath)
-        err.println("Reason: " + e.getMessage)
-        err.println
-        err.flush
+      case e : Throwable =>
+        errPrintln("Failed to update " + file.getAbsolutePath)
+        errPrintln("Reason: " + e.getMessage)
+        errPrintln
         Error
     }
 
@@ -795,31 +827,32 @@ object SireumDistro extends App {
     }
   }
 
-  def downloadFile(isUpdate : Boolean, filename : String, file : File) : Boolean = {
-    if (!isUpdate && isPlatformSpecific(filename) && isNotForThisPlatform(filename))
+  def downloadFile(isUpdate : Boolean, filename : String,
+                   file : File) : Boolean = {
+    if (!isUpdate && isPlatformSpecific(filename)
+      && isNotForThisPlatform(filename))
       return false
-    out.print((if (isUpdate) "Updating" else "Downloading") + " file " + filename)
-    out.flush
+    outPrint((if (isUpdate) "Updating" else "Downloading") + " file " +
+      filename)
 
-    val is = new URL(updateUrl + filename).openStream()
+    val is = new URL(updateUrl + filename).openStream
     try {
       file.getParentFile.mkdirs
       val os = new BufferedOutputStream(new FileOutputStream(file))
       try {
         val buffer = new Array[Byte](BUFFER_SIZE)
         var n = is.read(buffer)
-        StatusPrinter.first
+        ProgressPrinter.first
         while (n != -1) {
           os.write(buffer, 0, n)
           n = is.read(buffer)
-          StatusPrinter.next
+          ProgressPrinter.next
         }
       } finally os.close
     } finally is.close
 
-    StatusPrinter.last
-    out.println("... done!")
-    out.flush
+    ProgressPrinter.last
+    outPrintln("... done!")
 
     if (isAppFile(file))
       installApp(file)
@@ -830,10 +863,12 @@ object SireumDistro extends App {
   def isAppFile(file : File) = file.getName.endsWith(SAPP_EXT)
 
   def relativize(baseFile : File, file : File) =
-    file.getAbsolutePath.substring(baseFile.getAbsolutePath.length + 1).replace("\\", "/")
+    file.getAbsolutePath.substring(baseFile.getAbsolutePath.length + 1).
+      replace("\\", "/")
 
   def isManaged(file : File) =
-    file.getParentFile.getAbsolutePath != new File(sireumDir, "apps").getAbsolutePath
+    file.getParentFile.getAbsolutePath != new File(sireumDir, "apps").
+      getAbsolutePath
 
   def installApp(file : File) {
     val relPath = relativize(sireumDir, file)
@@ -842,30 +877,32 @@ object SireumDistro extends App {
     val dirs = movePrevApp(file, installDir)
     deleteRemainingAppFiles(relPath)
     if (managed)
-      out.print("Installing managed app file: " + file.getName)
+      outPrint("Installing managed app file: " + file.getName)
     else
-      out.print("Installing unmanaged app file: " + file.getName + " to " + installDir.getAbsolutePath)
-    out.flush
+      outPrint("Installing unmanaged app file: " + file.getName + " to " +
+        installDir.getAbsolutePath)
     try {
       val fileList =
         if (managed) {
           val checksums = getChecksums
-          write(new File(sireumDir, METADATA_DIR + relPath + ".checksum"), checksums(relPath))
-          Some(new PrintWriter(new FileWriter(new File(sireumDir, METADATA_DIR + relPath + ".filelist"))))
+          write(new File(sireumDir, METADATA_DIR + relPath + ".checksum"),
+            checksums(relPath))
+          Some(new PrintWriter(new FileWriter(new File(sireumDir, METADATA_DIR +
+            relPath + ".filelist"))))
         } else
           None
       try {
         unzip(file, installDir, fileList)
         file.delete
         dirs match {
-          case Some((appDir, appBackupDir)) => copyBackupDiff(appDir, appBackupDir)
-          case _                            =>
+          case Some((appDir, appBackupDir)) =>
+            copyBackupDiff(appDir, appBackupDir)
+          case _ =>
         }
       } finally
         if (fileList.isDefined)
           fileList.get.close
-      out.println("... done!")
-      out.flush
+      outPrintln("... done!")
     } catch {
       case e =>
         logError("Error installing app: ", e)
@@ -915,15 +952,14 @@ object SireumDistro extends App {
     val appName = getAppPath(file.getName)
     val appDir = new File(installDir, appName)
     if (appDir.exists) {
-      val appDirBackup = new File(appDir.getParentFile, appDir.getName + "-backup-" + timeStamp)
+      val appDirBackup = new File(appDir.getParentFile, appDir.getName +
+        "-backup-" + timeStamp)
       if (appDir.renameTo(appDirBackup)) {
-        out.println("Moved " + appDir.getName + " to " + appDirBackup.getName)
-        out.flush
+        outPrintln("Moved " + appDir.getName + " to " + appDirBackup.getName)
         Some((appDir, appDirBackup))
       } else {
-        out.flush
-        err.println("Unable to move " + appDir.getName + " to " + appDirBackup.getName)
-        err.flush
+        errPrintln("Unable to move " + appDir.getName + " to " +
+          appDirBackup.getName)
         abnormalExit
         None
       }
@@ -940,7 +976,7 @@ object SireumDistro extends App {
           if (onExit) f.deleteOnExit
           else Files.delete(f.toPath)
         }
-        StatusPrinter.next
+        ProgressPrinter.next
       }
     if (onExit) {
       file.deleteOnExit
@@ -955,18 +991,15 @@ object SireumDistro extends App {
   }
 
   def deleteRec(dir : File, msg : String, onExit : Boolean) : Boolean = {
-    out.print(msg)
-    out.flush
-    StatusPrinter.first
+    outPrint(msg)
+    ProgressPrinter.first
     val status = delete(dir, onExit)
-    StatusPrinter.last
+    ProgressPrinter.last
     if (status) {
-      out.println("... done!")
-      out.flush
+      outPrintln("... done!")
       true
     } else {
-      err.println("... failed!")
-      err.flush
+      errPrintln("... failed!")
       false
     }
   }
@@ -1026,10 +1059,9 @@ object SireumDistro extends App {
 
       _checksums
     } catch {
-      case e =>
-        err.println("Could not connect to update site.")
-        err.println
-        err.flush
+      case e : Throwable =>
+        errPrintln("Could not connect to update site.")
+        errPrintln
         sys.exit
     }
   }
@@ -1079,16 +1111,16 @@ object SireumDistro extends App {
       }
       _features
     } catch {
-      case e =>
-        err.println("Could not connect to Sireum update site.")
-        err.println
-        err.flush
+      case e : Throwable =>
+        errPrintln("Could not connect to Sireum update site.")
+        errPrintln
         sys.exit
     }
   }
 
   def loadInstalledFeatures = {
-    val installedFeaturesFile = new File(sireumDir, METADATA_DIR + "installed-features.txt")
+    val installedFeaturesFile = new File(sireumDir, METADATA_DIR +
+      "installed-features.txt")
     if (!installedFeaturesFile.exists)
       List[String]()
     else {
@@ -1106,7 +1138,8 @@ object SireumDistro extends App {
   }
 
   def saveInstalledFeatures(installedFeatures : List[String]) {
-    val installedFeaturesFile = new File(sireumDir, METADATA_DIR + "installed-features.txt")
+    val installedFeaturesFile = new File(sireumDir, METADATA_DIR +
+      "installed-features.txt")
     installedFeaturesFile.getParentFile.mkdirs
     val pw = new PrintWriter(new FileWriter(installedFeaturesFile))
     for (f <- installedFeatures)
@@ -1160,7 +1193,7 @@ object SireumDistro extends App {
     import scala.collection.JavaConversions._
     import scala.collection.mutable._
 
-    StatusPrinter.first
+    ProgressPrinter.first
     val zipFile = new ZipFile(file)
     val dirLastModMap = Map[String, Long]()
     try {
@@ -1183,7 +1216,7 @@ object SireumDistro extends App {
             } catch {
               case e : IOException =>
             }
-            StatusPrinter.next
+            ProgressPrinter.next
           }
         }
       }
@@ -1192,14 +1225,14 @@ object SireumDistro extends App {
     for (
       path <- dirLastModMap.keys.toSeq.sortWith({
         (s1, s2) =>
-          StatusPrinter.next
+          ProgressPrinter.next
           s1.compareTo(s2) > 0
       })
     ) {
       new File(path).setLastModified(dirLastModMap(path))
-      StatusPrinter.next
+      ProgressPrinter.next
     }
-    StatusPrinter.last
+    ProgressPrinter.last
   }
 
   def maskToPermSet(mask : Int) = {
@@ -1237,9 +1270,8 @@ object SireumDistro extends App {
         Files.createSymbolicLink(outputFile.toPath, path)
       } catch {
         case e : IOException =>
-          err.println("Could not create symbolic link: " +
+          errPrintln("Could not create symbolic link: " +
             outputFile.getAbsolutePath + " to " + path)
-          err.flush
       }
       val time = entry.getTime
       if (time != 0)
@@ -1282,7 +1314,7 @@ object SireumDistro extends App {
     val buf = new Array[Byte](BUFFER_SIZE)
     var len = is.read(buf)
     while (len > 0) {
-      StatusPrinter.next
+      ProgressPrinter.next
       os.write(buf, 0, len)
       len = is.read(buf)
     }
@@ -1306,7 +1338,8 @@ object SireumDistro extends App {
     import scala.actors._
     import scala.actors.Actor._
 
-    def run(waitTime : Long, args : Seq[String], input : Option[String], dir : Option[File] = None) : Result = {
+    def run(waitTime : Long, args : Seq[String], input : Option[String],
+            dir : Option[File] = None) : Result = {
       singleReader(self, waitTime, dir) ! (args, input)
 
       (if (waitTime < 0)
@@ -1321,7 +1354,8 @@ object SireumDistro extends App {
       }
     }
 
-    private def singleReader(caller : Actor, waitTime : Long, dir : Option[File]) = actor {
+    private def singleReader(caller : Actor, waitTime : Long,
+                             dir : Option[File]) = actor {
       (if (waitTime < 0)
         react _
       else
@@ -1330,7 +1364,8 @@ object SireumDistro extends App {
           caller ! Some(TIMEOUT)
         case (args : Seq[_], in : Option[_]) =>
           import java.io._
-          val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
+          val processBuilder = new ProcessBuilder(
+            args.asInstanceOf[Seq[String]] : _*)
           if (dir.isDefined)
             processBuilder.directory(dir.get)
           processBuilder.redirectErrorStream(true)
@@ -1341,7 +1376,8 @@ object SireumDistro extends App {
               osr.write(in.get.asInstanceOf[String])
               osr.flush
             }
-            val br = new BufferedReader(new InputStreamReader(proc.getInputStream))
+            val br = new BufferedReader(
+              new InputStreamReader(proc.getInputStream))
             val sb = new StringBuilder()
             var line : String = null
             while ({ line = br.readLine; line != null }) {
@@ -1363,7 +1399,11 @@ object SireumDistro extends App {
       s.substring(0, s.length - SAPP_EXT.length)
     else s
 
-  def guessFeatureNames(featureNames : Seq[String], features : Seq[String]) : Seq[String] = {
+  def guessFeatureNames(featureNames : Seq[String],
+                        features : Seq[String]) : Seq[String] = {
+    if (featureNames.exists(_ == "all"))
+      return features
+
     var sFeatures = Map[String, String]()
     for (f <- features)
       sFeatures += removeSappExt(f) -> f
@@ -1384,14 +1424,11 @@ object SireumDistro extends App {
           result(i) = matches.head
         } else {
           featureNotFound = true
-          err.println("Invalid feature: " + fName + "!")
-          err.flush
+          errPrintln("Invalid feature: " + fName + "!")
           if (matches.size > 1) {
-            out.println("Did you mean one of the following features?")
-            for (fm <- matches.toSeq.sortWith((s1, s2) => s1.compareTo(s2) < 0)) {
-              out.println("  " + removeSappExt(fm))
-            }
-            out.flush
+            outPrintln("Did you mean one of the following features?")
+            for (fm <- matches.toSeq.sortWith((s1, s2) => s1.compareTo(s2) < 0))
+              outPrintln("  " + removeSappExt(fm))
           }
         }
       }
