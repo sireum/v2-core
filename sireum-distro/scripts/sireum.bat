@@ -624,7 +624,8 @@ object SireumDistro extends App {
                 if (!isAppFile(file))
                   update(fPath, file)
                 else if (isApp && !new File(sireumDir, METADATA_DIR + fPath +
-                  ".checksum").exists)
+                  ".checksum").exists &&
+                  (file.getParentFile != new File(sireumDir, "apps")))
                   if (downloadFile(false, fPath, file))
                     downloadCount += 1
               } else if (features.contains(fPath) &&
