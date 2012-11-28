@@ -68,12 +68,6 @@ final class KonkritBooleanExtension[S <: State[S]](
   @inline
   private implicit def re2r(p : (S, Value)) = ilist(p)
 
-  @inline
-  private implicit def kbv2boolean(c : KBV) = c.asBoolean
-
-  @inline
-  private def boolean2kbv(b : Boolean) = if (b) TT else FF
-
   @Cast
   def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
     case (s, v : KBV, BooleanExtension.Type)        => (s, v)
@@ -85,9 +79,6 @@ final class KonkritBooleanExtension[S <: State[S]](
   @Cond
   def cond : (S, Value) --> ISeq[(S, Boolean)] = {
     case (s, b : KBV) => ilist((s, b.asBoolean))
-    case (s, v) if se.canCast(s, v, KonkritBooleanExtension.Type) =>
-      val r = se.cast(s, v, KonkritBooleanExtension.Type)
-      r.map { p => (p._1, p._2.asInstanceOf[KBV].asBoolean) }
   }
 
   @Literal(value = classOf[Boolean], isTrue = true)
@@ -101,33 +92,53 @@ final class KonkritBooleanExtension[S <: State[S]](
     case (s, BooleanExtension.Type) => (s, FF)
   }
 
-  @Binaries(Array("&&&", "|||", "===>", "<==="))
+  val sec = config.semanticsExtension
+
+  @Binaries(Array("==", "!=", "&&&", "|||", "===>", "<==="))
   def binopLEval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, b1 : KBV, opL : String, b2 : KBV) =>
-      (s, boolean2kbv(binopLSem(opL)(b1, b2)))
+    case (s, v1 : Value, opL : String, v2 : Value) =>
+      for {
+        (s2, b1) <- sec.cond(s, v1)
+        (s3, b2) <- sec.cond(s2, v2)
+      } yield (s3, b2v(binopLSem(opL)(b1, b2)))
+  }
+
+  @RBinaries(Array("&&", "||", "==>", "<=="))
+  def binopSCEval : (S, Value, String, S => ISeq[(S, Value)]) --> ISeq[(S, Value)] = {
+    case (s, v1 : Value, opSC : String, f) =>
+      for {
+        (s2, b1) <- sec.cond(s, v1)
+        (s5, v) <- {
+          binopSCSem(opSC)(b1) match {
+            case Left(b) => ilist((s2, b2v(b)))
+            case Right(fb) =>
+              for {
+                (s3, v2) <- f(s2)
+                (s4, b2) <- se.cond(s3, v2)
+              } yield (s4, b2v(fb(b2)))
+          }
+        }
+      } yield (s5, v)
+  }
+
+  @Unary("!")
+  def unopEval : (S, Value) --> ISeq[(S, Value)] = {
+    case (s, v : Value) =>
+      for {
+        (s2, b) <- sec.cond(s, v)
+      } yield (s2, b2v(!b))
   }
 
   @inline
-  private def binopLSem(opA : String)(b1 : Boolean, b2 : Boolean) =
-    opA match {
+  private def binopLSem(opL : String)(b1 : Boolean, b2 : Boolean) =
+    opL match {
+      case "=="   => b1 == b2
+      case "!="   => b1 != b2
       case "&&&"  => b1 && b2
       case "|||"  => b1 || b2
       case "<===" => b1 || !b2
       case "===>" => !b1 || b2
     }
-
-  @RBinaries(Array("&&", "||", "==>", "<=="))
-  def binopSCEval : (S, Value, String, S => ISeq[(S, Value)]) --> ISeq[(S, Value)] = {
-    case (s, b1 : KBV, opSC : String, f) =>
-      binopSCSem(opSC)(b1) match {
-        case Left(b) => (s, boolean2kbv(b))
-        case Right(fb) =>
-          for {
-            (s2, v) <- f(s)
-            (s3, kbv) <- se.cast(s2, v, KonkritBooleanExtension.Type)
-          } yield (s3, boolean2kbv(fb(kbv.asInstanceOf[KBV].asBoolean)))
-      }
-  }
 
   @inline
   private def binopSCSem(opA : String)(b1 : Boolean) : Either[Boolean, Boolean => Boolean] =
@@ -138,8 +149,6 @@ final class KonkritBooleanExtension[S <: State[S]](
       case "==>" => if (!b1) Left(true) else Right(identity)
     }
 
-  @Unary("!")
-  def unopEval : (S, Value) --> ISeq[(S, Value)] = {
-    case (s, b : KBV) => (s, boolean2kbv(!b.asBoolean))
-  }
+  @inline
+  private def b2v(b : Boolean) = if (b) TT else FF
 }
