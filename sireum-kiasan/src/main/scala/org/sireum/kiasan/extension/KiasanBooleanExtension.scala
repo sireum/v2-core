@@ -38,10 +38,9 @@ object KiasanBooleanExtension extends ExtensionCompanion {
     (nextS, KB(num))
   }
 
-
   @BackEnd(value = "Z3", mode = "Process")
   def z3BackEndPart = new TopiProcess.BackEndPart {
-    
+
     class Context(var tc : TopiProcess.TypeCounters,
                   val sb : StringBuilder = new StringBuilder) {
       def result = (tc, sb.toString)
@@ -110,6 +109,7 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
 
   val uriPath = UriUtil.classUri(this)
 
+  type C = KonkritBooleanValue
   type K = KiasanBooleanValue
 
   @inline
@@ -121,7 +121,7 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
     case (s, v : K, KiasanBooleanExtension.Type) => (s, v)
   }
 
-  val se = config.semanticsExtension
+  val sec = config.semanticsExtension
 
   @Cond
   def cond : (S, Value) --> ISeq[(S, Boolean)] = {
@@ -135,4 +135,19 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
   def freshKB : (S, ResourceUri) --> (S, Value) = {
     case (s, KiasanBooleanExtension.Type) => fresh(s)
   }
+
+  @Binaries(Array("==", "!="))
+  def binopEqu : (S, Value, String, Value) --> ISeq[(S, Value)] = {
+    case (s, b1 : C, opEqu, b2 : K) => binopEquHelper(s, b1, opEqu, b2)
+    case (s, b1 : K, opEqu, b2 : C) => binopEquHelper(s, b1, opEqu, b2)
+    case (s, b1 : K, opEqu, b2 : K) => binopEquHelper(s, b1, opEqu, b2)
+  }
+
+  def binopEquHelper(s : S, v1 : Value, opEqu : String, v2 : Value) =
+    for {
+      (s2, b1) <- sec.cond(s, v1)
+      (s3, b2) <- sec.cond(s2, v2)
+    } yield (s3,
+      KonkritBooleanExtension.b2v(
+          KonkritBooleanExtension.binopEquSem(opEqu)(b1, b2)))
 }

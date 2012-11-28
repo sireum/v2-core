@@ -26,6 +26,16 @@ object KonkritBooleanExtension extends ExtensionCompanion {
     new KonkritBooleanExtension(config)
 
   val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+
+  @inline
+  def b2v(b : Boolean) = if (b) TT else FF
+
+  @inline
+  def binopEquSem(opEqu : String)(b1 : Boolean, b2 : Boolean) =
+    opEqu match {
+      case "==" => b1 == b2
+      case "!=" => b1 != b2
+    }
 }
 
 /**
@@ -94,13 +104,22 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   val sec = config.semanticsExtension
 
-  @Binaries(Array("==", "!=", "&&&", "|||", "===>", "<==="))
+  @Binaries(Array("&&&", "|||", "===>", "<==="))
   def binopLEval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
     case (s, v1 : Value, opL : String, v2 : Value) =>
       for {
         (s2, b1) <- sec.cond(s, v1)
         (s3, b2) <- sec.cond(s2, v2)
       } yield (s3, b2v(binopLSem(opL)(b1, b2)))
+  }
+
+  @Binaries(Array("==", "!="))
+  def binopEqu : (S, Value, String, Value) --> ISeq[(S, Value)] = {
+    case (s, b1 : KBV, opEqu, b2 : KBV) =>
+      (s, b2v(opEqu match {
+        case "==" => b1.asBoolean == b2.asBoolean
+        case "!=" => b1.asBoolean != b2.asBoolean
+      }))
   }
 
   @RBinaries(Array("&&", "||", "==>", "<=="))
@@ -148,7 +167,4 @@ final class KonkritBooleanExtension[S <: State[S]](
       case "<==" => if (b1) Left(true) else Right(!_)
       case "==>" => if (!b1) Left(true) else Right(identity)
     }
-
-  @inline
-  private def b2v(b : Boolean) = if (b) TT else FF
 }
