@@ -1221,7 +1221,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     if (temp.endsWith("L")) {
       temp = temp.substring(0, temp.length() - 1)
       choice = 0
-    } else if (s.endsWith("II")) {
+    } else if (temp.endsWith("II")) {
       temp = temp.substring(0, temp.length() - 2)
       choice = 1
     } else {
