@@ -100,8 +100,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
     implicit def v2s : Exp --> String = {
       case e : LiteralExp =>
         e.literal.toString
-      case ValueExp(c : KonkritIntegerValue) =>
-        val n = c.value
+      case ValueExp(c : IsInteger) =>
+        val n = c.asInteger
         if (n < 0)
           "(- " + (-n).toBigInt + ")"
         else
@@ -177,7 +177,7 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
 
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritIntegerValue
+  type C = KonkritIntegerExtension.KonkritIntegerValue
   type K = KiasanIntegerValue
 
   @inline
@@ -285,6 +285,7 @@ object KiasanIntegerIExtension extends ExtensionCompanion {
 final class KiasanIntegerIExtension[S <: KiasanStatePart[S]](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends KiasanIntegerExtension[S] {
+  import KonkritIntegerExtension._
   import KiasanIntegerExtension._
 
   def b2v(b : Boolean) : Value = if (b) CI(SireumNumber(1)) else CI(SireumNumber(0))

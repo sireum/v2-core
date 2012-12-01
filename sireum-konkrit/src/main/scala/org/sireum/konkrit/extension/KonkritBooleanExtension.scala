@@ -73,22 +73,22 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   val uriPath = UriUtil.classUri(this)
 
-  type KBV = IsBoolean
+  type C = IsBoolean
 
   @inline
   private implicit def re2r(p : (S, Value)) = ilist(p)
 
   @Cast
   def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, v : KBV, BooleanExtension.Type)        => (s, v)
-    case (s, v : KBV, KonkritBooleanExtension.Type) => (s, v)
+    case (s, v : C, BooleanExtension.Type)        => (s, v)
+    case (s, v : C, KonkritBooleanExtension.Type) => (s, v)
   }
 
   val se = config.semanticsExtension
 
   @Cond
   def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, b : KBV) => ilist((s, b.asBoolean))
+    case (s, b : C) => ilist((s, b.asBoolean))
   }
 
   @Literal(value = classOf[Boolean], isTrue = true)
@@ -115,7 +115,7 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   @Binaries(Array("==", "!="))
   def binopEqu : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, b1 : KBV, opEqu, b2 : KBV) =>
+    case (s, b1 : C, opEqu, b2 : C) =>
       (s, b2v(opEqu match {
         case "==" => b1.asBoolean == b2.asBoolean
         case "!=" => b1.asBoolean != b2.asBoolean
