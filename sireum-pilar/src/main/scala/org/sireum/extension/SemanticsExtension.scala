@@ -45,6 +45,7 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
   def falseLiteral(s : S) : R
   def cond(s : S, t : V) : C
   def intLiteral(s : S, n : Int) : R
+  def longLiteral(s : S, n : Long) : R
   def integerLiteral(s : S, n : BigInt) : R
   def nullLiteral(s : S) : R
   def tupleDecon(s : S, v : V) : (S, ISeq[V])
@@ -91,6 +92,7 @@ trait SemanticsExtensionInit[S, V, R, C, SR] {
   def addFalseLiteral(falseF : S --> R)
   def addCond(condF : (S, V) --> C)
   def addIntLiteral(intF : (S, Int) --> R)
+  def addLongLiteral(intF : (S, Long) --> R)
   def addIntegerLiteral(integerF : (S, BigInt) --> R)
   def addNullLiteral(nullF : S --> R)
   def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V]))
@@ -175,6 +177,14 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   def addIntLiteral(intF : (S, Int) --> R) {
     require(!PartialFunctionUtil.empty.equals(intF))
     _intLiteralA += intF
+  }
+
+  protected val _longLiteralA : MArray[(S, Long) --> R] = marrayEmpty
+  protected val _longLiteral : (S, Long) --> R = PartialFunctionUtil.orElses(_longLiteralA)
+
+  def addLongLiteral(longF : (S, Long) --> R) {
+    require(!PartialFunctionUtil.empty.equals(longF))
+    _longLiteralA += longF
   }
 
   protected val _integerLiteralA : MArray[(S, BigInt) --> R] = marrayEmpty
@@ -470,6 +480,7 @@ trait SemanticsExtensionConsumerImpl[S, V, R, C, SR]
   def falseLiteral(s : S) : R = _falseLiteral(s)
   def cond(s : S, v : V) : C = _cond(s, v)
   def intLiteral(s : S, n : Int) : R = _intLiteral(s, n)
+  def longLiteral(s : S, n : Long) : R = _longLiteral(s, n)
   def integerLiteral(s : S, n : BigInt) : R = _integerLiteral(s, n)
   def nullLiteral(s : S) : R = _nullLiteral(s)
   def tupleDecon(s : S, v : V) : (S, ISeq[V]) = _tupleDecon(s, v)
@@ -636,6 +647,8 @@ object ExtensionMiner {
           sei.addIntegerLiteral(m.invoke(ext).asInstanceOf[(S, BigInt) --> R])
         else if (c == classOf[Int])
           sei.addIntLiteral(m.invoke(ext).asInstanceOf[(S, Int) --> R])
+        else if (c == classOf[Long])
+          sei.addLongLiteral(m.invoke(ext).asInstanceOf[(S, Long) --> R])
         else if (c == classOf[Object])
           sei.addNullLiteral(m.invoke(ext).asInstanceOf[S --> R])
       case ann : NativeIndex =>

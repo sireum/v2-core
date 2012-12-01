@@ -497,6 +497,8 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       if (b) sec.trueLiteral(s) else sec.falseLiteral(s)
     case (s, LiteralExp(_, n : Int, _)) =>
       sec.intLiteral(s, n)
+    case (s, LiteralExp(_, n : Long, _)) =>
+      sec.longLiteral(s, n)
     case (s, LiteralExp(_, n : BigInt, _)) =>
       sec.integerLiteral(s, n)
     case (s, LiteralExp(_, null, _)) =>
