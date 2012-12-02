@@ -407,7 +407,7 @@ object SireumDistro extends App {
       }
       return
     }
-
+    
     val features = getFeatures
 
     val fName = guessFeatureNames(Seq(featureName), features.keys.toSeq)(0)
@@ -463,6 +463,12 @@ object SireumDistro extends App {
 
     if (isDevelopment)
       return
+
+    {
+      val installedFeatures = loadInstalledFeatures
+      if (featureNames.forall(installedFeatures.contains(_)))
+        return
+    }
 
     val features = getFeatures
 
