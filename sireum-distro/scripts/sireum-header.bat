@@ -1,5 +1,6 @@
 ::#!
 @echo off
+SETLOCAL
 SET SIREUM_DIST=true
 SET SIREUM_HOME=%~dp0
 SET SCRIPT=%SIREUM_HOME%%~nx0
@@ -14,7 +15,6 @@ IF %NEWEST%==%~nx0 (
   ECHO Please wait while Sireum is loading... 
 )
 :END
-SETLOCAL
 IF EXIST %SIREUM_HOME%apps\platform\java (
   SET JAVA_HOME=%SIREUM_HOME%apps\platform\java
   SET PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%
@@ -28,7 +28,6 @@ IF NOT DEFINED SCALA_BIN (
 )
 CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
-ENDLOCAL
 IF EXIST %JAVA_HOME%.new (
   RD %JAVA_HOME% /S /Q
   MOVE %JAVA_HOME%.new %JAVA_HOME%
@@ -43,6 +42,7 @@ IF EXIST %SCRIPT%.new (
   ECHO.
   %SCRIPT% update
 )
+ENDLOCAL
 EXIT /B %CODE%
 ::!#
 SireumDistro.main(argv)
