@@ -742,19 +742,29 @@ trait ProcedureSymbolResolver extends SymbolResolver {
 trait JumpResolver extends SymbolResolver {
   self : ProcedureSymbolTableProducer =>
 
-  def hasImplicitNextJump(loc : LocationDecl) : Boolean =
-    loc match {
-      case loc : ActionLocation                 => true
-      case t : Transformation if t.jump.isEmpty => true
-      case t : CallJump if t.jump.isEmpty       => true
-      case t : Transformation =>
-        t.jump.get match {
+  def hasImplicitNextJump(loc : LocationDecl) : Boolean = {
+      def hasImplicit(j : Jump) : Boolean =
+        j match {
           case j : IfJump if j.ifElse.isEmpty          => true
           case j : SwitchJump if j.defaultCase.isEmpty => true
-          case _                                       => false
+          case j : CallJump =>
+            if (j.jump.isEmpty) true
+            else hasImplicit(j.jump.get)
+          case _ => false
+        }
+    loc match {
+      case loc : ActionLocation => true
+      case loc : EmptyLocation  => true
+      case loc : JumpLocation   => hasImplicit(loc.jump)
+      case loc : ComplexLocation =>
+        loc.transformations.exists { t =>
+          if (t.jump.isEmpty)
+            true
+          else hasImplicit(t.jump.get)
         }
       case _ => false
     }
+  }
 
   val jumpResolver : VisitorFunction = {
     var source : Option[FileResourceUri] = null
