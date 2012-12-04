@@ -191,6 +191,7 @@ object SireumDistro extends App {
 
     val modeMatches = modes.filter(_.startsWith(mode))
     if (modeMatches.size == 1) {
+
       modeMatches(0) match {
         case "distro" =>
           if (last) distroMode
@@ -212,7 +213,8 @@ object SireumDistro extends App {
                     errPrintln(unmanagedDir.getAbsolutePath +
                       " is not a directory")
                   } else
-                    install(args.slice(i + 3, args.length) : _*)
+                    updateScript
+                  install(args.slice(i + 3, args.length) : _*)
                 } else if (args.length == i + 2) {
                   errPrintln("Missing install option -d argument")
                 } else if (args.length == i + 3) {
@@ -221,11 +223,13 @@ object SireumDistro extends App {
               case arg if arg.startsWith("-") =>
                 errPrintln(arg + " is not an option of install")
               case _ =>
+                updateScript
                 install(args.slice(i + 1, args.length) : _*)
             }
           }
         case "list" =>
           if (last) {
+            updateScript
             for (f <- getFeatures.keys.toArray.sortWith(strLe))
               outPrintln(removeSappExt(f))
           } else {
@@ -238,6 +242,7 @@ object SireumDistro extends App {
           if (last) {
             errPrintln("Please specify features to uninstall")
           } else {
+            updateScript
             var allFound = false
             for (j <- i + 1 until args.length if !allFound) {
               if (args(j) == "all")
@@ -407,7 +412,7 @@ object SireumDistro extends App {
       }
       return
     }
-    
+
     val features = getFeatures
 
     val fName = guessFeatureNames(Seq(featureName), features.keys.toSeq)(0)
@@ -555,7 +560,7 @@ object SireumDistro extends App {
 
     if (errorCount != 0)
       new File(sireumDir, scriptName + ".new").delete
-      
+
     sys.exit
   }
 
@@ -990,7 +995,7 @@ object SireumDistro extends App {
   def deleteAppsBackups(dir : File) {
     for (f <- dir.listFiles)
       if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f)
-          || f.getName.endsWith(".new"))
+        || f.getName.endsWith(".new"))
         deleteRec(f, "Deleting " + relativize(sireumDir, f), false)
       else if (f.isDirectory)
         deleteAppsBackups(f)
