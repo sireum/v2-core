@@ -553,9 +553,9 @@ object SireumDistro extends App {
 
     printStatus(false, replacedCount, deleteCount, errorCount, 0, Seq())
 
-    if (errorCount == 0) {
-      sys.exit(8)
-    }
+    if (errorCount != 0)
+      new File(sireumDir, scriptName + ".new").delete
+      
     sys.exit
   }
 
@@ -989,7 +989,8 @@ object SireumDistro extends App {
 
   def deleteAppsBackups(dir : File) {
     for (f <- dir.listFiles)
-      if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f))
+      if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f)
+          || f.getName.endsWith(".new"))
         deleteRec(f, "Deleting " + relativize(sireumDir, f), false)
       else if (f.isDirectory)
         deleteAppsBackups(f)

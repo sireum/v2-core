@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export SIREUM_DIST=true
 export SIREUM_HOME=`dirname $(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")`
 if [ -f $0.jar ]; then
@@ -10,9 +10,25 @@ else
   echo "Please wait while Sireum is loading..."
   echo
 fi
+if [ -d $SIREUM_HOME/apps/platform/java ]; then
+  export JAVA_HOME=$SIREUM_HOME/apps/platform/java
+  export PATH=$JAVA_HOME/bin:$PATH
+fi
+if [ -d $SIREUM_HOME/apps/platform/scala ]; then
+  export SCALA_HOME=$SIREUM_HOME/apps/platform/scala
+  export PATH=$SCALA_HOME/bin:$PATH
+fi
 ${SCALA_BIN:=scala} -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 code=$?
-if [[ $code == 8 ]]; then
+if [ -d $JAVA_HOME.new ]; then
+  rm -fR $JAVA_HOME
+  mv $JAVA_HOME.new $JAVA_HOME
+fi
+if [ -d $SCALA_HOME.new ]; then
+  rm -fR $SCALA_HOME
+  mv $SCALA_HOME.new $SCALA_HOME
+fi
+if [ -f $0.new ]; then
   mv -f $0.new $0
   chmod +x $0
   echo "Reloading Sireum..."
@@ -577,9 +593,9 @@ object SireumDistro extends App {
 
     printStatus(false, replacedCount, deleteCount, errorCount, 0, Seq())
 
-    if (errorCount == 0) {
-      sys.exit(8)
-    }
+    if (errorCount != 0)
+      new File(sireumDir, scriptName + ".new").delete
+      
     sys.exit
   }
 
@@ -1013,7 +1029,8 @@ object SireumDistro extends App {
 
   def deleteAppsBackups(dir : File) {
     for (f <- dir.listFiles)
-      if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f))
+      if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f)
+          || f.getName.endsWith(".new"))
         deleteRec(f, "Deleting " + relativize(sireumDir, f), false)
       else if (f.isDirectory)
         deleteAppsBackups(f)
