@@ -2,7 +2,7 @@
 @echo off
 SET SIREUM_DIST=true
 SET SIREUM_HOME=%~dp0
-SET SCRIPT=%SIREUM_HOME%\%~nx0
+SET SCRIPT=%SIREUM_HOME%%~nx0
 SET FILE1=%SCRIPT%
 SET FILE2=%SCRIPT%.jar
 IF NOT EXIST %FILE2% ( 
@@ -14,19 +14,21 @@ IF %NEWEST%==%~nx0 (
   ECHO Please wait while Sireum is loading... 
 )
 :END
-IF EXIST %SIREUM_HOME%\apps\platform\java (
-  SET JAVA_HOME=%SIREUM_HOME%\apps\platform\java
-  SET PATH=%JAVA_HOME%\bin;%PATH%
+SETLOCAL
+IF EXIST %SIREUM_HOME%apps\platform\java (
+  SET JAVA_HOME=%SIREUM_HOME%apps\platform\java
+  SET PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%
 )
-IF EXIST %SIREUM_HOME%\apps\platform\scala (
-  SET SCALA_HOME=%SIREUM_HOME%\apps\platform\scala
-  SET PATH=%SCALA_HOME%\bin;%PATH%
+IF EXIST %SIREUM_HOME%apps\platform\scala (
+  SET SCALA_HOME=%SIREUM_HOME%apps\platform\scala
+  SET PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%
 )
 IF NOT DEFINED SCALA_BIN (
   SET SCALA_BIN=scala
 )
 CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
+ENDLOCAL
 IF EXIST %JAVA_HOME%.new (
   RD %JAVA_HOME% /S /Q
   MOVE %JAVA_HOME%.new %JAVA_HOME%
@@ -43,8 +45,7 @@ IF EXIST %SCRIPT%.new (
 )
 EXIT /B %CODE%
 ::!#
-SireumDistro.main(argv)
-/*
+SireumDistro.main(argv)/*
 Copyright (c) 2011-2012 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
