@@ -143,7 +143,7 @@ record String
  ****************************************************************/
 package SimpleRecordTests
 @PackageAnnotation(
-  theSourceFileName = "simple_record_tests.adb",
+  theSourceFileName = "simplerecordtests.adb",
   theSparkName = SimpleRecordTests,
   thePilarSparkName = SimpleRecordTests,
   theOptionalParent = @NONE,
@@ -161,7 +161,7 @@ package SimpleRecordTests
   theLine = 57,
   theCol = 24,
   theOffset = 1651),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
   thePackageHeaderSelection = @RegionSelection(
   theStartCaret = 
@@ -174,7 +174,7 @@ package SimpleRecordTests
   theLine = 3,
   theCol = 31,
   theOffset = 62),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
   thePackageHeaderAnnotation = @PackageBodyHeaderAnnotation(
     theOptionalContextClause = @NONE  ,
@@ -207,10 +207,10 @@ procedure Test01
   theLine = 8,
   theCol = 22,
   theOffset = 224),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ))
 @MethodAnnotation(
-  theSourceFileName = "simple_record_tests.adb",
+  theSourceFileName = "simplerecordtests.adb",
   theAdaMethodAnnotation = 
     @AdaProcedureAnnotation(
       theOrigin = @PACKAGE_BODY,
@@ -231,7 +231,7 @@ procedure Test01
       theLine = 15,
       theCol = 15,
       theOffset = 345),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodNameSelection = 
     @RegionSelection(
@@ -245,7 +245,7 @@ procedure Test01
       theLine = 8,
       theCol = 20,
       theOffset = 222),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodSpecificationSelection = 
     @RegionSelection(
@@ -259,7 +259,7 @@ procedure Test01
       theLine = 8,
       theCol = 39,
       theOffset = 241),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
 ) 
 {
@@ -278,7 +278,7 @@ procedure Test01
       theLine = 10,
       theCol = 8,
       theOffset = 257),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     );
     Standard::Float temp$1 @LocalVarDeclarationAnnotation(
@@ -309,7 +309,7 @@ procedure Test01
       theLine = 12,
       theCol = 16,
       theOffset = 293),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -330,7 +330,7 @@ procedure Test01
       theLine = 13,
       theCol = 18,
       theOffset = 312),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -351,7 +351,7 @@ procedure Test01
       theLine = 14,
       theCol = 16,
       theOffset = 329),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -370,7 +370,7 @@ procedure Test02
   theLine = 24,
   theCol = 21,
   theOffset = 724),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float I2 @RegionSelection(
   theStartCaret = 
@@ -383,7 +383,7 @@ procedure Test02
   theLine = 24,
   theCol = 25,
   theOffset = 728),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float O1 @RegionSelection(
   theStartCaret = 
@@ -396,7 +396,7 @@ procedure Test02
   theLine = 24,
   theCol = 40,
   theOffset = 743),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float O2 @RegionSelection(
   theStartCaret = 
@@ -409,10 +409,10 @@ procedure Test02
   theLine = 24,
   theCol = 44,
   theOffset = 747),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ))
 @MethodAnnotation(
-  theSourceFileName = "simple_record_tests.adb",
+  theSourceFileName = "simplerecordtests.adb",
   theAdaMethodAnnotation = 
     @AdaProcedureAnnotation(
       theOrigin = @PACKAGE_BODY,
@@ -454,7 +454,7 @@ procedure Test02
                           theLine = 25,
                           theCol = 20,
                           theOffset = 781),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ),
                   theOptionalInVariables = 
@@ -472,7 +472,7 @@ procedure Test02
                           theLine = 25,
                           theCol = 28,
                           theOffset = 789),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ))
                 )),
@@ -488,7 +488,7 @@ procedure Test02
                   theLine = 25,
                   theCol = 28,
                   theOffset = 789),
-                  theOptionalSource = "simple_record_tests.adb"
+                  theOptionalSource = "simplerecordtests.adb"
                 )
             )  ,
                   @DependencyClause(
@@ -509,7 +509,7 @@ procedure Test02
                           theLine = 26,
                           theCol = 20,
                           theOffset = 810),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ),
                   theOptionalInVariables = 
@@ -527,7 +527,7 @@ procedure Test02
                           theLine = 26,
                           theCol = 28,
                           theOffset = 818),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ))
                 )),
@@ -543,7 +543,7 @@ procedure Test02
                   theLine = 26,
                   theCol = 28,
                   theOffset = 818),
-                  theOptionalSource = "simple_record_tests.adb"
+                  theOptionalSource = "simplerecordtests.adb"
                 )
             )  ),
           theDependencyRelationRegionSelection = 
@@ -558,7 +558,7 @@ procedure Test02
               theLine = 26,
               theCol = 29,
               theOffset = 819),
-              theOptionalSource = "simple_record_tests.adb"
+              theOptionalSource = "simplerecordtests.adb"
             )  
         )
     ),
@@ -574,7 +574,7 @@ procedure Test02
       theLine = 34,
       theCol = 15,
       theOffset = 943),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodNameSelection = 
     @RegionSelection(
@@ -588,7 +588,7 @@ procedure Test02
       theLine = 24,
       theCol = 18,
       theOffset = 721),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodSpecificationSelection = 
     @RegionSelection(
@@ -602,7 +602,7 @@ procedure Test02
       theLine = 24,
       theCol = 57,
       theOffset = 760),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
 ) 
 {
@@ -621,7 +621,7 @@ procedure Test02
       theLine = 28,
       theCol = 8,
       theOffset = 835),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     );
     Standard::Float temp$1 @LocalVarDeclarationAnnotation(
@@ -656,7 +656,7 @@ procedure Test02
       theLine = 30,
       theCol = 17,
       theOffset = 873),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -677,7 +677,7 @@ procedure Test02
       theLine = 31,
       theCol = 17,
       theOffset = 891),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -698,7 +698,7 @@ procedure Test02
       theLine = 32,
       theCol = 17,
       theOffset = 909),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -719,7 +719,7 @@ procedure Test02
       theLine = 33,
       theCol = 17,
       theOffset = 927),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -738,7 +738,7 @@ procedure Test03
   theLine = 45,
   theCol = 21,
   theOffset = 1391),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float I2 @RegionSelection(
   theStartCaret = 
@@ -751,7 +751,7 @@ procedure Test03
   theLine = 45,
   theCol = 25,
   theOffset = 1395),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float O1 @RegionSelection(
   theStartCaret = 
@@ -764,7 +764,7 @@ procedure Test03
   theLine = 45,
   theCol = 40,
   theOffset = 1410),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ),
        Standard::Float O2 @RegionSelection(
   theStartCaret = 
@@ -777,10 +777,10 @@ procedure Test03
   theLine = 45,
   theCol = 44,
   theOffset = 1414),
-  theOptionalSource = "simple_record_tests.adb"
+  theOptionalSource = "simplerecordtests.adb"
 ))
 @MethodAnnotation(
-  theSourceFileName = "simple_record_tests.adb",
+  theSourceFileName = "simplerecordtests.adb",
   theAdaMethodAnnotation = 
     @AdaProcedureAnnotation(
       theOrigin = @PACKAGE_BODY,
@@ -822,7 +822,7 @@ procedure Test03
                           theLine = 46,
                           theCol = 20,
                           theOffset = 1448),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ),
                   theOptionalInVariables = 
@@ -840,7 +840,7 @@ procedure Test03
                           theLine = 46,
                           theCol = 28,
                           theOffset = 1456),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ))
                 )),
@@ -856,7 +856,7 @@ procedure Test03
                   theLine = 46,
                   theCol = 28,
                   theOffset = 1456),
-                  theOptionalSource = "simple_record_tests.adb"
+                  theOptionalSource = "simplerecordtests.adb"
                 )
             )  ,
                   @DependencyClause(
@@ -877,7 +877,7 @@ procedure Test03
                           theLine = 47,
                           theCol = 20,
                           theOffset = 1477),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ),
                   theOptionalInVariables = 
@@ -895,7 +895,7 @@ procedure Test03
                           theLine = 47,
                           theCol = 28,
                           theOffset = 1485),
-                          theOptionalSource = "simple_record_tests.adb"
+                          theOptionalSource = "simplerecordtests.adb"
                         )
                     ))
                 )),
@@ -911,7 +911,7 @@ procedure Test03
                   theLine = 47,
                   theCol = 28,
                   theOffset = 1485),
-                  theOptionalSource = "simple_record_tests.adb"
+                  theOptionalSource = "simplerecordtests.adb"
                 )
             )  ),
           theDependencyRelationRegionSelection = 
@@ -926,7 +926,7 @@ procedure Test03
               theLine = 47,
               theCol = 29,
               theOffset = 1486),
-              theOptionalSource = "simple_record_tests.adb"
+              theOptionalSource = "simplerecordtests.adb"
             )  
         )
     ),
@@ -942,7 +942,7 @@ procedure Test03
       theLine = 55,
       theCol = 15,
       theOffset = 1624),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodNameSelection = 
     @RegionSelection(
@@ -956,7 +956,7 @@ procedure Test03
       theLine = 45,
       theCol = 18,
       theOffset = 1388),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     ),
   theMethodSpecificationSelection = 
     @RegionSelection(
@@ -970,7 +970,7 @@ procedure Test03
       theLine = 45,
       theCol = 57,
       theOffset = 1427),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
 ) 
 {
@@ -989,7 +989,7 @@ procedure Test03
       theLine = 49,
       theCol = 8,
       theOffset = 1502),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     );
     Standard::Float temp$1 @LocalVarDeclarationAnnotation(
@@ -1024,7 +1024,7 @@ procedure Test03
       theLine = 51,
       theCol = 19,
       theOffset = 1548),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -1045,7 +1045,7 @@ procedure Test03
       theLine = 52,
       theCol = 19,
       theOffset = 1568),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -1066,7 +1066,7 @@ procedure Test03
       theLine = 53,
       theCol = 19,
       theOffset = 1588),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -1087,7 +1087,7 @@ procedure Test03
       theLine = 54,
       theCol = 19,
       theOffset = 1608),
-      theOptionalSource = "simple_record_tests.adb"
+      theOptionalSource = "simplerecordtests.adb"
     )
     ),
       optSparkLabelList = @NONE 
@@ -1108,7 +1108,7 @@ procedure Test03
  ****************************************************************/
 package SimpleRecordTests
 @PackageAnnotation(
-  theSourceFileName = "simple_record_tests.ads",
+  theSourceFileName = "simplerecordtests.ads",
   theSparkName = SimpleRecordTests,
   thePilarSparkName = SimpleRecordTests,
   theOptionalParent = @NONE,
@@ -1126,7 +1126,7 @@ package SimpleRecordTests
   theLine = 16,
   theCol = 23,
   theOffset = 259),
-  theOptionalSource = "simple_record_tests.ads"
+  theOptionalSource = "simplerecordtests.ads"
 ),
   thePackageHeaderSelection = @RegionSelection(
   theStartCaret = 
@@ -1139,7 +1139,7 @@ package SimpleRecordTests
   theLine = 1,
   theCol = 26,
   theOffset = 24),
-  theOptionalSource = "simple_record_tests.ads"
+  theOptionalSource = "simplerecordtests.ads"
 ),
   thePackageHeaderAnnotation = @PackageSpecificationHeaderAnnotation(
     theOptionalContextClause = @NONE  ,  
@@ -1166,7 +1166,7 @@ record Object
       theLine = 6,
       theCol = 18,
       theOffset = 97),
-      theOptionalSource = "simple_record_tests.ads"
+      theOptionalSource = "simplerecordtests.ads"
     ),
     fullyQualifiedName = SimpleRecordTests::Object,
     typeDefinition = 
@@ -1195,7 +1195,7 @@ record NestedObject
       theLine = 11,
       theCol = 18,
       theOffset = 171),
-      theOptionalSource = "simple_record_tests.ads"
+      theOptionalSource = "simplerecordtests.ads"
     ),
     fullyQualifiedName = SimpleRecordTests::NestedObject,
     typeDefinition = 
@@ -1226,10 +1226,10 @@ procedure Test01
   theLine = 14,
   theCol = 19,
   theOffset = 192),
-  theOptionalSource = "simple_record_tests.ads"
+  theOptionalSource = "simplerecordtests.ads"
 ))
 @MethodAnnotation(
-  theSourceFileName = "simple_record_tests.ads",
+  theSourceFileName = "simplerecordtests.ads",
   theAdaMethodAnnotation = 
     @AdaProcedureAnnotation(
       theOrigin = @PACKAGE_SPEC_PUBLIC,
@@ -1269,7 +1269,7 @@ procedure Test01
                           theLine = 15,
                           theCol = 17,
                           theOffset = 227),
-                          theOptionalSource = "simple_record_tests.ads"
+                          theOptionalSource = "simplerecordtests.ads"
                         )
                     ),
                   theOptionalInVariables = 
@@ -1287,7 +1287,7 @@ procedure Test01
                           theLine = 15,
                           theCol = 24,
                           theOffset = 234),
-                          theOptionalSource = "simple_record_tests.ads"
+                          theOptionalSource = "simplerecordtests.ads"
                         )
                     ))
                 )),
@@ -1303,7 +1303,7 @@ procedure Test01
                   theLine = 15,
                   theCol = 24,
                   theOffset = 234),
-                  theOptionalSource = "simple_record_tests.ads"
+                  theOptionalSource = "simplerecordtests.ads"
                 )
             )  ),
           theDependencyRelationRegionSelection = 
@@ -1318,7 +1318,7 @@ procedure Test01
               theLine = 15,
               theCol = 26,
               theOffset = 236),
-              theOptionalSource = "simple_record_tests.ads"
+              theOptionalSource = "simplerecordtests.ads"
             )  
         )
     ),
@@ -1334,7 +1334,7 @@ procedure Test01
       theLine = 14,
       theCol = 37,
       theOffset = 210),
-      theOptionalSource = "simple_record_tests.ads"
+      theOptionalSource = "simplerecordtests.ads"
     ),
   theMethodNameSelection = 
     @RegionSelection(
@@ -1348,7 +1348,7 @@ procedure Test01
       theLine = 14,
       theCol = 17,
       theOffset = 190),
-      theOptionalSource = "simple_record_tests.ads"
+      theOptionalSource = "simplerecordtests.ads"
     ),
   theMethodSpecificationSelection = 
     @RegionSelection(
@@ -1362,7 +1362,7 @@ procedure Test01
       theLine = 14,
       theCol = 36,
       theOffset = 209),
-      theOptionalSource = "simple_record_tests.ads"
+      theOptionalSource = "simplerecordtests.ads"
     )
 ) 
 { #locret. return;}

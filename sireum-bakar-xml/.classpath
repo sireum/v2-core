@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="src/main/scala"/>
 	<classpathentry kind="src" path="src/test/scala"/>
 	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-core-test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-option"/>
@@ -13,6 +11,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-tools"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaTest"/>
+	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/gnat2xml.jar"/>
+	<classpathentry kind="lib" path="lib/scalaxb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
