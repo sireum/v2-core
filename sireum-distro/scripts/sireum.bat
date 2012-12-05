@@ -524,9 +524,9 @@ object SireumDistro extends App {
 
     val features = getFeatures
 
-    val newFeatures = new ArrayBuffer[String]()
-
     for (featureName <- guessFeatureNames(featureNames, features.keys.toSeq)) {
+
+      val newFeatures = new ArrayBuffer[String]()
 
       val installedFeatures = loadInstalledFeatures
       if (!installedFeatures.contains(featureName))
