@@ -28,13 +28,13 @@ IF NOT DEFINED SCALA_BIN (
 )
 CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
-IF EXIST %JAVA_HOME%.new (
-  RD %JAVA_HOME% /S /Q
-  MOVE %JAVA_HOME%.new %JAVA_HOME%
+IF EXIST %SIREUM_HOME%apps\platform\java.new (
+  RD %SIREUM_HOME%apps\platform\java /S /Q
+  MOVE %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java
 )
-IF EXIST %SCALA_HOME%.new (
-  RD %SCALA_HOME% /S /Q
-  MOVE %SCALA_HOME%.new %SCALA_HOME%
+IF EXIST %SIREUM_HOME%apps\platform\scala.new (
+  RD %SIREUM_HOME%apps\platform\scala /S /Q
+  MOVE %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala
 )
 IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
