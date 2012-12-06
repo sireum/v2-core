@@ -1,7 +1,6 @@
 package org.sireum.bakar.xml.test
 
 import java.io.File
-import org.sireum.bakar.xml.scalaxb.Compilation_Unit
 import java.io.FilenameFilter
 
 object test1 {
@@ -14,7 +13,8 @@ object test1 {
     })
     files.foreach(f => {
       var xmly = scala.xml.XML.loadFile(f);
-      var cu = scalaxb.fromXML[Compilation_Unit](xmly)
+      assert(false)
+      var cu = ""
       println(f.getAbsolutePath())
       println(cu)
     }
