@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Exception_Handler complex type.
+ * <p>
+ * Java class for Exception_Handler complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Exception_Handler">
@@ -36,117 +37,102 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Exception_Handler", propOrder = {
-    "sloc",
-    "choiceParameterSpecificationQ",
-    "exceptionChoicesQl",
-    "handlerStatementsQl"
-})
+@XmlType(name = "Exception_Handler", propOrder = { "sloc",
+    "choiceParameterSpecificationQ", "exceptionChoicesQl",
+    "handlerStatementsQl" })
 public class ExceptionHandler {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "choice_parameter_specification_q", required = true)
-    protected DeclarationClass choiceParameterSpecificationQ;
-    @XmlElement(name = "exception_choices_ql", required = true)
-    protected ElementList exceptionChoicesQl;
-    @XmlElement(name = "handler_statements_ql", required = true)
-    protected StatementList handlerStatementsQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "choice_parameter_specification_q", required = true)
+  protected DeclarationClass choiceParameterSpecificationQ;
+  @XmlElement(name = "exception_choices_ql", required = true)
+  protected ElementList exceptionChoicesQl;
+  @XmlElement(name = "handler_statements_ql", required = true)
+  protected StatementList handlerStatementsQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the choiceParameterSpecificationQ property.
+   * 
+   * @return possible object is {@link DeclarationClass }
+   * 
+   */
+  public DeclarationClass getChoiceParameterSpecificationQ() {
+    return this.choiceParameterSpecificationQ;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the exceptionChoicesQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getExceptionChoicesQl() {
+    return this.exceptionChoicesQl;
+  }
 
-    /**
-     * Gets the value of the choiceParameterSpecificationQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeclarationClass }
-     *     
-     */
-    public DeclarationClass getChoiceParameterSpecificationQ() {
-        return choiceParameterSpecificationQ;
-    }
+  /**
+   * Gets the value of the handlerStatementsQl property.
+   * 
+   * @return possible object is {@link StatementList }
+   * 
+   */
+  public StatementList getHandlerStatementsQl() {
+    return this.handlerStatementsQl;
+  }
 
-    /**
-     * Sets the value of the choiceParameterSpecificationQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeclarationClass }
-     *     
-     */
-    public void setChoiceParameterSpecificationQ(DeclarationClass value) {
-        this.choiceParameterSpecificationQ = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the exceptionChoicesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getExceptionChoicesQl() {
-        return exceptionChoicesQl;
-    }
+  /**
+   * Sets the value of the choiceParameterSpecificationQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DeclarationClass }
+   * 
+   */
+  public void setChoiceParameterSpecificationQ(final DeclarationClass value) {
+    this.choiceParameterSpecificationQ = value;
+  }
 
-    /**
-     * Sets the value of the exceptionChoicesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setExceptionChoicesQl(ElementList value) {
-        this.exceptionChoicesQl = value;
-    }
+  /**
+   * Sets the value of the exceptionChoicesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setExceptionChoicesQl(final ElementList value) {
+    this.exceptionChoicesQl = value;
+  }
 
-    /**
-     * Gets the value of the handlerStatementsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link StatementList }
-     *     
-     */
-    public StatementList getHandlerStatementsQl() {
-        return handlerStatementsQl;
-    }
+  /**
+   * Sets the value of the handlerStatementsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link StatementList }
+   * 
+   */
+  public void setHandlerStatementsQl(final StatementList value) {
+    this.handlerStatementsQl = value;
+  }
 
-    /**
-     * Sets the value of the handlerStatementsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StatementList }
-     *     
-     */
-    public void setHandlerStatementsQl(StatementList value) {
-        this.handlerStatementsQl = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

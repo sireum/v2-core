@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Synchronized_Interface complex type.
+ * <p>
+ * Java class for Synchronized_Interface complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Synchronized_Interface">
@@ -34,63 +35,55 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Synchronized_Interface", propOrder = {
-    "sloc",
-    "definitionInterfaceListQl"
-})
+@XmlType(name = "Synchronized_Interface", propOrder = { "sloc",
+    "definitionInterfaceListQl" })
 public class SynchronizedInterface {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "definition_interface_list_ql", required = true)
-    protected ExpressionList definitionInterfaceListQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "definition_interface_list_ql", required = true)
+  protected ExpressionList definitionInterfaceListQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the definitionInterfaceListQl property.
+   * 
+   * @return possible object is {@link ExpressionList }
+   * 
+   */
+  public ExpressionList getDefinitionInterfaceListQl() {
+    return this.definitionInterfaceListQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the definitionInterfaceListQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public ExpressionList getDefinitionInterfaceListQl() {
-        return definitionInterfaceListQl;
-    }
+  /**
+   * Sets the value of the definitionInterfaceListQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionList }
+   * 
+   */
+  public void setDefinitionInterfaceListQl(final ExpressionList value) {
+    this.definitionInterfaceListQl = value;
+  }
 
-    /**
-     * Sets the value of the definitionInterfaceListQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public void setDefinitionInterfaceListQl(ExpressionList value) {
-        this.definitionInterfaceListQl = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

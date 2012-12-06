@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Entry_Index_Specification complex type.
+ * <p>
+ * Java class for Entry_Index_Specification complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Entry_Index_Specification">
@@ -35,90 +36,79 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Entry_Index_Specification", propOrder = {
-    "sloc",
-    "namesQl",
-    "specificationSubtypeDefinitionQ"
-})
+@XmlType(name = "Entry_Index_Specification", propOrder = { "sloc", "namesQl",
+    "specificationSubtypeDefinitionQ" })
 public class EntryIndexSpecification {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "specification_subtype_definition_q", required = true)
-    protected DiscreteSubtypeDefinitionClass specificationSubtypeDefinitionQ;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "specification_subtype_definition_q", required = true)
+  protected DiscreteSubtypeDefinitionClass specificationSubtypeDefinitionQ;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the namesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
-    }
+  /**
+   * Gets the value of the specificationSubtypeDefinitionQ property.
+   * 
+   * @return possible object is {@link DiscreteSubtypeDefinitionClass }
+   * 
+   */
+  public DiscreteSubtypeDefinitionClass getSpecificationSubtypeDefinitionQ() {
+    return this.specificationSubtypeDefinitionQ;
+  }
 
-    /**
-     * Sets the value of the namesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
 
-    /**
-     * Gets the value of the specificationSubtypeDefinitionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DiscreteSubtypeDefinitionClass }
-     *     
-     */
-    public DiscreteSubtypeDefinitionClass getSpecificationSubtypeDefinitionQ() {
-        return specificationSubtypeDefinitionQ;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the specificationSubtypeDefinitionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscreteSubtypeDefinitionClass }
-     *     
-     */
-    public void setSpecificationSubtypeDefinitionQ(DiscreteSubtypeDefinitionClass value) {
-        this.specificationSubtypeDefinitionQ = value;
-    }
+  /**
+   * Sets the value of the specificationSubtypeDefinitionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DiscreteSubtypeDefinitionClass }
+   * 
+   */
+  public void setSpecificationSubtypeDefinitionQ(
+      final DiscreteSubtypeDefinitionClass value) {
+    this.specificationSubtypeDefinitionQ = value;
+  }
 
 }

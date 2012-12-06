@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Protected_Definition complex type.
+ * <p>
+ * Java class for Protected_Definition complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Protected_Definition">
@@ -35,90 +36,78 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Protected_Definition", propOrder = {
-    "sloc",
-    "visiblePartItemsQl",
-    "privatePartItemsQl"
-})
+@XmlType(name = "Protected_Definition", propOrder = { "sloc",
+    "visiblePartItemsQl", "privatePartItemsQl" })
 public class ProtectedDefinition {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "visible_part_items_ql", required = true)
-    protected DeclarativeItemList visiblePartItemsQl;
-    @XmlElement(name = "private_part_items_ql", required = true)
-    protected DeclarativeItemList privatePartItemsQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "visible_part_items_ql", required = true)
+  protected DeclarativeItemList visiblePartItemsQl;
+  @XmlElement(name = "private_part_items_ql", required = true)
+  protected DeclarativeItemList privatePartItemsQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the privatePartItemsQl property.
+   * 
+   * @return possible object is {@link DeclarativeItemList }
+   * 
+   */
+  public DeclarativeItemList getPrivatePartItemsQl() {
+    return this.privatePartItemsQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the visiblePartItemsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public DeclarativeItemList getVisiblePartItemsQl() {
-        return visiblePartItemsQl;
-    }
+  /**
+   * Gets the value of the visiblePartItemsQl property.
+   * 
+   * @return possible object is {@link DeclarativeItemList }
+   * 
+   */
+  public DeclarativeItemList getVisiblePartItemsQl() {
+    return this.visiblePartItemsQl;
+  }
 
-    /**
-     * Sets the value of the visiblePartItemsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public void setVisiblePartItemsQl(DeclarativeItemList value) {
-        this.visiblePartItemsQl = value;
-    }
+  /**
+   * Sets the value of the privatePartItemsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DeclarativeItemList }
+   * 
+   */
+  public void setPrivatePartItemsQl(final DeclarativeItemList value) {
+    this.privatePartItemsQl = value;
+  }
 
-    /**
-     * Gets the value of the privatePartItemsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public DeclarativeItemList getPrivatePartItemsQl() {
-        return privatePartItemsQl;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the privatePartItemsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public void setPrivatePartItemsQl(DeclarativeItemList value) {
-        this.privatePartItemsQl = value;
-    }
+  /**
+   * Sets the value of the visiblePartItemsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DeclarativeItemList }
+   * 
+   */
+  public void setVisiblePartItemsQl(final DeclarativeItemList value) {
+    this.visiblePartItemsQl = value;
+  }
 
 }

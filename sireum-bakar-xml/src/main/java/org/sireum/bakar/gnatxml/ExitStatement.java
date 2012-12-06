@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Exit_Statement complex type.
+ * <p>
+ * Java class for Exit_Statement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Exit_Statement">
@@ -36,117 +37,101 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Exit_Statement", propOrder = {
-    "sloc",
-    "labelNamesQl",
-    "exitLoopNameQ",
-    "exitConditionQ"
-})
+@XmlType(name = "Exit_Statement", propOrder = { "sloc", "labelNamesQl",
+    "exitLoopNameQ", "exitConditionQ" })
 public class ExitStatement {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "label_names_ql", required = true)
-    protected DefiningNameList labelNamesQl;
-    @XmlElement(name = "exit_loop_name_q", required = true)
-    protected ExpressionClass exitLoopNameQ;
-    @XmlElement(name = "exit_condition_q", required = true)
-    protected ExpressionClass exitConditionQ;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "label_names_ql", required = true)
+  protected DefiningNameList labelNamesQl;
+  @XmlElement(name = "exit_loop_name_q", required = true)
+  protected ExpressionClass exitLoopNameQ;
+  @XmlElement(name = "exit_condition_q", required = true)
+  protected ExpressionClass exitConditionQ;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the exitConditionQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getExitConditionQ() {
+    return this.exitConditionQ;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the exitLoopNameQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getExitLoopNameQ() {
+    return this.exitLoopNameQ;
+  }
 
-    /**
-     * Gets the value of the labelNamesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getLabelNamesQl() {
-        return labelNamesQl;
-    }
+  /**
+   * Gets the value of the labelNamesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getLabelNamesQl() {
+    return this.labelNamesQl;
+  }
 
-    /**
-     * Sets the value of the labelNamesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setLabelNamesQl(DefiningNameList value) {
-        this.labelNamesQl = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the exitLoopNameQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getExitLoopNameQ() {
-        return exitLoopNameQ;
-    }
+  /**
+   * Sets the value of the exitConditionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setExitConditionQ(final ExpressionClass value) {
+    this.exitConditionQ = value;
+  }
 
-    /**
-     * Sets the value of the exitLoopNameQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setExitLoopNameQ(ExpressionClass value) {
-        this.exitLoopNameQ = value;
-    }
+  /**
+   * Sets the value of the exitLoopNameQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setExitLoopNameQ(final ExpressionClass value) {
+    this.exitLoopNameQ = value;
+  }
 
-    /**
-     * Gets the value of the exitConditionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getExitConditionQ() {
-        return exitConditionQ;
-    }
+  /**
+   * Sets the value of the labelNamesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setLabelNamesQl(final DefiningNameList value) {
+    this.labelNamesQl = value;
+  }
 
-    /**
-     * Sets the value of the exitConditionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setExitConditionQ(ExpressionClass value) {
-        this.exitConditionQ = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

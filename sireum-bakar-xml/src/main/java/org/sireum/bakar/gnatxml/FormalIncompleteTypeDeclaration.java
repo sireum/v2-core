@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Formal_Incomplete_Type_Declaration complex type.
+ * <p>
+ * Java class for Formal_Incomplete_Type_Declaration complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Formal_Incomplete_Type_Declaration">
@@ -48,226 +49,203 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Formal_Incomplete_Type_Declaration", propOrder = {
-    "sloc",
-    "namesQl",
-    "discriminantPartQ",
-    "hasTaggedQ",
-    "aspectSpecificationsQl"
-})
+@XmlType(name = "Formal_Incomplete_Type_Declaration", propOrder = { "sloc",
+    "namesQl", "discriminantPartQ", "hasTaggedQ", "aspectSpecificationsQl" })
 public class FormalIncompleteTypeDeclaration {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "discriminant_part_q", required = true)
-    protected DefinitionClass discriminantPartQ;
-    @XmlElement(name = "has_tagged_q", required = true)
-    protected FormalIncompleteTypeDeclaration.HasTaggedQ hasTaggedQ;
-    @XmlElement(name = "aspect_specifications_ql", required = true)
-    protected ElementList aspectSpecificationsQl;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="tagged" type="{}Tagged"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "tagged", "notAnElement" })
+  public static class HasTaggedQ {
+
+    protected Tagged tagged;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the notAnElement property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link NotAnElement }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the tagged property.
+     * 
+     * @return possible object is {@link Tagged }
+     * 
+     */
+    public Tagged getTagged() {
+      return this.tagged;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the namesQl property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
      */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the namesQl property.
+     * Sets the value of the tagged property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
-
-    /**
-     * Gets the value of the discriminantPartQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public DefinitionClass getDiscriminantPartQ() {
-        return discriminantPartQ;
-    }
-
-    /**
-     * Sets the value of the discriminantPartQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public void setDiscriminantPartQ(DefinitionClass value) {
-        this.discriminantPartQ = value;
-    }
-
-    /**
-     * Gets the value of the hasTaggedQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FormalIncompleteTypeDeclaration.HasTaggedQ }
-     *     
-     */
-    public FormalIncompleteTypeDeclaration.HasTaggedQ getHasTaggedQ() {
-        return hasTaggedQ;
-    }
-
-    /**
-     * Sets the value of the hasTaggedQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalIncompleteTypeDeclaration.HasTaggedQ }
-     *     
-     */
-    public void setHasTaggedQ(FormalIncompleteTypeDeclaration.HasTaggedQ value) {
-        this.hasTaggedQ = value;
-    }
-
-    /**
-     * Gets the value of the aspectSpecificationsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getAspectSpecificationsQl() {
-        return aspectSpecificationsQl;
-    }
-
-    /**
-     * Sets the value of the aspectSpecificationsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setAspectSpecificationsQl(ElementList value) {
-        this.aspectSpecificationsQl = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="tagged" type="{}Tagged"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link Tagged }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "tagged",
-        "notAnElement"
-    })
-    public static class HasTaggedQ {
-
-        protected Tagged tagged;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the tagged property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Tagged }
-         *     
-         */
-        public Tagged getTagged() {
-            return tagged;
-        }
-
-        /**
-         * Sets the value of the tagged property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Tagged }
-         *     
-         */
-        public void setTagged(Tagged value) {
-            this.tagged = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setTagged(final Tagged value) {
+      this.tagged = value;
     }
+
+  }
+
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "discriminant_part_q", required = true)
+  protected DefinitionClass discriminantPartQ;
+  @XmlElement(name = "has_tagged_q", required = true)
+  protected FormalIncompleteTypeDeclaration.HasTaggedQ hasTaggedQ;
+
+  @XmlElement(name = "aspect_specifications_ql", required = true)
+  protected ElementList aspectSpecificationsQl;
+
+  /**
+   * Gets the value of the aspectSpecificationsQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getAspectSpecificationsQl() {
+    return this.aspectSpecificationsQl;
+  }
+
+  /**
+   * Gets the value of the discriminantPartQ property.
+   * 
+   * @return possible object is {@link DefinitionClass }
+   * 
+   */
+  public DefinitionClass getDiscriminantPartQ() {
+    return this.discriminantPartQ;
+  }
+
+  /**
+   * Gets the value of the hasTaggedQ property.
+   * 
+   * @return possible object is
+   *         {@link FormalIncompleteTypeDeclaration.HasTaggedQ }
+   * 
+   */
+  public FormalIncompleteTypeDeclaration.HasTaggedQ getHasTaggedQ() {
+    return this.hasTaggedQ;
+  }
+
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Sets the value of the aspectSpecificationsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setAspectSpecificationsQl(final ElementList value) {
+    this.aspectSpecificationsQl = value;
+  }
+
+  /**
+   * Sets the value of the discriminantPartQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DefinitionClass }
+   * 
+   */
+  public void setDiscriminantPartQ(final DefinitionClass value) {
+    this.discriminantPartQ = value;
+  }
+
+  /**
+   * Sets the value of the hasTaggedQ property.
+   * 
+   * @param value
+   *          allowed object is
+   *          {@link FormalIncompleteTypeDeclaration.HasTaggedQ }
+   * 
+   */
+  public void setHasTaggedQ(
+      final FormalIncompleteTypeDeclaration.HasTaggedQ value) {
+    this.hasTaggedQ = value;
+  }
+
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Access_To_Procedure complex type.
+ * <p>
+ * Java class for Access_To_Procedure complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Access_To_Procedure">
@@ -46,173 +47,157 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Access_To_Procedure", propOrder = {
-    "sloc",
-    "hasNullExclusionQ",
-    "accessToSubprogramParameterProfileQl"
-})
+@XmlType(name = "Access_To_Procedure", propOrder = { "sloc",
+    "hasNullExclusionQ", "accessToSubprogramParameterProfileQl" })
 public class AccessToProcedure {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "has_null_exclusion_q", required = true)
-    protected AccessToProcedure.HasNullExclusionQ hasNullExclusionQ;
-    @XmlElement(name = "access_to_subprogram_parameter_profile_ql", required = true)
-    protected ParameterSpecificationList accessToSubprogramParameterProfileQl;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "nullExclusion", "notAnElement" })
+  public static class HasNullExclusionQ {
+
+    @XmlElement(name = "null_exclusion")
+    protected NullExclusion nullExclusion;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the notAnElement property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link NotAnElement }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the nullExclusion property.
+     * 
+     * @return possible object is {@link NullExclusion }
+     * 
+     */
+    public NullExclusion getNullExclusion() {
+      return this.nullExclusion;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the hasNullExclusionQ property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link AccessToProcedure.HasNullExclusionQ }
-     *     
      */
-    public AccessToProcedure.HasNullExclusionQ getHasNullExclusionQ() {
-        return hasNullExclusionQ;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the hasNullExclusionQ property.
+     * Sets the value of the nullExclusion property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link AccessToProcedure.HasNullExclusionQ }
-     *     
-     */
-    public void setHasNullExclusionQ(AccessToProcedure.HasNullExclusionQ value) {
-        this.hasNullExclusionQ = value;
-    }
-
-    /**
-     * Gets the value of the accessToSubprogramParameterProfileQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ParameterSpecificationList }
-     *     
-     */
-    public ParameterSpecificationList getAccessToSubprogramParameterProfileQl() {
-        return accessToSubprogramParameterProfileQl;
-    }
-
-    /**
-     * Sets the value of the accessToSubprogramParameterProfileQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ParameterSpecificationList }
-     *     
-     */
-    public void setAccessToSubprogramParameterProfileQl(ParameterSpecificationList value) {
-        this.accessToSubprogramParameterProfileQl = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link NullExclusion }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "nullExclusion",
-        "notAnElement"
-    })
-    public static class HasNullExclusionQ {
-
-        @XmlElement(name = "null_exclusion")
-        protected NullExclusion nullExclusion;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the nullExclusion property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NullExclusion }
-         *     
-         */
-        public NullExclusion getNullExclusion() {
-            return nullExclusion;
-        }
-
-        /**
-         * Sets the value of the nullExclusion property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NullExclusion }
-         *     
-         */
-        public void setNullExclusion(NullExclusion value) {
-            this.nullExclusion = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setNullExclusion(final NullExclusion value) {
+      this.nullExclusion = value;
     }
+
+  }
+
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "has_null_exclusion_q", required = true)
+  protected AccessToProcedure.HasNullExclusionQ hasNullExclusionQ;
+
+  @XmlElement(name = "access_to_subprogram_parameter_profile_ql", required = true)
+  protected ParameterSpecificationList accessToSubprogramParameterProfileQl;
+
+  /**
+   * Gets the value of the accessToSubprogramParameterProfileQl property.
+   * 
+   * @return possible object is {@link ParameterSpecificationList }
+   * 
+   */
+  public ParameterSpecificationList getAccessToSubprogramParameterProfileQl() {
+    return this.accessToSubprogramParameterProfileQl;
+  }
+
+  /**
+   * Gets the value of the hasNullExclusionQ property.
+   * 
+   * @return possible object is {@link AccessToProcedure.HasNullExclusionQ }
+   * 
+   */
+  public AccessToProcedure.HasNullExclusionQ getHasNullExclusionQ() {
+    return this.hasNullExclusionQ;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Sets the value of the accessToSubprogramParameterProfileQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ParameterSpecificationList }
+   * 
+   */
+  public void setAccessToSubprogramParameterProfileQl(
+      final ParameterSpecificationList value) {
+    this.accessToSubprogramParameterProfileQl = value;
+  }
+
+  /**
+   * Sets the value of the hasNullExclusionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link AccessToProcedure.HasNullExclusionQ }
+   * 
+   */
+  public void setHasNullExclusionQ(
+      final AccessToProcedure.HasNullExclusionQ value) {
+    this.hasNullExclusionQ = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

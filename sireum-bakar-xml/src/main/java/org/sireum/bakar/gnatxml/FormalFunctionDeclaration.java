@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Formal_Function_Declaration complex type.
+ * <p>
+ * Java class for Formal_Function_Declaration complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Formal_Function_Declaration">
@@ -62,391 +63,351 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Formal_Function_Declaration", propOrder = {
-    "sloc",
-    "namesQl",
-    "parameterProfileQl",
-    "isNotNullReturnQ",
-    "resultProfileQ",
-    "formalSubprogramDefaultQ",
-    "hasAbstractQ",
-    "aspectSpecificationsQl"
-})
+@XmlType(name = "Formal_Function_Declaration", propOrder = { "sloc", "namesQl",
+    "parameterProfileQl", "isNotNullReturnQ", "resultProfileQ",
+    "formalSubprogramDefaultQ", "hasAbstractQ", "aspectSpecificationsQl" })
 public class FormalFunctionDeclaration {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "parameter_profile_ql", required = true)
-    protected ParameterSpecificationList parameterProfileQl;
-    @XmlElement(name = "is_not_null_return_q", required = true)
-    protected FormalFunctionDeclaration.IsNotNullReturnQ isNotNullReturnQ;
-    @XmlElement(name = "result_profile_q", required = true)
-    protected ElementClass resultProfileQ;
-    @XmlElement(name = "formal_subprogram_default_q", required = true)
-    protected ExpressionClass formalSubprogramDefaultQ;
-    @XmlElement(name = "has_abstract_q", required = true)
-    protected FormalFunctionDeclaration.HasAbstractQ hasAbstractQ;
-    @XmlElement(name = "aspect_specifications_ql", required = true)
-    protected ElementList aspectSpecificationsQl;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="abstract" type="{}Abstract"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "_abstract", "notAnElement" })
+  public static class HasAbstractQ {
+
+    @XmlElement(name = "abstract")
+    protected Abstract _abstract;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the abstract property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link Abstract }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public Abstract getAbstract() {
+      return this._abstract;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
+    }
+
+    /**
+     * Sets the value of the abstract property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the namesQl property.
+     *          allowed object is {@link Abstract }
      * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
      */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
+    public void setAbstract(final Abstract value) {
+      this._abstract = value;
     }
 
     /**
-     * Sets the value of the namesQl property.
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
-
-    /**
-     * Gets the value of the parameterProfileQl property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link ParameterSpecificationList }
-     *     
      */
-    public ParameterSpecificationList getParameterProfileQl() {
-        return parameterProfileQl;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
+    }
+
+  }
+
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="not_null_return" type="{}Not_Null_Return"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "notNullReturn", "notAnElement" })
+  public static class IsNotNullReturnQ {
+
+    @XmlElement(name = "not_null_return")
+    protected NotNullReturn notNullReturn;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
+
+    /**
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the parameterProfileQl property.
+     * Gets the value of the notNullReturn property.
+     * 
+     * @return possible object is {@link NotNullReturn }
+     * 
+     */
+    public NotNullReturn getNotNullReturn() {
+      return this.notNullReturn;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ParameterSpecificationList }
-     *     
-     */
-    public void setParameterProfileQl(ParameterSpecificationList value) {
-        this.parameterProfileQl = value;
-    }
-
-    /**
-     * Gets the value of the isNotNullReturnQ property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link FormalFunctionDeclaration.IsNotNullReturnQ }
-     *     
      */
-    public FormalFunctionDeclaration.IsNotNullReturnQ getIsNotNullReturnQ() {
-        return isNotNullReturnQ;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the isNotNullReturnQ property.
+     * Sets the value of the notNullReturn property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link FormalFunctionDeclaration.IsNotNullReturnQ }
-     *     
-     */
-    public void setIsNotNullReturnQ(FormalFunctionDeclaration.IsNotNullReturnQ value) {
-        this.isNotNullReturnQ = value;
-    }
-
-    /**
-     * Gets the value of the resultProfileQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementClass }
-     *     
-     */
-    public ElementClass getResultProfileQ() {
-        return resultProfileQ;
-    }
-
-    /**
-     * Sets the value of the resultProfileQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementClass }
-     *     
-     */
-    public void setResultProfileQ(ElementClass value) {
-        this.resultProfileQ = value;
-    }
-
-    /**
-     * Gets the value of the formalSubprogramDefaultQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getFormalSubprogramDefaultQ() {
-        return formalSubprogramDefaultQ;
-    }
-
-    /**
-     * Sets the value of the formalSubprogramDefaultQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setFormalSubprogramDefaultQ(ExpressionClass value) {
-        this.formalSubprogramDefaultQ = value;
-    }
-
-    /**
-     * Gets the value of the hasAbstractQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FormalFunctionDeclaration.HasAbstractQ }
-     *     
-     */
-    public FormalFunctionDeclaration.HasAbstractQ getHasAbstractQ() {
-        return hasAbstractQ;
-    }
-
-    /**
-     * Sets the value of the hasAbstractQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalFunctionDeclaration.HasAbstractQ }
-     *     
-     */
-    public void setHasAbstractQ(FormalFunctionDeclaration.HasAbstractQ value) {
-        this.hasAbstractQ = value;
-    }
-
-    /**
-     * Gets the value of the aspectSpecificationsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getAspectSpecificationsQl() {
-        return aspectSpecificationsQl;
-    }
-
-    /**
-     * Sets the value of the aspectSpecificationsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setAspectSpecificationsQl(ElementList value) {
-        this.aspectSpecificationsQl = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="abstract" type="{}Abstract"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link NotNullReturn }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "_abstract",
-        "notAnElement"
-    })
-    public static class HasAbstractQ {
-
-        @XmlElement(name = "abstract")
-        protected Abstract _abstract;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the abstract property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Abstract }
-         *     
-         */
-        public Abstract getAbstract() {
-            return _abstract;
-        }
-
-        /**
-         * Sets the value of the abstract property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Abstract }
-         *     
-         */
-        public void setAbstract(Abstract value) {
-            this._abstract = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setNotNullReturn(final NotNullReturn value) {
+      this.notNullReturn = value;
     }
 
+  }
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="not_null_return" type="{}Not_Null_Return"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "notNullReturn",
-        "notAnElement"
-    })
-    public static class IsNotNullReturnQ {
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "parameter_profile_ql", required = true)
+  protected ParameterSpecificationList parameterProfileQl;
+  @XmlElement(name = "is_not_null_return_q", required = true)
+  protected FormalFunctionDeclaration.IsNotNullReturnQ isNotNullReturnQ;
+  @XmlElement(name = "result_profile_q", required = true)
+  protected ElementClass resultProfileQ;
+  @XmlElement(name = "formal_subprogram_default_q", required = true)
+  protected ExpressionClass formalSubprogramDefaultQ;
 
-        @XmlElement(name = "not_null_return")
-        protected NotNullReturn notNullReturn;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+  @XmlElement(name = "has_abstract_q", required = true)
+  protected FormalFunctionDeclaration.HasAbstractQ hasAbstractQ;
 
-        /**
-         * Gets the value of the notNullReturn property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotNullReturn }
-         *     
-         */
-        public NotNullReturn getNotNullReturn() {
-            return notNullReturn;
-        }
+  @XmlElement(name = "aspect_specifications_ql", required = true)
+  protected ElementList aspectSpecificationsQl;
 
-        /**
-         * Sets the value of the notNullReturn property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotNullReturn }
-         *     
-         */
-        public void setNotNullReturn(NotNullReturn value) {
-            this.notNullReturn = value;
-        }
+  /**
+   * Gets the value of the aspectSpecificationsQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getAspectSpecificationsQl() {
+    return this.aspectSpecificationsQl;
+  }
 
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
+  /**
+   * Gets the value of the formalSubprogramDefaultQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getFormalSubprogramDefaultQ() {
+    return this.formalSubprogramDefaultQ;
+  }
 
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
+  /**
+   * Gets the value of the hasAbstractQ property.
+   * 
+   * @return possible object is {@link FormalFunctionDeclaration.HasAbstractQ }
+   * 
+   */
+  public FormalFunctionDeclaration.HasAbstractQ getHasAbstractQ() {
+    return this.hasAbstractQ;
+  }
 
-    }
+  /**
+   * Gets the value of the isNotNullReturnQ property.
+   * 
+   * @return possible object is
+   *         {@link FormalFunctionDeclaration.IsNotNullReturnQ }
+   * 
+   */
+  public FormalFunctionDeclaration.IsNotNullReturnQ getIsNotNullReturnQ() {
+    return this.isNotNullReturnQ;
+  }
+
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
+
+  /**
+   * Gets the value of the parameterProfileQl property.
+   * 
+   * @return possible object is {@link ParameterSpecificationList }
+   * 
+   */
+  public ParameterSpecificationList getParameterProfileQl() {
+    return this.parameterProfileQl;
+  }
+
+  /**
+   * Gets the value of the resultProfileQ property.
+   * 
+   * @return possible object is {@link ElementClass }
+   * 
+   */
+  public ElementClass getResultProfileQ() {
+    return this.resultProfileQ;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Sets the value of the aspectSpecificationsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setAspectSpecificationsQl(final ElementList value) {
+    this.aspectSpecificationsQl = value;
+  }
+
+  /**
+   * Sets the value of the formalSubprogramDefaultQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setFormalSubprogramDefaultQ(final ExpressionClass value) {
+    this.formalSubprogramDefaultQ = value;
+  }
+
+  /**
+   * Sets the value of the hasAbstractQ property.
+   * 
+   * @param value
+   *          allowed object is {@link FormalFunctionDeclaration.HasAbstractQ }
+   * 
+   */
+  public void setHasAbstractQ(final FormalFunctionDeclaration.HasAbstractQ value) {
+    this.hasAbstractQ = value;
+  }
+
+  /**
+   * Sets the value of the isNotNullReturnQ property.
+   * 
+   * @param value
+   *          allowed object is
+   *          {@link FormalFunctionDeclaration.IsNotNullReturnQ }
+   * 
+   */
+  public void setIsNotNullReturnQ(
+      final FormalFunctionDeclaration.IsNotNullReturnQ value) {
+    this.isNotNullReturnQ = value;
+  }
+
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
+
+  /**
+   * Sets the value of the parameterProfileQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ParameterSpecificationList }
+   * 
+   */
+  public void setParameterProfileQl(final ParameterSpecificationList value) {
+    this.parameterProfileQl = value;
+  }
+
+  /**
+   * Sets the value of the resultProfileQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementClass }
+   * 
+   */
+  public void setResultProfileQ(final ElementClass value) {
+    this.resultProfileQ = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

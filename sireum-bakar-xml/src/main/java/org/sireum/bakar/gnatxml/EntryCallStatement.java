@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Entry_Call_Statement complex type.
+ * <p>
+ * Java class for Entry_Call_Statement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Entry_Call_Statement">
@@ -36,117 +37,101 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Entry_Call_Statement", propOrder = {
-    "sloc",
-    "labelNamesQl",
-    "calledNameQ",
-    "callStatementParametersQl"
-})
+@XmlType(name = "Entry_Call_Statement", propOrder = { "sloc", "labelNamesQl",
+    "calledNameQ", "callStatementParametersQl" })
 public class EntryCallStatement {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "label_names_ql", required = true)
-    protected DefiningNameList labelNamesQl;
-    @XmlElement(name = "called_name_q", required = true)
-    protected ExpressionClass calledNameQ;
-    @XmlElement(name = "call_statement_parameters_ql", required = true)
-    protected AssociationList callStatementParametersQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "label_names_ql", required = true)
+  protected DefiningNameList labelNamesQl;
+  @XmlElement(name = "called_name_q", required = true)
+  protected ExpressionClass calledNameQ;
+  @XmlElement(name = "call_statement_parameters_ql", required = true)
+  protected AssociationList callStatementParametersQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the calledNameQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getCalledNameQ() {
+    return this.calledNameQ;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the callStatementParametersQl property.
+   * 
+   * @return possible object is {@link AssociationList }
+   * 
+   */
+  public AssociationList getCallStatementParametersQl() {
+    return this.callStatementParametersQl;
+  }
 
-    /**
-     * Gets the value of the labelNamesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getLabelNamesQl() {
-        return labelNamesQl;
-    }
+  /**
+   * Gets the value of the labelNamesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getLabelNamesQl() {
+    return this.labelNamesQl;
+  }
 
-    /**
-     * Sets the value of the labelNamesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setLabelNamesQl(DefiningNameList value) {
-        this.labelNamesQl = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the calledNameQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getCalledNameQ() {
-        return calledNameQ;
-    }
+  /**
+   * Sets the value of the calledNameQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setCalledNameQ(final ExpressionClass value) {
+    this.calledNameQ = value;
+  }
 
-    /**
-     * Sets the value of the calledNameQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setCalledNameQ(ExpressionClass value) {
-        this.calledNameQ = value;
-    }
+  /**
+   * Sets the value of the callStatementParametersQl property.
+   * 
+   * @param value
+   *          allowed object is {@link AssociationList }
+   * 
+   */
+  public void setCallStatementParametersQl(final AssociationList value) {
+    this.callStatementParametersQl = value;
+  }
 
-    /**
-     * Gets the value of the callStatementParametersQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AssociationList }
-     *     
-     */
-    public AssociationList getCallStatementParametersQl() {
-        return callStatementParametersQl;
-    }
+  /**
+   * Sets the value of the labelNamesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setLabelNamesQl(final DefiningNameList value) {
+    this.labelNamesQl = value;
+  }
 
-    /**
-     * Sets the value of the callStatementParametersQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssociationList }
-     *     
-     */
-    public void setCallStatementParametersQl(AssociationList value) {
-        this.callStatementParametersQl = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

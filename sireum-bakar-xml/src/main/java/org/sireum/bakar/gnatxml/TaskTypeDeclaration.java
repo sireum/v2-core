@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Task_Type_Declaration complex type.
+ * <p>
+ * Java class for Task_Type_Declaration complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Task_Type_Declaration">
@@ -38,171 +39,148 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Task_Type_Declaration", propOrder = {
-    "sloc",
-    "namesQl",
-    "discriminantPartQ",
-    "aspectSpecificationsQl",
-    "declarationInterfaceListQl",
-    "typeDeclarationViewQ"
-})
+@XmlType(name = "Task_Type_Declaration", propOrder = { "sloc", "namesQl",
+    "discriminantPartQ", "aspectSpecificationsQl",
+    "declarationInterfaceListQl", "typeDeclarationViewQ" })
 public class TaskTypeDeclaration {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "discriminant_part_q", required = true)
-    protected DefinitionClass discriminantPartQ;
-    @XmlElement(name = "aspect_specifications_ql", required = true)
-    protected ElementList aspectSpecificationsQl;
-    @XmlElement(name = "declaration_interface_list_ql", required = true)
-    protected ExpressionList declarationInterfaceListQl;
-    @XmlElement(name = "type_declaration_view_q", required = true)
-    protected DefinitionClass typeDeclarationViewQ;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "discriminant_part_q", required = true)
+  protected DefinitionClass discriminantPartQ;
+  @XmlElement(name = "aspect_specifications_ql", required = true)
+  protected ElementList aspectSpecificationsQl;
+  @XmlElement(name = "declaration_interface_list_ql", required = true)
+  protected ExpressionList declarationInterfaceListQl;
+  @XmlElement(name = "type_declaration_view_q", required = true)
+  protected DefinitionClass typeDeclarationViewQ;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the aspectSpecificationsQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getAspectSpecificationsQl() {
+    return this.aspectSpecificationsQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the declarationInterfaceListQl property.
+   * 
+   * @return possible object is {@link ExpressionList }
+   * 
+   */
+  public ExpressionList getDeclarationInterfaceListQl() {
+    return this.declarationInterfaceListQl;
+  }
 
-    /**
-     * Gets the value of the namesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
-    }
+  /**
+   * Gets the value of the discriminantPartQ property.
+   * 
+   * @return possible object is {@link DefinitionClass }
+   * 
+   */
+  public DefinitionClass getDiscriminantPartQ() {
+    return this.discriminantPartQ;
+  }
 
-    /**
-     * Sets the value of the namesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
 
-    /**
-     * Gets the value of the discriminantPartQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public DefinitionClass getDiscriminantPartQ() {
-        return discriminantPartQ;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Sets the value of the discriminantPartQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public void setDiscriminantPartQ(DefinitionClass value) {
-        this.discriminantPartQ = value;
-    }
+  /**
+   * Gets the value of the typeDeclarationViewQ property.
+   * 
+   * @return possible object is {@link DefinitionClass }
+   * 
+   */
+  public DefinitionClass getTypeDeclarationViewQ() {
+    return this.typeDeclarationViewQ;
+  }
 
-    /**
-     * Gets the value of the aspectSpecificationsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getAspectSpecificationsQl() {
-        return aspectSpecificationsQl;
-    }
+  /**
+   * Sets the value of the aspectSpecificationsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setAspectSpecificationsQl(final ElementList value) {
+    this.aspectSpecificationsQl = value;
+  }
 
-    /**
-     * Sets the value of the aspectSpecificationsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setAspectSpecificationsQl(ElementList value) {
-        this.aspectSpecificationsQl = value;
-    }
+  /**
+   * Sets the value of the declarationInterfaceListQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionList }
+   * 
+   */
+  public void setDeclarationInterfaceListQl(final ExpressionList value) {
+    this.declarationInterfaceListQl = value;
+  }
 
-    /**
-     * Gets the value of the declarationInterfaceListQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public ExpressionList getDeclarationInterfaceListQl() {
-        return declarationInterfaceListQl;
-    }
+  /**
+   * Sets the value of the discriminantPartQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DefinitionClass }
+   * 
+   */
+  public void setDiscriminantPartQ(final DefinitionClass value) {
+    this.discriminantPartQ = value;
+  }
 
-    /**
-     * Sets the value of the declarationInterfaceListQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public void setDeclarationInterfaceListQl(ExpressionList value) {
-        this.declarationInterfaceListQl = value;
-    }
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
 
-    /**
-     * Gets the value of the typeDeclarationViewQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public DefinitionClass getTypeDeclarationViewQ() {
-        return typeDeclarationViewQ;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the typeDeclarationViewQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public void setTypeDeclarationViewQ(DefinitionClass value) {
-        this.typeDeclarationViewQ = value;
-    }
+  /**
+   * Sets the value of the typeDeclarationViewQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DefinitionClass }
+   * 
+   */
+  public void setTypeDeclarationViewQ(final DefinitionClass value) {
+    this.typeDeclarationViewQ = value;
+  }
 
 }

@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Record_Definition complex type.
+ * <p>
+ * Java class for Record_Definition complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Record_Definition">
@@ -46,172 +47,154 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Record_Definition", propOrder = {
-    "sloc",
-    "hasLimitedQ",
-    "recordComponentsQl"
-})
+@XmlType(name = "Record_Definition", propOrder = { "sloc", "hasLimitedQ",
+    "recordComponentsQl" })
 public class RecordDefinition {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "has_limited_q", required = true)
-    protected RecordDefinition.HasLimitedQ hasLimitedQ;
-    @XmlElement(name = "record_components_ql", required = true)
-    protected RecordComponentList recordComponentsQl;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="limited" type="{}Limited"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "limited", "notAnElement" })
+  public static class HasLimitedQ {
+
+    protected Limited limited;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the limited property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link Limited }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public Limited getLimited() {
+      return this.limited;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
+    }
+
+    /**
+     * Sets the value of the limited property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the hasLimitedQ property.
+     *          allowed object is {@link Limited }
      * 
-     * @return
-     *     possible object is
-     *     {@link RecordDefinition.HasLimitedQ }
-     *     
      */
-    public RecordDefinition.HasLimitedQ getHasLimitedQ() {
-        return hasLimitedQ;
+    public void setLimited(final Limited value) {
+      this.limited = value;
     }
 
     /**
-     * Sets the value of the hasLimitedQ property.
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link RecordDefinition.HasLimitedQ }
-     *     
-     */
-    public void setHasLimitedQ(RecordDefinition.HasLimitedQ value) {
-        this.hasLimitedQ = value;
-    }
-
-    /**
-     * Gets the value of the recordComponentsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RecordComponentList }
-     *     
-     */
-    public RecordComponentList getRecordComponentsQl() {
-        return recordComponentsQl;
-    }
-
-    /**
-     * Sets the value of the recordComponentsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RecordComponentList }
-     *     
-     */
-    public void setRecordComponentsQl(RecordComponentList value) {
-        this.recordComponentsQl = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="limited" type="{}Limited"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link NotAnElement }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "limited",
-        "notAnElement"
-    })
-    public static class HasLimitedQ {
-
-        protected Limited limited;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the limited property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Limited }
-         *     
-         */
-        public Limited getLimited() {
-            return limited;
-        }
-
-        /**
-         * Sets the value of the limited property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Limited }
-         *     
-         */
-        public void setLimited(Limited value) {
-            this.limited = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
+
+  }
+
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "has_limited_q", required = true)
+  protected RecordDefinition.HasLimitedQ hasLimitedQ;
+
+  @XmlElement(name = "record_components_ql", required = true)
+  protected RecordComponentList recordComponentsQl;
+
+  /**
+   * Gets the value of the hasLimitedQ property.
+   * 
+   * @return possible object is {@link RecordDefinition.HasLimitedQ }
+   * 
+   */
+  public RecordDefinition.HasLimitedQ getHasLimitedQ() {
+    return this.hasLimitedQ;
+  }
+
+  /**
+   * Gets the value of the recordComponentsQl property.
+   * 
+   * @return possible object is {@link RecordComponentList }
+   * 
+   */
+  public RecordComponentList getRecordComponentsQl() {
+    return this.recordComponentsQl;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Sets the value of the hasLimitedQ property.
+   * 
+   * @param value
+   *          allowed object is {@link RecordDefinition.HasLimitedQ }
+   * 
+   */
+  public void setHasLimitedQ(final RecordDefinition.HasLimitedQ value) {
+    this.hasLimitedQ = value;
+  }
+
+  /**
+   * Sets the value of the recordComponentsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link RecordComponentList }
+   * 
+   */
+  public void setRecordComponentsQl(final RecordComponentList value) {
+    this.recordComponentsQl = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

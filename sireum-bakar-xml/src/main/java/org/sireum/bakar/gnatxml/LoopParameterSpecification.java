@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Loop_Parameter_Specification complex type.
+ * <p>
+ * Java class for Loop_Parameter_Specification complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Loop_Parameter_Specification">
@@ -47,199 +48,178 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Loop_Parameter_Specification", propOrder = {
-    "sloc",
-    "namesQl",
-    "hasReverseQ",
-    "specificationSubtypeDefinitionQ"
-})
+@XmlType(name = "Loop_Parameter_Specification", propOrder = { "sloc",
+    "namesQl", "hasReverseQ", "specificationSubtypeDefinitionQ" })
 public class LoopParameterSpecification {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "has_reverse_q", required = true)
-    protected LoopParameterSpecification.HasReverseQ hasReverseQ;
-    @XmlElement(name = "specification_subtype_definition_q", required = true)
-    protected DiscreteSubtypeDefinitionClass specificationSubtypeDefinitionQ;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="reverse" type="{}Reverse"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "reverse", "notAnElement" })
+  public static class HasReverseQ {
+
+    protected Reverse reverse;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the notAnElement property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link NotAnElement }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the reverse property.
+     * 
+     * @return possible object is {@link Reverse }
+     * 
+     */
+    public Reverse getReverse() {
+      return this.reverse;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the namesQl property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
      */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the namesQl property.
+     * Sets the value of the reverse property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
-
-    /**
-     * Gets the value of the hasReverseQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LoopParameterSpecification.HasReverseQ }
-     *     
-     */
-    public LoopParameterSpecification.HasReverseQ getHasReverseQ() {
-        return hasReverseQ;
-    }
-
-    /**
-     * Sets the value of the hasReverseQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LoopParameterSpecification.HasReverseQ }
-     *     
-     */
-    public void setHasReverseQ(LoopParameterSpecification.HasReverseQ value) {
-        this.hasReverseQ = value;
-    }
-
-    /**
-     * Gets the value of the specificationSubtypeDefinitionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DiscreteSubtypeDefinitionClass }
-     *     
-     */
-    public DiscreteSubtypeDefinitionClass getSpecificationSubtypeDefinitionQ() {
-        return specificationSubtypeDefinitionQ;
-    }
-
-    /**
-     * Sets the value of the specificationSubtypeDefinitionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscreteSubtypeDefinitionClass }
-     *     
-     */
-    public void setSpecificationSubtypeDefinitionQ(DiscreteSubtypeDefinitionClass value) {
-        this.specificationSubtypeDefinitionQ = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="reverse" type="{}Reverse"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link Reverse }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "reverse",
-        "notAnElement"
-    })
-    public static class HasReverseQ {
-
-        protected Reverse reverse;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the reverse property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Reverse }
-         *     
-         */
-        public Reverse getReverse() {
-            return reverse;
-        }
-
-        /**
-         * Sets the value of the reverse property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Reverse }
-         *     
-         */
-        public void setReverse(Reverse value) {
-            this.reverse = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setReverse(final Reverse value) {
+      this.reverse = value;
     }
+
+  }
+
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "has_reverse_q", required = true)
+  protected LoopParameterSpecification.HasReverseQ hasReverseQ;
+
+  @XmlElement(name = "specification_subtype_definition_q", required = true)
+  protected DiscreteSubtypeDefinitionClass specificationSubtypeDefinitionQ;
+
+  /**
+   * Gets the value of the hasReverseQ property.
+   * 
+   * @return possible object is {@link LoopParameterSpecification.HasReverseQ }
+   * 
+   */
+  public LoopParameterSpecification.HasReverseQ getHasReverseQ() {
+    return this.hasReverseQ;
+  }
+
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Gets the value of the specificationSubtypeDefinitionQ property.
+   * 
+   * @return possible object is {@link DiscreteSubtypeDefinitionClass }
+   * 
+   */
+  public DiscreteSubtypeDefinitionClass getSpecificationSubtypeDefinitionQ() {
+    return this.specificationSubtypeDefinitionQ;
+  }
+
+  /**
+   * Sets the value of the hasReverseQ property.
+   * 
+   * @param value
+   *          allowed object is {@link LoopParameterSpecification.HasReverseQ }
+   * 
+   */
+  public void setHasReverseQ(final LoopParameterSpecification.HasReverseQ value) {
+    this.hasReverseQ = value;
+  }
+
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
+
+  /**
+   * Sets the value of the specificationSubtypeDefinitionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DiscreteSubtypeDefinitionClass }
+   * 
+   */
+  public void setSpecificationSubtypeDefinitionQ(
+      final DiscreteSubtypeDefinitionClass value) {
+    this.specificationSubtypeDefinitionQ = value;
+  }
 
 }

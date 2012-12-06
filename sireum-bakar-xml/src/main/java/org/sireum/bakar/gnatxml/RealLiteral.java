@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Real_Literal complex type.
+ * <p>
+ * Java class for Real_Literal complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Real_Literal">
@@ -36,88 +37,77 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Real_Literal", propOrder = {
-    "sloc"
-})
+@XmlType(name = "Real_Literal", propOrder = { "sloc" })
 public class RealLiteral {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlAttribute(name = "lit_val", required = true)
-    protected String litVal;
-    @XmlAttribute(name = "type", required = true)
-    protected String type;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlAttribute(name = "lit_val", required = true)
+  protected String litVal;
+  @XmlAttribute(name = "type", required = true)
+  protected String type;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the litVal property.
+   * 
+   * @return possible object is {@link String }
+   * 
+   */
+  public String getLitVal() {
+    return this.litVal;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the litVal property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLitVal() {
-        return litVal;
-    }
+  /**
+   * Gets the value of the type property.
+   * 
+   * @return possible object is {@link String }
+   * 
+   */
+  public String getType() {
+    return this.type;
+  }
 
-    /**
-     * Sets the value of the litVal property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLitVal(String value) {
-        this.litVal = value;
-    }
+  /**
+   * Sets the value of the litVal property.
+   * 
+   * @param value
+   *          allowed object is {@link String }
+   * 
+   */
+  public void setLitVal(final String value) {
+    this.litVal = value;
+  }
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+  /**
+   * Sets the value of the type property.
+   * 
+   * @param value
+   *          allowed object is {@link String }
+   * 
+   */
+  public void setType(final String value) {
+    this.type = value;
+  }
 
 }

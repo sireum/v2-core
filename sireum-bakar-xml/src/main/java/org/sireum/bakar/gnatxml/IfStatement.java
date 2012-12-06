@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for If_Statement complex type.
+ * <p>
+ * Java class for If_Statement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="If_Statement">
@@ -35,90 +36,78 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "If_Statement", propOrder = {
-    "sloc",
-    "labelNamesQl",
-    "statementPathsQl"
-})
+@XmlType(name = "If_Statement", propOrder = { "sloc", "labelNamesQl",
+    "statementPathsQl" })
 public class IfStatement {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "label_names_ql", required = true)
-    protected DefiningNameList labelNamesQl;
-    @XmlElement(name = "statement_paths_ql", required = true)
-    protected PathList statementPathsQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "label_names_ql", required = true)
+  protected DefiningNameList labelNamesQl;
+  @XmlElement(name = "statement_paths_ql", required = true)
+  protected PathList statementPathsQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the labelNamesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getLabelNamesQl() {
+    return this.labelNamesQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the labelNamesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getLabelNamesQl() {
-        return labelNamesQl;
-    }
+  /**
+   * Gets the value of the statementPathsQl property.
+   * 
+   * @return possible object is {@link PathList }
+   * 
+   */
+  public PathList getStatementPathsQl() {
+    return this.statementPathsQl;
+  }
 
-    /**
-     * Sets the value of the labelNamesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setLabelNamesQl(DefiningNameList value) {
-        this.labelNamesQl = value;
-    }
+  /**
+   * Sets the value of the labelNamesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setLabelNamesQl(final DefiningNameList value) {
+    this.labelNamesQl = value;
+  }
 
-    /**
-     * Gets the value of the statementPathsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PathList }
-     *     
-     */
-    public PathList getStatementPathsQl() {
-        return statementPathsQl;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the statementPathsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PathList }
-     *     
-     */
-    public void setStatementPathsQl(PathList value) {
-        this.statementPathsQl = value;
-    }
+  /**
+   * Sets the value of the statementPathsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link PathList }
+   * 
+   */
+  public void setStatementPathsQl(final PathList value) {
+    this.statementPathsQl = value;
+  }
 
 }

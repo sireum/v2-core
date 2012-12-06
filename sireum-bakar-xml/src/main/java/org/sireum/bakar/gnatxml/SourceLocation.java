@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Source_Location complex type.
+ * <p>
+ * Java class for Source_Location complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Source_Location">
@@ -37,77 +38,77 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Source_Location")
 public class SourceLocation {
 
-    @XmlAttribute(name = "line", required = true)
-    protected int line;
-    @XmlAttribute(name = "col", required = true)
-    protected int col;
-    @XmlAttribute(name = "endline", required = true)
-    protected int endline;
-    @XmlAttribute(name = "endcol", required = true)
-    protected int endcol;
+  @XmlAttribute(name = "line", required = true)
+  protected int line;
+  @XmlAttribute(name = "col", required = true)
+  protected int col;
+  @XmlAttribute(name = "endline", required = true)
+  protected int endline;
+  @XmlAttribute(name = "endcol", required = true)
+  protected int endcol;
 
-    /**
-     * Gets the value of the line property.
-     * 
-     */
-    public int getLine() {
-        return line;
-    }
+  /**
+   * Gets the value of the col property.
+   * 
+   */
+  public int getCol() {
+    return this.col;
+  }
 
-    /**
-     * Sets the value of the line property.
-     * 
-     */
-    public void setLine(int value) {
-        this.line = value;
-    }
+  /**
+   * Gets the value of the endcol property.
+   * 
+   */
+  public int getEndcol() {
+    return this.endcol;
+  }
 
-    /**
-     * Gets the value of the col property.
-     * 
-     */
-    public int getCol() {
-        return col;
-    }
+  /**
+   * Gets the value of the endline property.
+   * 
+   */
+  public int getEndline() {
+    return this.endline;
+  }
 
-    /**
-     * Sets the value of the col property.
-     * 
-     */
-    public void setCol(int value) {
-        this.col = value;
-    }
+  /**
+   * Gets the value of the line property.
+   * 
+   */
+  public int getLine() {
+    return this.line;
+  }
 
-    /**
-     * Gets the value of the endline property.
-     * 
-     */
-    public int getEndline() {
-        return endline;
-    }
+  /**
+   * Sets the value of the col property.
+   * 
+   */
+  public void setCol(final int value) {
+    this.col = value;
+  }
 
-    /**
-     * Sets the value of the endline property.
-     * 
-     */
-    public void setEndline(int value) {
-        this.endline = value;
-    }
+  /**
+   * Sets the value of the endcol property.
+   * 
+   */
+  public void setEndcol(final int value) {
+    this.endcol = value;
+  }
 
-    /**
-     * Gets the value of the endcol property.
-     * 
-     */
-    public int getEndcol() {
-        return endcol;
-    }
+  /**
+   * Sets the value of the endline property.
+   * 
+   */
+  public void setEndline(final int value) {
+    this.endline = value;
+  }
 
-    /**
-     * Sets the value of the endcol property.
-     * 
-     */
-    public void setEndcol(int value) {
-        this.endcol = value;
-    }
+  /**
+   * Sets the value of the line property.
+   * 
+   */
+  public void setLine(final int value) {
+    this.line = value;
+  }
 
 }

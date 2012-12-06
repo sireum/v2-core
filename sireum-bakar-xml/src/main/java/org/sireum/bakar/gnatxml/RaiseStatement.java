@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Raise_Statement complex type.
+ * <p>
+ * Java class for Raise_Statement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Raise_Statement">
@@ -36,117 +37,101 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Raise_Statement", propOrder = {
-    "sloc",
-    "labelNamesQl",
-    "raisedExceptionQ",
-    "associatedMessageQ"
-})
+@XmlType(name = "Raise_Statement", propOrder = { "sloc", "labelNamesQl",
+    "raisedExceptionQ", "associatedMessageQ" })
 public class RaiseStatement {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "label_names_ql", required = true)
-    protected DefiningNameList labelNamesQl;
-    @XmlElement(name = "raised_exception_q", required = true)
-    protected ExpressionClass raisedExceptionQ;
-    @XmlElement(name = "associated_message_q", required = true)
-    protected ExpressionClass associatedMessageQ;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "label_names_ql", required = true)
+  protected DefiningNameList labelNamesQl;
+  @XmlElement(name = "raised_exception_q", required = true)
+  protected ExpressionClass raisedExceptionQ;
+  @XmlElement(name = "associated_message_q", required = true)
+  protected ExpressionClass associatedMessageQ;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the associatedMessageQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getAssociatedMessageQ() {
+    return this.associatedMessageQ;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the labelNamesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getLabelNamesQl() {
+    return this.labelNamesQl;
+  }
 
-    /**
-     * Gets the value of the labelNamesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getLabelNamesQl() {
-        return labelNamesQl;
-    }
+  /**
+   * Gets the value of the raisedExceptionQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getRaisedExceptionQ() {
+    return this.raisedExceptionQ;
+  }
 
-    /**
-     * Sets the value of the labelNamesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setLabelNamesQl(DefiningNameList value) {
-        this.labelNamesQl = value;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Gets the value of the raisedExceptionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getRaisedExceptionQ() {
-        return raisedExceptionQ;
-    }
+  /**
+   * Sets the value of the associatedMessageQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setAssociatedMessageQ(final ExpressionClass value) {
+    this.associatedMessageQ = value;
+  }
 
-    /**
-     * Sets the value of the raisedExceptionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setRaisedExceptionQ(ExpressionClass value) {
-        this.raisedExceptionQ = value;
-    }
+  /**
+   * Sets the value of the labelNamesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setLabelNamesQl(final DefiningNameList value) {
+    this.labelNamesQl = value;
+  }
 
-    /**
-     * Gets the value of the associatedMessageQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getAssociatedMessageQ() {
-        return associatedMessageQ;
-    }
+  /**
+   * Sets the value of the raisedExceptionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setRaisedExceptionQ(final ExpressionClass value) {
+    this.raisedExceptionQ = value;
+  }
 
-    /**
-     * Sets the value of the associatedMessageQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setAssociatedMessageQ(ExpressionClass value) {
-        this.associatedMessageQ = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

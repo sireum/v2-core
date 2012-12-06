@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Formal_Object_Declaration complex type.
+ * <p>
+ * Java class for Formal_Object_Declaration complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Formal_Object_Declaration">
@@ -51,280 +52,251 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Formal_Object_Declaration", propOrder = {
-    "sloc",
-    "namesQl",
-    "hasNullExclusionQ",
-    "objectDeclarationViewQ",
-    "initializationExpressionQ",
-    "aspectSpecificationsQl"
-})
+@XmlType(name = "Formal_Object_Declaration", propOrder = { "sloc", "namesQl",
+    "hasNullExclusionQ", "objectDeclarationViewQ", "initializationExpressionQ",
+    "aspectSpecificationsQl" })
 public class FormalObjectDeclaration {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "has_null_exclusion_q", required = true)
-    protected FormalObjectDeclaration.HasNullExclusionQ hasNullExclusionQ;
-    @XmlElement(name = "object_declaration_view_q", required = true)
-    protected DefinitionClass objectDeclarationViewQ;
-    @XmlElement(name = "initialization_expression_q", required = true)
-    protected ExpressionClass initializationExpressionQ;
-    @XmlElement(name = "aspect_specifications_ql", required = true)
-    protected ElementList aspectSpecificationsQl;
-    @XmlAttribute(name = "mode", required = true)
-    protected String mode;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "nullExclusion", "notAnElement" })
+  public static class HasNullExclusionQ {
+
+    @XmlElement(name = "null_exclusion")
+    protected NullExclusion nullExclusion;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the notAnElement property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link NotAnElement }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the nullExclusion property.
+     * 
+     * @return possible object is {@link NullExclusion }
+     * 
+     */
+    public NullExclusion getNullExclusion() {
+      return this.nullExclusion;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the namesQl property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
      */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the namesQl property.
+     * Sets the value of the nullExclusion property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
-
-    /**
-     * Gets the value of the hasNullExclusionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link FormalObjectDeclaration.HasNullExclusionQ }
-     *     
-     */
-    public FormalObjectDeclaration.HasNullExclusionQ getHasNullExclusionQ() {
-        return hasNullExclusionQ;
-    }
-
-    /**
-     * Sets the value of the hasNullExclusionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalObjectDeclaration.HasNullExclusionQ }
-     *     
-     */
-    public void setHasNullExclusionQ(FormalObjectDeclaration.HasNullExclusionQ value) {
-        this.hasNullExclusionQ = value;
-    }
-
-    /**
-     * Gets the value of the objectDeclarationViewQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public DefinitionClass getObjectDeclarationViewQ() {
-        return objectDeclarationViewQ;
-    }
-
-    /**
-     * Sets the value of the objectDeclarationViewQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefinitionClass }
-     *     
-     */
-    public void setObjectDeclarationViewQ(DefinitionClass value) {
-        this.objectDeclarationViewQ = value;
-    }
-
-    /**
-     * Gets the value of the initializationExpressionQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getInitializationExpressionQ() {
-        return initializationExpressionQ;
-    }
-
-    /**
-     * Sets the value of the initializationExpressionQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setInitializationExpressionQ(ExpressionClass value) {
-        this.initializationExpressionQ = value;
-    }
-
-    /**
-     * Gets the value of the aspectSpecificationsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getAspectSpecificationsQl() {
-        return aspectSpecificationsQl;
-    }
-
-    /**
-     * Sets the value of the aspectSpecificationsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setAspectSpecificationsQl(ElementList value) {
-        this.aspectSpecificationsQl = value;
-    }
-
-    /**
-     * Gets the value of the mode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMode() {
-        return mode;
-    }
-
-    /**
-     * Sets the value of the mode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMode(String value) {
-        this.mode = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link NullExclusion }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "nullExclusion",
-        "notAnElement"
-    })
-    public static class HasNullExclusionQ {
-
-        @XmlElement(name = "null_exclusion")
-        protected NullExclusion nullExclusion;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the nullExclusion property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NullExclusion }
-         *     
-         */
-        public NullExclusion getNullExclusion() {
-            return nullExclusion;
-        }
-
-        /**
-         * Sets the value of the nullExclusion property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NullExclusion }
-         *     
-         */
-        public void setNullExclusion(NullExclusion value) {
-            this.nullExclusion = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setNullExclusion(final NullExclusion value) {
+      this.nullExclusion = value;
     }
+
+  }
+
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "has_null_exclusion_q", required = true)
+  protected FormalObjectDeclaration.HasNullExclusionQ hasNullExclusionQ;
+  @XmlElement(name = "object_declaration_view_q", required = true)
+  protected DefinitionClass objectDeclarationViewQ;
+  @XmlElement(name = "initialization_expression_q", required = true)
+  protected ExpressionClass initializationExpressionQ;
+  @XmlElement(name = "aspect_specifications_ql", required = true)
+  protected ElementList aspectSpecificationsQl;
+
+  @XmlAttribute(name = "mode", required = true)
+  protected String mode;
+
+  /**
+   * Gets the value of the aspectSpecificationsQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getAspectSpecificationsQl() {
+    return this.aspectSpecificationsQl;
+  }
+
+  /**
+   * Gets the value of the hasNullExclusionQ property.
+   * 
+   * @return possible object is
+   *         {@link FormalObjectDeclaration.HasNullExclusionQ }
+   * 
+   */
+  public FormalObjectDeclaration.HasNullExclusionQ getHasNullExclusionQ() {
+    return this.hasNullExclusionQ;
+  }
+
+  /**
+   * Gets the value of the initializationExpressionQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getInitializationExpressionQ() {
+    return this.initializationExpressionQ;
+  }
+
+  /**
+   * Gets the value of the mode property.
+   * 
+   * @return possible object is {@link String }
+   * 
+   */
+  public String getMode() {
+    return this.mode;
+  }
+
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
+
+  /**
+   * Gets the value of the objectDeclarationViewQ property.
+   * 
+   * @return possible object is {@link DefinitionClass }
+   * 
+   */
+  public DefinitionClass getObjectDeclarationViewQ() {
+    return this.objectDeclarationViewQ;
+  }
+
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
+
+  /**
+   * Sets the value of the aspectSpecificationsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setAspectSpecificationsQl(final ElementList value) {
+    this.aspectSpecificationsQl = value;
+  }
+
+  /**
+   * Sets the value of the hasNullExclusionQ property.
+   * 
+   * @param value
+   *          allowed object is
+   *          {@link FormalObjectDeclaration.HasNullExclusionQ }
+   * 
+   */
+  public void setHasNullExclusionQ(
+      final FormalObjectDeclaration.HasNullExclusionQ value) {
+    this.hasNullExclusionQ = value;
+  }
+
+  /**
+   * Sets the value of the initializationExpressionQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setInitializationExpressionQ(final ExpressionClass value) {
+    this.initializationExpressionQ = value;
+  }
+
+  /**
+   * Sets the value of the mode property.
+   * 
+   * @param value
+   *          allowed object is {@link String }
+   * 
+   */
+  public void setMode(final String value) {
+    this.mode = value;
+  }
+
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
+
+  /**
+   * Sets the value of the objectDeclarationViewQ property.
+   * 
+   * @param value
+   *          allowed object is {@link DefinitionClass }
+   * 
+   */
+  public void setObjectDeclarationViewQ(final DefinitionClass value) {
+    this.objectDeclarationViewQ = value;
+  }
+
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

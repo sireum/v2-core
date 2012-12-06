@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Goto_Statement complex type.
+ * <p>
+ * Java class for Goto_Statement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Goto_Statement">
@@ -35,90 +36,78 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Goto_Statement", propOrder = {
-    "sloc",
-    "labelNamesQl",
-    "gotoLabelQ"
-})
+@XmlType(name = "Goto_Statement", propOrder = { "sloc", "labelNamesQl",
+    "gotoLabelQ" })
 public class GotoStatement {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "label_names_ql", required = true)
-    protected DefiningNameList labelNamesQl;
-    @XmlElement(name = "goto_label_q", required = true)
-    protected ExpressionClass gotoLabelQ;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "label_names_ql", required = true)
+  protected DefiningNameList labelNamesQl;
+  @XmlElement(name = "goto_label_q", required = true)
+  protected ExpressionClass gotoLabelQ;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the gotoLabelQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getGotoLabelQ() {
+    return this.gotoLabelQ;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the labelNamesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getLabelNamesQl() {
+    return this.labelNamesQl;
+  }
 
-    /**
-     * Gets the value of the labelNamesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getLabelNamesQl() {
-        return labelNamesQl;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Sets the value of the labelNamesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setLabelNamesQl(DefiningNameList value) {
-        this.labelNamesQl = value;
-    }
+  /**
+   * Sets the value of the gotoLabelQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setGotoLabelQ(final ExpressionClass value) {
+    this.gotoLabelQ = value;
+  }
 
-    /**
-     * Gets the value of the gotoLabelQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getGotoLabelQ() {
-        return gotoLabelQ;
-    }
+  /**
+   * Sets the value of the labelNamesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setLabelNamesQl(final DefiningNameList value) {
+    this.labelNamesQl = value;
+  }
 
-    /**
-     * Sets the value of the gotoLabelQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setGotoLabelQ(ExpressionClass value) {
-        this.gotoLabelQ = value;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
 }

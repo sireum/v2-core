@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Indexed_Component complex type.
+ * <p>
+ * Java class for Indexed_Component complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Indexed_Component">
@@ -37,116 +38,101 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Indexed_Component", propOrder = {
-    "sloc",
-    "prefixQ",
-    "indexExpressionsQl"
-})
+@XmlType(name = "Indexed_Component", propOrder = { "sloc", "prefixQ",
+    "indexExpressionsQl" })
 public class IndexedComponent {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "prefix_q", required = true)
-    protected ExpressionClass prefixQ;
-    @XmlElement(name = "index_expressions_ql", required = true)
-    protected ExpressionList indexExpressionsQl;
-    @XmlAttribute(name = "type", required = true)
-    protected String type;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "prefix_q", required = true)
+  protected ExpressionClass prefixQ;
+  @XmlElement(name = "index_expressions_ql", required = true)
+  protected ExpressionList indexExpressionsQl;
+  @XmlAttribute(name = "type", required = true)
+  protected String type;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the indexExpressionsQl property.
+   * 
+   * @return possible object is {@link ExpressionList }
+   * 
+   */
+  public ExpressionList getIndexExpressionsQl() {
+    return this.indexExpressionsQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the prefixQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getPrefixQ() {
+    return this.prefixQ;
+  }
 
-    /**
-     * Gets the value of the prefixQ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public ExpressionClass getPrefixQ() {
-        return prefixQ;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Sets the value of the prefixQ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setPrefixQ(ExpressionClass value) {
-        this.prefixQ = value;
-    }
+  /**
+   * Gets the value of the type property.
+   * 
+   * @return possible object is {@link String }
+   * 
+   */
+  public String getType() {
+    return this.type;
+  }
 
-    /**
-     * Gets the value of the indexExpressionsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public ExpressionList getIndexExpressionsQl() {
-        return indexExpressionsQl;
-    }
+  /**
+   * Sets the value of the indexExpressionsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionList }
+   * 
+   */
+  public void setIndexExpressionsQl(final ExpressionList value) {
+    this.indexExpressionsQl = value;
+  }
 
-    /**
-     * Sets the value of the indexExpressionsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public void setIndexExpressionsQl(ExpressionList value) {
-        this.indexExpressionsQl = value;
-    }
+  /**
+   * Sets the value of the prefixQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setPrefixQ(final ExpressionClass value) {
+    this.prefixQ = value;
+  }
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+  /**
+   * Sets the value of the type property.
+   * 
+   * @param value
+   *          allowed object is {@link String }
+   * 
+   */
+  public void setType(final String value) {
+    this.type = value;
+  }
 
 }

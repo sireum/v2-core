@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Generic_Package_Declaration complex type.
+ * <p>
+ * Java class for Generic_Package_Declaration complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Generic_Package_Declaration">
@@ -38,171 +39,148 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Generic_Package_Declaration", propOrder = {
-    "sloc",
-    "genericFormalPartQl",
-    "namesQl",
-    "aspectSpecificationsQl",
-    "visiblePartDeclarativeItemsQl",
-    "privatePartDeclarativeItemsQl"
-})
+@XmlType(name = "Generic_Package_Declaration", propOrder = { "sloc",
+    "genericFormalPartQl", "namesQl", "aspectSpecificationsQl",
+    "visiblePartDeclarativeItemsQl", "privatePartDeclarativeItemsQl" })
 public class GenericPackageDeclaration {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "generic_formal_part_ql", required = true)
-    protected ElementList genericFormalPartQl;
-    @XmlElement(name = "names_ql", required = true)
-    protected DefiningNameList namesQl;
-    @XmlElement(name = "aspect_specifications_ql", required = true)
-    protected ElementList aspectSpecificationsQl;
-    @XmlElement(name = "visible_part_declarative_items_ql", required = true)
-    protected DeclarativeItemList visiblePartDeclarativeItemsQl;
-    @XmlElement(name = "private_part_declarative_items_ql", required = true)
-    protected DeclarativeItemList privatePartDeclarativeItemsQl;
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "generic_formal_part_ql", required = true)
+  protected ElementList genericFormalPartQl;
+  @XmlElement(name = "names_ql", required = true)
+  protected DefiningNameList namesQl;
+  @XmlElement(name = "aspect_specifications_ql", required = true)
+  protected ElementList aspectSpecificationsQl;
+  @XmlElement(name = "visible_part_declarative_items_ql", required = true)
+  protected DeclarativeItemList visiblePartDeclarativeItemsQl;
+  @XmlElement(name = "private_part_declarative_items_ql", required = true)
+  protected DeclarativeItemList privatePartDeclarativeItemsQl;
 
-    /**
-     * Gets the value of the sloc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public SourceLocation getSloc() {
-        return sloc;
-    }
+  /**
+   * Gets the value of the aspectSpecificationsQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getAspectSpecificationsQl() {
+    return this.aspectSpecificationsQl;
+  }
 
-    /**
-     * Sets the value of the sloc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
+  /**
+   * Gets the value of the genericFormalPartQl property.
+   * 
+   * @return possible object is {@link ElementList }
+   * 
+   */
+  public ElementList getGenericFormalPartQl() {
+    return this.genericFormalPartQl;
+  }
 
-    /**
-     * Gets the value of the genericFormalPartQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getGenericFormalPartQl() {
-        return genericFormalPartQl;
-    }
+  /**
+   * Gets the value of the namesQl property.
+   * 
+   * @return possible object is {@link DefiningNameList }
+   * 
+   */
+  public DefiningNameList getNamesQl() {
+    return this.namesQl;
+  }
 
-    /**
-     * Sets the value of the genericFormalPartQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setGenericFormalPartQl(ElementList value) {
-        this.genericFormalPartQl = value;
-    }
+  /**
+   * Gets the value of the privatePartDeclarativeItemsQl property.
+   * 
+   * @return possible object is {@link DeclarativeItemList }
+   * 
+   */
+  public DeclarativeItemList getPrivatePartDeclarativeItemsQl() {
+    return this.privatePartDeclarativeItemsQl;
+  }
 
-    /**
-     * Gets the value of the namesQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public DefiningNameList getNamesQl() {
-        return namesQl;
-    }
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-    /**
-     * Sets the value of the namesQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiningNameList }
-     *     
-     */
-    public void setNamesQl(DefiningNameList value) {
-        this.namesQl = value;
-    }
+  /**
+   * Gets the value of the visiblePartDeclarativeItemsQl property.
+   * 
+   * @return possible object is {@link DeclarativeItemList }
+   * 
+   */
+  public DeclarativeItemList getVisiblePartDeclarativeItemsQl() {
+    return this.visiblePartDeclarativeItemsQl;
+  }
 
-    /**
-     * Gets the value of the aspectSpecificationsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ElementList }
-     *     
-     */
-    public ElementList getAspectSpecificationsQl() {
-        return aspectSpecificationsQl;
-    }
+  /**
+   * Sets the value of the aspectSpecificationsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setAspectSpecificationsQl(final ElementList value) {
+    this.aspectSpecificationsQl = value;
+  }
 
-    /**
-     * Sets the value of the aspectSpecificationsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementList }
-     *     
-     */
-    public void setAspectSpecificationsQl(ElementList value) {
-        this.aspectSpecificationsQl = value;
-    }
+  /**
+   * Sets the value of the genericFormalPartQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ElementList }
+   * 
+   */
+  public void setGenericFormalPartQl(final ElementList value) {
+    this.genericFormalPartQl = value;
+  }
 
-    /**
-     * Gets the value of the visiblePartDeclarativeItemsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public DeclarativeItemList getVisiblePartDeclarativeItemsQl() {
-        return visiblePartDeclarativeItemsQl;
-    }
+  /**
+   * Sets the value of the namesQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DefiningNameList }
+   * 
+   */
+  public void setNamesQl(final DefiningNameList value) {
+    this.namesQl = value;
+  }
 
-    /**
-     * Sets the value of the visiblePartDeclarativeItemsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public void setVisiblePartDeclarativeItemsQl(DeclarativeItemList value) {
-        this.visiblePartDeclarativeItemsQl = value;
-    }
+  /**
+   * Sets the value of the privatePartDeclarativeItemsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DeclarativeItemList }
+   * 
+   */
+  public void setPrivatePartDeclarativeItemsQl(final DeclarativeItemList value) {
+    this.privatePartDeclarativeItemsQl = value;
+  }
 
-    /**
-     * Gets the value of the privatePartDeclarativeItemsQl property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public DeclarativeItemList getPrivatePartDeclarativeItemsQl() {
-        return privatePartDeclarativeItemsQl;
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
 
-    /**
-     * Sets the value of the privatePartDeclarativeItemsQl property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeclarativeItemList }
-     *     
-     */
-    public void setPrivatePartDeclarativeItemsQl(DeclarativeItemList value) {
-        this.privatePartDeclarativeItemsQl = value;
-    }
+  /**
+   * Sets the value of the visiblePartDeclarativeItemsQl property.
+   * 
+   * @param value
+   *          allowed object is {@link DeclarativeItemList }
+   * 
+   */
+  public void setVisiblePartDeclarativeItemsQl(final DeclarativeItemList value) {
+    this.visiblePartDeclarativeItemsQl = value;
+  }
 
 }

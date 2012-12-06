@@ -4,7 +4,6 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
-
 package org.sireum.bakar.gnatxml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,11 +11,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Formal_Derived_Type_Definition complex type.
+ * <p>
+ * Java class for Formal_Derived_Type_Definition complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Formal_Derived_Type_Definition">
@@ -71,419 +72,379 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Formal_Derived_Type_Definition", propOrder = {
-    "sloc",
-    "hasAbstractQ",
-    "hasLimitedQ",
-    "subtypeMarkQ",
-    "definitionInterfaceListQl",
-    "hasPrivateQ"
-})
+@XmlType(name = "Formal_Derived_Type_Definition", propOrder = { "sloc",
+    "hasAbstractQ", "hasLimitedQ", "subtypeMarkQ", "definitionInterfaceListQl",
+    "hasPrivateQ" })
 public class FormalDerivedTypeDefinition {
 
-    @XmlElement(required = true)
-    protected SourceLocation sloc;
-    @XmlElement(name = "has_abstract_q", required = true)
-    protected FormalDerivedTypeDefinition.HasAbstractQ hasAbstractQ;
-    @XmlElement(name = "has_limited_q", required = true)
-    protected FormalDerivedTypeDefinition.HasLimitedQ hasLimitedQ;
-    @XmlElement(name = "subtype_mark_q", required = true)
-    protected ExpressionClass subtypeMarkQ;
-    @XmlElement(name = "definition_interface_list_ql", required = true)
-    protected ExpressionList definitionInterfaceListQl;
-    @XmlElement(name = "has_private_q", required = true)
-    protected FormalDerivedTypeDefinition.HasPrivateQ hasPrivateQ;
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="abstract" type="{}Abstract"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "_abstract", "notAnElement" })
+  public static class HasAbstractQ {
+
+    @XmlElement(name = "abstract")
+    protected Abstract _abstract;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
 
     /**
-     * Gets the value of the sloc property.
+     * Gets the value of the abstract property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SourceLocation }
-     *     
+     * @return possible object is {@link Abstract }
+     * 
      */
-    public SourceLocation getSloc() {
-        return sloc;
+    public Abstract getAbstract() {
+      return this._abstract;
     }
 
     /**
-     * Sets the value of the sloc property.
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
+    }
+
+    /**
+     * Sets the value of the abstract property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SourceLocation }
-     *     
-     */
-    public void setSloc(SourceLocation value) {
-        this.sloc = value;
-    }
-
-    /**
-     * Gets the value of the hasAbstractQ property.
+     *          allowed object is {@link Abstract }
      * 
-     * @return
-     *     possible object is
-     *     {@link FormalDerivedTypeDefinition.HasAbstractQ }
-     *     
      */
-    public FormalDerivedTypeDefinition.HasAbstractQ getHasAbstractQ() {
-        return hasAbstractQ;
+    public void setAbstract(final Abstract value) {
+      this._abstract = value;
     }
 
     /**
-     * Sets the value of the hasAbstractQ property.
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link FormalDerivedTypeDefinition.HasAbstractQ }
-     *     
-     */
-    public void setHasAbstractQ(FormalDerivedTypeDefinition.HasAbstractQ value) {
-        this.hasAbstractQ = value;
-    }
-
-    /**
-     * Gets the value of the hasLimitedQ property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link FormalDerivedTypeDefinition.HasLimitedQ }
-     *     
      */
-    public FormalDerivedTypeDefinition.HasLimitedQ getHasLimitedQ() {
-        return hasLimitedQ;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
+    }
+
+  }
+
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="limited" type="{}Limited"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "limited", "notAnElement" })
+  public static class HasLimitedQ {
+
+    protected Limited limited;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
+
+    /**
+     * Gets the value of the limited property.
+     * 
+     * @return possible object is {@link Limited }
+     * 
+     */
+    public Limited getLimited() {
+      return this.limited;
     }
 
     /**
-     * Sets the value of the hasLimitedQ property.
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
+    }
+
+    /**
+     * Sets the value of the limited property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link FormalDerivedTypeDefinition.HasLimitedQ }
-     *     
-     */
-    public void setHasLimitedQ(FormalDerivedTypeDefinition.HasLimitedQ value) {
-        this.hasLimitedQ = value;
-    }
-
-    /**
-     * Gets the value of the subtypeMarkQ property.
+     *          allowed object is {@link Limited }
      * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionClass }
-     *     
      */
-    public ExpressionClass getSubtypeMarkQ() {
-        return subtypeMarkQ;
+    public void setLimited(final Limited value) {
+      this.limited = value;
     }
 
     /**
-     * Sets the value of the subtypeMarkQ property.
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ExpressionClass }
-     *     
-     */
-    public void setSubtypeMarkQ(ExpressionClass value) {
-        this.subtypeMarkQ = value;
-    }
-
-    /**
-     * Gets the value of the definitionInterfaceListQl property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link ExpressionList }
-     *     
      */
-    public ExpressionList getDefinitionInterfaceListQl() {
-        return definitionInterfaceListQl;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
+    }
+
+  }
+
+  /**
+   * <p>
+   * Java class for anonymous complex type.
+   * 
+   * <p>
+   * The following schema fragment specifies the expected content contained
+   * within this class.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;choice>
+   *         &lt;element name="private" type="{}Private"/>
+   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+   *       &lt;/choice>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = { "_private", "notAnElement" })
+  public static class HasPrivateQ {
+
+    @XmlElement(name = "private")
+    protected Private _private;
+    @XmlElement(name = "not_an_element")
+    protected NotAnElement notAnElement;
+
+    /**
+     * Gets the value of the notAnElement property.
+     * 
+     * @return possible object is {@link NotAnElement }
+     * 
+     */
+    public NotAnElement getNotAnElement() {
+      return this.notAnElement;
     }
 
     /**
-     * Sets the value of the definitionInterfaceListQl property.
+     * Gets the value of the private property.
+     * 
+     * @return possible object is {@link Private }
+     * 
+     */
+    public Private getPrivate() {
+      return this._private;
+    }
+
+    /**
+     * Sets the value of the notAnElement property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link ExpressionList }
-     *     
-     */
-    public void setDefinitionInterfaceListQl(ExpressionList value) {
-        this.definitionInterfaceListQl = value;
-    }
-
-    /**
-     * Gets the value of the hasPrivateQ property.
+     *          allowed object is {@link NotAnElement }
      * 
-     * @return
-     *     possible object is
-     *     {@link FormalDerivedTypeDefinition.HasPrivateQ }
-     *     
      */
-    public FormalDerivedTypeDefinition.HasPrivateQ getHasPrivateQ() {
-        return hasPrivateQ;
+    public void setNotAnElement(final NotAnElement value) {
+      this.notAnElement = value;
     }
 
     /**
-     * Sets the value of the hasPrivateQ property.
+     * Sets the value of the private property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link FormalDerivedTypeDefinition.HasPrivateQ }
-     *     
-     */
-    public void setHasPrivateQ(FormalDerivedTypeDefinition.HasPrivateQ value) {
-        this.hasPrivateQ = value;
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="abstract" type="{}Abstract"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     *          allowed object is {@link Private }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "_abstract",
-        "notAnElement"
-    })
-    public static class HasAbstractQ {
-
-        @XmlElement(name = "abstract")
-        protected Abstract _abstract;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
-
-        /**
-         * Gets the value of the abstract property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Abstract }
-         *     
-         */
-        public Abstract getAbstract() {
-            return _abstract;
-        }
-
-        /**
-         * Sets the value of the abstract property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Abstract }
-         *     
-         */
-        public void setAbstract(Abstract value) {
-            this._abstract = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
-
+    public void setPrivate(final Private value) {
+      this._private = value;
     }
 
+  }
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="limited" type="{}Limited"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "limited",
-        "notAnElement"
-    })
-    public static class HasLimitedQ {
+  @XmlElement(required = true)
+  protected SourceLocation sloc;
+  @XmlElement(name = "has_abstract_q", required = true)
+  protected FormalDerivedTypeDefinition.HasAbstractQ hasAbstractQ;
+  @XmlElement(name = "has_limited_q", required = true)
+  protected FormalDerivedTypeDefinition.HasLimitedQ hasLimitedQ;
 
-        protected Limited limited;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+  @XmlElement(name = "subtype_mark_q", required = true)
+  protected ExpressionClass subtypeMarkQ;
 
-        /**
-         * Gets the value of the limited property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Limited }
-         *     
-         */
-        public Limited getLimited() {
-            return limited;
-        }
+  @XmlElement(name = "definition_interface_list_ql", required = true)
+  protected ExpressionList definitionInterfaceListQl;
 
-        /**
-         * Sets the value of the limited property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Limited }
-         *     
-         */
-        public void setLimited(Limited value) {
-            this.limited = value;
-        }
+  @XmlElement(name = "has_private_q", required = true)
+  protected FormalDerivedTypeDefinition.HasPrivateQ hasPrivateQ;
 
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
+  /**
+   * Gets the value of the definitionInterfaceListQl property.
+   * 
+   * @return possible object is {@link ExpressionList }
+   * 
+   */
+  public ExpressionList getDefinitionInterfaceListQl() {
+    return this.definitionInterfaceListQl;
+  }
 
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
+  /**
+   * Gets the value of the hasAbstractQ property.
+   * 
+   * @return possible object is {@link FormalDerivedTypeDefinition.HasAbstractQ }
+   * 
+   */
+  public FormalDerivedTypeDefinition.HasAbstractQ getHasAbstractQ() {
+    return this.hasAbstractQ;
+  }
 
-    }
+  /**
+   * Gets the value of the hasLimitedQ property.
+   * 
+   * @return possible object is {@link FormalDerivedTypeDefinition.HasLimitedQ }
+   * 
+   */
+  public FormalDerivedTypeDefinition.HasLimitedQ getHasLimitedQ() {
+    return this.hasLimitedQ;
+  }
 
+  /**
+   * Gets the value of the hasPrivateQ property.
+   * 
+   * @return possible object is {@link FormalDerivedTypeDefinition.HasPrivateQ }
+   * 
+   */
+  public FormalDerivedTypeDefinition.HasPrivateQ getHasPrivateQ() {
+    return this.hasPrivateQ;
+  }
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="private" type="{}Private"/>
-     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "_private",
-        "notAnElement"
-    })
-    public static class HasPrivateQ {
+  /**
+   * Gets the value of the sloc property.
+   * 
+   * @return possible object is {@link SourceLocation }
+   * 
+   */
+  public SourceLocation getSloc() {
+    return this.sloc;
+  }
 
-        @XmlElement(name = "private")
-        protected Private _private;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+  /**
+   * Gets the value of the subtypeMarkQ property.
+   * 
+   * @return possible object is {@link ExpressionClass }
+   * 
+   */
+  public ExpressionClass getSubtypeMarkQ() {
+    return this.subtypeMarkQ;
+  }
 
-        /**
-         * Gets the value of the private property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Private }
-         *     
-         */
-        public Private getPrivate() {
-            return _private;
-        }
+  /**
+   * Sets the value of the definitionInterfaceListQl property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionList }
+   * 
+   */
+  public void setDefinitionInterfaceListQl(final ExpressionList value) {
+    this.definitionInterfaceListQl = value;
+  }
 
-        /**
-         * Sets the value of the private property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Private }
-         *     
-         */
-        public void setPrivate(Private value) {
-            this._private = value;
-        }
+  /**
+   * Sets the value of the hasAbstractQ property.
+   * 
+   * @param value
+   *          allowed object is {@link FormalDerivedTypeDefinition.HasAbstractQ }
+   * 
+   */
+  public void setHasAbstractQ(
+      final FormalDerivedTypeDefinition.HasAbstractQ value) {
+    this.hasAbstractQ = value;
+  }
 
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
+  /**
+   * Sets the value of the hasLimitedQ property.
+   * 
+   * @param value
+   *          allowed object is {@link FormalDerivedTypeDefinition.HasLimitedQ }
+   * 
+   */
+  public void setHasLimitedQ(final FormalDerivedTypeDefinition.HasLimitedQ value) {
+    this.hasLimitedQ = value;
+  }
 
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
-        }
+  /**
+   * Sets the value of the hasPrivateQ property.
+   * 
+   * @param value
+   *          allowed object is {@link FormalDerivedTypeDefinition.HasPrivateQ }
+   * 
+   */
+  public void setHasPrivateQ(final FormalDerivedTypeDefinition.HasPrivateQ value) {
+    this.hasPrivateQ = value;
+  }
 
-    }
+  /**
+   * Sets the value of the sloc property.
+   * 
+   * @param value
+   *          allowed object is {@link SourceLocation }
+   * 
+   */
+  public void setSloc(final SourceLocation value) {
+    this.sloc = value;
+  }
+
+  /**
+   * Sets the value of the subtypeMarkQ property.
+   * 
+   * @param value
+   *          allowed object is {@link ExpressionClass }
+   * 
+   */
+  public void setSubtypeMarkQ(final ExpressionClass value) {
+    this.subtypeMarkQ = value;
+  }
 
 }
