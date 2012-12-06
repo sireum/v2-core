@@ -7,7 +7,6 @@ import java.io.File
 import java.net.URI
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import org.sireum.bakar.xml.scalaxb.Compilation_Unit
 
 object Util {
   val gnat2xml_key = "gnat2xml"
@@ -126,8 +125,8 @@ class ParseGnat2XMLDef(val job : PipelineJob, info : PipelineJobModuleInfo) exte
 
   this.gnat2xmlResults.foreach { uri =>
     val f = new File(new URI(uri))
-    val x = scalaxb.fromXML[Compilation_Unit](scala.xml.XML.loadFile(f))
-    results(uri) = x.toString()
+    assert(false)
+    results(uri) = "".toString()
   }
 
   this.parseGnat2XMLresults_=(results)
