@@ -105,7 +105,7 @@ object ControlFlowGraph {
       case rj : ReturnJump =>
         result.addEdge(source, exitNode)
         false
-      case ifj : IfJump if ifj.ifElse.isEmpty =>
+      case ifj : IfJump =>
         var i = 1
         for (iftj <- ifj.ifThens) {
           val target = verticesMap(iftj.target.resourceUri)
