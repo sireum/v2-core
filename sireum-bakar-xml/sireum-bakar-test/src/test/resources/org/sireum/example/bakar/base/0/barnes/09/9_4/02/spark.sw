@@ -1,1 +1,0 @@
--index=example.idx

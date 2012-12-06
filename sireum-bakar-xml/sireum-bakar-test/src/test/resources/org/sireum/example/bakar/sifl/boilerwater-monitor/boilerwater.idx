@@ -1,6 +1,0 @@
-FaultIntegrator       specification is in faultintegrator.ads
-Valve                 specification is in valve.ads
-FillValve             specification is in fillvalve.ads
-DrainValve            specification is in drainvalve.ads
-WaterHighSensor       specification is in waterhighsensor.ads
-WaterLowSensor        specification is in waterlowsensor.ads

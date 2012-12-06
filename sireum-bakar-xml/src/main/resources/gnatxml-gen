@@ -1,0 +1,3 @@
+xjc -d ../java/ -p org.sireum.bakar.gnatxml gnatxml.xsd
+#scalaxb -d ../scala/ -p org.sireum.bakar.gnatxml --class-prefix Gnat --package-dir gnatxml.xsd
+

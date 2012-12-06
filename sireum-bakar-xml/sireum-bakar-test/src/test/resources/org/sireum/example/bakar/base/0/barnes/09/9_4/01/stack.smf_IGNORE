@@ -1,2 +1,0 @@
-stack.ads -l=stackads.lst
-stack.adb -l=stackadb.lst

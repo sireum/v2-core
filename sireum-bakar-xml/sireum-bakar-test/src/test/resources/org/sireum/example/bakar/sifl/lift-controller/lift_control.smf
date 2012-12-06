@@ -1,6 +1,0 @@
-building.ads
-buttons.ads
-lift.ads
-lift_control.adb
-lift_control-traverse.adb
-lift_control-traverse-poll.adb

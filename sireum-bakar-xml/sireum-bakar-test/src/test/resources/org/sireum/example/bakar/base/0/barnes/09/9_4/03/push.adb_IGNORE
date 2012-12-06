@@ -1,7 +1,0 @@
-separate (The_Stack)
-procedure Push(X : in Integer)
-is
-begin
-   Pointer := Pointer + 1;
-   S(Pointer) := X;
-end Push;

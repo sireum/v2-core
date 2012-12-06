@@ -1,7 +1,0 @@
-separate (The_Stack)
-procedure Pop(X : out Integer)
-is
-begin
-   X := S(Pointer);
-   Pointer := Pointer - 1;
-end Pop;

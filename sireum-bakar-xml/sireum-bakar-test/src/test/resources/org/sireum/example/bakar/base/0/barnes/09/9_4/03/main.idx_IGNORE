@@ -1,5 +1,0 @@
-The_Stack specification is in stack.ads
-The_Stack auxindex is in stackaux.idx
-Go_Between specification is in gobtween.ads
-Go_Between body is in gobtween.adb
-Main main_program is in main.ada
