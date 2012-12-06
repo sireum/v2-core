@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Name_List", propOrder = {
-    "notAnElementOrIdentifierOrSelectedComponent"
+    "names"
 })
 public class NameList {
 
@@ -105,21 +105,21 @@ public class NameList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrIdentifierOrSelectedComponent;
+    protected List<Object> names;
 
     /**
-     * Gets the value of the notAnElementOrIdentifierOrSelectedComponent property.
+     * Gets the value of the names property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrIdentifierOrSelectedComponent property.
+     * This is why there is not a <CODE>set</CODE> method for the names property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrIdentifierOrSelectedComponent().add(newItem);
+     *    getNames().add(newItem);
      * </pre>
      * 
      * 
@@ -187,11 +187,11 @@ public class NameList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrIdentifierOrSelectedComponent() {
-        if (notAnElementOrIdentifierOrSelectedComponent == null) {
-            notAnElementOrIdentifierOrSelectedComponent = new ArrayList<Object>();
+    public List<Object> getNames() {
+        if (names == null) {
+            names = new ArrayList<Object>();
         }
-        return this.notAnElementOrIdentifierOrSelectedComponent;
+        return this.names;
     }
 
 }

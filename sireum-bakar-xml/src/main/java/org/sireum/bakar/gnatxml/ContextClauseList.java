@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Context_Clause_List", propOrder = {
-    "notAnElementOrUsePackageClauseOrUseTypeClause"
+    "contextClauses"
 })
 public class ContextClauseList {
 
@@ -109,21 +109,21 @@ public class ContextClauseList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrUsePackageClauseOrUseTypeClause;
+    protected List<Object> contextClauses;
 
     /**
-     * Gets the value of the notAnElementOrUsePackageClauseOrUseTypeClause property.
+     * Gets the value of the contextClauses property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrUsePackageClauseOrUseTypeClause property.
+     * This is why there is not a <CODE>set</CODE> method for the contextClauses property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrUsePackageClauseOrUseTypeClause().add(newItem);
+     *    getContextClauses().add(newItem);
      * </pre>
      * 
      * 
@@ -193,11 +193,11 @@ public class ContextClauseList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrUsePackageClauseOrUseTypeClause() {
-        if (notAnElementOrUsePackageClauseOrUseTypeClause == null) {
-            notAnElementOrUsePackageClauseOrUseTypeClause = new ArrayList<Object>();
+    public List<Object> getContextClauses() {
+        if (contextClauses == null) {
+            contextClauses = new ArrayList<Object>();
         }
-        return this.notAnElementOrUsePackageClauseOrUseTypeClause;
+        return this.contextClauses;
     }
 
 }

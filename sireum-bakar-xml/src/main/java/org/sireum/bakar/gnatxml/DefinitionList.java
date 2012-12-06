@@ -128,7 +128,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Definition_List", propOrder = {
-    "notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition"
+    "definitions"
 })
 public class DefinitionList {
 
@@ -281,21 +281,21 @@ public class DefinitionList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition;
+    protected List<Object> definitions;
 
     /**
-     * Gets the value of the notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition property.
+     * Gets the value of the definitions property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition property.
+     * This is why there is not a <CODE>set</CODE> method for the definitions property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition().add(newItem);
+     *    getDefinitions().add(newItem);
      * </pre>
      * 
      * 
@@ -451,11 +451,11 @@ public class DefinitionList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition() {
-        if (notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition == null) {
-            notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition = new ArrayList<Object>();
+    public List<Object> getDefinitions() {
+        if (definitions == null) {
+            definitions = new ArrayList<Object>();
         }
-        return this.notAnElementOrDerivedTypeDefinitionOrDerivedRecordExtensionDefinition;
+        return this.definitions;
     }
 
 }

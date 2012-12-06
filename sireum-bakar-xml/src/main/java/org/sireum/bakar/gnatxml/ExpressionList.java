@@ -188,7 +188,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Expression_List", propOrder = {
-    "notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange"
+    "expressions"
 })
 public class ExpressionList {
 
@@ -401,21 +401,21 @@ public class ExpressionList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange;
+    protected List<Object> expressions;
 
     /**
-     * Gets the value of the notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange property.
+     * Gets the value of the expressions property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange property.
+     * This is why there is not a <CODE>set</CODE> method for the expressions property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange().add(newItem);
+     *    getExpressions().add(newItem);
      * </pre>
      * 
      * 
@@ -631,11 +631,11 @@ public class ExpressionList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange() {
-        if (notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange == null) {
-            notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange = new ArrayList<Object>();
+    public List<Object> getExpressions() {
+        if (expressions == null) {
+            expressions = new ArrayList<Object>();
         }
-        return this.notAnElementOrDiscreteRangeAttributeReferenceOrDiscreteSimpleExpressionRange;
+        return this.expressions;
     }
 
 }

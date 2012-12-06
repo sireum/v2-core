@@ -1,0 +1,154 @@
+<jxb:bindings version="1.0" 
+  xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+  jxb:extensionBindingPrefixes="xjc">
+
+  <jxb:bindings schemaLocation="gnatxml.xsd" node="/xs:schema">
+    <jxb:bindings node="//xs:complexType[@name='Element_Class']//xs:choice">
+       <jxb:property name="element" />
+    </jxb:bindings>
+  
+    <jxb:bindings node="//xs:complexType[@name='Association_Class']//xs:choice">
+       <jxb:property name="association" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Constraint_Class']//xs:choice">
+       <jxb:property name="constraint" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Context_Clause_Class']//xs:choice">
+       <jxb:property name="contextClause" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Declaration_Class']//xs:choice">
+       <jxb:property name="declaration" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Declarative_Item_Class']//xs:choice">
+       <jxb:property name="declarativeItem" />
+    </jxb:bindings>
+        
+    <jxb:bindings node="//xs:complexType[@name='Definition_Class']//xs:choice">
+       <jxb:property name="definition" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Discrete_Range_Class']//xs:choice">
+       <jxb:property name="discreteRange" />
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Discrete_Subtype_Definition_Class']//xs:choice">
+       <jxb:property name="discreteSubtypeDefinition" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Defining_Name_Class']//xs:choice">
+       <jxb:property name="definingName" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Expression_Class']//xs:choice">
+       <jxb:property name="expression" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Name_Class']//xs:choice">
+       <jxb:property name="name" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Path_Class']//xs:choice">
+       <jxb:property name="path" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Pragma_Element_Class']//xs:choice">
+       <jxb:property name="pragmaElement" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Range_Constraint_Class']//xs:choice">
+       <jxb:property name="rangeConstraint" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Record_Component_Class']//xs:choice">
+       <jxb:property name="recordComponent" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Statement_Class']//xs:choice">
+       <jxb:property name="theStatement" />
+    </jxb:bindings>
+    
+      
+    <jxb:bindings node="//xs:complexType[@name='Element_List']//xs:choice">
+       <jxb:property name="elements" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Association_List']//xs:choice">
+       <jxb:property name="associations" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Component_Clause_List']//xs:choice">
+       <jxb:property name="componentClauses" />
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Context_Clause_List']//xs:choice">
+       <jxb:property name="contextClauses" />
+    </jxb:bindings>
+                
+    <jxb:bindings node="//xs:complexType[@name='Declaration_List']//xs:choice">
+       <jxb:property name="declarations" />
+    </jxb:bindings>
+        
+    <jxb:bindings node="//xs:complexType[@name='Declarative_Item_List']//xs:choice">
+       <jxb:property name="declarativeItems" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Definition_List']//xs:choice">
+       <jxb:property name="definitions" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Discrete_Range_List']//xs:choice">
+       <jxb:property name="discreteRanges" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Discriminant_Association_List']//xs:choice">
+       <jxb:property name="discriminantAssociations" />
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Discriminant_Specification_List']//xs:choice">
+       <jxb:property name="discriminantSpecifications" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Defining_Name_List']//xs:choice">
+       <jxb:property name="definingNames" />
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Exception_Handler_List']//xs:choice">
+       <jxb:property name="exceptionHandlers" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Expression_List']//xs:choice">
+       <jxb:property name="expressions" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Name_List']//xs:choice">
+       <jxb:property name="names" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Parameter_Specification_List']//xs:choice">
+       <jxb:property name="parameterSpecifications" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Path_List']//xs:choice">
+       <jxb:property name="paths" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Record_Component_List']//xs:choice">
+       <jxb:property name="recordComponents" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Statement_List']//xs:choice">
+       <jxb:property name="statements" />
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Variant_List']//xs:choice">
+       <jxb:property name="variants" />
+    </jxb:bindings>    
+  </jxb:bindings>
+
+</jxb:bindings>

@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Path_List", propOrder = {
-    "notAnElementOrIfPathOrElsifPath"
+    "paths"
 })
 public class PathList {
 
@@ -123,21 +123,21 @@ public class PathList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrIfPathOrElsifPath;
+    protected List<Object> paths;
 
     /**
-     * Gets the value of the notAnElementOrIfPathOrElsifPath property.
+     * Gets the value of the paths property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrIfPathOrElsifPath property.
+     * This is why there is not a <CODE>set</CODE> method for the paths property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrIfPathOrElsifPath().add(newItem);
+     *    getPaths().add(newItem);
      * </pre>
      * 
      * 
@@ -214,11 +214,11 @@ public class PathList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrIfPathOrElsifPath() {
-        if (notAnElementOrIfPathOrElsifPath == null) {
-            notAnElementOrIfPathOrElsifPath = new ArrayList<Object>();
+    public List<Object> getPaths() {
+        if (paths == null) {
+            paths = new ArrayList<Object>();
         }
-        return this.notAnElementOrIfPathOrElsifPath;
+        return this.paths;
     }
 
 }

@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Record_Component_List", propOrder = {
-    "notAnElementOrComponentDeclarationOrNullComponent"
+    "recordComponents"
 })
 public class RecordComponentList {
 
@@ -109,21 +109,21 @@ public class RecordComponentList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrComponentDeclarationOrNullComponent;
+    protected List<Object> recordComponents;
 
     /**
-     * Gets the value of the notAnElementOrComponentDeclarationOrNullComponent property.
+     * Gets the value of the recordComponents property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrComponentDeclarationOrNullComponent property.
+     * This is why there is not a <CODE>set</CODE> method for the recordComponents property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrComponentDeclarationOrNullComponent().add(newItem);
+     *    getRecordComponents().add(newItem);
      * </pre>
      * 
      * 
@@ -193,11 +193,11 @@ public class RecordComponentList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrComponentDeclarationOrNullComponent() {
-        if (notAnElementOrComponentDeclarationOrNullComponent == null) {
-            notAnElementOrComponentDeclarationOrNullComponent = new ArrayList<Object>();
+    public List<Object> getRecordComponents() {
+        if (recordComponents == null) {
+            recordComponents = new ArrayList<Object>();
         }
-        return this.notAnElementOrComponentDeclarationOrNullComponent;
+        return this.recordComponents;
     }
 
 }

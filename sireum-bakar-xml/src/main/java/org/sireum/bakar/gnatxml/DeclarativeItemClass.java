@@ -10,6 +10,7 @@ package org.sireum.bakar.gnatxml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -109,3545 +110,427 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Declarative_Item_Class", propOrder = {
-    "notAnElement",
-    "ordinaryTypeDeclaration",
-    "taskTypeDeclaration",
-    "protectedTypeDeclaration",
-    "incompleteTypeDeclaration",
-    "taggedIncompleteTypeDeclaration",
-    "privateTypeDeclaration",
-    "privateExtensionDeclaration",
-    "subtypeDeclaration",
-    "variableDeclaration",
-    "constantDeclaration",
-    "deferredConstantDeclaration",
-    "singleTaskDeclaration",
-    "singleProtectedDeclaration",
-    "integerNumberDeclaration",
-    "realNumberDeclaration",
-    "enumerationLiteralSpecification",
-    "discriminantSpecification",
-    "componentDeclaration",
-    "loopParameterSpecification",
-    "generalizedIteratorSpecification",
-    "elementIteratorSpecification",
-    "procedureDeclaration",
-    "functionDeclaration",
-    "parameterSpecification",
-    "procedureBodyDeclaration",
-    "functionBodyDeclaration",
-    "returnVariableSpecification",
-    "returnConstantSpecification",
-    "nullProcedureDeclaration",
-    "expressionFunctionDeclaration",
-    "packageDeclaration",
-    "packageBodyDeclaration",
-    "objectRenamingDeclaration",
-    "exceptionRenamingDeclaration",
-    "packageRenamingDeclaration",
-    "procedureRenamingDeclaration",
-    "functionRenamingDeclaration",
-    "genericPackageRenamingDeclaration",
-    "genericProcedureRenamingDeclaration",
-    "genericFunctionRenamingDeclaration",
-    "taskBodyDeclaration",
-    "protectedBodyDeclaration",
-    "entryDeclaration",
-    "entryBodyDeclaration",
-    "entryIndexSpecification",
-    "procedureBodyStub",
-    "functionBodyStub",
-    "packageBodyStub",
-    "taskBodyStub",
-    "protectedBodyStub",
-    "exceptionDeclaration",
-    "choiceParameterSpecification",
-    "genericProcedureDeclaration",
-    "genericFunctionDeclaration",
-    "genericPackageDeclaration",
-    "packageInstantiation",
-    "procedureInstantiation",
-    "functionInstantiation",
-    "formalObjectDeclaration",
-    "formalTypeDeclaration",
-    "formalIncompleteTypeDeclaration",
-    "formalProcedureDeclaration",
-    "formalFunctionDeclaration",
-    "formalPackageDeclaration",
-    "formalPackageDeclarationWithBox",
-    "usePackageClause",
-    "useTypeClause",
-    "useAllTypeClause",
-    "withClause",
-    "attributeDefinitionClause",
-    "enumerationRepresentationClause",
-    "recordRepresentationClause",
-    "atClause",
-    "componentClause",
-    "allCallsRemotePragma",
-    "asynchronousPragma",
-    "atomicPragma",
-    "atomicComponentsPragma",
-    "attachHandlerPragma",
-    "controlledPragma",
-    "conventionPragma",
-    "discardNamesPragma",
-    "elaboratePragma",
-    "elaborateAllPragma",
-    "elaborateBodyPragma",
-    "exportPragma",
-    "importPragma",
-    "inlinePragma",
-    "inspectionPointPragma",
-    "interruptHandlerPragma",
-    "interruptPriorityPragma",
-    "linkerOptionsPragma",
-    "listPragma",
-    "lockingPolicyPragma",
-    "normalizeScalarsPragma",
-    "optimizePragma",
-    "packPragma",
-    "pagePragma",
-    "preelaboratePragma",
-    "priorityPragma",
-    "purePragma",
-    "queuingPolicyPragma",
-    "remoteCallInterfacePragma",
-    "remoteTypesPragma",
-    "restrictionsPragma",
-    "reviewablePragma",
-    "sharedPassivePragma",
-    "storageSizePragma",
-    "suppressPragma",
-    "taskDispatchingPolicyPragma",
-    "volatilePragma",
-    "volatileComponentsPragma",
-    "assertPragma",
-    "assertionPolicyPragma",
-    "detectBlockingPragma",
-    "noReturnPragma",
-    "partitionElaborationPolicyPragma",
-    "preelaborableInitializationPragma",
-    "prioritySpecificDispatchingPragma",
-    "profilePragma",
-    "relativeDeadlinePragma",
-    "uncheckedUnionPragma",
-    "unsuppressPragma",
-    "defaultStoragePoolPragma",
-    "dispatchingDomainPragma",
-    "cpuPragma",
-    "independentPragma",
-    "independentComponentsPragma",
-    "implementationDefinedPragma",
-    "unknownPragma"
+    "declarativeItem"
 })
 public class DeclarativeItemClass {
 
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-    @XmlElement(name = "ordinary_type_declaration")
-    protected OrdinaryTypeDeclaration ordinaryTypeDeclaration;
-    @XmlElement(name = "task_type_declaration")
-    protected TaskTypeDeclaration taskTypeDeclaration;
-    @XmlElement(name = "protected_type_declaration")
-    protected ProtectedTypeDeclaration protectedTypeDeclaration;
-    @XmlElement(name = "incomplete_type_declaration")
-    protected IncompleteTypeDeclaration incompleteTypeDeclaration;
-    @XmlElement(name = "tagged_incomplete_type_declaration")
-    protected TaggedIncompleteTypeDeclaration taggedIncompleteTypeDeclaration;
-    @XmlElement(name = "private_type_declaration")
-    protected PrivateTypeDeclaration privateTypeDeclaration;
-    @XmlElement(name = "private_extension_declaration")
-    protected PrivateExtensionDeclaration privateExtensionDeclaration;
-    @XmlElement(name = "subtype_declaration")
-    protected SubtypeDeclaration subtypeDeclaration;
-    @XmlElement(name = "variable_declaration")
-    protected VariableDeclaration variableDeclaration;
-    @XmlElement(name = "constant_declaration")
-    protected ConstantDeclaration constantDeclaration;
-    @XmlElement(name = "deferred_constant_declaration")
-    protected DeferredConstantDeclaration deferredConstantDeclaration;
-    @XmlElement(name = "single_task_declaration")
-    protected SingleTaskDeclaration singleTaskDeclaration;
-    @XmlElement(name = "single_protected_declaration")
-    protected SingleProtectedDeclaration singleProtectedDeclaration;
-    @XmlElement(name = "integer_number_declaration")
-    protected IntegerNumberDeclaration integerNumberDeclaration;
-    @XmlElement(name = "real_number_declaration")
-    protected RealNumberDeclaration realNumberDeclaration;
-    @XmlElement(name = "enumeration_literal_specification")
-    protected EnumerationLiteralSpecification enumerationLiteralSpecification;
-    @XmlElement(name = "discriminant_specification")
-    protected DiscriminantSpecification discriminantSpecification;
-    @XmlElement(name = "component_declaration")
-    protected ComponentDeclaration componentDeclaration;
-    @XmlElement(name = "loop_parameter_specification")
-    protected LoopParameterSpecification loopParameterSpecification;
-    @XmlElement(name = "generalized_iterator_specification")
-    protected GeneralizedIteratorSpecification generalizedIteratorSpecification;
-    @XmlElement(name = "element_iterator_specification")
-    protected ElementIteratorSpecification elementIteratorSpecification;
-    @XmlElement(name = "procedure_declaration")
-    protected ProcedureDeclaration procedureDeclaration;
-    @XmlElement(name = "function_declaration")
-    protected FunctionDeclaration functionDeclaration;
-    @XmlElement(name = "parameter_specification")
-    protected ParameterSpecification parameterSpecification;
-    @XmlElement(name = "procedure_body_declaration")
-    protected ProcedureBodyDeclaration procedureBodyDeclaration;
-    @XmlElement(name = "function_body_declaration")
-    protected FunctionBodyDeclaration functionBodyDeclaration;
-    @XmlElement(name = "return_variable_specification")
-    protected ReturnVariableSpecification returnVariableSpecification;
-    @XmlElement(name = "return_constant_specification")
-    protected ReturnConstantSpecification returnConstantSpecification;
-    @XmlElement(name = "null_procedure_declaration")
-    protected NullProcedureDeclaration nullProcedureDeclaration;
-    @XmlElement(name = "expression_function_declaration")
-    protected ExpressionFunctionDeclaration expressionFunctionDeclaration;
-    @XmlElement(name = "package_declaration")
-    protected PackageDeclaration packageDeclaration;
-    @XmlElement(name = "package_body_declaration")
-    protected PackageBodyDeclaration packageBodyDeclaration;
-    @XmlElement(name = "object_renaming_declaration")
-    protected ObjectRenamingDeclaration objectRenamingDeclaration;
-    @XmlElement(name = "exception_renaming_declaration")
-    protected ExceptionRenamingDeclaration exceptionRenamingDeclaration;
-    @XmlElement(name = "package_renaming_declaration")
-    protected PackageRenamingDeclaration packageRenamingDeclaration;
-    @XmlElement(name = "procedure_renaming_declaration")
-    protected ProcedureRenamingDeclaration procedureRenamingDeclaration;
-    @XmlElement(name = "function_renaming_declaration")
-    protected FunctionRenamingDeclaration functionRenamingDeclaration;
-    @XmlElement(name = "generic_package_renaming_declaration")
-    protected GenericPackageRenamingDeclaration genericPackageRenamingDeclaration;
-    @XmlElement(name = "generic_procedure_renaming_declaration")
-    protected GenericProcedureRenamingDeclaration genericProcedureRenamingDeclaration;
-    @XmlElement(name = "generic_function_renaming_declaration")
-    protected GenericFunctionRenamingDeclaration genericFunctionRenamingDeclaration;
-    @XmlElement(name = "task_body_declaration")
-    protected TaskBodyDeclaration taskBodyDeclaration;
-    @XmlElement(name = "protected_body_declaration")
-    protected ProtectedBodyDeclaration protectedBodyDeclaration;
-    @XmlElement(name = "entry_declaration")
-    protected EntryDeclaration entryDeclaration;
-    @XmlElement(name = "entry_body_declaration")
-    protected EntryBodyDeclaration entryBodyDeclaration;
-    @XmlElement(name = "entry_index_specification")
-    protected EntryIndexSpecification entryIndexSpecification;
-    @XmlElement(name = "procedure_body_stub")
-    protected ProcedureBodyStub procedureBodyStub;
-    @XmlElement(name = "function_body_stub")
-    protected FunctionBodyStub functionBodyStub;
-    @XmlElement(name = "package_body_stub")
-    protected PackageBodyStub packageBodyStub;
-    @XmlElement(name = "task_body_stub")
-    protected TaskBodyStub taskBodyStub;
-    @XmlElement(name = "protected_body_stub")
-    protected ProtectedBodyStub protectedBodyStub;
-    @XmlElement(name = "exception_declaration")
-    protected ExceptionDeclaration exceptionDeclaration;
-    @XmlElement(name = "choice_parameter_specification")
-    protected ChoiceParameterSpecification choiceParameterSpecification;
-    @XmlElement(name = "generic_procedure_declaration")
-    protected GenericProcedureDeclaration genericProcedureDeclaration;
-    @XmlElement(name = "generic_function_declaration")
-    protected GenericFunctionDeclaration genericFunctionDeclaration;
-    @XmlElement(name = "generic_package_declaration")
-    protected GenericPackageDeclaration genericPackageDeclaration;
-    @XmlElement(name = "package_instantiation")
-    protected PackageInstantiation packageInstantiation;
-    @XmlElement(name = "procedure_instantiation")
-    protected ProcedureInstantiation procedureInstantiation;
-    @XmlElement(name = "function_instantiation")
-    protected FunctionInstantiation functionInstantiation;
-    @XmlElement(name = "formal_object_declaration")
-    protected FormalObjectDeclaration formalObjectDeclaration;
-    @XmlElement(name = "formal_type_declaration")
-    protected FormalTypeDeclaration formalTypeDeclaration;
-    @XmlElement(name = "formal_incomplete_type_declaration")
-    protected FormalIncompleteTypeDeclaration formalIncompleteTypeDeclaration;
-    @XmlElement(name = "formal_procedure_declaration")
-    protected FormalProcedureDeclaration formalProcedureDeclaration;
-    @XmlElement(name = "formal_function_declaration")
-    protected FormalFunctionDeclaration formalFunctionDeclaration;
-    @XmlElement(name = "formal_package_declaration")
-    protected FormalPackageDeclaration formalPackageDeclaration;
-    @XmlElement(name = "formal_package_declaration_with_box")
-    protected FormalPackageDeclarationWithBox formalPackageDeclarationWithBox;
-    @XmlElement(name = "use_package_clause")
-    protected UsePackageClause usePackageClause;
-    @XmlElement(name = "use_type_clause")
-    protected UseTypeClause useTypeClause;
-    @XmlElement(name = "use_all_type_clause")
-    protected UseAllTypeClause useAllTypeClause;
-    @XmlElement(name = "with_clause")
-    protected WithClause withClause;
-    @XmlElement(name = "attribute_definition_clause")
-    protected AttributeDefinitionClause attributeDefinitionClause;
-    @XmlElement(name = "enumeration_representation_clause")
-    protected EnumerationRepresentationClause enumerationRepresentationClause;
-    @XmlElement(name = "record_representation_clause")
-    protected RecordRepresentationClause recordRepresentationClause;
-    @XmlElement(name = "at_clause")
-    protected AtClause atClause;
-    @XmlElement(name = "component_clause")
-    protected ComponentClause componentClause;
-    @XmlElement(name = "all_calls_remote_pragma")
-    protected AllCallsRemotePragma allCallsRemotePragma;
-    @XmlElement(name = "asynchronous_pragma")
-    protected AsynchronousPragma asynchronousPragma;
-    @XmlElement(name = "atomic_pragma")
-    protected AtomicPragma atomicPragma;
-    @XmlElement(name = "atomic_components_pragma")
-    protected AtomicComponentsPragma atomicComponentsPragma;
-    @XmlElement(name = "attach_handler_pragma")
-    protected AttachHandlerPragma attachHandlerPragma;
-    @XmlElement(name = "controlled_pragma")
-    protected ControlledPragma controlledPragma;
-    @XmlElement(name = "convention_pragma")
-    protected ConventionPragma conventionPragma;
-    @XmlElement(name = "discard_names_pragma")
-    protected DiscardNamesPragma discardNamesPragma;
-    @XmlElement(name = "elaborate_pragma")
-    protected ElaboratePragma elaboratePragma;
-    @XmlElement(name = "elaborate_all_pragma")
-    protected ElaborateAllPragma elaborateAllPragma;
-    @XmlElement(name = "elaborate_body_pragma")
-    protected ElaborateBodyPragma elaborateBodyPragma;
-    @XmlElement(name = "export_pragma")
-    protected ExportPragma exportPragma;
-    @XmlElement(name = "import_pragma")
-    protected ImportPragma importPragma;
-    @XmlElement(name = "inline_pragma")
-    protected InlinePragma inlinePragma;
-    @XmlElement(name = "inspection_point_pragma")
-    protected InspectionPointPragma inspectionPointPragma;
-    @XmlElement(name = "interrupt_handler_pragma")
-    protected InterruptHandlerPragma interruptHandlerPragma;
-    @XmlElement(name = "interrupt_priority_pragma")
-    protected InterruptPriorityPragma interruptPriorityPragma;
-    @XmlElement(name = "linker_options_pragma")
-    protected LinkerOptionsPragma linkerOptionsPragma;
-    @XmlElement(name = "list_pragma")
-    protected ListPragma listPragma;
-    @XmlElement(name = "locking_policy_pragma")
-    protected LockingPolicyPragma lockingPolicyPragma;
-    @XmlElement(name = "normalize_scalars_pragma")
-    protected NormalizeScalarsPragma normalizeScalarsPragma;
-    @XmlElement(name = "optimize_pragma")
-    protected OptimizePragma optimizePragma;
-    @XmlElement(name = "pack_pragma")
-    protected PackPragma packPragma;
-    @XmlElement(name = "page_pragma")
-    protected PagePragma pagePragma;
-    @XmlElement(name = "preelaborate_pragma")
-    protected PreelaboratePragma preelaboratePragma;
-    @XmlElement(name = "priority_pragma")
-    protected PriorityPragma priorityPragma;
-    @XmlElement(name = "pure_pragma")
-    protected PurePragma purePragma;
-    @XmlElement(name = "queuing_policy_pragma")
-    protected QueuingPolicyPragma queuingPolicyPragma;
-    @XmlElement(name = "remote_call_interface_pragma")
-    protected RemoteCallInterfacePragma remoteCallInterfacePragma;
-    @XmlElement(name = "remote_types_pragma")
-    protected RemoteTypesPragma remoteTypesPragma;
-    @XmlElement(name = "restrictions_pragma")
-    protected RestrictionsPragma restrictionsPragma;
-    @XmlElement(name = "reviewable_pragma")
-    protected ReviewablePragma reviewablePragma;
-    @XmlElement(name = "shared_passive_pragma")
-    protected SharedPassivePragma sharedPassivePragma;
-    @XmlElement(name = "storage_size_pragma")
-    protected StorageSizePragma storageSizePragma;
-    @XmlElement(name = "suppress_pragma")
-    protected SuppressPragma suppressPragma;
-    @XmlElement(name = "task_dispatching_policy_pragma")
-    protected TaskDispatchingPolicyPragma taskDispatchingPolicyPragma;
-    @XmlElement(name = "volatile_pragma")
-    protected VolatilePragma volatilePragma;
-    @XmlElement(name = "volatile_components_pragma")
-    protected VolatileComponentsPragma volatileComponentsPragma;
-    @XmlElement(name = "assert_pragma")
-    protected AssertPragma assertPragma;
-    @XmlElement(name = "assertion_policy_pragma")
-    protected AssertionPolicyPragma assertionPolicyPragma;
-    @XmlElement(name = "detect_blocking_pragma")
-    protected DetectBlockingPragma detectBlockingPragma;
-    @XmlElement(name = "no_return_pragma")
-    protected NoReturnPragma noReturnPragma;
-    @XmlElement(name = "partition_elaboration_policy_pragma")
-    protected PartitionElaborationPolicyPragma partitionElaborationPolicyPragma;
-    @XmlElement(name = "preelaborable_initialization_pragma")
-    protected PreelaborableInitializationPragma preelaborableInitializationPragma;
-    @XmlElement(name = "priority_specific_dispatching_pragma")
-    protected PrioritySpecificDispatchingPragma prioritySpecificDispatchingPragma;
-    @XmlElement(name = "profile_pragma")
-    protected ProfilePragma profilePragma;
-    @XmlElement(name = "relative_deadline_pragma")
-    protected RelativeDeadlinePragma relativeDeadlinePragma;
-    @XmlElement(name = "unchecked_union_pragma")
-    protected UncheckedUnionPragma uncheckedUnionPragma;
-    @XmlElement(name = "unsuppress_pragma")
-    protected UnsuppressPragma unsuppressPragma;
-    @XmlElement(name = "default_storage_pool_pragma")
-    protected DefaultStoragePoolPragma defaultStoragePoolPragma;
-    @XmlElement(name = "dispatching_domain_pragma")
-    protected DispatchingDomainPragma dispatchingDomainPragma;
-    @XmlElement(name = "cpu_pragma")
-    protected CpuPragma cpuPragma;
-    @XmlElement(name = "independent_pragma")
-    protected IndependentPragma independentPragma;
-    @XmlElement(name = "independent_components_pragma")
-    protected IndependentComponentsPragma independentComponentsPragma;
-    @XmlElement(name = "implementation_defined_pragma")
-    protected ImplementationDefinedPragma implementationDefinedPragma;
-    @XmlElement(name = "unknown_pragma")
-    protected UnknownPragma unknownPragma;
+    @XmlElements({
+        @XmlElement(name = "not_an_element", type = NotAnElement.class),
+        @XmlElement(name = "ordinary_type_declaration", type = OrdinaryTypeDeclaration.class),
+        @XmlElement(name = "task_type_declaration", type = TaskTypeDeclaration.class),
+        @XmlElement(name = "protected_type_declaration", type = ProtectedTypeDeclaration.class),
+        @XmlElement(name = "incomplete_type_declaration", type = IncompleteTypeDeclaration.class),
+        @XmlElement(name = "tagged_incomplete_type_declaration", type = TaggedIncompleteTypeDeclaration.class),
+        @XmlElement(name = "private_type_declaration", type = PrivateTypeDeclaration.class),
+        @XmlElement(name = "private_extension_declaration", type = PrivateExtensionDeclaration.class),
+        @XmlElement(name = "subtype_declaration", type = SubtypeDeclaration.class),
+        @XmlElement(name = "variable_declaration", type = VariableDeclaration.class),
+        @XmlElement(name = "constant_declaration", type = ConstantDeclaration.class),
+        @XmlElement(name = "deferred_constant_declaration", type = DeferredConstantDeclaration.class),
+        @XmlElement(name = "single_task_declaration", type = SingleTaskDeclaration.class),
+        @XmlElement(name = "single_protected_declaration", type = SingleProtectedDeclaration.class),
+        @XmlElement(name = "integer_number_declaration", type = IntegerNumberDeclaration.class),
+        @XmlElement(name = "real_number_declaration", type = RealNumberDeclaration.class),
+        @XmlElement(name = "enumeration_literal_specification", type = EnumerationLiteralSpecification.class),
+        @XmlElement(name = "discriminant_specification", type = DiscriminantSpecification.class),
+        @XmlElement(name = "component_declaration", type = ComponentDeclaration.class),
+        @XmlElement(name = "loop_parameter_specification", type = LoopParameterSpecification.class),
+        @XmlElement(name = "generalized_iterator_specification", type = GeneralizedIteratorSpecification.class),
+        @XmlElement(name = "element_iterator_specification", type = ElementIteratorSpecification.class),
+        @XmlElement(name = "procedure_declaration", type = ProcedureDeclaration.class),
+        @XmlElement(name = "function_declaration", type = FunctionDeclaration.class),
+        @XmlElement(name = "parameter_specification", type = ParameterSpecification.class),
+        @XmlElement(name = "procedure_body_declaration", type = ProcedureBodyDeclaration.class),
+        @XmlElement(name = "function_body_declaration", type = FunctionBodyDeclaration.class),
+        @XmlElement(name = "return_variable_specification", type = ReturnVariableSpecification.class),
+        @XmlElement(name = "return_constant_specification", type = ReturnConstantSpecification.class),
+        @XmlElement(name = "null_procedure_declaration", type = NullProcedureDeclaration.class),
+        @XmlElement(name = "expression_function_declaration", type = ExpressionFunctionDeclaration.class),
+        @XmlElement(name = "package_declaration", type = PackageDeclaration.class),
+        @XmlElement(name = "package_body_declaration", type = PackageBodyDeclaration.class),
+        @XmlElement(name = "object_renaming_declaration", type = ObjectRenamingDeclaration.class),
+        @XmlElement(name = "exception_renaming_declaration", type = ExceptionRenamingDeclaration.class),
+        @XmlElement(name = "package_renaming_declaration", type = PackageRenamingDeclaration.class),
+        @XmlElement(name = "procedure_renaming_declaration", type = ProcedureRenamingDeclaration.class),
+        @XmlElement(name = "function_renaming_declaration", type = FunctionRenamingDeclaration.class),
+        @XmlElement(name = "generic_package_renaming_declaration", type = GenericPackageRenamingDeclaration.class),
+        @XmlElement(name = "generic_procedure_renaming_declaration", type = GenericProcedureRenamingDeclaration.class),
+        @XmlElement(name = "generic_function_renaming_declaration", type = GenericFunctionRenamingDeclaration.class),
+        @XmlElement(name = "task_body_declaration", type = TaskBodyDeclaration.class),
+        @XmlElement(name = "protected_body_declaration", type = ProtectedBodyDeclaration.class),
+        @XmlElement(name = "entry_declaration", type = EntryDeclaration.class),
+        @XmlElement(name = "entry_body_declaration", type = EntryBodyDeclaration.class),
+        @XmlElement(name = "entry_index_specification", type = EntryIndexSpecification.class),
+        @XmlElement(name = "procedure_body_stub", type = ProcedureBodyStub.class),
+        @XmlElement(name = "function_body_stub", type = FunctionBodyStub.class),
+        @XmlElement(name = "package_body_stub", type = PackageBodyStub.class),
+        @XmlElement(name = "task_body_stub", type = TaskBodyStub.class),
+        @XmlElement(name = "protected_body_stub", type = ProtectedBodyStub.class),
+        @XmlElement(name = "exception_declaration", type = ExceptionDeclaration.class),
+        @XmlElement(name = "choice_parameter_specification", type = ChoiceParameterSpecification.class),
+        @XmlElement(name = "generic_procedure_declaration", type = GenericProcedureDeclaration.class),
+        @XmlElement(name = "generic_function_declaration", type = GenericFunctionDeclaration.class),
+        @XmlElement(name = "generic_package_declaration", type = GenericPackageDeclaration.class),
+        @XmlElement(name = "package_instantiation", type = PackageInstantiation.class),
+        @XmlElement(name = "procedure_instantiation", type = ProcedureInstantiation.class),
+        @XmlElement(name = "function_instantiation", type = FunctionInstantiation.class),
+        @XmlElement(name = "formal_object_declaration", type = FormalObjectDeclaration.class),
+        @XmlElement(name = "formal_type_declaration", type = FormalTypeDeclaration.class),
+        @XmlElement(name = "formal_incomplete_type_declaration", type = FormalIncompleteTypeDeclaration.class),
+        @XmlElement(name = "formal_procedure_declaration", type = FormalProcedureDeclaration.class),
+        @XmlElement(name = "formal_function_declaration", type = FormalFunctionDeclaration.class),
+        @XmlElement(name = "formal_package_declaration", type = FormalPackageDeclaration.class),
+        @XmlElement(name = "formal_package_declaration_with_box", type = FormalPackageDeclarationWithBox.class),
+        @XmlElement(name = "use_package_clause", type = UsePackageClause.class),
+        @XmlElement(name = "use_type_clause", type = UseTypeClause.class),
+        @XmlElement(name = "use_all_type_clause", type = UseAllTypeClause.class),
+        @XmlElement(name = "with_clause", type = WithClause.class),
+        @XmlElement(name = "attribute_definition_clause", type = AttributeDefinitionClause.class),
+        @XmlElement(name = "enumeration_representation_clause", type = EnumerationRepresentationClause.class),
+        @XmlElement(name = "record_representation_clause", type = RecordRepresentationClause.class),
+        @XmlElement(name = "at_clause", type = AtClause.class),
+        @XmlElement(name = "component_clause", type = ComponentClause.class),
+        @XmlElement(name = "all_calls_remote_pragma", type = AllCallsRemotePragma.class),
+        @XmlElement(name = "asynchronous_pragma", type = AsynchronousPragma.class),
+        @XmlElement(name = "atomic_pragma", type = AtomicPragma.class),
+        @XmlElement(name = "atomic_components_pragma", type = AtomicComponentsPragma.class),
+        @XmlElement(name = "attach_handler_pragma", type = AttachHandlerPragma.class),
+        @XmlElement(name = "controlled_pragma", type = ControlledPragma.class),
+        @XmlElement(name = "convention_pragma", type = ConventionPragma.class),
+        @XmlElement(name = "discard_names_pragma", type = DiscardNamesPragma.class),
+        @XmlElement(name = "elaborate_pragma", type = ElaboratePragma.class),
+        @XmlElement(name = "elaborate_all_pragma", type = ElaborateAllPragma.class),
+        @XmlElement(name = "elaborate_body_pragma", type = ElaborateBodyPragma.class),
+        @XmlElement(name = "export_pragma", type = ExportPragma.class),
+        @XmlElement(name = "import_pragma", type = ImportPragma.class),
+        @XmlElement(name = "inline_pragma", type = InlinePragma.class),
+        @XmlElement(name = "inspection_point_pragma", type = InspectionPointPragma.class),
+        @XmlElement(name = "interrupt_handler_pragma", type = InterruptHandlerPragma.class),
+        @XmlElement(name = "interrupt_priority_pragma", type = InterruptPriorityPragma.class),
+        @XmlElement(name = "linker_options_pragma", type = LinkerOptionsPragma.class),
+        @XmlElement(name = "list_pragma", type = ListPragma.class),
+        @XmlElement(name = "locking_policy_pragma", type = LockingPolicyPragma.class),
+        @XmlElement(name = "normalize_scalars_pragma", type = NormalizeScalarsPragma.class),
+        @XmlElement(name = "optimize_pragma", type = OptimizePragma.class),
+        @XmlElement(name = "pack_pragma", type = PackPragma.class),
+        @XmlElement(name = "page_pragma", type = PagePragma.class),
+        @XmlElement(name = "preelaborate_pragma", type = PreelaboratePragma.class),
+        @XmlElement(name = "priority_pragma", type = PriorityPragma.class),
+        @XmlElement(name = "pure_pragma", type = PurePragma.class),
+        @XmlElement(name = "queuing_policy_pragma", type = QueuingPolicyPragma.class),
+        @XmlElement(name = "remote_call_interface_pragma", type = RemoteCallInterfacePragma.class),
+        @XmlElement(name = "remote_types_pragma", type = RemoteTypesPragma.class),
+        @XmlElement(name = "restrictions_pragma", type = RestrictionsPragma.class),
+        @XmlElement(name = "reviewable_pragma", type = ReviewablePragma.class),
+        @XmlElement(name = "shared_passive_pragma", type = SharedPassivePragma.class),
+        @XmlElement(name = "storage_size_pragma", type = StorageSizePragma.class),
+        @XmlElement(name = "suppress_pragma", type = SuppressPragma.class),
+        @XmlElement(name = "task_dispatching_policy_pragma", type = TaskDispatchingPolicyPragma.class),
+        @XmlElement(name = "volatile_pragma", type = VolatilePragma.class),
+        @XmlElement(name = "volatile_components_pragma", type = VolatileComponentsPragma.class),
+        @XmlElement(name = "assert_pragma", type = AssertPragma.class),
+        @XmlElement(name = "assertion_policy_pragma", type = AssertionPolicyPragma.class),
+        @XmlElement(name = "detect_blocking_pragma", type = DetectBlockingPragma.class),
+        @XmlElement(name = "no_return_pragma", type = NoReturnPragma.class),
+        @XmlElement(name = "partition_elaboration_policy_pragma", type = PartitionElaborationPolicyPragma.class),
+        @XmlElement(name = "preelaborable_initialization_pragma", type = PreelaborableInitializationPragma.class),
+        @XmlElement(name = "priority_specific_dispatching_pragma", type = PrioritySpecificDispatchingPragma.class),
+        @XmlElement(name = "profile_pragma", type = ProfilePragma.class),
+        @XmlElement(name = "relative_deadline_pragma", type = RelativeDeadlinePragma.class),
+        @XmlElement(name = "unchecked_union_pragma", type = UncheckedUnionPragma.class),
+        @XmlElement(name = "unsuppress_pragma", type = UnsuppressPragma.class),
+        @XmlElement(name = "default_storage_pool_pragma", type = DefaultStoragePoolPragma.class),
+        @XmlElement(name = "dispatching_domain_pragma", type = DispatchingDomainPragma.class),
+        @XmlElement(name = "cpu_pragma", type = CpuPragma.class),
+        @XmlElement(name = "independent_pragma", type = IndependentPragma.class),
+        @XmlElement(name = "independent_components_pragma", type = IndependentComponentsPragma.class),
+        @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
+        @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
+    })
+    protected Object declarativeItem;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the declarativeItem property.
      * 
      * @return
      *     possible object is
      *     {@link NotAnElement }
+     *     {@link OrdinaryTypeDeclaration }
+     *     {@link TaskTypeDeclaration }
+     *     {@link ProtectedTypeDeclaration }
+     *     {@link IncompleteTypeDeclaration }
+     *     {@link TaggedIncompleteTypeDeclaration }
+     *     {@link PrivateTypeDeclaration }
+     *     {@link PrivateExtensionDeclaration }
+     *     {@link SubtypeDeclaration }
+     *     {@link VariableDeclaration }
+     *     {@link ConstantDeclaration }
+     *     {@link DeferredConstantDeclaration }
+     *     {@link SingleTaskDeclaration }
+     *     {@link SingleProtectedDeclaration }
+     *     {@link IntegerNumberDeclaration }
+     *     {@link RealNumberDeclaration }
+     *     {@link EnumerationLiteralSpecification }
+     *     {@link DiscriminantSpecification }
+     *     {@link ComponentDeclaration }
+     *     {@link LoopParameterSpecification }
+     *     {@link GeneralizedIteratorSpecification }
+     *     {@link ElementIteratorSpecification }
+     *     {@link ProcedureDeclaration }
+     *     {@link FunctionDeclaration }
+     *     {@link ParameterSpecification }
+     *     {@link ProcedureBodyDeclaration }
+     *     {@link FunctionBodyDeclaration }
+     *     {@link ReturnVariableSpecification }
+     *     {@link ReturnConstantSpecification }
+     *     {@link NullProcedureDeclaration }
+     *     {@link ExpressionFunctionDeclaration }
+     *     {@link PackageDeclaration }
+     *     {@link PackageBodyDeclaration }
+     *     {@link ObjectRenamingDeclaration }
+     *     {@link ExceptionRenamingDeclaration }
+     *     {@link PackageRenamingDeclaration }
+     *     {@link ProcedureRenamingDeclaration }
+     *     {@link FunctionRenamingDeclaration }
+     *     {@link GenericPackageRenamingDeclaration }
+     *     {@link GenericProcedureRenamingDeclaration }
+     *     {@link GenericFunctionRenamingDeclaration }
+     *     {@link TaskBodyDeclaration }
+     *     {@link ProtectedBodyDeclaration }
+     *     {@link EntryDeclaration }
+     *     {@link EntryBodyDeclaration }
+     *     {@link EntryIndexSpecification }
+     *     {@link ProcedureBodyStub }
+     *     {@link FunctionBodyStub }
+     *     {@link PackageBodyStub }
+     *     {@link TaskBodyStub }
+     *     {@link ProtectedBodyStub }
+     *     {@link ExceptionDeclaration }
+     *     {@link ChoiceParameterSpecification }
+     *     {@link GenericProcedureDeclaration }
+     *     {@link GenericFunctionDeclaration }
+     *     {@link GenericPackageDeclaration }
+     *     {@link PackageInstantiation }
+     *     {@link ProcedureInstantiation }
+     *     {@link FunctionInstantiation }
+     *     {@link FormalObjectDeclaration }
+     *     {@link FormalTypeDeclaration }
+     *     {@link FormalIncompleteTypeDeclaration }
+     *     {@link FormalProcedureDeclaration }
+     *     {@link FormalFunctionDeclaration }
+     *     {@link FormalPackageDeclaration }
+     *     {@link FormalPackageDeclarationWithBox }
+     *     {@link UsePackageClause }
+     *     {@link UseTypeClause }
+     *     {@link UseAllTypeClause }
+     *     {@link WithClause }
+     *     {@link AttributeDefinitionClause }
+     *     {@link EnumerationRepresentationClause }
+     *     {@link RecordRepresentationClause }
+     *     {@link AtClause }
+     *     {@link ComponentClause }
+     *     {@link AllCallsRemotePragma }
+     *     {@link AsynchronousPragma }
+     *     {@link AtomicPragma }
+     *     {@link AtomicComponentsPragma }
+     *     {@link AttachHandlerPragma }
+     *     {@link ControlledPragma }
+     *     {@link ConventionPragma }
+     *     {@link DiscardNamesPragma }
+     *     {@link ElaboratePragma }
+     *     {@link ElaborateAllPragma }
+     *     {@link ElaborateBodyPragma }
+     *     {@link ExportPragma }
+     *     {@link ImportPragma }
+     *     {@link InlinePragma }
+     *     {@link InspectionPointPragma }
+     *     {@link InterruptHandlerPragma }
+     *     {@link InterruptPriorityPragma }
+     *     {@link LinkerOptionsPragma }
+     *     {@link ListPragma }
+     *     {@link LockingPolicyPragma }
+     *     {@link NormalizeScalarsPragma }
+     *     {@link OptimizePragma }
+     *     {@link PackPragma }
+     *     {@link PagePragma }
+     *     {@link PreelaboratePragma }
+     *     {@link PriorityPragma }
+     *     {@link PurePragma }
+     *     {@link QueuingPolicyPragma }
+     *     {@link RemoteCallInterfacePragma }
+     *     {@link RemoteTypesPragma }
+     *     {@link RestrictionsPragma }
+     *     {@link ReviewablePragma }
+     *     {@link SharedPassivePragma }
+     *     {@link StorageSizePragma }
+     *     {@link SuppressPragma }
+     *     {@link TaskDispatchingPolicyPragma }
+     *     {@link VolatilePragma }
+     *     {@link VolatileComponentsPragma }
+     *     {@link AssertPragma }
+     *     {@link AssertionPolicyPragma }
+     *     {@link DetectBlockingPragma }
+     *     {@link NoReturnPragma }
+     *     {@link PartitionElaborationPolicyPragma }
+     *     {@link PreelaborableInitializationPragma }
+     *     {@link PrioritySpecificDispatchingPragma }
+     *     {@link ProfilePragma }
+     *     {@link RelativeDeadlinePragma }
+     *     {@link UncheckedUnionPragma }
+     *     {@link UnsuppressPragma }
+     *     {@link DefaultStoragePoolPragma }
+     *     {@link DispatchingDomainPragma }
+     *     {@link CpuPragma }
+     *     {@link IndependentPragma }
+     *     {@link IndependentComponentsPragma }
+     *     {@link ImplementationDefinedPragma }
+     *     {@link UnknownPragma }
      *     
      */
-    public NotAnElement getNotAnElement() {
-        return notAnElement;
+    public Object getDeclarativeItem() {
+        return declarativeItem;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the declarativeItem property.
      * 
      * @param value
      *     allowed object is
      *     {@link NotAnElement }
-     *     
-     */
-    public void setNotAnElement(NotAnElement value) {
-        this.notAnElement = value;
-    }
-
-    /**
-     * Gets the value of the ordinaryTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OrdinaryTypeDeclaration }
-     *     
-     */
-    public OrdinaryTypeDeclaration getOrdinaryTypeDeclaration() {
-        return ordinaryTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the ordinaryTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OrdinaryTypeDeclaration }
-     *     
-     */
-    public void setOrdinaryTypeDeclaration(OrdinaryTypeDeclaration value) {
-        this.ordinaryTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the taskTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskTypeDeclaration }
-     *     
-     */
-    public TaskTypeDeclaration getTaskTypeDeclaration() {
-        return taskTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the taskTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskTypeDeclaration }
-     *     
-     */
-    public void setTaskTypeDeclaration(TaskTypeDeclaration value) {
-        this.taskTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the protectedTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProtectedTypeDeclaration }
-     *     
-     */
-    public ProtectedTypeDeclaration getProtectedTypeDeclaration() {
-        return protectedTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the protectedTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProtectedTypeDeclaration }
-     *     
-     */
-    public void setProtectedTypeDeclaration(ProtectedTypeDeclaration value) {
-        this.protectedTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the incompleteTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IncompleteTypeDeclaration }
-     *     
-     */
-    public IncompleteTypeDeclaration getIncompleteTypeDeclaration() {
-        return incompleteTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the incompleteTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IncompleteTypeDeclaration }
-     *     
-     */
-    public void setIncompleteTypeDeclaration(IncompleteTypeDeclaration value) {
-        this.incompleteTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the taggedIncompleteTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaggedIncompleteTypeDeclaration }
-     *     
-     */
-    public TaggedIncompleteTypeDeclaration getTaggedIncompleteTypeDeclaration() {
-        return taggedIncompleteTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the taggedIncompleteTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaggedIncompleteTypeDeclaration }
-     *     
-     */
-    public void setTaggedIncompleteTypeDeclaration(TaggedIncompleteTypeDeclaration value) {
-        this.taggedIncompleteTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the privateTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PrivateTypeDeclaration }
-     *     
-     */
-    public PrivateTypeDeclaration getPrivateTypeDeclaration() {
-        return privateTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the privateTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PrivateTypeDeclaration }
-     *     
-     */
-    public void setPrivateTypeDeclaration(PrivateTypeDeclaration value) {
-        this.privateTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the privateExtensionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PrivateExtensionDeclaration }
-     *     
-     */
-    public PrivateExtensionDeclaration getPrivateExtensionDeclaration() {
-        return privateExtensionDeclaration;
-    }
-
-    /**
-     * Sets the value of the privateExtensionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PrivateExtensionDeclaration }
-     *     
-     */
-    public void setPrivateExtensionDeclaration(PrivateExtensionDeclaration value) {
-        this.privateExtensionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the subtypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SubtypeDeclaration }
-     *     
-     */
-    public SubtypeDeclaration getSubtypeDeclaration() {
-        return subtypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the subtypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SubtypeDeclaration }
-     *     
-     */
-    public void setSubtypeDeclaration(SubtypeDeclaration value) {
-        this.subtypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the variableDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VariableDeclaration }
-     *     
-     */
-    public VariableDeclaration getVariableDeclaration() {
-        return variableDeclaration;
-    }
-
-    /**
-     * Sets the value of the variableDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VariableDeclaration }
-     *     
-     */
-    public void setVariableDeclaration(VariableDeclaration value) {
-        this.variableDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the constantDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConstantDeclaration }
-     *     
-     */
-    public ConstantDeclaration getConstantDeclaration() {
-        return constantDeclaration;
-    }
-
-    /**
-     * Sets the value of the constantDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConstantDeclaration }
-     *     
-     */
-    public void setConstantDeclaration(ConstantDeclaration value) {
-        this.constantDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the deferredConstantDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DeferredConstantDeclaration }
-     *     
-     */
-    public DeferredConstantDeclaration getDeferredConstantDeclaration() {
-        return deferredConstantDeclaration;
-    }
-
-    /**
-     * Sets the value of the deferredConstantDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeferredConstantDeclaration }
-     *     
-     */
-    public void setDeferredConstantDeclaration(DeferredConstantDeclaration value) {
-        this.deferredConstantDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the singleTaskDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SingleTaskDeclaration }
-     *     
-     */
-    public SingleTaskDeclaration getSingleTaskDeclaration() {
-        return singleTaskDeclaration;
-    }
-
-    /**
-     * Sets the value of the singleTaskDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SingleTaskDeclaration }
-     *     
-     */
-    public void setSingleTaskDeclaration(SingleTaskDeclaration value) {
-        this.singleTaskDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the singleProtectedDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SingleProtectedDeclaration }
-     *     
-     */
-    public SingleProtectedDeclaration getSingleProtectedDeclaration() {
-        return singleProtectedDeclaration;
-    }
-
-    /**
-     * Sets the value of the singleProtectedDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SingleProtectedDeclaration }
-     *     
-     */
-    public void setSingleProtectedDeclaration(SingleProtectedDeclaration value) {
-        this.singleProtectedDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the integerNumberDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IntegerNumberDeclaration }
-     *     
-     */
-    public IntegerNumberDeclaration getIntegerNumberDeclaration() {
-        return integerNumberDeclaration;
-    }
-
-    /**
-     * Sets the value of the integerNumberDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IntegerNumberDeclaration }
-     *     
-     */
-    public void setIntegerNumberDeclaration(IntegerNumberDeclaration value) {
-        this.integerNumberDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the realNumberDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RealNumberDeclaration }
-     *     
-     */
-    public RealNumberDeclaration getRealNumberDeclaration() {
-        return realNumberDeclaration;
-    }
-
-    /**
-     * Sets the value of the realNumberDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RealNumberDeclaration }
-     *     
-     */
-    public void setRealNumberDeclaration(RealNumberDeclaration value) {
-        this.realNumberDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the enumerationLiteralSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EnumerationLiteralSpecification }
-     *     
-     */
-    public EnumerationLiteralSpecification getEnumerationLiteralSpecification() {
-        return enumerationLiteralSpecification;
-    }
-
-    /**
-     * Sets the value of the enumerationLiteralSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumerationLiteralSpecification }
-     *     
-     */
-    public void setEnumerationLiteralSpecification(EnumerationLiteralSpecification value) {
-        this.enumerationLiteralSpecification = value;
-    }
-
-    /**
-     * Gets the value of the discriminantSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscriminantSpecification }
-     *     
-     */
-    public DiscriminantSpecification getDiscriminantSpecification() {
-        return discriminantSpecification;
-    }
-
-    /**
-     * Sets the value of the discriminantSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscriminantSpecification }
-     *     
-     */
-    public void setDiscriminantSpecification(DiscriminantSpecification value) {
-        this.discriminantSpecification = value;
-    }
-
-    /**
-     * Gets the value of the componentDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ComponentDeclaration }
-     *     
-     */
-    public ComponentDeclaration getComponentDeclaration() {
-        return componentDeclaration;
-    }
-
-    /**
-     * Sets the value of the componentDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ComponentDeclaration }
-     *     
-     */
-    public void setComponentDeclaration(ComponentDeclaration value) {
-        this.componentDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the loopParameterSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LoopParameterSpecification }
-     *     
-     */
-    public LoopParameterSpecification getLoopParameterSpecification() {
-        return loopParameterSpecification;
-    }
-
-    /**
-     * Sets the value of the loopParameterSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LoopParameterSpecification }
-     *     
-     */
-    public void setLoopParameterSpecification(LoopParameterSpecification value) {
-        this.loopParameterSpecification = value;
-    }
-
-    /**
-     * Gets the value of the generalizedIteratorSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GeneralizedIteratorSpecification }
-     *     
-     */
-    public GeneralizedIteratorSpecification getGeneralizedIteratorSpecification() {
-        return generalizedIteratorSpecification;
-    }
-
-    /**
-     * Sets the value of the generalizedIteratorSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GeneralizedIteratorSpecification }
-     *     
-     */
-    public void setGeneralizedIteratorSpecification(GeneralizedIteratorSpecification value) {
-        this.generalizedIteratorSpecification = value;
-    }
-
-    /**
-     * Gets the value of the elementIteratorSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElementIteratorSpecification }
-     *     
-     */
-    public ElementIteratorSpecification getElementIteratorSpecification() {
-        return elementIteratorSpecification;
-    }
-
-    /**
-     * Sets the value of the elementIteratorSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElementIteratorSpecification }
-     *     
-     */
-    public void setElementIteratorSpecification(ElementIteratorSpecification value) {
-        this.elementIteratorSpecification = value;
-    }
-
-    /**
-     * Gets the value of the procedureDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProcedureDeclaration }
-     *     
-     */
-    public ProcedureDeclaration getProcedureDeclaration() {
-        return procedureDeclaration;
-    }
-
-    /**
-     * Sets the value of the procedureDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcedureDeclaration }
-     *     
-     */
-    public void setProcedureDeclaration(ProcedureDeclaration value) {
-        this.procedureDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the functionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionDeclaration }
-     *     
-     */
-    public FunctionDeclaration getFunctionDeclaration() {
-        return functionDeclaration;
-    }
-
-    /**
-     * Sets the value of the functionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionDeclaration }
-     *     
-     */
-    public void setFunctionDeclaration(FunctionDeclaration value) {
-        this.functionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the parameterSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ParameterSpecification }
-     *     
-     */
-    public ParameterSpecification getParameterSpecification() {
-        return parameterSpecification;
-    }
-
-    /**
-     * Sets the value of the parameterSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ParameterSpecification }
-     *     
-     */
-    public void setParameterSpecification(ParameterSpecification value) {
-        this.parameterSpecification = value;
-    }
-
-    /**
-     * Gets the value of the procedureBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProcedureBodyDeclaration }
-     *     
-     */
-    public ProcedureBodyDeclaration getProcedureBodyDeclaration() {
-        return procedureBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the procedureBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcedureBodyDeclaration }
-     *     
-     */
-    public void setProcedureBodyDeclaration(ProcedureBodyDeclaration value) {
-        this.procedureBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the functionBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionBodyDeclaration }
-     *     
-     */
-    public FunctionBodyDeclaration getFunctionBodyDeclaration() {
-        return functionBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the functionBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionBodyDeclaration }
-     *     
-     */
-    public void setFunctionBodyDeclaration(FunctionBodyDeclaration value) {
-        this.functionBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the returnVariableSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReturnVariableSpecification }
-     *     
-     */
-    public ReturnVariableSpecification getReturnVariableSpecification() {
-        return returnVariableSpecification;
-    }
-
-    /**
-     * Sets the value of the returnVariableSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReturnVariableSpecification }
-     *     
-     */
-    public void setReturnVariableSpecification(ReturnVariableSpecification value) {
-        this.returnVariableSpecification = value;
-    }
-
-    /**
-     * Gets the value of the returnConstantSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReturnConstantSpecification }
-     *     
-     */
-    public ReturnConstantSpecification getReturnConstantSpecification() {
-        return returnConstantSpecification;
-    }
-
-    /**
-     * Sets the value of the returnConstantSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReturnConstantSpecification }
-     *     
-     */
-    public void setReturnConstantSpecification(ReturnConstantSpecification value) {
-        this.returnConstantSpecification = value;
-    }
-
-    /**
-     * Gets the value of the nullProcedureDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NullProcedureDeclaration }
-     *     
-     */
-    public NullProcedureDeclaration getNullProcedureDeclaration() {
-        return nullProcedureDeclaration;
-    }
-
-    /**
-     * Sets the value of the nullProcedureDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NullProcedureDeclaration }
-     *     
-     */
-    public void setNullProcedureDeclaration(NullProcedureDeclaration value) {
-        this.nullProcedureDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the expressionFunctionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExpressionFunctionDeclaration }
-     *     
-     */
-    public ExpressionFunctionDeclaration getExpressionFunctionDeclaration() {
-        return expressionFunctionDeclaration;
-    }
-
-    /**
-     * Sets the value of the expressionFunctionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExpressionFunctionDeclaration }
-     *     
-     */
-    public void setExpressionFunctionDeclaration(ExpressionFunctionDeclaration value) {
-        this.expressionFunctionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the packageDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackageDeclaration }
-     *     
-     */
-    public PackageDeclaration getPackageDeclaration() {
-        return packageDeclaration;
-    }
-
-    /**
-     * Sets the value of the packageDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackageDeclaration }
-     *     
-     */
-    public void setPackageDeclaration(PackageDeclaration value) {
-        this.packageDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the packageBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackageBodyDeclaration }
-     *     
-     */
-    public PackageBodyDeclaration getPackageBodyDeclaration() {
-        return packageBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the packageBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackageBodyDeclaration }
-     *     
-     */
-    public void setPackageBodyDeclaration(PackageBodyDeclaration value) {
-        this.packageBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the objectRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ObjectRenamingDeclaration }
-     *     
-     */
-    public ObjectRenamingDeclaration getObjectRenamingDeclaration() {
-        return objectRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the objectRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ObjectRenamingDeclaration }
-     *     
-     */
-    public void setObjectRenamingDeclaration(ObjectRenamingDeclaration value) {
-        this.objectRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the exceptionRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExceptionRenamingDeclaration }
-     *     
-     */
-    public ExceptionRenamingDeclaration getExceptionRenamingDeclaration() {
-        return exceptionRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the exceptionRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExceptionRenamingDeclaration }
-     *     
-     */
-    public void setExceptionRenamingDeclaration(ExceptionRenamingDeclaration value) {
-        this.exceptionRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the packageRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackageRenamingDeclaration }
-     *     
-     */
-    public PackageRenamingDeclaration getPackageRenamingDeclaration() {
-        return packageRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the packageRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackageRenamingDeclaration }
-     *     
-     */
-    public void setPackageRenamingDeclaration(PackageRenamingDeclaration value) {
-        this.packageRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the procedureRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProcedureRenamingDeclaration }
-     *     
-     */
-    public ProcedureRenamingDeclaration getProcedureRenamingDeclaration() {
-        return procedureRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the procedureRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcedureRenamingDeclaration }
-     *     
-     */
-    public void setProcedureRenamingDeclaration(ProcedureRenamingDeclaration value) {
-        this.procedureRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the functionRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionRenamingDeclaration }
-     *     
-     */
-    public FunctionRenamingDeclaration getFunctionRenamingDeclaration() {
-        return functionRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the functionRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionRenamingDeclaration }
-     *     
-     */
-    public void setFunctionRenamingDeclaration(FunctionRenamingDeclaration value) {
-        this.functionRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the genericPackageRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericPackageRenamingDeclaration }
-     *     
-     */
-    public GenericPackageRenamingDeclaration getGenericPackageRenamingDeclaration() {
-        return genericPackageRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericPackageRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericPackageRenamingDeclaration }
-     *     
-     */
-    public void setGenericPackageRenamingDeclaration(GenericPackageRenamingDeclaration value) {
-        this.genericPackageRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the genericProcedureRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericProcedureRenamingDeclaration }
-     *     
-     */
-    public GenericProcedureRenamingDeclaration getGenericProcedureRenamingDeclaration() {
-        return genericProcedureRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericProcedureRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericProcedureRenamingDeclaration }
-     *     
-     */
-    public void setGenericProcedureRenamingDeclaration(GenericProcedureRenamingDeclaration value) {
-        this.genericProcedureRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the genericFunctionRenamingDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericFunctionRenamingDeclaration }
-     *     
-     */
-    public GenericFunctionRenamingDeclaration getGenericFunctionRenamingDeclaration() {
-        return genericFunctionRenamingDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericFunctionRenamingDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericFunctionRenamingDeclaration }
-     *     
-     */
-    public void setGenericFunctionRenamingDeclaration(GenericFunctionRenamingDeclaration value) {
-        this.genericFunctionRenamingDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the taskBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskBodyDeclaration }
-     *     
-     */
-    public TaskBodyDeclaration getTaskBodyDeclaration() {
-        return taskBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the taskBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskBodyDeclaration }
-     *     
-     */
-    public void setTaskBodyDeclaration(TaskBodyDeclaration value) {
-        this.taskBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the protectedBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProtectedBodyDeclaration }
-     *     
-     */
-    public ProtectedBodyDeclaration getProtectedBodyDeclaration() {
-        return protectedBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the protectedBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProtectedBodyDeclaration }
-     *     
-     */
-    public void setProtectedBodyDeclaration(ProtectedBodyDeclaration value) {
-        this.protectedBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the entryDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EntryDeclaration }
-     *     
-     */
-    public EntryDeclaration getEntryDeclaration() {
-        return entryDeclaration;
-    }
-
-    /**
-     * Sets the value of the entryDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryDeclaration }
-     *     
-     */
-    public void setEntryDeclaration(EntryDeclaration value) {
-        this.entryDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the entryBodyDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EntryBodyDeclaration }
-     *     
-     */
-    public EntryBodyDeclaration getEntryBodyDeclaration() {
-        return entryBodyDeclaration;
-    }
-
-    /**
-     * Sets the value of the entryBodyDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryBodyDeclaration }
-     *     
-     */
-    public void setEntryBodyDeclaration(EntryBodyDeclaration value) {
-        this.entryBodyDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the entryIndexSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EntryIndexSpecification }
-     *     
-     */
-    public EntryIndexSpecification getEntryIndexSpecification() {
-        return entryIndexSpecification;
-    }
-
-    /**
-     * Sets the value of the entryIndexSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryIndexSpecification }
-     *     
-     */
-    public void setEntryIndexSpecification(EntryIndexSpecification value) {
-        this.entryIndexSpecification = value;
-    }
-
-    /**
-     * Gets the value of the procedureBodyStub property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProcedureBodyStub }
-     *     
-     */
-    public ProcedureBodyStub getProcedureBodyStub() {
-        return procedureBodyStub;
-    }
-
-    /**
-     * Sets the value of the procedureBodyStub property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcedureBodyStub }
-     *     
-     */
-    public void setProcedureBodyStub(ProcedureBodyStub value) {
-        this.procedureBodyStub = value;
-    }
-
-    /**
-     * Gets the value of the functionBodyStub property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionBodyStub }
-     *     
-     */
-    public FunctionBodyStub getFunctionBodyStub() {
-        return functionBodyStub;
-    }
-
-    /**
-     * Sets the value of the functionBodyStub property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionBodyStub }
-     *     
-     */
-    public void setFunctionBodyStub(FunctionBodyStub value) {
-        this.functionBodyStub = value;
-    }
-
-    /**
-     * Gets the value of the packageBodyStub property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackageBodyStub }
-     *     
-     */
-    public PackageBodyStub getPackageBodyStub() {
-        return packageBodyStub;
-    }
-
-    /**
-     * Sets the value of the packageBodyStub property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackageBodyStub }
-     *     
-     */
-    public void setPackageBodyStub(PackageBodyStub value) {
-        this.packageBodyStub = value;
-    }
-
-    /**
-     * Gets the value of the taskBodyStub property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskBodyStub }
-     *     
-     */
-    public TaskBodyStub getTaskBodyStub() {
-        return taskBodyStub;
-    }
-
-    /**
-     * Sets the value of the taskBodyStub property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskBodyStub }
-     *     
-     */
-    public void setTaskBodyStub(TaskBodyStub value) {
-        this.taskBodyStub = value;
-    }
-
-    /**
-     * Gets the value of the protectedBodyStub property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProtectedBodyStub }
-     *     
-     */
-    public ProtectedBodyStub getProtectedBodyStub() {
-        return protectedBodyStub;
-    }
-
-    /**
-     * Sets the value of the protectedBodyStub property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProtectedBodyStub }
-     *     
-     */
-    public void setProtectedBodyStub(ProtectedBodyStub value) {
-        this.protectedBodyStub = value;
-    }
-
-    /**
-     * Gets the value of the exceptionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExceptionDeclaration }
-     *     
-     */
-    public ExceptionDeclaration getExceptionDeclaration() {
-        return exceptionDeclaration;
-    }
-
-    /**
-     * Sets the value of the exceptionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExceptionDeclaration }
-     *     
-     */
-    public void setExceptionDeclaration(ExceptionDeclaration value) {
-        this.exceptionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the choiceParameterSpecification property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ChoiceParameterSpecification }
-     *     
-     */
-    public ChoiceParameterSpecification getChoiceParameterSpecification() {
-        return choiceParameterSpecification;
-    }
-
-    /**
-     * Sets the value of the choiceParameterSpecification property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ChoiceParameterSpecification }
-     *     
-     */
-    public void setChoiceParameterSpecification(ChoiceParameterSpecification value) {
-        this.choiceParameterSpecification = value;
-    }
-
-    /**
-     * Gets the value of the genericProcedureDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericProcedureDeclaration }
-     *     
-     */
-    public GenericProcedureDeclaration getGenericProcedureDeclaration() {
-        return genericProcedureDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericProcedureDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericProcedureDeclaration }
-     *     
-     */
-    public void setGenericProcedureDeclaration(GenericProcedureDeclaration value) {
-        this.genericProcedureDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the genericFunctionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericFunctionDeclaration }
-     *     
-     */
-    public GenericFunctionDeclaration getGenericFunctionDeclaration() {
-        return genericFunctionDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericFunctionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericFunctionDeclaration }
-     *     
-     */
-    public void setGenericFunctionDeclaration(GenericFunctionDeclaration value) {
-        this.genericFunctionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the genericPackageDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GenericPackageDeclaration }
-     *     
-     */
-    public GenericPackageDeclaration getGenericPackageDeclaration() {
-        return genericPackageDeclaration;
-    }
-
-    /**
-     * Sets the value of the genericPackageDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GenericPackageDeclaration }
-     *     
-     */
-    public void setGenericPackageDeclaration(GenericPackageDeclaration value) {
-        this.genericPackageDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the packageInstantiation property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackageInstantiation }
-     *     
-     */
-    public PackageInstantiation getPackageInstantiation() {
-        return packageInstantiation;
-    }
-
-    /**
-     * Sets the value of the packageInstantiation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackageInstantiation }
-     *     
-     */
-    public void setPackageInstantiation(PackageInstantiation value) {
-        this.packageInstantiation = value;
-    }
-
-    /**
-     * Gets the value of the procedureInstantiation property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProcedureInstantiation }
-     *     
-     */
-    public ProcedureInstantiation getProcedureInstantiation() {
-        return procedureInstantiation;
-    }
-
-    /**
-     * Sets the value of the procedureInstantiation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProcedureInstantiation }
-     *     
-     */
-    public void setProcedureInstantiation(ProcedureInstantiation value) {
-        this.procedureInstantiation = value;
-    }
-
-    /**
-     * Gets the value of the functionInstantiation property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionInstantiation }
-     *     
-     */
-    public FunctionInstantiation getFunctionInstantiation() {
-        return functionInstantiation;
-    }
-
-    /**
-     * Sets the value of the functionInstantiation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionInstantiation }
-     *     
-     */
-    public void setFunctionInstantiation(FunctionInstantiation value) {
-        this.functionInstantiation = value;
-    }
-
-    /**
-     * Gets the value of the formalObjectDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalObjectDeclaration }
-     *     
-     */
-    public FormalObjectDeclaration getFormalObjectDeclaration() {
-        return formalObjectDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalObjectDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalObjectDeclaration }
-     *     
-     */
-    public void setFormalObjectDeclaration(FormalObjectDeclaration value) {
-        this.formalObjectDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalTypeDeclaration }
-     *     
-     */
-    public FormalTypeDeclaration getFormalTypeDeclaration() {
-        return formalTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalTypeDeclaration }
-     *     
-     */
-    public void setFormalTypeDeclaration(FormalTypeDeclaration value) {
-        this.formalTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalIncompleteTypeDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalIncompleteTypeDeclaration }
-     *     
-     */
-    public FormalIncompleteTypeDeclaration getFormalIncompleteTypeDeclaration() {
-        return formalIncompleteTypeDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalIncompleteTypeDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalIncompleteTypeDeclaration }
-     *     
-     */
-    public void setFormalIncompleteTypeDeclaration(FormalIncompleteTypeDeclaration value) {
-        this.formalIncompleteTypeDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalProcedureDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalProcedureDeclaration }
-     *     
-     */
-    public FormalProcedureDeclaration getFormalProcedureDeclaration() {
-        return formalProcedureDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalProcedureDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalProcedureDeclaration }
-     *     
-     */
-    public void setFormalProcedureDeclaration(FormalProcedureDeclaration value) {
-        this.formalProcedureDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalFunctionDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalFunctionDeclaration }
-     *     
-     */
-    public FormalFunctionDeclaration getFormalFunctionDeclaration() {
-        return formalFunctionDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalFunctionDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalFunctionDeclaration }
-     *     
-     */
-    public void setFormalFunctionDeclaration(FormalFunctionDeclaration value) {
-        this.formalFunctionDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalPackageDeclaration property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalPackageDeclaration }
-     *     
-     */
-    public FormalPackageDeclaration getFormalPackageDeclaration() {
-        return formalPackageDeclaration;
-    }
-
-    /**
-     * Sets the value of the formalPackageDeclaration property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalPackageDeclaration }
-     *     
-     */
-    public void setFormalPackageDeclaration(FormalPackageDeclaration value) {
-        this.formalPackageDeclaration = value;
-    }
-
-    /**
-     * Gets the value of the formalPackageDeclarationWithBox property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FormalPackageDeclarationWithBox }
-     *     
-     */
-    public FormalPackageDeclarationWithBox getFormalPackageDeclarationWithBox() {
-        return formalPackageDeclarationWithBox;
-    }
-
-    /**
-     * Sets the value of the formalPackageDeclarationWithBox property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FormalPackageDeclarationWithBox }
-     *     
-     */
-    public void setFormalPackageDeclarationWithBox(FormalPackageDeclarationWithBox value) {
-        this.formalPackageDeclarationWithBox = value;
-    }
-
-    /**
-     * Gets the value of the usePackageClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UsePackageClause }
-     *     
-     */
-    public UsePackageClause getUsePackageClause() {
-        return usePackageClause;
-    }
-
-    /**
-     * Sets the value of the usePackageClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UsePackageClause }
-     *     
-     */
-    public void setUsePackageClause(UsePackageClause value) {
-        this.usePackageClause = value;
-    }
-
-    /**
-     * Gets the value of the useTypeClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UseTypeClause }
-     *     
-     */
-    public UseTypeClause getUseTypeClause() {
-        return useTypeClause;
-    }
-
-    /**
-     * Sets the value of the useTypeClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UseTypeClause }
-     *     
-     */
-    public void setUseTypeClause(UseTypeClause value) {
-        this.useTypeClause = value;
-    }
-
-    /**
-     * Gets the value of the useAllTypeClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UseAllTypeClause }
-     *     
-     */
-    public UseAllTypeClause getUseAllTypeClause() {
-        return useAllTypeClause;
-    }
-
-    /**
-     * Sets the value of the useAllTypeClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UseAllTypeClause }
-     *     
-     */
-    public void setUseAllTypeClause(UseAllTypeClause value) {
-        this.useAllTypeClause = value;
-    }
-
-    /**
-     * Gets the value of the withClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WithClause }
-     *     
-     */
-    public WithClause getWithClause() {
-        return withClause;
-    }
-
-    /**
-     * Sets the value of the withClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WithClause }
-     *     
-     */
-    public void setWithClause(WithClause value) {
-        this.withClause = value;
-    }
-
-    /**
-     * Gets the value of the attributeDefinitionClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AttributeDefinitionClause }
-     *     
-     */
-    public AttributeDefinitionClause getAttributeDefinitionClause() {
-        return attributeDefinitionClause;
-    }
-
-    /**
-     * Sets the value of the attributeDefinitionClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AttributeDefinitionClause }
-     *     
-     */
-    public void setAttributeDefinitionClause(AttributeDefinitionClause value) {
-        this.attributeDefinitionClause = value;
-    }
-
-    /**
-     * Gets the value of the enumerationRepresentationClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EnumerationRepresentationClause }
-     *     
-     */
-    public EnumerationRepresentationClause getEnumerationRepresentationClause() {
-        return enumerationRepresentationClause;
-    }
-
-    /**
-     * Sets the value of the enumerationRepresentationClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumerationRepresentationClause }
-     *     
-     */
-    public void setEnumerationRepresentationClause(EnumerationRepresentationClause value) {
-        this.enumerationRepresentationClause = value;
-    }
-
-    /**
-     * Gets the value of the recordRepresentationClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RecordRepresentationClause }
-     *     
-     */
-    public RecordRepresentationClause getRecordRepresentationClause() {
-        return recordRepresentationClause;
-    }
-
-    /**
-     * Sets the value of the recordRepresentationClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RecordRepresentationClause }
-     *     
-     */
-    public void setRecordRepresentationClause(RecordRepresentationClause value) {
-        this.recordRepresentationClause = value;
-    }
-
-    /**
-     * Gets the value of the atClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtClause }
-     *     
-     */
-    public AtClause getAtClause() {
-        return atClause;
-    }
-
-    /**
-     * Sets the value of the atClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtClause }
-     *     
-     */
-    public void setAtClause(AtClause value) {
-        this.atClause = value;
-    }
-
-    /**
-     * Gets the value of the componentClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ComponentClause }
-     *     
-     */
-    public ComponentClause getComponentClause() {
-        return componentClause;
-    }
-
-    /**
-     * Sets the value of the componentClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ComponentClause }
-     *     
-     */
-    public void setComponentClause(ComponentClause value) {
-        this.componentClause = value;
-    }
-
-    /**
-     * Gets the value of the allCallsRemotePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public AllCallsRemotePragma getAllCallsRemotePragma() {
-        return allCallsRemotePragma;
-    }
-
-    /**
-     * Sets the value of the allCallsRemotePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public void setAllCallsRemotePragma(AllCallsRemotePragma value) {
-        this.allCallsRemotePragma = value;
-    }
-
-    /**
-     * Gets the value of the asynchronousPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AsynchronousPragma }
-     *     
-     */
-    public AsynchronousPragma getAsynchronousPragma() {
-        return asynchronousPragma;
-    }
-
-    /**
-     * Sets the value of the asynchronousPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AsynchronousPragma }
-     *     
-     */
-    public void setAsynchronousPragma(AsynchronousPragma value) {
-        this.asynchronousPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicPragma }
-     *     
-     */
-    public AtomicPragma getAtomicPragma() {
-        return atomicPragma;
-    }
-
-    /**
-     * Sets the value of the atomicPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicPragma }
-     *     
-     */
-    public void setAtomicPragma(AtomicPragma value) {
-        this.atomicPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public AtomicComponentsPragma getAtomicComponentsPragma() {
-        return atomicComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the atomicComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public void setAtomicComponentsPragma(AtomicComponentsPragma value) {
-        this.atomicComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the attachHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AttachHandlerPragma }
-     *     
-     */
-    public AttachHandlerPragma getAttachHandlerPragma() {
-        return attachHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the attachHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AttachHandlerPragma }
-     *     
-     */
-    public void setAttachHandlerPragma(AttachHandlerPragma value) {
-        this.attachHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the controlledPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ControlledPragma }
-     *     
-     */
-    public ControlledPragma getControlledPragma() {
-        return controlledPragma;
-    }
-
-    /**
-     * Sets the value of the controlledPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ControlledPragma }
-     *     
-     */
-    public void setControlledPragma(ControlledPragma value) {
-        this.controlledPragma = value;
-    }
-
-    /**
-     * Gets the value of the conventionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConventionPragma }
-     *     
-     */
-    public ConventionPragma getConventionPragma() {
-        return conventionPragma;
-    }
-
-    /**
-     * Sets the value of the conventionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConventionPragma }
-     *     
-     */
-    public void setConventionPragma(ConventionPragma value) {
-        this.conventionPragma = value;
-    }
-
-    /**
-     * Gets the value of the discardNamesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscardNamesPragma }
-     *     
-     */
-    public DiscardNamesPragma getDiscardNamesPragma() {
-        return discardNamesPragma;
-    }
-
-    /**
-     * Sets the value of the discardNamesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscardNamesPragma }
-     *     
-     */
-    public void setDiscardNamesPragma(DiscardNamesPragma value) {
-        this.discardNamesPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaboratePragma }
-     *     
-     */
-    public ElaboratePragma getElaboratePragma() {
-        return elaboratePragma;
-    }
-
-    /**
-     * Sets the value of the elaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaboratePragma }
-     *     
-     */
-    public void setElaboratePragma(ElaboratePragma value) {
-        this.elaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateAllPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateAllPragma }
-     *     
-     */
-    public ElaborateAllPragma getElaborateAllPragma() {
-        return elaborateAllPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateAllPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateAllPragma }
-     *     
-     */
-    public void setElaborateAllPragma(ElaborateAllPragma value) {
-        this.elaborateAllPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateBodyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public ElaborateBodyPragma getElaborateBodyPragma() {
-        return elaborateBodyPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateBodyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public void setElaborateBodyPragma(ElaborateBodyPragma value) {
-        this.elaborateBodyPragma = value;
-    }
-
-    /**
-     * Gets the value of the exportPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExportPragma }
-     *     
-     */
-    public ExportPragma getExportPragma() {
-        return exportPragma;
-    }
-
-    /**
-     * Sets the value of the exportPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExportPragma }
-     *     
-     */
-    public void setExportPragma(ExportPragma value) {
-        this.exportPragma = value;
-    }
-
-    /**
-     * Gets the value of the importPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImportPragma }
-     *     
-     */
-    public ImportPragma getImportPragma() {
-        return importPragma;
-    }
-
-    /**
-     * Sets the value of the importPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImportPragma }
-     *     
-     */
-    public void setImportPragma(ImportPragma value) {
-        this.importPragma = value;
-    }
-
-    /**
-     * Gets the value of the inlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InlinePragma }
-     *     
-     */
-    public InlinePragma getInlinePragma() {
-        return inlinePragma;
-    }
-
-    /**
-     * Sets the value of the inlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InlinePragma }
-     *     
-     */
-    public void setInlinePragma(InlinePragma value) {
-        this.inlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the inspectionPointPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InspectionPointPragma }
-     *     
-     */
-    public InspectionPointPragma getInspectionPointPragma() {
-        return inspectionPointPragma;
-    }
-
-    /**
-     * Sets the value of the inspectionPointPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InspectionPointPragma }
-     *     
-     */
-    public void setInspectionPointPragma(InspectionPointPragma value) {
-        this.inspectionPointPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public InterruptHandlerPragma getInterruptHandlerPragma() {
-        return interruptHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the interruptHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public void setInterruptHandlerPragma(InterruptHandlerPragma value) {
-        this.interruptHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptPriorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public InterruptPriorityPragma getInterruptPriorityPragma() {
-        return interruptPriorityPragma;
-    }
-
-    /**
-     * Sets the value of the interruptPriorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public void setInterruptPriorityPragma(InterruptPriorityPragma value) {
-        this.interruptPriorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the linkerOptionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public LinkerOptionsPragma getLinkerOptionsPragma() {
-        return linkerOptionsPragma;
-    }
-
-    /**
-     * Sets the value of the linkerOptionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public void setLinkerOptionsPragma(LinkerOptionsPragma value) {
-        this.linkerOptionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the listPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ListPragma }
-     *     
-     */
-    public ListPragma getListPragma() {
-        return listPragma;
-    }
-
-    /**
-     * Sets the value of the listPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ListPragma }
-     *     
-     */
-    public void setListPragma(ListPragma value) {
-        this.listPragma = value;
-    }
-
-    /**
-     * Gets the value of the lockingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LockingPolicyPragma }
-     *     
-     */
-    public LockingPolicyPragma getLockingPolicyPragma() {
-        return lockingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the lockingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LockingPolicyPragma }
-     *     
-     */
-    public void setLockingPolicyPragma(LockingPolicyPragma value) {
-        this.lockingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the normalizeScalarsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public NormalizeScalarsPragma getNormalizeScalarsPragma() {
-        return normalizeScalarsPragma;
-    }
-
-    /**
-     * Sets the value of the normalizeScalarsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public void setNormalizeScalarsPragma(NormalizeScalarsPragma value) {
-        this.normalizeScalarsPragma = value;
-    }
-
-    /**
-     * Gets the value of the optimizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OptimizePragma }
-     *     
-     */
-    public OptimizePragma getOptimizePragma() {
-        return optimizePragma;
-    }
-
-    /**
-     * Sets the value of the optimizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OptimizePragma }
-     *     
-     */
-    public void setOptimizePragma(OptimizePragma value) {
-        this.optimizePragma = value;
-    }
-
-    /**
-     * Gets the value of the packPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackPragma }
-     *     
-     */
-    public PackPragma getPackPragma() {
-        return packPragma;
-    }
-
-    /**
-     * Sets the value of the packPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackPragma }
-     *     
-     */
-    public void setPackPragma(PackPragma value) {
-        this.packPragma = value;
-    }
-
-    /**
-     * Gets the value of the pagePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PagePragma }
-     *     
-     */
-    public PagePragma getPagePragma() {
-        return pagePragma;
-    }
-
-    /**
-     * Sets the value of the pagePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PagePragma }
-     *     
-     */
-    public void setPagePragma(PagePragma value) {
-        this.pagePragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaboratePragma }
-     *     
-     */
-    public PreelaboratePragma getPreelaboratePragma() {
-        return preelaboratePragma;
-    }
-
-    /**
-     * Sets the value of the preelaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaboratePragma }
-     *     
-     */
-    public void setPreelaboratePragma(PreelaboratePragma value) {
-        this.preelaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the priorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PriorityPragma }
-     *     
-     */
-    public PriorityPragma getPriorityPragma() {
-        return priorityPragma;
-    }
-
-    /**
-     * Sets the value of the priorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PriorityPragma }
-     *     
-     */
-    public void setPriorityPragma(PriorityPragma value) {
-        this.priorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the purePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PurePragma }
-     *     
-     */
-    public PurePragma getPurePragma() {
-        return purePragma;
-    }
-
-    /**
-     * Sets the value of the purePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PurePragma }
-     *     
-     */
-    public void setPurePragma(PurePragma value) {
-        this.purePragma = value;
-    }
-
-    /**
-     * Gets the value of the queuingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public QueuingPolicyPragma getQueuingPolicyPragma() {
-        return queuingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the queuingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public void setQueuingPolicyPragma(QueuingPolicyPragma value) {
-        this.queuingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteCallInterfacePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public RemoteCallInterfacePragma getRemoteCallInterfacePragma() {
-        return remoteCallInterfacePragma;
-    }
-
-    /**
-     * Sets the value of the remoteCallInterfacePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public void setRemoteCallInterfacePragma(RemoteCallInterfacePragma value) {
-        this.remoteCallInterfacePragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteTypesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteTypesPragma }
-     *     
-     */
-    public RemoteTypesPragma getRemoteTypesPragma() {
-        return remoteTypesPragma;
-    }
-
-    /**
-     * Sets the value of the remoteTypesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteTypesPragma }
-     *     
-     */
-    public void setRemoteTypesPragma(RemoteTypesPragma value) {
-        this.remoteTypesPragma = value;
-    }
-
-    /**
-     * Gets the value of the restrictionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RestrictionsPragma }
-     *     
-     */
-    public RestrictionsPragma getRestrictionsPragma() {
-        return restrictionsPragma;
-    }
-
-    /**
-     * Sets the value of the restrictionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RestrictionsPragma }
-     *     
-     */
-    public void setRestrictionsPragma(RestrictionsPragma value) {
-        this.restrictionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the reviewablePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReviewablePragma }
-     *     
-     */
-    public ReviewablePragma getReviewablePragma() {
-        return reviewablePragma;
-    }
-
-    /**
-     * Sets the value of the reviewablePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReviewablePragma }
-     *     
-     */
-    public void setReviewablePragma(ReviewablePragma value) {
-        this.reviewablePragma = value;
-    }
-
-    /**
-     * Gets the value of the sharedPassivePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SharedPassivePragma }
-     *     
-     */
-    public SharedPassivePragma getSharedPassivePragma() {
-        return sharedPassivePragma;
-    }
-
-    /**
-     * Sets the value of the sharedPassivePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SharedPassivePragma }
-     *     
-     */
-    public void setSharedPassivePragma(SharedPassivePragma value) {
-        this.sharedPassivePragma = value;
-    }
-
-    /**
-     * Gets the value of the storageSizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StorageSizePragma }
-     *     
-     */
-    public StorageSizePragma getStorageSizePragma() {
-        return storageSizePragma;
-    }
-
-    /**
-     * Sets the value of the storageSizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StorageSizePragma }
-     *     
-     */
-    public void setStorageSizePragma(StorageSizePragma value) {
-        this.storageSizePragma = value;
-    }
-
-    /**
-     * Gets the value of the suppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SuppressPragma }
-     *     
-     */
-    public SuppressPragma getSuppressPragma() {
-        return suppressPragma;
-    }
-
-    /**
-     * Sets the value of the suppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SuppressPragma }
-     *     
-     */
-    public void setSuppressPragma(SuppressPragma value) {
-        this.suppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public TaskDispatchingPolicyPragma getTaskDispatchingPolicyPragma() {
-        return taskDispatchingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public void setTaskDispatchingPolicyPragma(TaskDispatchingPolicyPragma value) {
-        this.taskDispatchingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the volatilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatilePragma }
-     *     
-     */
-    public VolatilePragma getVolatilePragma() {
-        return volatilePragma;
-    }
-
-    /**
-     * Sets the value of the volatilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatilePragma }
-     *     
-     */
-    public void setVolatilePragma(VolatilePragma value) {
-        this.volatilePragma = value;
-    }
-
-    /**
-     * Gets the value of the volatileComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public VolatileComponentsPragma getVolatileComponentsPragma() {
-        return volatileComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the volatileComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public void setVolatileComponentsPragma(VolatileComponentsPragma value) {
-        this.volatileComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertPragma }
-     *     
-     */
-    public AssertPragma getAssertPragma() {
-        return assertPragma;
-    }
-
-    /**
-     * Sets the value of the assertPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertPragma }
-     *     
-     */
-    public void setAssertPragma(AssertPragma value) {
-        this.assertPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertionPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public AssertionPolicyPragma getAssertionPolicyPragma() {
-        return assertionPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the assertionPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public void setAssertionPolicyPragma(AssertionPolicyPragma value) {
-        this.assertionPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the detectBlockingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DetectBlockingPragma }
-     *     
-     */
-    public DetectBlockingPragma getDetectBlockingPragma() {
-        return detectBlockingPragma;
-    }
-
-    /**
-     * Sets the value of the detectBlockingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DetectBlockingPragma }
-     *     
-     */
-    public void setDetectBlockingPragma(DetectBlockingPragma value) {
-        this.detectBlockingPragma = value;
-    }
-
-    /**
-     * Gets the value of the noReturnPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NoReturnPragma }
-     *     
-     */
-    public NoReturnPragma getNoReturnPragma() {
-        return noReturnPragma;
-    }
-
-    /**
-     * Sets the value of the noReturnPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NoReturnPragma }
-     *     
-     */
-    public void setNoReturnPragma(NoReturnPragma value) {
-        this.noReturnPragma = value;
-    }
-
-    /**
-     * Gets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public PartitionElaborationPolicyPragma getPartitionElaborationPolicyPragma() {
-        return partitionElaborationPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public void setPartitionElaborationPolicyPragma(PartitionElaborationPolicyPragma value) {
-        this.partitionElaborationPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaborableInitializationPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public PreelaborableInitializationPragma getPreelaborableInitializationPragma() {
-        return preelaborableInitializationPragma;
-    }
-
-    /**
-     * Sets the value of the preelaborableInitializationPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public void setPreelaborableInitializationPragma(PreelaborableInitializationPragma value) {
-        this.preelaborableInitializationPragma = value;
-    }
-
-    /**
-     * Gets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public PrioritySpecificDispatchingPragma getPrioritySpecificDispatchingPragma() {
-        return prioritySpecificDispatchingPragma;
-    }
-
-    /**
-     * Sets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public void setPrioritySpecificDispatchingPragma(PrioritySpecificDispatchingPragma value) {
-        this.prioritySpecificDispatchingPragma = value;
-    }
-
-    /**
-     * Gets the value of the profilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProfilePragma }
-     *     
-     */
-    public ProfilePragma getProfilePragma() {
-        return profilePragma;
-    }
-
-    /**
-     * Sets the value of the profilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProfilePragma }
-     *     
-     */
-    public void setProfilePragma(ProfilePragma value) {
-        this.profilePragma = value;
-    }
-
-    /**
-     * Gets the value of the relativeDeadlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public RelativeDeadlinePragma getRelativeDeadlinePragma() {
-        return relativeDeadlinePragma;
-    }
-
-    /**
-     * Sets the value of the relativeDeadlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public void setRelativeDeadlinePragma(RelativeDeadlinePragma value) {
-        this.relativeDeadlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the uncheckedUnionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public UncheckedUnionPragma getUncheckedUnionPragma() {
-        return uncheckedUnionPragma;
-    }
-
-    /**
-     * Sets the value of the uncheckedUnionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public void setUncheckedUnionPragma(UncheckedUnionPragma value) {
-        this.uncheckedUnionPragma = value;
-    }
-
-    /**
-     * Gets the value of the unsuppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnsuppressPragma }
-     *     
-     */
-    public UnsuppressPragma getUnsuppressPragma() {
-        return unsuppressPragma;
-    }
-
-    /**
-     * Sets the value of the unsuppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnsuppressPragma }
-     *     
-     */
-    public void setUnsuppressPragma(UnsuppressPragma value) {
-        this.unsuppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the defaultStoragePoolPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public DefaultStoragePoolPragma getDefaultStoragePoolPragma() {
-        return defaultStoragePoolPragma;
-    }
-
-    /**
-     * Sets the value of the defaultStoragePoolPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public void setDefaultStoragePoolPragma(DefaultStoragePoolPragma value) {
-        this.defaultStoragePoolPragma = value;
-    }
-
-    /**
-     * Gets the value of the dispatchingDomainPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public DispatchingDomainPragma getDispatchingDomainPragma() {
-        return dispatchingDomainPragma;
-    }
-
-    /**
-     * Sets the value of the dispatchingDomainPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public void setDispatchingDomainPragma(DispatchingDomainPragma value) {
-        this.dispatchingDomainPragma = value;
-    }
-
-    /**
-     * Gets the value of the cpuPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CpuPragma }
-     *     
-     */
-    public CpuPragma getCpuPragma() {
-        return cpuPragma;
-    }
-
-    /**
-     * Sets the value of the cpuPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CpuPragma }
-     *     
-     */
-    public void setCpuPragma(CpuPragma value) {
-        this.cpuPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentPragma }
-     *     
-     */
-    public IndependentPragma getIndependentPragma() {
-        return independentPragma;
-    }
-
-    /**
-     * Sets the value of the independentPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentPragma }
-     *     
-     */
-    public void setIndependentPragma(IndependentPragma value) {
-        this.independentPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public IndependentComponentsPragma getIndependentComponentsPragma() {
-        return independentComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the independentComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public void setIndependentComponentsPragma(IndependentComponentsPragma value) {
-        this.independentComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the implementationDefinedPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public ImplementationDefinedPragma getImplementationDefinedPragma() {
-        return implementationDefinedPragma;
-    }
-
-    /**
-     * Sets the value of the implementationDefinedPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public void setImplementationDefinedPragma(ImplementationDefinedPragma value) {
-        this.implementationDefinedPragma = value;
-    }
-
-    /**
-     * Gets the value of the unknownPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnknownPragma }
      *     
      */
-    public UnknownPragma getUnknownPragma() {
-        return unknownPragma;
-    }
-
-    /**
-     * Sets the value of the unknownPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnknownPragma }
-     *     
-     */
-    public void setUnknownPragma(UnknownPragma value) {
-        this.unknownPragma = value;
+    public void setDeclarativeItem(Object value) {
+        this.declarativeItem = value;
     }
 
 }

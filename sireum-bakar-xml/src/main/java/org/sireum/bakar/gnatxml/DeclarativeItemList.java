@@ -112,7 +112,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Declarative_Item_List", propOrder = {
-    "notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration"
+    "declarativeItems"
 })
 public class DeclarativeItemList {
 
@@ -249,21 +249,21 @@ public class DeclarativeItemList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration;
+    protected List<Object> declarativeItems;
 
     /**
-     * Gets the value of the notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration property.
+     * Gets the value of the declarativeItems property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration property.
+     * This is why there is not a <CODE>set</CODE> method for the declarativeItems property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration().add(newItem);
+     *    getDeclarativeItems().add(newItem);
      * </pre>
      * 
      * 
@@ -403,11 +403,11 @@ public class DeclarativeItemList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration() {
-        if (notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration == null) {
-            notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration = new ArrayList<Object>();
+    public List<Object> getDeclarativeItems() {
+        if (declarativeItems == null) {
+            declarativeItems = new ArrayList<Object>();
         }
-        return this.notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration;
+        return this.declarativeItems;
     }
 
 }

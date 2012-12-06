@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Discrete_Range_List", propOrder = {
-    "notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference"
+    "discreteRanges"
 })
 public class DiscreteRangeList {
 
@@ -107,21 +107,21 @@ public class DiscreteRangeList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference;
+    protected List<Object> discreteRanges;
 
     /**
-     * Gets the value of the notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference property.
+     * Gets the value of the discreteRanges property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference property.
+     * This is why there is not a <CODE>set</CODE> method for the discreteRanges property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference().add(newItem);
+     *    getDiscreteRanges().add(newItem);
      * </pre>
      * 
      * 
@@ -190,11 +190,11 @@ public class DiscreteRangeList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference() {
-        if (notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference == null) {
-            notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference = new ArrayList<Object>();
+    public List<Object> getDiscreteRanges() {
+        if (discreteRanges == null) {
+            discreteRanges = new ArrayList<Object>();
         }
-        return this.notAnElementOrDiscreteSubtypeIndicationOrDiscreteRangeAttributeReference;
+        return this.discreteRanges;
     }
 
 }

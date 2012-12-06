@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Discriminant_Specification_List", propOrder = {
-    "notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma"
+    "discriminantSpecifications"
 })
 public class DiscriminantSpecificationList {
 
@@ -103,21 +103,21 @@ public class DiscriminantSpecificationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma;
+    protected List<Object> discriminantSpecifications;
 
     /**
-     * Gets the value of the notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma property.
+     * Gets the value of the discriminantSpecifications property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the discriminantSpecifications property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma().add(newItem);
+     *    getDiscriminantSpecifications().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class DiscriminantSpecificationList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma() {
-        if (notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma == null) {
-            notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getDiscriminantSpecifications() {
+        if (discriminantSpecifications == null) {
+            discriminantSpecifications = new ArrayList<Object>();
         }
-        return this.notAnElementOrDiscriminantSpecificationOrAllCallsRemotePragma;
+        return this.discriminantSpecifications;
     }
 
 }

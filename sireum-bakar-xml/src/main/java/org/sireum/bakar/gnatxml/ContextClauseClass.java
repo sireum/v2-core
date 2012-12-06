@@ -10,6 +10,7 @@ package org.sireum.bakar.gnatxml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -39,1655 +40,217 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Context_Clause_Class", propOrder = {
-    "notAnElement",
-    "usePackageClause",
-    "useTypeClause",
-    "useAllTypeClause",
-    "withClause",
-    "allCallsRemotePragma",
-    "asynchronousPragma",
-    "atomicPragma",
-    "atomicComponentsPragma",
-    "attachHandlerPragma",
-    "controlledPragma",
-    "conventionPragma",
-    "discardNamesPragma",
-    "elaboratePragma",
-    "elaborateAllPragma",
-    "elaborateBodyPragma",
-    "exportPragma",
-    "importPragma",
-    "inlinePragma",
-    "inspectionPointPragma",
-    "interruptHandlerPragma",
-    "interruptPriorityPragma",
-    "linkerOptionsPragma",
-    "listPragma",
-    "lockingPolicyPragma",
-    "normalizeScalarsPragma",
-    "optimizePragma",
-    "packPragma",
-    "pagePragma",
-    "preelaboratePragma",
-    "priorityPragma",
-    "purePragma",
-    "queuingPolicyPragma",
-    "remoteCallInterfacePragma",
-    "remoteTypesPragma",
-    "restrictionsPragma",
-    "reviewablePragma",
-    "sharedPassivePragma",
-    "storageSizePragma",
-    "suppressPragma",
-    "taskDispatchingPolicyPragma",
-    "volatilePragma",
-    "volatileComponentsPragma",
-    "assertPragma",
-    "assertionPolicyPragma",
-    "detectBlockingPragma",
-    "noReturnPragma",
-    "partitionElaborationPolicyPragma",
-    "preelaborableInitializationPragma",
-    "prioritySpecificDispatchingPragma",
-    "profilePragma",
-    "relativeDeadlinePragma",
-    "uncheckedUnionPragma",
-    "unsuppressPragma",
-    "defaultStoragePoolPragma",
-    "dispatchingDomainPragma",
-    "cpuPragma",
-    "independentPragma",
-    "independentComponentsPragma",
-    "implementationDefinedPragma",
-    "unknownPragma"
+    "contextClause"
 })
 public class ContextClauseClass {
 
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-    @XmlElement(name = "use_package_clause")
-    protected UsePackageClause usePackageClause;
-    @XmlElement(name = "use_type_clause")
-    protected UseTypeClause useTypeClause;
-    @XmlElement(name = "use_all_type_clause")
-    protected UseAllTypeClause useAllTypeClause;
-    @XmlElement(name = "with_clause")
-    protected WithClause withClause;
-    @XmlElement(name = "all_calls_remote_pragma")
-    protected AllCallsRemotePragma allCallsRemotePragma;
-    @XmlElement(name = "asynchronous_pragma")
-    protected AsynchronousPragma asynchronousPragma;
-    @XmlElement(name = "atomic_pragma")
-    protected AtomicPragma atomicPragma;
-    @XmlElement(name = "atomic_components_pragma")
-    protected AtomicComponentsPragma atomicComponentsPragma;
-    @XmlElement(name = "attach_handler_pragma")
-    protected AttachHandlerPragma attachHandlerPragma;
-    @XmlElement(name = "controlled_pragma")
-    protected ControlledPragma controlledPragma;
-    @XmlElement(name = "convention_pragma")
-    protected ConventionPragma conventionPragma;
-    @XmlElement(name = "discard_names_pragma")
-    protected DiscardNamesPragma discardNamesPragma;
-    @XmlElement(name = "elaborate_pragma")
-    protected ElaboratePragma elaboratePragma;
-    @XmlElement(name = "elaborate_all_pragma")
-    protected ElaborateAllPragma elaborateAllPragma;
-    @XmlElement(name = "elaborate_body_pragma")
-    protected ElaborateBodyPragma elaborateBodyPragma;
-    @XmlElement(name = "export_pragma")
-    protected ExportPragma exportPragma;
-    @XmlElement(name = "import_pragma")
-    protected ImportPragma importPragma;
-    @XmlElement(name = "inline_pragma")
-    protected InlinePragma inlinePragma;
-    @XmlElement(name = "inspection_point_pragma")
-    protected InspectionPointPragma inspectionPointPragma;
-    @XmlElement(name = "interrupt_handler_pragma")
-    protected InterruptHandlerPragma interruptHandlerPragma;
-    @XmlElement(name = "interrupt_priority_pragma")
-    protected InterruptPriorityPragma interruptPriorityPragma;
-    @XmlElement(name = "linker_options_pragma")
-    protected LinkerOptionsPragma linkerOptionsPragma;
-    @XmlElement(name = "list_pragma")
-    protected ListPragma listPragma;
-    @XmlElement(name = "locking_policy_pragma")
-    protected LockingPolicyPragma lockingPolicyPragma;
-    @XmlElement(name = "normalize_scalars_pragma")
-    protected NormalizeScalarsPragma normalizeScalarsPragma;
-    @XmlElement(name = "optimize_pragma")
-    protected OptimizePragma optimizePragma;
-    @XmlElement(name = "pack_pragma")
-    protected PackPragma packPragma;
-    @XmlElement(name = "page_pragma")
-    protected PagePragma pagePragma;
-    @XmlElement(name = "preelaborate_pragma")
-    protected PreelaboratePragma preelaboratePragma;
-    @XmlElement(name = "priority_pragma")
-    protected PriorityPragma priorityPragma;
-    @XmlElement(name = "pure_pragma")
-    protected PurePragma purePragma;
-    @XmlElement(name = "queuing_policy_pragma")
-    protected QueuingPolicyPragma queuingPolicyPragma;
-    @XmlElement(name = "remote_call_interface_pragma")
-    protected RemoteCallInterfacePragma remoteCallInterfacePragma;
-    @XmlElement(name = "remote_types_pragma")
-    protected RemoteTypesPragma remoteTypesPragma;
-    @XmlElement(name = "restrictions_pragma")
-    protected RestrictionsPragma restrictionsPragma;
-    @XmlElement(name = "reviewable_pragma")
-    protected ReviewablePragma reviewablePragma;
-    @XmlElement(name = "shared_passive_pragma")
-    protected SharedPassivePragma sharedPassivePragma;
-    @XmlElement(name = "storage_size_pragma")
-    protected StorageSizePragma storageSizePragma;
-    @XmlElement(name = "suppress_pragma")
-    protected SuppressPragma suppressPragma;
-    @XmlElement(name = "task_dispatching_policy_pragma")
-    protected TaskDispatchingPolicyPragma taskDispatchingPolicyPragma;
-    @XmlElement(name = "volatile_pragma")
-    protected VolatilePragma volatilePragma;
-    @XmlElement(name = "volatile_components_pragma")
-    protected VolatileComponentsPragma volatileComponentsPragma;
-    @XmlElement(name = "assert_pragma")
-    protected AssertPragma assertPragma;
-    @XmlElement(name = "assertion_policy_pragma")
-    protected AssertionPolicyPragma assertionPolicyPragma;
-    @XmlElement(name = "detect_blocking_pragma")
-    protected DetectBlockingPragma detectBlockingPragma;
-    @XmlElement(name = "no_return_pragma")
-    protected NoReturnPragma noReturnPragma;
-    @XmlElement(name = "partition_elaboration_policy_pragma")
-    protected PartitionElaborationPolicyPragma partitionElaborationPolicyPragma;
-    @XmlElement(name = "preelaborable_initialization_pragma")
-    protected PreelaborableInitializationPragma preelaborableInitializationPragma;
-    @XmlElement(name = "priority_specific_dispatching_pragma")
-    protected PrioritySpecificDispatchingPragma prioritySpecificDispatchingPragma;
-    @XmlElement(name = "profile_pragma")
-    protected ProfilePragma profilePragma;
-    @XmlElement(name = "relative_deadline_pragma")
-    protected RelativeDeadlinePragma relativeDeadlinePragma;
-    @XmlElement(name = "unchecked_union_pragma")
-    protected UncheckedUnionPragma uncheckedUnionPragma;
-    @XmlElement(name = "unsuppress_pragma")
-    protected UnsuppressPragma unsuppressPragma;
-    @XmlElement(name = "default_storage_pool_pragma")
-    protected DefaultStoragePoolPragma defaultStoragePoolPragma;
-    @XmlElement(name = "dispatching_domain_pragma")
-    protected DispatchingDomainPragma dispatchingDomainPragma;
-    @XmlElement(name = "cpu_pragma")
-    protected CpuPragma cpuPragma;
-    @XmlElement(name = "independent_pragma")
-    protected IndependentPragma independentPragma;
-    @XmlElement(name = "independent_components_pragma")
-    protected IndependentComponentsPragma independentComponentsPragma;
-    @XmlElement(name = "implementation_defined_pragma")
-    protected ImplementationDefinedPragma implementationDefinedPragma;
-    @XmlElement(name = "unknown_pragma")
-    protected UnknownPragma unknownPragma;
+    @XmlElements({
+        @XmlElement(name = "not_an_element", type = NotAnElement.class),
+        @XmlElement(name = "use_package_clause", type = UsePackageClause.class),
+        @XmlElement(name = "use_type_clause", type = UseTypeClause.class),
+        @XmlElement(name = "use_all_type_clause", type = UseAllTypeClause.class),
+        @XmlElement(name = "with_clause", type = WithClause.class),
+        @XmlElement(name = "all_calls_remote_pragma", type = AllCallsRemotePragma.class),
+        @XmlElement(name = "asynchronous_pragma", type = AsynchronousPragma.class),
+        @XmlElement(name = "atomic_pragma", type = AtomicPragma.class),
+        @XmlElement(name = "atomic_components_pragma", type = AtomicComponentsPragma.class),
+        @XmlElement(name = "attach_handler_pragma", type = AttachHandlerPragma.class),
+        @XmlElement(name = "controlled_pragma", type = ControlledPragma.class),
+        @XmlElement(name = "convention_pragma", type = ConventionPragma.class),
+        @XmlElement(name = "discard_names_pragma", type = DiscardNamesPragma.class),
+        @XmlElement(name = "elaborate_pragma", type = ElaboratePragma.class),
+        @XmlElement(name = "elaborate_all_pragma", type = ElaborateAllPragma.class),
+        @XmlElement(name = "elaborate_body_pragma", type = ElaborateBodyPragma.class),
+        @XmlElement(name = "export_pragma", type = ExportPragma.class),
+        @XmlElement(name = "import_pragma", type = ImportPragma.class),
+        @XmlElement(name = "inline_pragma", type = InlinePragma.class),
+        @XmlElement(name = "inspection_point_pragma", type = InspectionPointPragma.class),
+        @XmlElement(name = "interrupt_handler_pragma", type = InterruptHandlerPragma.class),
+        @XmlElement(name = "interrupt_priority_pragma", type = InterruptPriorityPragma.class),
+        @XmlElement(name = "linker_options_pragma", type = LinkerOptionsPragma.class),
+        @XmlElement(name = "list_pragma", type = ListPragma.class),
+        @XmlElement(name = "locking_policy_pragma", type = LockingPolicyPragma.class),
+        @XmlElement(name = "normalize_scalars_pragma", type = NormalizeScalarsPragma.class),
+        @XmlElement(name = "optimize_pragma", type = OptimizePragma.class),
+        @XmlElement(name = "pack_pragma", type = PackPragma.class),
+        @XmlElement(name = "page_pragma", type = PagePragma.class),
+        @XmlElement(name = "preelaborate_pragma", type = PreelaboratePragma.class),
+        @XmlElement(name = "priority_pragma", type = PriorityPragma.class),
+        @XmlElement(name = "pure_pragma", type = PurePragma.class),
+        @XmlElement(name = "queuing_policy_pragma", type = QueuingPolicyPragma.class),
+        @XmlElement(name = "remote_call_interface_pragma", type = RemoteCallInterfacePragma.class),
+        @XmlElement(name = "remote_types_pragma", type = RemoteTypesPragma.class),
+        @XmlElement(name = "restrictions_pragma", type = RestrictionsPragma.class),
+        @XmlElement(name = "reviewable_pragma", type = ReviewablePragma.class),
+        @XmlElement(name = "shared_passive_pragma", type = SharedPassivePragma.class),
+        @XmlElement(name = "storage_size_pragma", type = StorageSizePragma.class),
+        @XmlElement(name = "suppress_pragma", type = SuppressPragma.class),
+        @XmlElement(name = "task_dispatching_policy_pragma", type = TaskDispatchingPolicyPragma.class),
+        @XmlElement(name = "volatile_pragma", type = VolatilePragma.class),
+        @XmlElement(name = "volatile_components_pragma", type = VolatileComponentsPragma.class),
+        @XmlElement(name = "assert_pragma", type = AssertPragma.class),
+        @XmlElement(name = "assertion_policy_pragma", type = AssertionPolicyPragma.class),
+        @XmlElement(name = "detect_blocking_pragma", type = DetectBlockingPragma.class),
+        @XmlElement(name = "no_return_pragma", type = NoReturnPragma.class),
+        @XmlElement(name = "partition_elaboration_policy_pragma", type = PartitionElaborationPolicyPragma.class),
+        @XmlElement(name = "preelaborable_initialization_pragma", type = PreelaborableInitializationPragma.class),
+        @XmlElement(name = "priority_specific_dispatching_pragma", type = PrioritySpecificDispatchingPragma.class),
+        @XmlElement(name = "profile_pragma", type = ProfilePragma.class),
+        @XmlElement(name = "relative_deadline_pragma", type = RelativeDeadlinePragma.class),
+        @XmlElement(name = "unchecked_union_pragma", type = UncheckedUnionPragma.class),
+        @XmlElement(name = "unsuppress_pragma", type = UnsuppressPragma.class),
+        @XmlElement(name = "default_storage_pool_pragma", type = DefaultStoragePoolPragma.class),
+        @XmlElement(name = "dispatching_domain_pragma", type = DispatchingDomainPragma.class),
+        @XmlElement(name = "cpu_pragma", type = CpuPragma.class),
+        @XmlElement(name = "independent_pragma", type = IndependentPragma.class),
+        @XmlElement(name = "independent_components_pragma", type = IndependentComponentsPragma.class),
+        @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
+        @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
+    })
+    protected Object contextClause;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the contextClause property.
      * 
      * @return
      *     possible object is
      *     {@link NotAnElement }
+     *     {@link UsePackageClause }
+     *     {@link UseTypeClause }
+     *     {@link UseAllTypeClause }
+     *     {@link WithClause }
+     *     {@link AllCallsRemotePragma }
+     *     {@link AsynchronousPragma }
+     *     {@link AtomicPragma }
+     *     {@link AtomicComponentsPragma }
+     *     {@link AttachHandlerPragma }
+     *     {@link ControlledPragma }
+     *     {@link ConventionPragma }
+     *     {@link DiscardNamesPragma }
+     *     {@link ElaboratePragma }
+     *     {@link ElaborateAllPragma }
+     *     {@link ElaborateBodyPragma }
+     *     {@link ExportPragma }
+     *     {@link ImportPragma }
+     *     {@link InlinePragma }
+     *     {@link InspectionPointPragma }
+     *     {@link InterruptHandlerPragma }
+     *     {@link InterruptPriorityPragma }
+     *     {@link LinkerOptionsPragma }
+     *     {@link ListPragma }
+     *     {@link LockingPolicyPragma }
+     *     {@link NormalizeScalarsPragma }
+     *     {@link OptimizePragma }
+     *     {@link PackPragma }
+     *     {@link PagePragma }
+     *     {@link PreelaboratePragma }
+     *     {@link PriorityPragma }
+     *     {@link PurePragma }
+     *     {@link QueuingPolicyPragma }
+     *     {@link RemoteCallInterfacePragma }
+     *     {@link RemoteTypesPragma }
+     *     {@link RestrictionsPragma }
+     *     {@link ReviewablePragma }
+     *     {@link SharedPassivePragma }
+     *     {@link StorageSizePragma }
+     *     {@link SuppressPragma }
+     *     {@link TaskDispatchingPolicyPragma }
+     *     {@link VolatilePragma }
+     *     {@link VolatileComponentsPragma }
+     *     {@link AssertPragma }
+     *     {@link AssertionPolicyPragma }
+     *     {@link DetectBlockingPragma }
+     *     {@link NoReturnPragma }
+     *     {@link PartitionElaborationPolicyPragma }
+     *     {@link PreelaborableInitializationPragma }
+     *     {@link PrioritySpecificDispatchingPragma }
+     *     {@link ProfilePragma }
+     *     {@link RelativeDeadlinePragma }
+     *     {@link UncheckedUnionPragma }
+     *     {@link UnsuppressPragma }
+     *     {@link DefaultStoragePoolPragma }
+     *     {@link DispatchingDomainPragma }
+     *     {@link CpuPragma }
+     *     {@link IndependentPragma }
+     *     {@link IndependentComponentsPragma }
+     *     {@link ImplementationDefinedPragma }
+     *     {@link UnknownPragma }
      *     
      */
-    public NotAnElement getNotAnElement() {
-        return notAnElement;
+    public Object getContextClause() {
+        return contextClause;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the contextClause property.
      * 
      * @param value
      *     allowed object is
      *     {@link NotAnElement }
-     *     
-     */
-    public void setNotAnElement(NotAnElement value) {
-        this.notAnElement = value;
-    }
-
-    /**
-     * Gets the value of the usePackageClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UsePackageClause }
-     *     
-     */
-    public UsePackageClause getUsePackageClause() {
-        return usePackageClause;
-    }
-
-    /**
-     * Sets the value of the usePackageClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UsePackageClause }
-     *     
-     */
-    public void setUsePackageClause(UsePackageClause value) {
-        this.usePackageClause = value;
-    }
-
-    /**
-     * Gets the value of the useTypeClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UseTypeClause }
-     *     
-     */
-    public UseTypeClause getUseTypeClause() {
-        return useTypeClause;
-    }
-
-    /**
-     * Sets the value of the useTypeClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UseTypeClause }
-     *     
-     */
-    public void setUseTypeClause(UseTypeClause value) {
-        this.useTypeClause = value;
-    }
-
-    /**
-     * Gets the value of the useAllTypeClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UseAllTypeClause }
-     *     
-     */
-    public UseAllTypeClause getUseAllTypeClause() {
-        return useAllTypeClause;
-    }
-
-    /**
-     * Sets the value of the useAllTypeClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UseAllTypeClause }
-     *     
-     */
-    public void setUseAllTypeClause(UseAllTypeClause value) {
-        this.useAllTypeClause = value;
-    }
-
-    /**
-     * Gets the value of the withClause property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WithClause }
-     *     
-     */
-    public WithClause getWithClause() {
-        return withClause;
-    }
-
-    /**
-     * Sets the value of the withClause property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WithClause }
-     *     
-     */
-    public void setWithClause(WithClause value) {
-        this.withClause = value;
-    }
-
-    /**
-     * Gets the value of the allCallsRemotePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public AllCallsRemotePragma getAllCallsRemotePragma() {
-        return allCallsRemotePragma;
-    }
-
-    /**
-     * Sets the value of the allCallsRemotePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public void setAllCallsRemotePragma(AllCallsRemotePragma value) {
-        this.allCallsRemotePragma = value;
-    }
-
-    /**
-     * Gets the value of the asynchronousPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AsynchronousPragma }
-     *     
-     */
-    public AsynchronousPragma getAsynchronousPragma() {
-        return asynchronousPragma;
-    }
-
-    /**
-     * Sets the value of the asynchronousPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AsynchronousPragma }
-     *     
-     */
-    public void setAsynchronousPragma(AsynchronousPragma value) {
-        this.asynchronousPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicPragma }
-     *     
-     */
-    public AtomicPragma getAtomicPragma() {
-        return atomicPragma;
-    }
-
-    /**
-     * Sets the value of the atomicPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicPragma }
-     *     
-     */
-    public void setAtomicPragma(AtomicPragma value) {
-        this.atomicPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public AtomicComponentsPragma getAtomicComponentsPragma() {
-        return atomicComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the atomicComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public void setAtomicComponentsPragma(AtomicComponentsPragma value) {
-        this.atomicComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the attachHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AttachHandlerPragma }
-     *     
-     */
-    public AttachHandlerPragma getAttachHandlerPragma() {
-        return attachHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the attachHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AttachHandlerPragma }
-     *     
-     */
-    public void setAttachHandlerPragma(AttachHandlerPragma value) {
-        this.attachHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the controlledPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ControlledPragma }
-     *     
-     */
-    public ControlledPragma getControlledPragma() {
-        return controlledPragma;
-    }
-
-    /**
-     * Sets the value of the controlledPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ControlledPragma }
-     *     
-     */
-    public void setControlledPragma(ControlledPragma value) {
-        this.controlledPragma = value;
-    }
-
-    /**
-     * Gets the value of the conventionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConventionPragma }
-     *     
-     */
-    public ConventionPragma getConventionPragma() {
-        return conventionPragma;
-    }
-
-    /**
-     * Sets the value of the conventionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConventionPragma }
-     *     
-     */
-    public void setConventionPragma(ConventionPragma value) {
-        this.conventionPragma = value;
-    }
-
-    /**
-     * Gets the value of the discardNamesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscardNamesPragma }
-     *     
-     */
-    public DiscardNamesPragma getDiscardNamesPragma() {
-        return discardNamesPragma;
-    }
-
-    /**
-     * Sets the value of the discardNamesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscardNamesPragma }
-     *     
-     */
-    public void setDiscardNamesPragma(DiscardNamesPragma value) {
-        this.discardNamesPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaboratePragma }
-     *     
-     */
-    public ElaboratePragma getElaboratePragma() {
-        return elaboratePragma;
-    }
-
-    /**
-     * Sets the value of the elaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaboratePragma }
-     *     
-     */
-    public void setElaboratePragma(ElaboratePragma value) {
-        this.elaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateAllPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateAllPragma }
-     *     
-     */
-    public ElaborateAllPragma getElaborateAllPragma() {
-        return elaborateAllPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateAllPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateAllPragma }
-     *     
-     */
-    public void setElaborateAllPragma(ElaborateAllPragma value) {
-        this.elaborateAllPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateBodyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public ElaborateBodyPragma getElaborateBodyPragma() {
-        return elaborateBodyPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateBodyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public void setElaborateBodyPragma(ElaborateBodyPragma value) {
-        this.elaborateBodyPragma = value;
-    }
-
-    /**
-     * Gets the value of the exportPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExportPragma }
-     *     
-     */
-    public ExportPragma getExportPragma() {
-        return exportPragma;
-    }
-
-    /**
-     * Sets the value of the exportPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExportPragma }
-     *     
-     */
-    public void setExportPragma(ExportPragma value) {
-        this.exportPragma = value;
-    }
-
-    /**
-     * Gets the value of the importPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImportPragma }
-     *     
-     */
-    public ImportPragma getImportPragma() {
-        return importPragma;
-    }
-
-    /**
-     * Sets the value of the importPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImportPragma }
-     *     
-     */
-    public void setImportPragma(ImportPragma value) {
-        this.importPragma = value;
-    }
-
-    /**
-     * Gets the value of the inlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InlinePragma }
-     *     
-     */
-    public InlinePragma getInlinePragma() {
-        return inlinePragma;
-    }
-
-    /**
-     * Sets the value of the inlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InlinePragma }
-     *     
-     */
-    public void setInlinePragma(InlinePragma value) {
-        this.inlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the inspectionPointPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InspectionPointPragma }
-     *     
-     */
-    public InspectionPointPragma getInspectionPointPragma() {
-        return inspectionPointPragma;
-    }
-
-    /**
-     * Sets the value of the inspectionPointPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InspectionPointPragma }
-     *     
-     */
-    public void setInspectionPointPragma(InspectionPointPragma value) {
-        this.inspectionPointPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public InterruptHandlerPragma getInterruptHandlerPragma() {
-        return interruptHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the interruptHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public void setInterruptHandlerPragma(InterruptHandlerPragma value) {
-        this.interruptHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptPriorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public InterruptPriorityPragma getInterruptPriorityPragma() {
-        return interruptPriorityPragma;
-    }
-
-    /**
-     * Sets the value of the interruptPriorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public void setInterruptPriorityPragma(InterruptPriorityPragma value) {
-        this.interruptPriorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the linkerOptionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public LinkerOptionsPragma getLinkerOptionsPragma() {
-        return linkerOptionsPragma;
-    }
-
-    /**
-     * Sets the value of the linkerOptionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public void setLinkerOptionsPragma(LinkerOptionsPragma value) {
-        this.linkerOptionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the listPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ListPragma }
-     *     
-     */
-    public ListPragma getListPragma() {
-        return listPragma;
-    }
-
-    /**
-     * Sets the value of the listPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ListPragma }
-     *     
-     */
-    public void setListPragma(ListPragma value) {
-        this.listPragma = value;
-    }
-
-    /**
-     * Gets the value of the lockingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LockingPolicyPragma }
-     *     
-     */
-    public LockingPolicyPragma getLockingPolicyPragma() {
-        return lockingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the lockingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LockingPolicyPragma }
-     *     
-     */
-    public void setLockingPolicyPragma(LockingPolicyPragma value) {
-        this.lockingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the normalizeScalarsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public NormalizeScalarsPragma getNormalizeScalarsPragma() {
-        return normalizeScalarsPragma;
-    }
-
-    /**
-     * Sets the value of the normalizeScalarsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public void setNormalizeScalarsPragma(NormalizeScalarsPragma value) {
-        this.normalizeScalarsPragma = value;
-    }
-
-    /**
-     * Gets the value of the optimizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OptimizePragma }
-     *     
-     */
-    public OptimizePragma getOptimizePragma() {
-        return optimizePragma;
-    }
-
-    /**
-     * Sets the value of the optimizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OptimizePragma }
-     *     
-     */
-    public void setOptimizePragma(OptimizePragma value) {
-        this.optimizePragma = value;
-    }
-
-    /**
-     * Gets the value of the packPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackPragma }
-     *     
-     */
-    public PackPragma getPackPragma() {
-        return packPragma;
-    }
-
-    /**
-     * Sets the value of the packPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackPragma }
-     *     
-     */
-    public void setPackPragma(PackPragma value) {
-        this.packPragma = value;
-    }
-
-    /**
-     * Gets the value of the pagePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PagePragma }
-     *     
-     */
-    public PagePragma getPagePragma() {
-        return pagePragma;
-    }
-
-    /**
-     * Sets the value of the pagePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PagePragma }
-     *     
-     */
-    public void setPagePragma(PagePragma value) {
-        this.pagePragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaboratePragma }
-     *     
-     */
-    public PreelaboratePragma getPreelaboratePragma() {
-        return preelaboratePragma;
-    }
-
-    /**
-     * Sets the value of the preelaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaboratePragma }
-     *     
-     */
-    public void setPreelaboratePragma(PreelaboratePragma value) {
-        this.preelaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the priorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PriorityPragma }
-     *     
-     */
-    public PriorityPragma getPriorityPragma() {
-        return priorityPragma;
-    }
-
-    /**
-     * Sets the value of the priorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PriorityPragma }
-     *     
-     */
-    public void setPriorityPragma(PriorityPragma value) {
-        this.priorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the purePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PurePragma }
-     *     
-     */
-    public PurePragma getPurePragma() {
-        return purePragma;
-    }
-
-    /**
-     * Sets the value of the purePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PurePragma }
-     *     
-     */
-    public void setPurePragma(PurePragma value) {
-        this.purePragma = value;
-    }
-
-    /**
-     * Gets the value of the queuingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public QueuingPolicyPragma getQueuingPolicyPragma() {
-        return queuingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the queuingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public void setQueuingPolicyPragma(QueuingPolicyPragma value) {
-        this.queuingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteCallInterfacePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public RemoteCallInterfacePragma getRemoteCallInterfacePragma() {
-        return remoteCallInterfacePragma;
-    }
-
-    /**
-     * Sets the value of the remoteCallInterfacePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public void setRemoteCallInterfacePragma(RemoteCallInterfacePragma value) {
-        this.remoteCallInterfacePragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteTypesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteTypesPragma }
-     *     
-     */
-    public RemoteTypesPragma getRemoteTypesPragma() {
-        return remoteTypesPragma;
-    }
-
-    /**
-     * Sets the value of the remoteTypesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteTypesPragma }
-     *     
-     */
-    public void setRemoteTypesPragma(RemoteTypesPragma value) {
-        this.remoteTypesPragma = value;
-    }
-
-    /**
-     * Gets the value of the restrictionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RestrictionsPragma }
-     *     
-     */
-    public RestrictionsPragma getRestrictionsPragma() {
-        return restrictionsPragma;
-    }
-
-    /**
-     * Sets the value of the restrictionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RestrictionsPragma }
-     *     
-     */
-    public void setRestrictionsPragma(RestrictionsPragma value) {
-        this.restrictionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the reviewablePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReviewablePragma }
-     *     
-     */
-    public ReviewablePragma getReviewablePragma() {
-        return reviewablePragma;
-    }
-
-    /**
-     * Sets the value of the reviewablePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReviewablePragma }
-     *     
-     */
-    public void setReviewablePragma(ReviewablePragma value) {
-        this.reviewablePragma = value;
-    }
-
-    /**
-     * Gets the value of the sharedPassivePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SharedPassivePragma }
-     *     
-     */
-    public SharedPassivePragma getSharedPassivePragma() {
-        return sharedPassivePragma;
-    }
-
-    /**
-     * Sets the value of the sharedPassivePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SharedPassivePragma }
-     *     
-     */
-    public void setSharedPassivePragma(SharedPassivePragma value) {
-        this.sharedPassivePragma = value;
-    }
-
-    /**
-     * Gets the value of the storageSizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StorageSizePragma }
-     *     
-     */
-    public StorageSizePragma getStorageSizePragma() {
-        return storageSizePragma;
-    }
-
-    /**
-     * Sets the value of the storageSizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StorageSizePragma }
-     *     
-     */
-    public void setStorageSizePragma(StorageSizePragma value) {
-        this.storageSizePragma = value;
-    }
-
-    /**
-     * Gets the value of the suppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SuppressPragma }
-     *     
-     */
-    public SuppressPragma getSuppressPragma() {
-        return suppressPragma;
-    }
-
-    /**
-     * Sets the value of the suppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SuppressPragma }
-     *     
-     */
-    public void setSuppressPragma(SuppressPragma value) {
-        this.suppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public TaskDispatchingPolicyPragma getTaskDispatchingPolicyPragma() {
-        return taskDispatchingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public void setTaskDispatchingPolicyPragma(TaskDispatchingPolicyPragma value) {
-        this.taskDispatchingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the volatilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatilePragma }
-     *     
-     */
-    public VolatilePragma getVolatilePragma() {
-        return volatilePragma;
-    }
-
-    /**
-     * Sets the value of the volatilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatilePragma }
-     *     
-     */
-    public void setVolatilePragma(VolatilePragma value) {
-        this.volatilePragma = value;
-    }
-
-    /**
-     * Gets the value of the volatileComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public VolatileComponentsPragma getVolatileComponentsPragma() {
-        return volatileComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the volatileComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public void setVolatileComponentsPragma(VolatileComponentsPragma value) {
-        this.volatileComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertPragma }
-     *     
-     */
-    public AssertPragma getAssertPragma() {
-        return assertPragma;
-    }
-
-    /**
-     * Sets the value of the assertPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertPragma }
-     *     
-     */
-    public void setAssertPragma(AssertPragma value) {
-        this.assertPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertionPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public AssertionPolicyPragma getAssertionPolicyPragma() {
-        return assertionPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the assertionPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public void setAssertionPolicyPragma(AssertionPolicyPragma value) {
-        this.assertionPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the detectBlockingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DetectBlockingPragma }
-     *     
-     */
-    public DetectBlockingPragma getDetectBlockingPragma() {
-        return detectBlockingPragma;
-    }
-
-    /**
-     * Sets the value of the detectBlockingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DetectBlockingPragma }
-     *     
-     */
-    public void setDetectBlockingPragma(DetectBlockingPragma value) {
-        this.detectBlockingPragma = value;
-    }
-
-    /**
-     * Gets the value of the noReturnPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NoReturnPragma }
-     *     
-     */
-    public NoReturnPragma getNoReturnPragma() {
-        return noReturnPragma;
-    }
-
-    /**
-     * Sets the value of the noReturnPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NoReturnPragma }
-     *     
-     */
-    public void setNoReturnPragma(NoReturnPragma value) {
-        this.noReturnPragma = value;
-    }
-
-    /**
-     * Gets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public PartitionElaborationPolicyPragma getPartitionElaborationPolicyPragma() {
-        return partitionElaborationPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public void setPartitionElaborationPolicyPragma(PartitionElaborationPolicyPragma value) {
-        this.partitionElaborationPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaborableInitializationPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public PreelaborableInitializationPragma getPreelaborableInitializationPragma() {
-        return preelaborableInitializationPragma;
-    }
-
-    /**
-     * Sets the value of the preelaborableInitializationPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public void setPreelaborableInitializationPragma(PreelaborableInitializationPragma value) {
-        this.preelaborableInitializationPragma = value;
-    }
-
-    /**
-     * Gets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public PrioritySpecificDispatchingPragma getPrioritySpecificDispatchingPragma() {
-        return prioritySpecificDispatchingPragma;
-    }
-
-    /**
-     * Sets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public void setPrioritySpecificDispatchingPragma(PrioritySpecificDispatchingPragma value) {
-        this.prioritySpecificDispatchingPragma = value;
-    }
-
-    /**
-     * Gets the value of the profilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProfilePragma }
-     *     
-     */
-    public ProfilePragma getProfilePragma() {
-        return profilePragma;
-    }
-
-    /**
-     * Sets the value of the profilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProfilePragma }
-     *     
-     */
-    public void setProfilePragma(ProfilePragma value) {
-        this.profilePragma = value;
-    }
-
-    /**
-     * Gets the value of the relativeDeadlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public RelativeDeadlinePragma getRelativeDeadlinePragma() {
-        return relativeDeadlinePragma;
-    }
-
-    /**
-     * Sets the value of the relativeDeadlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public void setRelativeDeadlinePragma(RelativeDeadlinePragma value) {
-        this.relativeDeadlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the uncheckedUnionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public UncheckedUnionPragma getUncheckedUnionPragma() {
-        return uncheckedUnionPragma;
-    }
-
-    /**
-     * Sets the value of the uncheckedUnionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public void setUncheckedUnionPragma(UncheckedUnionPragma value) {
-        this.uncheckedUnionPragma = value;
-    }
-
-    /**
-     * Gets the value of the unsuppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnsuppressPragma }
-     *     
-     */
-    public UnsuppressPragma getUnsuppressPragma() {
-        return unsuppressPragma;
-    }
-
-    /**
-     * Sets the value of the unsuppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnsuppressPragma }
-     *     
-     */
-    public void setUnsuppressPragma(UnsuppressPragma value) {
-        this.unsuppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the defaultStoragePoolPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public DefaultStoragePoolPragma getDefaultStoragePoolPragma() {
-        return defaultStoragePoolPragma;
-    }
-
-    /**
-     * Sets the value of the defaultStoragePoolPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public void setDefaultStoragePoolPragma(DefaultStoragePoolPragma value) {
-        this.defaultStoragePoolPragma = value;
-    }
-
-    /**
-     * Gets the value of the dispatchingDomainPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public DispatchingDomainPragma getDispatchingDomainPragma() {
-        return dispatchingDomainPragma;
-    }
-
-    /**
-     * Sets the value of the dispatchingDomainPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public void setDispatchingDomainPragma(DispatchingDomainPragma value) {
-        this.dispatchingDomainPragma = value;
-    }
-
-    /**
-     * Gets the value of the cpuPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CpuPragma }
-     *     
-     */
-    public CpuPragma getCpuPragma() {
-        return cpuPragma;
-    }
-
-    /**
-     * Sets the value of the cpuPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CpuPragma }
-     *     
-     */
-    public void setCpuPragma(CpuPragma value) {
-        this.cpuPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentPragma }
-     *     
-     */
-    public IndependentPragma getIndependentPragma() {
-        return independentPragma;
-    }
-
-    /**
-     * Sets the value of the independentPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentPragma }
-     *     
-     */
-    public void setIndependentPragma(IndependentPragma value) {
-        this.independentPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public IndependentComponentsPragma getIndependentComponentsPragma() {
-        return independentComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the independentComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public void setIndependentComponentsPragma(IndependentComponentsPragma value) {
-        this.independentComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the implementationDefinedPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public ImplementationDefinedPragma getImplementationDefinedPragma() {
-        return implementationDefinedPragma;
-    }
-
-    /**
-     * Sets the value of the implementationDefinedPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public void setImplementationDefinedPragma(ImplementationDefinedPragma value) {
-        this.implementationDefinedPragma = value;
-    }
-
-    /**
-     * Gets the value of the unknownPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnknownPragma }
      *     
      */
-    public UnknownPragma getUnknownPragma() {
-        return unknownPragma;
-    }
-
-    /**
-     * Sets the value of the unknownPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnknownPragma }
-     *     
-     */
-    public void setUnknownPragma(UnknownPragma value) {
-        this.unknownPragma = value;
+    public void setContextClause(Object value) {
+        this.contextClause = value;
     }
 
 }

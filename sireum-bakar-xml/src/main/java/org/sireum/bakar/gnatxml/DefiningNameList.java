@@ -63,7 +63,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Defining_Name_List", propOrder = {
-    "notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral"
+    "definingNames"
 })
 public class DefiningNameList {
 
@@ -151,21 +151,21 @@ public class DefiningNameList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral;
+    protected List<Object> definingNames;
 
     /**
-     * Gets the value of the notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral property.
+     * Gets the value of the definingNames property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral property.
+     * This is why there is not a <CODE>set</CODE> method for the definingNames property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDefiningIdentifierOrDefiningCharacterLiteral().add(newItem);
+     *    getDefiningNames().add(newItem);
      * </pre>
      * 
      * 
@@ -256,11 +256,11 @@ public class DefiningNameList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDefiningIdentifierOrDefiningCharacterLiteral() {
-        if (notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral == null) {
-            notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral = new ArrayList<Object>();
+    public List<Object> getDefiningNames() {
+        if (definingNames == null) {
+            definingNames = new ArrayList<Object>();
         }
-        return this.notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral;
+        return this.definingNames;
     }
 
 }

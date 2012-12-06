@@ -103,7 +103,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Declaration_List", propOrder = {
-    "notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration"
+    "declarations"
 })
 public class DeclarationList {
 
@@ -231,21 +231,21 @@ public class DeclarationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration;
+    protected List<Object> declarations;
 
     /**
-     * Gets the value of the notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration property.
+     * Gets the value of the declarations property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration property.
+     * This is why there is not a <CODE>set</CODE> method for the declarations property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration().add(newItem);
+     *    getDeclarations().add(newItem);
      * </pre>
      * 
      * 
@@ -376,11 +376,11 @@ public class DeclarationList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration() {
-        if (notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration == null) {
-            notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration = new ArrayList<Object>();
+    public List<Object> getDeclarations() {
+        if (declarations == null) {
+            declarations = new ArrayList<Object>();
         }
-        return this.notAnElementOrOrdinaryTypeDeclarationOrTaskTypeDeclaration;
+        return this.declarations;
     }
 
 }

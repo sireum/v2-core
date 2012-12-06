@@ -65,7 +65,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Statement_List", propOrder = {
-    "notAnElementOrNullStatementOrAssignmentStatement"
+    "statements"
 })
 public class StatementList {
 
@@ -155,21 +155,21 @@ public class StatementList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrNullStatementOrAssignmentStatement;
+    protected List<Object> statements;
 
     /**
-     * Gets the value of the notAnElementOrNullStatementOrAssignmentStatement property.
+     * Gets the value of the statements property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrNullStatementOrAssignmentStatement property.
+     * This is why there is not a <CODE>set</CODE> method for the statements property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrNullStatementOrAssignmentStatement().add(newItem);
+     *    getStatements().add(newItem);
      * </pre>
      * 
      * 
@@ -262,11 +262,11 @@ public class StatementList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrNullStatementOrAssignmentStatement() {
-        if (notAnElementOrNullStatementOrAssignmentStatement == null) {
-            notAnElementOrNullStatementOrAssignmentStatement = new ArrayList<Object>();
+    public List<Object> getStatements() {
+        if (statements == null) {
+            statements = new ArrayList<Object>();
         }
-        return this.notAnElementOrNullStatementOrAssignmentStatement;
+        return this.statements;
     }
 
 }

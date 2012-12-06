@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Association_List", propOrder = {
-    "notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation"
+    "associations"
 })
 public class AssociationList {
 
@@ -113,21 +113,21 @@ public class AssociationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation;
+    protected List<Object> associations;
 
     /**
-     * Gets the value of the notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation property.
+     * Gets the value of the associations property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation property.
+     * This is why there is not a <CODE>set</CODE> method for the associations property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation().add(newItem);
+     *    getAssociations().add(newItem);
      * </pre>
      * 
      * 
@@ -199,11 +199,11 @@ public class AssociationList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation() {
-        if (notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation == null) {
-            notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation = new ArrayList<Object>();
+    public List<Object> getAssociations() {
+        if (associations == null) {
+            associations = new ArrayList<Object>();
         }
-        return this.notAnElementOrPragmaArgumentAssociationOrDiscriminantAssociation;
+        return this.associations;
     }
 
 }

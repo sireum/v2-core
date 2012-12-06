@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Component_Clause_List", propOrder = {
-    "notAnElementOrComponentClauseOrAllCallsRemotePragma"
+    "componentClauses"
 })
 public class ComponentClauseList {
 
@@ -103,21 +103,21 @@ public class ComponentClauseList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrComponentClauseOrAllCallsRemotePragma;
+    protected List<Object> componentClauses;
 
     /**
-     * Gets the value of the notAnElementOrComponentClauseOrAllCallsRemotePragma property.
+     * Gets the value of the componentClauses property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrComponentClauseOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the componentClauses property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrComponentClauseOrAllCallsRemotePragma().add(newItem);
+     *    getComponentClauses().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class ComponentClauseList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrComponentClauseOrAllCallsRemotePragma() {
-        if (notAnElementOrComponentClauseOrAllCallsRemotePragma == null) {
-            notAnElementOrComponentClauseOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getComponentClauses() {
+        if (componentClauses == null) {
+            componentClauses = new ArrayList<Object>();
         }
-        return this.notAnElementOrComponentClauseOrAllCallsRemotePragma;
+        return this.componentClauses;
     }
 
 }

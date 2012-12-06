@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Parameter_Specification_List", propOrder = {
-    "notAnElementOrParameterSpecificationOrAllCallsRemotePragma"
+    "parameterSpecifications"
 })
 public class ParameterSpecificationList {
 
@@ -103,21 +103,21 @@ public class ParameterSpecificationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrParameterSpecificationOrAllCallsRemotePragma;
+    protected List<Object> parameterSpecifications;
 
     /**
-     * Gets the value of the notAnElementOrParameterSpecificationOrAllCallsRemotePragma property.
+     * Gets the value of the parameterSpecifications property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrParameterSpecificationOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the parameterSpecifications property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrParameterSpecificationOrAllCallsRemotePragma().add(newItem);
+     *    getParameterSpecifications().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class ParameterSpecificationList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrParameterSpecificationOrAllCallsRemotePragma() {
-        if (notAnElementOrParameterSpecificationOrAllCallsRemotePragma == null) {
-            notAnElementOrParameterSpecificationOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getParameterSpecifications() {
+        if (parameterSpecifications == null) {
+            parameterSpecifications = new ArrayList<Object>();
         }
-        return this.notAnElementOrParameterSpecificationOrAllCallsRemotePragma;
+        return this.parameterSpecifications;
     }
 
 }

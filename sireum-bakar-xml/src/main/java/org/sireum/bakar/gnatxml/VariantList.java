@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Variant_List", propOrder = {
-    "notAnElementOrVariantOrAllCallsRemotePragma"
+    "variants"
 })
 public class VariantList {
 
@@ -103,21 +103,21 @@ public class VariantList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrVariantOrAllCallsRemotePragma;
+    protected List<Object> variants;
 
     /**
-     * Gets the value of the notAnElementOrVariantOrAllCallsRemotePragma property.
+     * Gets the value of the variants property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrVariantOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the variants property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrVariantOrAllCallsRemotePragma().add(newItem);
+     *    getVariants().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class VariantList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrVariantOrAllCallsRemotePragma() {
-        if (notAnElementOrVariantOrAllCallsRemotePragma == null) {
-            notAnElementOrVariantOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getVariants() {
+        if (variants == null) {
+            variants = new ArrayList<Object>();
         }
-        return this.notAnElementOrVariantOrAllCallsRemotePragma;
+        return this.variants;
     }
 
 }

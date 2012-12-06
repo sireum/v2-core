@@ -10,6 +10,7 @@ package org.sireum.bakar.gnatxml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -185,5595 +186,655 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Expression_Class", propOrder = {
-    "notAnElement",
-    "discreteRangeAttributeReference",
-    "discreteSimpleExpressionRange",
-    "othersChoice",
-    "boxExpression",
-    "integerLiteral",
-    "realLiteral",
-    "stringLiteral",
-    "identifier",
-    "andOperator",
-    "orOperator",
-    "xorOperator",
-    "equalOperator",
-    "notEqualOperator",
-    "lessThanOperator",
-    "lessThanOrEqualOperator",
-    "greaterThanOperator",
-    "greaterThanOrEqualOperator",
-    "plusOperator",
-    "minusOperator",
-    "concatenateOperator",
-    "unaryPlusOperator",
-    "unaryMinusOperator",
-    "multiplyOperator",
-    "divideOperator",
-    "modOperator",
-    "remOperator",
-    "exponentiateOperator",
-    "absOperator",
-    "notOperator",
-    "characterLiteral",
-    "enumerationLiteral",
-    "explicitDereference",
-    "functionCall",
-    "indexedComponent",
-    "slice",
-    "selectedComponent",
-    "accessAttribute",
-    "addressAttribute",
-    "adjacentAttribute",
-    "aftAttribute",
-    "alignmentAttribute",
-    "baseAttribute",
-    "bitOrderAttribute",
-    "bodyVersionAttribute",
-    "callableAttribute",
-    "callerAttribute",
-    "ceilingAttribute",
-    "classAttribute",
-    "componentSizeAttribute",
-    "composeAttribute",
-    "constrainedAttribute",
-    "copySignAttribute",
-    "countAttribute",
-    "definiteAttribute",
-    "deltaAttribute",
-    "denormAttribute",
-    "digitsAttribute",
-    "exponentAttribute",
-    "externalTagAttribute",
-    "firstAttribute",
-    "firstBitAttribute",
-    "floorAttribute",
-    "foreAttribute",
-    "fractionAttribute",
-    "identityAttribute",
-    "imageAttribute",
-    "inputAttribute",
-    "lastAttribute",
-    "lastBitAttribute",
-    "leadingPartAttribute",
-    "lengthAttribute",
-    "machineAttribute",
-    "machineEmaxAttribute",
-    "machineEminAttribute",
-    "machineMantissaAttribute",
-    "machineOverflowsAttribute",
-    "machineRadixAttribute",
-    "machineRoundsAttribute",
-    "maxAttribute",
-    "maxSizeInStorageElementsAttribute",
-    "minAttribute",
-    "modelAttribute",
-    "modelEminAttribute",
-    "modelEpsilonAttribute",
-    "modelMantissaAttribute",
-    "modelSmallAttribute",
-    "modulusAttribute",
-    "outputAttribute",
-    "partitionIdAttribute",
-    "posAttribute",
-    "positionAttribute",
-    "predAttribute",
-    "rangeAttribute",
-    "readAttribute",
-    "remainderAttribute",
-    "roundAttribute",
-    "roundingAttribute",
-    "safeFirstAttribute",
-    "safeLastAttribute",
-    "scaleAttribute",
-    "scalingAttribute",
-    "signedZerosAttribute",
-    "sizeAttribute",
-    "smallAttribute",
-    "storagePoolAttribute",
-    "storageSizeAttribute",
-    "succAttribute",
-    "tagAttribute",
-    "terminatedAttribute",
-    "truncationAttribute",
-    "unbiasedRoundingAttribute",
-    "uncheckedAccessAttribute",
-    "valAttribute",
-    "validAttribute",
-    "valueAttribute",
-    "versionAttribute",
-    "wideImageAttribute",
-    "wideValueAttribute",
-    "wideWidthAttribute",
-    "widthAttribute",
-    "writeAttribute",
-    "machineRoundingAttribute",
-    "modAttribute",
-    "priorityAttribute",
-    "streamSizeAttribute",
-    "wideWideImageAttribute",
-    "wideWideValueAttribute",
-    "wideWideWidthAttribute",
-    "maxAlignmentForAllocationAttribute",
-    "overlapsStorageAttribute",
-    "implementationDefinedAttribute",
-    "unknownAttribute",
-    "recordAggregate",
-    "extensionAggregate",
-    "positionalArrayAggregate",
-    "namedArrayAggregate",
-    "andThenShortCircuit",
-    "orElseShortCircuit",
-    "inMembershipTest",
-    "notInMembershipTest",
-    "nullLiteral",
-    "parenthesizedExpression",
-    "typeConversion",
-    "qualifiedExpression",
-    "allocationFromSubtype",
-    "allocationFromQualifiedExpression",
-    "caseExpression",
-    "ifExpression",
-    "forAllQuantifiedExpression",
-    "forSomeQuantifiedExpression",
-    "allCallsRemotePragma",
-    "asynchronousPragma",
-    "atomicPragma",
-    "atomicComponentsPragma",
-    "attachHandlerPragma",
-    "controlledPragma",
-    "conventionPragma",
-    "discardNamesPragma",
-    "elaboratePragma",
-    "elaborateAllPragma",
-    "elaborateBodyPragma",
-    "exportPragma",
-    "importPragma",
-    "inlinePragma",
-    "inspectionPointPragma",
-    "interruptHandlerPragma",
-    "interruptPriorityPragma",
-    "linkerOptionsPragma",
-    "listPragma",
-    "lockingPolicyPragma",
-    "normalizeScalarsPragma",
-    "optimizePragma",
-    "packPragma",
-    "pagePragma",
-    "preelaboratePragma",
-    "priorityPragma",
-    "purePragma",
-    "queuingPolicyPragma",
-    "remoteCallInterfacePragma",
-    "remoteTypesPragma",
-    "restrictionsPragma",
-    "reviewablePragma",
-    "sharedPassivePragma",
-    "storageSizePragma",
-    "suppressPragma",
-    "taskDispatchingPolicyPragma",
-    "volatilePragma",
-    "volatileComponentsPragma",
-    "assertPragma",
-    "assertionPolicyPragma",
-    "detectBlockingPragma",
-    "noReturnPragma",
-    "partitionElaborationPolicyPragma",
-    "preelaborableInitializationPragma",
-    "prioritySpecificDispatchingPragma",
-    "profilePragma",
-    "relativeDeadlinePragma",
-    "uncheckedUnionPragma",
-    "unsuppressPragma",
-    "defaultStoragePoolPragma",
-    "dispatchingDomainPragma",
-    "cpuPragma",
-    "independentPragma",
-    "independentComponentsPragma",
-    "implementationDefinedPragma",
-    "unknownPragma"
+    "expression"
 })
 public class ExpressionClass {
 
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-    @XmlElement(name = "discrete_range_attribute_reference")
-    protected DiscreteRangeAttributeReference discreteRangeAttributeReference;
-    @XmlElement(name = "discrete_simple_expression_range")
-    protected DiscreteSimpleExpressionRange discreteSimpleExpressionRange;
-    @XmlElement(name = "others_choice")
-    protected OthersChoice othersChoice;
-    @XmlElement(name = "box_expression")
-    protected BoxExpression boxExpression;
-    @XmlElement(name = "integer_literal")
-    protected IntegerLiteral integerLiteral;
-    @XmlElement(name = "real_literal")
-    protected RealLiteral realLiteral;
-    @XmlElement(name = "string_literal")
-    protected StringLiteral stringLiteral;
-    protected Identifier identifier;
-    @XmlElement(name = "and_operator")
-    protected AndOperator andOperator;
-    @XmlElement(name = "or_operator")
-    protected OrOperator orOperator;
-    @XmlElement(name = "xor_operator")
-    protected XorOperator xorOperator;
-    @XmlElement(name = "equal_operator")
-    protected EqualOperator equalOperator;
-    @XmlElement(name = "not_equal_operator")
-    protected NotEqualOperator notEqualOperator;
-    @XmlElement(name = "less_than_operator")
-    protected LessThanOperator lessThanOperator;
-    @XmlElement(name = "less_than_or_equal_operator")
-    protected LessThanOrEqualOperator lessThanOrEqualOperator;
-    @XmlElement(name = "greater_than_operator")
-    protected GreaterThanOperator greaterThanOperator;
-    @XmlElement(name = "greater_than_or_equal_operator")
-    protected GreaterThanOrEqualOperator greaterThanOrEqualOperator;
-    @XmlElement(name = "plus_operator")
-    protected PlusOperator plusOperator;
-    @XmlElement(name = "minus_operator")
-    protected MinusOperator minusOperator;
-    @XmlElement(name = "concatenate_operator")
-    protected ConcatenateOperator concatenateOperator;
-    @XmlElement(name = "unary_plus_operator")
-    protected UnaryPlusOperator unaryPlusOperator;
-    @XmlElement(name = "unary_minus_operator")
-    protected UnaryMinusOperator unaryMinusOperator;
-    @XmlElement(name = "multiply_operator")
-    protected MultiplyOperator multiplyOperator;
-    @XmlElement(name = "divide_operator")
-    protected DivideOperator divideOperator;
-    @XmlElement(name = "mod_operator")
-    protected ModOperator modOperator;
-    @XmlElement(name = "rem_operator")
-    protected RemOperator remOperator;
-    @XmlElement(name = "exponentiate_operator")
-    protected ExponentiateOperator exponentiateOperator;
-    @XmlElement(name = "abs_operator")
-    protected AbsOperator absOperator;
-    @XmlElement(name = "not_operator")
-    protected NotOperator notOperator;
-    @XmlElement(name = "character_literal")
-    protected CharacterLiteral characterLiteral;
-    @XmlElement(name = "enumeration_literal")
-    protected EnumerationLiteral enumerationLiteral;
-    @XmlElement(name = "explicit_dereference")
-    protected ExplicitDereference explicitDereference;
-    @XmlElement(name = "function_call")
-    protected FunctionCall functionCall;
-    @XmlElement(name = "indexed_component")
-    protected IndexedComponent indexedComponent;
-    protected Slice slice;
-    @XmlElement(name = "selected_component")
-    protected SelectedComponent selectedComponent;
-    @XmlElement(name = "access_attribute")
-    protected AccessAttribute accessAttribute;
-    @XmlElement(name = "address_attribute")
-    protected AddressAttribute addressAttribute;
-    @XmlElement(name = "adjacent_attribute")
-    protected AdjacentAttribute adjacentAttribute;
-    @XmlElement(name = "aft_attribute")
-    protected AftAttribute aftAttribute;
-    @XmlElement(name = "alignment_attribute")
-    protected AlignmentAttribute alignmentAttribute;
-    @XmlElement(name = "base_attribute")
-    protected BaseAttribute baseAttribute;
-    @XmlElement(name = "bit_order_attribute")
-    protected BitOrderAttribute bitOrderAttribute;
-    @XmlElement(name = "body_version_attribute")
-    protected BodyVersionAttribute bodyVersionAttribute;
-    @XmlElement(name = "callable_attribute")
-    protected CallableAttribute callableAttribute;
-    @XmlElement(name = "caller_attribute")
-    protected CallerAttribute callerAttribute;
-    @XmlElement(name = "ceiling_attribute")
-    protected CeilingAttribute ceilingAttribute;
-    @XmlElement(name = "class_attribute")
-    protected ClassAttribute classAttribute;
-    @XmlElement(name = "component_size_attribute")
-    protected ComponentSizeAttribute componentSizeAttribute;
-    @XmlElement(name = "compose_attribute")
-    protected ComposeAttribute composeAttribute;
-    @XmlElement(name = "constrained_attribute")
-    protected ConstrainedAttribute constrainedAttribute;
-    @XmlElement(name = "copy_sign_attribute")
-    protected CopySignAttribute copySignAttribute;
-    @XmlElement(name = "count_attribute")
-    protected CountAttribute countAttribute;
-    @XmlElement(name = "definite_attribute")
-    protected DefiniteAttribute definiteAttribute;
-    @XmlElement(name = "delta_attribute")
-    protected DeltaAttribute deltaAttribute;
-    @XmlElement(name = "denorm_attribute")
-    protected DenormAttribute denormAttribute;
-    @XmlElement(name = "digits_attribute")
-    protected DigitsAttribute digitsAttribute;
-    @XmlElement(name = "exponent_attribute")
-    protected ExponentAttribute exponentAttribute;
-    @XmlElement(name = "external_tag_attribute")
-    protected ExternalTagAttribute externalTagAttribute;
-    @XmlElement(name = "first_attribute")
-    protected FirstAttribute firstAttribute;
-    @XmlElement(name = "first_bit_attribute")
-    protected FirstBitAttribute firstBitAttribute;
-    @XmlElement(name = "floor_attribute")
-    protected FloorAttribute floorAttribute;
-    @XmlElement(name = "fore_attribute")
-    protected ForeAttribute foreAttribute;
-    @XmlElement(name = "fraction_attribute")
-    protected FractionAttribute fractionAttribute;
-    @XmlElement(name = "identity_attribute")
-    protected IdentityAttribute identityAttribute;
-    @XmlElement(name = "image_attribute")
-    protected ImageAttribute imageAttribute;
-    @XmlElement(name = "input_attribute")
-    protected InputAttribute inputAttribute;
-    @XmlElement(name = "last_attribute")
-    protected LastAttribute lastAttribute;
-    @XmlElement(name = "last_bit_attribute")
-    protected LastBitAttribute lastBitAttribute;
-    @XmlElement(name = "leading_part_attribute")
-    protected LeadingPartAttribute leadingPartAttribute;
-    @XmlElement(name = "length_attribute")
-    protected LengthAttribute lengthAttribute;
-    @XmlElement(name = "machine_attribute")
-    protected MachineAttribute machineAttribute;
-    @XmlElement(name = "machine_emax_attribute")
-    protected MachineEmaxAttribute machineEmaxAttribute;
-    @XmlElement(name = "machine_emin_attribute")
-    protected MachineEminAttribute machineEminAttribute;
-    @XmlElement(name = "machine_mantissa_attribute")
-    protected MachineMantissaAttribute machineMantissaAttribute;
-    @XmlElement(name = "machine_overflows_attribute")
-    protected MachineOverflowsAttribute machineOverflowsAttribute;
-    @XmlElement(name = "machine_radix_attribute")
-    protected MachineRadixAttribute machineRadixAttribute;
-    @XmlElement(name = "machine_rounds_attribute")
-    protected MachineRoundsAttribute machineRoundsAttribute;
-    @XmlElement(name = "max_attribute")
-    protected MaxAttribute maxAttribute;
-    @XmlElement(name = "max_size_in_storage_elements_attribute")
-    protected MaxSizeInStorageElementsAttribute maxSizeInStorageElementsAttribute;
-    @XmlElement(name = "min_attribute")
-    protected MinAttribute minAttribute;
-    @XmlElement(name = "model_attribute")
-    protected ModelAttribute modelAttribute;
-    @XmlElement(name = "model_emin_attribute")
-    protected ModelEminAttribute modelEminAttribute;
-    @XmlElement(name = "model_epsilon_attribute")
-    protected ModelEpsilonAttribute modelEpsilonAttribute;
-    @XmlElement(name = "model_mantissa_attribute")
-    protected ModelMantissaAttribute modelMantissaAttribute;
-    @XmlElement(name = "model_small_attribute")
-    protected ModelSmallAttribute modelSmallAttribute;
-    @XmlElement(name = "modulus_attribute")
-    protected ModulusAttribute modulusAttribute;
-    @XmlElement(name = "output_attribute")
-    protected OutputAttribute outputAttribute;
-    @XmlElement(name = "partition_id_attribute")
-    protected PartitionIdAttribute partitionIdAttribute;
-    @XmlElement(name = "pos_attribute")
-    protected PosAttribute posAttribute;
-    @XmlElement(name = "position_attribute")
-    protected PositionAttribute positionAttribute;
-    @XmlElement(name = "pred_attribute")
-    protected PredAttribute predAttribute;
-    @XmlElement(name = "range_attribute")
-    protected RangeAttribute rangeAttribute;
-    @XmlElement(name = "read_attribute")
-    protected ReadAttribute readAttribute;
-    @XmlElement(name = "remainder_attribute")
-    protected RemainderAttribute remainderAttribute;
-    @XmlElement(name = "round_attribute")
-    protected RoundAttribute roundAttribute;
-    @XmlElement(name = "rounding_attribute")
-    protected RoundingAttribute roundingAttribute;
-    @XmlElement(name = "safe_first_attribute")
-    protected SafeFirstAttribute safeFirstAttribute;
-    @XmlElement(name = "safe_last_attribute")
-    protected SafeLastAttribute safeLastAttribute;
-    @XmlElement(name = "scale_attribute")
-    protected ScaleAttribute scaleAttribute;
-    @XmlElement(name = "scaling_attribute")
-    protected ScalingAttribute scalingAttribute;
-    @XmlElement(name = "signed_zeros_attribute")
-    protected SignedZerosAttribute signedZerosAttribute;
-    @XmlElement(name = "size_attribute")
-    protected SizeAttribute sizeAttribute;
-    @XmlElement(name = "small_attribute")
-    protected SmallAttribute smallAttribute;
-    @XmlElement(name = "storage_pool_attribute")
-    protected StoragePoolAttribute storagePoolAttribute;
-    @XmlElement(name = "storage_size_attribute")
-    protected StorageSizeAttribute storageSizeAttribute;
-    @XmlElement(name = "succ_attribute")
-    protected SuccAttribute succAttribute;
-    @XmlElement(name = "tag_attribute")
-    protected TagAttribute tagAttribute;
-    @XmlElement(name = "terminated_attribute")
-    protected TerminatedAttribute terminatedAttribute;
-    @XmlElement(name = "truncation_attribute")
-    protected TruncationAttribute truncationAttribute;
-    @XmlElement(name = "unbiased_rounding_attribute")
-    protected UnbiasedRoundingAttribute unbiasedRoundingAttribute;
-    @XmlElement(name = "unchecked_access_attribute")
-    protected UncheckedAccessAttribute uncheckedAccessAttribute;
-    @XmlElement(name = "val_attribute")
-    protected ValAttribute valAttribute;
-    @XmlElement(name = "valid_attribute")
-    protected ValidAttribute validAttribute;
-    @XmlElement(name = "value_attribute")
-    protected ValueAttribute valueAttribute;
-    @XmlElement(name = "version_attribute")
-    protected VersionAttribute versionAttribute;
-    @XmlElement(name = "wide_image_attribute")
-    protected WideImageAttribute wideImageAttribute;
-    @XmlElement(name = "wide_value_attribute")
-    protected WideValueAttribute wideValueAttribute;
-    @XmlElement(name = "wide_width_attribute")
-    protected WideWidthAttribute wideWidthAttribute;
-    @XmlElement(name = "width_attribute")
-    protected WidthAttribute widthAttribute;
-    @XmlElement(name = "write_attribute")
-    protected WriteAttribute writeAttribute;
-    @XmlElement(name = "machine_rounding_attribute")
-    protected MachineRoundingAttribute machineRoundingAttribute;
-    @XmlElement(name = "mod_attribute")
-    protected ModAttribute modAttribute;
-    @XmlElement(name = "priority_attribute")
-    protected PriorityAttribute priorityAttribute;
-    @XmlElement(name = "stream_size_attribute")
-    protected StreamSizeAttribute streamSizeAttribute;
-    @XmlElement(name = "wide_wide_image_attribute")
-    protected WideWideImageAttribute wideWideImageAttribute;
-    @XmlElement(name = "wide_wide_value_attribute")
-    protected WideWideValueAttribute wideWideValueAttribute;
-    @XmlElement(name = "wide_wide_width_attribute")
-    protected WideWideWidthAttribute wideWideWidthAttribute;
-    @XmlElement(name = "max_alignment_for_allocation_attribute")
-    protected MaxAlignmentForAllocationAttribute maxAlignmentForAllocationAttribute;
-    @XmlElement(name = "overlaps_storage_attribute")
-    protected OverlapsStorageAttribute overlapsStorageAttribute;
-    @XmlElement(name = "implementation_defined_attribute")
-    protected ImplementationDefinedAttribute implementationDefinedAttribute;
-    @XmlElement(name = "unknown_attribute")
-    protected UnknownAttribute unknownAttribute;
-    @XmlElement(name = "record_aggregate")
-    protected RecordAggregate recordAggregate;
-    @XmlElement(name = "extension_aggregate")
-    protected ExtensionAggregate extensionAggregate;
-    @XmlElement(name = "positional_array_aggregate")
-    protected PositionalArrayAggregate positionalArrayAggregate;
-    @XmlElement(name = "named_array_aggregate")
-    protected NamedArrayAggregate namedArrayAggregate;
-    @XmlElement(name = "and_then_short_circuit")
-    protected AndThenShortCircuit andThenShortCircuit;
-    @XmlElement(name = "or_else_short_circuit")
-    protected OrElseShortCircuit orElseShortCircuit;
-    @XmlElement(name = "in_membership_test")
-    protected InMembershipTest inMembershipTest;
-    @XmlElement(name = "not_in_membership_test")
-    protected NotInMembershipTest notInMembershipTest;
-    @XmlElement(name = "null_literal")
-    protected NullLiteral nullLiteral;
-    @XmlElement(name = "parenthesized_expression")
-    protected ParenthesizedExpression parenthesizedExpression;
-    @XmlElement(name = "type_conversion")
-    protected TypeConversion typeConversion;
-    @XmlElement(name = "qualified_expression")
-    protected QualifiedExpression qualifiedExpression;
-    @XmlElement(name = "allocation_from_subtype")
-    protected AllocationFromSubtype allocationFromSubtype;
-    @XmlElement(name = "allocation_from_qualified_expression")
-    protected AllocationFromQualifiedExpression allocationFromQualifiedExpression;
-    @XmlElement(name = "case_expression")
-    protected CaseExpression caseExpression;
-    @XmlElement(name = "if_expression")
-    protected IfExpression ifExpression;
-    @XmlElement(name = "for_all_quantified_expression")
-    protected ForAllQuantifiedExpression forAllQuantifiedExpression;
-    @XmlElement(name = "for_some_quantified_expression")
-    protected ForSomeQuantifiedExpression forSomeQuantifiedExpression;
-    @XmlElement(name = "all_calls_remote_pragma")
-    protected AllCallsRemotePragma allCallsRemotePragma;
-    @XmlElement(name = "asynchronous_pragma")
-    protected AsynchronousPragma asynchronousPragma;
-    @XmlElement(name = "atomic_pragma")
-    protected AtomicPragma atomicPragma;
-    @XmlElement(name = "atomic_components_pragma")
-    protected AtomicComponentsPragma atomicComponentsPragma;
-    @XmlElement(name = "attach_handler_pragma")
-    protected AttachHandlerPragma attachHandlerPragma;
-    @XmlElement(name = "controlled_pragma")
-    protected ControlledPragma controlledPragma;
-    @XmlElement(name = "convention_pragma")
-    protected ConventionPragma conventionPragma;
-    @XmlElement(name = "discard_names_pragma")
-    protected DiscardNamesPragma discardNamesPragma;
-    @XmlElement(name = "elaborate_pragma")
-    protected ElaboratePragma elaboratePragma;
-    @XmlElement(name = "elaborate_all_pragma")
-    protected ElaborateAllPragma elaborateAllPragma;
-    @XmlElement(name = "elaborate_body_pragma")
-    protected ElaborateBodyPragma elaborateBodyPragma;
-    @XmlElement(name = "export_pragma")
-    protected ExportPragma exportPragma;
-    @XmlElement(name = "import_pragma")
-    protected ImportPragma importPragma;
-    @XmlElement(name = "inline_pragma")
-    protected InlinePragma inlinePragma;
-    @XmlElement(name = "inspection_point_pragma")
-    protected InspectionPointPragma inspectionPointPragma;
-    @XmlElement(name = "interrupt_handler_pragma")
-    protected InterruptHandlerPragma interruptHandlerPragma;
-    @XmlElement(name = "interrupt_priority_pragma")
-    protected InterruptPriorityPragma interruptPriorityPragma;
-    @XmlElement(name = "linker_options_pragma")
-    protected LinkerOptionsPragma linkerOptionsPragma;
-    @XmlElement(name = "list_pragma")
-    protected ListPragma listPragma;
-    @XmlElement(name = "locking_policy_pragma")
-    protected LockingPolicyPragma lockingPolicyPragma;
-    @XmlElement(name = "normalize_scalars_pragma")
-    protected NormalizeScalarsPragma normalizeScalarsPragma;
-    @XmlElement(name = "optimize_pragma")
-    protected OptimizePragma optimizePragma;
-    @XmlElement(name = "pack_pragma")
-    protected PackPragma packPragma;
-    @XmlElement(name = "page_pragma")
-    protected PagePragma pagePragma;
-    @XmlElement(name = "preelaborate_pragma")
-    protected PreelaboratePragma preelaboratePragma;
-    @XmlElement(name = "priority_pragma")
-    protected PriorityPragma priorityPragma;
-    @XmlElement(name = "pure_pragma")
-    protected PurePragma purePragma;
-    @XmlElement(name = "queuing_policy_pragma")
-    protected QueuingPolicyPragma queuingPolicyPragma;
-    @XmlElement(name = "remote_call_interface_pragma")
-    protected RemoteCallInterfacePragma remoteCallInterfacePragma;
-    @XmlElement(name = "remote_types_pragma")
-    protected RemoteTypesPragma remoteTypesPragma;
-    @XmlElement(name = "restrictions_pragma")
-    protected RestrictionsPragma restrictionsPragma;
-    @XmlElement(name = "reviewable_pragma")
-    protected ReviewablePragma reviewablePragma;
-    @XmlElement(name = "shared_passive_pragma")
-    protected SharedPassivePragma sharedPassivePragma;
-    @XmlElement(name = "storage_size_pragma")
-    protected StorageSizePragma storageSizePragma;
-    @XmlElement(name = "suppress_pragma")
-    protected SuppressPragma suppressPragma;
-    @XmlElement(name = "task_dispatching_policy_pragma")
-    protected TaskDispatchingPolicyPragma taskDispatchingPolicyPragma;
-    @XmlElement(name = "volatile_pragma")
-    protected VolatilePragma volatilePragma;
-    @XmlElement(name = "volatile_components_pragma")
-    protected VolatileComponentsPragma volatileComponentsPragma;
-    @XmlElement(name = "assert_pragma")
-    protected AssertPragma assertPragma;
-    @XmlElement(name = "assertion_policy_pragma")
-    protected AssertionPolicyPragma assertionPolicyPragma;
-    @XmlElement(name = "detect_blocking_pragma")
-    protected DetectBlockingPragma detectBlockingPragma;
-    @XmlElement(name = "no_return_pragma")
-    protected NoReturnPragma noReturnPragma;
-    @XmlElement(name = "partition_elaboration_policy_pragma")
-    protected PartitionElaborationPolicyPragma partitionElaborationPolicyPragma;
-    @XmlElement(name = "preelaborable_initialization_pragma")
-    protected PreelaborableInitializationPragma preelaborableInitializationPragma;
-    @XmlElement(name = "priority_specific_dispatching_pragma")
-    protected PrioritySpecificDispatchingPragma prioritySpecificDispatchingPragma;
-    @XmlElement(name = "profile_pragma")
-    protected ProfilePragma profilePragma;
-    @XmlElement(name = "relative_deadline_pragma")
-    protected RelativeDeadlinePragma relativeDeadlinePragma;
-    @XmlElement(name = "unchecked_union_pragma")
-    protected UncheckedUnionPragma uncheckedUnionPragma;
-    @XmlElement(name = "unsuppress_pragma")
-    protected UnsuppressPragma unsuppressPragma;
-    @XmlElement(name = "default_storage_pool_pragma")
-    protected DefaultStoragePoolPragma defaultStoragePoolPragma;
-    @XmlElement(name = "dispatching_domain_pragma")
-    protected DispatchingDomainPragma dispatchingDomainPragma;
-    @XmlElement(name = "cpu_pragma")
-    protected CpuPragma cpuPragma;
-    @XmlElement(name = "independent_pragma")
-    protected IndependentPragma independentPragma;
-    @XmlElement(name = "independent_components_pragma")
-    protected IndependentComponentsPragma independentComponentsPragma;
-    @XmlElement(name = "implementation_defined_pragma")
-    protected ImplementationDefinedPragma implementationDefinedPragma;
-    @XmlElement(name = "unknown_pragma")
-    protected UnknownPragma unknownPragma;
+    @XmlElements({
+        @XmlElement(name = "not_an_element", type = NotAnElement.class),
+        @XmlElement(name = "discrete_range_attribute_reference", type = DiscreteRangeAttributeReference.class),
+        @XmlElement(name = "discrete_simple_expression_range", type = DiscreteSimpleExpressionRange.class),
+        @XmlElement(name = "others_choice", type = OthersChoice.class),
+        @XmlElement(name = "box_expression", type = BoxExpression.class),
+        @XmlElement(name = "integer_literal", type = IntegerLiteral.class),
+        @XmlElement(name = "real_literal", type = RealLiteral.class),
+        @XmlElement(name = "string_literal", type = StringLiteral.class),
+        @XmlElement(name = "identifier", type = Identifier.class),
+        @XmlElement(name = "and_operator", type = AndOperator.class),
+        @XmlElement(name = "or_operator", type = OrOperator.class),
+        @XmlElement(name = "xor_operator", type = XorOperator.class),
+        @XmlElement(name = "equal_operator", type = EqualOperator.class),
+        @XmlElement(name = "not_equal_operator", type = NotEqualOperator.class),
+        @XmlElement(name = "less_than_operator", type = LessThanOperator.class),
+        @XmlElement(name = "less_than_or_equal_operator", type = LessThanOrEqualOperator.class),
+        @XmlElement(name = "greater_than_operator", type = GreaterThanOperator.class),
+        @XmlElement(name = "greater_than_or_equal_operator", type = GreaterThanOrEqualOperator.class),
+        @XmlElement(name = "plus_operator", type = PlusOperator.class),
+        @XmlElement(name = "minus_operator", type = MinusOperator.class),
+        @XmlElement(name = "concatenate_operator", type = ConcatenateOperator.class),
+        @XmlElement(name = "unary_plus_operator", type = UnaryPlusOperator.class),
+        @XmlElement(name = "unary_minus_operator", type = UnaryMinusOperator.class),
+        @XmlElement(name = "multiply_operator", type = MultiplyOperator.class),
+        @XmlElement(name = "divide_operator", type = DivideOperator.class),
+        @XmlElement(name = "mod_operator", type = ModOperator.class),
+        @XmlElement(name = "rem_operator", type = RemOperator.class),
+        @XmlElement(name = "exponentiate_operator", type = ExponentiateOperator.class),
+        @XmlElement(name = "abs_operator", type = AbsOperator.class),
+        @XmlElement(name = "not_operator", type = NotOperator.class),
+        @XmlElement(name = "character_literal", type = CharacterLiteral.class),
+        @XmlElement(name = "enumeration_literal", type = EnumerationLiteral.class),
+        @XmlElement(name = "explicit_dereference", type = ExplicitDereference.class),
+        @XmlElement(name = "function_call", type = FunctionCall.class),
+        @XmlElement(name = "indexed_component", type = IndexedComponent.class),
+        @XmlElement(name = "slice", type = Slice.class),
+        @XmlElement(name = "selected_component", type = SelectedComponent.class),
+        @XmlElement(name = "access_attribute", type = AccessAttribute.class),
+        @XmlElement(name = "address_attribute", type = AddressAttribute.class),
+        @XmlElement(name = "adjacent_attribute", type = AdjacentAttribute.class),
+        @XmlElement(name = "aft_attribute", type = AftAttribute.class),
+        @XmlElement(name = "alignment_attribute", type = AlignmentAttribute.class),
+        @XmlElement(name = "base_attribute", type = BaseAttribute.class),
+        @XmlElement(name = "bit_order_attribute", type = BitOrderAttribute.class),
+        @XmlElement(name = "body_version_attribute", type = BodyVersionAttribute.class),
+        @XmlElement(name = "callable_attribute", type = CallableAttribute.class),
+        @XmlElement(name = "caller_attribute", type = CallerAttribute.class),
+        @XmlElement(name = "ceiling_attribute", type = CeilingAttribute.class),
+        @XmlElement(name = "class_attribute", type = ClassAttribute.class),
+        @XmlElement(name = "component_size_attribute", type = ComponentSizeAttribute.class),
+        @XmlElement(name = "compose_attribute", type = ComposeAttribute.class),
+        @XmlElement(name = "constrained_attribute", type = ConstrainedAttribute.class),
+        @XmlElement(name = "copy_sign_attribute", type = CopySignAttribute.class),
+        @XmlElement(name = "count_attribute", type = CountAttribute.class),
+        @XmlElement(name = "definite_attribute", type = DefiniteAttribute.class),
+        @XmlElement(name = "delta_attribute", type = DeltaAttribute.class),
+        @XmlElement(name = "denorm_attribute", type = DenormAttribute.class),
+        @XmlElement(name = "digits_attribute", type = DigitsAttribute.class),
+        @XmlElement(name = "exponent_attribute", type = ExponentAttribute.class),
+        @XmlElement(name = "external_tag_attribute", type = ExternalTagAttribute.class),
+        @XmlElement(name = "first_attribute", type = FirstAttribute.class),
+        @XmlElement(name = "first_bit_attribute", type = FirstBitAttribute.class),
+        @XmlElement(name = "floor_attribute", type = FloorAttribute.class),
+        @XmlElement(name = "fore_attribute", type = ForeAttribute.class),
+        @XmlElement(name = "fraction_attribute", type = FractionAttribute.class),
+        @XmlElement(name = "identity_attribute", type = IdentityAttribute.class),
+        @XmlElement(name = "image_attribute", type = ImageAttribute.class),
+        @XmlElement(name = "input_attribute", type = InputAttribute.class),
+        @XmlElement(name = "last_attribute", type = LastAttribute.class),
+        @XmlElement(name = "last_bit_attribute", type = LastBitAttribute.class),
+        @XmlElement(name = "leading_part_attribute", type = LeadingPartAttribute.class),
+        @XmlElement(name = "length_attribute", type = LengthAttribute.class),
+        @XmlElement(name = "machine_attribute", type = MachineAttribute.class),
+        @XmlElement(name = "machine_emax_attribute", type = MachineEmaxAttribute.class),
+        @XmlElement(name = "machine_emin_attribute", type = MachineEminAttribute.class),
+        @XmlElement(name = "machine_mantissa_attribute", type = MachineMantissaAttribute.class),
+        @XmlElement(name = "machine_overflows_attribute", type = MachineOverflowsAttribute.class),
+        @XmlElement(name = "machine_radix_attribute", type = MachineRadixAttribute.class),
+        @XmlElement(name = "machine_rounds_attribute", type = MachineRoundsAttribute.class),
+        @XmlElement(name = "max_attribute", type = MaxAttribute.class),
+        @XmlElement(name = "max_size_in_storage_elements_attribute", type = MaxSizeInStorageElementsAttribute.class),
+        @XmlElement(name = "min_attribute", type = MinAttribute.class),
+        @XmlElement(name = "model_attribute", type = ModelAttribute.class),
+        @XmlElement(name = "model_emin_attribute", type = ModelEminAttribute.class),
+        @XmlElement(name = "model_epsilon_attribute", type = ModelEpsilonAttribute.class),
+        @XmlElement(name = "model_mantissa_attribute", type = ModelMantissaAttribute.class),
+        @XmlElement(name = "model_small_attribute", type = ModelSmallAttribute.class),
+        @XmlElement(name = "modulus_attribute", type = ModulusAttribute.class),
+        @XmlElement(name = "output_attribute", type = OutputAttribute.class),
+        @XmlElement(name = "partition_id_attribute", type = PartitionIdAttribute.class),
+        @XmlElement(name = "pos_attribute", type = PosAttribute.class),
+        @XmlElement(name = "position_attribute", type = PositionAttribute.class),
+        @XmlElement(name = "pred_attribute", type = PredAttribute.class),
+        @XmlElement(name = "range_attribute", type = RangeAttribute.class),
+        @XmlElement(name = "read_attribute", type = ReadAttribute.class),
+        @XmlElement(name = "remainder_attribute", type = RemainderAttribute.class),
+        @XmlElement(name = "round_attribute", type = RoundAttribute.class),
+        @XmlElement(name = "rounding_attribute", type = RoundingAttribute.class),
+        @XmlElement(name = "safe_first_attribute", type = SafeFirstAttribute.class),
+        @XmlElement(name = "safe_last_attribute", type = SafeLastAttribute.class),
+        @XmlElement(name = "scale_attribute", type = ScaleAttribute.class),
+        @XmlElement(name = "scaling_attribute", type = ScalingAttribute.class),
+        @XmlElement(name = "signed_zeros_attribute", type = SignedZerosAttribute.class),
+        @XmlElement(name = "size_attribute", type = SizeAttribute.class),
+        @XmlElement(name = "small_attribute", type = SmallAttribute.class),
+        @XmlElement(name = "storage_pool_attribute", type = StoragePoolAttribute.class),
+        @XmlElement(name = "storage_size_attribute", type = StorageSizeAttribute.class),
+        @XmlElement(name = "succ_attribute", type = SuccAttribute.class),
+        @XmlElement(name = "tag_attribute", type = TagAttribute.class),
+        @XmlElement(name = "terminated_attribute", type = TerminatedAttribute.class),
+        @XmlElement(name = "truncation_attribute", type = TruncationAttribute.class),
+        @XmlElement(name = "unbiased_rounding_attribute", type = UnbiasedRoundingAttribute.class),
+        @XmlElement(name = "unchecked_access_attribute", type = UncheckedAccessAttribute.class),
+        @XmlElement(name = "val_attribute", type = ValAttribute.class),
+        @XmlElement(name = "valid_attribute", type = ValidAttribute.class),
+        @XmlElement(name = "value_attribute", type = ValueAttribute.class),
+        @XmlElement(name = "version_attribute", type = VersionAttribute.class),
+        @XmlElement(name = "wide_image_attribute", type = WideImageAttribute.class),
+        @XmlElement(name = "wide_value_attribute", type = WideValueAttribute.class),
+        @XmlElement(name = "wide_width_attribute", type = WideWidthAttribute.class),
+        @XmlElement(name = "width_attribute", type = WidthAttribute.class),
+        @XmlElement(name = "write_attribute", type = WriteAttribute.class),
+        @XmlElement(name = "machine_rounding_attribute", type = MachineRoundingAttribute.class),
+        @XmlElement(name = "mod_attribute", type = ModAttribute.class),
+        @XmlElement(name = "priority_attribute", type = PriorityAttribute.class),
+        @XmlElement(name = "stream_size_attribute", type = StreamSizeAttribute.class),
+        @XmlElement(name = "wide_wide_image_attribute", type = WideWideImageAttribute.class),
+        @XmlElement(name = "wide_wide_value_attribute", type = WideWideValueAttribute.class),
+        @XmlElement(name = "wide_wide_width_attribute", type = WideWideWidthAttribute.class),
+        @XmlElement(name = "max_alignment_for_allocation_attribute", type = MaxAlignmentForAllocationAttribute.class),
+        @XmlElement(name = "overlaps_storage_attribute", type = OverlapsStorageAttribute.class),
+        @XmlElement(name = "implementation_defined_attribute", type = ImplementationDefinedAttribute.class),
+        @XmlElement(name = "unknown_attribute", type = UnknownAttribute.class),
+        @XmlElement(name = "record_aggregate", type = RecordAggregate.class),
+        @XmlElement(name = "extension_aggregate", type = ExtensionAggregate.class),
+        @XmlElement(name = "positional_array_aggregate", type = PositionalArrayAggregate.class),
+        @XmlElement(name = "named_array_aggregate", type = NamedArrayAggregate.class),
+        @XmlElement(name = "and_then_short_circuit", type = AndThenShortCircuit.class),
+        @XmlElement(name = "or_else_short_circuit", type = OrElseShortCircuit.class),
+        @XmlElement(name = "in_membership_test", type = InMembershipTest.class),
+        @XmlElement(name = "not_in_membership_test", type = NotInMembershipTest.class),
+        @XmlElement(name = "null_literal", type = NullLiteral.class),
+        @XmlElement(name = "parenthesized_expression", type = ParenthesizedExpression.class),
+        @XmlElement(name = "type_conversion", type = TypeConversion.class),
+        @XmlElement(name = "qualified_expression", type = QualifiedExpression.class),
+        @XmlElement(name = "allocation_from_subtype", type = AllocationFromSubtype.class),
+        @XmlElement(name = "allocation_from_qualified_expression", type = AllocationFromQualifiedExpression.class),
+        @XmlElement(name = "case_expression", type = CaseExpression.class),
+        @XmlElement(name = "if_expression", type = IfExpression.class),
+        @XmlElement(name = "for_all_quantified_expression", type = ForAllQuantifiedExpression.class),
+        @XmlElement(name = "for_some_quantified_expression", type = ForSomeQuantifiedExpression.class),
+        @XmlElement(name = "all_calls_remote_pragma", type = AllCallsRemotePragma.class),
+        @XmlElement(name = "asynchronous_pragma", type = AsynchronousPragma.class),
+        @XmlElement(name = "atomic_pragma", type = AtomicPragma.class),
+        @XmlElement(name = "atomic_components_pragma", type = AtomicComponentsPragma.class),
+        @XmlElement(name = "attach_handler_pragma", type = AttachHandlerPragma.class),
+        @XmlElement(name = "controlled_pragma", type = ControlledPragma.class),
+        @XmlElement(name = "convention_pragma", type = ConventionPragma.class),
+        @XmlElement(name = "discard_names_pragma", type = DiscardNamesPragma.class),
+        @XmlElement(name = "elaborate_pragma", type = ElaboratePragma.class),
+        @XmlElement(name = "elaborate_all_pragma", type = ElaborateAllPragma.class),
+        @XmlElement(name = "elaborate_body_pragma", type = ElaborateBodyPragma.class),
+        @XmlElement(name = "export_pragma", type = ExportPragma.class),
+        @XmlElement(name = "import_pragma", type = ImportPragma.class),
+        @XmlElement(name = "inline_pragma", type = InlinePragma.class),
+        @XmlElement(name = "inspection_point_pragma", type = InspectionPointPragma.class),
+        @XmlElement(name = "interrupt_handler_pragma", type = InterruptHandlerPragma.class),
+        @XmlElement(name = "interrupt_priority_pragma", type = InterruptPriorityPragma.class),
+        @XmlElement(name = "linker_options_pragma", type = LinkerOptionsPragma.class),
+        @XmlElement(name = "list_pragma", type = ListPragma.class),
+        @XmlElement(name = "locking_policy_pragma", type = LockingPolicyPragma.class),
+        @XmlElement(name = "normalize_scalars_pragma", type = NormalizeScalarsPragma.class),
+        @XmlElement(name = "optimize_pragma", type = OptimizePragma.class),
+        @XmlElement(name = "pack_pragma", type = PackPragma.class),
+        @XmlElement(name = "page_pragma", type = PagePragma.class),
+        @XmlElement(name = "preelaborate_pragma", type = PreelaboratePragma.class),
+        @XmlElement(name = "priority_pragma", type = PriorityPragma.class),
+        @XmlElement(name = "pure_pragma", type = PurePragma.class),
+        @XmlElement(name = "queuing_policy_pragma", type = QueuingPolicyPragma.class),
+        @XmlElement(name = "remote_call_interface_pragma", type = RemoteCallInterfacePragma.class),
+        @XmlElement(name = "remote_types_pragma", type = RemoteTypesPragma.class),
+        @XmlElement(name = "restrictions_pragma", type = RestrictionsPragma.class),
+        @XmlElement(name = "reviewable_pragma", type = ReviewablePragma.class),
+        @XmlElement(name = "shared_passive_pragma", type = SharedPassivePragma.class),
+        @XmlElement(name = "storage_size_pragma", type = StorageSizePragma.class),
+        @XmlElement(name = "suppress_pragma", type = SuppressPragma.class),
+        @XmlElement(name = "task_dispatching_policy_pragma", type = TaskDispatchingPolicyPragma.class),
+        @XmlElement(name = "volatile_pragma", type = VolatilePragma.class),
+        @XmlElement(name = "volatile_components_pragma", type = VolatileComponentsPragma.class),
+        @XmlElement(name = "assert_pragma", type = AssertPragma.class),
+        @XmlElement(name = "assertion_policy_pragma", type = AssertionPolicyPragma.class),
+        @XmlElement(name = "detect_blocking_pragma", type = DetectBlockingPragma.class),
+        @XmlElement(name = "no_return_pragma", type = NoReturnPragma.class),
+        @XmlElement(name = "partition_elaboration_policy_pragma", type = PartitionElaborationPolicyPragma.class),
+        @XmlElement(name = "preelaborable_initialization_pragma", type = PreelaborableInitializationPragma.class),
+        @XmlElement(name = "priority_specific_dispatching_pragma", type = PrioritySpecificDispatchingPragma.class),
+        @XmlElement(name = "profile_pragma", type = ProfilePragma.class),
+        @XmlElement(name = "relative_deadline_pragma", type = RelativeDeadlinePragma.class),
+        @XmlElement(name = "unchecked_union_pragma", type = UncheckedUnionPragma.class),
+        @XmlElement(name = "unsuppress_pragma", type = UnsuppressPragma.class),
+        @XmlElement(name = "default_storage_pool_pragma", type = DefaultStoragePoolPragma.class),
+        @XmlElement(name = "dispatching_domain_pragma", type = DispatchingDomainPragma.class),
+        @XmlElement(name = "cpu_pragma", type = CpuPragma.class),
+        @XmlElement(name = "independent_pragma", type = IndependentPragma.class),
+        @XmlElement(name = "independent_components_pragma", type = IndependentComponentsPragma.class),
+        @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
+        @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
+    })
+    protected Object expression;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the expression property.
      * 
      * @return
      *     possible object is
      *     {@link NotAnElement }
+     *     {@link DiscreteRangeAttributeReference }
+     *     {@link DiscreteSimpleExpressionRange }
+     *     {@link OthersChoice }
+     *     {@link BoxExpression }
+     *     {@link IntegerLiteral }
+     *     {@link RealLiteral }
+     *     {@link StringLiteral }
+     *     {@link Identifier }
+     *     {@link AndOperator }
+     *     {@link OrOperator }
+     *     {@link XorOperator }
+     *     {@link EqualOperator }
+     *     {@link NotEqualOperator }
+     *     {@link LessThanOperator }
+     *     {@link LessThanOrEqualOperator }
+     *     {@link GreaterThanOperator }
+     *     {@link GreaterThanOrEqualOperator }
+     *     {@link PlusOperator }
+     *     {@link MinusOperator }
+     *     {@link ConcatenateOperator }
+     *     {@link UnaryPlusOperator }
+     *     {@link UnaryMinusOperator }
+     *     {@link MultiplyOperator }
+     *     {@link DivideOperator }
+     *     {@link ModOperator }
+     *     {@link RemOperator }
+     *     {@link ExponentiateOperator }
+     *     {@link AbsOperator }
+     *     {@link NotOperator }
+     *     {@link CharacterLiteral }
+     *     {@link EnumerationLiteral }
+     *     {@link ExplicitDereference }
+     *     {@link FunctionCall }
+     *     {@link IndexedComponent }
+     *     {@link Slice }
+     *     {@link SelectedComponent }
+     *     {@link AccessAttribute }
+     *     {@link AddressAttribute }
+     *     {@link AdjacentAttribute }
+     *     {@link AftAttribute }
+     *     {@link AlignmentAttribute }
+     *     {@link BaseAttribute }
+     *     {@link BitOrderAttribute }
+     *     {@link BodyVersionAttribute }
+     *     {@link CallableAttribute }
+     *     {@link CallerAttribute }
+     *     {@link CeilingAttribute }
+     *     {@link ClassAttribute }
+     *     {@link ComponentSizeAttribute }
+     *     {@link ComposeAttribute }
+     *     {@link ConstrainedAttribute }
+     *     {@link CopySignAttribute }
+     *     {@link CountAttribute }
+     *     {@link DefiniteAttribute }
+     *     {@link DeltaAttribute }
+     *     {@link DenormAttribute }
+     *     {@link DigitsAttribute }
+     *     {@link ExponentAttribute }
+     *     {@link ExternalTagAttribute }
+     *     {@link FirstAttribute }
+     *     {@link FirstBitAttribute }
+     *     {@link FloorAttribute }
+     *     {@link ForeAttribute }
+     *     {@link FractionAttribute }
+     *     {@link IdentityAttribute }
+     *     {@link ImageAttribute }
+     *     {@link InputAttribute }
+     *     {@link LastAttribute }
+     *     {@link LastBitAttribute }
+     *     {@link LeadingPartAttribute }
+     *     {@link LengthAttribute }
+     *     {@link MachineAttribute }
+     *     {@link MachineEmaxAttribute }
+     *     {@link MachineEminAttribute }
+     *     {@link MachineMantissaAttribute }
+     *     {@link MachineOverflowsAttribute }
+     *     {@link MachineRadixAttribute }
+     *     {@link MachineRoundsAttribute }
+     *     {@link MaxAttribute }
+     *     {@link MaxSizeInStorageElementsAttribute }
+     *     {@link MinAttribute }
+     *     {@link ModelAttribute }
+     *     {@link ModelEminAttribute }
+     *     {@link ModelEpsilonAttribute }
+     *     {@link ModelMantissaAttribute }
+     *     {@link ModelSmallAttribute }
+     *     {@link ModulusAttribute }
+     *     {@link OutputAttribute }
+     *     {@link PartitionIdAttribute }
+     *     {@link PosAttribute }
+     *     {@link PositionAttribute }
+     *     {@link PredAttribute }
+     *     {@link RangeAttribute }
+     *     {@link ReadAttribute }
+     *     {@link RemainderAttribute }
+     *     {@link RoundAttribute }
+     *     {@link RoundingAttribute }
+     *     {@link SafeFirstAttribute }
+     *     {@link SafeLastAttribute }
+     *     {@link ScaleAttribute }
+     *     {@link ScalingAttribute }
+     *     {@link SignedZerosAttribute }
+     *     {@link SizeAttribute }
+     *     {@link SmallAttribute }
+     *     {@link StoragePoolAttribute }
+     *     {@link StorageSizeAttribute }
+     *     {@link SuccAttribute }
+     *     {@link TagAttribute }
+     *     {@link TerminatedAttribute }
+     *     {@link TruncationAttribute }
+     *     {@link UnbiasedRoundingAttribute }
+     *     {@link UncheckedAccessAttribute }
+     *     {@link ValAttribute }
+     *     {@link ValidAttribute }
+     *     {@link ValueAttribute }
+     *     {@link VersionAttribute }
+     *     {@link WideImageAttribute }
+     *     {@link WideValueAttribute }
+     *     {@link WideWidthAttribute }
+     *     {@link WidthAttribute }
+     *     {@link WriteAttribute }
+     *     {@link MachineRoundingAttribute }
+     *     {@link ModAttribute }
+     *     {@link PriorityAttribute }
+     *     {@link StreamSizeAttribute }
+     *     {@link WideWideImageAttribute }
+     *     {@link WideWideValueAttribute }
+     *     {@link WideWideWidthAttribute }
+     *     {@link MaxAlignmentForAllocationAttribute }
+     *     {@link OverlapsStorageAttribute }
+     *     {@link ImplementationDefinedAttribute }
+     *     {@link UnknownAttribute }
+     *     {@link RecordAggregate }
+     *     {@link ExtensionAggregate }
+     *     {@link PositionalArrayAggregate }
+     *     {@link NamedArrayAggregate }
+     *     {@link AndThenShortCircuit }
+     *     {@link OrElseShortCircuit }
+     *     {@link InMembershipTest }
+     *     {@link NotInMembershipTest }
+     *     {@link NullLiteral }
+     *     {@link ParenthesizedExpression }
+     *     {@link TypeConversion }
+     *     {@link QualifiedExpression }
+     *     {@link AllocationFromSubtype }
+     *     {@link AllocationFromQualifiedExpression }
+     *     {@link CaseExpression }
+     *     {@link IfExpression }
+     *     {@link ForAllQuantifiedExpression }
+     *     {@link ForSomeQuantifiedExpression }
+     *     {@link AllCallsRemotePragma }
+     *     {@link AsynchronousPragma }
+     *     {@link AtomicPragma }
+     *     {@link AtomicComponentsPragma }
+     *     {@link AttachHandlerPragma }
+     *     {@link ControlledPragma }
+     *     {@link ConventionPragma }
+     *     {@link DiscardNamesPragma }
+     *     {@link ElaboratePragma }
+     *     {@link ElaborateAllPragma }
+     *     {@link ElaborateBodyPragma }
+     *     {@link ExportPragma }
+     *     {@link ImportPragma }
+     *     {@link InlinePragma }
+     *     {@link InspectionPointPragma }
+     *     {@link InterruptHandlerPragma }
+     *     {@link InterruptPriorityPragma }
+     *     {@link LinkerOptionsPragma }
+     *     {@link ListPragma }
+     *     {@link LockingPolicyPragma }
+     *     {@link NormalizeScalarsPragma }
+     *     {@link OptimizePragma }
+     *     {@link PackPragma }
+     *     {@link PagePragma }
+     *     {@link PreelaboratePragma }
+     *     {@link PriorityPragma }
+     *     {@link PurePragma }
+     *     {@link QueuingPolicyPragma }
+     *     {@link RemoteCallInterfacePragma }
+     *     {@link RemoteTypesPragma }
+     *     {@link RestrictionsPragma }
+     *     {@link ReviewablePragma }
+     *     {@link SharedPassivePragma }
+     *     {@link StorageSizePragma }
+     *     {@link SuppressPragma }
+     *     {@link TaskDispatchingPolicyPragma }
+     *     {@link VolatilePragma }
+     *     {@link VolatileComponentsPragma }
+     *     {@link AssertPragma }
+     *     {@link AssertionPolicyPragma }
+     *     {@link DetectBlockingPragma }
+     *     {@link NoReturnPragma }
+     *     {@link PartitionElaborationPolicyPragma }
+     *     {@link PreelaborableInitializationPragma }
+     *     {@link PrioritySpecificDispatchingPragma }
+     *     {@link ProfilePragma }
+     *     {@link RelativeDeadlinePragma }
+     *     {@link UncheckedUnionPragma }
+     *     {@link UnsuppressPragma }
+     *     {@link DefaultStoragePoolPragma }
+     *     {@link DispatchingDomainPragma }
+     *     {@link CpuPragma }
+     *     {@link IndependentPragma }
+     *     {@link IndependentComponentsPragma }
+     *     {@link ImplementationDefinedPragma }
+     *     {@link UnknownPragma }
      *     
      */
-    public NotAnElement getNotAnElement() {
-        return notAnElement;
+    public Object getExpression() {
+        return expression;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the expression property.
      * 
      * @param value
      *     allowed object is
      *     {@link NotAnElement }
-     *     
-     */
-    public void setNotAnElement(NotAnElement value) {
-        this.notAnElement = value;
-    }
-
-    /**
-     * Gets the value of the discreteRangeAttributeReference property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscreteRangeAttributeReference }
-     *     
-     */
-    public DiscreteRangeAttributeReference getDiscreteRangeAttributeReference() {
-        return discreteRangeAttributeReference;
-    }
-
-    /**
-     * Sets the value of the discreteRangeAttributeReference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscreteRangeAttributeReference }
-     *     
-     */
-    public void setDiscreteRangeAttributeReference(DiscreteRangeAttributeReference value) {
-        this.discreteRangeAttributeReference = value;
-    }
-
-    /**
-     * Gets the value of the discreteSimpleExpressionRange property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscreteSimpleExpressionRange }
-     *     
-     */
-    public DiscreteSimpleExpressionRange getDiscreteSimpleExpressionRange() {
-        return discreteSimpleExpressionRange;
-    }
-
-    /**
-     * Sets the value of the discreteSimpleExpressionRange property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscreteSimpleExpressionRange }
-     *     
-     */
-    public void setDiscreteSimpleExpressionRange(DiscreteSimpleExpressionRange value) {
-        this.discreteSimpleExpressionRange = value;
-    }
-
-    /**
-     * Gets the value of the othersChoice property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OthersChoice }
-     *     
-     */
-    public OthersChoice getOthersChoice() {
-        return othersChoice;
-    }
-
-    /**
-     * Sets the value of the othersChoice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OthersChoice }
-     *     
-     */
-    public void setOthersChoice(OthersChoice value) {
-        this.othersChoice = value;
-    }
-
-    /**
-     * Gets the value of the boxExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link BoxExpression }
-     *     
-     */
-    public BoxExpression getBoxExpression() {
-        return boxExpression;
-    }
-
-    /**
-     * Sets the value of the boxExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BoxExpression }
-     *     
-     */
-    public void setBoxExpression(BoxExpression value) {
-        this.boxExpression = value;
-    }
-
-    /**
-     * Gets the value of the integerLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IntegerLiteral }
-     *     
-     */
-    public IntegerLiteral getIntegerLiteral() {
-        return integerLiteral;
-    }
-
-    /**
-     * Sets the value of the integerLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IntegerLiteral }
-     *     
-     */
-    public void setIntegerLiteral(IntegerLiteral value) {
-        this.integerLiteral = value;
-    }
-
-    /**
-     * Gets the value of the realLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RealLiteral }
-     *     
-     */
-    public RealLiteral getRealLiteral() {
-        return realLiteral;
-    }
-
-    /**
-     * Sets the value of the realLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RealLiteral }
-     *     
-     */
-    public void setRealLiteral(RealLiteral value) {
-        this.realLiteral = value;
-    }
-
-    /**
-     * Gets the value of the stringLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StringLiteral }
-     *     
-     */
-    public StringLiteral getStringLiteral() {
-        return stringLiteral;
-    }
-
-    /**
-     * Sets the value of the stringLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StringLiteral }
-     *     
-     */
-    public void setStringLiteral(StringLiteral value) {
-        this.stringLiteral = value;
-    }
-
-    /**
-     * Gets the value of the identifier property.
-     * 
-     * @return
-     *     possible object is
      *     {@link Identifier }
-     *     
-     */
-    public Identifier getIdentifier() {
-        return identifier;
-    }
-
-    /**
-     * Sets the value of the identifier property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Identifier }
-     *     
-     */
-    public void setIdentifier(Identifier value) {
-        this.identifier = value;
-    }
-
-    /**
-     * Gets the value of the andOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AndOperator }
-     *     
-     */
-    public AndOperator getAndOperator() {
-        return andOperator;
-    }
-
-    /**
-     * Sets the value of the andOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AndOperator }
-     *     
-     */
-    public void setAndOperator(AndOperator value) {
-        this.andOperator = value;
-    }
-
-    /**
-     * Gets the value of the orOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OrOperator }
-     *     
-     */
-    public OrOperator getOrOperator() {
-        return orOperator;
-    }
-
-    /**
-     * Sets the value of the orOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OrOperator }
-     *     
-     */
-    public void setOrOperator(OrOperator value) {
-        this.orOperator = value;
-    }
-
-    /**
-     * Gets the value of the xorOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link XorOperator }
-     *     
-     */
-    public XorOperator getXorOperator() {
-        return xorOperator;
-    }
-
-    /**
-     * Sets the value of the xorOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XorOperator }
-     *     
-     */
-    public void setXorOperator(XorOperator value) {
-        this.xorOperator = value;
-    }
-
-    /**
-     * Gets the value of the equalOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EqualOperator }
-     *     
-     */
-    public EqualOperator getEqualOperator() {
-        return equalOperator;
-    }
-
-    /**
-     * Sets the value of the equalOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EqualOperator }
-     *     
-     */
-    public void setEqualOperator(EqualOperator value) {
-        this.equalOperator = value;
-    }
-
-    /**
-     * Gets the value of the notEqualOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NotEqualOperator }
-     *     
-     */
-    public NotEqualOperator getNotEqualOperator() {
-        return notEqualOperator;
-    }
-
-    /**
-     * Sets the value of the notEqualOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NotEqualOperator }
-     *     
-     */
-    public void setNotEqualOperator(NotEqualOperator value) {
-        this.notEqualOperator = value;
-    }
-
-    /**
-     * Gets the value of the lessThanOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LessThanOperator }
-     *     
-     */
-    public LessThanOperator getLessThanOperator() {
-        return lessThanOperator;
-    }
-
-    /**
-     * Sets the value of the lessThanOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LessThanOperator }
-     *     
-     */
-    public void setLessThanOperator(LessThanOperator value) {
-        this.lessThanOperator = value;
-    }
-
-    /**
-     * Gets the value of the lessThanOrEqualOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LessThanOrEqualOperator }
-     *     
-     */
-    public LessThanOrEqualOperator getLessThanOrEqualOperator() {
-        return lessThanOrEqualOperator;
-    }
-
-    /**
-     * Sets the value of the lessThanOrEqualOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LessThanOrEqualOperator }
-     *     
-     */
-    public void setLessThanOrEqualOperator(LessThanOrEqualOperator value) {
-        this.lessThanOrEqualOperator = value;
-    }
-
-    /**
-     * Gets the value of the greaterThanOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GreaterThanOperator }
-     *     
-     */
-    public GreaterThanOperator getGreaterThanOperator() {
-        return greaterThanOperator;
-    }
-
-    /**
-     * Sets the value of the greaterThanOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GreaterThanOperator }
-     *     
-     */
-    public void setGreaterThanOperator(GreaterThanOperator value) {
-        this.greaterThanOperator = value;
-    }
-
-    /**
-     * Gets the value of the greaterThanOrEqualOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link GreaterThanOrEqualOperator }
-     *     
-     */
-    public GreaterThanOrEqualOperator getGreaterThanOrEqualOperator() {
-        return greaterThanOrEqualOperator;
-    }
-
-    /**
-     * Sets the value of the greaterThanOrEqualOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GreaterThanOrEqualOperator }
-     *     
-     */
-    public void setGreaterThanOrEqualOperator(GreaterThanOrEqualOperator value) {
-        this.greaterThanOrEqualOperator = value;
-    }
-
-    /**
-     * Gets the value of the plusOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PlusOperator }
-     *     
-     */
-    public PlusOperator getPlusOperator() {
-        return plusOperator;
-    }
-
-    /**
-     * Sets the value of the plusOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PlusOperator }
-     *     
-     */
-    public void setPlusOperator(PlusOperator value) {
-        this.plusOperator = value;
-    }
-
-    /**
-     * Gets the value of the minusOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MinusOperator }
-     *     
-     */
-    public MinusOperator getMinusOperator() {
-        return minusOperator;
-    }
-
-    /**
-     * Sets the value of the minusOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MinusOperator }
-     *     
-     */
-    public void setMinusOperator(MinusOperator value) {
-        this.minusOperator = value;
-    }
-
-    /**
-     * Gets the value of the concatenateOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConcatenateOperator }
-     *     
-     */
-    public ConcatenateOperator getConcatenateOperator() {
-        return concatenateOperator;
-    }
-
-    /**
-     * Sets the value of the concatenateOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConcatenateOperator }
-     *     
-     */
-    public void setConcatenateOperator(ConcatenateOperator value) {
-        this.concatenateOperator = value;
-    }
-
-    /**
-     * Gets the value of the unaryPlusOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnaryPlusOperator }
-     *     
-     */
-    public UnaryPlusOperator getUnaryPlusOperator() {
-        return unaryPlusOperator;
-    }
-
-    /**
-     * Sets the value of the unaryPlusOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnaryPlusOperator }
-     *     
-     */
-    public void setUnaryPlusOperator(UnaryPlusOperator value) {
-        this.unaryPlusOperator = value;
-    }
-
-    /**
-     * Gets the value of the unaryMinusOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnaryMinusOperator }
-     *     
-     */
-    public UnaryMinusOperator getUnaryMinusOperator() {
-        return unaryMinusOperator;
-    }
-
-    /**
-     * Sets the value of the unaryMinusOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnaryMinusOperator }
-     *     
-     */
-    public void setUnaryMinusOperator(UnaryMinusOperator value) {
-        this.unaryMinusOperator = value;
-    }
-
-    /**
-     * Gets the value of the multiplyOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MultiplyOperator }
-     *     
-     */
-    public MultiplyOperator getMultiplyOperator() {
-        return multiplyOperator;
-    }
-
-    /**
-     * Sets the value of the multiplyOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MultiplyOperator }
-     *     
-     */
-    public void setMultiplyOperator(MultiplyOperator value) {
-        this.multiplyOperator = value;
-    }
-
-    /**
-     * Gets the value of the divideOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DivideOperator }
-     *     
-     */
-    public DivideOperator getDivideOperator() {
-        return divideOperator;
-    }
-
-    /**
-     * Sets the value of the divideOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DivideOperator }
-     *     
-     */
-    public void setDivideOperator(DivideOperator value) {
-        this.divideOperator = value;
-    }
-
-    /**
-     * Gets the value of the modOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModOperator }
-     *     
-     */
-    public ModOperator getModOperator() {
-        return modOperator;
-    }
-
-    /**
-     * Sets the value of the modOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModOperator }
-     *     
-     */
-    public void setModOperator(ModOperator value) {
-        this.modOperator = value;
-    }
-
-    /**
-     * Gets the value of the remOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemOperator }
-     *     
-     */
-    public RemOperator getRemOperator() {
-        return remOperator;
-    }
-
-    /**
-     * Sets the value of the remOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemOperator }
-     *     
-     */
-    public void setRemOperator(RemOperator value) {
-        this.remOperator = value;
-    }
-
-    /**
-     * Gets the value of the exponentiateOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExponentiateOperator }
-     *     
-     */
-    public ExponentiateOperator getExponentiateOperator() {
-        return exponentiateOperator;
-    }
-
-    /**
-     * Sets the value of the exponentiateOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExponentiateOperator }
-     *     
-     */
-    public void setExponentiateOperator(ExponentiateOperator value) {
-        this.exponentiateOperator = value;
-    }
-
-    /**
-     * Gets the value of the absOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AbsOperator }
-     *     
-     */
-    public AbsOperator getAbsOperator() {
-        return absOperator;
-    }
-
-    /**
-     * Sets the value of the absOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AbsOperator }
-     *     
-     */
-    public void setAbsOperator(AbsOperator value) {
-        this.absOperator = value;
-    }
-
-    /**
-     * Gets the value of the notOperator property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NotOperator }
-     *     
-     */
-    public NotOperator getNotOperator() {
-        return notOperator;
-    }
-
-    /**
-     * Sets the value of the notOperator property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NotOperator }
-     *     
-     */
-    public void setNotOperator(NotOperator value) {
-        this.notOperator = value;
-    }
-
-    /**
-     * Gets the value of the characterLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CharacterLiteral }
-     *     
-     */
-    public CharacterLiteral getCharacterLiteral() {
-        return characterLiteral;
-    }
-
-    /**
-     * Sets the value of the characterLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CharacterLiteral }
-     *     
-     */
-    public void setCharacterLiteral(CharacterLiteral value) {
-        this.characterLiteral = value;
-    }
-
-    /**
-     * Gets the value of the enumerationLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link EnumerationLiteral }
-     *     
-     */
-    public EnumerationLiteral getEnumerationLiteral() {
-        return enumerationLiteral;
-    }
-
-    /**
-     * Sets the value of the enumerationLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumerationLiteral }
-     *     
-     */
-    public void setEnumerationLiteral(EnumerationLiteral value) {
-        this.enumerationLiteral = value;
-    }
-
-    /**
-     * Gets the value of the explicitDereference property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExplicitDereference }
-     *     
-     */
-    public ExplicitDereference getExplicitDereference() {
-        return explicitDereference;
-    }
-
-    /**
-     * Sets the value of the explicitDereference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExplicitDereference }
-     *     
-     */
-    public void setExplicitDereference(ExplicitDereference value) {
-        this.explicitDereference = value;
-    }
-
-    /**
-     * Gets the value of the functionCall property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FunctionCall }
-     *     
-     */
-    public FunctionCall getFunctionCall() {
-        return functionCall;
-    }
-
-    /**
-     * Sets the value of the functionCall property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FunctionCall }
-     *     
-     */
-    public void setFunctionCall(FunctionCall value) {
-        this.functionCall = value;
-    }
-
-    /**
-     * Gets the value of the indexedComponent property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndexedComponent }
-     *     
-     */
-    public IndexedComponent getIndexedComponent() {
-        return indexedComponent;
-    }
-
-    /**
-     * Sets the value of the indexedComponent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndexedComponent }
-     *     
-     */
-    public void setIndexedComponent(IndexedComponent value) {
-        this.indexedComponent = value;
-    }
-
-    /**
-     * Gets the value of the slice property.
-     * 
-     * @return
-     *     possible object is
      *     {@link Slice }
-     *     
-     */
-    public Slice getSlice() {
-        return slice;
-    }
-
-    /**
-     * Sets the value of the slice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Slice }
-     *     
-     */
-    public void setSlice(Slice value) {
-        this.slice = value;
-    }
-
-    /**
-     * Gets the value of the selectedComponent property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SelectedComponent }
-     *     
-     */
-    public SelectedComponent getSelectedComponent() {
-        return selectedComponent;
-    }
-
-    /**
-     * Sets the value of the selectedComponent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SelectedComponent }
-     *     
-     */
-    public void setSelectedComponent(SelectedComponent value) {
-        this.selectedComponent = value;
-    }
-
-    /**
-     * Gets the value of the accessAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AccessAttribute }
-     *     
-     */
-    public AccessAttribute getAccessAttribute() {
-        return accessAttribute;
-    }
-
-    /**
-     * Sets the value of the accessAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AccessAttribute }
-     *     
-     */
-    public void setAccessAttribute(AccessAttribute value) {
-        this.accessAttribute = value;
-    }
-
-    /**
-     * Gets the value of the addressAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AddressAttribute }
-     *     
-     */
-    public AddressAttribute getAddressAttribute() {
-        return addressAttribute;
-    }
-
-    /**
-     * Sets the value of the addressAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AddressAttribute }
-     *     
-     */
-    public void setAddressAttribute(AddressAttribute value) {
-        this.addressAttribute = value;
-    }
-
-    /**
-     * Gets the value of the adjacentAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AdjacentAttribute }
-     *     
-     */
-    public AdjacentAttribute getAdjacentAttribute() {
-        return adjacentAttribute;
-    }
-
-    /**
-     * Sets the value of the adjacentAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AdjacentAttribute }
-     *     
-     */
-    public void setAdjacentAttribute(AdjacentAttribute value) {
-        this.adjacentAttribute = value;
-    }
-
-    /**
-     * Gets the value of the aftAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AftAttribute }
-     *     
-     */
-    public AftAttribute getAftAttribute() {
-        return aftAttribute;
-    }
-
-    /**
-     * Sets the value of the aftAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AftAttribute }
-     *     
-     */
-    public void setAftAttribute(AftAttribute value) {
-        this.aftAttribute = value;
-    }
-
-    /**
-     * Gets the value of the alignmentAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AlignmentAttribute }
-     *     
-     */
-    public AlignmentAttribute getAlignmentAttribute() {
-        return alignmentAttribute;
-    }
-
-    /**
-     * Sets the value of the alignmentAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AlignmentAttribute }
-     *     
-     */
-    public void setAlignmentAttribute(AlignmentAttribute value) {
-        this.alignmentAttribute = value;
-    }
-
-    /**
-     * Gets the value of the baseAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link BaseAttribute }
-     *     
-     */
-    public BaseAttribute getBaseAttribute() {
-        return baseAttribute;
-    }
-
-    /**
-     * Sets the value of the baseAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BaseAttribute }
-     *     
-     */
-    public void setBaseAttribute(BaseAttribute value) {
-        this.baseAttribute = value;
-    }
-
-    /**
-     * Gets the value of the bitOrderAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link BitOrderAttribute }
-     *     
-     */
-    public BitOrderAttribute getBitOrderAttribute() {
-        return bitOrderAttribute;
-    }
-
-    /**
-     * Sets the value of the bitOrderAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BitOrderAttribute }
-     *     
-     */
-    public void setBitOrderAttribute(BitOrderAttribute value) {
-        this.bitOrderAttribute = value;
-    }
-
-    /**
-     * Gets the value of the bodyVersionAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link BodyVersionAttribute }
-     *     
-     */
-    public BodyVersionAttribute getBodyVersionAttribute() {
-        return bodyVersionAttribute;
-    }
-
-    /**
-     * Sets the value of the bodyVersionAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BodyVersionAttribute }
-     *     
-     */
-    public void setBodyVersionAttribute(BodyVersionAttribute value) {
-        this.bodyVersionAttribute = value;
-    }
-
-    /**
-     * Gets the value of the callableAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CallableAttribute }
-     *     
-     */
-    public CallableAttribute getCallableAttribute() {
-        return callableAttribute;
-    }
-
-    /**
-     * Sets the value of the callableAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CallableAttribute }
-     *     
-     */
-    public void setCallableAttribute(CallableAttribute value) {
-        this.callableAttribute = value;
-    }
-
-    /**
-     * Gets the value of the callerAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CallerAttribute }
-     *     
-     */
-    public CallerAttribute getCallerAttribute() {
-        return callerAttribute;
-    }
-
-    /**
-     * Sets the value of the callerAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CallerAttribute }
-     *     
-     */
-    public void setCallerAttribute(CallerAttribute value) {
-        this.callerAttribute = value;
-    }
-
-    /**
-     * Gets the value of the ceilingAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CeilingAttribute }
-     *     
-     */
-    public CeilingAttribute getCeilingAttribute() {
-        return ceilingAttribute;
-    }
-
-    /**
-     * Sets the value of the ceilingAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CeilingAttribute }
-     *     
-     */
-    public void setCeilingAttribute(CeilingAttribute value) {
-        this.ceilingAttribute = value;
-    }
-
-    /**
-     * Gets the value of the classAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ClassAttribute }
-     *     
-     */
-    public ClassAttribute getClassAttribute() {
-        return classAttribute;
-    }
-
-    /**
-     * Sets the value of the classAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ClassAttribute }
-     *     
-     */
-    public void setClassAttribute(ClassAttribute value) {
-        this.classAttribute = value;
-    }
-
-    /**
-     * Gets the value of the componentSizeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ComponentSizeAttribute }
-     *     
-     */
-    public ComponentSizeAttribute getComponentSizeAttribute() {
-        return componentSizeAttribute;
-    }
-
-    /**
-     * Sets the value of the componentSizeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ComponentSizeAttribute }
-     *     
-     */
-    public void setComponentSizeAttribute(ComponentSizeAttribute value) {
-        this.componentSizeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the composeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ComposeAttribute }
-     *     
-     */
-    public ComposeAttribute getComposeAttribute() {
-        return composeAttribute;
-    }
-
-    /**
-     * Sets the value of the composeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ComposeAttribute }
-     *     
-     */
-    public void setComposeAttribute(ComposeAttribute value) {
-        this.composeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the constrainedAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConstrainedAttribute }
-     *     
-     */
-    public ConstrainedAttribute getConstrainedAttribute() {
-        return constrainedAttribute;
-    }
-
-    /**
-     * Sets the value of the constrainedAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConstrainedAttribute }
-     *     
-     */
-    public void setConstrainedAttribute(ConstrainedAttribute value) {
-        this.constrainedAttribute = value;
-    }
-
-    /**
-     * Gets the value of the copySignAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CopySignAttribute }
-     *     
-     */
-    public CopySignAttribute getCopySignAttribute() {
-        return copySignAttribute;
-    }
-
-    /**
-     * Sets the value of the copySignAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CopySignAttribute }
-     *     
-     */
-    public void setCopySignAttribute(CopySignAttribute value) {
-        this.copySignAttribute = value;
-    }
-
-    /**
-     * Gets the value of the countAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CountAttribute }
-     *     
-     */
-    public CountAttribute getCountAttribute() {
-        return countAttribute;
-    }
-
-    /**
-     * Sets the value of the countAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CountAttribute }
-     *     
-     */
-    public void setCountAttribute(CountAttribute value) {
-        this.countAttribute = value;
-    }
-
-    /**
-     * Gets the value of the definiteAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DefiniteAttribute }
-     *     
-     */
-    public DefiniteAttribute getDefiniteAttribute() {
-        return definiteAttribute;
-    }
-
-    /**
-     * Sets the value of the definiteAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefiniteAttribute }
-     *     
-     */
-    public void setDefiniteAttribute(DefiniteAttribute value) {
-        this.definiteAttribute = value;
-    }
-
-    /**
-     * Gets the value of the deltaAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DeltaAttribute }
-     *     
-     */
-    public DeltaAttribute getDeltaAttribute() {
-        return deltaAttribute;
-    }
-
-    /**
-     * Sets the value of the deltaAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DeltaAttribute }
-     *     
-     */
-    public void setDeltaAttribute(DeltaAttribute value) {
-        this.deltaAttribute = value;
-    }
-
-    /**
-     * Gets the value of the denormAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DenormAttribute }
-     *     
-     */
-    public DenormAttribute getDenormAttribute() {
-        return denormAttribute;
-    }
-
-    /**
-     * Sets the value of the denormAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DenormAttribute }
-     *     
-     */
-    public void setDenormAttribute(DenormAttribute value) {
-        this.denormAttribute = value;
-    }
-
-    /**
-     * Gets the value of the digitsAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DigitsAttribute }
-     *     
-     */
-    public DigitsAttribute getDigitsAttribute() {
-        return digitsAttribute;
-    }
-
-    /**
-     * Sets the value of the digitsAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DigitsAttribute }
-     *     
-     */
-    public void setDigitsAttribute(DigitsAttribute value) {
-        this.digitsAttribute = value;
-    }
-
-    /**
-     * Gets the value of the exponentAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExponentAttribute }
-     *     
-     */
-    public ExponentAttribute getExponentAttribute() {
-        return exponentAttribute;
-    }
-
-    /**
-     * Sets the value of the exponentAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExponentAttribute }
-     *     
-     */
-    public void setExponentAttribute(ExponentAttribute value) {
-        this.exponentAttribute = value;
-    }
-
-    /**
-     * Gets the value of the externalTagAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExternalTagAttribute }
-     *     
-     */
-    public ExternalTagAttribute getExternalTagAttribute() {
-        return externalTagAttribute;
-    }
-
-    /**
-     * Sets the value of the externalTagAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExternalTagAttribute }
-     *     
-     */
-    public void setExternalTagAttribute(ExternalTagAttribute value) {
-        this.externalTagAttribute = value;
-    }
-
-    /**
-     * Gets the value of the firstAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FirstAttribute }
-     *     
-     */
-    public FirstAttribute getFirstAttribute() {
-        return firstAttribute;
-    }
-
-    /**
-     * Sets the value of the firstAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FirstAttribute }
-     *     
-     */
-    public void setFirstAttribute(FirstAttribute value) {
-        this.firstAttribute = value;
-    }
-
-    /**
-     * Gets the value of the firstBitAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FirstBitAttribute }
-     *     
-     */
-    public FirstBitAttribute getFirstBitAttribute() {
-        return firstBitAttribute;
-    }
-
-    /**
-     * Sets the value of the firstBitAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FirstBitAttribute }
-     *     
-     */
-    public void setFirstBitAttribute(FirstBitAttribute value) {
-        this.firstBitAttribute = value;
-    }
-
-    /**
-     * Gets the value of the floorAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FloorAttribute }
-     *     
-     */
-    public FloorAttribute getFloorAttribute() {
-        return floorAttribute;
-    }
-
-    /**
-     * Sets the value of the floorAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FloorAttribute }
-     *     
-     */
-    public void setFloorAttribute(FloorAttribute value) {
-        this.floorAttribute = value;
-    }
-
-    /**
-     * Gets the value of the foreAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ForeAttribute }
-     *     
-     */
-    public ForeAttribute getForeAttribute() {
-        return foreAttribute;
-    }
-
-    /**
-     * Sets the value of the foreAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ForeAttribute }
-     *     
-     */
-    public void setForeAttribute(ForeAttribute value) {
-        this.foreAttribute = value;
-    }
-
-    /**
-     * Gets the value of the fractionAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link FractionAttribute }
-     *     
-     */
-    public FractionAttribute getFractionAttribute() {
-        return fractionAttribute;
-    }
-
-    /**
-     * Sets the value of the fractionAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link FractionAttribute }
-     *     
-     */
-    public void setFractionAttribute(FractionAttribute value) {
-        this.fractionAttribute = value;
-    }
-
-    /**
-     * Gets the value of the identityAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IdentityAttribute }
-     *     
-     */
-    public IdentityAttribute getIdentityAttribute() {
-        return identityAttribute;
-    }
-
-    /**
-     * Sets the value of the identityAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IdentityAttribute }
-     *     
-     */
-    public void setIdentityAttribute(IdentityAttribute value) {
-        this.identityAttribute = value;
-    }
-
-    /**
-     * Gets the value of the imageAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImageAttribute }
-     *     
-     */
-    public ImageAttribute getImageAttribute() {
-        return imageAttribute;
-    }
-
-    /**
-     * Sets the value of the imageAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImageAttribute }
-     *     
-     */
-    public void setImageAttribute(ImageAttribute value) {
-        this.imageAttribute = value;
-    }
-
-    /**
-     * Gets the value of the inputAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InputAttribute }
-     *     
-     */
-    public InputAttribute getInputAttribute() {
-        return inputAttribute;
-    }
-
-    /**
-     * Sets the value of the inputAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InputAttribute }
-     *     
-     */
-    public void setInputAttribute(InputAttribute value) {
-        this.inputAttribute = value;
-    }
-
-    /**
-     * Gets the value of the lastAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LastAttribute }
-     *     
-     */
-    public LastAttribute getLastAttribute() {
-        return lastAttribute;
-    }
-
-    /**
-     * Sets the value of the lastAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LastAttribute }
-     *     
-     */
-    public void setLastAttribute(LastAttribute value) {
-        this.lastAttribute = value;
-    }
-
-    /**
-     * Gets the value of the lastBitAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LastBitAttribute }
-     *     
-     */
-    public LastBitAttribute getLastBitAttribute() {
-        return lastBitAttribute;
-    }
-
-    /**
-     * Sets the value of the lastBitAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LastBitAttribute }
-     *     
-     */
-    public void setLastBitAttribute(LastBitAttribute value) {
-        this.lastBitAttribute = value;
-    }
-
-    /**
-     * Gets the value of the leadingPartAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LeadingPartAttribute }
-     *     
-     */
-    public LeadingPartAttribute getLeadingPartAttribute() {
-        return leadingPartAttribute;
-    }
-
-    /**
-     * Sets the value of the leadingPartAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LeadingPartAttribute }
-     *     
-     */
-    public void setLeadingPartAttribute(LeadingPartAttribute value) {
-        this.leadingPartAttribute = value;
-    }
-
-    /**
-     * Gets the value of the lengthAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LengthAttribute }
-     *     
-     */
-    public LengthAttribute getLengthAttribute() {
-        return lengthAttribute;
-    }
-
-    /**
-     * Sets the value of the lengthAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LengthAttribute }
-     *     
-     */
-    public void setLengthAttribute(LengthAttribute value) {
-        this.lengthAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineAttribute }
-     *     
-     */
-    public MachineAttribute getMachineAttribute() {
-        return machineAttribute;
-    }
-
-    /**
-     * Sets the value of the machineAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineAttribute }
-     *     
-     */
-    public void setMachineAttribute(MachineAttribute value) {
-        this.machineAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineEmaxAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineEmaxAttribute }
-     *     
-     */
-    public MachineEmaxAttribute getMachineEmaxAttribute() {
-        return machineEmaxAttribute;
-    }
-
-    /**
-     * Sets the value of the machineEmaxAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineEmaxAttribute }
-     *     
-     */
-    public void setMachineEmaxAttribute(MachineEmaxAttribute value) {
-        this.machineEmaxAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineEminAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineEminAttribute }
-     *     
-     */
-    public MachineEminAttribute getMachineEminAttribute() {
-        return machineEminAttribute;
-    }
-
-    /**
-     * Sets the value of the machineEminAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineEminAttribute }
-     *     
-     */
-    public void setMachineEminAttribute(MachineEminAttribute value) {
-        this.machineEminAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineMantissaAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineMantissaAttribute }
-     *     
-     */
-    public MachineMantissaAttribute getMachineMantissaAttribute() {
-        return machineMantissaAttribute;
-    }
-
-    /**
-     * Sets the value of the machineMantissaAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineMantissaAttribute }
-     *     
-     */
-    public void setMachineMantissaAttribute(MachineMantissaAttribute value) {
-        this.machineMantissaAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineOverflowsAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineOverflowsAttribute }
-     *     
-     */
-    public MachineOverflowsAttribute getMachineOverflowsAttribute() {
-        return machineOverflowsAttribute;
-    }
-
-    /**
-     * Sets the value of the machineOverflowsAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineOverflowsAttribute }
-     *     
-     */
-    public void setMachineOverflowsAttribute(MachineOverflowsAttribute value) {
-        this.machineOverflowsAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineRadixAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineRadixAttribute }
-     *     
-     */
-    public MachineRadixAttribute getMachineRadixAttribute() {
-        return machineRadixAttribute;
-    }
-
-    /**
-     * Sets the value of the machineRadixAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineRadixAttribute }
-     *     
-     */
-    public void setMachineRadixAttribute(MachineRadixAttribute value) {
-        this.machineRadixAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineRoundsAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineRoundsAttribute }
-     *     
-     */
-    public MachineRoundsAttribute getMachineRoundsAttribute() {
-        return machineRoundsAttribute;
-    }
-
-    /**
-     * Sets the value of the machineRoundsAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineRoundsAttribute }
-     *     
-     */
-    public void setMachineRoundsAttribute(MachineRoundsAttribute value) {
-        this.machineRoundsAttribute = value;
-    }
-
-    /**
-     * Gets the value of the maxAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MaxAttribute }
-     *     
-     */
-    public MaxAttribute getMaxAttribute() {
-        return maxAttribute;
-    }
-
-    /**
-     * Sets the value of the maxAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MaxAttribute }
-     *     
-     */
-    public void setMaxAttribute(MaxAttribute value) {
-        this.maxAttribute = value;
-    }
-
-    /**
-     * Gets the value of the maxSizeInStorageElementsAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MaxSizeInStorageElementsAttribute }
-     *     
-     */
-    public MaxSizeInStorageElementsAttribute getMaxSizeInStorageElementsAttribute() {
-        return maxSizeInStorageElementsAttribute;
-    }
-
-    /**
-     * Sets the value of the maxSizeInStorageElementsAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MaxSizeInStorageElementsAttribute }
-     *     
-     */
-    public void setMaxSizeInStorageElementsAttribute(MaxSizeInStorageElementsAttribute value) {
-        this.maxSizeInStorageElementsAttribute = value;
-    }
-
-    /**
-     * Gets the value of the minAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MinAttribute }
-     *     
-     */
-    public MinAttribute getMinAttribute() {
-        return minAttribute;
-    }
-
-    /**
-     * Sets the value of the minAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MinAttribute }
-     *     
-     */
-    public void setMinAttribute(MinAttribute value) {
-        this.minAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modelAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModelAttribute }
-     *     
-     */
-    public ModelAttribute getModelAttribute() {
-        return modelAttribute;
-    }
-
-    /**
-     * Sets the value of the modelAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModelAttribute }
-     *     
-     */
-    public void setModelAttribute(ModelAttribute value) {
-        this.modelAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modelEminAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModelEminAttribute }
-     *     
-     */
-    public ModelEminAttribute getModelEminAttribute() {
-        return modelEminAttribute;
-    }
-
-    /**
-     * Sets the value of the modelEminAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModelEminAttribute }
-     *     
-     */
-    public void setModelEminAttribute(ModelEminAttribute value) {
-        this.modelEminAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modelEpsilonAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModelEpsilonAttribute }
-     *     
-     */
-    public ModelEpsilonAttribute getModelEpsilonAttribute() {
-        return modelEpsilonAttribute;
-    }
-
-    /**
-     * Sets the value of the modelEpsilonAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModelEpsilonAttribute }
-     *     
-     */
-    public void setModelEpsilonAttribute(ModelEpsilonAttribute value) {
-        this.modelEpsilonAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modelMantissaAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModelMantissaAttribute }
-     *     
-     */
-    public ModelMantissaAttribute getModelMantissaAttribute() {
-        return modelMantissaAttribute;
-    }
-
-    /**
-     * Sets the value of the modelMantissaAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModelMantissaAttribute }
-     *     
-     */
-    public void setModelMantissaAttribute(ModelMantissaAttribute value) {
-        this.modelMantissaAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modelSmallAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModelSmallAttribute }
-     *     
-     */
-    public ModelSmallAttribute getModelSmallAttribute() {
-        return modelSmallAttribute;
-    }
-
-    /**
-     * Sets the value of the modelSmallAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModelSmallAttribute }
-     *     
-     */
-    public void setModelSmallAttribute(ModelSmallAttribute value) {
-        this.modelSmallAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modulusAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModulusAttribute }
-     *     
-     */
-    public ModulusAttribute getModulusAttribute() {
-        return modulusAttribute;
-    }
-
-    /**
-     * Sets the value of the modulusAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModulusAttribute }
-     *     
-     */
-    public void setModulusAttribute(ModulusAttribute value) {
-        this.modulusAttribute = value;
-    }
-
-    /**
-     * Gets the value of the outputAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OutputAttribute }
-     *     
-     */
-    public OutputAttribute getOutputAttribute() {
-        return outputAttribute;
-    }
-
-    /**
-     * Sets the value of the outputAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OutputAttribute }
-     *     
-     */
-    public void setOutputAttribute(OutputAttribute value) {
-        this.outputAttribute = value;
-    }
-
-    /**
-     * Gets the value of the partitionIdAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PartitionIdAttribute }
-     *     
-     */
-    public PartitionIdAttribute getPartitionIdAttribute() {
-        return partitionIdAttribute;
-    }
-
-    /**
-     * Sets the value of the partitionIdAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PartitionIdAttribute }
-     *     
-     */
-    public void setPartitionIdAttribute(PartitionIdAttribute value) {
-        this.partitionIdAttribute = value;
-    }
-
-    /**
-     * Gets the value of the posAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PosAttribute }
-     *     
-     */
-    public PosAttribute getPosAttribute() {
-        return posAttribute;
-    }
-
-    /**
-     * Sets the value of the posAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PosAttribute }
-     *     
-     */
-    public void setPosAttribute(PosAttribute value) {
-        this.posAttribute = value;
-    }
-
-    /**
-     * Gets the value of the positionAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PositionAttribute }
-     *     
-     */
-    public PositionAttribute getPositionAttribute() {
-        return positionAttribute;
-    }
-
-    /**
-     * Sets the value of the positionAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PositionAttribute }
-     *     
-     */
-    public void setPositionAttribute(PositionAttribute value) {
-        this.positionAttribute = value;
-    }
-
-    /**
-     * Gets the value of the predAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PredAttribute }
-     *     
-     */
-    public PredAttribute getPredAttribute() {
-        return predAttribute;
-    }
-
-    /**
-     * Sets the value of the predAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PredAttribute }
-     *     
-     */
-    public void setPredAttribute(PredAttribute value) {
-        this.predAttribute = value;
-    }
-
-    /**
-     * Gets the value of the rangeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RangeAttribute }
-     *     
-     */
-    public RangeAttribute getRangeAttribute() {
-        return rangeAttribute;
-    }
-
-    /**
-     * Sets the value of the rangeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RangeAttribute }
-     *     
-     */
-    public void setRangeAttribute(RangeAttribute value) {
-        this.rangeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the readAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReadAttribute }
-     *     
-     */
-    public ReadAttribute getReadAttribute() {
-        return readAttribute;
-    }
-
-    /**
-     * Sets the value of the readAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReadAttribute }
-     *     
-     */
-    public void setReadAttribute(ReadAttribute value) {
-        this.readAttribute = value;
-    }
-
-    /**
-     * Gets the value of the remainderAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemainderAttribute }
-     *     
-     */
-    public RemainderAttribute getRemainderAttribute() {
-        return remainderAttribute;
-    }
-
-    /**
-     * Sets the value of the remainderAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemainderAttribute }
-     *     
-     */
-    public void setRemainderAttribute(RemainderAttribute value) {
-        this.remainderAttribute = value;
-    }
-
-    /**
-     * Gets the value of the roundAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RoundAttribute }
-     *     
-     */
-    public RoundAttribute getRoundAttribute() {
-        return roundAttribute;
-    }
-
-    /**
-     * Sets the value of the roundAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RoundAttribute }
-     *     
-     */
-    public void setRoundAttribute(RoundAttribute value) {
-        this.roundAttribute = value;
-    }
-
-    /**
-     * Gets the value of the roundingAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RoundingAttribute }
-     *     
-     */
-    public RoundingAttribute getRoundingAttribute() {
-        return roundingAttribute;
-    }
-
-    /**
-     * Sets the value of the roundingAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RoundingAttribute }
-     *     
-     */
-    public void setRoundingAttribute(RoundingAttribute value) {
-        this.roundingAttribute = value;
-    }
-
-    /**
-     * Gets the value of the safeFirstAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SafeFirstAttribute }
-     *     
-     */
-    public SafeFirstAttribute getSafeFirstAttribute() {
-        return safeFirstAttribute;
-    }
-
-    /**
-     * Sets the value of the safeFirstAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SafeFirstAttribute }
-     *     
-     */
-    public void setSafeFirstAttribute(SafeFirstAttribute value) {
-        this.safeFirstAttribute = value;
-    }
-
-    /**
-     * Gets the value of the safeLastAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SafeLastAttribute }
-     *     
-     */
-    public SafeLastAttribute getSafeLastAttribute() {
-        return safeLastAttribute;
-    }
-
-    /**
-     * Sets the value of the safeLastAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SafeLastAttribute }
-     *     
-     */
-    public void setSafeLastAttribute(SafeLastAttribute value) {
-        this.safeLastAttribute = value;
-    }
-
-    /**
-     * Gets the value of the scaleAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ScaleAttribute }
-     *     
-     */
-    public ScaleAttribute getScaleAttribute() {
-        return scaleAttribute;
-    }
-
-    /**
-     * Sets the value of the scaleAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ScaleAttribute }
-     *     
-     */
-    public void setScaleAttribute(ScaleAttribute value) {
-        this.scaleAttribute = value;
-    }
-
-    /**
-     * Gets the value of the scalingAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ScalingAttribute }
-     *     
-     */
-    public ScalingAttribute getScalingAttribute() {
-        return scalingAttribute;
-    }
-
-    /**
-     * Sets the value of the scalingAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ScalingAttribute }
-     *     
-     */
-    public void setScalingAttribute(ScalingAttribute value) {
-        this.scalingAttribute = value;
-    }
-
-    /**
-     * Gets the value of the signedZerosAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SignedZerosAttribute }
-     *     
-     */
-    public SignedZerosAttribute getSignedZerosAttribute() {
-        return signedZerosAttribute;
-    }
-
-    /**
-     * Sets the value of the signedZerosAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SignedZerosAttribute }
-     *     
-     */
-    public void setSignedZerosAttribute(SignedZerosAttribute value) {
-        this.signedZerosAttribute = value;
-    }
-
-    /**
-     * Gets the value of the sizeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SizeAttribute }
-     *     
-     */
-    public SizeAttribute getSizeAttribute() {
-        return sizeAttribute;
-    }
-
-    /**
-     * Sets the value of the sizeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SizeAttribute }
-     *     
-     */
-    public void setSizeAttribute(SizeAttribute value) {
-        this.sizeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the smallAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SmallAttribute }
-     *     
-     */
-    public SmallAttribute getSmallAttribute() {
-        return smallAttribute;
-    }
-
-    /**
-     * Sets the value of the smallAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SmallAttribute }
-     *     
-     */
-    public void setSmallAttribute(SmallAttribute value) {
-        this.smallAttribute = value;
-    }
-
-    /**
-     * Gets the value of the storagePoolAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StoragePoolAttribute }
-     *     
-     */
-    public StoragePoolAttribute getStoragePoolAttribute() {
-        return storagePoolAttribute;
-    }
-
-    /**
-     * Sets the value of the storagePoolAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StoragePoolAttribute }
-     *     
-     */
-    public void setStoragePoolAttribute(StoragePoolAttribute value) {
-        this.storagePoolAttribute = value;
-    }
-
-    /**
-     * Gets the value of the storageSizeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StorageSizeAttribute }
-     *     
-     */
-    public StorageSizeAttribute getStorageSizeAttribute() {
-        return storageSizeAttribute;
-    }
-
-    /**
-     * Sets the value of the storageSizeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StorageSizeAttribute }
-     *     
-     */
-    public void setStorageSizeAttribute(StorageSizeAttribute value) {
-        this.storageSizeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the succAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SuccAttribute }
-     *     
-     */
-    public SuccAttribute getSuccAttribute() {
-        return succAttribute;
-    }
-
-    /**
-     * Sets the value of the succAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SuccAttribute }
-     *     
-     */
-    public void setSuccAttribute(SuccAttribute value) {
-        this.succAttribute = value;
-    }
-
-    /**
-     * Gets the value of the tagAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TagAttribute }
-     *     
-     */
-    public TagAttribute getTagAttribute() {
-        return tagAttribute;
-    }
-
-    /**
-     * Sets the value of the tagAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TagAttribute }
-     *     
-     */
-    public void setTagAttribute(TagAttribute value) {
-        this.tagAttribute = value;
-    }
-
-    /**
-     * Gets the value of the terminatedAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TerminatedAttribute }
-     *     
-     */
-    public TerminatedAttribute getTerminatedAttribute() {
-        return terminatedAttribute;
-    }
-
-    /**
-     * Sets the value of the terminatedAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TerminatedAttribute }
-     *     
-     */
-    public void setTerminatedAttribute(TerminatedAttribute value) {
-        this.terminatedAttribute = value;
-    }
-
-    /**
-     * Gets the value of the truncationAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TruncationAttribute }
-     *     
-     */
-    public TruncationAttribute getTruncationAttribute() {
-        return truncationAttribute;
-    }
-
-    /**
-     * Sets the value of the truncationAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TruncationAttribute }
-     *     
-     */
-    public void setTruncationAttribute(TruncationAttribute value) {
-        this.truncationAttribute = value;
-    }
-
-    /**
-     * Gets the value of the unbiasedRoundingAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnbiasedRoundingAttribute }
-     *     
-     */
-    public UnbiasedRoundingAttribute getUnbiasedRoundingAttribute() {
-        return unbiasedRoundingAttribute;
-    }
-
-    /**
-     * Sets the value of the unbiasedRoundingAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnbiasedRoundingAttribute }
-     *     
-     */
-    public void setUnbiasedRoundingAttribute(UnbiasedRoundingAttribute value) {
-        this.unbiasedRoundingAttribute = value;
-    }
-
-    /**
-     * Gets the value of the uncheckedAccessAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UncheckedAccessAttribute }
-     *     
-     */
-    public UncheckedAccessAttribute getUncheckedAccessAttribute() {
-        return uncheckedAccessAttribute;
-    }
-
-    /**
-     * Sets the value of the uncheckedAccessAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UncheckedAccessAttribute }
-     *     
-     */
-    public void setUncheckedAccessAttribute(UncheckedAccessAttribute value) {
-        this.uncheckedAccessAttribute = value;
-    }
-
-    /**
-     * Gets the value of the valAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ValAttribute }
-     *     
-     */
-    public ValAttribute getValAttribute() {
-        return valAttribute;
-    }
-
-    /**
-     * Sets the value of the valAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ValAttribute }
-     *     
-     */
-    public void setValAttribute(ValAttribute value) {
-        this.valAttribute = value;
-    }
-
-    /**
-     * Gets the value of the validAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ValidAttribute }
-     *     
-     */
-    public ValidAttribute getValidAttribute() {
-        return validAttribute;
-    }
-
-    /**
-     * Sets the value of the validAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ValidAttribute }
-     *     
-     */
-    public void setValidAttribute(ValidAttribute value) {
-        this.validAttribute = value;
-    }
-
-    /**
-     * Gets the value of the valueAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ValueAttribute }
-     *     
-     */
-    public ValueAttribute getValueAttribute() {
-        return valueAttribute;
-    }
-
-    /**
-     * Sets the value of the valueAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ValueAttribute }
-     *     
-     */
-    public void setValueAttribute(ValueAttribute value) {
-        this.valueAttribute = value;
-    }
-
-    /**
-     * Gets the value of the versionAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VersionAttribute }
-     *     
-     */
-    public VersionAttribute getVersionAttribute() {
-        return versionAttribute;
-    }
-
-    /**
-     * Sets the value of the versionAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VersionAttribute }
-     *     
-     */
-    public void setVersionAttribute(VersionAttribute value) {
-        this.versionAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideImageAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideImageAttribute }
-     *     
-     */
-    public WideImageAttribute getWideImageAttribute() {
-        return wideImageAttribute;
-    }
-
-    /**
-     * Sets the value of the wideImageAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideImageAttribute }
-     *     
-     */
-    public void setWideImageAttribute(WideImageAttribute value) {
-        this.wideImageAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideValueAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideValueAttribute }
-     *     
-     */
-    public WideValueAttribute getWideValueAttribute() {
-        return wideValueAttribute;
-    }
-
-    /**
-     * Sets the value of the wideValueAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideValueAttribute }
-     *     
-     */
-    public void setWideValueAttribute(WideValueAttribute value) {
-        this.wideValueAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideWidthAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideWidthAttribute }
-     *     
-     */
-    public WideWidthAttribute getWideWidthAttribute() {
-        return wideWidthAttribute;
-    }
-
-    /**
-     * Sets the value of the wideWidthAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideWidthAttribute }
-     *     
-     */
-    public void setWideWidthAttribute(WideWidthAttribute value) {
-        this.wideWidthAttribute = value;
-    }
-
-    /**
-     * Gets the value of the widthAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WidthAttribute }
-     *     
-     */
-    public WidthAttribute getWidthAttribute() {
-        return widthAttribute;
-    }
-
-    /**
-     * Sets the value of the widthAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WidthAttribute }
-     *     
-     */
-    public void setWidthAttribute(WidthAttribute value) {
-        this.widthAttribute = value;
-    }
-
-    /**
-     * Gets the value of the writeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WriteAttribute }
-     *     
-     */
-    public WriteAttribute getWriteAttribute() {
-        return writeAttribute;
-    }
-
-    /**
-     * Sets the value of the writeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WriteAttribute }
-     *     
-     */
-    public void setWriteAttribute(WriteAttribute value) {
-        this.writeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the machineRoundingAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MachineRoundingAttribute }
-     *     
-     */
-    public MachineRoundingAttribute getMachineRoundingAttribute() {
-        return machineRoundingAttribute;
-    }
-
-    /**
-     * Sets the value of the machineRoundingAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MachineRoundingAttribute }
-     *     
-     */
-    public void setMachineRoundingAttribute(MachineRoundingAttribute value) {
-        this.machineRoundingAttribute = value;
-    }
-
-    /**
-     * Gets the value of the modAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ModAttribute }
-     *     
-     */
-    public ModAttribute getModAttribute() {
-        return modAttribute;
-    }
-
-    /**
-     * Sets the value of the modAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ModAttribute }
-     *     
-     */
-    public void setModAttribute(ModAttribute value) {
-        this.modAttribute = value;
-    }
-
-    /**
-     * Gets the value of the priorityAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PriorityAttribute }
-     *     
-     */
-    public PriorityAttribute getPriorityAttribute() {
-        return priorityAttribute;
-    }
-
-    /**
-     * Sets the value of the priorityAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PriorityAttribute }
-     *     
-     */
-    public void setPriorityAttribute(PriorityAttribute value) {
-        this.priorityAttribute = value;
-    }
-
-    /**
-     * Gets the value of the streamSizeAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StreamSizeAttribute }
-     *     
-     */
-    public StreamSizeAttribute getStreamSizeAttribute() {
-        return streamSizeAttribute;
-    }
-
-    /**
-     * Sets the value of the streamSizeAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StreamSizeAttribute }
-     *     
-     */
-    public void setStreamSizeAttribute(StreamSizeAttribute value) {
-        this.streamSizeAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideWideImageAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideWideImageAttribute }
-     *     
-     */
-    public WideWideImageAttribute getWideWideImageAttribute() {
-        return wideWideImageAttribute;
-    }
-
-    /**
-     * Sets the value of the wideWideImageAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideWideImageAttribute }
-     *     
-     */
-    public void setWideWideImageAttribute(WideWideImageAttribute value) {
-        this.wideWideImageAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideWideValueAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideWideValueAttribute }
-     *     
-     */
-    public WideWideValueAttribute getWideWideValueAttribute() {
-        return wideWideValueAttribute;
-    }
-
-    /**
-     * Sets the value of the wideWideValueAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideWideValueAttribute }
-     *     
-     */
-    public void setWideWideValueAttribute(WideWideValueAttribute value) {
-        this.wideWideValueAttribute = value;
-    }
-
-    /**
-     * Gets the value of the wideWideWidthAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link WideWideWidthAttribute }
-     *     
-     */
-    public WideWideWidthAttribute getWideWideWidthAttribute() {
-        return wideWideWidthAttribute;
-    }
-
-    /**
-     * Sets the value of the wideWideWidthAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link WideWideWidthAttribute }
-     *     
-     */
-    public void setWideWideWidthAttribute(WideWideWidthAttribute value) {
-        this.wideWideWidthAttribute = value;
-    }
-
-    /**
-     * Gets the value of the maxAlignmentForAllocationAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link MaxAlignmentForAllocationAttribute }
-     *     
-     */
-    public MaxAlignmentForAllocationAttribute getMaxAlignmentForAllocationAttribute() {
-        return maxAlignmentForAllocationAttribute;
-    }
-
-    /**
-     * Sets the value of the maxAlignmentForAllocationAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MaxAlignmentForAllocationAttribute }
-     *     
-     */
-    public void setMaxAlignmentForAllocationAttribute(MaxAlignmentForAllocationAttribute value) {
-        this.maxAlignmentForAllocationAttribute = value;
-    }
-
-    /**
-     * Gets the value of the overlapsStorageAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OverlapsStorageAttribute }
-     *     
-     */
-    public OverlapsStorageAttribute getOverlapsStorageAttribute() {
-        return overlapsStorageAttribute;
-    }
-
-    /**
-     * Sets the value of the overlapsStorageAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OverlapsStorageAttribute }
-     *     
-     */
-    public void setOverlapsStorageAttribute(OverlapsStorageAttribute value) {
-        this.overlapsStorageAttribute = value;
-    }
-
-    /**
-     * Gets the value of the implementationDefinedAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImplementationDefinedAttribute }
-     *     
-     */
-    public ImplementationDefinedAttribute getImplementationDefinedAttribute() {
-        return implementationDefinedAttribute;
-    }
-
-    /**
-     * Sets the value of the implementationDefinedAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImplementationDefinedAttribute }
-     *     
-     */
-    public void setImplementationDefinedAttribute(ImplementationDefinedAttribute value) {
-        this.implementationDefinedAttribute = value;
-    }
-
-    /**
-     * Gets the value of the unknownAttribute property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnknownAttribute }
-     *     
-     */
-    public UnknownAttribute getUnknownAttribute() {
-        return unknownAttribute;
-    }
-
-    /**
-     * Sets the value of the unknownAttribute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnknownAttribute }
-     *     
-     */
-    public void setUnknownAttribute(UnknownAttribute value) {
-        this.unknownAttribute = value;
-    }
-
-    /**
-     * Gets the value of the recordAggregate property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RecordAggregate }
-     *     
-     */
-    public RecordAggregate getRecordAggregate() {
-        return recordAggregate;
-    }
-
-    /**
-     * Sets the value of the recordAggregate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RecordAggregate }
-     *     
-     */
-    public void setRecordAggregate(RecordAggregate value) {
-        this.recordAggregate = value;
-    }
-
-    /**
-     * Gets the value of the extensionAggregate property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExtensionAggregate }
-     *     
-     */
-    public ExtensionAggregate getExtensionAggregate() {
-        return extensionAggregate;
-    }
-
-    /**
-     * Sets the value of the extensionAggregate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExtensionAggregate }
-     *     
-     */
-    public void setExtensionAggregate(ExtensionAggregate value) {
-        this.extensionAggregate = value;
-    }
-
-    /**
-     * Gets the value of the positionalArrayAggregate property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PositionalArrayAggregate }
-     *     
-     */
-    public PositionalArrayAggregate getPositionalArrayAggregate() {
-        return positionalArrayAggregate;
-    }
-
-    /**
-     * Sets the value of the positionalArrayAggregate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PositionalArrayAggregate }
-     *     
-     */
-    public void setPositionalArrayAggregate(PositionalArrayAggregate value) {
-        this.positionalArrayAggregate = value;
-    }
-
-    /**
-     * Gets the value of the namedArrayAggregate property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NamedArrayAggregate }
-     *     
-     */
-    public NamedArrayAggregate getNamedArrayAggregate() {
-        return namedArrayAggregate;
-    }
-
-    /**
-     * Sets the value of the namedArrayAggregate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NamedArrayAggregate }
-     *     
-     */
-    public void setNamedArrayAggregate(NamedArrayAggregate value) {
-        this.namedArrayAggregate = value;
-    }
-
-    /**
-     * Gets the value of the andThenShortCircuit property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AndThenShortCircuit }
-     *     
-     */
-    public AndThenShortCircuit getAndThenShortCircuit() {
-        return andThenShortCircuit;
-    }
-
-    /**
-     * Sets the value of the andThenShortCircuit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AndThenShortCircuit }
-     *     
-     */
-    public void setAndThenShortCircuit(AndThenShortCircuit value) {
-        this.andThenShortCircuit = value;
-    }
-
-    /**
-     * Gets the value of the orElseShortCircuit property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OrElseShortCircuit }
-     *     
-     */
-    public OrElseShortCircuit getOrElseShortCircuit() {
-        return orElseShortCircuit;
-    }
-
-    /**
-     * Sets the value of the orElseShortCircuit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OrElseShortCircuit }
-     *     
-     */
-    public void setOrElseShortCircuit(OrElseShortCircuit value) {
-        this.orElseShortCircuit = value;
-    }
-
-    /**
-     * Gets the value of the inMembershipTest property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InMembershipTest }
-     *     
-     */
-    public InMembershipTest getInMembershipTest() {
-        return inMembershipTest;
-    }
-
-    /**
-     * Sets the value of the inMembershipTest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InMembershipTest }
-     *     
-     */
-    public void setInMembershipTest(InMembershipTest value) {
-        this.inMembershipTest = value;
-    }
-
-    /**
-     * Gets the value of the notInMembershipTest property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NotInMembershipTest }
-     *     
-     */
-    public NotInMembershipTest getNotInMembershipTest() {
-        return notInMembershipTest;
-    }
-
-    /**
-     * Sets the value of the notInMembershipTest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NotInMembershipTest }
-     *     
-     */
-    public void setNotInMembershipTest(NotInMembershipTest value) {
-        this.notInMembershipTest = value;
-    }
-
-    /**
-     * Gets the value of the nullLiteral property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NullLiteral }
-     *     
-     */
-    public NullLiteral getNullLiteral() {
-        return nullLiteral;
-    }
-
-    /**
-     * Sets the value of the nullLiteral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NullLiteral }
-     *     
-     */
-    public void setNullLiteral(NullLiteral value) {
-        this.nullLiteral = value;
-    }
-
-    /**
-     * Gets the value of the parenthesizedExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ParenthesizedExpression }
-     *     
-     */
-    public ParenthesizedExpression getParenthesizedExpression() {
-        return parenthesizedExpression;
-    }
-
-    /**
-     * Sets the value of the parenthesizedExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ParenthesizedExpression }
-     *     
-     */
-    public void setParenthesizedExpression(ParenthesizedExpression value) {
-        this.parenthesizedExpression = value;
-    }
-
-    /**
-     * Gets the value of the typeConversion property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TypeConversion }
-     *     
-     */
-    public TypeConversion getTypeConversion() {
-        return typeConversion;
-    }
-
-    /**
-     * Sets the value of the typeConversion property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TypeConversion }
-     *     
-     */
-    public void setTypeConversion(TypeConversion value) {
-        this.typeConversion = value;
-    }
-
-    /**
-     * Gets the value of the qualifiedExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link QualifiedExpression }
-     *     
-     */
-    public QualifiedExpression getQualifiedExpression() {
-        return qualifiedExpression;
-    }
-
-    /**
-     * Sets the value of the qualifiedExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link QualifiedExpression }
-     *     
-     */
-    public void setQualifiedExpression(QualifiedExpression value) {
-        this.qualifiedExpression = value;
-    }
-
-    /**
-     * Gets the value of the allocationFromSubtype property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AllocationFromSubtype }
-     *     
-     */
-    public AllocationFromSubtype getAllocationFromSubtype() {
-        return allocationFromSubtype;
-    }
-
-    /**
-     * Sets the value of the allocationFromSubtype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AllocationFromSubtype }
-     *     
-     */
-    public void setAllocationFromSubtype(AllocationFromSubtype value) {
-        this.allocationFromSubtype = value;
-    }
-
-    /**
-     * Gets the value of the allocationFromQualifiedExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AllocationFromQualifiedExpression }
-     *     
-     */
-    public AllocationFromQualifiedExpression getAllocationFromQualifiedExpression() {
-        return allocationFromQualifiedExpression;
-    }
-
-    /**
-     * Sets the value of the allocationFromQualifiedExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AllocationFromQualifiedExpression }
-     *     
-     */
-    public void setAllocationFromQualifiedExpression(AllocationFromQualifiedExpression value) {
-        this.allocationFromQualifiedExpression = value;
-    }
-
-    /**
-     * Gets the value of the caseExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CaseExpression }
-     *     
-     */
-    public CaseExpression getCaseExpression() {
-        return caseExpression;
-    }
-
-    /**
-     * Sets the value of the caseExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CaseExpression }
-     *     
-     */
-    public void setCaseExpression(CaseExpression value) {
-        this.caseExpression = value;
-    }
-
-    /**
-     * Gets the value of the ifExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IfExpression }
-     *     
-     */
-    public IfExpression getIfExpression() {
-        return ifExpression;
-    }
-
-    /**
-     * Sets the value of the ifExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IfExpression }
-     *     
-     */
-    public void setIfExpression(IfExpression value) {
-        this.ifExpression = value;
-    }
-
-    /**
-     * Gets the value of the forAllQuantifiedExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ForAllQuantifiedExpression }
-     *     
-     */
-    public ForAllQuantifiedExpression getForAllQuantifiedExpression() {
-        return forAllQuantifiedExpression;
-    }
-
-    /**
-     * Sets the value of the forAllQuantifiedExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ForAllQuantifiedExpression }
-     *     
-     */
-    public void setForAllQuantifiedExpression(ForAllQuantifiedExpression value) {
-        this.forAllQuantifiedExpression = value;
-    }
-
-    /**
-     * Gets the value of the forSomeQuantifiedExpression property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ForSomeQuantifiedExpression }
-     *     
-     */
-    public ForSomeQuantifiedExpression getForSomeQuantifiedExpression() {
-        return forSomeQuantifiedExpression;
-    }
-
-    /**
-     * Sets the value of the forSomeQuantifiedExpression property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ForSomeQuantifiedExpression }
-     *     
-     */
-    public void setForSomeQuantifiedExpression(ForSomeQuantifiedExpression value) {
-        this.forSomeQuantifiedExpression = value;
-    }
-
-    /**
-     * Gets the value of the allCallsRemotePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public AllCallsRemotePragma getAllCallsRemotePragma() {
-        return allCallsRemotePragma;
-    }
-
-    /**
-     * Sets the value of the allCallsRemotePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AllCallsRemotePragma }
-     *     
-     */
-    public void setAllCallsRemotePragma(AllCallsRemotePragma value) {
-        this.allCallsRemotePragma = value;
-    }
-
-    /**
-     * Gets the value of the asynchronousPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AsynchronousPragma }
-     *     
-     */
-    public AsynchronousPragma getAsynchronousPragma() {
-        return asynchronousPragma;
-    }
-
-    /**
-     * Sets the value of the asynchronousPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AsynchronousPragma }
-     *     
-     */
-    public void setAsynchronousPragma(AsynchronousPragma value) {
-        this.asynchronousPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicPragma }
-     *     
-     */
-    public AtomicPragma getAtomicPragma() {
-        return atomicPragma;
-    }
-
-    /**
-     * Sets the value of the atomicPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicPragma }
-     *     
-     */
-    public void setAtomicPragma(AtomicPragma value) {
-        this.atomicPragma = value;
-    }
-
-    /**
-     * Gets the value of the atomicComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public AtomicComponentsPragma getAtomicComponentsPragma() {
-        return atomicComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the atomicComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AtomicComponentsPragma }
-     *     
-     */
-    public void setAtomicComponentsPragma(AtomicComponentsPragma value) {
-        this.atomicComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the attachHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AttachHandlerPragma }
-     *     
-     */
-    public AttachHandlerPragma getAttachHandlerPragma() {
-        return attachHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the attachHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AttachHandlerPragma }
-     *     
-     */
-    public void setAttachHandlerPragma(AttachHandlerPragma value) {
-        this.attachHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the controlledPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ControlledPragma }
-     *     
-     */
-    public ControlledPragma getControlledPragma() {
-        return controlledPragma;
-    }
-
-    /**
-     * Sets the value of the controlledPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ControlledPragma }
-     *     
-     */
-    public void setControlledPragma(ControlledPragma value) {
-        this.controlledPragma = value;
-    }
-
-    /**
-     * Gets the value of the conventionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ConventionPragma }
-     *     
-     */
-    public ConventionPragma getConventionPragma() {
-        return conventionPragma;
-    }
-
-    /**
-     * Sets the value of the conventionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConventionPragma }
-     *     
-     */
-    public void setConventionPragma(ConventionPragma value) {
-        this.conventionPragma = value;
-    }
-
-    /**
-     * Gets the value of the discardNamesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DiscardNamesPragma }
-     *     
-     */
-    public DiscardNamesPragma getDiscardNamesPragma() {
-        return discardNamesPragma;
-    }
-
-    /**
-     * Sets the value of the discardNamesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DiscardNamesPragma }
-     *     
-     */
-    public void setDiscardNamesPragma(DiscardNamesPragma value) {
-        this.discardNamesPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaboratePragma }
-     *     
-     */
-    public ElaboratePragma getElaboratePragma() {
-        return elaboratePragma;
-    }
-
-    /**
-     * Sets the value of the elaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaboratePragma }
-     *     
-     */
-    public void setElaboratePragma(ElaboratePragma value) {
-        this.elaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateAllPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateAllPragma }
-     *     
-     */
-    public ElaborateAllPragma getElaborateAllPragma() {
-        return elaborateAllPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateAllPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateAllPragma }
-     *     
-     */
-    public void setElaborateAllPragma(ElaborateAllPragma value) {
-        this.elaborateAllPragma = value;
-    }
-
-    /**
-     * Gets the value of the elaborateBodyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public ElaborateBodyPragma getElaborateBodyPragma() {
-        return elaborateBodyPragma;
-    }
-
-    /**
-     * Sets the value of the elaborateBodyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ElaborateBodyPragma }
-     *     
-     */
-    public void setElaborateBodyPragma(ElaborateBodyPragma value) {
-        this.elaborateBodyPragma = value;
-    }
-
-    /**
-     * Gets the value of the exportPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ExportPragma }
-     *     
-     */
-    public ExportPragma getExportPragma() {
-        return exportPragma;
-    }
-
-    /**
-     * Sets the value of the exportPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExportPragma }
-     *     
-     */
-    public void setExportPragma(ExportPragma value) {
-        this.exportPragma = value;
-    }
-
-    /**
-     * Gets the value of the importPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImportPragma }
-     *     
-     */
-    public ImportPragma getImportPragma() {
-        return importPragma;
-    }
-
-    /**
-     * Sets the value of the importPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImportPragma }
-     *     
-     */
-    public void setImportPragma(ImportPragma value) {
-        this.importPragma = value;
-    }
-
-    /**
-     * Gets the value of the inlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InlinePragma }
-     *     
-     */
-    public InlinePragma getInlinePragma() {
-        return inlinePragma;
-    }
-
-    /**
-     * Sets the value of the inlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InlinePragma }
-     *     
-     */
-    public void setInlinePragma(InlinePragma value) {
-        this.inlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the inspectionPointPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InspectionPointPragma }
-     *     
-     */
-    public InspectionPointPragma getInspectionPointPragma() {
-        return inspectionPointPragma;
-    }
-
-    /**
-     * Sets the value of the inspectionPointPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InspectionPointPragma }
-     *     
-     */
-    public void setInspectionPointPragma(InspectionPointPragma value) {
-        this.inspectionPointPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptHandlerPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public InterruptHandlerPragma getInterruptHandlerPragma() {
-        return interruptHandlerPragma;
-    }
-
-    /**
-     * Sets the value of the interruptHandlerPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptHandlerPragma }
-     *     
-     */
-    public void setInterruptHandlerPragma(InterruptHandlerPragma value) {
-        this.interruptHandlerPragma = value;
-    }
-
-    /**
-     * Gets the value of the interruptPriorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public InterruptPriorityPragma getInterruptPriorityPragma() {
-        return interruptPriorityPragma;
-    }
-
-    /**
-     * Sets the value of the interruptPriorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InterruptPriorityPragma }
-     *     
-     */
-    public void setInterruptPriorityPragma(InterruptPriorityPragma value) {
-        this.interruptPriorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the linkerOptionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public LinkerOptionsPragma getLinkerOptionsPragma() {
-        return linkerOptionsPragma;
-    }
-
-    /**
-     * Sets the value of the linkerOptionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LinkerOptionsPragma }
-     *     
-     */
-    public void setLinkerOptionsPragma(LinkerOptionsPragma value) {
-        this.linkerOptionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the listPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ListPragma }
-     *     
-     */
-    public ListPragma getListPragma() {
-        return listPragma;
-    }
-
-    /**
-     * Sets the value of the listPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ListPragma }
-     *     
-     */
-    public void setListPragma(ListPragma value) {
-        this.listPragma = value;
-    }
-
-    /**
-     * Gets the value of the lockingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link LockingPolicyPragma }
-     *     
-     */
-    public LockingPolicyPragma getLockingPolicyPragma() {
-        return lockingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the lockingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LockingPolicyPragma }
-     *     
-     */
-    public void setLockingPolicyPragma(LockingPolicyPragma value) {
-        this.lockingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the normalizeScalarsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public NormalizeScalarsPragma getNormalizeScalarsPragma() {
-        return normalizeScalarsPragma;
-    }
-
-    /**
-     * Sets the value of the normalizeScalarsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NormalizeScalarsPragma }
-     *     
-     */
-    public void setNormalizeScalarsPragma(NormalizeScalarsPragma value) {
-        this.normalizeScalarsPragma = value;
-    }
-
-    /**
-     * Gets the value of the optimizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link OptimizePragma }
-     *     
-     */
-    public OptimizePragma getOptimizePragma() {
-        return optimizePragma;
-    }
-
-    /**
-     * Sets the value of the optimizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OptimizePragma }
-     *     
-     */
-    public void setOptimizePragma(OptimizePragma value) {
-        this.optimizePragma = value;
-    }
-
-    /**
-     * Gets the value of the packPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PackPragma }
-     *     
-     */
-    public PackPragma getPackPragma() {
-        return packPragma;
-    }
-
-    /**
-     * Sets the value of the packPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PackPragma }
-     *     
-     */
-    public void setPackPragma(PackPragma value) {
-        this.packPragma = value;
-    }
-
-    /**
-     * Gets the value of the pagePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PagePragma }
-     *     
-     */
-    public PagePragma getPagePragma() {
-        return pagePragma;
-    }
-
-    /**
-     * Sets the value of the pagePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PagePragma }
-     *     
-     */
-    public void setPagePragma(PagePragma value) {
-        this.pagePragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaboratePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaboratePragma }
-     *     
-     */
-    public PreelaboratePragma getPreelaboratePragma() {
-        return preelaboratePragma;
-    }
-
-    /**
-     * Sets the value of the preelaboratePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaboratePragma }
-     *     
-     */
-    public void setPreelaboratePragma(PreelaboratePragma value) {
-        this.preelaboratePragma = value;
-    }
-
-    /**
-     * Gets the value of the priorityPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PriorityPragma }
-     *     
-     */
-    public PriorityPragma getPriorityPragma() {
-        return priorityPragma;
-    }
-
-    /**
-     * Sets the value of the priorityPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PriorityPragma }
-     *     
-     */
-    public void setPriorityPragma(PriorityPragma value) {
-        this.priorityPragma = value;
-    }
-
-    /**
-     * Gets the value of the purePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PurePragma }
-     *     
-     */
-    public PurePragma getPurePragma() {
-        return purePragma;
-    }
-
-    /**
-     * Sets the value of the purePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PurePragma }
-     *     
-     */
-    public void setPurePragma(PurePragma value) {
-        this.purePragma = value;
-    }
-
-    /**
-     * Gets the value of the queuingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public QueuingPolicyPragma getQueuingPolicyPragma() {
-        return queuingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the queuingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link QueuingPolicyPragma }
-     *     
-     */
-    public void setQueuingPolicyPragma(QueuingPolicyPragma value) {
-        this.queuingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteCallInterfacePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public RemoteCallInterfacePragma getRemoteCallInterfacePragma() {
-        return remoteCallInterfacePragma;
-    }
-
-    /**
-     * Sets the value of the remoteCallInterfacePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteCallInterfacePragma }
-     *     
-     */
-    public void setRemoteCallInterfacePragma(RemoteCallInterfacePragma value) {
-        this.remoteCallInterfacePragma = value;
-    }
-
-    /**
-     * Gets the value of the remoteTypesPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RemoteTypesPragma }
-     *     
-     */
-    public RemoteTypesPragma getRemoteTypesPragma() {
-        return remoteTypesPragma;
-    }
-
-    /**
-     * Sets the value of the remoteTypesPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemoteTypesPragma }
-     *     
-     */
-    public void setRemoteTypesPragma(RemoteTypesPragma value) {
-        this.remoteTypesPragma = value;
-    }
-
-    /**
-     * Gets the value of the restrictionsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RestrictionsPragma }
-     *     
-     */
-    public RestrictionsPragma getRestrictionsPragma() {
-        return restrictionsPragma;
-    }
-
-    /**
-     * Sets the value of the restrictionsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RestrictionsPragma }
-     *     
-     */
-    public void setRestrictionsPragma(RestrictionsPragma value) {
-        this.restrictionsPragma = value;
-    }
-
-    /**
-     * Gets the value of the reviewablePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ReviewablePragma }
-     *     
-     */
-    public ReviewablePragma getReviewablePragma() {
-        return reviewablePragma;
-    }
-
-    /**
-     * Sets the value of the reviewablePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReviewablePragma }
-     *     
-     */
-    public void setReviewablePragma(ReviewablePragma value) {
-        this.reviewablePragma = value;
-    }
-
-    /**
-     * Gets the value of the sharedPassivePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SharedPassivePragma }
-     *     
-     */
-    public SharedPassivePragma getSharedPassivePragma() {
-        return sharedPassivePragma;
-    }
-
-    /**
-     * Sets the value of the sharedPassivePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SharedPassivePragma }
-     *     
-     */
-    public void setSharedPassivePragma(SharedPassivePragma value) {
-        this.sharedPassivePragma = value;
-    }
-
-    /**
-     * Gets the value of the storageSizePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link StorageSizePragma }
-     *     
-     */
-    public StorageSizePragma getStorageSizePragma() {
-        return storageSizePragma;
-    }
-
-    /**
-     * Sets the value of the storageSizePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StorageSizePragma }
-     *     
-     */
-    public void setStorageSizePragma(StorageSizePragma value) {
-        this.storageSizePragma = value;
-    }
-
-    /**
-     * Gets the value of the suppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link SuppressPragma }
-     *     
-     */
-    public SuppressPragma getSuppressPragma() {
-        return suppressPragma;
-    }
-
-    /**
-     * Sets the value of the suppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SuppressPragma }
-     *     
-     */
-    public void setSuppressPragma(SuppressPragma value) {
-        this.suppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public TaskDispatchingPolicyPragma getTaskDispatchingPolicyPragma() {
-        return taskDispatchingPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the taskDispatchingPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TaskDispatchingPolicyPragma }
-     *     
-     */
-    public void setTaskDispatchingPolicyPragma(TaskDispatchingPolicyPragma value) {
-        this.taskDispatchingPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the volatilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatilePragma }
-     *     
-     */
-    public VolatilePragma getVolatilePragma() {
-        return volatilePragma;
-    }
-
-    /**
-     * Sets the value of the volatilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatilePragma }
-     *     
-     */
-    public void setVolatilePragma(VolatilePragma value) {
-        this.volatilePragma = value;
-    }
-
-    /**
-     * Gets the value of the volatileComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public VolatileComponentsPragma getVolatileComponentsPragma() {
-        return volatileComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the volatileComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link VolatileComponentsPragma }
-     *     
-     */
-    public void setVolatileComponentsPragma(VolatileComponentsPragma value) {
-        this.volatileComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertPragma }
-     *     
-     */
-    public AssertPragma getAssertPragma() {
-        return assertPragma;
-    }
-
-    /**
-     * Sets the value of the assertPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertPragma }
-     *     
-     */
-    public void setAssertPragma(AssertPragma value) {
-        this.assertPragma = value;
-    }
-
-    /**
-     * Gets the value of the assertionPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public AssertionPolicyPragma getAssertionPolicyPragma() {
-        return assertionPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the assertionPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AssertionPolicyPragma }
-     *     
-     */
-    public void setAssertionPolicyPragma(AssertionPolicyPragma value) {
-        this.assertionPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the detectBlockingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DetectBlockingPragma }
-     *     
-     */
-    public DetectBlockingPragma getDetectBlockingPragma() {
-        return detectBlockingPragma;
-    }
-
-    /**
-     * Sets the value of the detectBlockingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DetectBlockingPragma }
-     *     
-     */
-    public void setDetectBlockingPragma(DetectBlockingPragma value) {
-        this.detectBlockingPragma = value;
-    }
-
-    /**
-     * Gets the value of the noReturnPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link NoReturnPragma }
-     *     
-     */
-    public NoReturnPragma getNoReturnPragma() {
-        return noReturnPragma;
-    }
-
-    /**
-     * Sets the value of the noReturnPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NoReturnPragma }
-     *     
-     */
-    public void setNoReturnPragma(NoReturnPragma value) {
-        this.noReturnPragma = value;
-    }
-
-    /**
-     * Gets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public PartitionElaborationPolicyPragma getPartitionElaborationPolicyPragma() {
-        return partitionElaborationPolicyPragma;
-    }
-
-    /**
-     * Sets the value of the partitionElaborationPolicyPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PartitionElaborationPolicyPragma }
-     *     
-     */
-    public void setPartitionElaborationPolicyPragma(PartitionElaborationPolicyPragma value) {
-        this.partitionElaborationPolicyPragma = value;
-    }
-
-    /**
-     * Gets the value of the preelaborableInitializationPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public PreelaborableInitializationPragma getPreelaborableInitializationPragma() {
-        return preelaborableInitializationPragma;
-    }
-
-    /**
-     * Sets the value of the preelaborableInitializationPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PreelaborableInitializationPragma }
-     *     
-     */
-    public void setPreelaborableInitializationPragma(PreelaborableInitializationPragma value) {
-        this.preelaborableInitializationPragma = value;
-    }
-
-    /**
-     * Gets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public PrioritySpecificDispatchingPragma getPrioritySpecificDispatchingPragma() {
-        return prioritySpecificDispatchingPragma;
-    }
-
-    /**
-     * Sets the value of the prioritySpecificDispatchingPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PrioritySpecificDispatchingPragma }
-     *     
-     */
-    public void setPrioritySpecificDispatchingPragma(PrioritySpecificDispatchingPragma value) {
-        this.prioritySpecificDispatchingPragma = value;
-    }
-
-    /**
-     * Gets the value of the profilePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ProfilePragma }
-     *     
-     */
-    public ProfilePragma getProfilePragma() {
-        return profilePragma;
-    }
-
-    /**
-     * Sets the value of the profilePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ProfilePragma }
-     *     
-     */
-    public void setProfilePragma(ProfilePragma value) {
-        this.profilePragma = value;
-    }
-
-    /**
-     * Gets the value of the relativeDeadlinePragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public RelativeDeadlinePragma getRelativeDeadlinePragma() {
-        return relativeDeadlinePragma;
-    }
-
-    /**
-     * Sets the value of the relativeDeadlinePragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelativeDeadlinePragma }
-     *     
-     */
-    public void setRelativeDeadlinePragma(RelativeDeadlinePragma value) {
-        this.relativeDeadlinePragma = value;
-    }
-
-    /**
-     * Gets the value of the uncheckedUnionPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public UncheckedUnionPragma getUncheckedUnionPragma() {
-        return uncheckedUnionPragma;
-    }
-
-    /**
-     * Sets the value of the uncheckedUnionPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UncheckedUnionPragma }
-     *     
-     */
-    public void setUncheckedUnionPragma(UncheckedUnionPragma value) {
-        this.uncheckedUnionPragma = value;
-    }
-
-    /**
-     * Gets the value of the unsuppressPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnsuppressPragma }
-     *     
-     */
-    public UnsuppressPragma getUnsuppressPragma() {
-        return unsuppressPragma;
-    }
-
-    /**
-     * Sets the value of the unsuppressPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnsuppressPragma }
-     *     
-     */
-    public void setUnsuppressPragma(UnsuppressPragma value) {
-        this.unsuppressPragma = value;
-    }
-
-    /**
-     * Gets the value of the defaultStoragePoolPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public DefaultStoragePoolPragma getDefaultStoragePoolPragma() {
-        return defaultStoragePoolPragma;
-    }
-
-    /**
-     * Sets the value of the defaultStoragePoolPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefaultStoragePoolPragma }
-     *     
-     */
-    public void setDefaultStoragePoolPragma(DefaultStoragePoolPragma value) {
-        this.defaultStoragePoolPragma = value;
-    }
-
-    /**
-     * Gets the value of the dispatchingDomainPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public DispatchingDomainPragma getDispatchingDomainPragma() {
-        return dispatchingDomainPragma;
-    }
-
-    /**
-     * Sets the value of the dispatchingDomainPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DispatchingDomainPragma }
-     *     
-     */
-    public void setDispatchingDomainPragma(DispatchingDomainPragma value) {
-        this.dispatchingDomainPragma = value;
-    }
-
-    /**
-     * Gets the value of the cpuPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link CpuPragma }
-     *     
-     */
-    public CpuPragma getCpuPragma() {
-        return cpuPragma;
-    }
-
-    /**
-     * Sets the value of the cpuPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CpuPragma }
-     *     
-     */
-    public void setCpuPragma(CpuPragma value) {
-        this.cpuPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentPragma }
-     *     
-     */
-    public IndependentPragma getIndependentPragma() {
-        return independentPragma;
-    }
-
-    /**
-     * Sets the value of the independentPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentPragma }
-     *     
-     */
-    public void setIndependentPragma(IndependentPragma value) {
-        this.independentPragma = value;
-    }
-
-    /**
-     * Gets the value of the independentComponentsPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public IndependentComponentsPragma getIndependentComponentsPragma() {
-        return independentComponentsPragma;
-    }
-
-    /**
-     * Sets the value of the independentComponentsPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IndependentComponentsPragma }
-     *     
-     */
-    public void setIndependentComponentsPragma(IndependentComponentsPragma value) {
-        this.independentComponentsPragma = value;
-    }
-
-    /**
-     * Gets the value of the implementationDefinedPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public ImplementationDefinedPragma getImplementationDefinedPragma() {
-        return implementationDefinedPragma;
-    }
-
-    /**
-     * Sets the value of the implementationDefinedPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ImplementationDefinedPragma }
-     *     
-     */
-    public void setImplementationDefinedPragma(ImplementationDefinedPragma value) {
-        this.implementationDefinedPragma = value;
-    }
-
-    /**
-     * Gets the value of the unknownPragma property.
-     * 
-     * @return
-     *     possible object is
      *     {@link UnknownPragma }
      *     
      */
-    public UnknownPragma getUnknownPragma() {
-        return unknownPragma;
-    }
-
-    /**
-     * Sets the value of the unknownPragma property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UnknownPragma }
-     *     
-     */
-    public void setUnknownPragma(UnknownPragma value) {
-        this.unknownPragma = value;
+    public void setExpression(Object value) {
+        this.expression = value;
     }
 
 }

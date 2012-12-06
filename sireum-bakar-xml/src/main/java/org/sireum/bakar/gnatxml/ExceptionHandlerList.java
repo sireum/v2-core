@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Exception_Handler_List", propOrder = {
-    "notAnElementOrExceptionHandlerOrAllCallsRemotePragma"
+    "exceptionHandlers"
 })
 public class ExceptionHandlerList {
 
@@ -103,21 +103,21 @@ public class ExceptionHandlerList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrExceptionHandlerOrAllCallsRemotePragma;
+    protected List<Object> exceptionHandlers;
 
     /**
-     * Gets the value of the notAnElementOrExceptionHandlerOrAllCallsRemotePragma property.
+     * Gets the value of the exceptionHandlers property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrExceptionHandlerOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the exceptionHandlers property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrExceptionHandlerOrAllCallsRemotePragma().add(newItem);
+     *    getExceptionHandlers().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class ExceptionHandlerList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrExceptionHandlerOrAllCallsRemotePragma() {
-        if (notAnElementOrExceptionHandlerOrAllCallsRemotePragma == null) {
-            notAnElementOrExceptionHandlerOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getExceptionHandlers() {
+        if (exceptionHandlers == null) {
+            exceptionHandlers = new ArrayList<Object>();
         }
-        return this.notAnElementOrExceptionHandlerOrAllCallsRemotePragma;
+        return this.exceptionHandlers;
     }
 
 }

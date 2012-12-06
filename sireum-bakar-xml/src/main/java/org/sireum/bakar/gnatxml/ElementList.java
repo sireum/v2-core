@@ -415,7 +415,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Element_List", propOrder = {
-    "notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral"
+    "elements"
 })
 public class ElementList {
 
@@ -855,21 +855,21 @@ public class ElementList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral;
+    protected List<Object> elements;
 
     /**
-     * Gets the value of the notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral property.
+     * Gets the value of the elements property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral property.
+     * This is why there is not a <CODE>set</CODE> method for the elements property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDefiningIdentifierOrDefiningCharacterLiteral().add(newItem);
+     *    getElements().add(newItem);
      * </pre>
      * 
      * 
@@ -1312,11 +1312,11 @@ public class ElementList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDefiningIdentifierOrDefiningCharacterLiteral() {
-        if (notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral == null) {
-            notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral = new ArrayList<Object>();
+    public List<Object> getElements() {
+        if (elements == null) {
+            elements = new ArrayList<Object>();
         }
-        return this.notAnElementOrDefiningIdentifierOrDefiningCharacterLiteral;
+        return this.elements;
     }
 
 }

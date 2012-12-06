@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Discriminant_Association_List", propOrder = {
-    "notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma"
+    "discriminantAssociations"
 })
 public class DiscriminantAssociationList {
 
@@ -103,21 +103,21 @@ public class DiscriminantAssociationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma;
+    protected List<Object> discriminantAssociations;
 
     /**
-     * Gets the value of the notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma property.
+     * Gets the value of the discriminantAssociations property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma property.
+     * This is why there is not a <CODE>set</CODE> method for the discriminantAssociations property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getNotAnElementOrDiscriminantAssociationOrAllCallsRemotePragma().add(newItem);
+     *    getDiscriminantAssociations().add(newItem);
      * </pre>
      * 
      * 
@@ -184,11 +184,11 @@ public class DiscriminantAssociationList {
      * 
      * 
      */
-    public List<Object> getNotAnElementOrDiscriminantAssociationOrAllCallsRemotePragma() {
-        if (notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma == null) {
-            notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma = new ArrayList<Object>();
+    public List<Object> getDiscriminantAssociations() {
+        if (discriminantAssociations == null) {
+            discriminantAssociations = new ArrayList<Object>();
         }
-        return this.notAnElementOrDiscriminantAssociationOrAllCallsRemotePragma;
+        return this.discriminantAssociations;
     }
 
 }
