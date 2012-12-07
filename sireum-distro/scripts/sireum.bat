@@ -352,7 +352,7 @@ object SireumDistro extends App {
   list                         List available features
   list installed               List installed features
   update                       Update features
-  uninstall <feature>+         Uninstall featuref and all features 
+  uninstall <feature>+         Uninstall features and all features 
                                depending on them
   uninstall all                Uninstall all features and scrub Sireum directory
   version                      Display version
