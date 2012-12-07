@@ -1,19 +1,29 @@
 package org.sireum.bakar.xml.module
 
-import org.sireum.pipeline.PipelineJob
-import org.sireum.pipeline.PipelineJobModuleInfo
-import org.sireum.util._
 import java.io.File
-import java.net.URI
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.net.URI
+import scala.Some.apply
+import org.sireum.bakar.xml.CompilationUnit
+import org.sireum.pipeline.PipelineJob
+import org.sireum.pipeline.PipelineJobModuleInfo
+import org.sireum.util.Exec
+import org.sireum.util.FileUtil
+import org.sireum.util.ilist
+import org.sireum.util.mlistEmpty
+import org.sireum.util.mmapEmpty
+import org.sireum.util.msetEmpty
+import com.thoughtworks.xstream.XStream
+import javax.xml.bind.JAXBContext
+import org.sireum.util.FileResourceUri
 
 object Util {
   val gnat2xml_key = "gnat2xml"
   def base = {
     val loc = scala.util.Properties.envOrElse(gnat2xml_key, "")
     val f = new File(loc)
-    if(!f.exists() || !f.isDirectory() || !(new File(f, "gnat2xml").exists())){
+    if (!f.exists() || !f.isDirectory() || !(new File(f, "gnat2xml").exists())) {
       println("""val of environmental variable '%s' does not appear to be valid. 
 It should point to the location of the gnat2xml bin, instead it's 
 value is: %s""".format(gnat2xml_key, loc))
@@ -46,11 +56,15 @@ value is: %s""".format(gnat2xml_key, loc))
     val src = new File(new URI(srcUri))
     val dest = new File(new URI(destUri))
 
-    if (src.exists() && src.isDirectory()) {
-      src.listFiles().foreach { f =>
-        if (f.isFile()) {
-          copyFile(f)
+    if (src.exists()) {
+      if (src.isDirectory()) {
+        src.listFiles().foreach { f =>
+          if (f.isFile()) {
+            copyFile(f)
+          }
         }
+      } else {
+        copyFile(src)
       }
     }
   }
@@ -90,7 +104,7 @@ class Gnat2XMLWrapperDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         seen += parentUri
 
         Util.cleanDir(tempUri)
-        Util.copy(parentUri, tempUri)
+        this.srcFiles.foreach(f => Util.copy(f, tempUri))
 
         val args = ilist("/bin/bash", "-c",
           Util.gnatmake.getAbsolutePath() + " -gnat2012 -gnatct *.ads *.adb")
@@ -123,10 +137,17 @@ class Gnat2XMLWrapperDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
 class ParseGnat2XMLDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends ParseGnat2XMLModule {
   val results = mmapEmpty[FileResourceUri, String]
 
+  import javax.xml.bind._
+  import org.sireum.bakar.xml._;
+
+  val jc = JAXBContext.newInstance("org.sireum.bakar.xml");
+  val u = jc.createUnmarshaller();
+  val xs = new XStream();
+
   this.gnat2xmlResults.foreach { uri =>
     val f = new File(new URI(uri))
-    assert(false)
-    results(uri) = "".toString()
+    val o = u.unmarshal(new FileInputStream(f)).asInstanceOf[JAXBElement[CompilationUnit]]
+    results(uri) = xs.toXML(o.getValue())
   }
 
   this.parseGnat2XMLresults_=(results)
