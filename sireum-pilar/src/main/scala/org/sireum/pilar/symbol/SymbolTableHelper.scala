@@ -210,10 +210,12 @@ object H {
     val key = nameDef.resourceUri
     tvt.get(key) match {
       case Some(other) =>
-        str.reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        str.reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_TYPE_VAR.format(H.symbolSimpleName(nameDef),
-            other.locationLine, other.locationColumn))
+            other.line, other.column))
       case _ =>
         tvt(key.intern) = nameDef
     }
@@ -237,8 +239,10 @@ object H {
         H.symbolInit(typeVarR, H.TYPE_VAR_TYPE,
           nameDef.resourcePaths, nameDef.resourceUri)
       case _ =>
+        import LineColumnLocation._
+        import FileLocation._
         str.reportError(source,
-          typeVarR.locationLine, typeVarR.locationColumn,
+          typeVarR.line, typeVarR.column,
           NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
     }
 
@@ -360,10 +364,12 @@ object H {
         case Some(ce) =>
           val ceName = f(ce)
           val otherName = f(value)
-          str.reportError(otherName.locationFile,
-            otherName.locationLine, otherName.locationColumn,
-            message.format(otherName.name, ceName.locationLine,
-              ceName.locationColumn, ceName.locationFile))
+          import LineColumnLocation._
+          import FileLocation._
+          str.reportError(otherName.fileUriOpt,
+            otherName.line, otherName.column,
+            message.format(otherName.name, ceName.line,
+              ceName.column, ceName.fileUriOpt))
         case _ =>
           m1(key) = value
       }

@@ -13,16 +13,14 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait Symbol extends Resource
+trait Symbol extends PropertyProvider with Resource
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SymbolDefinition //
-  extends Symbol // 
-  with ResourceDefinition //
-  with FileLocation //
-  with LineColumnLocation
+    extends Symbol // 
+    with ResourceDefinition
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

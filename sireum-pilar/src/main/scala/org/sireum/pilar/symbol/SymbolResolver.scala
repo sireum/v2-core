@@ -18,15 +18,15 @@ import org.sireum.util._
 trait SymbolResolver {
   def dependency : MMap[String, MSet[String]]
 
-  def addDependency(fromUri : FileResourceUri, toSD : SymbolDefinition) : Unit =
-    toSD.locationFile match {
-      case Some(locationFile) =>
-        if (fromUri != locationFile) {
-          dependency.getOrElseUpdate(locationFile,
-            msetEmpty[FileResourceUri]) += fromUri
-        }
-      case _ =>
+  def addDependency(fromUri : FileResourceUri, toSD : SymbolDefinition) : Unit = {
+    import FileLocation._
+    toSD.fileUriForEach { fileLoc : FileResourceUri =>
+      if (fromUri != fileLoc) {
+        dependency.getOrElseUpdate(fileLoc,
+          msetEmpty[FileResourceUri]) += fromUri
+      }
     }
+  }
 }
 
 /**
@@ -398,9 +398,11 @@ trait RecordHierarchyResolver extends SymbolResolver {
     if (!stp.tables.recordTable.isEmpty)
       for (rd <- stp.tables.recordTable.values)
         rd.extendsClauses.foreach { ec =>
+          import LineColumnLocation._
+          import FileLocation._
           val nameUser = ec.name
           val recordName = nameUser.name
-          val source = rd.name.locationFile
+          val source = rd.name.fileUriOpt
           val paths = ilist(recordName)
           val key = H.symbolUri(H.RECORD_TYPE, paths)
           var success = resolveRecordHierarchy(stp, source, nameUser, key, paths)
@@ -411,7 +413,7 @@ trait RecordHierarchyResolver extends SymbolResolver {
           }
           if (!success)
             stp.reportError(source,
-              nameUser.locationLine, nameUser.locationColumn,
+              nameUser.line, nameUser.column,
               NOT_FOUND_EXTEND_RECORD.format(nameUser.name))
         }
 
@@ -648,10 +650,12 @@ trait FunParamResolver extends SymbolResolver {
           val key = pName.resourceUri
           scope.get(key) match {
             case Some(other) =>
-              reportError(pName.locationFile,
-                pName.locationLine, pName.locationColumn,
+              import LineColumnLocation._
+              import FileLocation._
+              reportError(pName.fileUriOpt,
+                pName.line, pName.column,
                 DUPLICATE_ANON_PARAM.format(pName.name,
-                  other.name.locationLine, other.locationColumn))
+                  other.name.line, other.column))
             case _ =>
               scope(key) = p
           }
@@ -695,7 +699,8 @@ trait ProcedureSymbolResolver extends SymbolResolver {
     case pd : ProcedureDecl =>
       if (!pd.typeVars.isEmpty) {
         val tvt = H.buildTypeVarMap(pd.typeVars)
-        val source = pd.name.locationFile
+        import FileLocation._
+        val source = pd.name.fileUriOpt
         Visitor.build {
           case tvs : TypeVarSpec =>
             H.resolveTypeVar(source, self.symbolTableProducer, tvs.name, tvt,
@@ -715,7 +720,8 @@ trait ProcedureSymbolResolver extends SymbolResolver {
     return {
       case pd : ProcedureDecl =>
         procNameDef = pd.name
-        source = procNameDef.locationFile
+        import FileLocation._
+        source = procNameDef.fileUriOpt
         tvt = H.buildTypeVarMap(pd.typeVars)
         true
       case ne : NameExp =>
@@ -770,17 +776,19 @@ trait JumpResolver extends SymbolResolver {
     var source : Option[FileResourceUri] = null
     var procNameDef : NameDefinition = null
     var locations : ISeq[LocationDecl] = null;
+    import LineColumnLocation._
+    import FileLocation._
     {
       case pd : ProcedureDecl =>
         procNameDef = pd.name
-        source = procNameDef.locationFile
+        source = procNameDef.fileUriOpt
         true
       case ib : ImplementedBody =>
         locations = ib.locations
         val lastLoc = locations(locations.size - 1)
         if (hasImplicitNextJump(lastLoc))
           symbolTableProducer.reportError(source,
-            lastLoc.locationLine, lastLoc.locationColumn,
+            lastLoc.line, lastLoc.column,
             LAST_LOCATION_NEED_EXPLICIT_JUMP)
         true
       case gj : GotoJump =>
@@ -803,11 +811,13 @@ trait JumpResolver extends SymbolResolver {
         val start = tables.bodyTables.get.locationTable(fromNameUser.resourceUri).index
         val end = tables.bodyTables.get.locationTable(toNameUser.resourceUri).index
         if (end == -1) {
-          symbolTableProducer.reportError(source, toNameUser.locationLine,
-            toNameUser.locationColumn, CATCH_TABLE_END_BEFORE_START.
+          import LineColumnLocation._
+          import FileLocation._
+          symbolTableProducer.reportError(source, toNameUser.line,
+            toNameUser.column, CATCH_TABLE_END_BEFORE_START.
               format(H.symbolSimpleName(toNameUser),
                 H.symbolSimpleName(fromNameUser),
-                fromNameUser.locationLine, fromNameUser.locationColumn))
+                fromNameUser.line, fromNameUser.column))
         } else {
           val ct = tables.bodyTables.get.catchTable
           for (i <- start to end)
@@ -835,8 +845,10 @@ trait JumpResolver extends SymbolResolver {
         H.symbolInit(nameUser, symDef.resourceType,
           symDef.resourcePaths, symDef.resourceUri)
       case None =>
+        import LineColumnLocation._
+        import FileLocation._
         symbolTableProducer.reportError(source,
-          nameUser.locationLine, nameUser.locationColumn,
+          nameUser.line, nameUser.column,
           NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
     }
   }

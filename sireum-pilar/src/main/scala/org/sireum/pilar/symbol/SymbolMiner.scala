@@ -85,10 +85,12 @@ trait ConstMiner extends SymbolMiner {
     val cet = tables.constElementTable
     cet.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_CONST_ELEMENT.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         cet(key.intern) = constElement
     }
@@ -141,10 +143,12 @@ trait EnumMiner extends SymbolMiner {
     val eet = tables.enumElementTable
     eet.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_ENUM_ELEMENT.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         eet(key.intern) = enumElement
     }
@@ -209,10 +213,12 @@ trait ExtensionMiner extends SymbolMiner {
     val eet = tables.extensionElementTable
     eet.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_EXTENSION_ELEMENT.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         eet(key.intern) = extElement
     }
@@ -249,10 +255,12 @@ trait FunMiner extends SymbolMiner {
     val ft = tables.funTable
     ft.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_FUN.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         tables.funTable(key.intern) = funDecl
     }
@@ -289,10 +297,12 @@ trait GlobalVarMiner extends SymbolMiner {
     val gvt = tables.globalVarTable
     gvt.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile, nameDef.locationLine,
-          nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt, nameDef.line,
+          nameDef.column,
           DUPLICATE_GLOBAL_VAR.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         tables.globalVarTable(key.intern) = globalVarDecl
     }
@@ -331,9 +341,10 @@ trait ProcedureMiner extends SymbolMiner {
     val pds = mmapGetOrElseUpdateT(tables.procedureTable, key,
       mlistEmpty[ResourceUri], stringInternFunction)
 
+        import LineColumnLocation._
     H.symbolInit(nameDef, H.PROCEDURE_TYPE,
       H.packagePath(packageSymDef, nameDef.name + "/" + 
-          nameDef.locationLine + "/" + nameDef.locationColumn +
+          nameDef.line + "/" + nameDef.column +
           "/" + Integer.toHexString(procedureDecl.withoutBody.toString.hashCode)))
           
     val absKey = nameDef.resourceUri
@@ -341,10 +352,11 @@ trait ProcedureMiner extends SymbolMiner {
     val pat = tables.procedureAbsTable
     pat.get(absKey) match {
       case Some(other) =>
-        reportError(nameDef.locationFile, nameDef.locationLine,
-          nameDef.locationColumn,
+        import FileLocation._
+        reportError(nameDef.fileUriOpt, nameDef.line,
+          nameDef.column,
           DUPLICATE_PROCEDURE.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         pds += absKey.intern
         tables.procedureAbsTable(absKey.intern) = procedureDecl
@@ -390,10 +402,12 @@ trait RecordMiner extends SymbolMiner {
     val at = tables.attributeTable
     at.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_ATTRIBUTE.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         at(key.intern) = attribute
     }
@@ -409,10 +423,12 @@ trait RecordMiner extends SymbolMiner {
     val rt = tables.recordTable
     rt.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_RECORD.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         rt(key.intern) = recordDecl
     }
@@ -449,10 +465,12 @@ trait TypeAliasMiner extends SymbolMiner {
     val tat = tables.typeAliasTable
     tat.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_TYPE_ALIAS.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         tat(key.intern) = typeAliasDecl
     }
@@ -490,10 +508,12 @@ trait VsetMiner extends SymbolMiner {
     val vt = tables.vsetTable
     vt.get(key) match {
       case Some(other) =>
-        reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           DUPLICATE_VSET.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         vt(key.intern) = vsetDecl
     }
@@ -550,10 +570,12 @@ trait ProcedureSymbolMiner extends SymbolMiner {
     lvt.get(key) match {
       case Some(other) =>
         val msg = if (isParam) DUPLICATE_PARAM else DUPLICATE_LOCAL_VAR
-        symbolTableProducer.reportError(nameDef.locationFile,
-          nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+        symbolTableProducer.reportError(nameDef.fileUriOpt,
+          nameDef.line, nameDef.column,
           msg.format(H.symbolSimpleName(nameDef),
-            other.name.locationLine, other.name.locationColumn))
+            other.name.line, other.name.column))
       case _ =>
         lvt(key.intern) = localVar
         if (isParam)
@@ -570,10 +592,12 @@ trait ProcedureSymbolMiner extends SymbolMiner {
         lt.get(key) match {
           case Some(other) =>
             val otherSymDef = other.name.get
-            symbolTableProducer.reportError(nameDef.locationFile,
-              nameDef.locationLine, nameDef.locationColumn,
+        import LineColumnLocation._
+        import FileLocation._
+            symbolTableProducer.reportError(nameDef.fileUriOpt,
+              nameDef.line, nameDef.column,
               DUPLICATE_LOCATION.format(nameDef.name,
-                otherSymDef.locationLine, otherSymDef.locationColumn))
+                otherSymDef.line, otherSymDef.column))
           case _ =>
             lt(key.intern) = loc
             loc.index(index)

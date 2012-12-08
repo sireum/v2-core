@@ -19,7 +19,9 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait PilarAstNode extends LineColumnLocation
+sealed trait PilarAstNode extends PropertyProvider {
+  lazy val propertyMap = mmapEmpty[Property.Key, Any]
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

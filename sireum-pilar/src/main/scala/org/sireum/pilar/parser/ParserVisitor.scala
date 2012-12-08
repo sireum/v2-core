@@ -46,18 +46,21 @@ protected final class ParserVisitorContext {
   def pushResult(r : PilarAstNode, t : Tree) : Unit = {
     assert(noResult)
 
-    r.setLocationLineColumn(lineOffset + t.getLine, t.getCharPositionInLine)
+    import LineColumnLocation._
+
+    r.line = lineOffset + t.getLine
+    r.column = t.getCharPositionInLine
 
     pushResult(r)
   }
 
-  def popResult[T]() : T = {
+  def popResult[T](implicit m : Manifest[T]) : T = {
     assert(!noResult)
     var r = result
     result = None
     return r match {
       case Some(t : T) => t
-      case _           => sys.error("unexpected")
+      case _           => sys.error(s"unexpected: ${r}")
     }
   }
 }
@@ -68,12 +71,13 @@ protected final class ParserVisitorContext {
 protected final class ParserVisitor(context : ParserVisitorContext)
     extends TreeVisitor[ParserVisitorContext](context) {
   val tt2pair = { x : TypeVarSpec =>
-    new Pair(getNameDefinition(Id(x.name.name, x.name.locationLine,
-      x.name.locationColumn)), x.annotations)
+    import LineColumnLocation._
+    new Pair(getNameDefinition(Id(x.name.name, x.name.line,
+      x.name.column)), x.annotations)
   }
   val tto2pair = { x : Option[ISeq[TypeVarSpec]] =>
     x match {
-      case None                          => ilistEmpty[(NameDefinition, ISeq[Annotation])]
+      case None                         => ilistEmpty[(NameDefinition, ISeq[Annotation])]
       case Some(tt : ISeq[TypeVarSpec]) => tt.map(tt2pair)
     }
   }
@@ -81,14 +85,16 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     x match {
       case e : Exp =>
         val r = ExpMultiArrayFragment(e)
-        r.setLocationLineColumn(e.locationLine, e.locationColumn)
+        import LineColumnLocation._
+        r.line = e.line
+        r.column = e.column
         r
       case maf : MultiArrayFragment =>
         maf
     }
   }
 
-  def getChildren[T](index : Int, t : Tree) : ISeq[T] = {
+  def getChildren[T](index : Int, t : Tree)(implicit m : Manifest[T]) : ISeq[T] = {
     var result = ilistEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
@@ -102,8 +108,8 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     return result.reverse
   }
 
-  def getChildrenBox[T](index : Int, t : Tree,
-                        f : Any => T) : ISeq[T] = {
+  def getChildrenBox[T](index : Int, t : Tree, f : Any => T)(
+    implicit m : Manifest[T]) : ISeq[T] = {
     var result = ilistEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
@@ -112,12 +118,12 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
-      result = f(context.popResult[T]) :: result
+      result = f(context.popResult[AnyRef]) :: result
     }
     return result.reverse
   }
 
-  def getChildrenFlat[T](index : Int, t : Tree) : ISeq[T] = {
+  def getChildrenFlat[T](index : Int, t : Tree)(implicit m : Manifest[T]) : ISeq[T] = {
     var result = ilistEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
@@ -127,15 +133,15 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     for (i <- 0 until count) {
       visit(list.getChild(i))
       val v = context.popResult[Any] match {
-        case l : ISeq[T] => l.foreach { x => result = x :: result }
-        case e : T        => result = e :: result
-        case _            => sys.error("unexpected case")
+        case l : ISeq[_] => l.foreach { x => result = x.asInstanceOf[T] :: result }
+        case e : T       => result = e :: result
+        case _           => sys.error("unexpected case")
       }
     }
     return result.reverse
   }
 
-  def getChild[T](index : Int, t : Tree) : T = {
+  def getChild[T](index : Int, t : Tree)(implicit m : Manifest[T]) : T = {
     visit(t.getChild(index))
     return context.popResult[T]
   }
@@ -144,7 +150,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     return t.getChild(index).getChildCount > 0
   }
 
-  def getOptChild[T](n : Int, t : Tree) : Option[T] =
+  def getOptChild[T](n : Int, t : Tree)(implicit m : Manifest[T]) : Option[T] =
     if (t.getChild(n).getChildCount > 0)
       Some(getChild[T](n, t))
     else
@@ -214,8 +220,9 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     n += 1
 
     if (!callExp.isInstanceOf[CallExp]) {
-      context.reporter.report(context.source, callExp.locationLine,
-        callExp.locationColumn,
+      import LineColumnLocation._
+      context.reporter.report(context.source, callExp.line,
+        callExp.column,
         "Expecting a call expression instead of a general one")
       CallExp(callExp, LiteralExp(LiteralType.NULL, null, "null"))
     } else {
@@ -550,8 +557,8 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val exp =
       if (e.isInstanceOf[CallExp]) e.asInstanceOf[CallExp]
       else {
-        context.reporter.report(context.source, e.locationLine,
-          e.locationColumn,
+        import LineColumnLocation._
+        context.reporter.report(context.source, e.line, e.column,
           "Expecting a call expression instead of a general one")
         CallExp(e, LiteralExp(LiteralType.NULL, null, "null"))
       }
@@ -1588,8 +1595,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     n += 1
 
     // multi-array fragment list: 1
-    val expss = getChildrenBox[ISeq[Exp]](n, t,
-      { x => x.asInstanceOf[ISeq[Exp]] })
+    val expss = getChildren[ISeq[Exp]](n, t)
     n += 1
 
     // type fragment list: 2
@@ -1825,7 +1831,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     n += 1
 
     // optional type: 1
-    val typeSpec = getOptChild(n, t)
+    val typeSpec = getOptChild[TypeSpec](n, t)
     n += 1
 
     // id: 2
@@ -2500,15 +2506,21 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
   def getNameUser(id : Id) : NameUser = {
     val result = NameUser(id.id)
-    result.setLocationLineColumn(id.line, id.column)
+    import LineColumnLocation._
+    result.line = id.line
+    result.column = id.column
     return result
   }
 
   def getNameDefinition(id : Id) : NameDefinition = {
     val result = NameDefinition(id.id)
-    result.setLocationLineColumn(id.line, id.column)
-    result.locationFile = context.source.getOrElse(null)
+    import FileLineColumnLocation._
+    import PropertyAdapter._
+    using[FileLocation with LineColumnLocation](result) { l =>
+      l.line = id.line
+      l.column = id.column
+      context.source.foreach(l.fileUri = _)
+    }
     return result
   }
 }
-
