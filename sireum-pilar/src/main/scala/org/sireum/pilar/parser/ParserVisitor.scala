@@ -2507,20 +2507,13 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   def getNameUser(id : Id) : NameUser = {
     val result = NameUser(id.id)
     import LineColumnLocation._
-    result.line = id.line
-    result.column = id.column
-    return result
+    result at (id.line, id.column)
   }
 
   def getNameDefinition(id : Id) : NameDefinition = {
     val result = NameDefinition(id.id)
     import FileLineColumnLocation._
     import PropertyAdapter._
-    using[FileLocation with LineColumnLocation](result) { l =>
-      l.line = id.line
-      l.column = id.column
-      context.source.foreach(l.fileUri = _)
-    }
-    return result
+    result at (context.source, id.line, id.column)
   }
 }
