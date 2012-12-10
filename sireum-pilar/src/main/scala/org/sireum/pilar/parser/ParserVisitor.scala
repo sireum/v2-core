@@ -47,11 +47,7 @@ protected final class ParserVisitorContext {
     assert(noResult)
 
     import LineColumnLocation._
-
-    r.line = lineOffset + t.getLine
-    r.column = t.getCharPositionInLine
-
-    pushResult(r)
+    pushResult(r at (lineOffset + t.getLine, t.getCharPositionInLine))
   }
 
   def popResult[T](implicit m : Manifest[T]) : T = {
