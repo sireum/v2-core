@@ -1,6 +1,6 @@
 #!/bin/bash
 export SIREUM_DIST=true
-export SIREUM_HOME=`dirname $(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")`
+export SIREUM_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
 if [ -f $0.jar ]; then
   if [ $0 -nt $0.jar ]; then
     echo "Please wait while Sireum is loading..."
@@ -18,7 +18,7 @@ if [ -d $SIREUM_HOME/apps/platform/scala ]; then
   export SCALA_HOME=$SIREUM_HOME/apps/platform/scala
   export PATH=$SCALA_HOME/bin:$PATH
 fi
-${SCALA_BIN:=scala} -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+${SCALA_BIN:=scala} -target:jvm-1.7 -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 code=$?
 if [ -d $SIREUM_HOME/apps/platform/java.new ]; then
   rm -fR $SIREUM_HOME/apps/platform/java
@@ -33,7 +33,7 @@ if [ -f $0.new ]; then
   chmod +x $0
   echo "Reloading Sireum..."
   echo
-  exec $0 update
+  exec "$0" "$@"
 fi
 exit $code 
 !#

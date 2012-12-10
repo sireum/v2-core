@@ -313,6 +313,7 @@ object SireumDistro extends App {
   }
 
   def parseCliArgs(args : Seq[String]) {
+    import language.reflectiveCalls
     install(CLI_FEATURE)
     val cli = getCli
     val cliArgs = args.slice(1, args.length)
@@ -340,6 +341,7 @@ object SireumDistro extends App {
   }
 
   def createPipelineJob(option : AnyRef) = {
+    import language.reflectiveCalls
     val job = Class.forName("org.sireum.pipeline.PipelineJob").
       getMethod("create").invoke(null).asInstanceOf[PJob]
     job.setProperty(GLOBAL_OPTION_KEY, option)
@@ -347,6 +349,7 @@ object SireumDistro extends App {
   }
 
   def computePipeline(className : String, job : PJob) = {
+    import language.reflectiveCalls
     val pc = Class.forName(className).newInstance.asInstanceOf[PRunner].pipeline
     pc.compute(job)
   }

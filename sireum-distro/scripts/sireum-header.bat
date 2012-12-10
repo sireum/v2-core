@@ -26,7 +26,7 @@ IF EXIST %SIREUM_HOME%apps\platform\scala (
 IF NOT DEFINED SCALA_BIN (
   SET SCALA_BIN=scala
 )
-CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+CALL %SCALA_BIN% -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
@@ -40,7 +40,7 @@ IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
-  %SCRIPT% update
+  %SCRIPT% %*
 )
 ENDLOCAL
 EXIT /B %CODE%

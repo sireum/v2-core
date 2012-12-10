@@ -26,7 +26,7 @@ IF EXIST %SIREUM_HOME%apps\platform\scala (
 IF NOT DEFINED SCALA_BIN (
   SET SCALA_BIN=scala
 )
-CALL %SCALA_BIN% -target:jvm-1.7 -language:reflectiveCalls -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+CALL %SCALA_BIN% -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
@@ -40,7 +40,7 @@ IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
-  %SCRIPT% update
+  %SCRIPT% %*
 )
 ENDLOCAL
 EXIT /B %CODE%
@@ -360,6 +360,7 @@ object SireumDistro extends App {
   }
 
   def parseCliArgs(args : Seq[String]) {
+    import language.reflectiveCalls
     install(CLI_FEATURE)
     val cli = getCli
     val cliArgs = args.slice(1, args.length)
@@ -387,6 +388,7 @@ object SireumDistro extends App {
   }
 
   def createPipelineJob(option : AnyRef) = {
+    import language.reflectiveCalls
     val job = Class.forName("org.sireum.pipeline.PipelineJob").
       getMethod("create").invoke(null).asInstanceOf[PJob]
     job.setProperty(GLOBAL_OPTION_KEY, option)
@@ -394,6 +396,7 @@ object SireumDistro extends App {
   }
 
   def computePipeline(className : String, job : PJob) = {
+    import language.reflectiveCalls
     val pc = Class.forName(className).newInstance.asInstanceOf[PRunner].pipeline
     pc.compute(job)
   }
