@@ -50,10 +50,10 @@ class BakarCompilerTestv1 extends BakarTestFileFramework {
 
   override def pipeline =
     PipelineConfiguration(
-      "Bakar Compiler Test Pipeline",
+      "Bakar Compiler v1 Test Pipeline",
       false,
       PipelineStage(
-        "Bakar Compiler Stage",
+        "Bakar Compiler v1 Stage",
         false,
         BakarCompilerv1Module
       )

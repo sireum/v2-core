@@ -113,7 +113,7 @@ trait BakarTestFileFramework extends BakarTestFramework {
             assert(post(c))
           }
         } catch {
-          case e =>
+          case e : Throwable =>
             e.printStackTrace
             assert(false)
         }
@@ -127,7 +127,7 @@ trait BakarTestFileFramework extends BakarTestFramework {
           fw.write("*.*\n\n!.gitignore")
           fw.close
         } catch {
-          case e => e.printStackTrace
+          case e : Throwable => e.printStackTrace
         }
       }
   }
