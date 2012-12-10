@@ -6,7 +6,7 @@ import org.sireum.test.framework.TestFramework
 import java.io.Writer
 import java.io.StringWriter
 import java.io.FileWriter
-import org.sireum.bakar.compiler.option.OptionFactory
+import org.sireum.bakar.compiler.v1.option.OptionFactory
 import java.io.File
 import java.net.URI
 import org.sireum.example.bakar.BakarExamples

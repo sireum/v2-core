@@ -1,7 +1,7 @@
 package org.sireum.bakar.xml.test
 
 import org.scalatest.junit.JUnitRunner
-import org.sireum.test.bakar.compiler.BakarCompilerTest
+import org.sireum.test.bakar.compiler.BakarCompilerTestv1
 import org.junit.runner.RunWith
 import org.sireum.pipeline.PipelineConfiguration
 import org.sireum.pipeline.PipelineStage
@@ -16,7 +16,7 @@ import org.sireum.util.ISeq
 import org.sireum.util.FileResourceUri
 
 @RunWith(classOf[JUnitRunner])
-class BakarXmlTest extends BakarCompilerTest {
+class BakarXmlTest extends BakarCompilerTestv1 {
 
   override def accept(name : String, files : ISeq[FileResourceUri]) : Boolean = {
     if (!files.exists(f => f.endsWith("ads") || f.endsWith("adb"))) {

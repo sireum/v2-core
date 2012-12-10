@@ -2,7 +2,7 @@ package org.sireum.bakar.alir.module
 
 import org.sireum.util._
 import org.sireum.pipeline._
-import org.sireum.bakar.compiler.option.SparkCompilerOptions
+import org.sireum.bakar.compiler.v1.option.SparkCompilerOptions
 import org.sireum.bakar.alir.BakarNodeDefRef
 import org.sireum.core.module.PilarSymbolResolverModule
 import org.sireum.core.module.PilarParserModule

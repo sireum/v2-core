@@ -1,8 +1,8 @@
 package org.sireum.test.bakar.alir
 
 import org.junit.runner.RunWith
-import org.sireum.bakar.compiler.option.OptionFactory
-import org.sireum.bakar.compiler.module.BakarCompilerModule
+import org.sireum.bakar.compiler.v1.option.OptionFactory
+import org.sireum.bakar.compiler.v1.module.BakarCompilerv1Module
 import org.sireum.core.module.PilarParserModule
 import org.sireum.pipeline.PipelineConfiguration
 import org.sireum.pipeline.PipelineJob

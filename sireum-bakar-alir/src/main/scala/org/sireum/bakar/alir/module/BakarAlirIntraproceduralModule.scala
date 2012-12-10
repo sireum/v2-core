@@ -2,8 +2,8 @@ package org.sireum.bakar.alir.module
 
 import org.sireum.util._
 import org.sireum.pipeline._
-import org.sireum.bakar.compiler.module.BakarTranslatorModule
-import org.sireum.bakar.compiler.option.SparkCompilerOptions
+import org.sireum.bakar.compiler.v1.module.BakarTranslatorv1Module
+import org.sireum.bakar.compiler.v1.option.SparkCompilerOptions
 
 object BakarAlirIntraproceduralModule {
   def title : String = "Bakar Alir Intraprocedural Module"

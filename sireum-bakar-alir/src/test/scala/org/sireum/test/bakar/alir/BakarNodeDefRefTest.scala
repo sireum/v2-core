@@ -3,8 +3,8 @@ package org.sireum.test.bakar.alir
 import java.io.Writer
 import org.junit.runner.RunWith
 import org.sireum.bakar.alir.module.BakarNodeDefRefModule
-import org.sireum.bakar.compiler.module.BakarCompilerModule
-import org.sireum.bakar.compiler.option.OptionFactory
+import org.sireum.bakar.compiler.v1.module.BakarCompilerv1Module
+import org.sireum.bakar.compiler.v1.option.OptionFactory
 import org.sireum.core.module.PilarSymbolResolverModule
 import org.sireum.example.bakar._
 import org.sireum.pipeline._
@@ -31,7 +31,7 @@ override def pre(c : Configuration) : Boolean = {
     val sco = OptionFactory.newSparkCompilerOptions(BakarExamples.UriToPath(c.sources))
     sco.setOptOutputPath(c.resultsDir.toURI.getPath + "/")
     sco.setRegressionTesting(true)
-    BakarCompilerModule.setSparkCompilerOptions(c.job.properties, sco);
+    BakarCompilerv1Module.setSparkCompilerOptions(c.job.properties, sco);
 	PilarSymbolResolverModule.setHasExistingModels(c.job.properties, None)
     PilarSymbolResolverModule.setHasExistingSymbolTable(c.job.properties, None)
 	PilarSymbolResolverModule.setParallel(c.job.properties, false)    
@@ -45,7 +45,7 @@ override def pre(c : Configuration) : Boolean = {
       PipelineStage(
         "Bakar Compiler Stage",
         false,
-        BakarCompilerModule
+        BakarCompilerv1Module
       ),
 	  PipelineStage(
 		"Pilar Symbol Resolution",
