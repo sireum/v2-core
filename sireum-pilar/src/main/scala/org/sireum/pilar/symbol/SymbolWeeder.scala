@@ -29,8 +29,8 @@ trait RecordHierarchyWeeder extends SymbolWeeder {
     val superRecordsMap = mmapEmpty[ResourceUri, MSet[ResourceUri]]
     for (rd <- tables.recordTable.values) {
       rd.extendsClauses.foreach { ec =>
-        superRecordsMap.getOrElseUpdate(rd.name.resourceUri,
-          msetEmpty[ResourceUri]) += ec.name.resourceUri
+        superRecordsMap.getOrElseUpdate(rd.name.uri,
+          msetEmpty[ResourceUri]) += ec.name.uri
       }
     }
     FixedPoint.fix(superRecordsMap)

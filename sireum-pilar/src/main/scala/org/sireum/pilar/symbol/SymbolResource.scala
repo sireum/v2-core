@@ -13,17 +13,56 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait Symbol extends PropertyProvider with Resource
+trait Symbol extends PropertyProvider
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait SymbolDefinition //
-    extends Symbol // 
-    with ResourceDefinition
+object Symbol {
+  import language.implicitConversions
+
+  implicit def pp2r[T <: PropertyProvider](pp : T) : Resource =
+    pp.getPropertyOrElse(classOf[Symbol].getName,
+      new Resource {
+        var _uriScheme : String = null
+        var _uriType : String = null
+        var _uriPaths : ISeq[String] = null
+        var _uri : ResourceUri = null
+
+        def uriScheme = { require(hasResourceInfo); _uriScheme }
+
+        def uriType = { require(hasResourceInfo); _uriType }
+
+        def uriPaths = { require(hasResourceInfo); _uriPaths }
+
+        def uri = { require(hasResourceInfo); _uri }
+
+        def hasResourceInfo : Boolean = pp ? classOf[Symbol].getName
+
+        def uri(scheme : String, typ : String,
+                paths : ISeq[String], uri : ResourceUri) {
+          require(paths != null && uri != null && paths.forall(_ != null))
+          pp(classOf[Symbol].getName) = this
+          this._uriScheme = scheme
+          this._uriType = typ
+          this._uriPaths = paths
+          this._uri = uri
+        }
+      })
+
+  implicit object ResourceAdapter
+      extends PropertyAdapter[Resource] {
+    def adapt(pp : PropertyProvider) : Resource = pp
+  }
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait SymbolUser extends Symbol with ResourceUser
+trait SymbolDefinition extends Symbol
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait SymbolUser extends Symbol
 

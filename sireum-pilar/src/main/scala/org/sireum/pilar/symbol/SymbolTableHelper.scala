@@ -93,57 +93,57 @@ object H {
   val DEFAULT_PACKAGE_PATH = "default"
 
   val PACKAGE_TYPE = "package"
-  def isPackage(r : Symbol) = r.resourceType == PACKAGE_TYPE
+  def isPackage(r : Symbol) = r.uriType == PACKAGE_TYPE
 
   val CONST_TYPE = "const"
-  def isConst(r : Symbol) = r.resourceType == CONST_TYPE
+  def isConst(r : Symbol) = r.uriType == CONST_TYPE
   val CONST_ELEM_TYPE = "constelem"
-  def isConstElem(r : Symbol) = r.resourceType == CONST_ELEM_TYPE
+  def isConstElem(r : Symbol) = r.uriType == CONST_ELEM_TYPE
 
   val ENUM_TYPE = "enum"
-  def isEnum(r : Symbol) = r.resourceType == ENUM_TYPE
+  def isEnum(r : Symbol) = r.uriType == ENUM_TYPE
   val ENUM_ELEM_TYPE = "enumelem"
-  def isEnumElem(r : Symbol) = r.resourceType == ENUM_ELEM_TYPE
+  def isEnumElem(r : Symbol) = r.uriType == ENUM_ELEM_TYPE
 
   val EXTENSION_TYPE = "extension"
-  def isExtension(r : Symbol) = r.resourceType == EXTENSION_TYPE
+  def isExtension(r : Symbol) = r.uriType == EXTENSION_TYPE
   val TYPE_EXTENSION_TYPE = "typeext"
-  def isTypeExtension(r : Symbol) = r.resourceType == TYPE_EXTENSION_TYPE
+  def isTypeExtension(r : Symbol) = r.uriType == TYPE_EXTENSION_TYPE
   val EXTENSION_ELEM_TYPE = "extelem"
-  def isExtensionElem(r : Symbol) = r.resourceType == EXTENSION_ELEM_TYPE
+  def isExtensionElem(r : Symbol) = r.uriType == EXTENSION_ELEM_TYPE
 
   val FUN_TYPE = "fun"
-  def isFun(r : Symbol) = r.resourceType == FUN_TYPE
+  def isFun(r : Symbol) = r.uriType == FUN_TYPE
 
   val GLOBAL_VAR_TYPE = "globalvar"
-  def isGlobalVar(r : Symbol) = r.resourceType == GLOBAL_VAR_TYPE
+  def isGlobalVar(r : Symbol) = r.uriType == GLOBAL_VAR_TYPE
 
   val PROCEDURE_TYPE = "procedure"
-  def isProcedure(r : Symbol) = r.resourceType == PROCEDURE_TYPE
+  def isProcedure(r : Symbol) = r.uriType == PROCEDURE_TYPE
 
   val RECORD_TYPE = "record"
-  def isRecord(r : Symbol) = r.resourceType == RECORD_TYPE
+  def isRecord(r : Symbol) = r.uriType == RECORD_TYPE
 
   val ATTRIBUTE_TYPE = "attribute"
-  def isAttribute(r : Symbol) = r.resourceType == ATTRIBUTE_TYPE
+  def isAttribute(r : Symbol) = r.uriType == ATTRIBUTE_TYPE
 
   val TYPE_ALIAS_TYPE = "typealias"
-  def isTypeAlias(r : Symbol) = r.resourceType == TYPE_ALIAS_TYPE
+  def isTypeAlias(r : Symbol) = r.uriType == TYPE_ALIAS_TYPE
 
   val VSET_TYPE = "vset"
-  def isVSet(r : Symbol) = r.resourceType == VSET_TYPE
+  def isVSet(r : Symbol) = r.uriType == VSET_TYPE
 
   val TYPE_VAR_TYPE = "typevar"
-  def isTypeVar(r : Symbol) = r.resourceType == TYPE_VAR_TYPE
+  def isTypeVar(r : Symbol) = r.uriType == TYPE_VAR_TYPE
 
   val LOCAL_VAR_TYPE = "localvar"
-  def isLocalVar(r : Symbol) = r.resourceType == LOCAL_VAR_TYPE
+  def isLocalVar(r : Symbol) = r.uriType == LOCAL_VAR_TYPE
 
   val LOCATION_TYPE = "location"
-  def isLocation(r : Symbol) = r.resourceType == LOCATION_TYPE
+  def isLocation(r : Symbol) = r.uriType == LOCATION_TYPE
 
   val ANON_LOCAL_TYPE = "anonlocal"
-  def isAnonLocal(r : Symbol) = r.resourceType == ANON_LOCAL_TYPE
+  def isAnonLocal(r : Symbol) = r.uriType == ANON_LOCAL_TYPE
 
   val NON_SCHEME_OFFSET = (SCHEME + ":/").length
 
@@ -176,19 +176,19 @@ object H {
   def packageName(symDef : Option[SymbolDefinition]) =
     symDef match {
       case Some(sd) =>
-        sd.resourcePaths(0)
+        sd.uriPaths(0)
       case _ =>
         H.DEFAULT_PACKAGE_PATH
     }
 
-  def packageName(symDef : SymbolDefinition) = symDef.resourcePaths(0)
+  def packageName(symDef : SymbolDefinition) = symDef.uriPaths(0)
 
   def packagePath(symDef : Option[SymbolDefinition],
                   name : String) =
     ilist(packageName(symDef), name);
 
   def paths(symDef : SymbolDefinition, name : String) =
-    symDef.resourcePaths :+ name
+    symDef.uriPaths :+ name
 
   def symbolInit(s : Symbol, typ : String, paths : ISeq[String], relative : Boolean = false) =
     Resource.initResource(s, SCHEME, typ, paths, relative)
@@ -197,7 +197,7 @@ object H {
     Resource.initResource(s, SCHEME, typ, paths, uri)
 
   def symbolSimpleName(s : Symbol) =
-    s.resourcePaths.last
+    s.uriPaths.last
 
   def symbolUri(typ : String, paths : ISeq[String], relative : Boolean = false) =
     Resource.getResourceUri(SCHEME, typ, paths.map { _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/") }, relative)
@@ -207,7 +207,7 @@ object H {
     H.symbolInit(nameDef, H.TYPE_VAR_TYPE,
       H.paths(symDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     tvt.get(key) match {
       case Some(other) =>
         import LineColumnLocation._
@@ -237,7 +237,7 @@ object H {
     tvt.get(typeVarR.name) match {
       case Some(nameDef) =>
         H.symbolInit(typeVarR, H.TYPE_VAR_TYPE,
-          nameDef.resourcePaths, nameDef.resourceUri)
+          nameDef.uriPaths, nameDef.uri)
       case _ =>
         import LineColumnLocation._
         import FileLocation._
@@ -445,7 +445,7 @@ object H {
                   mapFunction : ProcedureSymbolTable => T) =
     (j.callExp.exp : @unchecked) match {
       case ne : NameExp =>
-        st.procedures(ne.name.resourceUri). //
+        st.procedures(ne.name.uri). //
           filter(filterFunction(j)).
           map { st.procedureSymbolTable(_) }.map { mapFunction(_) }
     }

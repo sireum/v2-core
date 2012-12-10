@@ -54,13 +54,13 @@ object ControlFlowGraph {
         if (l.name.isEmpty)
           (None, l.index)
         else
-          (Some(l.name.get.resourceUri), l.index)
+          (Some(l.name.get.uri), l.index)
 
       def getNode(l : LocationDecl) =
         if (l.name.isEmpty)
           result.getNode(None, l.index)
         else
-          result.getNode(Some(l.name.get.resourceUri), l.index)
+          result.getNode(Some(l.name.get.uri), l.index)
 
     val verticesMap = mmapEmpty[ResourceUri, Node]
     for (ld <- locationDecls) {
@@ -77,7 +77,7 @@ object ControlFlowGraph {
     var source : Node = null
     var next : Node = null
       def addGotoEdge(gj : GotoJump) = {
-        val target = verticesMap(gj.target.resourceUri)
+        val target = verticesMap(gj.target.uri)
         result.addEdge(source, target)
       }
     var transIndex = -1
@@ -108,7 +108,7 @@ object ControlFlowGraph {
       case ifj : IfJump =>
         var i = 1
         for (iftj <- ifj.ifThens) {
-          val target = verticesMap(iftj.target.resourceUri)
+          val target = verticesMap(iftj.target.uri)
           val e = result.addEdge(source, target)
           putBranchOnEdge(transIndex, i, e)
           i += 1
@@ -123,7 +123,7 @@ object ControlFlowGraph {
       case sj : SwitchJump =>
         var i = 1
         for (scj <- sj.cases) {
-          val target = verticesMap(scj.target.resourceUri)
+          val target = verticesMap(scj.target.uri)
           val e = result.addEdge(source, target)
           putBranchOnEdge(transIndex, i, e)
           i += 1
@@ -146,7 +146,7 @@ object ControlFlowGraph {
       if (shouldIncludeFlow ne defaultSiff) {
         val (ccs, toExit) = shouldIncludeFlow(l, pst.catchClauses(l.index))
         ccs.foreach { cc =>
-          result.addEdge(source, verticesMap(cc.jump.target.resourceUri))
+          result.addEdge(source, verticesMap(cc.jump.target.uri))
         }
         if (toExit) result.addEdge(source, exitNode)
       }

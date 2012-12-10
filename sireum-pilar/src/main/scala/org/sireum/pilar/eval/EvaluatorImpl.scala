@@ -170,7 +170,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
     val (locUri, locIndex, transIndex, commandIndex) = j.commandDescriptorInfo
     val returnVar = j.lhs.map { nu =>
-      if (nu.name.hasResourceInfo) nu.name.resourceUri
+      if (nu.name.hasResourceInfo) nu.name.uri
       else nu.name.name
     }
     spa.flatMap { t =>

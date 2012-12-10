@@ -86,19 +86,19 @@ final class BasicVarAccesses(st: SymbolTable) extends VarAccesses {
 
       def addLocalAccess(ne: NameExp) =
         if (H.isLocalVar(ne.name))
-          accessLocalVars += VarSlot(ne.name.resourceUri)
+          accessLocalVars += VarSlot(ne.name.uri)
 
       val visitor = Visitor.build({
         case a: Assignment =>
           val lhss = PilarAstUtil.getLHSs(a)
           for (NameExp(name) <- lhss.keys)
             if (name.hasResourceInfo && H.isGlobalVar(name))
-              writtenGlobalVars += VarSlot(name.resourceUri)
+              writtenGlobalVars += VarSlot(name.uri)
           Visitor.build({
             case ne: NameExp =>
               if (ne.name.hasResourceInfo)
                 if (H.isGlobalVar(ne.name) && !lhss.contains(ne))
-                  readGlobalVars += VarSlot(ne.name.resourceUri)
+                  readGlobalVars += VarSlot(ne.name.uri)
                 else
                   addLocalAccess(ne)
               false
@@ -107,7 +107,7 @@ final class BasicVarAccesses(st: SymbolTable) extends VarAccesses {
         case ne: NameExp =>
           if (ne.name.hasResourceInfo)
             if (H.isGlobalVar(ne.name))
-              readGlobalVars += VarSlot(ne.name.resourceUri)
+              readGlobalVars += VarSlot(ne.name.uri)
             else
               addLocalAccess(ne)
           false
@@ -192,7 +192,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
       val lhss = PilarAstUtil.getLHSs(a)
       var result = isetEmpty[Slot]
       for (ne @ NameExp(_) <- lhss.keys) {
-        result = result + VarSlot(ne.name.resourceUri)
+        result = result + VarSlot(ne.name.uri)
       }
       result
     })
@@ -237,7 +237,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
     Visitor.build({
       case ne: NameExp =>
         if (!lhss.contains(ne))
-          result = result + VarSlot(ne.name.resourceUri)
+          result = result + VarSlot(ne.name.uri)
         false
     })(n)
     result

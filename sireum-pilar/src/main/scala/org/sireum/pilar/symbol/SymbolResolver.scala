@@ -499,7 +499,7 @@ trait RecordResolver extends SymbolResolver {
         if (source != null) {
           val rNameUser = nr.recordType.name
           nr.attributeInits.foreach { ai =>
-            val paths = rNameUser.resourcePaths :+ ai.name.name
+            val paths = rNameUser.uriPaths :+ ai.name.name
             val key = H.symbolUri(H.RECORD_TYPE, paths)
             resolveAttribute(source, ai.name, key, paths)
           }
@@ -647,7 +647,7 @@ trait FunParamResolver extends SymbolResolver {
         case p : ParamDecl =>
           val pName = p.name
           H.symbolInit(pName, H.ANON_LOCAL_TYPE, ilist(pName.name))
-          val key = pName.resourceUri
+          val key = pName.uri
           scope.get(key) match {
             case Some(other) =>
               import LineColumnLocation._
@@ -674,7 +674,7 @@ trait FunParamResolver extends SymbolResolver {
             case Some(sp) =>
               val spName = sp.name
               H.symbolInit(ne.name, H.ANON_LOCAL_TYPE,
-                spName.resourcePaths :+ i.toString)
+                spName.uriPaths :+ i.toString)
               found = true
             case _ =>
               i += 1
@@ -725,12 +725,12 @@ trait ProcedureSymbolResolver extends SymbolResolver {
         tvt = H.buildTypeVarMap(pd.typeVars)
         true
       case ne : NameExp =>
-        val paths = procNameDef.resourcePaths :+ ne.name.name
+        val paths = procNameDef.uriPaths :+ ne.name.name
         val key = H.symbolUri(H.LOCAL_VAR_TYPE, paths)
         tables.localVarTable.get(key) match {
           case Some(lv) =>
             H.symbolInit(ne.name, H.LOCAL_VAR_TYPE, paths,
-              lv.name.resourceUri)
+              lv.name.uri)
           case _ =>
         }
         false
@@ -808,8 +808,8 @@ trait JumpResolver extends SymbolResolver {
         location(source, fromNameUser, procNameDef)
         val toNameUser = cc.toTarget
         location(source, toNameUser, procNameDef)
-        val start = tables.bodyTables.get.locationTable(fromNameUser.resourceUri).index
-        val end = tables.bodyTables.get.locationTable(toNameUser.resourceUri).index
+        val start = tables.bodyTables.get.locationTable(fromNameUser.uri).index
+        val end = tables.bodyTables.get.locationTable(toNameUser.uri).index
         if (end == -1) {
           import LineColumnLocation._
           import FileLocation._
@@ -842,8 +842,8 @@ trait JumpResolver extends SymbolResolver {
     tables.bodyTables.get.locationTable.get(key) match {
       case Some(ld) =>
         val symDef = ld.name.get
-        H.symbolInit(nameUser, symDef.resourceType,
-          symDef.resourcePaths, symDef.resourceUri)
+        H.symbolInit(nameUser, symDef.uriType,
+          symDef.uriPaths, symDef.uri)
       case None =>
         import LineColumnLocation._
         import FileLocation._

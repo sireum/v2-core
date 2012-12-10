@@ -136,7 +136,7 @@ object MonotoneDataFlowAnalysisFramework {
                 val numOfIfThens = j.ifThens.size
                 for (i <- 0 until numOfIfThens) {
                   val ifThen = j.ifThens(i)
-                  val sn = node(ifThen.target.resourceUri)
+                  val sn = node(ifThen.target.uri)
                   var r = getEntrySet(sn)
                   for (k <- tozero(i)) {
                     val it = j.ifThens(k)
@@ -148,7 +148,7 @@ object MonotoneDataFlowAnalysisFramework {
                   val ifElse = j.ifElse
                   val ifElseDefined = ifElse.isDefined
                   val sn =
-                    if (ifElseDefined) node(ifElse.get.target.resourceUri)
+                    if (ifElseDefined) node(ifElse.get.target.uri)
                     else next(l)
                   var r = getEntrySet(sn)
                   for (k <- tozero(numOfIfThens - 1)) {
@@ -165,7 +165,7 @@ object MonotoneDataFlowAnalysisFramework {
                 val numOfCases = j.cases.size
                 for (i <- 0 until numOfCases) {
                   val switchCase = j.cases(i)
-                  val sn = node(switchCase.target.resourceUri)
+                  val sn = node(switchCase.target.uri)
                   var r = getEntrySet(sn)
                   if (switchAsOrderedMatch)
                     for (k <- tozero(i)) {
@@ -182,7 +182,7 @@ object MonotoneDataFlowAnalysisFramework {
                   val switchDefaultDefined = switchDefault.isDefined
                   val sn =
                     if (switchDefaultDefined)
-                      node(switchDefault.get.target.resourceUri)
+                      node(switchDefault.get.target.uri)
                     else next(l)
                   var r = getEntrySet(sn)
                   if (switchAsOrderedMatch)
@@ -198,7 +198,7 @@ object MonotoneDataFlowAnalysisFramework {
                   eslb.switchJump(j, result)
                 result
               case j : GotoJump =>
-                val sn = node(j.target.resourceUri)
+                val sn = node(j.target.uri)
                 val result = getEntrySet(sn)
                 if (esl.isDefined)
                   eslb.gotoJump(j, result)
@@ -268,7 +268,7 @@ object MonotoneDataFlowAnalysisFramework {
                 var updated = false
                 for (ifThen <- j.ifThens) {
                   r = fE(ifThen.cond, r)
-                  val sn = node(ifThen.target.resourceUri)
+                  val sn = node(ifThen.target.uri)
                   if (esl.isDefined) {
                     eslb.ifThen(ifThen, r)
                     eslb.exitSet(Some(ifThen), r)
@@ -281,7 +281,7 @@ object MonotoneDataFlowAnalysisFramework {
                   update(confluence(r, getEntrySet(sn)), sn) || updated
                 } else {
                   val ifElse = j.ifElse.get
-                  val sn = node(ifElse.target.resourceUri)
+                  val sn = node(ifElse.target.uri)
                   if (esl.isDefined) {
                     eslb.ifElse(ifElse, r)
                     eslb.exitSet(Some(ifElse), r)
@@ -298,7 +298,7 @@ object MonotoneDataFlowAnalysisFramework {
                       fE(switchCase.cond, r)
                     else
                       fE(switchCase.cond, s)
-                  val sn = node(switchCase.target.resourceUri)
+                  val sn = node(switchCase.target.uri)
                   if (esl.isDefined) {
                     eslb.switchCase(switchCase, r)
                     eslb.exitSet(Some(switchCase), r)
@@ -311,7 +311,7 @@ object MonotoneDataFlowAnalysisFramework {
                   update(confluence(r, getEntrySet(sn)), sn) || updated
                 } else {
                   val switchDefault = j.defaultCase.get
-                  val sn = node(switchDefault.target.resourceUri)
+                  val sn = node(switchDefault.target.uri)
                   if (esl.isDefined) {
                     eslb.switchDefault(switchDefault, r)
                     eslb.exitSet(Some(switchDefault), r)
@@ -319,7 +319,7 @@ object MonotoneDataFlowAnalysisFramework {
                   update(confluence(r, getEntrySet(sn)), sn) || updated
                 }
               case j : GotoJump =>
-                val sn = node(j.target.resourceUri)
+                val sn = node(j.target.uri)
                 if (esl.isDefined) {
                   eslb.gotoJump(j, s)
                   eslb.exitSet(Some(j), s)

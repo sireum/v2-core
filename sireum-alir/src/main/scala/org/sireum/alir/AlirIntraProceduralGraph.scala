@@ -79,7 +79,7 @@ trait AlirIntraProceduralGraph //
     if (l.name.isEmpty)
       getNode(None, l.index)
     else
-      getNode(Some(l.name.get.resourceUri), l.index)
+      getNode(Some(l.name.get.uri), l.index)
 
   def getVirtualNode(vlabel : VirtualLabel) : Node =
     pool(newVirtualNode(vlabel))

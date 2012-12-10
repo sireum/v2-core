@@ -68,7 +68,7 @@ trait ConstMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.CONST_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val cds = mmapGetOrElseUpdateT(tables.constTable,
       key, mlistEmpty[ConstDecl], stringInternFunction)
 
@@ -81,7 +81,7 @@ trait ConstMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.CONST_ELEM_TYPE,
       H.paths(constSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val cet = tables.constElementTable
     cet.get(key) match {
       case Some(other) =>
@@ -126,7 +126,7 @@ trait EnumMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.ENUM_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val eds = mmapGetOrElseUpdateT(tables.enumTable, key,
       mlistEmpty[EnumDecl], stringInternFunction)
 
@@ -139,7 +139,7 @@ trait EnumMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.ENUM_ELEM_TYPE,
       H.paths(enumSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val eet = tables.enumElementTable
     eet.get(key) match {
       case Some(other) =>
@@ -192,7 +192,7 @@ trait ExtensionMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.EXTENSION_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val eds = mmapGetOrElseUpdateT(tables.extensionTable, key,
       mlistEmpty[ExtensionDecl], stringInternFunction)
 
@@ -209,7 +209,7 @@ trait ExtensionMiner extends SymbolMiner {
     H.symbolInit(nameDef, rType,
       H.paths(extOrTypeExtSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val eet = tables.extensionElementTable
     eet.get(key) match {
       case Some(other) =>
@@ -251,7 +251,7 @@ trait FunMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.FUN_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val ft = tables.funTable
     ft.get(key) match {
       case Some(other) =>
@@ -293,7 +293,7 @@ trait GlobalVarMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.GLOBAL_VAR_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val gvt = tables.globalVarTable
     gvt.get(key) match {
       case Some(other) =>
@@ -337,7 +337,7 @@ trait ProcedureMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.PROCEDURE_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val pds = mmapGetOrElseUpdateT(tables.procedureTable, key,
       mlistEmpty[ResourceUri], stringInternFunction)
 
@@ -347,7 +347,7 @@ trait ProcedureMiner extends SymbolMiner {
           nameDef.line + "/" + nameDef.column +
           "/" + Integer.toHexString(procedureDecl.withoutBody.toString.hashCode)))
           
-    val absKey = nameDef.resourceUri
+    val absKey = nameDef.uri
     
     val pat = tables.procedureAbsTable
     pat.get(absKey) match {
@@ -398,7 +398,7 @@ trait RecordMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.RECORD_TYPE,
       H.paths(recordSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val at = tables.attributeTable
     at.get(key) match {
       case Some(other) =>
@@ -419,7 +419,7 @@ trait RecordMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.RECORD_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val rt = tables.recordTable
     rt.get(key) match {
       case Some(other) =>
@@ -461,7 +461,7 @@ trait TypeAliasMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.TYPE_ALIAS_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val tat = tables.typeAliasTable
     tat.get(key) match {
       case Some(other) =>
@@ -504,7 +504,7 @@ trait VsetMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.VSET_TYPE,
       H.packagePath(packageSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val vt = tables.vsetTable
     vt.get(key) match {
       case Some(other) =>
@@ -564,7 +564,7 @@ trait ProcedureSymbolMiner extends SymbolMiner {
     H.symbolInit(nameDef, H.LOCAL_VAR_TYPE,
       H.paths(procedureSymDef, nameDef.name))
 
-    val key = nameDef.resourceUri
+    val key = nameDef.uri
     val lvt = tables.localVarTable
     val params = tables.params
     lvt.get(key) match {
@@ -579,7 +579,7 @@ trait ProcedureSymbolMiner extends SymbolMiner {
       case _ =>
         lvt(key.intern) = localVar
         if (isParam)
-          params += nameDef.resourceUri
+          params += nameDef.uri
     }
   }
 
@@ -587,7 +587,7 @@ trait ProcedureSymbolMiner extends SymbolMiner {
     loc.name match {
       case Some(nameDef) =>
         H.symbolInit(nameDef, H.LOCATION_TYPE, ilist(nameDef.name), true)
-        val key = nameDef.resourceUri
+        val key = nameDef.uri
         val lt = tables.bodyTables.get.locationTable
         lt.get(key) match {
           case Some(other) =>
@@ -601,7 +601,7 @@ trait ProcedureSymbolMiner extends SymbolMiner {
           case _ =>
             lt(key.intern) = loc
             loc.index(index)
-            H.computeLocationDescriptor(loc, Some(nameDef.resourceUri), index)
+            H.computeLocationDescriptor(loc, Some(nameDef.uri), index)
         }
       case None =>
         loc.index(index)

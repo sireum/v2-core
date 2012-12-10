@@ -81,11 +81,11 @@ trait SymbolProvider[S] {
   }
   def procedureUri(e : NameExp) =
     if (e.name.hasResourceInfo && H.isProcedure(e.name))
-      Some(e.name.resourceUri)
+      Some(e.name.uri)
     else None
   def funUri(e : NameExp) =
     if (e.name.hasResourceInfo && H.isFun(e.name))
-      Some(e.name.resourceUri)
+      Some(e.name.uri)
     else None
   def isFieldAccess(f : NameUser) : Boolean = {
     import H._
@@ -93,8 +93,8 @@ trait SymbolProvider[S] {
   }
   def extUri(e : NameExp, extPresent : ResourceUri => Boolean) : Option[ResourceUri] = {
     val name = e.name
-    if (name.hasResourceInfo && extPresent(name.resourceUri))
-      Some(name.resourceUri)
+    if (name.hasResourceInfo && extPresent(name.uri))
+      Some(name.uri)
     else if (extPresent(name.name))
       Some(name.name)
     else None
