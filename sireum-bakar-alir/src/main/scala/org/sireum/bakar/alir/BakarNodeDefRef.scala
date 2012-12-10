@@ -11,7 +11,7 @@ final case class RecordSlot(accessExp: AccessExp) extends Slot {
     var visitor: Any => Boolean = Visitor.build({
       case ne: NameExp =>
         if (ne.name.hasResourceInfo) {
-          val uri = ne.name.resourceUri
+          val uri = ne.name.uri
           Expstring = uri.substring(uri.lastIndexOf('/') + 1) + Expstring
         }
         false
@@ -39,7 +39,7 @@ class BakarNodeDefRef(st: SymbolTable, val varAccesses: VarAccesses) extends Def
         aA.lhs match {
           case ie: IndexingExp => {
             val lhs = ie.exp
-            result = result + VarSlot(lhs match { case ne: NameExp => ne.name.resourceUri })
+            result = result + VarSlot(lhs match { case ne: NameExp => ne.name.uri })
           }
           case ae: AccessExp => {
             result = result + RecordSlot(ae)
@@ -71,8 +71,8 @@ class BakarNodeDefRef(st: SymbolTable, val varAccesses: VarAccesses) extends Def
 
     if (aA.rhs.isInstanceOf[IndexingExp]) {
       val ier = aA.rhs.asInstanceOf[IndexingExp]
-      result = result + VarSlot(ier.exp match { case ne: NameExp => ne.name.resourceUri })
-      val y = ier.indices.map(f => VarSlot(f match { case ne: NameExp => ne.name.resourceUri }))
+      result = result + VarSlot(ier.exp match { case ne: NameExp => ne.name.uri })
+      val y = ier.indices.map(f => VarSlot(f match { case ne: NameExp => ne.name.uri }))
       result = result ++ y
     }
 
@@ -83,15 +83,15 @@ class BakarNodeDefRef(st: SymbolTable, val varAccesses: VarAccesses) extends Def
 
     if (aA.lhs.isInstanceOf[IndexingExp]) {
       val iel = aA.lhs.asInstanceOf[IndexingExp]
-      result = result ++ iel.indices.map(f => VarSlot(f match { case ne: NameExp => ne.name.resourceUri }))
+      result = result ++ iel.indices.map(f => VarSlot(f match { case ne: NameExp => ne.name.uri }))
       if (!aA.rhs.isInstanceOf[IndexingExp] && !aA.rhs.isInstanceOf[AccessExp])
-        result = result + VarSlot(aA.rhs match { case ne: NameExp => ne.name.resourceUri })
+        result = result + VarSlot(aA.rhs match { case ne: NameExp => ne.name.uri })
     }
 
     if (aA.lhs.isInstanceOf[AccessExp]) {
       //  val ael = aA.lhs.asInstanceOf[AccessExp]
       if (!aA.rhs.isInstanceOf[IndexingExp] && !aA.rhs.isInstanceOf[AccessExp])
-        result = result + VarSlot(aA.rhs match { case ne: NameExp => ne.name.resourceUri })
+        result = result + VarSlot(aA.rhs match { case ne: NameExp => ne.name.uri })
     }
     if (!aA.rhs.isInstanceOf[IndexingExp] && !aA.lhs.isInstanceOf[IndexingExp]
       && !aA.rhs.isInstanceOf[AccessExp] && !aA.lhs.isInstanceOf[AccessExp]) {
