@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Expression_Function_Declaration complex type.
+ * <p>Java class for Expression_Function_Declaration complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Expression_Function_Declaration">
@@ -39,148 +38,171 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Expression_Function_Declaration", propOrder = { "sloc",
-    "namesQl", "parameterProfileQl", "resultProfileQ", "resultExpressionQ",
-    "aspectSpecificationsQl" })
+@XmlType(name = "Expression_Function_Declaration", propOrder = {
+    "sloc",
+    "namesQl",
+    "parameterProfileQl",
+    "resultProfileQ",
+    "resultExpressionQ",
+    "aspectSpecificationsQl"
+})
 public class ExpressionFunctionDeclaration {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
-  @XmlElement(name = "parameter_profile_ql", required = true)
-  protected ParameterSpecificationList parameterProfileQl;
-  @XmlElement(name = "result_profile_q", required = true)
-  protected ElementClass resultProfileQ;
-  @XmlElement(name = "result_expression_q", required = true)
-  protected ExpressionClass resultExpressionQ;
-  @XmlElement(name = "aspect_specifications_ql", required = true)
-  protected ElementList aspectSpecificationsQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
+    @XmlElement(name = "parameter_profile_ql", required = true)
+    protected ParameterSpecificationList parameterProfileQl;
+    @XmlElement(name = "result_profile_q", required = true)
+    protected ElementClass resultProfileQ;
+    @XmlElement(name = "result_expression_q", required = true)
+    protected ExpressionClass resultExpressionQ;
+    @XmlElement(name = "aspect_specifications_ql", required = true)
+    protected ElementList aspectSpecificationsQl;
 
-  /**
-   * Gets the value of the aspectSpecificationsQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getAspectSpecificationsQl() {
-    return this.aspectSpecificationsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the parameterProfileQl property.
-   * 
-   * @return possible object is {@link ParameterSpecificationList }
-   * 
-   */
-  public ParameterSpecificationList getParameterProfileQl() {
-    return this.parameterProfileQl;
-  }
+    /**
+     * Gets the value of the namesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public DefiningNameList getNamesQl() {
+        return namesQl;
+    }
 
-  /**
-   * Gets the value of the resultExpressionQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getResultExpressionQ() {
-    return this.resultExpressionQ;
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
-  /**
-   * Gets the value of the resultProfileQ property.
-   * 
-   * @return possible object is {@link ElementClass }
-   * 
-   */
-  public ElementClass getResultProfileQ() {
-    return this.resultProfileQ;
-  }
+    /**
+     * Gets the value of the parameterProfileQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ParameterSpecificationList }
+     *     
+     */
+    public ParameterSpecificationList getParameterProfileQl() {
+        return parameterProfileQl;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the parameterProfileQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ParameterSpecificationList }
+     *     
+     */
+    public void setParameterProfileQl(ParameterSpecificationList value) {
+        this.parameterProfileQl = value;
+    }
 
-  /**
-   * Sets the value of the aspectSpecificationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setAspectSpecificationsQl(final ElementList value) {
-    this.aspectSpecificationsQl = value;
-  }
+    /**
+     * Gets the value of the resultProfileQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementClass }
+     *     
+     */
+    public ElementClass getResultProfileQ() {
+        return resultProfileQ;
+    }
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
+    /**
+     * Sets the value of the resultProfileQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementClass }
+     *     
+     */
+    public void setResultProfileQ(ElementClass value) {
+        this.resultProfileQ = value;
+    }
 
-  /**
-   * Sets the value of the parameterProfileQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ParameterSpecificationList }
-   * 
-   */
-  public void setParameterProfileQl(final ParameterSpecificationList value) {
-    this.parameterProfileQl = value;
-  }
+    /**
+     * Gets the value of the resultExpressionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getResultExpressionQ() {
+        return resultExpressionQ;
+    }
 
-  /**
-   * Sets the value of the resultExpressionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setResultExpressionQ(final ExpressionClass value) {
-    this.resultExpressionQ = value;
-  }
+    /**
+     * Sets the value of the resultExpressionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setResultExpressionQ(ExpressionClass value) {
+        this.resultExpressionQ = value;
+    }
 
-  /**
-   * Sets the value of the resultProfileQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementClass }
-   * 
-   */
-  public void setResultProfileQ(final ElementClass value) {
-    this.resultProfileQ = value;
-  }
+    /**
+     * Gets the value of the aspectSpecificationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getAspectSpecificationsQl() {
+        return aspectSpecificationsQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the aspectSpecificationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setAspectSpecificationsQl(ElementList value) {
+        this.aspectSpecificationsQl = value;
+    }
 
 }

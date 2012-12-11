@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Use_Type_Clause complex type.
+ * <p>Java class for Use_Type_Clause complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Use_Type_Clause">
@@ -35,54 +34,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Use_Type_Clause", propOrder = { "sloc", "clauseNamesQl" })
+@XmlType(name = "Use_Type_Clause", propOrder = {
+    "sloc",
+    "clauseNamesQl"
+})
 public class UseTypeClause {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "clause_names_ql", required = true)
-  protected NameList clauseNamesQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "clause_names_ql", required = true)
+    protected NameList clauseNamesQl;
 
-  /**
-   * Gets the value of the clauseNamesQl property.
-   * 
-   * @return possible object is {@link NameList }
-   * 
-   */
-  public NameList getClauseNamesQl() {
-    return this.clauseNamesQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Sets the value of the clauseNamesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link NameList }
-   * 
-   */
-  public void setClauseNamesQl(final NameList value) {
-    this.clauseNamesQl = value;
-  }
+    /**
+     * Gets the value of the clauseNamesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link NameList }
+     *     
+     */
+    public NameList getClauseNamesQl() {
+        return clauseNamesQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the clauseNamesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link NameList }
+     *     
+     */
+    public void setClauseNamesQl(NameList value) {
+        this.clauseNamesQl = value;
+    }
 
 }

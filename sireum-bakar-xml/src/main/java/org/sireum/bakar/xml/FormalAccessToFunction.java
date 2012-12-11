@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Formal_Access_To_Function complex type.
+ * <p>Java class for Formal_Access_To_Function complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Formal_Access_To_Function">
@@ -60,282 +59,310 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Formal_Access_To_Function", propOrder = { "sloc",
-    "hasNullExclusionQ", "accessToSubprogramParameterProfileQl",
-    "isNotNullReturnQ", "accessToFunctionResultProfileQ" })
+@XmlType(name = "Formal_Access_To_Function", propOrder = {
+    "sloc",
+    "hasNullExclusionQ",
+    "accessToSubprogramParameterProfileQl",
+    "isNotNullReturnQ",
+    "accessToFunctionResultProfileQ"
+})
 public class FormalAccessToFunction {
 
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "nullExclusion", "notAnElement" })
-  public static class HasNullExclusionQ {
-
-    @XmlElement(name = "null_exclusion")
-    protected NullExclusion nullExclusion;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "has_null_exclusion_q", required = true)
+    protected FormalAccessToFunction.HasNullExclusionQ hasNullExclusionQ;
+    @XmlElement(name = "access_to_subprogram_parameter_profile_ql", required = true)
+    protected ParameterSpecificationList accessToSubprogramParameterProfileQl;
+    @XmlElement(name = "is_not_null_return_q", required = true)
+    protected FormalAccessToFunction.IsNotNullReturnQ isNotNullReturnQ;
+    @XmlElement(name = "access_to_function_result_profile_q", required = true)
+    protected ElementClass accessToFunctionResultProfileQ;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the sloc property.
      * 
-     * @return possible object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
      */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public SourceLocation getSloc() {
+        return sloc;
     }
 
     /**
-     * Gets the value of the nullExclusion property.
-     * 
-     * @return possible object is {@link NullExclusion }
-     * 
-     */
-    public NullExclusion getNullExclusion() {
-      return this.nullExclusion;
-    }
-
-    /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the sloc property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
     }
 
     /**
-     * Sets the value of the nullExclusion property.
+     * Gets the value of the hasNullExclusionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FormalAccessToFunction.HasNullExclusionQ }
+     *     
+     */
+    public FormalAccessToFunction.HasNullExclusionQ getHasNullExclusionQ() {
+        return hasNullExclusionQ;
+    }
+
+    /**
+     * Sets the value of the hasNullExclusionQ property.
      * 
      * @param value
-     *          allowed object is {@link NullExclusion }
-     * 
+     *     allowed object is
+     *     {@link FormalAccessToFunction.HasNullExclusionQ }
+     *     
      */
-    public void setNullExclusion(final NullExclusion value) {
-      this.nullExclusion = value;
-    }
-
-  }
-
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="not_null_return" type="{}Not_Null_Return"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "notNullReturn", "notAnElement" })
-  public static class IsNotNullReturnQ {
-
-    @XmlElement(name = "not_null_return")
-    protected NotNullReturn notNullReturn;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-
-    /**
-     * Gets the value of the notAnElement property.
-     * 
-     * @return possible object is {@link NotAnElement }
-     * 
-     */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public void setHasNullExclusionQ(FormalAccessToFunction.HasNullExclusionQ value) {
+        this.hasNullExclusionQ = value;
     }
 
     /**
-     * Gets the value of the notNullReturn property.
+     * Gets the value of the accessToSubprogramParameterProfileQl property.
      * 
-     * @return possible object is {@link NotNullReturn }
-     * 
+     * @return
+     *     possible object is
+     *     {@link ParameterSpecificationList }
+     *     
      */
-    public NotNullReturn getNotNullReturn() {
-      return this.notNullReturn;
+    public ParameterSpecificationList getAccessToSubprogramParameterProfileQl() {
+        return accessToSubprogramParameterProfileQl;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the accessToSubprogramParameterProfileQl property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link ParameterSpecificationList }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public void setAccessToSubprogramParameterProfileQl(ParameterSpecificationList value) {
+        this.accessToSubprogramParameterProfileQl = value;
     }
 
     /**
-     * Sets the value of the notNullReturn property.
+     * Gets the value of the isNotNullReturnQ property.
      * 
-     * @param value
-     *          allowed object is {@link NotNullReturn }
-     * 
+     * @return
+     *     possible object is
+     *     {@link FormalAccessToFunction.IsNotNullReturnQ }
+     *     
      */
-    public void setNotNullReturn(final NotNullReturn value) {
-      this.notNullReturn = value;
+    public FormalAccessToFunction.IsNotNullReturnQ getIsNotNullReturnQ() {
+        return isNotNullReturnQ;
     }
 
-  }
+    /**
+     * Sets the value of the isNotNullReturnQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FormalAccessToFunction.IsNotNullReturnQ }
+     *     
+     */
+    public void setIsNotNullReturnQ(FormalAccessToFunction.IsNotNullReturnQ value) {
+        this.isNotNullReturnQ = value;
+    }
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "has_null_exclusion_q", required = true)
-  protected FormalAccessToFunction.HasNullExclusionQ hasNullExclusionQ;
-  @XmlElement(name = "access_to_subprogram_parameter_profile_ql", required = true)
-  protected ParameterSpecificationList accessToSubprogramParameterProfileQl;
+    /**
+     * Gets the value of the accessToFunctionResultProfileQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementClass }
+     *     
+     */
+    public ElementClass getAccessToFunctionResultProfileQ() {
+        return accessToFunctionResultProfileQ;
+    }
 
-  @XmlElement(name = "is_not_null_return_q", required = true)
-  protected FormalAccessToFunction.IsNotNullReturnQ isNotNullReturnQ;
+    /**
+     * Sets the value of the accessToFunctionResultProfileQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementClass }
+     *     
+     */
+    public void setAccessToFunctionResultProfileQ(ElementClass value) {
+        this.accessToFunctionResultProfileQ = value;
+    }
 
-  @XmlElement(name = "access_to_function_result_profile_q", required = true)
-  protected ElementClass accessToFunctionResultProfileQ;
 
-  /**
-   * Gets the value of the accessToFunctionResultProfileQ property.
-   * 
-   * @return possible object is {@link ElementClass }
-   * 
-   */
-  public ElementClass getAccessToFunctionResultProfileQ() {
-    return this.accessToFunctionResultProfileQ;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "nullExclusion",
+        "notAnElement"
+    })
+    public static class HasNullExclusionQ {
 
-  /**
-   * Gets the value of the accessToSubprogramParameterProfileQl property.
-   * 
-   * @return possible object is {@link ParameterSpecificationList }
-   * 
-   */
-  public ParameterSpecificationList getAccessToSubprogramParameterProfileQl() {
-    return this.accessToSubprogramParameterProfileQl;
-  }
+        @XmlElement(name = "null_exclusion")
+        protected NullExclusion nullExclusion;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
 
-  /**
-   * Gets the value of the hasNullExclusionQ property.
-   * 
-   * @return possible object is {@link FormalAccessToFunction.HasNullExclusionQ }
-   * 
-   */
-  public FormalAccessToFunction.HasNullExclusionQ getHasNullExclusionQ() {
-    return this.hasNullExclusionQ;
-  }
+        /**
+         * Gets the value of the nullExclusion property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NullExclusion }
+         *     
+         */
+        public NullExclusion getNullExclusion() {
+            return nullExclusion;
+        }
 
-  /**
-   * Gets the value of the isNotNullReturnQ property.
-   * 
-   * @return possible object is {@link FormalAccessToFunction.IsNotNullReturnQ }
-   * 
-   */
-  public FormalAccessToFunction.IsNotNullReturnQ getIsNotNullReturnQ() {
-    return this.isNotNullReturnQ;
-  }
+        /**
+         * Sets the value of the nullExclusion property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NullExclusion }
+         *     
+         */
+        public void setNullExclusion(NullExclusion value) {
+            this.nullExclusion = value;
+        }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
 
-  /**
-   * Sets the value of the accessToFunctionResultProfileQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementClass }
-   * 
-   */
-  public void setAccessToFunctionResultProfileQ(final ElementClass value) {
-    this.accessToFunctionResultProfileQ = value;
-  }
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
 
-  /**
-   * Sets the value of the accessToSubprogramParameterProfileQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ParameterSpecificationList }
-   * 
-   */
-  public void setAccessToSubprogramParameterProfileQl(
-      final ParameterSpecificationList value) {
-    this.accessToSubprogramParameterProfileQl = value;
-  }
+    }
 
-  /**
-   * Sets the value of the hasNullExclusionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link FormalAccessToFunction.HasNullExclusionQ }
-   * 
-   */
-  public void setHasNullExclusionQ(
-      final FormalAccessToFunction.HasNullExclusionQ value) {
-    this.hasNullExclusionQ = value;
-  }
 
-  /**
-   * Sets the value of the isNotNullReturnQ property.
-   * 
-   * @param value
-   *          allowed object is {@link FormalAccessToFunction.IsNotNullReturnQ }
-   * 
-   */
-  public void setIsNotNullReturnQ(
-      final FormalAccessToFunction.IsNotNullReturnQ value) {
-    this.isNotNullReturnQ = value;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="not_null_return" type="{}Not_Null_Return"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "notNullReturn",
+        "notAnElement"
+    })
+    public static class IsNotNullReturnQ {
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+        @XmlElement(name = "not_null_return")
+        protected NotNullReturn notNullReturn;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
+
+        /**
+         * Gets the value of the notNullReturn property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotNullReturn }
+         *     
+         */
+        public NotNullReturn getNotNullReturn() {
+            return notNullReturn;
+        }
+
+        /**
+         * Sets the value of the notNullReturn property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotNullReturn }
+         *     
+         */
+        public void setNotNullReturn(NotNullReturn value) {
+            this.notNullReturn = value;
+        }
+
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
+
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
+
+    }
 
 }

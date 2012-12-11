@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Entry_Declaration complex type.
+ * <p>Java class for Entry_Declaration complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Entry_Declaration">
@@ -62,331 +61,363 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Entry_Declaration", propOrder = { "sloc",
-    "isOverridingDeclarationQ", "isNotOverridingDeclarationQ", "namesQl",
-    "entryFamilyDefinitionQ", "parameterProfileQl", "aspectSpecificationsQl" })
+@XmlType(name = "Entry_Declaration", propOrder = {
+    "sloc",
+    "isOverridingDeclarationQ",
+    "isNotOverridingDeclarationQ",
+    "namesQl",
+    "entryFamilyDefinitionQ",
+    "parameterProfileQl",
+    "aspectSpecificationsQl"
+})
 public class EntryDeclaration {
 
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="not_overriding" type="{}Not_Overriding"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "notOverriding", "notAnElement" })
-  public static class IsNotOverridingDeclarationQ {
-
-    @XmlElement(name = "not_overriding")
-    protected NotOverriding notOverriding;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "is_overriding_declaration_q", required = true)
+    protected EntryDeclaration.IsOverridingDeclarationQ isOverridingDeclarationQ;
+    @XmlElement(name = "is_not_overriding_declaration_q", required = true)
+    protected EntryDeclaration.IsNotOverridingDeclarationQ isNotOverridingDeclarationQ;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
+    @XmlElement(name = "entry_family_definition_q", required = true)
+    protected DiscreteSubtypeDefinitionClass entryFamilyDefinitionQ;
+    @XmlElement(name = "parameter_profile_ql", required = true)
+    protected ParameterSpecificationList parameterProfileQl;
+    @XmlElement(name = "aspect_specifications_ql", required = true)
+    protected ElementList aspectSpecificationsQl;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the sloc property.
      * 
-     * @return possible object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
      */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public SourceLocation getSloc() {
+        return sloc;
     }
 
     /**
-     * Gets the value of the notOverriding property.
-     * 
-     * @return possible object is {@link NotOverriding }
-     * 
-     */
-    public NotOverriding getNotOverriding() {
-      return this.notOverriding;
-    }
-
-    /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the sloc property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
     }
 
     /**
-     * Sets the value of the notOverriding property.
+     * Gets the value of the isOverridingDeclarationQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EntryDeclaration.IsOverridingDeclarationQ }
+     *     
+     */
+    public EntryDeclaration.IsOverridingDeclarationQ getIsOverridingDeclarationQ() {
+        return isOverridingDeclarationQ;
+    }
+
+    /**
+     * Sets the value of the isOverridingDeclarationQ property.
      * 
      * @param value
-     *          allowed object is {@link NotOverriding }
-     * 
+     *     allowed object is
+     *     {@link EntryDeclaration.IsOverridingDeclarationQ }
+     *     
      */
-    public void setNotOverriding(final NotOverriding value) {
-      this.notOverriding = value;
-    }
-
-  }
-
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="overriding" type="{}Overriding"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "overriding", "notAnElement" })
-  public static class IsOverridingDeclarationQ {
-
-    protected Overriding overriding;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-
-    /**
-     * Gets the value of the notAnElement property.
-     * 
-     * @return possible object is {@link NotAnElement }
-     * 
-     */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public void setIsOverridingDeclarationQ(EntryDeclaration.IsOverridingDeclarationQ value) {
+        this.isOverridingDeclarationQ = value;
     }
 
     /**
-     * Gets the value of the overriding property.
+     * Gets the value of the isNotOverridingDeclarationQ property.
      * 
-     * @return possible object is {@link Overriding }
-     * 
+     * @return
+     *     possible object is
+     *     {@link EntryDeclaration.IsNotOverridingDeclarationQ }
+     *     
      */
-    public Overriding getOverriding() {
-      return this.overriding;
+    public EntryDeclaration.IsNotOverridingDeclarationQ getIsNotOverridingDeclarationQ() {
+        return isNotOverridingDeclarationQ;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the isNotOverridingDeclarationQ property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link EntryDeclaration.IsNotOverridingDeclarationQ }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public void setIsNotOverridingDeclarationQ(EntryDeclaration.IsNotOverridingDeclarationQ value) {
+        this.isNotOverridingDeclarationQ = value;
     }
 
     /**
-     * Sets the value of the overriding property.
+     * Gets the value of the namesQl property.
      * 
-     * @param value
-     *          allowed object is {@link Overriding }
-     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
      */
-    public void setOverriding(final Overriding value) {
-      this.overriding = value;
+    public DefiningNameList getNamesQl() {
+        return namesQl;
     }
 
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "is_overriding_declaration_q", required = true)
-  protected EntryDeclaration.IsOverridingDeclarationQ isOverridingDeclarationQ;
-  @XmlElement(name = "is_not_overriding_declaration_q", required = true)
-  protected EntryDeclaration.IsNotOverridingDeclarationQ isNotOverridingDeclarationQ;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
-  @XmlElement(name = "entry_family_definition_q", required = true)
-  protected DiscreteSubtypeDefinitionClass entryFamilyDefinitionQ;
+    /**
+     * Gets the value of the entryFamilyDefinitionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DiscreteSubtypeDefinitionClass }
+     *     
+     */
+    public DiscreteSubtypeDefinitionClass getEntryFamilyDefinitionQ() {
+        return entryFamilyDefinitionQ;
+    }
 
-  @XmlElement(name = "parameter_profile_ql", required = true)
-  protected ParameterSpecificationList parameterProfileQl;
+    /**
+     * Sets the value of the entryFamilyDefinitionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DiscreteSubtypeDefinitionClass }
+     *     
+     */
+    public void setEntryFamilyDefinitionQ(DiscreteSubtypeDefinitionClass value) {
+        this.entryFamilyDefinitionQ = value;
+    }
 
-  @XmlElement(name = "aspect_specifications_ql", required = true)
-  protected ElementList aspectSpecificationsQl;
+    /**
+     * Gets the value of the parameterProfileQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ParameterSpecificationList }
+     *     
+     */
+    public ParameterSpecificationList getParameterProfileQl() {
+        return parameterProfileQl;
+    }
 
-  /**
-   * Gets the value of the aspectSpecificationsQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getAspectSpecificationsQl() {
-    return this.aspectSpecificationsQl;
-  }
+    /**
+     * Sets the value of the parameterProfileQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ParameterSpecificationList }
+     *     
+     */
+    public void setParameterProfileQl(ParameterSpecificationList value) {
+        this.parameterProfileQl = value;
+    }
 
-  /**
-   * Gets the value of the entryFamilyDefinitionQ property.
-   * 
-   * @return possible object is {@link DiscreteSubtypeDefinitionClass }
-   * 
-   */
-  public DiscreteSubtypeDefinitionClass getEntryFamilyDefinitionQ() {
-    return this.entryFamilyDefinitionQ;
-  }
+    /**
+     * Gets the value of the aspectSpecificationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getAspectSpecificationsQl() {
+        return aspectSpecificationsQl;
+    }
 
-  /**
-   * Gets the value of the isNotOverridingDeclarationQ property.
-   * 
-   * @return possible object is
-   *         {@link EntryDeclaration.IsNotOverridingDeclarationQ }
-   * 
-   */
-  public EntryDeclaration.IsNotOverridingDeclarationQ getIsNotOverridingDeclarationQ() {
-    return this.isNotOverridingDeclarationQ;
-  }
+    /**
+     * Sets the value of the aspectSpecificationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setAspectSpecificationsQl(ElementList value) {
+        this.aspectSpecificationsQl = value;
+    }
 
-  /**
-   * Gets the value of the isOverridingDeclarationQ property.
-   * 
-   * @return possible object is
-   *         {@link EntryDeclaration.IsOverridingDeclarationQ }
-   * 
-   */
-  public EntryDeclaration.IsOverridingDeclarationQ getIsOverridingDeclarationQ() {
-    return this.isOverridingDeclarationQ;
-  }
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="not_overriding" type="{}Not_Overriding"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "notOverriding",
+        "notAnElement"
+    })
+    public static class IsNotOverridingDeclarationQ {
 
-  /**
-   * Gets the value of the parameterProfileQl property.
-   * 
-   * @return possible object is {@link ParameterSpecificationList }
-   * 
-   */
-  public ParameterSpecificationList getParameterProfileQl() {
-    return this.parameterProfileQl;
-  }
+        @XmlElement(name = "not_overriding")
+        protected NotOverriding notOverriding;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+        /**
+         * Gets the value of the notOverriding property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotOverriding }
+         *     
+         */
+        public NotOverriding getNotOverriding() {
+            return notOverriding;
+        }
 
-  /**
-   * Sets the value of the aspectSpecificationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setAspectSpecificationsQl(final ElementList value) {
-    this.aspectSpecificationsQl = value;
-  }
+        /**
+         * Sets the value of the notOverriding property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotOverriding }
+         *     
+         */
+        public void setNotOverriding(NotOverriding value) {
+            this.notOverriding = value;
+        }
 
-  /**
-   * Sets the value of the entryFamilyDefinitionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link DiscreteSubtypeDefinitionClass }
-   * 
-   */
-  public void setEntryFamilyDefinitionQ(
-      final DiscreteSubtypeDefinitionClass value) {
-    this.entryFamilyDefinitionQ = value;
-  }
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
 
-  /**
-   * Sets the value of the isNotOverridingDeclarationQ property.
-   * 
-   * @param value
-   *          allowed object is
-   *          {@link EntryDeclaration.IsNotOverridingDeclarationQ }
-   * 
-   */
-  public void setIsNotOverridingDeclarationQ(
-      final EntryDeclaration.IsNotOverridingDeclarationQ value) {
-    this.isNotOverridingDeclarationQ = value;
-  }
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
 
-  /**
-   * Sets the value of the isOverridingDeclarationQ property.
-   * 
-   * @param value
-   *          allowed object is
-   *          {@link EntryDeclaration.IsOverridingDeclarationQ }
-   * 
-   */
-  public void setIsOverridingDeclarationQ(
-      final EntryDeclaration.IsOverridingDeclarationQ value) {
-    this.isOverridingDeclarationQ = value;
-  }
+    }
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
 
-  /**
-   * Sets the value of the parameterProfileQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ParameterSpecificationList }
-   * 
-   */
-  public void setParameterProfileQl(final ParameterSpecificationList value) {
-    this.parameterProfileQl = value;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="overriding" type="{}Overriding"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "overriding",
+        "notAnElement"
+    })
+    public static class IsOverridingDeclarationQ {
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+        protected Overriding overriding;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
+
+        /**
+         * Gets the value of the overriding property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Overriding }
+         *     
+         */
+        public Overriding getOverriding() {
+            return overriding;
+        }
+
+        /**
+         * Sets the value of the overriding property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Overriding }
+         *     
+         */
+        public void setOverriding(Overriding value) {
+            this.overriding = value;
+        }
+
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
+
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
+
+    }
 
 }

@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,13 +13,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Selected_Component complex type.
+ * <p>Java class for Selected_Component complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Selected_Component">
@@ -38,101 +37,116 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Selected_Component", propOrder = { "sloc", "prefixQ",
-    "selectorQ" })
+@XmlType(name = "Selected_Component", propOrder = {
+    "sloc",
+    "prefixQ",
+    "selectorQ"
+})
 public class SelectedComponent {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "prefix_q", required = true)
-  protected ExpressionClass prefixQ;
-  @XmlElement(name = "selector_q", required = true)
-  protected ExpressionClass selectorQ;
-  @XmlAttribute(name = "type", required = true)
-  protected String type;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "prefix_q", required = true)
+    protected ExpressionClass prefixQ;
+    @XmlElement(name = "selector_q", required = true)
+    protected ExpressionClass selectorQ;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
 
-  /**
-   * Gets the value of the prefixQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getPrefixQ() {
-    return this.prefixQ;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the selectorQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getSelectorQ() {
-    return this.selectorQ;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the prefixQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getPrefixQ() {
+        return prefixQ;
+    }
 
-  /**
-   * Gets the value of the type property.
-   * 
-   * @return possible object is {@link String }
-   * 
-   */
-  public String getType() {
-    return this.type;
-  }
+    /**
+     * Sets the value of the prefixQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setPrefixQ(ExpressionClass value) {
+        this.prefixQ = value;
+    }
 
-  /**
-   * Sets the value of the prefixQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setPrefixQ(final ExpressionClass value) {
-    this.prefixQ = value;
-  }
+    /**
+     * Gets the value of the selectorQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getSelectorQ() {
+        return selectorQ;
+    }
 
-  /**
-   * Sets the value of the selectorQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setSelectorQ(final ExpressionClass value) {
-    this.selectorQ = value;
-  }
+    /**
+     * Sets the value of the selectorQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setSelectorQ(ExpressionClass value) {
+        this.selectorQ = value;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Sets the value of the type property.
-   * 
-   * @param value
-   *          allowed object is {@link String }
-   * 
-   */
-  public void setType(final String value) {
-    this.type = value;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
 
 }

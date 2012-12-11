@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Case_Expression_Path complex type.
+ * <p>Java class for Case_Expression_Path complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Case_Expression_Path">
@@ -36,78 +35,90 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Case_Expression_Path", propOrder = { "sloc",
-    "casePathAlternativeChoicesQl", "dependentExpressionQ" })
+@XmlType(name = "Case_Expression_Path", propOrder = {
+    "sloc",
+    "casePathAlternativeChoicesQl",
+    "dependentExpressionQ"
+})
 public class CaseExpressionPath {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "case_path_alternative_choices_ql", required = true)
-  protected ElementList casePathAlternativeChoicesQl;
-  @XmlElement(name = "dependent_expression_q", required = true)
-  protected ExpressionClass dependentExpressionQ;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "case_path_alternative_choices_ql", required = true)
+    protected ElementList casePathAlternativeChoicesQl;
+    @XmlElement(name = "dependent_expression_q", required = true)
+    protected ExpressionClass dependentExpressionQ;
 
-  /**
-   * Gets the value of the casePathAlternativeChoicesQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getCasePathAlternativeChoicesQl() {
-    return this.casePathAlternativeChoicesQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the dependentExpressionQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getDependentExpressionQ() {
-    return this.dependentExpressionQ;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the casePathAlternativeChoicesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getCasePathAlternativeChoicesQl() {
+        return casePathAlternativeChoicesQl;
+    }
 
-  /**
-   * Sets the value of the casePathAlternativeChoicesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setCasePathAlternativeChoicesQl(final ElementList value) {
-    this.casePathAlternativeChoicesQl = value;
-  }
+    /**
+     * Sets the value of the casePathAlternativeChoicesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setCasePathAlternativeChoicesQl(ElementList value) {
+        this.casePathAlternativeChoicesQl = value;
+    }
 
-  /**
-   * Sets the value of the dependentExpressionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setDependentExpressionQ(final ExpressionClass value) {
-    this.dependentExpressionQ = value;
-  }
+    /**
+     * Gets the value of the dependentExpressionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getDependentExpressionQ() {
+        return dependentExpressionQ;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the dependentExpressionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setDependentExpressionQ(ExpressionClass value) {
+        this.dependentExpressionQ = value;
+    }
 
 }

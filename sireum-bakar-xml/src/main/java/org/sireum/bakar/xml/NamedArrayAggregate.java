@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,13 +13,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Named_Array_Aggregate complex type.
+ * <p>Java class for Named_Array_Aggregate complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Named_Array_Aggregate">
@@ -37,78 +36,89 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Named_Array_Aggregate", propOrder = { "sloc",
-    "arrayComponentAssociationsQl" })
+@XmlType(name = "Named_Array_Aggregate", propOrder = {
+    "sloc",
+    "arrayComponentAssociationsQl"
+})
 public class NamedArrayAggregate {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "array_component_associations_ql", required = true)
-  protected AssociationList arrayComponentAssociationsQl;
-  @XmlAttribute(name = "type", required = true)
-  protected String type;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "array_component_associations_ql", required = true)
+    protected AssociationList arrayComponentAssociationsQl;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
 
-  /**
-   * Gets the value of the arrayComponentAssociationsQl property.
-   * 
-   * @return possible object is {@link AssociationList }
-   * 
-   */
-  public AssociationList getArrayComponentAssociationsQl() {
-    return this.arrayComponentAssociationsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the type property.
-   * 
-   * @return possible object is {@link String }
-   * 
-   */
-  public String getType() {
-    return this.type;
-  }
+    /**
+     * Gets the value of the arrayComponentAssociationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssociationList }
+     *     
+     */
+    public AssociationList getArrayComponentAssociationsQl() {
+        return arrayComponentAssociationsQl;
+    }
 
-  /**
-   * Sets the value of the arrayComponentAssociationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link AssociationList }
-   * 
-   */
-  public void setArrayComponentAssociationsQl(final AssociationList value) {
-    this.arrayComponentAssociationsQl = value;
-  }
+    /**
+     * Sets the value of the arrayComponentAssociationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssociationList }
+     *     
+     */
+    public void setArrayComponentAssociationsQl(AssociationList value) {
+        this.arrayComponentAssociationsQl = value;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Sets the value of the type property.
-   * 
-   * @param value
-   *          allowed object is {@link String }
-   * 
-   */
-  public void setType(final String value) {
-    this.type = value;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
 
 }

@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Subtype_Declaration complex type.
+ * <p>Java class for Subtype_Declaration complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Subtype_Declaration">
@@ -37,101 +36,117 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Subtype_Declaration", propOrder = { "sloc", "namesQl",
-    "typeDeclarationViewQ", "aspectSpecificationsQl" })
+@XmlType(name = "Subtype_Declaration", propOrder = {
+    "sloc",
+    "namesQl",
+    "typeDeclarationViewQ",
+    "aspectSpecificationsQl"
+})
 public class SubtypeDeclaration {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
-  @XmlElement(name = "type_declaration_view_q", required = true)
-  protected DefinitionClass typeDeclarationViewQ;
-  @XmlElement(name = "aspect_specifications_ql", required = true)
-  protected ElementList aspectSpecificationsQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
+    @XmlElement(name = "type_declaration_view_q", required = true)
+    protected DefinitionClass typeDeclarationViewQ;
+    @XmlElement(name = "aspect_specifications_ql", required = true)
+    protected ElementList aspectSpecificationsQl;
 
-  /**
-   * Gets the value of the aspectSpecificationsQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getAspectSpecificationsQl() {
-    return this.aspectSpecificationsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the namesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public DefiningNameList getNamesQl() {
+        return namesQl;
+    }
 
-  /**
-   * Gets the value of the typeDeclarationViewQ property.
-   * 
-   * @return possible object is {@link DefinitionClass }
-   * 
-   */
-  public DefinitionClass getTypeDeclarationViewQ() {
-    return this.typeDeclarationViewQ;
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
-  /**
-   * Sets the value of the aspectSpecificationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setAspectSpecificationsQl(final ElementList value) {
-    this.aspectSpecificationsQl = value;
-  }
+    /**
+     * Gets the value of the typeDeclarationViewQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefinitionClass }
+     *     
+     */
+    public DefinitionClass getTypeDeclarationViewQ() {
+        return typeDeclarationViewQ;
+    }
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
+    /**
+     * Sets the value of the typeDeclarationViewQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefinitionClass }
+     *     
+     */
+    public void setTypeDeclarationViewQ(DefinitionClass value) {
+        this.typeDeclarationViewQ = value;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Gets the value of the aspectSpecificationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getAspectSpecificationsQl() {
+        return aspectSpecificationsQl;
+    }
 
-  /**
-   * Sets the value of the typeDeclarationViewQ property.
-   * 
-   * @param value
-   *          allowed object is {@link DefinitionClass }
-   * 
-   */
-  public void setTypeDeclarationViewQ(final DefinitionClass value) {
-    this.typeDeclarationViewQ = value;
-  }
+    /**
+     * Sets the value of the aspectSpecificationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setAspectSpecificationsQl(ElementList value) {
+        this.aspectSpecificationsQl = value;
+    }
 
 }

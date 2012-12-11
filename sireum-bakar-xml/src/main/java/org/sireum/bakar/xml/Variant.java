@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Variant complex type.
+ * <p>Java class for Variant complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Variant">
@@ -36,78 +35,90 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Variant", propOrder = { "sloc", "variantChoicesQl",
-    "recordComponentsQl" })
+@XmlType(name = "Variant", propOrder = {
+    "sloc",
+    "variantChoicesQl",
+    "recordComponentsQl"
+})
 public class Variant {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "variant_choices_ql", required = true)
-  protected ElementList variantChoicesQl;
-  @XmlElement(name = "record_components_ql", required = true)
-  protected RecordComponentList recordComponentsQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "variant_choices_ql", required = true)
+    protected ElementList variantChoicesQl;
+    @XmlElement(name = "record_components_ql", required = true)
+    protected RecordComponentList recordComponentsQl;
 
-  /**
-   * Gets the value of the recordComponentsQl property.
-   * 
-   * @return possible object is {@link RecordComponentList }
-   * 
-   */
-  public RecordComponentList getRecordComponentsQl() {
-    return this.recordComponentsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the variantChoicesQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getVariantChoicesQl() {
-    return this.variantChoicesQl;
-  }
+    /**
+     * Gets the value of the variantChoicesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getVariantChoicesQl() {
+        return variantChoicesQl;
+    }
 
-  /**
-   * Sets the value of the recordComponentsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link RecordComponentList }
-   * 
-   */
-  public void setRecordComponentsQl(final RecordComponentList value) {
-    this.recordComponentsQl = value;
-  }
+    /**
+     * Sets the value of the variantChoicesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setVariantChoicesQl(ElementList value) {
+        this.variantChoicesQl = value;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Gets the value of the recordComponentsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecordComponentList }
+     *     
+     */
+    public RecordComponentList getRecordComponentsQl() {
+        return recordComponentsQl;
+    }
 
-  /**
-   * Sets the value of the variantChoicesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setVariantChoicesQl(final ElementList value) {
-    this.variantChoicesQl = value;
-  }
+    /**
+     * Sets the value of the recordComponentsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RecordComponentList }
+     *     
+     */
+    public void setRecordComponentsQl(RecordComponentList value) {
+        this.recordComponentsQl = value;
+    }
 
 }

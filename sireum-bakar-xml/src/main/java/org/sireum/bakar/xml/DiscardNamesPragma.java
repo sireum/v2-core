@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,13 +13,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Discard_Names_Pragma complex type.
+ * <p>Java class for Discard_Names_Pragma complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Discard_Names_Pragma">
@@ -37,78 +36,89 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Discard_Names_Pragma", propOrder = { "sloc",
-    "pragmaArgumentAssociationsQl" })
+@XmlType(name = "Discard_Names_Pragma", propOrder = {
+    "sloc",
+    "pragmaArgumentAssociationsQl"
+})
 public class DiscardNamesPragma {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "pragma_argument_associations_ql", required = true)
-  protected AssociationList pragmaArgumentAssociationsQl;
-  @XmlAttribute(name = "pragma_name", required = true)
-  protected String pragmaName;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "pragma_argument_associations_ql", required = true)
+    protected AssociationList pragmaArgumentAssociationsQl;
+    @XmlAttribute(name = "pragma_name", required = true)
+    protected String pragmaName;
 
-  /**
-   * Gets the value of the pragmaArgumentAssociationsQl property.
-   * 
-   * @return possible object is {@link AssociationList }
-   * 
-   */
-  public AssociationList getPragmaArgumentAssociationsQl() {
-    return this.pragmaArgumentAssociationsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the pragmaName property.
-   * 
-   * @return possible object is {@link String }
-   * 
-   */
-  public String getPragmaName() {
-    return this.pragmaName;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the pragmaArgumentAssociationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssociationList }
+     *     
+     */
+    public AssociationList getPragmaArgumentAssociationsQl() {
+        return pragmaArgumentAssociationsQl;
+    }
 
-  /**
-   * Sets the value of the pragmaArgumentAssociationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link AssociationList }
-   * 
-   */
-  public void setPragmaArgumentAssociationsQl(final AssociationList value) {
-    this.pragmaArgumentAssociationsQl = value;
-  }
+    /**
+     * Sets the value of the pragmaArgumentAssociationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssociationList }
+     *     
+     */
+    public void setPragmaArgumentAssociationsQl(AssociationList value) {
+        this.pragmaArgumentAssociationsQl = value;
+    }
 
-  /**
-   * Sets the value of the pragmaName property.
-   * 
-   * @param value
-   *          allowed object is {@link String }
-   * 
-   */
-  public void setPragmaName(final String value) {
-    this.pragmaName = value;
-  }
+    /**
+     * Gets the value of the pragmaName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPragmaName() {
+        return pragmaName;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the pragmaName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPragmaName(String value) {
+        this.pragmaName = value;
+    }
 
 }

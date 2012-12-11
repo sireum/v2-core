@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Record_Component_Association complex type.
+ * <p>Java class for Record_Component_Association complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Record_Component_Association">
@@ -36,78 +35,90 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Record_Component_Association", propOrder = { "sloc",
-    "recordComponentChoicesQl", "componentExpressionQ" })
+@XmlType(name = "Record_Component_Association", propOrder = {
+    "sloc",
+    "recordComponentChoicesQl",
+    "componentExpressionQ"
+})
 public class RecordComponentAssociation {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "record_component_choices_ql", required = true)
-  protected ExpressionList recordComponentChoicesQl;
-  @XmlElement(name = "component_expression_q", required = true)
-  protected ExpressionClass componentExpressionQ;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "record_component_choices_ql", required = true)
+    protected ExpressionList recordComponentChoicesQl;
+    @XmlElement(name = "component_expression_q", required = true)
+    protected ExpressionClass componentExpressionQ;
 
-  /**
-   * Gets the value of the componentExpressionQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getComponentExpressionQ() {
-    return this.componentExpressionQ;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the recordComponentChoicesQl property.
-   * 
-   * @return possible object is {@link ExpressionList }
-   * 
-   */
-  public ExpressionList getRecordComponentChoicesQl() {
-    return this.recordComponentChoicesQl;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the recordComponentChoicesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionList }
+     *     
+     */
+    public ExpressionList getRecordComponentChoicesQl() {
+        return recordComponentChoicesQl;
+    }
 
-  /**
-   * Sets the value of the componentExpressionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setComponentExpressionQ(final ExpressionClass value) {
-    this.componentExpressionQ = value;
-  }
+    /**
+     * Sets the value of the recordComponentChoicesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionList }
+     *     
+     */
+    public void setRecordComponentChoicesQl(ExpressionList value) {
+        this.recordComponentChoicesQl = value;
+    }
 
-  /**
-   * Sets the value of the recordComponentChoicesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionList }
-   * 
-   */
-  public void setRecordComponentChoicesQl(final ExpressionList value) {
-    this.recordComponentChoicesQl = value;
-  }
+    /**
+     * Gets the value of the componentExpressionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getComponentExpressionQ() {
+        return componentExpressionQ;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the componentExpressionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setComponentExpressionQ(ExpressionClass value) {
+        this.componentExpressionQ = value;
+    }
 
 }

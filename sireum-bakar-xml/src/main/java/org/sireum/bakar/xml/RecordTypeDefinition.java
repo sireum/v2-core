@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Record_Type_Definition complex type.
+ * <p>Java class for Record_Type_Definition complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Record_Type_Definition">
@@ -59,254 +58,282 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Record_Type_Definition", propOrder = { "sloc", "hasAbstractQ",
-    "hasLimitedQ", "recordDefinitionQ" })
+@XmlType(name = "Record_Type_Definition", propOrder = {
+    "sloc",
+    "hasAbstractQ",
+    "hasLimitedQ",
+    "recordDefinitionQ"
+})
 public class RecordTypeDefinition {
 
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="abstract" type="{}Abstract"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "_abstract", "notAnElement" })
-  public static class HasAbstractQ {
-
-    @XmlElement(name = "abstract")
-    protected Abstract _abstract;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "has_abstract_q", required = true)
+    protected RecordTypeDefinition.HasAbstractQ hasAbstractQ;
+    @XmlElement(name = "has_limited_q", required = true)
+    protected RecordTypeDefinition.HasLimitedQ hasLimitedQ;
+    @XmlElement(name = "record_definition_q", required = true)
+    protected DefinitionClass recordDefinitionQ;
 
     /**
-     * Gets the value of the abstract property.
+     * Gets the value of the sloc property.
      * 
-     * @return possible object is {@link Abstract }
-     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
      */
-    public Abstract getAbstract() {
-      return this._abstract;
+    public SourceLocation getSloc() {
+        return sloc;
     }
 
     /**
-     * Gets the value of the notAnElement property.
-     * 
-     * @return possible object is {@link NotAnElement }
-     * 
-     */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
-    }
-
-    /**
-     * Sets the value of the abstract property.
+     * Sets the value of the sloc property.
      * 
      * @param value
-     *          allowed object is {@link Abstract }
-     * 
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
      */
-    public void setAbstract(final Abstract value) {
-      this._abstract = value;
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Gets the value of the hasAbstractQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecordTypeDefinition.HasAbstractQ }
+     *     
+     */
+    public RecordTypeDefinition.HasAbstractQ getHasAbstractQ() {
+        return hasAbstractQ;
+    }
+
+    /**
+     * Sets the value of the hasAbstractQ property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link RecordTypeDefinition.HasAbstractQ }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
-    }
-
-  }
-
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="limited" type="{}Limited"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "limited", "notAnElement" })
-  public static class HasLimitedQ {
-
-    protected Limited limited;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-
-    /**
-     * Gets the value of the limited property.
-     * 
-     * @return possible object is {@link Limited }
-     * 
-     */
-    public Limited getLimited() {
-      return this.limited;
+    public void setHasAbstractQ(RecordTypeDefinition.HasAbstractQ value) {
+        this.hasAbstractQ = value;
     }
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the hasLimitedQ property.
      * 
-     * @return possible object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link RecordTypeDefinition.HasLimitedQ }
+     *     
      */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public RecordTypeDefinition.HasLimitedQ getHasLimitedQ() {
+        return hasLimitedQ;
     }
 
     /**
-     * Sets the value of the limited property.
+     * Sets the value of the hasLimitedQ property.
      * 
      * @param value
-     *          allowed object is {@link Limited }
-     * 
+     *     allowed object is
+     *     {@link RecordTypeDefinition.HasLimitedQ }
+     *     
      */
-    public void setLimited(final Limited value) {
-      this.limited = value;
+    public void setHasLimitedQ(RecordTypeDefinition.HasLimitedQ value) {
+        this.hasLimitedQ = value;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Gets the value of the recordDefinitionQ property.
      * 
-     * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link DefinitionClass }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public DefinitionClass getRecordDefinitionQ() {
+        return recordDefinitionQ;
     }
 
-  }
+    /**
+     * Sets the value of the recordDefinitionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefinitionClass }
+     *     
+     */
+    public void setRecordDefinitionQ(DefinitionClass value) {
+        this.recordDefinitionQ = value;
+    }
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "has_abstract_q", required = true)
-  protected RecordTypeDefinition.HasAbstractQ hasAbstractQ;
 
-  @XmlElement(name = "has_limited_q", required = true)
-  protected RecordTypeDefinition.HasLimitedQ hasLimitedQ;
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="abstract" type="{}Abstract"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "_abstract",
+        "notAnElement"
+    })
+    public static class HasAbstractQ {
 
-  @XmlElement(name = "record_definition_q", required = true)
-  protected DefinitionClass recordDefinitionQ;
+        @XmlElement(name = "abstract")
+        protected Abstract _abstract;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
 
-  /**
-   * Gets the value of the hasAbstractQ property.
-   * 
-   * @return possible object is {@link RecordTypeDefinition.HasAbstractQ }
-   * 
-   */
-  public RecordTypeDefinition.HasAbstractQ getHasAbstractQ() {
-    return this.hasAbstractQ;
-  }
+        /**
+         * Gets the value of the abstract property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Abstract }
+         *     
+         */
+        public Abstract getAbstract() {
+            return _abstract;
+        }
 
-  /**
-   * Gets the value of the hasLimitedQ property.
-   * 
-   * @return possible object is {@link RecordTypeDefinition.HasLimitedQ }
-   * 
-   */
-  public RecordTypeDefinition.HasLimitedQ getHasLimitedQ() {
-    return this.hasLimitedQ;
-  }
+        /**
+         * Sets the value of the abstract property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Abstract }
+         *     
+         */
+        public void setAbstract(Abstract value) {
+            this._abstract = value;
+        }
 
-  /**
-   * Gets the value of the recordDefinitionQ property.
-   * 
-   * @return possible object is {@link DefinitionClass }
-   * 
-   */
-  public DefinitionClass getRecordDefinitionQ() {
-    return this.recordDefinitionQ;
-  }
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
 
-  /**
-   * Sets the value of the hasAbstractQ property.
-   * 
-   * @param value
-   *          allowed object is {@link RecordTypeDefinition.HasAbstractQ }
-   * 
-   */
-  public void setHasAbstractQ(final RecordTypeDefinition.HasAbstractQ value) {
-    this.hasAbstractQ = value;
-  }
+    }
 
-  /**
-   * Sets the value of the hasLimitedQ property.
-   * 
-   * @param value
-   *          allowed object is {@link RecordTypeDefinition.HasLimitedQ }
-   * 
-   */
-  public void setHasLimitedQ(final RecordTypeDefinition.HasLimitedQ value) {
-    this.hasLimitedQ = value;
-  }
 
-  /**
-   * Sets the value of the recordDefinitionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link DefinitionClass }
-   * 
-   */
-  public void setRecordDefinitionQ(final DefinitionClass value) {
-    this.recordDefinitionQ = value;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="limited" type="{}Limited"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "limited",
+        "notAnElement"
+    })
+    public static class HasLimitedQ {
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+        protected Limited limited;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
+
+        /**
+         * Gets the value of the limited property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Limited }
+         *     
+         */
+        public Limited getLimited() {
+            return limited;
+        }
+
+        /**
+         * Sets the value of the limited property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Limited }
+         *     
+         */
+        public void setLimited(Limited value) {
+            this.limited = value;
+        }
+
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
+
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
+
+    }
 
 }

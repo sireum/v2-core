@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Enumeration_Literal_Specification complex type.
+ * <p>Java class for Enumeration_Literal_Specification complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Enumeration_Literal_Specification">
@@ -35,55 +34,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Enumeration_Literal_Specification", propOrder = { "sloc",
-    "namesQl" })
+@XmlType(name = "Enumeration_Literal_Specification", propOrder = {
+    "sloc",
+    "namesQl"
+})
 public class EnumerationLiteralSpecification {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
+    /**
+     * Gets the value of the namesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public DefiningNameList getNamesQl() {
+        return namesQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
 }

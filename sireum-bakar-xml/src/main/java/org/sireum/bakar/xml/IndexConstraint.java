@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Index_Constraint complex type.
+ * <p>Java class for Index_Constraint complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Index_Constraint">
@@ -35,54 +34,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Index_Constraint", propOrder = { "sloc", "discreteRangesQl" })
+@XmlType(name = "Index_Constraint", propOrder = {
+    "sloc",
+    "discreteRangesQl"
+})
 public class IndexConstraint {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "discrete_ranges_ql", required = true)
-  protected DiscreteRangeList discreteRangesQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "discrete_ranges_ql", required = true)
+    protected DiscreteRangeList discreteRangesQl;
 
-  /**
-   * Gets the value of the discreteRangesQl property.
-   * 
-   * @return possible object is {@link DiscreteRangeList }
-   * 
-   */
-  public DiscreteRangeList getDiscreteRangesQl() {
-    return this.discreteRangesQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Sets the value of the discreteRangesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DiscreteRangeList }
-   * 
-   */
-  public void setDiscreteRangesQl(final DiscreteRangeList value) {
-    this.discreteRangesQl = value;
-  }
+    /**
+     * Gets the value of the discreteRangesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DiscreteRangeList }
+     *     
+     */
+    public DiscreteRangeList getDiscreteRangesQl() {
+        return discreteRangesQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the discreteRangesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DiscreteRangeList }
+     *     
+     */
+    public void setDiscreteRangesQl(DiscreteRangeList value) {
+        this.discreteRangesQl = value;
+    }
 
 }

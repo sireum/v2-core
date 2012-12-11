@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,13 +13,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Allocation_From_Qualified_Expression complex type.
+ * <p>Java class for Allocation_From_Qualified_Expression complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Allocation_From_Qualified_Expression">
@@ -38,101 +37,116 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Allocation_From_Qualified_Expression", propOrder = { "sloc",
-    "subpoolNameQ", "allocatorQualifiedExpressionQ" })
+@XmlType(name = "Allocation_From_Qualified_Expression", propOrder = {
+    "sloc",
+    "subpoolNameQ",
+    "allocatorQualifiedExpressionQ"
+})
 public class AllocationFromQualifiedExpression {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "subpool_name_q", required = true)
-  protected ExpressionClass subpoolNameQ;
-  @XmlElement(name = "allocator_qualified_expression_q", required = true)
-  protected ExpressionClass allocatorQualifiedExpressionQ;
-  @XmlAttribute(name = "type", required = true)
-  protected String type;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "subpool_name_q", required = true)
+    protected ExpressionClass subpoolNameQ;
+    @XmlElement(name = "allocator_qualified_expression_q", required = true)
+    protected ExpressionClass allocatorQualifiedExpressionQ;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
 
-  /**
-   * Gets the value of the allocatorQualifiedExpressionQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getAllocatorQualifiedExpressionQ() {
-    return this.allocatorQualifiedExpressionQ;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the subpoolNameQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getSubpoolNameQ() {
-    return this.subpoolNameQ;
-  }
+    /**
+     * Gets the value of the subpoolNameQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getSubpoolNameQ() {
+        return subpoolNameQ;
+    }
 
-  /**
-   * Gets the value of the type property.
-   * 
-   * @return possible object is {@link String }
-   * 
-   */
-  public String getType() {
-    return this.type;
-  }
+    /**
+     * Sets the value of the subpoolNameQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setSubpoolNameQ(ExpressionClass value) {
+        this.subpoolNameQ = value;
+    }
 
-  /**
-   * Sets the value of the allocatorQualifiedExpressionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setAllocatorQualifiedExpressionQ(final ExpressionClass value) {
-    this.allocatorQualifiedExpressionQ = value;
-  }
+    /**
+     * Gets the value of the allocatorQualifiedExpressionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getAllocatorQualifiedExpressionQ() {
+        return allocatorQualifiedExpressionQ;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the allocatorQualifiedExpressionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setAllocatorQualifiedExpressionQ(ExpressionClass value) {
+        this.allocatorQualifiedExpressionQ = value;
+    }
 
-  /**
-   * Sets the value of the subpoolNameQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setSubpoolNameQ(final ExpressionClass value) {
-    this.subpoolNameQ = value;
-  }
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Sets the value of the type property.
-   * 
-   * @param value
-   *          allowed object is {@link String }
-   * 
-   */
-  public void setType(final String value) {
-    this.type = value;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
 
 }

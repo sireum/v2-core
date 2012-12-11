@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Discriminant_Specification complex type.
+ * <p>Java class for Discriminant_Specification complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Discriminant_Specification">
@@ -49,204 +48,227 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Discriminant_Specification", propOrder = { "sloc", "namesQl",
-    "hasNullExclusionQ", "objectDeclarationViewQ", "initializationExpressionQ" })
+@XmlType(name = "Discriminant_Specification", propOrder = {
+    "sloc",
+    "namesQl",
+    "hasNullExclusionQ",
+    "objectDeclarationViewQ",
+    "initializationExpressionQ"
+})
 public class DiscriminantSpecification {
 
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "nullExclusion", "notAnElement" })
-  public static class HasNullExclusionQ {
-
-    @XmlElement(name = "null_exclusion")
-    protected NullExclusion nullExclusion;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
+    @XmlElement(name = "has_null_exclusion_q", required = true)
+    protected DiscriminantSpecification.HasNullExclusionQ hasNullExclusionQ;
+    @XmlElement(name = "object_declaration_view_q", required = true)
+    protected DefinitionClass objectDeclarationViewQ;
+    @XmlElement(name = "initialization_expression_q", required = true)
+    protected ExpressionClass initializationExpressionQ;
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the sloc property.
      * 
-     * @return possible object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
      */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public SourceLocation getSloc() {
+        return sloc;
     }
 
     /**
-     * Gets the value of the nullExclusion property.
-     * 
-     * @return possible object is {@link NullExclusion }
-     * 
-     */
-    public NullExclusion getNullExclusion() {
-      return this.nullExclusion;
-    }
-
-    /**
-     * Sets the value of the notAnElement property.
+     * Sets the value of the sloc property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
     }
 
     /**
-     * Sets the value of the nullExclusion property.
+     * Gets the value of the namesQl property.
      * 
-     * @param value
-     *          allowed object is {@link NullExclusion }
-     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
      */
-    public void setNullExclusion(final NullExclusion value) {
-      this.nullExclusion = value;
+    public DefiningNameList getNamesQl() {
+        return namesQl;
     }
 
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
-  @XmlElement(name = "has_null_exclusion_q", required = true)
-  protected DiscriminantSpecification.HasNullExclusionQ hasNullExclusionQ;
-  @XmlElement(name = "object_declaration_view_q", required = true)
-  protected DefinitionClass objectDeclarationViewQ;
+    /**
+     * Gets the value of the hasNullExclusionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DiscriminantSpecification.HasNullExclusionQ }
+     *     
+     */
+    public DiscriminantSpecification.HasNullExclusionQ getHasNullExclusionQ() {
+        return hasNullExclusionQ;
+    }
 
-  @XmlElement(name = "initialization_expression_q", required = true)
-  protected ExpressionClass initializationExpressionQ;
+    /**
+     * Sets the value of the hasNullExclusionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DiscriminantSpecification.HasNullExclusionQ }
+     *     
+     */
+    public void setHasNullExclusionQ(DiscriminantSpecification.HasNullExclusionQ value) {
+        this.hasNullExclusionQ = value;
+    }
 
-  /**
-   * Gets the value of the hasNullExclusionQ property.
-   * 
-   * @return possible object is
-   *         {@link DiscriminantSpecification.HasNullExclusionQ }
-   * 
-   */
-  public DiscriminantSpecification.HasNullExclusionQ getHasNullExclusionQ() {
-    return this.hasNullExclusionQ;
-  }
+    /**
+     * Gets the value of the objectDeclarationViewQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefinitionClass }
+     *     
+     */
+    public DefinitionClass getObjectDeclarationViewQ() {
+        return objectDeclarationViewQ;
+    }
 
-  /**
-   * Gets the value of the initializationExpressionQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getInitializationExpressionQ() {
-    return this.initializationExpressionQ;
-  }
+    /**
+     * Sets the value of the objectDeclarationViewQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefinitionClass }
+     *     
+     */
+    public void setObjectDeclarationViewQ(DefinitionClass value) {
+        this.objectDeclarationViewQ = value;
+    }
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * Gets the value of the initializationExpressionQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getInitializationExpressionQ() {
+        return initializationExpressionQ;
+    }
 
-  /**
-   * Gets the value of the objectDeclarationViewQ property.
-   * 
-   * @return possible object is {@link DefinitionClass }
-   * 
-   */
-  public DefinitionClass getObjectDeclarationViewQ() {
-    return this.objectDeclarationViewQ;
-  }
+    /**
+     * Sets the value of the initializationExpressionQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setInitializationExpressionQ(ExpressionClass value) {
+        this.initializationExpressionQ = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
 
-  /**
-   * Sets the value of the hasNullExclusionQ property.
-   * 
-   * @param value
-   *          allowed object is
-   *          {@link DiscriminantSpecification.HasNullExclusionQ }
-   * 
-   */
-  public void setHasNullExclusionQ(
-      final DiscriminantSpecification.HasNullExclusionQ value) {
-    this.hasNullExclusionQ = value;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="null_exclusion" type="{}Null_Exclusion"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "nullExclusion",
+        "notAnElement"
+    })
+    public static class HasNullExclusionQ {
 
-  /**
-   * Sets the value of the initializationExpressionQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setInitializationExpressionQ(final ExpressionClass value) {
-    this.initializationExpressionQ = value;
-  }
+        @XmlElement(name = "null_exclusion")
+        protected NullExclusion nullExclusion;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
+        /**
+         * Gets the value of the nullExclusion property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NullExclusion }
+         *     
+         */
+        public NullExclusion getNullExclusion() {
+            return nullExclusion;
+        }
 
-  /**
-   * Sets the value of the objectDeclarationViewQ property.
-   * 
-   * @param value
-   *          allowed object is {@link DefinitionClass }
-   * 
-   */
-  public void setObjectDeclarationViewQ(final DefinitionClass value) {
-    this.objectDeclarationViewQ = value;
-  }
+        /**
+         * Sets the value of the nullExclusion property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NullExclusion }
+         *     
+         */
+        public void setNullExclusion(NullExclusion value) {
+            this.nullExclusion = value;
+        }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
+
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
+
+    }
 
 }

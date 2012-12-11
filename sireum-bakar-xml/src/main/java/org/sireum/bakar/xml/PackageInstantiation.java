@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Package_Instantiation complex type.
+ * <p>Java class for Package_Instantiation complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Package_Instantiation">
@@ -38,124 +37,144 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Package_Instantiation", propOrder = { "sloc", "namesQl",
-    "genericUnitNameQ", "genericActualPartQl", "aspectSpecificationsQl" })
+@XmlType(name = "Package_Instantiation", propOrder = {
+    "sloc",
+    "namesQl",
+    "genericUnitNameQ",
+    "genericActualPartQl",
+    "aspectSpecificationsQl"
+})
 public class PackageInstantiation {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "names_ql", required = true)
-  protected DefiningNameList namesQl;
-  @XmlElement(name = "generic_unit_name_q", required = true)
-  protected ExpressionClass genericUnitNameQ;
-  @XmlElement(name = "generic_actual_part_ql", required = true)
-  protected AssociationList genericActualPartQl;
-  @XmlElement(name = "aspect_specifications_ql", required = true)
-  protected ElementList aspectSpecificationsQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "names_ql", required = true)
+    protected DefiningNameList namesQl;
+    @XmlElement(name = "generic_unit_name_q", required = true)
+    protected ExpressionClass genericUnitNameQ;
+    @XmlElement(name = "generic_actual_part_ql", required = true)
+    protected AssociationList genericActualPartQl;
+    @XmlElement(name = "aspect_specifications_ql", required = true)
+    protected ElementList aspectSpecificationsQl;
 
-  /**
-   * Gets the value of the aspectSpecificationsQl property.
-   * 
-   * @return possible object is {@link ElementList }
-   * 
-   */
-  public ElementList getAspectSpecificationsQl() {
-    return this.aspectSpecificationsQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the genericActualPartQl property.
-   * 
-   * @return possible object is {@link AssociationList }
-   * 
-   */
-  public AssociationList getGenericActualPartQl() {
-    return this.genericActualPartQl;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the genericUnitNameQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getGenericUnitNameQ() {
-    return this.genericUnitNameQ;
-  }
+    /**
+     * Gets the value of the namesQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public DefiningNameList getNamesQl() {
+        return namesQl;
+    }
 
-  /**
-   * Gets the value of the namesQl property.
-   * 
-   * @return possible object is {@link DefiningNameList }
-   * 
-   */
-  public DefiningNameList getNamesQl() {
-    return this.namesQl;
-  }
+    /**
+     * Sets the value of the namesQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DefiningNameList }
+     *     
+     */
+    public void setNamesQl(DefiningNameList value) {
+        this.namesQl = value;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Gets the value of the genericUnitNameQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getGenericUnitNameQ() {
+        return genericUnitNameQ;
+    }
 
-  /**
-   * Sets the value of the aspectSpecificationsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ElementList }
-   * 
-   */
-  public void setAspectSpecificationsQl(final ElementList value) {
-    this.aspectSpecificationsQl = value;
-  }
+    /**
+     * Sets the value of the genericUnitNameQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public void setGenericUnitNameQ(ExpressionClass value) {
+        this.genericUnitNameQ = value;
+    }
 
-  /**
-   * Sets the value of the genericActualPartQl property.
-   * 
-   * @param value
-   *          allowed object is {@link AssociationList }
-   * 
-   */
-  public void setGenericActualPartQl(final AssociationList value) {
-    this.genericActualPartQl = value;
-  }
+    /**
+     * Gets the value of the genericActualPartQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AssociationList }
+     *     
+     */
+    public AssociationList getGenericActualPartQl() {
+        return genericActualPartQl;
+    }
 
-  /**
-   * Sets the value of the genericUnitNameQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setGenericUnitNameQ(final ExpressionClass value) {
-    this.genericUnitNameQ = value;
-  }
+    /**
+     * Sets the value of the genericActualPartQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AssociationList }
+     *     
+     */
+    public void setGenericActualPartQl(AssociationList value) {
+        this.genericActualPartQl = value;
+    }
 
-  /**
-   * Sets the value of the namesQl property.
-   * 
-   * @param value
-   *          allowed object is {@link DefiningNameList }
-   * 
-   */
-  public void setNamesQl(final DefiningNameList value) {
-    this.namesQl = value;
-  }
+    /**
+     * Gets the value of the aspectSpecificationsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ElementList }
+     *     
+     */
+    public ElementList getAspectSpecificationsQl() {
+        return aspectSpecificationsQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the aspectSpecificationsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ElementList }
+     *     
+     */
+    public void setAspectSpecificationsQl(ElementList value) {
+        this.aspectSpecificationsQl = value;
+    }
 
 }

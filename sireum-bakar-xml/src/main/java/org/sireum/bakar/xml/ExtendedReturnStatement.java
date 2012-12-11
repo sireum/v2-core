@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,13 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Extended_Return_Statement complex type.
+ * <p>Java class for Extended_Return_Statement complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Extended_Return_Statement">
@@ -37,103 +36,117 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Extended_Return_Statement", propOrder = { "sloc",
-    "returnObjectDeclarationQ", "extendedReturnStatementsQl",
-    "extendedReturnExceptionHandlersQl" })
+@XmlType(name = "Extended_Return_Statement", propOrder = {
+    "sloc",
+    "returnObjectDeclarationQ",
+    "extendedReturnStatementsQl",
+    "extendedReturnExceptionHandlersQl"
+})
 public class ExtendedReturnStatement {
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "return_object_declaration_q", required = true)
-  protected DeclarationClass returnObjectDeclarationQ;
-  @XmlElement(name = "extended_return_statements_ql", required = true)
-  protected StatementList extendedReturnStatementsQl;
-  @XmlElement(name = "extended_return_exception_handlers_ql", required = true)
-  protected ExceptionHandlerList extendedReturnExceptionHandlersQl;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "return_object_declaration_q", required = true)
+    protected DeclarationClass returnObjectDeclarationQ;
+    @XmlElement(name = "extended_return_statements_ql", required = true)
+    protected StatementList extendedReturnStatementsQl;
+    @XmlElement(name = "extended_return_exception_handlers_ql", required = true)
+    protected ExceptionHandlerList extendedReturnExceptionHandlersQl;
 
-  /**
-   * Gets the value of the extendedReturnExceptionHandlersQl property.
-   * 
-   * @return possible object is {@link ExceptionHandlerList }
-   * 
-   */
-  public ExceptionHandlerList getExtendedReturnExceptionHandlersQl() {
-    return this.extendedReturnExceptionHandlersQl;
-  }
+    /**
+     * Gets the value of the sloc property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public SourceLocation getSloc() {
+        return sloc;
+    }
 
-  /**
-   * Gets the value of the extendedReturnStatementsQl property.
-   * 
-   * @return possible object is {@link StatementList }
-   * 
-   */
-  public StatementList getExtendedReturnStatementsQl() {
-    return this.extendedReturnStatementsQl;
-  }
+    /**
+     * Sets the value of the sloc property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
+     */
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
+    }
 
-  /**
-   * Gets the value of the returnObjectDeclarationQ property.
-   * 
-   * @return possible object is {@link DeclarationClass }
-   * 
-   */
-  public DeclarationClass getReturnObjectDeclarationQ() {
-    return this.returnObjectDeclarationQ;
-  }
+    /**
+     * Gets the value of the returnObjectDeclarationQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DeclarationClass }
+     *     
+     */
+    public DeclarationClass getReturnObjectDeclarationQ() {
+        return returnObjectDeclarationQ;
+    }
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+    /**
+     * Sets the value of the returnObjectDeclarationQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DeclarationClass }
+     *     
+     */
+    public void setReturnObjectDeclarationQ(DeclarationClass value) {
+        this.returnObjectDeclarationQ = value;
+    }
 
-  /**
-   * Sets the value of the extendedReturnExceptionHandlersQl property.
-   * 
-   * @param value
-   *          allowed object is {@link ExceptionHandlerList }
-   * 
-   */
-  public void setExtendedReturnExceptionHandlersQl(
-      final ExceptionHandlerList value) {
-    this.extendedReturnExceptionHandlersQl = value;
-  }
+    /**
+     * Gets the value of the extendedReturnStatementsQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StatementList }
+     *     
+     */
+    public StatementList getExtendedReturnStatementsQl() {
+        return extendedReturnStatementsQl;
+    }
 
-  /**
-   * Sets the value of the extendedReturnStatementsQl property.
-   * 
-   * @param value
-   *          allowed object is {@link StatementList }
-   * 
-   */
-  public void setExtendedReturnStatementsQl(final StatementList value) {
-    this.extendedReturnStatementsQl = value;
-  }
+    /**
+     * Sets the value of the extendedReturnStatementsQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StatementList }
+     *     
+     */
+    public void setExtendedReturnStatementsQl(StatementList value) {
+        this.extendedReturnStatementsQl = value;
+    }
 
-  /**
-   * Sets the value of the returnObjectDeclarationQ property.
-   * 
-   * @param value
-   *          allowed object is {@link DeclarationClass }
-   * 
-   */
-  public void setReturnObjectDeclarationQ(final DeclarationClass value) {
-    this.returnObjectDeclarationQ = value;
-  }
+    /**
+     * Gets the value of the extendedReturnExceptionHandlersQl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExceptionHandlerList }
+     *     
+     */
+    public ExceptionHandlerList getExtendedReturnExceptionHandlersQl() {
+        return extendedReturnExceptionHandlersQl;
+    }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * Sets the value of the extendedReturnExceptionHandlersQl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExceptionHandlerList }
+     *     
+     */
+    public void setExtendedReturnExceptionHandlersQl(ExceptionHandlerList value) {
+        this.extendedReturnExceptionHandlersQl = value;
+    }
 
 }

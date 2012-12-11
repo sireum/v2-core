@@ -4,6 +4,7 @@
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 //
 
+
 package org.sireum.bakar.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,13 +13,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Function_Call complex type.
+ * <p>Java class for Function_Call complex type.
  * 
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Function_Call">
@@ -62,301 +61,336 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Function_Call", propOrder = { "sloc", "prefixQ",
-    "functionCallParametersQl", "isPrefixCallQ", "isPrefixNotationQ" })
+@XmlType(name = "Function_Call", propOrder = {
+    "sloc",
+    "prefixQ",
+    "functionCallParametersQl",
+    "isPrefixCallQ",
+    "isPrefixNotationQ"
+})
 public class FunctionCall {
 
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="is_prefix_call" type="{}Is_Prefix_Call"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "isPrefixCall", "notAnElement" })
-  public static class IsPrefixCallQ {
-
-    @XmlElement(name = "is_prefix_call")
-    protected IsPrefixCall isPrefixCall;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
+    @XmlElement(required = true)
+    protected SourceLocation sloc;
+    @XmlElement(name = "prefix_q", required = true)
+    protected ExpressionClass prefixQ;
+    @XmlElement(name = "function_call_parameters_ql", required = true)
+    protected AssociationList functionCallParametersQl;
+    @XmlElement(name = "is_prefix_call_q", required = true)
+    protected FunctionCall.IsPrefixCallQ isPrefixCallQ;
+    @XmlElement(name = "is_prefix_notation_q", required = true)
+    protected FunctionCall.IsPrefixNotationQ isPrefixNotationQ;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
 
     /**
-     * Gets the value of the isPrefixCall property.
+     * Gets the value of the sloc property.
      * 
-     * @return possible object is {@link IsPrefixCall }
-     * 
+     * @return
+     *     possible object is
+     *     {@link SourceLocation }
+     *     
      */
-    public IsPrefixCall getIsPrefixCall() {
-      return this.isPrefixCall;
+    public SourceLocation getSloc() {
+        return sloc;
     }
 
     /**
-     * Gets the value of the notAnElement property.
-     * 
-     * @return possible object is {@link NotAnElement }
-     * 
-     */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
-    }
-
-    /**
-     * Sets the value of the isPrefixCall property.
+     * Sets the value of the sloc property.
      * 
      * @param value
-     *          allowed object is {@link IsPrefixCall }
-     * 
+     *     allowed object is
+     *     {@link SourceLocation }
+     *     
      */
-    public void setIsPrefixCall(final IsPrefixCall value) {
-      this.isPrefixCall = value;
+    public void setSloc(SourceLocation value) {
+        this.sloc = value;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Gets the value of the prefixQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExpressionClass }
+     *     
+     */
+    public ExpressionClass getPrefixQ() {
+        return prefixQ;
+    }
+
+    /**
+     * Sets the value of the prefixQ property.
      * 
      * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     *     allowed object is
+     *     {@link ExpressionClass }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
-    }
-
-  }
-
-  /**
-   * <p>
-   * Java class for anonymous complex type.
-   * 
-   * <p>
-   * The following schema fragment specifies the expected content contained
-   * within this class.
-   * 
-   * <pre>
-   * &lt;complexType>
-   *   &lt;complexContent>
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-   *       &lt;choice>
-   *         &lt;element name="is_prefix_notation" type="{}Is_Prefix_Notation"/>
-   *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
-   *       &lt;/choice>
-   *     &lt;/restriction>
-   *   &lt;/complexContent>
-   * &lt;/complexType>
-   * </pre>
-   * 
-   * 
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(name = "", propOrder = { "isPrefixNotation", "notAnElement" })
-  public static class IsPrefixNotationQ {
-
-    @XmlElement(name = "is_prefix_notation")
-    protected IsPrefixNotation isPrefixNotation;
-    @XmlElement(name = "not_an_element")
-    protected NotAnElement notAnElement;
-
-    /**
-     * Gets the value of the isPrefixNotation property.
-     * 
-     * @return possible object is {@link IsPrefixNotation }
-     * 
-     */
-    public IsPrefixNotation getIsPrefixNotation() {
-      return this.isPrefixNotation;
+    public void setPrefixQ(ExpressionClass value) {
+        this.prefixQ = value;
     }
 
     /**
-     * Gets the value of the notAnElement property.
+     * Gets the value of the functionCallParametersQl property.
      * 
-     * @return possible object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link AssociationList }
+     *     
      */
-    public NotAnElement getNotAnElement() {
-      return this.notAnElement;
+    public AssociationList getFunctionCallParametersQl() {
+        return functionCallParametersQl;
     }
 
     /**
-     * Sets the value of the isPrefixNotation property.
+     * Sets the value of the functionCallParametersQl property.
      * 
      * @param value
-     *          allowed object is {@link IsPrefixNotation }
-     * 
+     *     allowed object is
+     *     {@link AssociationList }
+     *     
      */
-    public void setIsPrefixNotation(final IsPrefixNotation value) {
-      this.isPrefixNotation = value;
+    public void setFunctionCallParametersQl(AssociationList value) {
+        this.functionCallParametersQl = value;
     }
 
     /**
-     * Sets the value of the notAnElement property.
+     * Gets the value of the isPrefixCallQ property.
      * 
-     * @param value
-     *          allowed object is {@link NotAnElement }
-     * 
+     * @return
+     *     possible object is
+     *     {@link FunctionCall.IsPrefixCallQ }
+     *     
      */
-    public void setNotAnElement(final NotAnElement value) {
-      this.notAnElement = value;
+    public FunctionCall.IsPrefixCallQ getIsPrefixCallQ() {
+        return isPrefixCallQ;
     }
 
-  }
+    /**
+     * Sets the value of the isPrefixCallQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FunctionCall.IsPrefixCallQ }
+     *     
+     */
+    public void setIsPrefixCallQ(FunctionCall.IsPrefixCallQ value) {
+        this.isPrefixCallQ = value;
+    }
 
-  @XmlElement(required = true)
-  protected SourceLocation sloc;
-  @XmlElement(name = "prefix_q", required = true)
-  protected ExpressionClass prefixQ;
-  @XmlElement(name = "function_call_parameters_ql", required = true)
-  protected AssociationList functionCallParametersQl;
-  @XmlElement(name = "is_prefix_call_q", required = true)
-  protected FunctionCall.IsPrefixCallQ isPrefixCallQ;
+    /**
+     * Gets the value of the isPrefixNotationQ property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FunctionCall.IsPrefixNotationQ }
+     *     
+     */
+    public FunctionCall.IsPrefixNotationQ getIsPrefixNotationQ() {
+        return isPrefixNotationQ;
+    }
 
-  @XmlElement(name = "is_prefix_notation_q", required = true)
-  protected FunctionCall.IsPrefixNotationQ isPrefixNotationQ;
+    /**
+     * Sets the value of the isPrefixNotationQ property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FunctionCall.IsPrefixNotationQ }
+     *     
+     */
+    public void setIsPrefixNotationQ(FunctionCall.IsPrefixNotationQ value) {
+        this.isPrefixNotationQ = value;
+    }
 
-  @XmlAttribute(name = "type", required = true)
-  protected String type;
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Gets the value of the functionCallParametersQl property.
-   * 
-   * @return possible object is {@link AssociationList }
-   * 
-   */
-  public AssociationList getFunctionCallParametersQl() {
-    return this.functionCallParametersQl;
-  }
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
 
-  /**
-   * Gets the value of the isPrefixCallQ property.
-   * 
-   * @return possible object is {@link FunctionCall.IsPrefixCallQ }
-   * 
-   */
-  public FunctionCall.IsPrefixCallQ getIsPrefixCallQ() {
-    return this.isPrefixCallQ;
-  }
 
-  /**
-   * Gets the value of the isPrefixNotationQ property.
-   * 
-   * @return possible object is {@link FunctionCall.IsPrefixNotationQ }
-   * 
-   */
-  public FunctionCall.IsPrefixNotationQ getIsPrefixNotationQ() {
-    return this.isPrefixNotationQ;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="is_prefix_call" type="{}Is_Prefix_Call"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "isPrefixCall",
+        "notAnElement"
+    })
+    public static class IsPrefixCallQ {
 
-  /**
-   * Gets the value of the prefixQ property.
-   * 
-   * @return possible object is {@link ExpressionClass }
-   * 
-   */
-  public ExpressionClass getPrefixQ() {
-    return this.prefixQ;
-  }
+        @XmlElement(name = "is_prefix_call")
+        protected IsPrefixCall isPrefixCall;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
 
-  /**
-   * Gets the value of the sloc property.
-   * 
-   * @return possible object is {@link SourceLocation }
-   * 
-   */
-  public SourceLocation getSloc() {
-    return this.sloc;
-  }
+        /**
+         * Gets the value of the isPrefixCall property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link IsPrefixCall }
+         *     
+         */
+        public IsPrefixCall getIsPrefixCall() {
+            return isPrefixCall;
+        }
 
-  /**
-   * Gets the value of the type property.
-   * 
-   * @return possible object is {@link String }
-   * 
-   */
-  public String getType() {
-    return this.type;
-  }
+        /**
+         * Sets the value of the isPrefixCall property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link IsPrefixCall }
+         *     
+         */
+        public void setIsPrefixCall(IsPrefixCall value) {
+            this.isPrefixCall = value;
+        }
 
-  /**
-   * Sets the value of the functionCallParametersQl property.
-   * 
-   * @param value
-   *          allowed object is {@link AssociationList }
-   * 
-   */
-  public void setFunctionCallParametersQl(final AssociationList value) {
-    this.functionCallParametersQl = value;
-  }
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
 
-  /**
-   * Sets the value of the isPrefixCallQ property.
-   * 
-   * @param value
-   *          allowed object is {@link FunctionCall.IsPrefixCallQ }
-   * 
-   */
-  public void setIsPrefixCallQ(final FunctionCall.IsPrefixCallQ value) {
-    this.isPrefixCallQ = value;
-  }
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
 
-  /**
-   * Sets the value of the isPrefixNotationQ property.
-   * 
-   * @param value
-   *          allowed object is {@link FunctionCall.IsPrefixNotationQ }
-   * 
-   */
-  public void setIsPrefixNotationQ(final FunctionCall.IsPrefixNotationQ value) {
-    this.isPrefixNotationQ = value;
-  }
+    }
 
-  /**
-   * Sets the value of the prefixQ property.
-   * 
-   * @param value
-   *          allowed object is {@link ExpressionClass }
-   * 
-   */
-  public void setPrefixQ(final ExpressionClass value) {
-    this.prefixQ = value;
-  }
 
-  /**
-   * Sets the value of the sloc property.
-   * 
-   * @param value
-   *          allowed object is {@link SourceLocation }
-   * 
-   */
-  public void setSloc(final SourceLocation value) {
-    this.sloc = value;
-  }
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;choice>
+     *         &lt;element name="is_prefix_notation" type="{}Is_Prefix_Notation"/>
+     *         &lt;element name="not_an_element" type="{}Not_An_Element"/>
+     *       &lt;/choice>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "isPrefixNotation",
+        "notAnElement"
+    })
+    public static class IsPrefixNotationQ {
 
-  /**
-   * Sets the value of the type property.
-   * 
-   * @param value
-   *          allowed object is {@link String }
-   * 
-   */
-  public void setType(final String value) {
-    this.type = value;
-  }
+        @XmlElement(name = "is_prefix_notation")
+        protected IsPrefixNotation isPrefixNotation;
+        @XmlElement(name = "not_an_element")
+        protected NotAnElement notAnElement;
+
+        /**
+         * Gets the value of the isPrefixNotation property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link IsPrefixNotation }
+         *     
+         */
+        public IsPrefixNotation getIsPrefixNotation() {
+            return isPrefixNotation;
+        }
+
+        /**
+         * Sets the value of the isPrefixNotation property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link IsPrefixNotation }
+         *     
+         */
+        public void setIsPrefixNotation(IsPrefixNotation value) {
+            this.isPrefixNotation = value;
+        }
+
+        /**
+         * Gets the value of the notAnElement property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public NotAnElement getNotAnElement() {
+            return notAnElement;
+        }
+
+        /**
+         * Sets the value of the notAnElement property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link NotAnElement }
+         *     
+         */
+        public void setNotAnElement(NotAnElement value) {
+            this.notAnElement = value;
+        }
+
+    }
 
 }
