@@ -14,10 +14,6 @@ class ExtractorGenerator(outdir : File) {
   val stTopLevel = stg.getInstanceOf("topLevel")
 
   def process(c : java.lang.Class[_]) {
-    if(c.getEnclosingClass() != null){
-      println("ignoring enclosed class " + c.getName())
-      return
-    }
     if (seen.contains(c))
       return
     else
@@ -70,6 +66,11 @@ class ExtractorGenerator(outdir : File) {
       }
     }
 
+    /*
+    if(c.getEnclosingClass() != null){
+      stTopLevel.add("entry", stg.getInstanceOf("comment").add("entry", stmain))
+    } else
+    */ 
     stTopLevel.add("entry", stmain)
   }
 }
@@ -86,7 +87,7 @@ object x {
     val eg = new ExtractorGenerator(outdir)
     eg.process(root)
     
-    val fw = new FileWriter(new File(outdir, "e.txt"))
+    val fw = new FileWriter(new File(outdir, "e.scala"))
     fw.write(eg.stTopLevel.render);
     fw.close
   }
