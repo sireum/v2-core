@@ -9,15 +9,10 @@ $entry; separator="\n"$
 
 extractor(name, fqname, field) ::= <<
 object $name$ {
-  def unapply(c : java.lang.Class[_]) = {
-    if(c.isInstanceOf[$fqname$]) {
-      val o = c.asInstanceOf[$fqname$]
-      Some(
-        $field; separator=",\n"$
-      )
-    } 
-    else 
-      None
+  def unapply(o : $fqname$) = {
+    Some(
+      $field; separator=",\n"$
+    )
   }
 }
 >>

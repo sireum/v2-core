@@ -25,7 +25,8 @@ class ExtractorGenerator(outdir : File) {
       fqname = c.getEnclosingClass().getName() + "." + c.getSimpleName()
       oname = c.getEnclosingClass().getSimpleName() + "_" + oname
     }
-    
+    oname += "Ex"
+      
     val stmain = stg.getInstanceOf("extractor")
 
     stmain.add("name", oname)
@@ -85,6 +86,7 @@ object x {
     println(outdir)
 
     val eg = new ExtractorGenerator(outdir)
+    eg.stTopLevel.add("packageName", root.getPackage().getName())
     eg.process(root)
     
     val fw = new FileWriter(new File(outdir, "e.scala"))
