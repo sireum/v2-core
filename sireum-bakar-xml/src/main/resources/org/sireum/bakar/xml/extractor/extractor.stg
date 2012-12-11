@@ -1,0 +1,28 @@
+topLevel(packageName, imports, className, topMethod, entry) ::= <<
+$if(packageName)$package $packageName$$endif$
+
+$imports; separator="\n"$
+import org.sireum.util._
+
+$entry; separator="\n"$
+>>
+
+extractor(name, fqname, field) ::= <<
+object $name$ {
+  def unapply(c : java.lang.Class[_]) = {
+    if(c.isInstanceOf[$fqname$]) {
+      val o = c.asInstanceOf[$fqname$]
+      Some(
+        $field; separator=",\n"$
+      )
+    } 
+    else 
+      None
+  }
+}
+>>
+
+field(name) ::= <<
+o.$name$
+>>
+
