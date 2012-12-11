@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -183,61 +184,40 @@ public class GeneralizedIteratorSpecification {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "reverse",
-        "notAnElement"
+        "hasReverse"
     })
     public static class HasReverseQ {
 
-        protected Reverse reverse;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "reverse", type = Reverse.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasReverse;
 
         /**
-         * Gets the value of the reverse property.
+         * Gets the value of the hasReverse property.
          * 
          * @return
          *     possible object is
          *     {@link Reverse }
+         *     {@link NotAnElement }
          *     
          */
-        public Reverse getReverse() {
-            return reverse;
+        public Object getHasReverse() {
+            return hasReverse;
         }
 
         /**
-         * Sets the value of the reverse property.
+         * Sets the value of the hasReverse property.
          * 
          * @param value
          *     allowed object is
          *     {@link Reverse }
-         *     
-         */
-        public void setReverse(Reverse value) {
-            this.reverse = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasReverse(Object value) {
+            this.hasReverse = value;
         }
 
     }

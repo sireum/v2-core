@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -289,62 +290,40 @@ public class ProcedureDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "_abstract",
-        "notAnElement"
+        "hasAbstract"
     })
     public static class HasAbstractQ {
 
-        @XmlElement(name = "abstract")
-        protected Abstract _abstract;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "abstract", type = Abstract.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasAbstract;
 
         /**
-         * Gets the value of the abstract property.
+         * Gets the value of the hasAbstract property.
          * 
          * @return
          *     possible object is
          *     {@link Abstract }
+         *     {@link NotAnElement }
          *     
          */
-        public Abstract getAbstract() {
-            return _abstract;
+        public Object getHasAbstract() {
+            return hasAbstract;
         }
 
         /**
-         * Sets the value of the abstract property.
+         * Sets the value of the hasAbstract property.
          * 
          * @param value
          *     allowed object is
          *     {@link Abstract }
-         *     
-         */
-        public void setAbstract(Abstract value) {
-            this._abstract = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasAbstract(Object value) {
+            this.hasAbstract = value;
         }
 
     }
@@ -372,62 +351,40 @@ public class ProcedureDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "notOverriding",
-        "notAnElement"
+        "isNotOverriding"
     })
     public static class IsNotOverridingDeclarationQ {
 
-        @XmlElement(name = "not_overriding")
-        protected NotOverriding notOverriding;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "not_overriding", type = NotOverriding.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object isNotOverriding;
 
         /**
-         * Gets the value of the notOverriding property.
+         * Gets the value of the isNotOverriding property.
          * 
          * @return
          *     possible object is
          *     {@link NotOverriding }
+         *     {@link NotAnElement }
          *     
          */
-        public NotOverriding getNotOverriding() {
-            return notOverriding;
+        public Object getIsNotOverriding() {
+            return isNotOverriding;
         }
 
         /**
-         * Sets the value of the notOverriding property.
+         * Sets the value of the isNotOverriding property.
          * 
          * @param value
          *     allowed object is
          *     {@link NotOverriding }
-         *     
-         */
-        public void setNotOverriding(NotOverriding value) {
-            this.notOverriding = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setIsNotOverriding(Object value) {
+            this.isNotOverriding = value;
         }
 
     }
@@ -455,61 +412,40 @@ public class ProcedureDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "overriding",
-        "notAnElement"
+        "isOverriding"
     })
     public static class IsOverridingDeclarationQ {
 
-        protected Overriding overriding;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "overriding", type = Overriding.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object isOverriding;
 
         /**
-         * Gets the value of the overriding property.
+         * Gets the value of the isOverriding property.
          * 
          * @return
          *     possible object is
          *     {@link Overriding }
+         *     {@link NotAnElement }
          *     
          */
-        public Overriding getOverriding() {
-            return overriding;
+        public Object getIsOverriding() {
+            return isOverriding;
         }
 
         /**
-         * Sets the value of the overriding property.
+         * Sets the value of the isOverriding property.
          * 
          * @param value
          *     allowed object is
          *     {@link Overriding }
-         *     
-         */
-        public void setOverriding(Overriding value) {
-            this.overriding = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setIsOverriding(Object value) {
+            this.isOverriding = value;
         }
 
     }

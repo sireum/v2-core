@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -239,61 +240,40 @@ public class ConstantDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "aliased",
-        "notAnElement"
+        "hasAliased"
     })
     public static class HasAliasedQ {
 
-        protected Aliased aliased;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "aliased", type = Aliased.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasAliased;
 
         /**
-         * Gets the value of the aliased property.
+         * Gets the value of the hasAliased property.
          * 
          * @return
          *     possible object is
          *     {@link Aliased }
+         *     {@link NotAnElement }
          *     
          */
-        public Aliased getAliased() {
-            return aliased;
+        public Object getHasAliased() {
+            return hasAliased;
         }
 
         /**
-         * Sets the value of the aliased property.
+         * Sets the value of the hasAliased property.
          * 
          * @param value
          *     allowed object is
          *     {@link Aliased }
-         *     
-         */
-        public void setAliased(Aliased value) {
-            this.aliased = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasAliased(Object value) {
+            this.hasAliased = value;
         }
 
     }

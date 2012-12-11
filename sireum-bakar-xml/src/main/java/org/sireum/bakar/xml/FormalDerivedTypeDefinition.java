@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -261,62 +262,40 @@ public class FormalDerivedTypeDefinition {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "_abstract",
-        "notAnElement"
+        "hasAbstract"
     })
     public static class HasAbstractQ {
 
-        @XmlElement(name = "abstract")
-        protected Abstract _abstract;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "abstract", type = Abstract.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasAbstract;
 
         /**
-         * Gets the value of the abstract property.
+         * Gets the value of the hasAbstract property.
          * 
          * @return
          *     possible object is
          *     {@link Abstract }
+         *     {@link NotAnElement }
          *     
          */
-        public Abstract getAbstract() {
-            return _abstract;
+        public Object getHasAbstract() {
+            return hasAbstract;
         }
 
         /**
-         * Sets the value of the abstract property.
+         * Sets the value of the hasAbstract property.
          * 
          * @param value
          *     allowed object is
          *     {@link Abstract }
-         *     
-         */
-        public void setAbstract(Abstract value) {
-            this._abstract = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasAbstract(Object value) {
+            this.hasAbstract = value;
         }
 
     }
@@ -344,61 +323,40 @@ public class FormalDerivedTypeDefinition {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "limited",
-        "notAnElement"
+        "hasLimited"
     })
     public static class HasLimitedQ {
 
-        protected Limited limited;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "limited", type = Limited.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasLimited;
 
         /**
-         * Gets the value of the limited property.
+         * Gets the value of the hasLimited property.
          * 
          * @return
          *     possible object is
          *     {@link Limited }
+         *     {@link NotAnElement }
          *     
          */
-        public Limited getLimited() {
-            return limited;
+        public Object getHasLimited() {
+            return hasLimited;
         }
 
         /**
-         * Sets the value of the limited property.
+         * Sets the value of the hasLimited property.
          * 
          * @param value
          *     allowed object is
          *     {@link Limited }
-         *     
-         */
-        public void setLimited(Limited value) {
-            this.limited = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasLimited(Object value) {
+            this.hasLimited = value;
         }
 
     }
@@ -426,62 +384,40 @@ public class FormalDerivedTypeDefinition {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "_private",
-        "notAnElement"
+        "hasPrivate"
     })
     public static class HasPrivateQ {
 
-        @XmlElement(name = "private")
-        protected Private _private;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "private", type = Private.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasPrivate;
 
         /**
-         * Gets the value of the private property.
+         * Gets the value of the hasPrivate property.
          * 
          * @return
          *     possible object is
          *     {@link Private }
+         *     {@link NotAnElement }
          *     
          */
-        public Private getPrivate() {
-            return _private;
+        public Object getHasPrivate() {
+            return hasPrivate;
         }
 
         /**
-         * Sets the value of the private property.
+         * Sets the value of the hasPrivate property.
          * 
          * @param value
          *     allowed object is
          *     {@link Private }
-         *     
-         */
-        public void setPrivate(Private value) {
-            this._private = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasPrivate(Object value) {
+            this.hasPrivate = value;
         }
 
     }

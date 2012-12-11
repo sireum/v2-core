@@ -73,7 +73,9 @@
        <jxb:property name="theStatement" />
     </jxb:bindings>
     
-      
+    
+    <!-- List -->
+    
     <jxb:bindings node="//xs:complexType[@name='Element_List']//xs:choice">
        <jxb:property name="elements" />
     </jxb:bindings>
@@ -148,7 +150,523 @@
     
     <jxb:bindings node="//xs:complexType[@name='Variant_List']//xs:choice">
        <jxb:property name="variants" />
-    </jxb:bindings>    
-  </jxb:bindings>
+    </jxb:bindings>
+    
+    
+    <!--                                                        
+    DECLARATIONS
+    -->
 
+    <jxb:bindings node="//xs:complexType[@name='Variable_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Constant_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Deferred_Constant_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Discriminant_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Component_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Loop_Parameter_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_reverse_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasReverse" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Generalized_Iterator_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_reverse_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasReverse" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Element_Iterator_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_reverse_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasReverse" />
+      </jxb:bindings>          
+    </jxb:bindings>
+    
+    
+    
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>      
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Function_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Parameter_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+                
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Body_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>   
+    
+    <jxb:bindings node="//xs:complexType[@name='Function_Body_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Return_Variable_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Return_Constant_Specification']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>
+    </jxb:bindings> 
+                        
+    <jxb:bindings node="//xs:complexType[@name='Null_Procedure_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Object_Renaming_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Renaming_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>      
+    
+    <jxb:bindings node="//xs:complexType[@name='Function_Renaming_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Entry_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Body_Stub']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>   
+    
+    <jxb:bindings node="//xs:complexType[@name='Function_Body_Stub']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>       
+    
+    <jxb:bindings node="//xs:complexType[@name='Generic_Function_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Instantiation']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Function_Instantiation']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isOverriding" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_overriding_declaration_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotOverriding" />
+      </jxb:bindings>
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Object_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Incomplete_Type_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_tagged_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasTagged" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Formal_Procedure_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+    </jxb:bindings>
+        
+    <jxb:bindings node="//xs:complexType[@name='Formal_Function_Declaration']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>    
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+    </jxb:bindings>    
+
+
+    <jxb:bindings node="//xs:complexType[@name='Derived_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    
+    <jxb:bindings node="//xs:complexType[@name='Derived_Record_Extension_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>      
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Record_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>      
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Tagged_Record_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>      
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Pool_Specific_Access_To_Variable']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Variable']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Constant']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Protected_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Access_To_Protected_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Subtype_Indication']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Component_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_aliased_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAliased" />
+      </jxb:bindings>    
+    </jxb:bindings>
+        
+    <jxb:bindings node="//xs:complexType[@name='Record_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Variable']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Constant']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Protected_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>          
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Anonymous_Access_To_Protected_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>          
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Private_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>          
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Tagged_Private_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>          
+    </jxb:bindings>
+
+    <jxb:bindings node="//xs:complexType[@name='Private_Extension_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>          
+    </jxb:bindings>
+              
+    <jxb:bindings node="//xs:complexType[@name='Formal_Private_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>          
+    </jxb:bindings>              
+              
+     <jxb:bindings node="//xs:complexType[@name='Formal_Tagged_Private_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>          
+    </jxb:bindings>             
+              
+    <jxb:bindings node="//xs:complexType[@name='Formal_Derived_Type_Definition']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_abstract_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasAbstract" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_private_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasPrivate" />
+      </jxb:bindings>                
+    </jxb:bindings>  
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Pool_Specific_Access_To_Variable']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Variable']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Constant']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Protected_Procedure']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>    
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>          
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='Formal_Access_To_Protected_Function']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_null_exclusion_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasNullExclusion" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_not_null_return_q']//xs:complexType//xs:choice">
+        <jxb:property name="isNotNullReturn" />
+      </jxb:bindings>          
+    </jxb:bindings>
+    
+    <jxb:bindings node="//xs:complexType[@name='Function_Call']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_prefix_call_q']//xs:complexType//xs:choice">
+        <jxb:property name="isPrefixCall" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='is_prefix_notation_q']//xs:complexType//xs:choice">
+        <jxb:property name="isPrefixNotation" />
+      </jxb:bindings>          
+    </jxb:bindings>    
+    
+    <jxb:bindings node="//xs:complexType[@name='Procedure_Call_Statement']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='is_prefix_notation_q']//xs:complexType//xs:choice">
+        <jxb:property name="isPrefixNotation" />
+      </jxb:bindings>          
+    </jxb:bindings>    
+
+    <jxb:bindings node="//xs:complexType[@name='With_Clause']//xs:sequence">
+      <jxb:bindings node="xs:element[@name='has_limited_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasLimited" />
+      </jxb:bindings>
+      <jxb:bindings node="xs:element[@name='has_private_q']//xs:complexType//xs:choice">
+        <jxb:property name="hasPrivate" />
+      </jxb:bindings>                
+    </jxb:bindings>                        
+  </jxb:bindings>
 </jxb:bindings>

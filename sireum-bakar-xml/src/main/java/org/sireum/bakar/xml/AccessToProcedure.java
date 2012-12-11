@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -155,62 +156,40 @@ public class AccessToProcedure {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "nullExclusion",
-        "notAnElement"
+        "hasNullExclusion"
     })
     public static class HasNullExclusionQ {
 
-        @XmlElement(name = "null_exclusion")
-        protected NullExclusion nullExclusion;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "null_exclusion", type = NullExclusion.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasNullExclusion;
 
         /**
-         * Gets the value of the nullExclusion property.
+         * Gets the value of the hasNullExclusion property.
          * 
          * @return
          *     possible object is
          *     {@link NullExclusion }
+         *     {@link NotAnElement }
          *     
          */
-        public NullExclusion getNullExclusion() {
-            return nullExclusion;
+        public Object getHasNullExclusion() {
+            return hasNullExclusion;
         }
 
         /**
-         * Sets the value of the nullExclusion property.
+         * Sets the value of the hasNullExclusion property.
          * 
          * @param value
          *     allowed object is
          *     {@link NullExclusion }
-         *     
-         */
-        public void setNullExclusion(NullExclusion value) {
-            this.nullExclusion = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasNullExclusion(Object value) {
+            this.hasNullExclusion = value;
         }
 
     }

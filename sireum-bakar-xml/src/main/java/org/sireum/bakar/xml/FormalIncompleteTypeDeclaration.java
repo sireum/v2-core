@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -211,61 +212,40 @@ public class FormalIncompleteTypeDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "tagged",
-        "notAnElement"
+        "hasTagged"
     })
     public static class HasTaggedQ {
 
-        protected Tagged tagged;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "tagged", type = Tagged.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasTagged;
 
         /**
-         * Gets the value of the tagged property.
+         * Gets the value of the hasTagged property.
          * 
          * @return
          *     possible object is
          *     {@link Tagged }
+         *     {@link NotAnElement }
          *     
          */
-        public Tagged getTagged() {
-            return tagged;
+        public Object getHasTagged() {
+            return hasTagged;
         }
 
         /**
-         * Sets the value of the tagged property.
+         * Sets the value of the hasTagged property.
          * 
          * @param value
          *     allowed object is
          *     {@link Tagged }
-         *     
-         */
-        public void setTagged(Tagged value) {
-            this.tagged = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasTagged(Object value) {
+            this.hasTagged = value;
         }
 
     }

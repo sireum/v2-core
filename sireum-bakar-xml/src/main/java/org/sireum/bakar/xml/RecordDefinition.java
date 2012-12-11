@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -155,61 +156,40 @@ public class RecordDefinition {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "limited",
-        "notAnElement"
+        "hasLimited"
     })
     public static class HasLimitedQ {
 
-        protected Limited limited;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "limited", type = Limited.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasLimited;
 
         /**
-         * Gets the value of the limited property.
+         * Gets the value of the hasLimited property.
          * 
          * @return
          *     possible object is
          *     {@link Limited }
+         *     {@link NotAnElement }
          *     
          */
-        public Limited getLimited() {
-            return limited;
+        public Object getHasLimited() {
+            return hasLimited;
         }
 
         /**
-         * Sets the value of the limited property.
+         * Sets the value of the hasLimited property.
          * 
          * @param value
          *     allowed object is
          *     {@link Limited }
-         *     
-         */
-        public void setLimited(Limited value) {
-            this.limited = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasLimited(Object value) {
+            this.hasLimited = value;
         }
 
     }

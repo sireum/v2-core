@@ -10,6 +10,7 @@ package org.sireum.bakar.xml;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -239,62 +240,40 @@ public class FormalProcedureDeclaration {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "_abstract",
-        "notAnElement"
+        "hasAbstract"
     })
     public static class HasAbstractQ {
 
-        @XmlElement(name = "abstract")
-        protected Abstract _abstract;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "abstract", type = Abstract.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object hasAbstract;
 
         /**
-         * Gets the value of the abstract property.
+         * Gets the value of the hasAbstract property.
          * 
          * @return
          *     possible object is
          *     {@link Abstract }
+         *     {@link NotAnElement }
          *     
          */
-        public Abstract getAbstract() {
-            return _abstract;
+        public Object getHasAbstract() {
+            return hasAbstract;
         }
 
         /**
-         * Sets the value of the abstract property.
+         * Sets the value of the hasAbstract property.
          * 
          * @param value
          *     allowed object is
          *     {@link Abstract }
-         *     
-         */
-        public void setAbstract(Abstract value) {
-            this._abstract = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
          *     {@link NotAnElement }
          *     
          */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
+        public void setHasAbstract(Object value) {
+            this.hasAbstract = value;
         }
 
     }

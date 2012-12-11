@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -250,15 +251,15 @@ public class FunctionCall {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "isPrefixCall",
-        "notAnElement"
+        "isPrefixCall"
     })
     public static class IsPrefixCallQ {
 
-        @XmlElement(name = "is_prefix_call")
-        protected IsPrefixCall isPrefixCall;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "is_prefix_call", type = IsPrefixCall.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object isPrefixCall;
 
         /**
          * Gets the value of the isPrefixCall property.
@@ -266,9 +267,10 @@ public class FunctionCall {
          * @return
          *     possible object is
          *     {@link IsPrefixCall }
+         *     {@link NotAnElement }
          *     
          */
-        public IsPrefixCall getIsPrefixCall() {
+        public Object getIsPrefixCall() {
             return isPrefixCall;
         }
 
@@ -278,34 +280,11 @@ public class FunctionCall {
          * @param value
          *     allowed object is
          *     {@link IsPrefixCall }
+         *     {@link NotAnElement }
          *     
          */
-        public void setIsPrefixCall(IsPrefixCall value) {
+        public void setIsPrefixCall(Object value) {
             this.isPrefixCall = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
         }
 
     }
@@ -333,15 +312,15 @@ public class FunctionCall {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "isPrefixNotation",
-        "notAnElement"
+        "isPrefixNotation"
     })
     public static class IsPrefixNotationQ {
 
-        @XmlElement(name = "is_prefix_notation")
-        protected IsPrefixNotation isPrefixNotation;
-        @XmlElement(name = "not_an_element")
-        protected NotAnElement notAnElement;
+        @XmlElements({
+            @XmlElement(name = "is_prefix_notation", type = IsPrefixNotation.class),
+            @XmlElement(name = "not_an_element", type = NotAnElement.class)
+        })
+        protected Object isPrefixNotation;
 
         /**
          * Gets the value of the isPrefixNotation property.
@@ -349,9 +328,10 @@ public class FunctionCall {
          * @return
          *     possible object is
          *     {@link IsPrefixNotation }
+         *     {@link NotAnElement }
          *     
          */
-        public IsPrefixNotation getIsPrefixNotation() {
+        public Object getIsPrefixNotation() {
             return isPrefixNotation;
         }
 
@@ -361,34 +341,11 @@ public class FunctionCall {
          * @param value
          *     allowed object is
          *     {@link IsPrefixNotation }
+         *     {@link NotAnElement }
          *     
          */
-        public void setIsPrefixNotation(IsPrefixNotation value) {
+        public void setIsPrefixNotation(Object value) {
             this.isPrefixNotation = value;
-        }
-
-        /**
-         * Gets the value of the notAnElement property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public NotAnElement getNotAnElement() {
-            return notAnElement;
-        }
-
-        /**
-         * Sets the value of the notAnElement property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link NotAnElement }
-         *     
-         */
-        public void setNotAnElement(NotAnElement value) {
-            this.notAnElement = value;
         }
 
     }
