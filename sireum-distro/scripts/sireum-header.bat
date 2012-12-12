@@ -31,10 +31,12 @@ SET CODE=%ERRORLEVEL%
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
   MOVE %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java
+  DEL /Q %SCRIPT%.jar
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   RD %SIREUM_HOME%apps\platform\scala /S /Q
   MOVE %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala
+  DEL /Q %SCRIPT%.jar
 )
 IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
