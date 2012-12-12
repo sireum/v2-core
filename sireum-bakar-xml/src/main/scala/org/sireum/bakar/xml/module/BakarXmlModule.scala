@@ -1,12 +1,16 @@
 package org.sireum.bakar.xml.module
 
-import org.sireum.pipeline.Input
-import org.sireum.pipeline.Output
-import org.sireum.util._
-import org.sireum.option.PipelineMode
+import scala.Array.apply
+import org.sireum.option.PipelineMode.apply
 import org.sireum.pipeline.gen.ModuleGenerator
-import org.sireum.pipeline.Produce
+import org.sireum.util.FileResourceUri
+import org.sireum.util.MMap
+import org.sireum.option.PipelineMode
 import org.sireum.pipeline.Consume
+import org.sireum.pipeline.Input
+import org.sireum.pipeline.Produce
+import org.sireum.pipeline.Output
+import org.sireum.bakar.xml.CompilationUnit
 
 case class Gnat2XMLWrapper(
   title : String = "Gnat2XML Wrapper Module",
@@ -28,7 +32,8 @@ case class ParseGnat2XML(
   gnat2xmlResults : Seq[FileResourceUri],
    
   @Produce
-  parseGnat2XMLresults : MMap[FileResourceUri, String]
+  @Output
+  parseGnat2XMLresults : MMap[FileResourceUri, CompilationUnit]
 )
     
 object hold {

@@ -3,6 +3,7 @@ package org.sireum.bakar.xml.module
 import org.sireum.util._
 import org.sireum.pipeline._
 import java.lang.String
+import org.sireum.bakar.xml.CompilationUnit
 import scala.Option
 import scala.collection.Seq
 import scala.collection.mutable.Map
@@ -11,9 +12,9 @@ object Gnat2XMLWrapperModule extends PipelineModule {
   def title = "Gnat2XML Wrapper Module"
   def origin = classOf[Gnat2XMLWrapper]
 
-  val gnat2xmlResultsKey = "Gnat2XMLWrapper.gnat2xmlResults"
   val globalDestDirKey = "Global.destDir"
   val globalSrcFilesKey = "Global.srcFiles"
+  val gnat2xmlResultsKey = "Gnat2XMLWrapper.gnat2xmlResults"
 
   def compute(job : PipelineJob, info : PipelineJobModuleInfo) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
@@ -32,7 +33,7 @@ object Gnat2XMLWrapperModule extends PipelineModule {
 
   override def initialize(job : PipelineJob) {
     if(!(job ? Gnat2XMLWrapperModule.globalDestDirKey)) {
-      val destDir = Class.forName("org.sireum.bakar.xml.module.Gnat2XMLWrapper").getDeclaredMethod("init$default$3").invoke(null).asInstanceOf[scala.Option[java.lang.String]]
+      val destDir = Class.forName("org.sireum.bakar.xml.module.Gnat2XMLWrapper").getDeclaredMethod("$lessinit$greater$default$3").invoke(null).asInstanceOf[scala.Option[java.lang.String]]
       setDestDir(job.properties, destDir)
     }
   }
@@ -186,6 +187,7 @@ object ParseGnat2XMLModule extends PipelineModule {
   def origin = classOf[ParseGnat2XML]
 
   val parseGnat2XMLresultsKey = "ParseGnat2XML.parseGnat2XMLresults"
+  val globalParseGnat2XMLresultsKey = "Global.parseGnat2XMLresults"
 
   def compute(job : PipelineJob, info : PipelineJobModuleInfo) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
@@ -252,15 +254,21 @@ object ParseGnat2XMLModule extends PipelineModule {
 
   def outputDefined (job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    if(!(job ? ParseGnat2XMLModule.parseGnat2XMLresultsKey)) {
+    if(!(job ? ParseGnat2XMLModule.parseGnat2XMLresultsKey) && !(job ? ParseGnat2XMLModule.globalParseGnat2XMLresultsKey)) {
       tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
-        "Output error for '" + this.title + "': No entry found for 'parseGnat2XMLresults'. Expecting (ParseGnat2XMLModule.parseGnat2XMLresultsKey)") 
+        "Output error for '" + this.title + "': No entry found for 'parseGnat2XMLresults'. Expecting (ParseGnat2XMLModule.parseGnat2XMLresultsKey or ParseGnat2XMLModule.globalParseGnat2XMLresultsKey)") 
     }
 
-    if(job ? ParseGnat2XMLModule.parseGnat2XMLresultsKey && !job(ParseGnat2XMLModule.parseGnat2XMLresultsKey).isInstanceOf[scala.collection.mutable.Map[java.lang.String, java.lang.String]]) {
+    if(job ? ParseGnat2XMLModule.parseGnat2XMLresultsKey && !job(ParseGnat2XMLModule.parseGnat2XMLresultsKey).isInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]) {
       tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, 
-        "Output error for '" + this.title + "': Wrong type found for ParseGnat2XMLModule.parseGnat2XMLresultsKey.  Expecting 'scala.collection.mutable.Map[java.lang.String, java.lang.String]' but found '" + 
+        "Output error for '" + this.title + "': Wrong type found for ParseGnat2XMLModule.parseGnat2XMLresultsKey.  Expecting 'scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]' but found '" + 
         job(ParseGnat2XMLModule.parseGnat2XMLresultsKey).getClass.toString + "'")
+    } 
+
+    if(job ? ParseGnat2XMLModule.globalParseGnat2XMLresultsKey && !job(ParseGnat2XMLModule.globalParseGnat2XMLresultsKey).isInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]) {
+      tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, 
+        "Output error for '" + this.title + "': Wrong type found for ParseGnat2XMLModule.globalParseGnat2XMLresultsKey.  Expecting 'scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]' but found '" + 
+        job(ParseGnat2XMLModule.globalParseGnat2XMLresultsKey).getClass.toString + "'")
     } 
     return tags
   }
@@ -280,16 +288,20 @@ object ParseGnat2XMLModule extends PipelineModule {
     return options
   }
 
-  def getParseGnat2XMLresults (options : scala.collection.Map[Property.Key, Any]) : scala.collection.mutable.Map[java.lang.String, java.lang.String] = {
+  def getParseGnat2XMLresults (options : scala.collection.Map[Property.Key, Any]) : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit] = {
+    if (options.contains(ParseGnat2XMLModule.globalParseGnat2XMLresultsKey)) {
+       return options(ParseGnat2XMLModule.globalParseGnat2XMLresultsKey).asInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]
+    }
     if (options.contains(ParseGnat2XMLModule.parseGnat2XMLresultsKey)) {
-       return options(ParseGnat2XMLModule.parseGnat2XMLresultsKey).asInstanceOf[scala.collection.mutable.Map[java.lang.String, java.lang.String]]
+       return options(ParseGnat2XMLModule.parseGnat2XMLresultsKey).asInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]
     }
 
     throw new Exception("Pipeline checker should guarantee we never reach here")
   }
 
-  def modSetParseGnat2XMLresults (options : MMap[Property.Key, Any], parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, java.lang.String]) : MMap[Property.Key, Any] = {
+  def modSetParseGnat2XMLresults (options : MMap[Property.Key, Any], parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]) : MMap[Property.Key, Any] = {
 
+    options(ParseGnat2XMLModule.globalParseGnat2XMLresultsKey) = parseGnat2XMLresults
     options(ParseGnat2XMLModule.parseGnat2XMLresultsKey) = parseGnat2XMLresults
 
     return options
@@ -302,5 +314,5 @@ trait ParseGnat2XMLModule {
   def gnat2xmlResults : scala.collection.Seq[java.lang.String] = ParseGnat2XMLModule.modGetGnat2xmlResults(job.properties)
 
 
-  def parseGnat2XMLresults_=(parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, java.lang.String]) { ParseGnat2XMLModule.modSetParseGnat2XMLresults(job.properties, parseGnat2XMLresults) }
+  def parseGnat2XMLresults_=(parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]) { ParseGnat2XMLModule.modSetParseGnat2XMLresults(job.properties, parseGnat2XMLresults) }
 }

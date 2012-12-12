@@ -135,19 +135,18 @@ class Gnat2XMLWrapperDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
 }
 
 class ParseGnat2XMLDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends ParseGnat2XMLModule {
-  val results = mmapEmpty[FileResourceUri, String]
+  val results = mmapEmpty[FileResourceUri, CompilationUnit]
 
   import javax.xml.bind._
   import org.sireum.bakar.xml._;
 
   val jc = JAXBContext.newInstance("org.sireum.bakar.xml");
   val u = jc.createUnmarshaller();
-  val xs = new XStream();
 
   this.gnat2xmlResults.foreach { uri =>
     val f = new File(new URI(uri))
     val o = u.unmarshal(new FileInputStream(f)).asInstanceOf[JAXBElement[CompilationUnit]]
-    results(uri) = xs.toXML(o.getValue())
+    results(uri) = o.getValue() 
   }
 
   this.parseGnat2XMLresults_=(results)
