@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "genericActualPartQl",
     "aspectSpecificationsQl"
 })
-public class PackageInstantiation {
+public class PackageInstantiation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

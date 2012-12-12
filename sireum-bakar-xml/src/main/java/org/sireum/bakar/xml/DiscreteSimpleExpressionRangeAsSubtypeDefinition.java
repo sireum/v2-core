@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "lowerBoundQ",
     "upperBoundQ"
 })
-public class DiscreteSimpleExpressionRangeAsSubtypeDefinition {
+public class DiscreteSimpleExpressionRangeAsSubtypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

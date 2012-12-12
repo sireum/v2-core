@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "discriminantDirectNameQ",
     "variantsQl"
 })
-public class VariantPart {
+public class VariantPart
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

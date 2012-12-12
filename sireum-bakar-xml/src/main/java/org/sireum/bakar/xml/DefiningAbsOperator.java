@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Defining_Abs_Operator", propOrder = {
     "sloc"
 })
-public class DefiningAbsOperator {
+public class DefiningAbsOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

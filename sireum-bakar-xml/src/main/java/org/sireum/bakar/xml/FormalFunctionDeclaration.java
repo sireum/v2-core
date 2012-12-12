@@ -73,7 +73,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasAbstractQ",
     "aspectSpecificationsQl"
 })
-public class FormalFunctionDeclaration {
+public class FormalFunctionDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -309,13 +311,15 @@ public class FormalFunctionDeclaration {
     @XmlType(name = "", propOrder = {
         "hasAbstract"
     })
-    public static class HasAbstractQ {
+    public static class HasAbstractQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "abstract", type = Abstract.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAbstract;
+        protected Base hasAbstract;
 
         /**
          * Gets the value of the hasAbstract property.
@@ -326,7 +330,7 @@ public class FormalFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAbstract() {
+        public Base getHasAbstract() {
             return hasAbstract;
         }
 
@@ -339,7 +343,7 @@ public class FormalFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAbstract(Object value) {
+        public void setHasAbstract(Base value) {
             this.hasAbstract = value;
         }
 
@@ -370,13 +374,15 @@ public class FormalFunctionDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotNullReturn"
     })
-    public static class IsNotNullReturnQ {
+    public static class IsNotNullReturnQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_null_return", type = NotNullReturn.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotNullReturn;
+        protected Base isNotNullReturn;
 
         /**
          * Gets the value of the isNotNullReturn property.
@@ -387,7 +393,7 @@ public class FormalFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotNullReturn() {
+        public Base getIsNotNullReturn() {
             return isNotNullReturn;
         }
 
@@ -400,7 +406,7 @@ public class FormalFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotNullReturn(Object value) {
+        public void setIsNotNullReturn(Base value) {
             this.isNotNullReturn = value;
         }
 

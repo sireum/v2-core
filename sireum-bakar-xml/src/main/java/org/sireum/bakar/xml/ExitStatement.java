@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "exitLoopNameQ",
     "exitConditionQ"
 })
-public class ExitStatement {
+public class ExitStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

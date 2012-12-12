@@ -60,7 +60,9 @@ import javax.xml.bind.annotation.XmlType;
     "resultProfileQ",
     "aspectSpecificationsQl"
 })
-public class GenericFunctionDeclaration {
+public class GenericFunctionDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -270,13 +272,15 @@ public class GenericFunctionDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotNullReturn"
     })
-    public static class IsNotNullReturnQ {
+    public static class IsNotNullReturnQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_null_return", type = NotNullReturn.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotNullReturn;
+        protected Base isNotNullReturn;
 
         /**
          * Gets the value of the isNotNullReturn property.
@@ -287,7 +291,7 @@ public class GenericFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotNullReturn() {
+        public Base getIsNotNullReturn() {
             return isNotNullReturn;
         }
 
@@ -300,7 +304,7 @@ public class GenericFunctionDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotNullReturn(Object value) {
+        public void setIsNotNullReturn(Base value) {
             this.isNotNullReturn = value;
         }
 

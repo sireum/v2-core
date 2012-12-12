@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "attributeDesignatorIdentifierQ",
     "attributeDesignatorExpressionsQl"
 })
-public class FirstAttribute {
+public class FirstAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

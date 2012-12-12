@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "declarationInterfaceListQl",
     "typeDeclarationViewQ"
 })
-public class ProtectedTypeDeclaration {
+public class ProtectedTypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

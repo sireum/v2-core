@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class UncheckedAccessAttribute {
+public class UncheckedAccessAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

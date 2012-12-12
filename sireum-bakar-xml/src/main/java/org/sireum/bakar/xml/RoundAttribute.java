@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class RoundAttribute {
+public class RoundAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

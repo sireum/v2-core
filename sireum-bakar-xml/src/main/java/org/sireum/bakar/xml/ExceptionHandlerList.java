@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Exception_Handler_List", propOrder = {
     "exceptionHandlers"
 })
-public class ExceptionHandlerList {
+public class ExceptionHandlerList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class ExceptionHandlerList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> exceptionHandlers;
+    protected List<Base> exceptionHandlers;
 
     /**
      * Gets the value of the exceptionHandlers property.
@@ -184,9 +186,9 @@ public class ExceptionHandlerList {
      * 
      * 
      */
-    public List<Object> getExceptionHandlers() {
+    public List<Base> getExceptionHandlers() {
         if (exceptionHandlers == null) {
-            exceptionHandlers = new ArrayList<Object>();
+            exceptionHandlers = new ArrayList<Base>();
         }
         return this.exceptionHandlers;
     }

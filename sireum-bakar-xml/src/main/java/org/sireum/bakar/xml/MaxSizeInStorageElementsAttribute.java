@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class MaxSizeInStorageElementsAttribute {
+public class MaxSizeInStorageElementsAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

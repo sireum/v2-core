@@ -65,7 +65,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Statement_Class", propOrder = {
     "theStatement"
 })
-public class StatementClass {
+public class StatementClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -153,7 +155,7 @@ public class StatementClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object theStatement;
+    protected Base theStatement;
 
     /**
      * Gets the value of the theStatement property.
@@ -246,7 +248,7 @@ public class StatementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getTheStatement() {
+    public Base getTheStatement() {
         return theStatement;
     }
 
@@ -341,7 +343,7 @@ public class StatementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setTheStatement(Object value) {
+    public void setTheStatement(Base value) {
         this.theStatement = value;
     }
 

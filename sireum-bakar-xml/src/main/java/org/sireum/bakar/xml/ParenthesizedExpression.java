@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "expressionParenthesizedQ"
 })
-public class ParenthesizedExpression {
+public class ParenthesizedExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

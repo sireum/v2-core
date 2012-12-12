@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "digitsExpressionQ",
     "realRangeConstraintQ"
 })
-public class DigitsConstraint {
+public class DigitsConstraint
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

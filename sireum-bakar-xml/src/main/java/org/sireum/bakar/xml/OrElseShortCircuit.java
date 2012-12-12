@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "shortCircuitOperationLeftExpressionQ",
     "shortCircuitOperationRightExpressionQ"
 })
-public class OrElseShortCircuit {
+public class OrElseShortCircuit
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

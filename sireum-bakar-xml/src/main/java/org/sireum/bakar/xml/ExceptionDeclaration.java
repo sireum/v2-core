@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "namesQl",
     "aspectSpecificationsQl"
 })
-public class ExceptionDeclaration {
+public class ExceptionDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

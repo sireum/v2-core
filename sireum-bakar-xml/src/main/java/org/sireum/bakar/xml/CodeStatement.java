@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "qualifiedExpressionQ"
 })
-public class CodeStatement {
+public class CodeStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Context_Clause_List", propOrder = {
     "contextClauses"
 })
-public class ContextClauseList {
+public class ContextClauseList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -109,7 +111,7 @@ public class ContextClauseList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> contextClauses;
+    protected List<Base> contextClauses;
 
     /**
      * Gets the value of the contextClauses property.
@@ -193,9 +195,9 @@ public class ContextClauseList {
      * 
      * 
      */
-    public List<Object> getContextClauses() {
+    public List<Base> getContextClauses() {
         if (contextClauses == null) {
-            contextClauses = new ArrayList<Object>();
+            contextClauses = new ArrayList<Base>();
         }
         return this.contextClauses;
     }

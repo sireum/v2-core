@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Name_Class", propOrder = {
     "name"
 })
-public class NameClass {
+public class NameClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class NameClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object name;
+    protected Base name;
 
     /**
      * Gets the value of the name property.
@@ -171,7 +173,7 @@ public class NameClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getName() {
+    public Base getName() {
         return name;
     }
 
@@ -241,7 +243,7 @@ public class NameClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setName(Object value) {
+    public void setName(Base value) {
         this.name = value;
     }
 

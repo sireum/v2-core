@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "bodyStatementsQl",
     "bodyExceptionHandlersQl"
 })
-public class TaskBodyDeclaration {
+public class TaskBodyDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

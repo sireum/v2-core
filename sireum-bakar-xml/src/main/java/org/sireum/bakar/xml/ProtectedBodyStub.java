@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "namesQl",
     "aspectSpecificationsQl"
 })
-public class ProtectedBodyStub {
+public class ProtectedBodyStub
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

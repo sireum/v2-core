@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class MachineRadixAttribute {
+public class MachineRadixAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "guardQ",
     "sequenceOfStatementsQl"
 })
-public class SelectPath {
+public class SelectPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

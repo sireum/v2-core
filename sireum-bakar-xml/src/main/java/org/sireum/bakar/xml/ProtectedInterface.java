@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "definitionInterfaceListQl"
 })
-public class ProtectedInterface {
+public class ProtectedInterface
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

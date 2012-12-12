@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "whileConditionQ",
     "loopStatementsQl"
 })
-public class WhileLoopStatement {
+public class WhileLoopStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

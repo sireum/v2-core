@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "integerConstraintQ"
 })
-public class SignedIntegerTypeDefinition {
+public class SignedIntegerTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "requeueEntryNameQ"
 })
-public class RequeueStatement {
+public class RequeueStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

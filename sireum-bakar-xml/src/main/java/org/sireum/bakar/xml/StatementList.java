@@ -67,7 +67,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Statement_List", propOrder = {
     "statements"
 })
-public class StatementList {
+public class StatementList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -155,7 +157,7 @@ public class StatementList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> statements;
+    protected List<Base> statements;
 
     /**
      * Gets the value of the statements property.
@@ -262,9 +264,9 @@ public class StatementList {
      * 
      * 
      */
-    public List<Object> getStatements() {
+    public List<Base> getStatements() {
         if (statements == null) {
-            statements = new ArrayList<Object>();
+            statements = new ArrayList<Base>();
         }
         return this.statements;
     }

@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "sliceRangeQ"
 })
-public class Slice {
+public class Slice
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "blockStatementsQl",
     "blockExceptionHandlersQl"
 })
-public class BlockStatement {
+public class BlockStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -5,6 +5,12 @@
   jxb:extensionBindingPrefixes="xjc">
 
   <jxb:bindings schemaLocation="gnatxml.xsd" node="/xs:schema">
+  
+    <jxb:globalBindings>
+       <xjc:superClass name="org.sireum.bakar.xml.Base"/>
+    </jxb:globalBindings>
+    
+    
     <jxb:bindings node="//xs:complexType[@name='Element_Class']//xs:choice">
        <jxb:property name="element" />
     </jxb:bindings>

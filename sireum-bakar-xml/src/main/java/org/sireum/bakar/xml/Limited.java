@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Limited", propOrder = {
     "sloc"
 })
-public class Limited {
+public class Limited
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

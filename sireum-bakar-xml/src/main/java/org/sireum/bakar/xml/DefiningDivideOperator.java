@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Defining_Divide_Operator", propOrder = {
     "sloc"
 })
-public class DefiningDivideOperator {
+public class DefiningDivideOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

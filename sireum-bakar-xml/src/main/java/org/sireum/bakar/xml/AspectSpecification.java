@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "aspectMarkQ",
     "aspectDefinitionQ"
 })
-public class AspectSpecification {
+public class AspectSpecification
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

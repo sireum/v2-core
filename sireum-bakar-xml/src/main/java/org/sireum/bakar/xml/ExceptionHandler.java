@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "exceptionChoicesQl",
     "handlerStatementsQl"
 })
-public class ExceptionHandler {
+public class ExceptionHandler
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

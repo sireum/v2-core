@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "expressionPathsQl"
 })
-public class IfExpression {
+public class IfExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

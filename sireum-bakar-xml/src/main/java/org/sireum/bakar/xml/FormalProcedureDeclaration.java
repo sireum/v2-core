@@ -58,7 +58,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasAbstractQ",
     "aspectSpecificationsQl"
 })
-public class FormalProcedureDeclaration {
+public class FormalProcedureDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -242,13 +244,15 @@ public class FormalProcedureDeclaration {
     @XmlType(name = "", propOrder = {
         "hasAbstract"
     })
-    public static class HasAbstractQ {
+    public static class HasAbstractQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "abstract", type = Abstract.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAbstract;
+        protected Base hasAbstract;
 
         /**
          * Gets the value of the hasAbstract property.
@@ -259,7 +263,7 @@ public class FormalProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAbstract() {
+        public Base getHasAbstract() {
             return hasAbstract;
         }
 
@@ -272,7 +276,7 @@ public class FormalProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAbstract(Object value) {
+        public void setHasAbstract(Base value) {
             this.hasAbstract = value;
         }
 

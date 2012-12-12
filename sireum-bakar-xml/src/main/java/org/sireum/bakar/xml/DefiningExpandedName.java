@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "definingPrefixQ",
     "definingSelectorQ"
 })
-public class DefiningExpandedName {
+public class DefiningExpandedName
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

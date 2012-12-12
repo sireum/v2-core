@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "pragmaArgumentAssociationsQl"
 })
-public class ListPragma {
+public class ListPragma
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

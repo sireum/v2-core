@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Box_Expression", propOrder = {
     "sloc"
 })
-public class BoxExpression {
+public class BoxExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

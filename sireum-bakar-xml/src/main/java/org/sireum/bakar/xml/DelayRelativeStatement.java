@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "delayExpressionQ"
 })
-public class DelayRelativeStatement {
+public class DelayRelativeStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

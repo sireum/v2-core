@@ -56,7 +56,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasTaggedQ",
     "aspectSpecificationsQl"
 })
-public class FormalIncompleteTypeDeclaration {
+public class FormalIncompleteTypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -214,13 +216,15 @@ public class FormalIncompleteTypeDeclaration {
     @XmlType(name = "", propOrder = {
         "hasTagged"
     })
-    public static class HasTaggedQ {
+    public static class HasTaggedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "tagged", type = Tagged.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasTagged;
+        protected Base hasTagged;
 
         /**
          * Gets the value of the hasTagged property.
@@ -231,7 +235,7 @@ public class FormalIncompleteTypeDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasTagged() {
+        public Base getHasTagged() {
             return hasTagged;
         }
 
@@ -244,7 +248,7 @@ public class FormalIncompleteTypeDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasTagged(Object value) {
+        public void setHasTagged(Base value) {
             this.hasTagged = value;
         }
 

@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "sequenceOfStatementsQl"
 })
-public class ThenAbortPath {
+public class ThenAbortPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

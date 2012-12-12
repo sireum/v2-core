@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class PartitionIdAttribute {
+public class PartitionIdAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -82,7 +82,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasAbstractQ",
     "aspectSpecificationsQl"
 })
-public class ProcedureDeclaration {
+public class ProcedureDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -292,13 +294,15 @@ public class ProcedureDeclaration {
     @XmlType(name = "", propOrder = {
         "hasAbstract"
     })
-    public static class HasAbstractQ {
+    public static class HasAbstractQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "abstract", type = Abstract.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAbstract;
+        protected Base hasAbstract;
 
         /**
          * Gets the value of the hasAbstract property.
@@ -309,7 +313,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAbstract() {
+        public Base getHasAbstract() {
             return hasAbstract;
         }
 
@@ -322,7 +326,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAbstract(Object value) {
+        public void setHasAbstract(Base value) {
             this.hasAbstract = value;
         }
 
@@ -353,13 +357,15 @@ public class ProcedureDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotOverriding"
     })
-    public static class IsNotOverridingDeclarationQ {
+    public static class IsNotOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_overriding", type = NotOverriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotOverriding;
+        protected Base isNotOverriding;
 
         /**
          * Gets the value of the isNotOverriding property.
@@ -370,7 +376,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotOverriding() {
+        public Base getIsNotOverriding() {
             return isNotOverriding;
         }
 
@@ -383,7 +389,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotOverriding(Object value) {
+        public void setIsNotOverriding(Base value) {
             this.isNotOverriding = value;
         }
 
@@ -414,13 +420,15 @@ public class ProcedureDeclaration {
     @XmlType(name = "", propOrder = {
         "isOverriding"
     })
-    public static class IsOverridingDeclarationQ {
+    public static class IsOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "overriding", type = Overriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isOverriding;
+        protected Base isOverriding;
 
         /**
          * Gets the value of the isOverriding property.
@@ -431,7 +439,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsOverriding() {
+        public Base getIsOverriding() {
             return isOverriding;
         }
 
@@ -444,7 +452,7 @@ public class ProcedureDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsOverriding(Object value) {
+        public void setIsOverriding(Base value) {
             this.isOverriding = value;
         }
 

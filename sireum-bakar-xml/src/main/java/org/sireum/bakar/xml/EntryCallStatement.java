@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "calledNameQ",
     "callStatementParametersQl"
 })
-public class EntryCallStatement {
+public class EntryCallStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

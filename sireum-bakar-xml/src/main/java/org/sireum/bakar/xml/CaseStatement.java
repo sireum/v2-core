@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "caseExpressionQ",
     "statementPathsQl"
 })
-public class CaseStatement {
+public class CaseStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

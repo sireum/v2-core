@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Is_Prefix_Notation", propOrder = {
     "sloc"
 })
-public class IsPrefixNotation {
+public class IsPrefixNotation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

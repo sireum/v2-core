@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "convertedOrQualifiedSubtypeMarkQ",
     "convertedOrQualifiedExpressionQ"
 })
-public class QualifiedExpression {
+public class QualifiedExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

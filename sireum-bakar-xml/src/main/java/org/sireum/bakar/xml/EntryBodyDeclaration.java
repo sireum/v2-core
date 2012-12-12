@@ -50,7 +50,9 @@ import javax.xml.bind.annotation.XmlType;
     "bodyStatementsQl",
     "bodyExceptionHandlersQl"
 })
-public class EntryBodyDeclaration {
+public class EntryBodyDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

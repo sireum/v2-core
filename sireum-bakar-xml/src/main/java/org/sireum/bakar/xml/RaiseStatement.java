@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "raisedExceptionQ",
     "associatedMessageQ"
 })
-public class RaiseStatement {
+public class RaiseStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

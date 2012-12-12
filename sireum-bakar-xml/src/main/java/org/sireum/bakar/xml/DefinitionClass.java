@@ -128,7 +128,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Definition_Class", propOrder = {
     "definition"
 })
-public class DefinitionClass {
+public class DefinitionClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -279,7 +281,7 @@ public class DefinitionClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object definition;
+    protected Base definition;
 
     /**
      * Gets the value of the definition property.
@@ -435,7 +437,7 @@ public class DefinitionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getDefinition() {
+    public Base getDefinition() {
         return definition;
     }
 
@@ -593,7 +595,7 @@ public class DefinitionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setDefinition(Object value) {
+    public void setDefinition(Base value) {
         this.definition = value;
     }
 

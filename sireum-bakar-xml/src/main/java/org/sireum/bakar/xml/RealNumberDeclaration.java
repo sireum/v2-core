@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "namesQl",
     "initializationExpressionQ"
 })
-public class RealNumberDeclaration {
+public class RealNumberDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

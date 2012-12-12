@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "recordComponentAssociationsQl"
 })
-public class RecordAggregate {
+public class RecordAggregate
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class PosAttribute {
+public class PosAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

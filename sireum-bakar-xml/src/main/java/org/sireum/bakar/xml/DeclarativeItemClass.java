@@ -112,7 +112,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Declarative_Item_Class", propOrder = {
     "declarativeItem"
 })
-public class DeclarativeItemClass {
+public class DeclarativeItemClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -247,7 +249,7 @@ public class DeclarativeItemClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object declarativeItem;
+    protected Base declarativeItem;
 
     /**
      * Gets the value of the declarativeItem property.
@@ -387,7 +389,7 @@ public class DeclarativeItemClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getDeclarativeItem() {
+    public Base getDeclarativeItem() {
         return declarativeItem;
     }
 
@@ -529,7 +531,7 @@ public class DeclarativeItemClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setDeclarativeItem(Object value) {
+    public void setDeclarativeItem(Base value) {
         this.declarativeItem = value;
     }
 

@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "rangeAttributeQ"
 })
-public class RangeAttributeReference {
+public class RangeAttributeReference
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

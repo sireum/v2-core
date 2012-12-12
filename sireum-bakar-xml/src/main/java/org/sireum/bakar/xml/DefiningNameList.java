@@ -65,7 +65,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Defining_Name_List", propOrder = {
     "definingNames"
 })
-public class DefiningNameList {
+public class DefiningNameList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -151,7 +153,7 @@ public class DefiningNameList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> definingNames;
+    protected List<Base> definingNames;
 
     /**
      * Gets the value of the definingNames property.
@@ -256,9 +258,9 @@ public class DefiningNameList {
      * 
      * 
      */
-    public List<Object> getDefiningNames() {
+    public List<Base> getDefiningNames() {
         if (definingNames == null) {
-            definingNames = new ArrayList<Object>();
+            definingNames = new ArrayList<Base>();
         }
         return this.definingNames;
     }

@@ -71,7 +71,9 @@ import javax.xml.bind.annotation.XmlType;
     "objectDeclarationViewQ",
     "initializationExpressionQ"
 })
-public class ParameterSpecification {
+public class ParameterSpecification
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -281,13 +283,15 @@ public class ParameterSpecification {
     @XmlType(name = "", propOrder = {
         "hasAliased"
     })
-    public static class HasAliasedQ {
+    public static class HasAliasedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "aliased", type = Aliased.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAliased;
+        protected Base hasAliased;
 
         /**
          * Gets the value of the hasAliased property.
@@ -298,7 +302,7 @@ public class ParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAliased() {
+        public Base getHasAliased() {
             return hasAliased;
         }
 
@@ -311,7 +315,7 @@ public class ParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAliased(Object value) {
+        public void setHasAliased(Base value) {
             this.hasAliased = value;
         }
 
@@ -342,13 +346,15 @@ public class ParameterSpecification {
     @XmlType(name = "", propOrder = {
         "hasNullExclusion"
     })
-    public static class HasNullExclusionQ {
+    public static class HasNullExclusionQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "null_exclusion", type = NullExclusion.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasNullExclusion;
+        protected Base hasNullExclusion;
 
         /**
          * Gets the value of the hasNullExclusion property.
@@ -359,7 +365,7 @@ public class ParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasNullExclusion() {
+        public Base getHasNullExclusion() {
             return hasNullExclusion;
         }
 
@@ -372,7 +378,7 @@ public class ParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasNullExclusion(Object value) {
+        public void setHasNullExclusion(Base value) {
             this.hasNullExclusion = value;
         }
 

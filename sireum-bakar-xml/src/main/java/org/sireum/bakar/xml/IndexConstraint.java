@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "discreteRangesQl"
 })
-public class IndexConstraint {
+public class IndexConstraint
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

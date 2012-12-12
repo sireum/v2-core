@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Identifier", propOrder = {
     "sloc"
 })
-public class Identifier {
+public class Identifier
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

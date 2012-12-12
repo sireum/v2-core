@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "indexExpressionsQl"
 })
-public class IndexedComponent {
+public class IndexedComponent
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

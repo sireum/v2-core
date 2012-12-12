@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Enumeration_Literal", propOrder = {
     "sloc"
 })
-public class EnumerationLiteral {
+public class EnumerationLiteral
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

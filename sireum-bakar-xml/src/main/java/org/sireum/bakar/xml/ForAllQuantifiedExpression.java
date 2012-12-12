@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "iteratorSpecificationQ",
     "predicateQ"
 })
-public class ForAllQuantifiedExpression {
+public class ForAllQuantifiedExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

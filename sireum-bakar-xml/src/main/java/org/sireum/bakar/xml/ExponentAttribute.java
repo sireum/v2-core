@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class ExponentAttribute {
+public class ExponentAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

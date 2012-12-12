@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Discriminant_Specification_List", propOrder = {
     "discriminantSpecifications"
 })
-public class DiscriminantSpecificationList {
+public class DiscriminantSpecificationList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class DiscriminantSpecificationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> discriminantSpecifications;
+    protected List<Base> discriminantSpecifications;
 
     /**
      * Gets the value of the discriminantSpecifications property.
@@ -184,9 +186,9 @@ public class DiscriminantSpecificationList {
      * 
      * 
      */
-    public List<Object> getDiscriminantSpecifications() {
+    public List<Base> getDiscriminantSpecifications() {
         if (discriminantSpecifications == null) {
-            discriminantSpecifications = new ArrayList<Object>();
+            discriminantSpecifications = new ArrayList<Base>();
         }
         return this.discriminantSpecifications;
     }

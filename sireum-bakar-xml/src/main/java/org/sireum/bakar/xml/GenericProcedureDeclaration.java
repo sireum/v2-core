@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "parameterProfileQl",
     "aspectSpecificationsQl"
 })
-public class GenericProcedureDeclaration {
+public class GenericProcedureDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

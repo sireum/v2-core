@@ -39,7 +39,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "String_Literal", propOrder = {
     "sloc"
 })
-public class StringLiteral {
+public class StringLiteral
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

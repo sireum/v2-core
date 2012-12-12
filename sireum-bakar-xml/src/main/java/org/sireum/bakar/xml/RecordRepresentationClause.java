@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "modClauseExpressionQ",
     "componentClausesQl"
 })
-public class RecordRepresentationClause {
+public class RecordRepresentationClause
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

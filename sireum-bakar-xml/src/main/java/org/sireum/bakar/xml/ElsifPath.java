@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "conditionExpressionQ",
     "sequenceOfStatementsQl"
 })
-public class ElsifPath {
+public class ElsifPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

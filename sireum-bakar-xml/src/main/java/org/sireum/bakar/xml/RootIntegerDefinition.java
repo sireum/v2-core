@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Root_Integer_Definition", propOrder = {
     "sloc"
 })
-public class RootIntegerDefinition {
+public class RootIntegerDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

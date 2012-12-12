@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "casePathAlternativeChoicesQl",
     "dependentExpressionQ"
 })
-public class CaseExpressionPath {
+public class CaseExpressionPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

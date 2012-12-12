@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Constraint_Class", propOrder = {
     "constraint"
 })
-public class ConstraintClass {
+public class ConstraintClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -111,7 +113,7 @@ public class ConstraintClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object constraint;
+    protected Base constraint;
 
     /**
      * Gets the value of the constraint property.
@@ -183,7 +185,7 @@ public class ConstraintClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getConstraint() {
+    public Base getConstraint() {
         return constraint;
     }
 
@@ -257,7 +259,7 @@ public class ConstraintClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setConstraint(Object value) {
+    public void setConstraint(Base value) {
         this.constraint = value;
     }
 

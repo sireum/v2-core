@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Formal_Ordinary_Fixed_Point_Definition", propOrder = {
     "sloc"
 })
-public class FormalOrdinaryFixedPointDefinition {
+public class FormalOrdinaryFixedPointDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

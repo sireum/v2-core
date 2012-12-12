@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "rangeAttributeQ"
 })
-public class DiscreteRangeAttributeReferenceAsSubtypeDefinition {
+public class DiscreteRangeAttributeReferenceAsSubtypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Discrete_Subtype_Definition_Class", propOrder = {
     "discreteSubtypeDefinition"
 })
-public class DiscreteSubtypeDefinitionClass {
+public class DiscreteSubtypeDefinitionClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -105,7 +107,7 @@ public class DiscreteSubtypeDefinitionClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object discreteSubtypeDefinition;
+    protected Base discreteSubtypeDefinition;
 
     /**
      * Gets the value of the discreteSubtypeDefinition property.
@@ -174,7 +176,7 @@ public class DiscreteSubtypeDefinitionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getDiscreteSubtypeDefinition() {
+    public Base getDiscreteSubtypeDefinition() {
         return discreteSubtypeDefinition;
     }
 
@@ -245,7 +247,7 @@ public class DiscreteSubtypeDefinitionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setDiscreteSubtypeDefinition(Object value) {
+    public void setDiscreteSubtypeDefinition(Base value) {
         this.discreteSubtypeDefinition = value;
     }
 

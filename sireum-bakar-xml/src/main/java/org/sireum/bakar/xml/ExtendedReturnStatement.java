@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "extendedReturnStatementsQl",
     "extendedReturnExceptionHandlersQl"
 })
-public class ExtendedReturnStatement {
+public class ExtendedReturnStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

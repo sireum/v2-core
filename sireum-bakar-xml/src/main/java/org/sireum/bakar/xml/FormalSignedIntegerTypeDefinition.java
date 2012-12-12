@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Formal_Signed_Integer_Type_Definition", propOrder = {
     "sloc"
 })
-public class FormalSignedIntegerTypeDefinition {
+public class FormalSignedIntegerTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

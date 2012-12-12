@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Universal_Fixed_Definition", propOrder = {
     "sloc"
 })
-public class UniversalFixedDefinition {
+public class UniversalFixedDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

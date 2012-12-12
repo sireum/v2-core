@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "returnExpressionQ"
 })
-public class ReturnStatement {
+public class ReturnStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

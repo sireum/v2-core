@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "componentClausePositionQ",
     "componentClauseRangeQ"
 })
-public class ComponentClause {
+public class ComponentClause
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

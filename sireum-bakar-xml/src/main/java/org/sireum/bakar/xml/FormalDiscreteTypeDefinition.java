@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Formal_Discrete_Type_Definition", propOrder = {
     "sloc"
 })
-public class FormalDiscreteTypeDefinition {
+public class FormalDiscreteTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -63,7 +63,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasAbstractQ",
     "hasLimitedQ"
 })
-public class TaggedPrivateTypeDefinition {
+public class TaggedPrivateTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -169,13 +171,15 @@ public class TaggedPrivateTypeDefinition {
     @XmlType(name = "", propOrder = {
         "hasAbstract"
     })
-    public static class HasAbstractQ {
+    public static class HasAbstractQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "abstract", type = Abstract.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAbstract;
+        protected Base hasAbstract;
 
         /**
          * Gets the value of the hasAbstract property.
@@ -186,7 +190,7 @@ public class TaggedPrivateTypeDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAbstract() {
+        public Base getHasAbstract() {
             return hasAbstract;
         }
 
@@ -199,7 +203,7 @@ public class TaggedPrivateTypeDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAbstract(Object value) {
+        public void setHasAbstract(Base value) {
             this.hasAbstract = value;
         }
 
@@ -230,13 +234,15 @@ public class TaggedPrivateTypeDefinition {
     @XmlType(name = "", propOrder = {
         "hasLimited"
     })
-    public static class HasLimitedQ {
+    public static class HasLimitedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "limited", type = Limited.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasLimited;
+        protected Base hasLimited;
 
         /**
          * Gets the value of the hasLimited property.
@@ -247,7 +253,7 @@ public class TaggedPrivateTypeDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasLimited() {
+        public Base getHasLimited() {
             return hasLimited;
         }
 
@@ -260,7 +266,7 @@ public class TaggedPrivateTypeDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasLimited(Object value) {
+        public void setHasLimited(Base value) {
             this.hasLimited = value;
         }
 

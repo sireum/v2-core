@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "visiblePartDeclarativeItemsQl",
     "privatePartDeclarativeItemsQl"
 })
-public class GenericPackageDeclaration {
+public class GenericPackageDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

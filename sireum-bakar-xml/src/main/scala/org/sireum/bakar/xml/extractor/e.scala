@@ -1,4 +1,4 @@
-package org.sireum.bakar.xml
+package org.sireum.bakar.xml.extractor
 
 object SourceLocationEx {
   def unapply(o : org.sireum.bakar.xml.SourceLocation) = {

@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Discriminant_Association_List", propOrder = {
     "discriminantAssociations"
 })
-public class DiscriminantAssociationList {
+public class DiscriminantAssociationList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class DiscriminantAssociationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> discriminantAssociations;
+    protected List<Base> discriminantAssociations;
 
     /**
      * Gets the value of the discriminantAssociations property.
@@ -184,9 +186,9 @@ public class DiscriminantAssociationList {
      * 
      * 
      */
-    public List<Object> getDiscriminantAssociations() {
+    public List<Base> getDiscriminantAssociations() {
         if (discriminantAssociations == null) {
-            discriminantAssociations = new ArrayList<Object>();
+            discriminantAssociations = new ArrayList<Base>();
         }
         return this.discriminantAssociations;
     }

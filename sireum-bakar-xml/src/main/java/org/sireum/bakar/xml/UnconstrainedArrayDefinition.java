@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "indexSubtypeDefinitionsQl",
     "arrayComponentDefinitionQ"
 })
-public class UnconstrainedArrayDefinition {
+public class UnconstrainedArrayDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

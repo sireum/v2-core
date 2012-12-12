@@ -51,7 +51,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Path_List", propOrder = {
     "paths"
 })
-public class PathList {
+public class PathList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -123,7 +125,7 @@ public class PathList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> paths;
+    protected List<Base> paths;
 
     /**
      * Gets the value of the paths property.
@@ -214,9 +216,9 @@ public class PathList {
      * 
      * 
      */
-    public List<Object> getPaths() {
+    public List<Base> getPaths() {
         if (paths == null) {
-            paths = new ArrayList<Object>();
+            paths = new ArrayList<Base>();
         }
         return this.paths;
     }

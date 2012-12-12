@@ -43,7 +43,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Discrete_Range_List", propOrder = {
     "discreteRanges"
 })
-public class DiscreteRangeList {
+public class DiscreteRangeList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -107,7 +109,7 @@ public class DiscreteRangeList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> discreteRanges;
+    protected List<Base> discreteRanges;
 
     /**
      * Gets the value of the discreteRanges property.
@@ -190,9 +192,9 @@ public class DiscreteRangeList {
      * 
      * 
      */
-    public List<Object> getDiscreteRanges() {
+    public List<Base> getDiscreteRanges() {
         if (discreteRanges == null) {
-            discreteRanges = new ArrayList<Object>();
+            discreteRanges = new ArrayList<Base>();
         }
         return this.discreteRanges;
     }

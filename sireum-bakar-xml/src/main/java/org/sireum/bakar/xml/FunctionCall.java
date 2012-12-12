@@ -69,7 +69,9 @@ import javax.xml.bind.annotation.XmlType;
     "isPrefixCallQ",
     "isPrefixNotationQ"
 })
-public class FunctionCall {
+public class FunctionCall
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -253,13 +255,15 @@ public class FunctionCall {
     @XmlType(name = "", propOrder = {
         "isPrefixCall"
     })
-    public static class IsPrefixCallQ {
+    public static class IsPrefixCallQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "is_prefix_call", type = IsPrefixCall.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isPrefixCall;
+        protected Base isPrefixCall;
 
         /**
          * Gets the value of the isPrefixCall property.
@@ -270,7 +274,7 @@ public class FunctionCall {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsPrefixCall() {
+        public Base getIsPrefixCall() {
             return isPrefixCall;
         }
 
@@ -283,7 +287,7 @@ public class FunctionCall {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsPrefixCall(Object value) {
+        public void setIsPrefixCall(Base value) {
             this.isPrefixCall = value;
         }
 
@@ -314,13 +318,15 @@ public class FunctionCall {
     @XmlType(name = "", propOrder = {
         "isPrefixNotation"
     })
-    public static class IsPrefixNotationQ {
+    public static class IsPrefixNotationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "is_prefix_notation", type = IsPrefixNotation.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isPrefixNotation;
+        protected Base isPrefixNotation;
 
         /**
          * Gets the value of the isPrefixNotation property.
@@ -331,7 +337,7 @@ public class FunctionCall {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsPrefixNotation() {
+        public Base getIsPrefixNotation() {
             return isPrefixNotation;
         }
 
@@ -344,7 +350,7 @@ public class FunctionCall {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsPrefixNotation(Object value) {
+        public void setIsPrefixNotation(Base value) {
             this.isPrefixNotation = value;
         }
 

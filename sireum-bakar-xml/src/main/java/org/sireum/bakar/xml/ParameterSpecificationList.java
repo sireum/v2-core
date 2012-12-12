@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Parameter_Specification_List", propOrder = {
     "parameterSpecifications"
 })
-public class ParameterSpecificationList {
+public class ParameterSpecificationList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class ParameterSpecificationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> parameterSpecifications;
+    protected List<Base> parameterSpecifications;
 
     /**
      * Gets the value of the parameterSpecifications property.
@@ -184,9 +186,9 @@ public class ParameterSpecificationList {
      * 
      * 
      */
-    public List<Object> getParameterSpecifications() {
+    public List<Base> getParameterSpecifications() {
         if (parameterSpecifications == null) {
-            parameterSpecifications = new ArrayList<Object>();
+            parameterSpecifications = new ArrayList<Base>();
         }
         return this.parameterSpecifications;
     }

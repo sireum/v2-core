@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Tagged", propOrder = {
     "sloc"
 })
-public class Tagged {
+public class Tagged
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

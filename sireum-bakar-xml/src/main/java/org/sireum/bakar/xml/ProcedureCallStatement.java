@@ -56,7 +56,9 @@ import javax.xml.bind.annotation.XmlType;
     "callStatementParametersQl",
     "isPrefixNotationQ"
 })
-public class ProcedureCallStatement {
+public class ProcedureCallStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -214,13 +216,15 @@ public class ProcedureCallStatement {
     @XmlType(name = "", propOrder = {
         "isPrefixNotation"
     })
-    public static class IsPrefixNotationQ {
+    public static class IsPrefixNotationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "is_prefix_notation", type = IsPrefixNotation.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isPrefixNotation;
+        protected Base isPrefixNotation;
 
         /**
          * Gets the value of the isPrefixNotation property.
@@ -231,7 +235,7 @@ public class ProcedureCallStatement {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsPrefixNotation() {
+        public Base getIsPrefixNotation() {
             return isPrefixNotation;
         }
 
@@ -244,7 +248,7 @@ public class ProcedureCallStatement {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsPrefixNotation(Object value) {
+        public void setIsPrefixNotation(Base value) {
             this.isPrefixNotation = value;
         }
 

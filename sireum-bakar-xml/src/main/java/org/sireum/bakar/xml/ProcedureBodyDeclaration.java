@@ -75,7 +75,9 @@ import javax.xml.bind.annotation.XmlType;
     "bodyStatementsQl",
     "bodyExceptionHandlersQl"
 })
-public class ProcedureBodyDeclaration {
+public class ProcedureBodyDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -337,13 +339,15 @@ public class ProcedureBodyDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotOverriding"
     })
-    public static class IsNotOverridingDeclarationQ {
+    public static class IsNotOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_overriding", type = NotOverriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotOverriding;
+        protected Base isNotOverriding;
 
         /**
          * Gets the value of the isNotOverriding property.
@@ -354,7 +358,7 @@ public class ProcedureBodyDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotOverriding() {
+        public Base getIsNotOverriding() {
             return isNotOverriding;
         }
 
@@ -367,7 +371,7 @@ public class ProcedureBodyDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotOverriding(Object value) {
+        public void setIsNotOverriding(Base value) {
             this.isNotOverriding = value;
         }
 
@@ -398,13 +402,15 @@ public class ProcedureBodyDeclaration {
     @XmlType(name = "", propOrder = {
         "isOverriding"
     })
-    public static class IsOverridingDeclarationQ {
+    public static class IsOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "overriding", type = Overriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isOverriding;
+        protected Base isOverriding;
 
         /**
          * Gets the value of the isOverriding property.
@@ -415,7 +421,7 @@ public class ProcedureBodyDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsOverriding() {
+        public Base getIsOverriding() {
             return isOverriding;
         }
 
@@ -428,7 +434,7 @@ public class ProcedureBodyDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsOverriding(Object value) {
+        public void setIsOverriding(Base value) {
             this.isOverriding = value;
         }
 

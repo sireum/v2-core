@@ -105,7 +105,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Declaration_List", propOrder = {
     "declarations"
 })
-public class DeclarationList {
+public class DeclarationList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -231,7 +233,7 @@ public class DeclarationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> declarations;
+    protected List<Base> declarations;
 
     /**
      * Gets the value of the declarations property.
@@ -376,9 +378,9 @@ public class DeclarationList {
      * 
      * 
      */
-    public List<Object> getDeclarations() {
+    public List<Base> getDeclarations() {
         if (declarations == null) {
-            declarations = new ArrayList<Object>();
+            declarations = new ArrayList<Base>();
         }
         return this.declarations;
     }

@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "resultExpressionQ",
     "aspectSpecificationsQl"
 })
-public class ExpressionFunctionDeclaration {
+public class ExpressionFunctionDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

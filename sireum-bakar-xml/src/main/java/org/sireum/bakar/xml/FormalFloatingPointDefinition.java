@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Formal_Floating_Point_Definition", propOrder = {
     "sloc"
 })
-public class FormalFloatingPointDefinition {
+public class FormalFloatingPointDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

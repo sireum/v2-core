@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "renamedEntityQ",
     "aspectSpecificationsQl"
 })
-public class ExceptionRenamingDeclaration {
+public class ExceptionRenamingDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

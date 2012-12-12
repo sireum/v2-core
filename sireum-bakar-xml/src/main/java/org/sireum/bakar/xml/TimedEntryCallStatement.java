@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "statementPathsQl"
 })
-public class TimedEntryCallStatement {
+public class TimedEntryCallStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

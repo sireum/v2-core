@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class ConstrainedAttribute {
+public class ConstrainedAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

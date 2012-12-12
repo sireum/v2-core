@@ -56,7 +56,9 @@ import javax.xml.bind.annotation.XmlType;
     "objectDeclarationViewQ",
     "initializationExpressionQ"
 })
-public class ReturnVariableSpecification {
+public class ReturnVariableSpecification
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -214,13 +216,15 @@ public class ReturnVariableSpecification {
     @XmlType(name = "", propOrder = {
         "hasAliased"
     })
-    public static class HasAliasedQ {
+    public static class HasAliasedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "aliased", type = Aliased.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAliased;
+        protected Base hasAliased;
 
         /**
          * Gets the value of the hasAliased property.
@@ -231,7 +235,7 @@ public class ReturnVariableSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAliased() {
+        public Base getHasAliased() {
             return hasAliased;
         }
 
@@ -244,7 +248,7 @@ public class ReturnVariableSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAliased(Object value) {
+        public void setHasAliased(Base value) {
             this.hasAliased = value;
         }
 

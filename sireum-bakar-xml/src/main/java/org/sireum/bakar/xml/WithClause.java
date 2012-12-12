@@ -65,7 +65,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasPrivateQ",
     "clauseNamesQl"
 })
-public class WithClause {
+public class WithClause
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -197,13 +199,15 @@ public class WithClause {
     @XmlType(name = "", propOrder = {
         "hasLimited"
     })
-    public static class HasLimitedQ {
+    public static class HasLimitedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "limited", type = Limited.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasLimited;
+        protected Base hasLimited;
 
         /**
          * Gets the value of the hasLimited property.
@@ -214,7 +218,7 @@ public class WithClause {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasLimited() {
+        public Base getHasLimited() {
             return hasLimited;
         }
 
@@ -227,7 +231,7 @@ public class WithClause {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasLimited(Object value) {
+        public void setHasLimited(Base value) {
             this.hasLimited = value;
         }
 
@@ -258,13 +262,15 @@ public class WithClause {
     @XmlType(name = "", propOrder = {
         "hasPrivate"
     })
-    public static class HasPrivateQ {
+    public static class HasPrivateQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "private", type = Private.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasPrivate;
+        protected Base hasPrivate;
 
         /**
          * Gets the value of the hasPrivate property.
@@ -275,7 +281,7 @@ public class WithClause {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasPrivate() {
+        public Base getHasPrivate() {
             return hasPrivate;
         }
 
@@ -288,7 +294,7 @@ public class WithClause {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasPrivate(Object value) {
+        public void setHasPrivate(Base value) {
             this.hasPrivate = value;
         }
 

@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Null_Exclusion", propOrder = {
     "sloc"
 })
-public class NullExclusion {
+public class NullExclusion
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

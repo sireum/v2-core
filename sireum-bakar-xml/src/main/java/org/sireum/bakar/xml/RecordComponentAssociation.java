@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "recordComponentChoicesQl",
     "componentExpressionQ"
 })
-public class RecordComponentAssociation {
+public class RecordComponentAssociation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

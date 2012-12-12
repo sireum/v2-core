@@ -67,7 +67,9 @@ import javax.xml.bind.annotation.XmlType;
     "subtypeMarkQ",
     "subtypeConstraintQ"
 })
-public class SubtypeIndication {
+public class SubtypeIndication
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -225,13 +227,15 @@ public class SubtypeIndication {
     @XmlType(name = "", propOrder = {
         "hasAliased"
     })
-    public static class HasAliasedQ {
+    public static class HasAliasedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "aliased", type = Aliased.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasAliased;
+        protected Base hasAliased;
 
         /**
          * Gets the value of the hasAliased property.
@@ -242,7 +246,7 @@ public class SubtypeIndication {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasAliased() {
+        public Base getHasAliased() {
             return hasAliased;
         }
 
@@ -255,7 +259,7 @@ public class SubtypeIndication {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasAliased(Object value) {
+        public void setHasAliased(Base value) {
             this.hasAliased = value;
         }
 
@@ -286,13 +290,15 @@ public class SubtypeIndication {
     @XmlType(name = "", propOrder = {
         "hasNullExclusion"
     })
-    public static class HasNullExclusionQ {
+    public static class HasNullExclusionQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "null_exclusion", type = NullExclusion.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasNullExclusion;
+        protected Base hasNullExclusion;
 
         /**
          * Gets the value of the hasNullExclusion property.
@@ -303,7 +309,7 @@ public class SubtypeIndication {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasNullExclusion() {
+        public Base getHasNullExclusion() {
             return hasNullExclusion;
         }
 
@@ -316,7 +322,7 @@ public class SubtypeIndication {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasNullExclusion(Object value) {
+        public void setHasNullExclusion(Base value) {
             this.hasNullExclusion = value;
         }
 

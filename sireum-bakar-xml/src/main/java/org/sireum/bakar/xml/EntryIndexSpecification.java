@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "namesQl",
     "specificationSubtypeDefinitionQ"
 })
-public class EntryIndexSpecification {
+public class EntryIndexSpecification
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

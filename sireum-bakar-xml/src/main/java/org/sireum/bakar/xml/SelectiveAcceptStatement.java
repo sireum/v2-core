@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "statementPathsQl"
 })
-public class SelectiveAcceptStatement {
+public class SelectiveAcceptStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

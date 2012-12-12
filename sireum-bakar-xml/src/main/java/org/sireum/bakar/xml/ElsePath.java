@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "sequenceOfStatementsQl"
 })
-public class ElsePath {
+public class ElsePath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

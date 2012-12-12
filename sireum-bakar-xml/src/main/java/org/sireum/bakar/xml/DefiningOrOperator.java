@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Defining_Or_Operator", propOrder = {
     "sloc"
 })
-public class DefiningOrOperator {
+public class DefiningOrOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

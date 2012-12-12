@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "aspectSpecificationsQl",
     "protectedOperationItemsQl"
 })
-public class ProtectedBodyDeclaration {
+public class ProtectedBodyDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

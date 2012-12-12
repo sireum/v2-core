@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Not_Overriding", propOrder = {
     "sloc"
 })
-public class NotOverriding {
+public class NotOverriding
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

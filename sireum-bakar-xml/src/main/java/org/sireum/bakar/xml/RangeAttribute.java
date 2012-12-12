@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "attributeDesignatorIdentifierQ",
     "attributeDesignatorExpressionsQl"
 })
-public class RangeAttribute {
+public class RangeAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

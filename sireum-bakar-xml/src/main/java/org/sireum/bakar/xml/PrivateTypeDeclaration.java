@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "typeDeclarationViewQ",
     "aspectSpecificationsQl"
 })
-public class PrivateTypeDeclaration {
+public class PrivateTypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

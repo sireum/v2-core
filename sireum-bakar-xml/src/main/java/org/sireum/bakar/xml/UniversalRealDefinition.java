@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Universal_Real_Definition", propOrder = {
     "sloc"
 })
-public class UniversalRealDefinition {
+public class UniversalRealDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

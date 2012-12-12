@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Association_Class", propOrder = {
     "association"
 })
-public class AssociationClass {
+public class AssociationClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -111,7 +113,7 @@ public class AssociationClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object association;
+    protected Base association;
 
     /**
      * Gets the value of the association property.
@@ -183,7 +185,7 @@ public class AssociationClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getAssociation() {
+    public Base getAssociation() {
         return association;
     }
 
@@ -257,7 +259,7 @@ public class AssociationClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setAssociation(Object value) {
+    public void setAssociation(Base value) {
         this.association = value;
     }
 

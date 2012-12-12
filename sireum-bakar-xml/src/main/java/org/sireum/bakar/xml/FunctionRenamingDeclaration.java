@@ -86,7 +86,9 @@ import javax.xml.bind.annotation.XmlType;
     "renamedEntityQ",
     "aspectSpecificationsQl"
 })
-public class FunctionRenamingDeclaration {
+public class FunctionRenamingDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -348,13 +350,15 @@ public class FunctionRenamingDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotNullReturn"
     })
-    public static class IsNotNullReturnQ {
+    public static class IsNotNullReturnQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_null_return", type = NotNullReturn.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotNullReturn;
+        protected Base isNotNullReturn;
 
         /**
          * Gets the value of the isNotNullReturn property.
@@ -365,7 +369,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotNullReturn() {
+        public Base getIsNotNullReturn() {
             return isNotNullReturn;
         }
 
@@ -378,7 +382,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotNullReturn(Object value) {
+        public void setIsNotNullReturn(Base value) {
             this.isNotNullReturn = value;
         }
 
@@ -409,13 +413,15 @@ public class FunctionRenamingDeclaration {
     @XmlType(name = "", propOrder = {
         "isNotOverriding"
     })
-    public static class IsNotOverridingDeclarationQ {
+    public static class IsNotOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_overriding", type = NotOverriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotOverriding;
+        protected Base isNotOverriding;
 
         /**
          * Gets the value of the isNotOverriding property.
@@ -426,7 +432,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotOverriding() {
+        public Base getIsNotOverriding() {
             return isNotOverriding;
         }
 
@@ -439,7 +445,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotOverriding(Object value) {
+        public void setIsNotOverriding(Base value) {
             this.isNotOverriding = value;
         }
 
@@ -470,13 +476,15 @@ public class FunctionRenamingDeclaration {
     @XmlType(name = "", propOrder = {
         "isOverriding"
     })
-    public static class IsOverridingDeclarationQ {
+    public static class IsOverridingDeclarationQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "overriding", type = Overriding.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isOverriding;
+        protected Base isOverriding;
 
         /**
          * Gets the value of the isOverriding property.
@@ -487,7 +495,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsOverriding() {
+        public Base getIsOverriding() {
             return isOverriding;
         }
 
@@ -500,7 +508,7 @@ public class FunctionRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsOverriding(Object value) {
+        public void setIsOverriding(Base value) {
             this.isOverriding = value;
         }
 

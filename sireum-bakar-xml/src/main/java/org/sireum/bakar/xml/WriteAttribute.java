@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class WriteAttribute {
+public class WriteAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

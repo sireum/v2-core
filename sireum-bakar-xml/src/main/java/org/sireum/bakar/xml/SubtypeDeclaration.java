@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "typeDeclarationViewQ",
     "aspectSpecificationsQl"
 })
-public class SubtypeDeclaration {
+public class SubtypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

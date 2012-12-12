@@ -114,7 +114,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Declarative_Item_List", propOrder = {
     "declarativeItems"
 })
-public class DeclarativeItemList {
+public class DeclarativeItemList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -249,7 +251,7 @@ public class DeclarativeItemList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> declarativeItems;
+    protected List<Base> declarativeItems;
 
     /**
      * Gets the value of the declarativeItems property.
@@ -403,9 +405,9 @@ public class DeclarativeItemList {
      * 
      * 
      */
-    public List<Object> getDeclarativeItems() {
+    public List<Base> getDeclarativeItems() {
         if (declarativeItems == null) {
-            declarativeItems = new ArrayList<Object>();
+            declarativeItems = new ArrayList<Base>();
         }
         return this.declarativeItems;
     }

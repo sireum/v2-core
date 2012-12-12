@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class DefiniteAttribute {
+public class DefiniteAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

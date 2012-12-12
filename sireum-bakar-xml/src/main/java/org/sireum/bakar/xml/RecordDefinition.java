@@ -52,7 +52,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasLimitedQ",
     "recordComponentsQl"
 })
-public class RecordDefinition {
+public class RecordDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -158,13 +160,15 @@ public class RecordDefinition {
     @XmlType(name = "", propOrder = {
         "hasLimited"
     })
-    public static class HasLimitedQ {
+    public static class HasLimitedQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "limited", type = Limited.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasLimited;
+        protected Base hasLimited;
 
         /**
          * Gets the value of the hasLimited property.
@@ -175,7 +179,7 @@ public class RecordDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasLimited() {
+        public Base getHasLimited() {
             return hasLimited;
         }
 
@@ -188,7 +192,7 @@ public class RecordDefinition {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasLimited(Object value) {
+        public void setHasLimited(Base value) {
             this.hasLimited = value;
         }
 

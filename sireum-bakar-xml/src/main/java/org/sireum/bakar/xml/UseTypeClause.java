@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "clauseNamesQl"
 })
-public class UseTypeClause {
+public class UseTypeClause
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

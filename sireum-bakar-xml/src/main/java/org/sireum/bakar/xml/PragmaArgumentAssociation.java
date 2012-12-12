@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "formalParameterQ",
     "actualParameterQ"
 })
-public class PragmaArgumentAssociation {
+public class PragmaArgumentAssociation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

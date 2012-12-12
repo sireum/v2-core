@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "discriminantSelectorNamesQl",
     "discriminantExpressionQ"
 })
-public class DiscriminantAssociation {
+public class DiscriminantAssociation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

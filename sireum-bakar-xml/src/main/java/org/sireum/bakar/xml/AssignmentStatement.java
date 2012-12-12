@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "assignmentVariableNameQ",
     "assignmentExpressionQ"
 })
-public class AssignmentStatement {
+public class AssignmentStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

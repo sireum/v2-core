@@ -63,7 +63,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Defining_Name_Class", propOrder = {
     "definingName"
 })
-public class DefiningNameClass {
+public class DefiningNameClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -149,7 +151,7 @@ public class DefiningNameClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object definingName;
+    protected Base definingName;
 
     /**
      * Gets the value of the definingName property.
@@ -240,7 +242,7 @@ public class DefiningNameClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getDefiningName() {
+    public Base getDefiningName() {
         return definingName;
     }
 
@@ -333,7 +335,7 @@ public class DefiningNameClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setDefiningName(Object value) {
+    public void setDefiningName(Base value) {
         this.definingName = value;
     }
 

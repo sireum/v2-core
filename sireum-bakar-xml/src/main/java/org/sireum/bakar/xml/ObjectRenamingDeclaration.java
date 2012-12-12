@@ -58,7 +58,9 @@ import javax.xml.bind.annotation.XmlType;
     "renamedEntityQ",
     "aspectSpecificationsQl"
 })
-public class ObjectRenamingDeclaration {
+public class ObjectRenamingDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -242,13 +244,15 @@ public class ObjectRenamingDeclaration {
     @XmlType(name = "", propOrder = {
         "hasNullExclusion"
     })
-    public static class HasNullExclusionQ {
+    public static class HasNullExclusionQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "null_exclusion", type = NullExclusion.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasNullExclusion;
+        protected Base hasNullExclusion;
 
         /**
          * Gets the value of the hasNullExclusion property.
@@ -259,7 +263,7 @@ public class ObjectRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasNullExclusion() {
+        public Base getHasNullExclusion() {
             return hasNullExclusion;
         }
 
@@ -272,7 +276,7 @@ public class ObjectRenamingDeclaration {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasNullExclusion(Object value) {
+        public void setHasNullExclusion(Base value) {
             this.hasNullExclusion = value;
         }
 

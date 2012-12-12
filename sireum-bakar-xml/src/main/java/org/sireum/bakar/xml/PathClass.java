@@ -49,7 +49,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Path_Class", propOrder = {
     "path"
 })
-public class PathClass {
+public class PathClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -121,7 +123,7 @@ public class PathClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object path;
+    protected Base path;
 
     /**
      * Gets the value of the path property.
@@ -198,7 +200,7 @@ public class PathClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getPath() {
+    public Base getPath() {
         return path;
     }
 
@@ -277,7 +279,7 @@ public class PathClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setPath(Object value) {
+    public void setPath(Base value) {
         this.path = value;
     }
 

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Range_Constraint_Class", propOrder = {
     "rangeConstraint"
 })
-public class RangeConstraintClass {
+public class RangeConstraintClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class RangeConstraintClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object rangeConstraint;
+    protected Base rangeConstraint;
 
     /**
      * Gets the value of the rangeConstraint property.
@@ -171,7 +173,7 @@ public class RangeConstraintClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getRangeConstraint() {
+    public Base getRangeConstraint() {
         return rangeConstraint;
     }
 
@@ -241,7 +243,7 @@ public class RangeConstraintClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setRangeConstraint(Object value) {
+    public void setRangeConstraint(Base value) {
         this.rangeConstraint = value;
     }
 

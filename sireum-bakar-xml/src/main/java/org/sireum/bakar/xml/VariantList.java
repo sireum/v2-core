@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Variant_List", propOrder = {
     "variants"
 })
-public class VariantList {
+public class VariantList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class VariantList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> variants;
+    protected List<Base> variants;
 
     /**
      * Gets the value of the variants property.
@@ -184,9 +186,9 @@ public class VariantList {
      * 
      * 
      */
-    public List<Object> getVariants() {
+    public List<Base> getVariants() {
         if (variants == null) {
-            variants = new ArrayList<Object>();
+            variants = new ArrayList<Base>();
         }
         return this.variants;
     }

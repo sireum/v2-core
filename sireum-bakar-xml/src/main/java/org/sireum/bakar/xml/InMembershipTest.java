@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "membershipTestExpressionQ",
     "membershipTestChoicesQl"
 })
-public class InMembershipTest {
+public class InMembershipTest
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

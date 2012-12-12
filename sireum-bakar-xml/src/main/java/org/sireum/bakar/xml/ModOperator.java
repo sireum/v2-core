@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Mod_Operator", propOrder = {
     "sloc"
 })
-public class ModOperator {
+public class ModOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

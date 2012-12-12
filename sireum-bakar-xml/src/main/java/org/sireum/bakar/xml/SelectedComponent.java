@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "selectorQ"
 })
-public class SelectedComponent {
+public class SelectedComponent
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

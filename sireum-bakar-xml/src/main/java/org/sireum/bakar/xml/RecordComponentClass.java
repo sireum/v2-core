@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Record_Component_Class", propOrder = {
     "recordComponent"
 })
-public class RecordComponentClass {
+public class RecordComponentClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -107,7 +109,7 @@ public class RecordComponentClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object recordComponent;
+    protected Base recordComponent;
 
     /**
      * Gets the value of the recordComponent property.
@@ -177,7 +179,7 @@ public class RecordComponentClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getRecordComponent() {
+    public Base getRecordComponent() {
         return recordComponent;
     }
 
@@ -249,7 +251,7 @@ public class RecordComponentClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setRecordComponent(Object value) {
+    public void setRecordComponent(Base value) {
         this.recordComponent = value;
     }
 

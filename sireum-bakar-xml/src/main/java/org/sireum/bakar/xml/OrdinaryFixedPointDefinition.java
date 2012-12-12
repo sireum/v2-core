@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "deltaExpressionQ",
     "realRangeConstraintQ"
 })
-public class OrdinaryFixedPointDefinition {
+public class OrdinaryFixedPointDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

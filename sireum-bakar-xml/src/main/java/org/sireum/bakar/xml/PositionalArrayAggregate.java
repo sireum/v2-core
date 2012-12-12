@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "arrayComponentAssociationsQl"
 })
-public class PositionalArrayAggregate {
+public class PositionalArrayAggregate
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

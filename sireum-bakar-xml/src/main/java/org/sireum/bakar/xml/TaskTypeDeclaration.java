@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
     "declarationInterfaceListQl",
     "typeDeclarationViewQ"
 })
-public class TaskTypeDeclaration {
+public class TaskTypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

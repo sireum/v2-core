@@ -54,7 +54,9 @@ import javax.xml.bind.annotation.XmlType;
     "hasReverseQ",
     "specificationSubtypeDefinitionQ"
 })
-public class LoopParameterSpecification {
+public class LoopParameterSpecification
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -186,13 +188,15 @@ public class LoopParameterSpecification {
     @XmlType(name = "", propOrder = {
         "hasReverse"
     })
-    public static class HasReverseQ {
+    public static class HasReverseQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "reverse", type = Reverse.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasReverse;
+        protected Base hasReverse;
 
         /**
          * Gets the value of the hasReverse property.
@@ -203,7 +207,7 @@ public class LoopParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasReverse() {
+        public Base getHasReverse() {
             return hasReverse;
         }
 
@@ -216,7 +220,7 @@ public class LoopParameterSpecification {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasReverse(Object value) {
+        public void setHasReverse(Base value) {
             this.hasReverse = value;
         }
 

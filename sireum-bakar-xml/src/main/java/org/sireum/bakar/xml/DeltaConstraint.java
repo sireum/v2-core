@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "deltaExpressionQ",
     "realRangeConstraintQ"
 })
-public class DeltaConstraint {
+public class DeltaConstraint
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

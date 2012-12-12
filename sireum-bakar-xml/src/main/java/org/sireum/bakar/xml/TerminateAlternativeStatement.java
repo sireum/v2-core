@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Terminate_Alternative_Statement", propOrder = {
     "sloc"
 })
-public class TerminateAlternativeStatement {
+public class TerminateAlternativeStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

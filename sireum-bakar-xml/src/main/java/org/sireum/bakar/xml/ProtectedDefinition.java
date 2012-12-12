@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "visiblePartItemsQl",
     "privatePartItemsQl"
 })
-public class ProtectedDefinition {
+public class ProtectedDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

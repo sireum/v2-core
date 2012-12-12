@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "representationClauseNameQ",
     "representationClauseExpressionQ"
 })
-public class EnumerationRepresentationClause {
+public class EnumerationRepresentationClause
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

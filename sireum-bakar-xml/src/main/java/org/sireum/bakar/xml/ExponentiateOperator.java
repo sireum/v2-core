@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Exponentiate_Operator", propOrder = {
     "sloc"
 })
-public class ExponentiateOperator {
+public class ExponentiateOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

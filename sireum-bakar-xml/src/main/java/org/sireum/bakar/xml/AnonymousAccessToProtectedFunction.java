@@ -67,7 +67,9 @@ import javax.xml.bind.annotation.XmlType;
     "isNotNullReturnQ",
     "accessToFunctionResultProfileQ"
 })
-public class AnonymousAccessToProtectedFunction {
+public class AnonymousAccessToProtectedFunction
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;
@@ -225,13 +227,15 @@ public class AnonymousAccessToProtectedFunction {
     @XmlType(name = "", propOrder = {
         "hasNullExclusion"
     })
-    public static class HasNullExclusionQ {
+    public static class HasNullExclusionQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "null_exclusion", type = NullExclusion.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object hasNullExclusion;
+        protected Base hasNullExclusion;
 
         /**
          * Gets the value of the hasNullExclusion property.
@@ -242,7 +246,7 @@ public class AnonymousAccessToProtectedFunction {
          *     {@link NotAnElement }
          *     
          */
-        public Object getHasNullExclusion() {
+        public Base getHasNullExclusion() {
             return hasNullExclusion;
         }
 
@@ -255,7 +259,7 @@ public class AnonymousAccessToProtectedFunction {
          *     {@link NotAnElement }
          *     
          */
-        public void setHasNullExclusion(Object value) {
+        public void setHasNullExclusion(Base value) {
             this.hasNullExclusion = value;
         }
 
@@ -286,13 +290,15 @@ public class AnonymousAccessToProtectedFunction {
     @XmlType(name = "", propOrder = {
         "isNotNullReturn"
     })
-    public static class IsNotNullReturnQ {
+    public static class IsNotNullReturnQ
+        extends Base
+    {
 
         @XmlElements({
             @XmlElement(name = "not_null_return", type = NotNullReturn.class),
             @XmlElement(name = "not_an_element", type = NotAnElement.class)
         })
-        protected Object isNotNullReturn;
+        protected Base isNotNullReturn;
 
         /**
          * Gets the value of the isNotNullReturn property.
@@ -303,7 +309,7 @@ public class AnonymousAccessToProtectedFunction {
          *     {@link NotAnElement }
          *     
          */
-        public Object getIsNotNullReturn() {
+        public Base getIsNotNullReturn() {
             return isNotNullReturn;
         }
 
@@ -316,7 +322,7 @@ public class AnonymousAccessToProtectedFunction {
          *     {@link NotAnElement }
          *     
          */
-        public void setIsNotNullReturn(Object value) {
+        public void setIsNotNullReturn(Base value) {
             this.isNotNullReturn = value;
         }
 

@@ -49,7 +49,9 @@ import javax.xml.bind.annotation.XmlType;
     "unitDeclarationQ",
     "pragmasAfterQl"
 })
-public class CompilationUnit {
+public class CompilationUnit
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

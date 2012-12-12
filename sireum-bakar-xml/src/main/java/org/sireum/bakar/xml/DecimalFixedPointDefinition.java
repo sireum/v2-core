@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "digitsExpressionQ",
     "realRangeConstraintQ"
 })
-public class DecimalFixedPointDefinition {
+public class DecimalFixedPointDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

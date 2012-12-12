@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Unknown_Discriminant_Part", propOrder = {
     "sloc"
 })
-public class UnknownDiscriminantPart {
+public class UnknownDiscriminantPart
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

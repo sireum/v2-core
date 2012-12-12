@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Unary_Minus_Operator", propOrder = {
     "sloc"
 })
-public class UnaryMinusOperator {
+public class UnaryMinusOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

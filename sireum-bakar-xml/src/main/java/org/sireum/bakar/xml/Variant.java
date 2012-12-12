@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "variantChoicesQl",
     "recordComponentsQl"
 })
-public class Variant {
+public class Variant
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

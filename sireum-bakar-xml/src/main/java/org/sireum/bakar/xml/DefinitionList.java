@@ -130,7 +130,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Definition_List", propOrder = {
     "definitions"
 })
-public class DefinitionList {
+public class DefinitionList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -281,7 +283,7 @@ public class DefinitionList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> definitions;
+    protected List<Base> definitions;
 
     /**
      * Gets the value of the definitions property.
@@ -451,9 +453,9 @@ public class DefinitionList {
      * 
      * 
      */
-    public List<Object> getDefinitions() {
+    public List<Base> getDefinitions() {
         if (definitions == null) {
-            definitions = new ArrayList<Object>();
+            definitions = new ArrayList<Base>();
         }
         return this.definitions;
     }

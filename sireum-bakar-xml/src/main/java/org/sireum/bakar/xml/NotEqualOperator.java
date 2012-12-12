@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Not_Equal_Operator", propOrder = {
     "sloc"
 })
-public class NotEqualOperator {
+public class NotEqualOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

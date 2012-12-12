@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "discriminantPartQ",
     "aspectSpecificationsQl"
 })
-public class IncompleteTypeDeclaration {
+public class IncompleteTypeDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

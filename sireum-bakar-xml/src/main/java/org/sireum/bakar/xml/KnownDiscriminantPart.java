@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "discriminantsQl"
 })
-public class KnownDiscriminantPart {
+public class KnownDiscriminantPart
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

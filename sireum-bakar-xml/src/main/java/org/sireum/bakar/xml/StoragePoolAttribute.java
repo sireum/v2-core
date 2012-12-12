@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class StoragePoolAttribute {
+public class StoragePoolAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

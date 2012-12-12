@@ -415,7 +415,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Element_Class", propOrder = {
     "element"
 })
-public class ElementClass {
+public class ElementClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -853,7 +855,7 @@ public class ElementClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object element;
+    protected Base element;
 
     /**
      * Gets the value of the element property.
@@ -1296,7 +1298,7 @@ public class ElementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getElement() {
+    public Base getElement() {
         return element;
     }
 
@@ -1741,7 +1743,7 @@ public class ElementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setElement(Object value) {
+    public void setElement(Base value) {
         this.element = value;
     }
 

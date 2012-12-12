@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Component_Clause_List", propOrder = {
     "componentClauses"
 })
-public class ComponentClauseList {
+public class ComponentClauseList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -103,7 +105,7 @@ public class ComponentClauseList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> componentClauses;
+    protected List<Base> componentClauses;
 
     /**
      * Gets the value of the componentClauses property.
@@ -184,9 +186,9 @@ public class ComponentClauseList {
      * 
      * 
      */
-    public List<Object> getComponentClauses() {
+    public List<Base> getComponentClauses() {
         if (componentClauses == null) {
-            componentClauses = new ArrayList<Object>();
+            componentClauses = new ArrayList<Base>();
         }
         return this.componentClauses;
     }

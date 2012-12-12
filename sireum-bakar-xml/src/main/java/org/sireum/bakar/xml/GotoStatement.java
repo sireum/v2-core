@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "gotoLabelQ"
 })
-public class GotoStatement {
+public class GotoStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

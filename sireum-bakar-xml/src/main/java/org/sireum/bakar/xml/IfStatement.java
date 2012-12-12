@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "statementPathsQl"
 })
-public class IfStatement {
+public class IfStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

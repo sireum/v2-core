@@ -48,7 +48,9 @@ import javax.xml.bind.annotation.XmlType;
     "acceptBodyStatementsQl",
     "acceptBodyExceptionHandlersQl"
 })
-public class AcceptStatement {
+public class AcceptStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

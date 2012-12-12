@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "prefixQ"
 })
-public class ExplicitDereference {
+public class ExplicitDereference
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

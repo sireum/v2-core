@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Reverse", propOrder = {
     "sloc"
 })
-public class Reverse {
+public class Reverse
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

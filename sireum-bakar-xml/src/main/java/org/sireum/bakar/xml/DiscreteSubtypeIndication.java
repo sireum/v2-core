@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "subtypeMarkQ",
     "subtypeConstraintQ"
 })
-public class DiscreteSubtypeIndication {
+public class DiscreteSubtypeIndication
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

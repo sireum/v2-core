@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "statementIdentifierQ",
     "loopStatementsQl"
 })
-public class LoopStatement {
+public class LoopStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

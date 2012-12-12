@@ -46,7 +46,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Association_List", propOrder = {
     "associations"
 })
-public class AssociationList {
+public class AssociationList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -113,7 +115,7 @@ public class AssociationList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> associations;
+    protected List<Base> associations;
 
     /**
      * Gets the value of the associations property.
@@ -199,9 +201,9 @@ public class AssociationList {
      * 
      * 
      */
-    public List<Object> getAssociations() {
+    public List<Base> getAssociations() {
         if (associations == null) {
-            associations = new ArrayList<Object>();
+            associations = new ArrayList<Base>();
         }
         return this.associations;
     }

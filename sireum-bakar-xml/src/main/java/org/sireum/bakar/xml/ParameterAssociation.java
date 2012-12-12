@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "formalParameterQ",
     "actualParameterQ"
 })
-public class ParameterAssociation {
+public class ParameterAssociation
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

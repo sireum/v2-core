@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "labelNamesQl"
 })
-public class NullStatement {
+public class NullStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Multiply_Operator", propOrder = {
     "sloc"
 })
-public class MultiplyOperator {
+public class MultiplyOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

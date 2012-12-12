@@ -188,7 +188,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Expression_Class", propOrder = {
     "expression"
 })
-public class ExpressionClass {
+public class ExpressionClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -399,7 +401,7 @@ public class ExpressionClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object expression;
+    protected Base expression;
 
     /**
      * Gets the value of the expression property.
@@ -615,7 +617,7 @@ public class ExpressionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getExpression() {
+    public Base getExpression() {
         return expression;
     }
 
@@ -833,7 +835,7 @@ public class ExpressionClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setExpression(Object value) {
+    public void setExpression(Base value) {
         this.expression = value;
     }
 

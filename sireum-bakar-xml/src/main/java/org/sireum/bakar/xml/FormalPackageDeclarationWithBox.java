@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "genericUnitNameQ",
     "aspectSpecificationsQl"
 })
-public class FormalPackageDeclarationWithBox {
+public class FormalPackageDeclarationWithBox
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

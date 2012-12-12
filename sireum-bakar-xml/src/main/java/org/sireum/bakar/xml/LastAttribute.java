@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "attributeDesignatorIdentifierQ",
     "attributeDesignatorExpressionsQl"
 })
-public class LastAttribute {
+public class LastAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

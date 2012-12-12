@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class BitOrderAttribute {
+public class BitOrderAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

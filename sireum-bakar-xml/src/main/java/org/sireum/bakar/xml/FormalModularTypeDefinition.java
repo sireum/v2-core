@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Formal_Modular_Type_Definition", propOrder = {
     "sloc"
 })
-public class FormalModularTypeDefinition {
+public class FormalModularTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

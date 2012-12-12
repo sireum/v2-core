@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class WideValueAttribute {
+public class WideValueAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

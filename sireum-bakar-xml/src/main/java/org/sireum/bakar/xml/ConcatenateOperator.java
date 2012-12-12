@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Concatenate_Operator", propOrder = {
     "sloc"
 })
-public class ConcatenateOperator {
+public class ConcatenateOperator
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

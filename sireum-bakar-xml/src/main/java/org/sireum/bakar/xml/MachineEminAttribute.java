@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "prefixQ",
     "attributeDesignatorIdentifierQ"
 })
-public class MachineEminAttribute {
+public class MachineEminAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

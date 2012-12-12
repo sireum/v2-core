@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "attributeDesignatorIdentifierQ",
     "attributeDesignatorExpressionsQl"
 })
-public class ImplementationDefinedAttribute {
+public class ImplementationDefinedAttribute
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Others_Choice", propOrder = {
     "sloc"
 })
-public class OthersChoice {
+public class OthersChoice
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "labelNamesQl",
     "abortedTasksQl"
 })
-public class AbortStatement {
+public class AbortStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

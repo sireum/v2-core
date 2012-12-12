@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "genericActualPartQl",
     "aspectSpecificationsQl"
 })
-public class FormalPackageDeclaration {
+public class FormalPackageDeclaration
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "enumerationLiteralDeclarationsQl"
 })
-public class EnumerationTypeDefinition {
+public class EnumerationTypeDefinition
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

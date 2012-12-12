@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlType;
     "subpoolNameQ",
     "allocatorQualifiedExpressionQ"
 })
-public class AllocationFromQualifiedExpression {
+public class AllocationFromQualifiedExpression
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

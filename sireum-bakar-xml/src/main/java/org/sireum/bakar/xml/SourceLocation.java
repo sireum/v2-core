@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Source_Location")
-public class SourceLocation {
+public class SourceLocation
+    extends Base
+{
 
     @XmlAttribute(name = "line", required = true)
     protected int line;

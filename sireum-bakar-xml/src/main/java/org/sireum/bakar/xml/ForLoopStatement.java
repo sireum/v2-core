@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
     "forLoopParameterSpecificationQ",
     "loopStatementsQl"
 })
-public class ForLoopStatement {
+public class ForLoopStatement
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

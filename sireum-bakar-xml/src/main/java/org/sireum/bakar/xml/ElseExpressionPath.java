@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "sloc",
     "dependentExpressionQ"
 })
-public class ElseExpressionPath {
+public class ElseExpressionPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

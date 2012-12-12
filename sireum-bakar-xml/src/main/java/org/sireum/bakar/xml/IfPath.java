@@ -40,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
     "conditionExpressionQ",
     "sequenceOfStatementsQl"
 })
-public class IfPath {
+public class IfPath
+    extends Base
+{
 
     @XmlElement(required = true)
     protected SourceLocation sloc;

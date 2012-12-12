@@ -37,7 +37,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Pragma_Element_Class", propOrder = {
     "pragmaElement"
 })
-public class PragmaElementClass {
+public class PragmaElementClass
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "all_calls_remote_pragma", type = AllCallsRemotePragma.class),
@@ -97,7 +99,7 @@ public class PragmaElementClass {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected Object pragmaElement;
+    protected Base pragmaElement;
 
     /**
      * Gets the value of the pragmaElement property.
@@ -162,7 +164,7 @@ public class PragmaElementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public Object getPragmaElement() {
+    public Base getPragmaElement() {
         return pragmaElement;
     }
 
@@ -229,7 +231,7 @@ public class PragmaElementClass {
      *     {@link UnknownPragma }
      *     
      */
-    public void setPragmaElement(Object value) {
+    public void setPragmaElement(Base value) {
         this.pragmaElement = value;
     }
 

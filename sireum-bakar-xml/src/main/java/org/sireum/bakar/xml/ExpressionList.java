@@ -190,7 +190,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Expression_List", propOrder = {
     "expressions"
 })
-public class ExpressionList {
+public class ExpressionList
+    extends Base
+{
 
     @XmlElements({
         @XmlElement(name = "not_an_element", type = NotAnElement.class),
@@ -401,7 +403,7 @@ public class ExpressionList {
         @XmlElement(name = "implementation_defined_pragma", type = ImplementationDefinedPragma.class),
         @XmlElement(name = "unknown_pragma", type = UnknownPragma.class)
     })
-    protected List<Object> expressions;
+    protected List<Base> expressions;
 
     /**
      * Gets the value of the expressions property.
@@ -631,9 +633,9 @@ public class ExpressionList {
      * 
      * 
      */
-    public List<Object> getExpressions() {
+    public List<Base> getExpressions() {
         if (expressions == null) {
-            expressions = new ArrayList<Object>();
+            expressions = new ArrayList<Base>();
         }
         return this.expressions;
     }
