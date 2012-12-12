@@ -14,31 +14,31 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class PipelineConfiguration(
-    title : String, 
-    exclusive : Boolean, 
+    title : String,
+    exclusive : Boolean,
     stages : PipelineStage*) {
 
   def compute(job : PipelineJob) : PipelineJob = {
 
-    def initialize(stage : PipelineStage) {
-      stage.modules.foreach(m => m.initialize(job))
-    }
-    
-    def preStage(stageInfo : PipelineJobStageInfo, stage : PipelineStage) : Boolean = {
-      stage.modules.foreach(m => {
-        stageInfo.tags ++= m.inputDefined(job)
-        stageInfo.tags ++= m.validPipeline(stage, job)
-      })
-      return Tag.exists(PipelineUtil.ErrorMarker, {_ => true}, stageInfo.tags)
-    }
-    
-    def postStage(stageInfo : PipelineJobStageInfo, stage : PipelineStage) : Boolean = {
-      stage.modules.foreach(m => {
-        stageInfo.tags ++= m.outputDefined(job)
-      })
-      return Tag.exists(PipelineUtil.ErrorMarker, {_ => true}, stageInfo.tags)
-    }
-    
+      def initialize(stage : PipelineStage) {
+        stage.modules.foreach(m => m.initialize(job))
+      }
+
+      def preStage(stageInfo : PipelineJobStageInfo, stage : PipelineStage) : Boolean = {
+        stage.modules.foreach(m => {
+          stageInfo.tags ++= m.inputDefined(job)
+          stageInfo.tags ++= m.validPipeline(stage, job)
+        })
+        return Tag.exists(PipelineUtil.ErrorMarker, { _ => true }, stageInfo.tags)
+      }
+
+      def postStage(stageInfo : PipelineJobStageInfo, stage : PipelineStage) : Boolean = {
+        stage.modules.foreach(m => {
+          stageInfo.tags ++= m.outputDefined(job)
+        })
+        return Tag.exists(PipelineUtil.ErrorMarker, { _ => true }, stageInfo.tags)
+      }
+
       def run = {
         val j = if (stages.exists { _.parallel }) job.par else job
 
@@ -46,8 +46,8 @@ final case class PipelineConfiguration(
         for (stage <- stages if !j.hasInternalError && !j.hasError && !j.isCancelled && !hasError) {
           val stageInfo = PipelineJobStageInfo(stage.title, System.currentTimeMillis)
           initialize(stage)
-          hasError = preStage(stageInfo, stage) 
-          if(!hasError){
+          hasError = preStage(stageInfo, stage)
+          if (!hasError) {
             stage.compute(j, stageInfo)
             hasError = postStage(stageInfo, stage)
           }
@@ -101,8 +101,8 @@ trait PipelineModule {
 
   def initialize(job : PipelineJob) {}
   def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = marrayEmpty[Tag]
-  def inputDefined (job : PipelineJob) : MBuffer[Tag]
-  def outputDefined (job : PipelineJob) : MBuffer[Tag]
+  def inputDefined(job : PipelineJob) : MBuffer[Tag]
+  def outputDefined(job : PipelineJob) : MBuffer[Tag]
 }
 
 /**
@@ -116,12 +116,12 @@ object PipelineJob {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class PipelineJob(
-  timestamp : Long = System.currentTimeMillis, 
-  var isCancelled : Boolean = false, 
-  info : MArray[PipelineJobStageInfo] = marrayEmpty[PipelineJobStageInfo], 
+  timestamp : Long = System.currentTimeMillis,
+  var isCancelled : Boolean = false,
+  info : MArray[PipelineJobStageInfo] = marrayEmpty[PipelineJobStageInfo],
   properties : MMap[Property.Key, Any] = mmapEmpty[Property.Key, Any])
     extends PropertyProvider {
-  protected val propertyMap = properties
+  val propertyMap = properties
 
   def hasError =
     if (info.size == 0) false

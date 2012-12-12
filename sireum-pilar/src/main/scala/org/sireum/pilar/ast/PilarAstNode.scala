@@ -20,7 +20,7 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 sealed trait PilarAstNode extends PropertyProvider {
-  lazy val propertyMap = mmapEmpty[Property.Key, Any]
+  val propertyMap = mlinkedMapEmpty[Property.Key, Any]
 }
 
 /**
@@ -773,30 +773,8 @@ case class CallExp(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object LiteralType extends Enum {
-  sealed abstract class Type extends EnumElem
-  object BOOLEAN extends Type
-  object NULL extends Type
-  object INTEGER extends Type
-  object INT extends Type
-  object LONG extends Type
-  object CHAR extends Type
-  object FLOAT extends Type
-  object DOUBLE extends Type
-  object RATIONAL extends Type
-  object STRING extends Type
-  object SYMBOL extends Type
-  object RAW extends Type
-
-  def elements = List(BOOLEAN, NULL, INTEGER, INT, LONG, CHAR, FLOAT, DOUBLE,
-    RATIONAL, STRING, SYMBOL, RAW)
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 case class LiteralExp(
-  typ : LiteralType.Type,
+  typ : LiteralType,
   literal : Any,
   text : String)
     extends Exp
@@ -1070,40 +1048,3 @@ case class NamedExtTypeSpec(
   name : NameUser,
   typeArgs : ISeq[TypeSpec])
     extends TypeSpec
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object PilarOp {
-  val BINOP_IMPLY = "==>"
-  val BINOP_IMPLIED = "<=="
-  val BINOP_OR = "|"
-  val BINOP_AND = "&"
-  val BINOP_BIT_OR = "^|"
-  val BINOP_BIT_XOR = "^~"
-  val BINOP_BIT_AND = "^&"
-  val BINOP_EQ = "=="
-  val BINOP_NEQ = "!="
-  val BINOP_SUBTYPE = "<:"
-  val BINOP_EQTYPE = "=:"
-  val BINOP_SUPTYPE = ">:"
-  val BINOP_LE = "<="
-  val BINOP_GE = ">="
-  val BINOP_LT = "<"
-  val BINOP_GT = ">"
-  val BINOP_SHL = "^<"
-  val BINOP_SHR = "^>"
-  val BINOP_USHR = "^>>"
-  val BINOP_ADD = "+"
-  val BINOP_SUB = "-"
-  val BINOP_MUL = "*"
-  val BINOP_DIV = "/"
-  val BINOP_REM = "%"
-  val UNOP_PLUS = "+"
-  val UNOP_MINUS = "-"
-  val UNOP_COMPLEMENT = "~"
-  val UNOP_NOT = "!"
-  val UNOP_MUL = "*"
-  val UNOP_DIV = "/"
-  val UNOP_REM = "%"
-}

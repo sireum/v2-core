@@ -114,7 +114,7 @@ trait AlirIntraProceduralGraph //
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 sealed abstract class AlirIntraProceduralNode extends PropertyProvider {
-  protected lazy val propertyMap = mmapEmpty[Property.Key, Any]
+  val propertyMap = mlinkedMapEmpty[Property.Key, Any]
 }
 
 /**

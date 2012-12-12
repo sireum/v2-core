@@ -40,7 +40,7 @@ trait AlirGraph[Node] {
 
     graph.getAllEdges(n1, n2)
   }
-  
+
   def addNode(node : Node) : Node
 
   def addEdge(e : Edge) = graph.addEdge(e.source, e.target, e)
@@ -72,7 +72,7 @@ trait AlirGraph[Node] {
 final case class AlirEdge[Node](owner : AlirGraph[Node],
                                 source : Node, target : Node)
     extends PropertyProvider {
-  protected lazy val propertyMap = mmapEmpty[Property.Key, Any]
+  val propertyMap = mlinkedMapEmpty[Property.Key, Any]
 }
 
 /**
