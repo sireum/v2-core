@@ -31,12 +31,12 @@ SET CODE=%ERRORLEVEL%
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
   MOVE %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java
-  DEL %FILE2%
+  DEL /Q %SCRIPT%.jar
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   RD %SIREUM_HOME%apps\platform\scala /S /Q
   MOVE %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala
-  DEL %FILE2%
+  DEL /Q %SCRIPT%.jar
 )
 IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
@@ -988,24 +988,28 @@ object SireumDistro extends App {
     appPath
   }
 
-  def movePrevApp(file : File, installDir : File) : Option[(File, File)] = {
-    val appName = getAppPath(file.getName)
-    val appDir = new File(installDir, appName)
-    if (appDir.exists) {
-      val appDirBackup = new File(appDir.getParentFile, appDir.getName +
-        "-backup-" + timeStamp)
-      if (appDir.renameTo(appDirBackup)) {
-        outPrintln("Moved " + appDir.getName + " to " + appDirBackup.getName)
-        Some((appDir, appDirBackup))
-      } else {
-        errPrintln("Unable to move " + appDir.getName + " to " +
-          appDirBackup.getName)
-        abnormalExit
-        None
-      }
-    } else
+  def movePrevApp(file : File, installDir : File) : Option[(File, File)] =
+    if (relativize(sireumDir, installDir) == "apps/platform")
       None
-  }
+    else {
+      val appName = getAppPath(file.getName)
+      val appDir = new File(installDir, appName)
+      if (appDir.exists) {
+        val appDirBackup = new File(appDir.getParentFile, appDir.getName +
+          "-backup-" + timeStamp)
+        if (appDir.renameTo(appDirBackup)) {
+          outPrintln("Moved " + appDir.getName + " to " + appDirBackup.getName)
+          Some((appDir, appDirBackup))
+        } else {
+          errPrintln("Unable to move " + appDir.getName + " to " +
+            appDirBackup.getName)
+          outPrintln("This may happen because some Sireum Distro managed apps are running.")
+          abnormalExit
+          None
+        }
+      } else
+        None
+    }
 
   def delete(file : File, onExit : Boolean) : Boolean = {
     if (file.isDirectory)
