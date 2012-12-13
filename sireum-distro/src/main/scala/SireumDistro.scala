@@ -56,6 +56,7 @@ object SireumDistro extends App {
   val SAPP_EXT = ".sapp"
   val SAPP_LINK_EXT = ".sapp_link"
   val SAPP_INFO = ".sapp_info"
+  val CHECKSUM_SUFFIX = ".checksum"
 
   val BUFFER_SIZE = 1024
   val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -213,7 +214,7 @@ object SireumDistro extends App {
                     errPrintln(unmanagedDir.getAbsolutePath +
                       " is not a directory")
                   } else
-                    updateScript
+                    updateScriptAndPlatform
                   install(args.slice(i + 3, args.length) : _*)
                 } else if (args.length == i + 2) {
                   errPrintln("Missing install option -d argument")
@@ -223,13 +224,13 @@ object SireumDistro extends App {
               case arg if arg.startsWith("-") =>
                 errPrintln(arg + " is not an option of install")
               case _ =>
-                updateScript
+                updateScriptAndPlatform
                 install(args.slice(i + 1, args.length) : _*)
             }
           }
         case "list" =>
           if (last) {
-            updateScript
+            updateScriptAndPlatform
             for (f <- getFeatures.keys.toArray.sortWith(strLe))
               outPrintln(removeSappExt(f))
           } else {
@@ -242,7 +243,7 @@ object SireumDistro extends App {
           if (last) {
             errPrintln("Please specify features to uninstall")
           } else {
-            updateScript
+            updateScriptAndPlatform
             var allFound = false
             for (j <- i + 1 until args.length if !allFound) {
               if (args(j) == "all")
@@ -255,7 +256,7 @@ object SireumDistro extends App {
           }
         case "update" =>
           if (last) {
-            updateScript
+            updateScriptAndPlatform
             update(new ArrayBuffer[String](), true)
           } else notMode(args(i + 1), "update")
         case "version" =>
@@ -530,33 +531,61 @@ object SireumDistro extends App {
   def isDownloaded(f : File) =
     if (f.getName.endsWith(SAPP_EXT))
       new File(sireumDir, METADATA_DIR + relativize(sireumDir, f) +
-        ".checksum").exists
+        CHECKSUM_SUFFIX).exists
     else
       f.exists
 
-  def updateScript {
+  def updateScriptAndPlatform {
     val checksums = getChecksums
 
     val file = new File(sireumDir, scriptName)
     val checksum = checksums(scriptName)
 
-    if (checksum == getChecksum(file))
+      def getPlatformFileUpdates : List[(String, String)] = {
+        val platformDir = new File(sireumDir, METADATA_DIR + "apps/platform")
+        var result = List[(String, String)]()
+        if (platformDir.isDirectory) {
+          for (f <- platformDir.listFiles) {
+            if (f.getName.endsWith(CHECKSUM_SUFFIX)) {
+              val fName = f.getName
+              val filePath = "apps/platform/" +
+                f.getName.substring(0, fName.length - CHECKSUM_SUFFIX.length)
+              val checksum = readLine(f).trim
+              if (checksum != checksums(filePath))
+                result = (filePath, checksum) :: result
+            }
+          }
+        }
+        result
+      }
+
+    val pfiles = getPlatformFileUpdates
+
+    if (checksum == getChecksum(file) && pfiles.isEmpty)
       return
 
-    outPrintln("Updating Sireum script in " + sireumDir.getAbsolutePath)
+    outPrintln("Updating Sireum in " + sireumDir.getAbsolutePath)
 
     var replacedCount = 0
     var deleteCount = 0
     var errorCount = 0
 
-    updateFile(checksum, scriptName, file, None) match {
-      case Replaced =>
-        replacedCount += 1
-      case Deleted =>
-        deleteCount += 1
-      case Error =>
-        errorCount += 1
-      case NoUpdate =>
+      def status(x : Mode) =
+        x match {
+          case Replaced =>
+            replacedCount += 1
+          case Deleted =>
+            deleteCount += 1
+          case Error =>
+            errorCount += 1
+          case NoUpdate =>
+        }
+
+    status(updateFile(checksum, scriptName, file, None))
+    pfiles.foreach { pfile =>
+      val (filePath, checksum) = pfile
+      status(updateFile(checksums(filePath), filePath,
+        new File(sireumDir, filePath), Some(checksum)))
     }
 
     printStatus(false, replacedCount, deleteCount, errorCount, 0, Seq())
@@ -609,7 +638,7 @@ object SireumDistro extends App {
                 if (!isAppFile(file))
                   update(fPath, file)
                 else if (isApp && !new File(sireumDir, METADATA_DIR + fPath +
-                  ".checksum").exists &&
+                  CHECKSUM_SUFFIX).exists &&
                   (file.getParentFile != new File(sireumDir, "apps")))
                   if (downloadFile(false, fPath, file))
                     downloadCount += 1
@@ -656,11 +685,11 @@ object SireumDistro extends App {
         for (d <- metaAppDir.listFiles) {
           if (d.isDirectory)
             for (f <- d.listFiles) {
-              if (f.getName.endsWith(".checksum")) {
+              if (f.getName.endsWith(CHECKSUM_SUFFIX)) {
                 val currentChecksum = readLine(f)
                 var filePath = relativize(metaDir, f)
                 filePath = filePath.substring(0, filePath.length -
-                  ".checksum".length)
+                  CHECKSUM_SUFFIX.length)
                 update(filePath, new File(sireumDir, filePath),
                   Some(currentChecksum))
               }
@@ -818,13 +847,19 @@ object SireumDistro extends App {
     }
   }
 
+  def toOsPath(path : String) =
+    getOsString match {
+      case "win64" | "win32" => path.replace('/', '\\')
+      case _                 => path
+    }
+
   def downloadFile(isUpdate : Boolean, filename : String,
                    file : File) : Boolean = {
     if (!isUpdate && isPlatformSpecific(filename)
       && isNotForThisPlatform(filename))
       return false
     outPrint((if (isUpdate) "Updating" else "Downloading") + " file " +
-      filename)
+      toOsPath(filename))
 
     val is = new URL(updateUrl + filename).openStream
     try {
@@ -876,7 +911,7 @@ object SireumDistro extends App {
       val fileList =
         if (managed) {
           val checksums = getChecksums
-          write(new File(sireumDir, METADATA_DIR + relPath + ".checksum"),
+          write(new File(sireumDir, METADATA_DIR + relPath + CHECKSUM_SUFFIX),
             checksums(relPath))
           Some(new PrintWriter(new FileWriter(new File(sireumDir, METADATA_DIR +
             relPath + ".filelist"))))
