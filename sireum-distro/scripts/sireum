@@ -23,12 +23,12 @@ code=$?
 if [ -d $SIREUM_HOME/apps/platform/java.new ]; then
   rm -fR $SIREUM_HOME/apps/platform/java
   mv $SIREUM_HOME/apps/platform/java.new $SIREUM_HOME/apps/platform/java
-  rm $0.jar
+  rm -f $0.jar
 fi
 if [ -d $SIREUM_HOME/apps/platform/scala.new ]; then
   rm -fR $SIREUM_HOME/apps/platform/scala
   mv $SIREUM_HOME/apps/platform/scala.new $SIREUM_HOME/apps/platform/scala
-  rm $0.jar
+  rm -f $0.jar
 fi
 if [ -f $0.new ]; then
   mv -f $0.new $0
