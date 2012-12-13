@@ -1038,7 +1038,8 @@ object SireumDistro extends App {
         } else {
           errPrintln("Unable to move " + appDir.getName + " to " +
             appDirBackup.getName)
-          outPrintln("This may happen because some Sireum Distro managed apps are running.")
+          outPrintln("""This might happen due to file permission issues or it is because some 
+Sireum Distro managed apps are currently running.""")
           abnormalExit
           None
         }
