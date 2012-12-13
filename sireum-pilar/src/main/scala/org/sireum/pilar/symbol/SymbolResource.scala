@@ -21,8 +21,10 @@ trait Symbol extends PropertyProvider
 object Symbol {
   import language.implicitConversions
 
+  val symbolPropKey = "pilar.symbol"
+
   implicit def pp2r[T <: PropertyProvider](pp : T) : Resource =
-    pp.getPropertyOrElse(classOf[Symbol].getName,
+    pp.getPropertyOrElse(symbolPropKey,
       new Resource {
         var _uriScheme : String = null
         var _uriType : String = null
@@ -37,12 +39,12 @@ object Symbol {
 
         def uri = { require(hasResourceInfo); _uri }
 
-        def hasResourceInfo : Boolean = pp ? classOf[Symbol].getName
+        def hasResourceInfo : Boolean = pp ? symbolPropKey
 
         def uri(scheme : String, typ : String,
                 paths : ISeq[String], uri : ResourceUri) {
           require(paths != null && uri != null && paths.forall(_ != null))
-          pp(classOf[Symbol].getName) = this
+          pp(symbolPropKey) = this
           this._uriScheme = scheme
           this._uriType = typ
           this._uriPaths = paths
