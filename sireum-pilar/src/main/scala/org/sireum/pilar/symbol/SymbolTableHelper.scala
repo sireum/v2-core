@@ -273,12 +273,11 @@ object H {
       with TypeAliasMiner with VsetMiner {
 
     val packageElementMiner =
-      Visitor.builds(
+      Visitor.build(Visitor.map(
         ilist(packageMiner, constMiner, enumMiner,
           extensionMiner, funMiner, globalVarMiner,
           procedureMiner, recordMiner, typeAliasMiner,
-          vsetMiner),
-        false)
+          vsetMiner), false))
   }
 
   class ProcedureMinerResolver(pstp : ProcedureSymbolTableProducer)
@@ -291,12 +290,12 @@ object H {
     def symbolTableProducer() : SymbolTableProducer = pstp.symbolTableProducer
 
     val procMiner =
-      Visitor.builds(ilist(procedureHeaderMiner,
-        procedureBodyMiner), false)
+      Visitor.build(Visitor.map(ilist(procedureHeaderMiner,
+        procedureBodyMiner), false))
 
-    val procResolver = Visitor.builds(ilist(
+    val procResolver = Visitor.build(Visitor.map(ilist(
       procedureHeaderResolver, procedureBodyResolver,
-      jumpResolver), false)
+      jumpResolver), false))
   }
 
   class PackageElementResolver(stp : SymbolTableProducer)
@@ -309,13 +308,12 @@ object H {
     override def dependency = mmapEmpty[String, MSet[String]]
 
     val packageElementResolver =
-      Visitor.buildsEnd(
-        ilist(constResolver, enumResolver, extensionResolver,
+      Visitor.buildEnd(
+        Visitor.map(ilist(constResolver, enumResolver, extensionResolver,
           funResolver, globalVarResolver, procedureResolver,
           recordResolver, typeAliasResolver, vsetResolver,
-          funParamResolver),
-        ilist(funParamResolverEnd),
-        false)
+          funParamResolver), false),
+        Visitor.map(ilist(funParamResolverEnd), false))
   }
 
   def tearDown(tables : SymbolTableData, m : Model) = {
