@@ -48,6 +48,8 @@ object KiasanBooleanExtension extends ExtensionCompanion {
 
     val lineSep = System.getProperty("line.separator")
 
+    import language.implicitConversions
+
     @inline
     implicit def i2s(i : Int) = i.toString
 
@@ -112,6 +114,8 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
   type C = KonkritBooleanValue
   type K = KiasanBooleanValue
 
+  import language.implicitConversions
+
   @inline
   private implicit def re2r(p : (S, Value)) = ilist(p)
 
@@ -149,5 +153,5 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
       (s3, b2) <- sec.cond(s2, v2)
     } yield (s3,
       KonkritBooleanExtension.b2v(
-          KonkritBooleanExtension.binopEquSem(opEqu)(b1, b2)))
+        KonkritBooleanExtension.binopEquSem(opEqu)(b1, b2)))
 }

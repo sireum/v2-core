@@ -54,7 +54,7 @@ trait KiasanSemanticsExtensionInit[S, V, R, C, SR]
 trait KiasanSemanticsExtensionInitConsumer[S, V, R, C, SR]
   extends KiasanSemanticsExtensionInit[S, V, R, C, SR]
   with KiasanSemanticsExtensionConsumer[S, V, R, C, SR]
-  with SemanticsExtensionInitConsumer[S, V, R, C, SR]
+  with SemanticsExtensionInit[S, V, R, C, SR]
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -155,13 +155,12 @@ object KiasanExtensionMiner {
  */
 trait KiasanSemanticsExtensionModule[S, V, R, C, SR]
     extends SemanticsExtensionModule[S, V, R, C, SR] {
-  override val seic =
+  override val sei =
     new SemanticsExtensionInitImpl[S, V, R, C, SR] // 
-    with SemanticsExtensionConsumerImpl[S, V, R, C, SR] //
     with KiasanSemanticsExtensionInitImpl[S, V, R, C, SR] //
     with KiasanSemanticsExtensionConsumerImpl[S, V, R, C, SR] //
     with KiasanSemanticsExtensionInitConsumer[S, V, R, C, SR]
-  
+
   override def miners = ilist(KiasanExtensionMiner.mine[S, V, R, C, SR] _,
     ExtensionMiner.mine[S, V, R, C, SR] _)
 }

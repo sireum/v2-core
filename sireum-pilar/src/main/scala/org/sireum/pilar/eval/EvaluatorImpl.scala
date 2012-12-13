@@ -236,19 +236,19 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         case e : NameExp if sp.isVar(e) || !e.name.hasResourceInfo =>
           for {
             re1 <- eval(s, a.rhs)
-            re2 <- sec.variable(re2s(re1), e.name, re2v(re1))
+            re2 <- sec.variableUpdate(re2s(re1), e.name, re2v(re1))
           } yield re2
         case AccessExp(e : NameExp, f) if sp.isVar(e) =>
           for {
             re1 <- eval(s, a.rhs)
             s1 <- {
               val arg = (re2s(re1), e.name, f, re2v(re1))
-              if (sec.fieldVar.isDefinedAt(arg))
-                sec.fieldVar(re2s(re1), e.name, f, re2v(re1))
+              if (sec.fieldUpdateVar.isDefinedAt(arg))
+                sec.fieldUpdateVar(re2s(re1), e.name, f, re2v(re1))
               else {
                 val s2 = re2s(re1)
                 sec.variable(s2, e.name).flatMap {
-                  re2 => sec.field(re2s(re2), re2v(re2), f, re2v(re1))
+                  re2 => sec.fieldUpdate(re2s(re2), re2v(re2), f, re2v(re1))
                 }
               }
             }
@@ -257,7 +257,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
           for {
             re1 <- eval(s, e)
             re2 <- eval(re2s(re1), a.rhs)
-            s1 <- sec.field(re2s(re2), re2v(re1), f, re2v(re2))
+            s1 <- sec.fieldUpdate(re2s(re2), re2v(re1), f, re2v(re2))
           } yield s1
         case IndexingExp(e : NameExp, ies) if ies.length == 1 =>
           for {
@@ -265,11 +265,11 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             re2 <- eval(re2s(re1), ies(0))
             s1 <- {
               val arg = (re2s(re2), e.name, re2v(re2), re2v(re1))
-              if (sec.indexVar.isDefinedAt(arg))
-                sec.indexVar(arg)
+              if (sec.indexUpdateVar.isDefinedAt(arg))
+                sec.indexUpdateVar(arg)
               else {
                 sec.variable(re2s(re2), e.name).flatMap {
-                  re3 => sec.index(re2s(re3), re2v(re3), re2v(re2), re2v(re1))
+                  re3 => sec.indexUpdate(re2s(re3), re2v(re3), re2v(re2), re2v(re1))
                 }
               }
             }
@@ -279,7 +279,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             re1 <- eval(s, a.rhs)
             re2 <- eval(re2s(re1), e)
             re3 <- eval(re2s(re2), ies(0))
-            s1 <- sec.index(re2s(re3), re2v(re2), re2v(re3), re2v(re1))
+            s1 <- sec.indexUpdate(re2s(re3), re2v(re2), re2v(re3), re2v(re1))
           } yield s1
       }
     else
@@ -527,12 +527,12 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         case BinaryOpMode.LAZY_LEFT =>
           for {
             re1 <- eval(s, e2)
-            re2 <- sec.lazyBinaryOp(op, re2s(re1), { s => eval(s, e1) }, re2v(re1))
+            re2 <- sec.lazyLBinaryOp(op, re2s(re1), { s => eval(s, e1) }, re2v(re1))
           } yield re2
         case BinaryOpMode.LAZY_RIGHT =>
           for {
             re1 <- eval(s, e1)
-            re2 <- sec.lazyBinaryOp(op, re2s(re1), re2v(re1), { s => eval(s, e2) })
+            re2 <- sec.lazyRBinaryOp(op, re2s(re1), re2v(re1), { s => eval(s, e2) })
           } yield re2
         case BinaryOpMode.REGULAR =>
           for {

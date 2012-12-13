@@ -37,55 +37,57 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
     asInstanceOf[T]
   }
 
-  def isNativeIndexValue(v : V) : Boolean
-  def toNativeIndex(v : V) : Integer
+  def isNativeIndexValue(v : V) : Boolean = toNativeIndex.isDefinedAt(v)
+  def toNativeIndex : V --> Integer
 
-  def defaultValue(s : S, uri : ResourceUri) : R
-  def trueLiteral(s : S) : R
-  def falseLiteral(s : S) : R
-  def cond(s : S, t : V) : C
-  def intLiteral(s : S, n : Int) : R
-  def longLiteral(s : S, n : Long) : R
-  def integerLiteral(s : S, n : BigInt) : R
-  def nullLiteral(s : S) : R
-  def tupleDecon(s : S, v : V) : (S, ISeq[V])
-  def variable(s : S, x : NameUser) : R
-  def field(s : S, r : V, f : NameUser) : R
-  def index(s : S, a : V, i : V) : R
-  def cast(s : S, t : V, typeUri : ResourceUri) : R
-  def canCast(s : S, t : V, typeUri : ResourceUri) : Boolean
+  def defaultValue : (S, ResourceUri) --> R
+  def trueLiteral : S --> R
+  def falseLiteral : S --> R
+  def intLiteral : (S, Int) --> R
+  def longLiteral : (S, Long) --> R
+  def integerLiteral : (S, BigInt) --> R
+  def nullLiteral : S --> R
+  def cond : (S, V) --> C
+  def tupleDecon : (S, V) --> (S, ISeq[V])
+  def variable : (S, NameUser) --> R
+  def field : (S, V, NameUser) --> R
+  def index : (S, V, V) --> R
+  def cast : (S, V, ResourceUri) --> R
+  def canCast(s : S, v : V, typeUri : ResourceUri) : Boolean =
+    cast.isDefinedAt((s, v, typeUri))
   def unaryOp(op : String, s : S, v : V) : R
   def binaryOpMode(op : String) : BinaryOpMode.Type
   def binaryOp(op : String, s : S, v1 : V, v2 : V) : R
-  def lazyBinaryOp(op : String, s : S, v : V, f : S => R) : R
-  def lazyBinaryOp(op : String, s : S, f : S => R, v : V) : R
-  def newList(s : S, elements : ISeq[V]) : R
+  def lazyRBinaryOp(op : String, s : S, v1 : V, fv2 : S => R) : R
+  def lazyLBinaryOp(op : String, s : S, fv1 : S => R, v2 : V) : R
+  def newList : (S, ISeq[V]) --> R
 
   def expExtCall(extUri : ResourceUri, args : Product) : R
   def hasExpExt(extUri : ResourceUri) : Boolean
 
-  def variable(s : S, x : NameUser, v : V) : SR
-  def field(s : S, r : V, f : NameUser, v : V) : SR
-  def fieldVar : (S, NameUser, NameUser, V) --> SR
-  def index(s : S, a : V, i : V, v : V) : SR
-  def indexVar : (S, NameUser, V, V) --> SR
-  def resolveCall(cj : CallJump, s : S, procValue : V, argValue : V) : ISeq[(S, ResourceUri)]
+  def variableUpdate : (S, NameUser, V) --> SR
+  def fieldUpdate : (S, V, NameUser, V) --> SR
+  def fieldUpdateVar : (S, NameUser, NameUser, V) --> SR
+  def indexUpdate : (S, V, V, V) --> SR
+  def indexUpdateVar : (S, NameUser, V, V) --> SR
+  def resolveCall : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)]
   def actionExtCall(extUri : ResourceUri, args : Product) : SR
-  def assignOp(op : String, s : S, lhs : V, rhs : V) : SR
+  def assignOp(op : String, s : S, v1 : V, v2 : V) : SR
   def hasActionExt(extUri : ResourceUri) : Boolean
 
   def extNumOfArgs(extUri : ResourceUri) : Int
   def extLazyBitMask(extUri : ResourceUri) : IBitSet
   def extVarArgs(extUri : ResourceUri) : Boolean
 
-  def uriValue(s : S, uri : ResourceUri) : R
+  def uriValue : (S, ResourceUri) --> R
   def uriExtractor : V --> ResourceUri
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait SemanticsExtensionInit[S, V, R, C, SR] {
+trait SemanticsExtensionInit[S, V, R, C, SR]
+    extends SemanticsExtensionConsumer[S, V, R, C, SR] {
   def addNativeIndexConverter(convF : V --> Integer)
   def addDefaultValue(valueF : (S, ResourceUri) --> R)
   def addTrueLiteral(trueF : S --> R)
@@ -98,7 +100,7 @@ trait SemanticsExtensionInit[S, V, R, C, SR] {
   def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V]))
   def addVariableLookup(variableF : (S, NameUser) --> R)
   def addFieldLookup(fieldF : (S, V, NameUser) --> R)
-  def addArrayLookup(fieldF : (S, V, V) --> R)
+  def addIndexLookup(fieldF : (S, V, V) --> R)
   def addCast(castF : (S, V, ResourceUri) --> R)
   def addUnaryOp(op : String, opF : (S, V) --> R)
   def addUnaryOps(ops : ISeq[String], opF : (S, String, V) --> R)
@@ -114,8 +116,8 @@ trait SemanticsExtensionInit[S, V, R, C, SR] {
   def addVariableUpdate(variableF : (S, NameUser, V) --> SR)
   def addFieldUpdate(fieldF : (S, V, NameUser, V) --> SR)
   def addFieldUpdateVar(fieldF : (S, NameUser, NameUser, V) --> SR)
-  def addArrayUpdate(arrayF : (S, V, V, V) --> SR)
-  def addArrayUpdateVar(arrayF : (S, NameUser, V, V) --> SR)
+  def addIndexUpdate(indexF : (S, V, V, V) --> SR)
+  def addIndexUpdateVar(indexF : (S, NameUser, V, V) --> SR)
   def addResolveCall(resolveF : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)])
   def addActionExt(extUri : ResourceUri, extF : Any --> SR)
   def addAssignOp(op : String, assignF : (S, V, V) --> SR)
@@ -128,19 +130,11 @@ trait SemanticsExtensionInit[S, V, R, C, SR] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait SemanticsExtensionInitConsumer[S, V, R, C, SR]
-    extends SemanticsExtensionInit[S, V, R, C, SR]
-    with SemanticsExtensionConsumer[S, V, R, C, SR] {
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     extends SemanticsExtensionInit[S, V, R, C, SR] {
 
   protected val _nativeIndexConverterA : MArray[V --> Integer] = marrayEmpty
-  protected val _nativeIndexConverter : V --> Integer = PartialFunctionUtil.orElses(_nativeIndexConverterA)
+  val toNativeIndex : V --> Integer = PartialFunctionUtil.orElses(_nativeIndexConverterA)
 
   def addNativeIndexConverter(convF : V --> Integer) {
     require(!PartialFunctionUtil.empty.equals(convF))
@@ -148,7 +142,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _defaultA : MArray[(S, ResourceUri) --> R] = marrayEmpty
-  protected val _default : (S, ResourceUri) --> R = PartialFunctionUtil.orElses(_defaultA)
+  val defaultValue : (S, ResourceUri) --> R = PartialFunctionUtil.orElses(_defaultA)
 
   def addDefaultValue(valueF : (S, ResourceUri) --> R) {
     require(!PartialFunctionUtil.empty.equals(valueF))
@@ -156,7 +150,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _trueLiteralA : MArray[S --> R] = marrayEmpty
-  protected val _trueLiteral : S --> R = PartialFunctionUtil.orElses(_trueLiteralA)
+  val trueLiteral : S --> R = PartialFunctionUtil.orElses(_trueLiteralA)
 
   def addTrueLiteral(trueF : S --> R) {
     require(!PartialFunctionUtil.empty.equals(trueF))
@@ -164,7 +158,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _falseLiteralA : MArray[S --> R] = marrayEmpty
-  protected val _falseLiteral : S --> R = PartialFunctionUtil.orElses(_falseLiteralA)
+  val falseLiteral : S --> R = PartialFunctionUtil.orElses(_falseLiteralA)
 
   def addFalseLiteral(falseF : S --> R) {
     require(!PartialFunctionUtil.empty.equals(falseF))
@@ -172,7 +166,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _intLiteralA : MArray[(S, Int) --> R] = marrayEmpty
-  protected val _intLiteral : (S, Int) --> R = PartialFunctionUtil.orElses(_intLiteralA)
+  val intLiteral : (S, Int) --> R = PartialFunctionUtil.orElses(_intLiteralA)
 
   def addIntLiteral(intF : (S, Int) --> R) {
     require(!PartialFunctionUtil.empty.equals(intF))
@@ -180,7 +174,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _longLiteralA : MArray[(S, Long) --> R] = marrayEmpty
-  protected val _longLiteral : (S, Long) --> R = PartialFunctionUtil.orElses(_longLiteralA)
+  val longLiteral : (S, Long) --> R = PartialFunctionUtil.orElses(_longLiteralA)
 
   def addLongLiteral(longF : (S, Long) --> R) {
     require(!PartialFunctionUtil.empty.equals(longF))
@@ -188,7 +182,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _integerLiteralA : MArray[(S, BigInt) --> R] = marrayEmpty
-  protected val _integerLiteral : (S, BigInt) --> R = PartialFunctionUtil.orElses(_integerLiteralA)
+  val integerLiteral : (S, BigInt) --> R = PartialFunctionUtil.orElses(_integerLiteralA)
 
   def addIntegerLiteral(integerF : (S, BigInt) --> R) {
     require(!PartialFunctionUtil.empty.equals(integerF))
@@ -196,7 +190,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _nullLiteralA : MArray[S --> R] = marrayEmpty
-  protected val _nullLiteral : S --> R = PartialFunctionUtil.orElses(_nullLiteralA)
+  val nullLiteral : S --> R = PartialFunctionUtil.orElses(_nullLiteralA)
 
   def addNullLiteral(nullF : S --> R) {
     require(!PartialFunctionUtil.empty.equals(nullF))
@@ -204,7 +198,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _condA : MArray[(S, V) --> C] = marrayEmpty
-  protected val _cond : (S, V) --> C = PartialFunctionUtil.orElses(_condA)
+  val cond : (S, V) --> C = PartialFunctionUtil.orElses(_condA)
 
   def addCond(condF : (S, V) --> C) {
     require(!PartialFunctionUtil.empty.equals(condF))
@@ -212,7 +206,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _variableLookupA : MArray[(S, NameUser) --> R] = marrayEmpty
-  protected val _variableLookup : (S, NameUser) --> R = PartialFunctionUtil.orElses(_variableLookupA)
+  val variable : (S, NameUser) --> R = PartialFunctionUtil.orElses(_variableLookupA)
 
   def addVariableLookup(variableF : (S, NameUser) --> R) {
     require(!PartialFunctionUtil.empty.equals(variableF))
@@ -220,7 +214,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _fieldLookupA : MArray[(S, V, NameUser) --> R] = marrayEmpty
-  protected val _fieldLookup : (S, V, NameUser) --> R = PartialFunctionUtil.orElses(_fieldLookupA)
+  val field : (S, V, NameUser) --> R = PartialFunctionUtil.orElses(_fieldLookupA)
 
   def addFieldLookup(fieldF : (S, V, NameUser) --> R) {
     require(!PartialFunctionUtil.empty.equals(fieldF))
@@ -228,15 +222,15 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _arrayLookupA : MArray[(S, V, V) --> R] = marrayEmpty
-  protected val _arrayLookup : (S, V, V) --> R = PartialFunctionUtil.orElses(_arrayLookupA)
+  val index : (S, V, V) --> R = PartialFunctionUtil.orElses(_arrayLookupA)
 
-  def addArrayLookup(arrayF : (S, V, V) --> R) {
-    require(!PartialFunctionUtil.empty.equals(arrayF))
-    _arrayLookupA += arrayF
+  def addIndexLookup(indexF : (S, V, V) --> R) {
+    require(!PartialFunctionUtil.empty.equals(indexF))
+    _arrayLookupA += indexF
   }
 
   protected val castTA : MArray[(S, V, ResourceUri) --> R] = marrayEmpty
-  protected val castT : (S, V, ResourceUri) --> R = PartialFunctionUtil.orElses(castTA)
+  val cast : (S, V, ResourceUri) --> R = PartialFunctionUtil.orElses(castTA)
 
   def addCast(castF : (S, V, ResourceUri) --> R) {
     require(!PartialFunctionUtil.empty.equals(castF))
@@ -360,22 +354,47 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     }
   }
 
+  def unaryOp(op : String, s : S, v : V) : R = unaryOps(op)(s, op, v)
+
+  def binaryOpMode(op : String) : BinaryOpMode.Type =
+    if (lLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_LEFT
+    else if (rLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_RIGHT
+    else BinaryOpMode.REGULAR
+
+  def binaryOp(op : String, s : S, v1 : V, v2 : V) : R =
+    binaryOps(op)(s, v1, op, v2)
+
+  def lazyLBinaryOp(op : String, s : S, e : S => R, v : V) : R =
+    lLazyBinaryOps(op)(s, e, op, v)
+
+  def lazyRBinaryOp(op : String, s : S, v : V, e : S => R) : R =
+    rLazyBinaryOps(op)(s, v, op, e)
+
   protected val _newListA : MArray[(S, ISeq[V]) --> R] = marrayEmpty
-  protected val _newList : (S, ISeq[V]) --> R = PartialFunctionUtil.orElses(_newListA)
+  val newList : (S, ISeq[V]) --> R = PartialFunctionUtil.orElses(_newListA)
+
   def addNewList(newListF : (S, ISeq[V]) --> R) {
     require(!PartialFunctionUtil.empty.equals(newListF))
     _newListA += newListF
   }
 
   protected val _expExt : MMap[ResourceUri, Any --> R] = mmapEmpty
+
   def addExpExt(extUri : ResourceUri, extF : Any --> R) {
     require(!_expExt.contains(extUri))
     _expExt(extUri) = extF
   }
+
   def hasExpExt(extUri : ResourceUri) : Boolean = _expExt.contains(extUri)
 
+  def expExtCall(extUri : ResourceUri, args : Product) : R =
+    args match {
+      case Tuple1(s) => _expExt(extUri)(s)
+      case _         => _expExt(extUri)(args)
+    }
+
   protected val _variableUpdateA : MArray[(S, NameUser, V) --> SR] = marrayEmpty
-  protected val _variableUpdate : (S, NameUser, V) --> SR = PartialFunctionUtil.orElses(_variableUpdateA)
+  val variableUpdate : (S, NameUser, V) --> SR = PartialFunctionUtil.orElses(_variableUpdateA)
 
   def addVariableUpdate(variableF : (S, NameUser, V) --> SR) {
     require(!PartialFunctionUtil.empty.equals(variableF))
@@ -383,7 +402,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _fieldUpdateA : MArray[(S, V, NameUser, V) --> SR] = marrayEmpty
-  protected val _fieldUpdate : (S, V, NameUser, V) --> SR = PartialFunctionUtil.orElses(_fieldUpdateA)
+  val fieldUpdate : (S, V, NameUser, V) --> SR = PartialFunctionUtil.orElses(_fieldUpdateA)
 
   def addFieldUpdate(fieldF : (S, V, NameUser, V) --> SR) {
     if (!PartialFunctionUtil.empty.equals(fieldF))
@@ -391,31 +410,32 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _fieldUpdateVarA : MArray[(S, NameUser, NameUser, V) --> SR] = marrayEmpty
-  protected val _fieldUpdateVar : (S, NameUser, NameUser, V) --> SR = PartialFunctionUtil.orElses(_fieldUpdateVarA)
+  val fieldUpdateVar : (S, NameUser, NameUser, V) --> SR = PartialFunctionUtil.orElses(_fieldUpdateVarA)
 
   def addFieldUpdateVar(fieldF : (S, NameUser, NameUser, V) --> SR) {
     if (!PartialFunctionUtil.empty.equals(fieldF))
       _fieldUpdateVarA += fieldF
   }
 
-  protected val _arrayUpdateA : MArray[(S, V, V, V) --> SR] = marrayEmpty
-  protected val _arrayUpdate : (S, V, V, V) --> SR = PartialFunctionUtil.orElses(_arrayUpdateA)
+  protected val _indexUpdateA : MArray[(S, V, V, V) --> SR] = marrayEmpty
+  val indexUpdate : (S, V, V, V) --> SR = PartialFunctionUtil.orElses(_indexUpdateA)
 
-  def addArrayUpdate(arrayF : (S, V, V, V) --> SR) {
-    if (!PartialFunctionUtil.empty.equals(arrayF))
-      _arrayUpdateA += arrayF
+  def addIndexUpdate(indexF : (S, V, V, V) --> SR) {
+    if (!PartialFunctionUtil.empty.equals(indexF))
+      _indexUpdateA += indexF
   }
 
-  protected val _arrayUpdateVarA : MArray[(S, NameUser, V, V) --> SR] = marrayEmpty
-  protected val _arrayUpdateVar : (S, NameUser, V, V) --> SR = PartialFunctionUtil.orElses(_arrayUpdateVarA)
+  protected val _indexUpdateVarA : MArray[(S, NameUser, V, V) --> SR] = marrayEmpty
+  val indexUpdateVar : (S, NameUser, V, V) --> SR = PartialFunctionUtil.orElses(_indexUpdateVarA)
 
-  def addArrayUpdateVar(arrayF : (S, NameUser, V, V) --> SR) {
-    if (!PartialFunctionUtil.empty.equals(arrayF))
-      _arrayUpdateVarA += arrayF
+  def addIndexUpdateVar(indexF : (S, NameUser, V, V) --> SR) {
+    if (!PartialFunctionUtil.empty.equals(indexF))
+      _indexUpdateVarA += indexF
   }
 
   protected val _resolveCallA : MArray[(CallJump, S, V, V) --> ISeq[(S, ResourceUri)]] = marrayEmpty
-  protected val _resolveCall : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)] = PartialFunctionUtil.orElses(_resolveCallA)
+  val resolveCall : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)] = PartialFunctionUtil.orElses(_resolveCallA)
+
   def addResolveCall(resolveF : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)]) {
 
     require(!PartialFunctionUtil.empty.equals(resolveF))
@@ -423,7 +443,8 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
   }
 
   protected val _tupleDeconA : MArray[(S, V) --> (S, ISeq[V])] = marrayEmpty
-  protected val _tupleDecon : (S, V) --> (S, ISeq[V]) = PartialFunctionUtil.orElses(_tupleDeconA)
+  val tupleDecon : (S, V) --> (S, ISeq[V]) = PartialFunctionUtil.orElses(_tupleDeconA)
+
   def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V])) {
     require(!PartialFunctionUtil.empty.equals(tupleDF))
     _tupleDeconA += tupleDF
@@ -434,6 +455,14 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     require(!_actionExt.contains(extUri))
     _actionExt(extUri) = extF
   }
+
+  def actionExtCall(extUri : ResourceUri, args : Product) : SR =
+    args match {
+      case Tuple1(s) => _actionExt(extUri)(s)
+      case _         => _actionExt(extUri)(args)
+    }
+
+  def hasActionExt(extUri : ResourceUri) : Boolean = _actionExt.contains(extUri)
 
   protected val assignOpsA : MMap[String, MArray[(S, V, V) --> SR]] = mmapEmpty.empty
   protected val assignOps : MMap[String, (S, V, V) --> SR] = mmapEmpty.empty
@@ -448,84 +477,30 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     assignOpsA(op) += opF
   }
 
-  def hasActionExt(extUri : ResourceUri) : Boolean = _actionExt.contains(extUri)
+  def assignOp(op : String, s : S, lhs : V, rhs : V) : SR = assignOps(op)(s, lhs, rhs)
 
   protected val _extInfo : MMap[ResourceUri, (Int, IBitSet, Boolean)] = mmapEmpty
+
   def addExtInfo(extUri : ResourceUri, numOfArgs : Int, argLazyMask : IBitSet, varargs : Boolean) {
     _extInfo(extUri) = (numOfArgs, argLazyMask, varargs)
   }
 
+  def extNumOfArgs(extUri : ResourceUri) : Int = _extInfo(extUri)._1
+
+  def extLazyBitMask(extUri : ResourceUri) : IBitSet = _extInfo(extUri)._2
+
+  def extVarArgs(extUri : ResourceUri) : Boolean = _extInfo(extUri)._3
+
   protected val _uriValueA : MArray[(S, ResourceUri) --> R] = marrayEmpty
-  protected val _uriValue : (S, ResourceUri) --> R = PartialFunctionUtil.orElses(_uriValueA)
+  val uriValue : (S, ResourceUri) --> R = PartialFunctionUtil.orElses(_uriValueA)
+
   protected val _uriExtractorA : MArray[V --> ResourceUri] = marrayEmpty
-  protected val _uriExtractor : V --> ResourceUri = PartialFunctionUtil.orElses(_uriExtractorA)
+  val uriExtractor : V --> ResourceUri = PartialFunctionUtil.orElses(_uriExtractorA)
+
   def addUriValue(uriF : (S, ResourceUri) --> R, uriExtractor : V --> ResourceUri) {
     _uriValueA += uriF
     _uriExtractorA += uriExtractor
   }
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait SemanticsExtensionConsumerImpl[S, V, R, C, SR]
-    extends SemanticsExtensionConsumer[S, V, R, C, SR] {
-  sei : SemanticsExtensionInitImpl[S, V, R, C, SR] =>
-
-  def isNativeIndexValue(v : V) = _nativeIndexConverter.isDefinedAt(v)
-  def toNativeIndex(v : V) = _nativeIndexConverter(v)
-
-  def defaultValue(s : S, uri : ResourceUri) = _default(s, uri)
-  def trueLiteral(s : S) : R = _trueLiteral(s)
-  def falseLiteral(s : S) : R = _falseLiteral(s)
-  def cond(s : S, v : V) : C = _cond(s, v)
-  def intLiteral(s : S, n : Int) : R = _intLiteral(s, n)
-  def longLiteral(s : S, n : Long) : R = _longLiteral(s, n)
-  def integerLiteral(s : S, n : BigInt) : R = _integerLiteral(s, n)
-  def nullLiteral(s : S) : R = _nullLiteral(s)
-  def tupleDecon(s : S, v : V) : (S, ISeq[V]) = _tupleDecon(s, v)
-  def variable(s : S, x : NameUser) : R = _variableLookup(s, x)
-  def field(s : S, r : V, f : NameUser) : R = _fieldLookup(s, r, f)
-  def index(s : S, a : V, i : V) : R = _arrayLookup(s, a, i)
-  def cast(s : S, t : V, typeUri : ResourceUri) : R = castT(s, t, typeUri)
-  def canCast(s : S, t : V, typeUri : ResourceUri) : Boolean = castT.isDefinedAt(s, t, typeUri)
-  def unaryOp(op : String, s : S, v : V) : R = unaryOps(op)(s, op, v)
-  def binaryOpMode(op : String) : BinaryOpMode.Type =
-    if (lLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_LEFT
-    else if (rLazyBinaryOps.contains(op)) BinaryOpMode.LAZY_RIGHT
-    else BinaryOpMode.REGULAR
-  def binaryOp(op : String, s : S, v1 : V, v2 : V) : R = binaryOps(op)(s, v1, op, v2)
-  def lazyBinaryOp(op : String, s : S, e : S => R, v : V) : R =
-    lLazyBinaryOps(op)(s, e, op, v)
-  def lazyBinaryOp(op : String, s : S, v : V, e : S => R) : R =
-    rLazyBinaryOps(op)(s, v, op, e)
-  def newList(s : S, elements : ISeq[V]) : R = _newList(s, elements)
-  def expExtCall(extUri : ResourceUri, args : Product) : R =
-    args match {
-      case Tuple1(s) => _expExt(extUri)(s)
-      case _         => _expExt(extUri)(args)
-    }
-
-  def variable(s : S, x : NameUser, v : V) : SR = _variableUpdate(s, x, v)
-  def field(s : S, r : V, f : NameUser, v : V) : SR = _fieldUpdate(s, r, f, v)
-  def fieldVar = _fieldUpdateVar
-  def index(s : S, a : V, i : V, v : V) : SR = _arrayUpdate(s, a, i, v)
-  def indexVar = _arrayUpdateVar
-  def actionExtCall(extUri : ResourceUri, args : Product) : SR =
-    args match {
-      case Tuple1(s) => _actionExt(extUri)(s)
-      case _         => _actionExt(extUri)(args)
-    }
-  def assignOp(op : String, s : S, lhs : V, rhs : V) : SR = assignOps(op)(s, lhs, rhs)
-  def resolveCall(cj : CallJump, s : S, procValue : V, argValue : V) : ISeq[(S, ResourceUri)] =
-    _resolveCall(cj, s, procValue, argValue)
-
-  def extNumOfArgs(extUri : ResourceUri) : Int = _extInfo(extUri)._1
-  def extLazyBitMask(extUri : ResourceUri) : IBitSet = _extInfo(extUri)._2
-  def extVarArgs(extUri : ResourceUri) : Boolean = _extInfo(extUri)._3
-
-  def uriValue(s : S, uri : ResourceUri) : R = _uriValue(s, uri)
-  def uriExtractor = _uriExtractor
 }
 
 /**
@@ -606,13 +581,13 @@ object ExtensionMiner {
         sei.addFieldUpdateVar(extF)
       case ann : ArrayLookup =>
         val extF = m.invoke(ext).asInstanceOf[(S, V, V) --> R]
-        sei.addArrayLookup(extF)
+        sei.addIndexLookup(extF)
       case ann : ArrayUpdate =>
         val extF = m.invoke(ext).asInstanceOf[(S, V, V, V) --> SR]
-        sei.addArrayUpdate(extF)
+        sei.addIndexUpdate(extF)
       case ann : ArrayUpdateVar =>
         val extF = m.invoke(ext).asInstanceOf[(S, NameUser, V, V) --> SR]
-        sei.addArrayUpdateVar(extF)
+        sei.addIndexUpdateVar(extF)
       case ann : Binary =>
         val extF = m.invoke(ext).asInstanceOf[(S, V, V) --> R]
         sei.addBinaryOp(ann.value, extF)
@@ -721,18 +696,15 @@ trait SemanticsExtensionModule[S, V, R, C, SR] extends EvaluatorModule[S, V, R, 
     def create(ec : EvaluatorConfiguration[S, V, R, C, SR]) : Extension[S, V, R, C, SR]
   }
 
-  val seic =
-    new SemanticsExtensionInitImpl[S, V, R, C, SR] //
-    with SemanticsExtensionConsumerImpl[S, V, R, C, SR] // 
-    with SemanticsExtensionInitConsumer[S, V, R, C, SR]
+  val sei = new SemanticsExtensionInitImpl[S, V, R, C, SR] {}
 
   def miners = ilist(ExtensionMiner.mine[S, V, R, C, SR] _)
 
   def initialize(ec : EvaluatorConfiguration[S, V, R, C, SR]) {
-    ec.semanticsExtension = seic
+    ec.semanticsExtension = sei
     for (extC <- ec.extensions) {
       val ext = extC.asInstanceOf[EC].create(ec)
-      ExtensionMiner.mineExtensions(seic, ext, miners : _*)
+      ExtensionMiner.mineExtensions(sei, ext, miners : _*)
     }
   }
 }
