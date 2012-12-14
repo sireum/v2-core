@@ -759,13 +759,14 @@ trait JumpResolver extends SymbolResolver {
           case _ => false
         }
     loc match {
-      case loc : ActionLocation => true
+      case loc : ActionLocation =>
+        loc.action.isInstanceOf[ThrowAction]
       case loc : EmptyLocation  => true
       case loc : JumpLocation   => hasImplicit(loc.jump)
       case loc : ComplexLocation =>
         loc.transformations.exists { t =>
-          if (t.jump.isEmpty)
-            true
+          if (t.actions.exists(_.isInstanceOf[ThrowAction])) false
+          else if (t.jump.isEmpty) true
           else hasImplicit(t.jump.get)
         }
       case _ => false
