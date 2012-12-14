@@ -56,7 +56,7 @@ trait Kiasan {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
+trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
   import State._
 
   def parallelThreshold : Int
@@ -65,7 +65,7 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
 
   def locationProvider : KiasanLocationProvider[S]
 
-  def evaluator : Evaluator[S, R, ISeq[S]]
+  def evaluator : Evaluator[S, R, C, ISeq[S]]
 
   def initialStatesProvider : KiasanInitialStateProvider[S]
 
@@ -121,8 +121,8 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R] extends Kiasan {
       var inconsistencyCheckRequested = false
       val nextStates =
         for {
-          (s2, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled
-          nextS <- evaluator.evalTransformation(s2, t)
+          (s2, l, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled
+          nextS <- evaluator.evalTransformation(s2, l, t)
         } yield {
           inconsistencyCheckRequested =
             inconsistencyCheckRequested || nextS.inconsistencyCheckRequested

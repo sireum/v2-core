@@ -32,14 +32,14 @@ object EvaluatorImpl {
                        transIndex : Int, commandIndex : Int) extends LocationInfo with ProcInfo
 
   case class Trans[S <: State[S]](
-    enabled : ISeq[(S, Transformation)],
-    disabled : ISeq[(S, Transformation)]) extends Transitions[S]
+    enabled : ISeq[(S, LocationDecl, Transformation)],
+    disabled : ISeq[(S, LocationDecl, Transformation)]) extends Transitions[S]
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], ISeq[S]]
+final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]
     with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
   type Re = (S, V)
   type R = ISeq[Re]
@@ -71,6 +71,18 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   @inline
   private def v2value(v : V) : Value = ec.vToValue(v)
+
+  @inline
+  private def cond(s : S, l : LocationDecl, t : Transformation, e : Exp) =
+    mainEvaluator.evalGuard(s, l, t, e)
+
+  val evalGuard : (S, LocationDecl, Transformation, Exp) --> C = {
+    case (s, l, t, e) =>
+      for {
+        re1 <- eval(s, e)
+        re2 <- sec.cond(re2s(re1), re2v(re1))
+      } yield re2
+  }
 
   @inline
   private def cond(s : S, cond : Exp) =
@@ -398,14 +410,14 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   private val EMPTY_TRANS = Transformation(ilistEmpty, None, ilistEmpty, None)
 
-  var ev : Evaluator[S, R, SR] = this
+  var ev : Evaluator[S, R, C, SR] = this
   def mainEvaluator = ev
-  def setMainEvaluator(eval : Evaluator[S, R, SR]) {
+  def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
     ev = eval
   }
 
-  def evalTransformation : (S, Transformation) --> SR = {
-    case (state, t) =>
+  def evalTransformation : (S, LocationDecl, Transformation) --> SR = {
+    case (state, l, t) =>
       var ss = ilist(state)
       for (a <- t.actions) {
         ss = ss.flatMap { s => if (isNormal(s)) eval(s, a) else ilist(s) }
@@ -419,29 +431,29 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   def transitions : (S, LocationDecl) --> Transitions[S] = {
     case (s, l : ActionLocation) =>
-      Trans(ilist((s, Transformation(ilistEmpty, None, ilist(l.action), None))),
+      Trans(ilist((s, l, Transformation(ilistEmpty, None, ilist(l.action), None))),
         ilistEmpty)
     case (s, l : JumpLocation) =>
-      Trans(ilist((s, Transformation(ilistEmpty, None, ilistEmpty, Some(l.jump)))),
+      Trans(ilist((s, l, Transformation(ilistEmpty, None, ilistEmpty, Some(l.jump)))),
         ilistEmpty)
     case (s, l : EmptyLocation) =>
-      Trans(ilist((s, EMPTY_TRANS)), ilistEmpty)
+      Trans(ilist((s, l, EMPTY_TRANS)), ilistEmpty)
     case (s, l : ComplexLocation) =>
       var elseTrans : Option[Transformation] = None
 
-      var enabledTrans : ISeq[(S, Transformation)] = ilistEmpty
-      var disabledTrans : ISeq[(S, Transformation)] = ilistEmpty
+      var enabledTrans : ISeq[(S, LocationDecl, Transformation)] = ilistEmpty
+      var disabledTrans : ISeq[(S, LocationDecl, Transformation)] = ilistEmpty
       for (t <- l.transformations) {
         if (t.guard.isEmpty)
-          enabledTrans = (s, t) +: enabledTrans
+          enabledTrans = (s, l, t) +: enabledTrans
         else
           t.guard.get match {
             case g : ExpGuard =>
-              for (scond <- cond(s, g.cond)) {
+              for (scond <- cond(s, l, t, g.cond)) {
                 if (scond._2)
-                  enabledTrans = (scond._1, t) +: enabledTrans
+                  enabledTrans = (scond._1, l, t) +: enabledTrans
                 else if (ec.computeDisabledTransitions)
-                  disabledTrans = (scond._1, t) +: disabledTrans
+                  disabledTrans = (scond._1, l, t) +: disabledTrans
               }
             case g : ElseGuard =>
               assert(elseTrans.isEmpty)
@@ -458,7 +470,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             conds = expander.negate(t.guard.get.asInstanceOf[ExpGuard].cond) +: conds
 
         val cond = conds.reduce(expander.conjunct)
-        val enabledElseTran = ((s, Transformation(elseT.annotations,
+        val enabledElseTran = ((s, l, Transformation(elseT.annotations,
           Some(ExpGuard(ilistEmpty, cond)), elseT.actions, elseT.jump)))
 
         Trans(enabledElseTran +: enabledTrans, disabledTrans)
@@ -466,9 +478,9 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         if (elseTrans.isEmpty)
           Trans(ilistEmpty, ilistEmpty)
         else
-          Trans(ilist((s, elseTrans.get)), ilistEmpty)
+          Trans(ilist((s, l, elseTrans.get)), ilistEmpty)
       else if (elseTrans.isDefined && ec.computeDisabledTransitions)
-        Trans(enabledTrans, (s, elseTrans.get) +: disabledTrans)
+        Trans(enabledTrans, (s, l, elseTrans.get) +: disabledTrans)
       else
         Trans(enabledTrans, disabledTrans)
   }

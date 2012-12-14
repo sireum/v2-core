@@ -507,7 +507,7 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SemanticsExtension[S, V, R, C, SR] {
-  def apply(tp : TypeProvider, evalF : Evaluator[S, R, SR]) : SemanticsExtensionConsumer[S, V, R, C, SR]
+  def apply(tp : TypeProvider, evalF : Evaluator[S, R, C, SR]) : SemanticsExtensionConsumer[S, V, R, C, SR]
 }
 
 /**
