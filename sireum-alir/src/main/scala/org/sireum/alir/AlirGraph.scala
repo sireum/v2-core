@@ -41,13 +41,7 @@ trait AlirGraph[Node] {
     graph.getAllEdges(n1, n2)
   }
 
-  def addNode(node : Node) : Node
-
-  def addEdge(e : Edge) = graph.addEdge(e.source, e.target, e)
-
   def hasEdge(n1 : Node, n2 : Node) : Boolean = graph.containsEdge(n1, n2)
-
-  def getEdge(n1 : Node, n2 : Node) : Edge = graph.getEdge(n1, n2)
 
   def numOfEdges : Int = graph.edgeSet.size
 
@@ -69,8 +63,8 @@ trait AlirGraph[Node] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class AlirEdge[Node](owner : AlirGraph[Node],
-                                source : Node, target : Node)
+final class AlirEdge[Node](val owner : AlirGraph[Node],
+                           val source : Node, val target : Node)
     extends PropertyProvider {
   val propertyMap = mlinkedMapEmpty[Property.Key, Any]
 }
@@ -81,20 +75,12 @@ final case class AlirEdge[Node](owner : AlirGraph[Node],
 trait AlirEdgeAccesses[Node] {
   self : AlirGraph[Node] =>
 
+  def addNode(node : Node) : Node
+
   def addEdge(source : Node, target : Node) : Edge =
     graph.addEdge(getNode(source), getNode(target))
 
-  override def getEdge(source : Node, target : Node) : Edge =
-    graph.getEdge(getNode(source), getNode(target))
-
-  def getOrAddEdge(n1 : Node, n2 : Node) : Edge =
-    if (hasEdge(n1, n2))
-      getEdge(n1, n2)
-    else {
-      addNode(n1)
-      addNode(n2)
-      addEdge(n1, n2)
-    }
+  def addEdge(e : Edge) = graph.addEdge(e.source, e.target, e)
 }
 
 /**

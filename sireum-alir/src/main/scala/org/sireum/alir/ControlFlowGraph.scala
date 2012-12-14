@@ -242,12 +242,12 @@ object ControlFlowGraph {
 
       for (n <- nodes)
         for (m <- successors(n)) {
-          val e = getEdge(n, m)
-          val branch = if (e ? ControlFlowGraph.BRANCH_PROPERTY_KEY)
-            e(ControlFlowGraph.BRANCH_PROPERTY_KEY).toString
-          else ""
-          sb.append("%s -> %s %s\n".
-            format(n, m, branch))
+          for (e <- getEdges(n, m)) {
+            val branch = if (e ? ControlFlowGraph.BRANCH_PROPERTY_KEY)
+              e(ControlFlowGraph.BRANCH_PROPERTY_KEY).toString
+            else ""
+            sb.append("%s -> %s %s\n".format(n, m, branch))
+          }
         }
 
       sb.append("\n")

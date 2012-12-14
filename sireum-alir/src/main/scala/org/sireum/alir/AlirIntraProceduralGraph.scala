@@ -34,7 +34,7 @@ trait AlirIntraProceduralGraph //
   protected val graph = new DirectedMultigraph(
     new EdgeFactory[Node, Edge] {
       def createEdge(source : Node, target : Node) =
-        AlirEdge(self, source, target).asInstanceOf[Edge]
+        new AlirEdge(self, source, target)
     })
 
   protected def pool : MMap[AlirIntraProceduralNode, Node]

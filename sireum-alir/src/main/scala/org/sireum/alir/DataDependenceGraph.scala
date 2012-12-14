@@ -19,9 +19,9 @@ trait HasDataDependenceInfo {
   val DEPENDENCE_INFO_PROPERTY_KEY = "Dependence Info"
   val LOC_DEPENDENCE_INFO_PROPERTY_KEY = "Location Dependence Info"
 
-  def getDependenceInfo: DataDependenceGraph.Edge => Iterable[(Slot, DefDesc, DefDesc)]
+  def getDependenceInfo : DataDependenceGraph.Edge => Iterable[(Slot, DefDesc, DefDesc)]
 
-  def getLocDependenceInfo: DataDependenceGraph.Edge => Iterable[(Slot, DefDesc, DefDesc)]
+  def getLocDependenceInfo : DataDependenceGraph.Edge => Iterable[(Slot, DefDesc, DefDesc)]
 }
 
 /**
@@ -32,10 +32,10 @@ trait HasDataDependenceInfoProducer extends HasDataDependenceInfo {
 
   def getLocDependenceInfo = _getLocDependenceInfo _
 
-  def _getDependenceInfo(e: DataDependenceGraph.Edge): MBuffer[(Slot, DefDesc, DefDesc)] =
+  def _getDependenceInfo(e : DataDependenceGraph.Edge) : MBuffer[(Slot, DefDesc, DefDesc)] =
     e.getPropertyOrElseUpdate(DEPENDENCE_INFO_PROPERTY_KEY, mlistEmpty)
 
-  def _getLocDependenceInfo(e: DataDependenceGraph.Edge): MBuffer[(Slot, DefDesc, DefDesc)] =
+  def _getLocDependenceInfo(e : DataDependenceGraph.Edge) : MBuffer[(Slot, DefDesc, DefDesc)] =
     e.getPropertyOrElseUpdate(LOC_DEPENDENCE_INFO_PROPERTY_KEY, mlistEmpty)
 }
 
@@ -58,40 +58,44 @@ object DataDependenceGraph {
 
   def apply[VirtualLabel] = build[VirtualLabel] _
 
-  def build[VirtualLabel](pool: AlirIntraProceduralGraph.NodePool,
-    cfg: ControlFlowGraph[VirtualLabel],
-    rda: ReachingDefinitionAnalysis.Result,
-    defRef: DefRef,
-    isOutputParam: ResourceUri => Boolean) //
-    : DataDependenceGraph[VirtualLabel] = {
+  def build[VirtualLabel](pool : AlirIntraProceduralGraph.NodePool,
+                          cfg : ControlFlowGraph[VirtualLabel],
+                          rda : ReachingDefinitionAnalysis.Result,
+                          defRef : DefRef,
+                          isOutputParam : ResourceUri => Boolean) //
+                          : DataDependenceGraph[VirtualLabel] = {
     type LDD = LocDefDesc
 
     val result = new Ddg[VirtualLabel](pool)
 
-    def addEdgeToExit(n: Node, slot: Slot, dd: DD) {
-      val e = result.getOrAddEdge(n, cfg.exitNode)
-      result._getDependenceInfo(e) +=
-        ((slot, dd, ExitDefDesc))
-    }
+      def addEdgeToExit(n : Node, slot : Slot, dd : DD) {
+        result.addNode(n)
+        result.addNode(cfg.exitNode)
+        val e = result.addEdge(n, cfg.exitNode)
+        result._getDependenceInfo(e) +=
+          ((slot, dd, ExitDefDesc))
+      }
 
     val esl = new EntrySetListener[RDF] {
 
-      override def action(a: Action, s: ISet[RDF]) {
+      override def action(a : Action, s : ISet[RDF]) {
         addEdges(DefDesc.desc(a), defRef.references(a), s)
       }
 
-      def jump(j: Jump, s: ISet[RDF]) {
+      def jump(j : Jump, s : ISet[RDF]) {
         addEdges(DefDesc.desc(j), defRef.references(j), s)
       }
 
-      def addEdges(dd: DD, references: Iterable[Slot], s: ISet[RDF]) {
+      def addEdges(dd : DD, references : Iterable[Slot], s : ISet[RDF]) {
         val nLDD = dd.asInstanceOf[LDD]
         val n = cfg.getNode(nLDD.locUri, nLDD.locIndex)
         for (slot <- references)
           for (rdf <- s.filter { first2(_) == slot }) {
             val mDD = second2(rdf)
             val m = DefDesc.getNode(cfg, mDD)
-            val e = result.getOrAddEdge(m, n)
+            result.addNode(m)
+            result.addNode(n)
+            val e = result.addEdge(m, n)
             if (n == m && nLDD != mDD)
               result._getLocDependenceInfo(e) += ((slot, mDD, nLDD))
             else
@@ -99,7 +103,7 @@ object DataDependenceGraph {
           }
       }
 
-      override def returnJump(j: ReturnJump, s: ISet[RDF]) {
+      override def returnJump(j : ReturnJump, s : ISet[RDF]) {
         if (j.exp.isDefined) {
           val nLDD = DefDesc.desc(j)
           val rLDD = ReturnDefDesc(nLDD.locUri, nLDD.locIndex,
@@ -110,7 +114,7 @@ object DataDependenceGraph {
         }
       }
 
-      override def callJump(j: CallJump, s: ISet[RDF]) {
+      override def callJump(j : CallJump, s : ISet[RDF]) {
         val nLDD = DefDesc.desc(j)
         val callRefs = defRef.callReferences(j)
         val size = callRefs.size
@@ -123,9 +127,9 @@ object DataDependenceGraph {
           nLDD.transIndex, nLDD.commandIndex), defRef.references(j), s)
       }
 
-      override def gotoJump(j: GotoJump, s: ISet[RDF]) { jump(j, s) }
-      override def ifJump(j: IfJump, s: ISet[RDF]) { jump(j, s) }
-      override def switchJump(j: SwitchJump, s: ISet[RDF]) { jump(j, s) }
+      override def gotoJump(j : GotoJump, s : ISet[RDF]) { jump(j, s) }
+      override def ifJump(j : IfJump, s : ISet[RDF]) { jump(j, s) }
+      override def switchJump(j : SwitchJump, s : ISet[RDF]) { jump(j, s) }
     }
 
     for (n <- cfg.nodes) {
@@ -144,19 +148,20 @@ object DataDependenceGraph {
     result
   }
 
-  private class Ddg[VirtualLabel](val pool: AlirIntraProceduralGraph.NodePool)
-    extends DataDependenceGraph[VirtualLabel]
-    with AlirEdgeAccesses[DataDependenceGraph.Node]
-    with HasDataDependenceInfoProducer {
+  private class Ddg[VirtualLabel](val pool : AlirIntraProceduralGraph.NodePool)
+      extends DataDependenceGraph[VirtualLabel]
+      with AlirEdgeAccesses[DataDependenceGraph.Node]
+      with HasDataDependenceInfoProducer {
 
     override def toString = {
       val sb = new StringBuilder("DDG\n")
 
       for (n <- nodes)
         for (m <- dependents(n)) {
-          val e = getEdge(n, m)
-          sb.append("%s -> %s [%s, %s]\n".format(
-            n, m, getDependenceInfo(e), getLocDependenceInfo(e)))
+          for (e <- getEdges(n, m)) {
+            sb.append("%s -> %s [%s, %s]\n".format(
+              n, m, getDependenceInfo(e), getLocDependenceInfo(e)))
+          }
         }
 
       sb.append("\n")

@@ -89,7 +89,7 @@ object ProgramDependenceGraph {
       }
 
       def addEdgeNT(from : Node, to : Node, t : (Slot, DefDesc, DefDesc)) {
-        val e = result.getOrAddEdge(from, to)
+        val e = result.addEdge(from, to)
         result._getDependenceInfo(e) += t
       }
 
