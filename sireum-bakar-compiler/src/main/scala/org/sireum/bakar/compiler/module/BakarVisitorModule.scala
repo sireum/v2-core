@@ -1,4 +1,4 @@
-package org.sireum.bakar.xml.module
+package org.sireum.bakar.compiler.module
 
 import scala.Array.apply
 import org.sireum.bakar.xml.CompilationUnit
@@ -25,7 +25,7 @@ object hold2 {
   def main(args : Array[String]) {
     val opt = PipelineMode()
     opt.classNames = Array(BakarVisitor.getClass.getName.dropRight(1))
-    opt.dir = "./src/main/scala/org/sireum/bakar/xml/module"
+    opt.dir = "./src/main/scala/org/sireum/bakar/compiler/module"
     opt.genClassName = "BakarVisitorModuleCore"
 
     ModuleGenerator.run(opt)

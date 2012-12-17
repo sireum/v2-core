@@ -215,24 +215,24 @@ fib_decls.ads.xml
                                         </associations>
                                       </functionCallParametersQl>
                                       <isPrefixCallQ>
-                                        <notAnElement>
+                                        <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixCall>
                                       </isPrefixCallQ>
                                       <isPrefixNotationQ>
-                                        <notAnElement>
+                                        <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixNotation>
                                       </isPrefixNotationQ>
                                       <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                     </expression>
@@ -244,24 +244,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -408,24 +408,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -467,24 +467,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -721,24 +721,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -780,24 +780,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -966,24 +966,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -1198,24 +1198,24 @@ fib_decls.ads.xml
                                         </associations>
                                       </functionCallParametersQl>
                                       <isPrefixCallQ>
-                                        <notAnElement>
+                                        <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixCall>
                                       </isPrefixCallQ>
                                       <isPrefixNotationQ>
-                                        <notAnElement>
+                                        <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixNotation>
                                       </isPrefixNotationQ>
                                       <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                     </expression>
@@ -1227,24 +1227,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -1391,24 +1391,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -1450,24 +1450,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -1704,24 +1704,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -1763,24 +1763,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -1949,24 +1949,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -2181,24 +2181,24 @@ fib_decls.ads.xml
                                         </associations>
                                       </functionCallParametersQl>
                                       <isPrefixCallQ>
-                                        <notAnElement>
+                                        <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixCall>
                                       </isPrefixCallQ>
                                       <isPrefixNotationQ>
-                                        <notAnElement>
+                                        <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                           <sloc>
                                             <line>1</line>
                                             <col>1</col>
                                             <endline>0</endline>
                                             <endcol>0</endcol>
                                           </sloc>
-                                        </notAnElement>
+                                        </isPrefixNotation>
                                       </isPrefixNotationQ>
                                       <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                     </expression>
@@ -2210,24 +2210,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -2374,24 +2374,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -2433,24 +2433,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -2687,24 +2687,24 @@ fib_decls.ads.xml
                                             </associations>
                                           </functionCallParametersQl>
                                           <isPrefixCallQ>
-                                            <notAnElement>
+                                            <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixCall>
                                           </isPrefixCallQ>
                                           <isPrefixNotationQ>
-                                            <notAnElement>
+                                            <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                               <sloc>
                                                 <line>1</line>
                                                 <col>1</col>
                                                 <endline>0</endline>
                                                 <endcol>0</endcol>
                                               </sloc>
-                                            </notAnElement>
+                                            </isPrefixNotation>
                                           </isPrefixNotationQ>
                                           <type>ada://ordinary_type/Universal_Integer-1:1</type>
                                         </expression>
@@ -2746,24 +2746,24 @@ fib_decls.ads.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Universal_Integer-1:1</type>
                           </expression>
@@ -2932,24 +2932,24 @@ fib_decls.ads.xml
                           </associations>
                         </functionCallParametersQl>
                         <isPrefixCallQ>
-                          <notAnElement>
+                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixCall>
                         </isPrefixCallQ>
                         <isPrefixNotationQ>
-                          <notAnElement>
+                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                             <sloc>
                               <line>1</line>
                               <col>1</col>
                               <endline>0</endline>
                               <endcol>0</endcol>
                             </sloc>
-                          </notAnElement>
+                          </isPrefixNotation>
                         </isPrefixNotationQ>
                         <type>ada://ordinary_type/Universal_Integer-1:1</type>
                       </expression>
@@ -3023,24 +3023,24 @@ fib_decls.ads.xml
                   <endcol>13</endcol>
                 </sloc>
                 <hasAbstractQ>
-                  <notAnElement>
+                  <hasAbstract class="org.sireum.bakar.xml.NotAnElement">
                     <sloc>
                       <line>1</line>
                       <col>1</col>
                       <endline>0</endline>
                       <endcol>0</endcol>
                     </sloc>
-                  </notAnElement>
+                  </hasAbstract>
                 </hasAbstractQ>
                 <hasLimitedQ>
-                  <notAnElement>
+                  <hasLimited class="org.sireum.bakar.xml.NotAnElement">
                     <sloc>
                       <line>1</line>
                       <col>1</col>
                       <endline>0</endline>
                       <endcol>0</endcol>
                     </sloc>
-                  </notAnElement>
+                  </hasLimited>
                 </hasLimitedQ>
                 <recordDefinitionQ>
                   <definition class="org.sireum.bakar.xml.RecordDefinition">
@@ -3051,14 +3051,14 @@ fib_decls.ads.xml
                       <endcol>13</endcol>
                     </sloc>
                     <hasLimitedQ>
-                      <notAnElement>
+                      <hasLimited class="org.sireum.bakar.xml.NotAnElement">
                         <sloc>
                           <line>1</line>
                           <col>1</col>
                           <endline>0</endline>
                           <endcol>0</endcol>
                         </sloc>
-                      </notAnElement>
+                      </hasLimited>
                     </hasLimitedQ>
                     <recordComponentsQl>
                       <recordComponents>
@@ -3085,14 +3085,14 @@ fib_decls.ads.xml
                             </definingNames>
                           </namesQl>
                           <hasAliasedQ>
-                            <notAnElement>
+                            <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                               <sloc>
                                 <line>1</line>
                                 <col>1</col>
                                 <endline>0</endline>
                                 <endcol>0</endcol>
                               </sloc>
-                            </notAnElement>
+                            </hasAliased>
                           </hasAliasedQ>
                           <objectDeclarationViewQ>
                             <definition class="org.sireum.bakar.xml.ComponentDefinition">
@@ -3103,14 +3103,14 @@ fib_decls.ads.xml
                                 <endcol>28</endcol>
                               </sloc>
                               <hasAliasedQ>
-                                <notAnElement>
+                                <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                                   <sloc>
                                     <line>1</line>
                                     <col>1</col>
                                     <endline>0</endline>
                                     <endcol>0</endcol>
                                   </sloc>
-                                </notAnElement>
+                                </hasAliased>
                               </hasAliasedQ>
                               <componentDefinitionViewQ>
                                 <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -3121,24 +3121,24 @@ fib_decls.ads.xml
                                     <endcol>28</endcol>
                                   </sloc>
                                   <hasAliasedQ>
-                                    <notAnElement>
+                                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                                       <sloc>
                                         <line>1</line>
                                         <col>1</col>
                                         <endline>0</endline>
                                         <endcol>0</endcol>
                                       </sloc>
-                                    </notAnElement>
+                                    </hasAliased>
                                   </hasAliasedQ>
                                   <hasNullExclusionQ>
-                                    <notAnElement>
+                                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                                       <sloc>
                                         <line>1</line>
                                         <col>1</col>
                                         <endline>0</endline>
                                         <endcol>0</endcol>
                                       </sloc>
-                                    </notAnElement>
+                                    </hasNullExclusion>
                                   </hasNullExclusionQ>
                                   <subtypeMarkQ>
                                     <expression class="org.sireum.bakar.xml.Identifier">
@@ -3202,14 +3202,14 @@ fib_decls.ads.xml
                             </definingNames>
                           </namesQl>
                           <hasAliasedQ>
-                            <notAnElement>
+                            <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                               <sloc>
                                 <line>1</line>
                                 <col>1</col>
                                 <endline>0</endline>
                                 <endcol>0</endcol>
                               </sloc>
-                            </notAnElement>
+                            </hasAliased>
                           </hasAliasedQ>
                           <objectDeclarationViewQ>
                             <definition class="org.sireum.bakar.xml.ComponentDefinition">
@@ -3220,14 +3220,14 @@ fib_decls.ads.xml
                                 <endcol>29</endcol>
                               </sloc>
                               <hasAliasedQ>
-                                <notAnElement>
+                                <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                                   <sloc>
                                     <line>1</line>
                                     <col>1</col>
                                     <endline>0</endline>
                                     <endcol>0</endcol>
                                   </sloc>
-                                </notAnElement>
+                                </hasAliased>
                               </hasAliasedQ>
                               <componentDefinitionViewQ>
                                 <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -3238,24 +3238,24 @@ fib_decls.ads.xml
                                     <endcol>29</endcol>
                                   </sloc>
                                   <hasAliasedQ>
-                                    <notAnElement>
+                                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                                       <sloc>
                                         <line>1</line>
                                         <col>1</col>
                                         <endline>0</endline>
                                         <endcol>0</endcol>
                                       </sloc>
-                                    </notAnElement>
+                                    </hasAliased>
                                   </hasAliasedQ>
                                   <hasNullExclusionQ>
-                                    <notAnElement>
+                                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                                       <sloc>
                                         <line>1</line>
                                         <col>1</col>
                                         <endline>0</endline>
                                         <endcol>0</endcol>
                                       </sloc>
-                                    </notAnElement>
+                                    </hasNullExclusion>
                                   </hasNullExclusionQ>
                                   <subtypeMarkQ>
                                     <expression class="org.sireum.bakar.xml.Identifier">

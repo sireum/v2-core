@@ -1,3 +1,598 @@
+simplerecordtests.ads.xml
+<org.sireum.bakar.xml.CompilationUnit>
+  <sloc>
+    <line>1</line>
+    <col>1</col>
+    <endline>16</endline>
+    <endcol>22</endcol>
+  </sloc>
+  <contextClauseElementsQl/>
+  <unitDeclarationQ>
+    <declaration class="org.sireum.bakar.xml.PackageDeclaration">
+      <sloc>
+        <line>1</line>
+        <col>1</col>
+        <endline>16</endline>
+        <endcol>22</endcol>
+      </sloc>
+      <namesQl>
+        <definingNames>
+          <org.sireum.bakar.xml.DefiningIdentifier>
+            <sloc>
+              <line>1</line>
+              <col>9</col>
+              <endline>1</endline>
+              <endcol>25</endcol>
+            </sloc>
+            <defName>SimpleRecordTests</defName>
+            <def>ada://package/SimpleRecordTests-1:9</def>
+            <type>null</type>
+          </org.sireum.bakar.xml.DefiningIdentifier>
+        </definingNames>
+      </namesQl>
+      <aspectSpecificationsQl/>
+      <visiblePartDeclarativeItemsQl>
+        <declarativeItems>
+          <org.sireum.bakar.xml.OrdinaryTypeDeclaration>
+            <sloc>
+              <line>3</line>
+              <col>1</col>
+              <endline>6</endline>
+              <endcol>17</endcol>
+            </sloc>
+            <namesQl>
+              <definingNames>
+                <org.sireum.bakar.xml.DefiningIdentifier>
+                  <sloc>
+                    <line>3</line>
+                    <col>6</col>
+                    <endline>3</endline>
+                    <endcol>11</endcol>
+                  </sloc>
+                  <defName>Object</defName>
+                  <def>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</def>
+                  <type>null</type>
+                </org.sireum.bakar.xml.DefiningIdentifier>
+              </definingNames>
+            </namesQl>
+            <discriminantPartQ>
+              <definition class="org.sireum.bakar.xml.NotAnElement">
+                <sloc>
+                  <line>1</line>
+                  <col>1</col>
+                  <endline>0</endline>
+                  <endcol>0</endcol>
+                </sloc>
+              </definition>
+            </discriminantPartQ>
+            <typeDeclarationViewQ>
+              <definition class="org.sireum.bakar.xml.RecordTypeDefinition">
+                <sloc>
+                  <line>4</line>
+                  <col>7</col>
+                  <endline>6</endline>
+                  <endcol>16</endcol>
+                </sloc>
+                <hasAbstractQ>
+                  <hasAbstract class="org.sireum.bakar.xml.NotAnElement">
+                    <sloc>
+                      <line>1</line>
+                      <col>1</col>
+                      <endline>0</endline>
+                      <endcol>0</endcol>
+                    </sloc>
+                  </hasAbstract>
+                </hasAbstractQ>
+                <hasLimitedQ>
+                  <hasLimited class="org.sireum.bakar.xml.NotAnElement">
+                    <sloc>
+                      <line>1</line>
+                      <col>1</col>
+                      <endline>0</endline>
+                      <endcol>0</endcol>
+                    </sloc>
+                  </hasLimited>
+                </hasLimitedQ>
+                <recordDefinitionQ>
+                  <definition class="org.sireum.bakar.xml.RecordDefinition">
+                    <sloc>
+                      <line>4</line>
+                      <col>7</col>
+                      <endline>6</endline>
+                      <endcol>16</endcol>
+                    </sloc>
+                    <hasLimitedQ>
+                      <hasLimited class="org.sireum.bakar.xml.NotAnElement">
+                        <sloc>
+                          <line>1</line>
+                          <col>1</col>
+                          <endline>0</endline>
+                          <endcol>0</endcol>
+                        </sloc>
+                      </hasLimited>
+                    </hasLimitedQ>
+                    <recordComponentsQl>
+                      <recordComponents>
+                        <org.sireum.bakar.xml.ComponentDeclaration>
+                          <sloc>
+                            <line>5</line>
+                            <col>10</col>
+                            <endline>5</endline>
+                            <endcol>22</endcol>
+                          </sloc>
+                          <namesQl>
+                            <definingNames>
+                              <org.sireum.bakar.xml.DefiningIdentifier>
+                                <sloc>
+                                  <line>5</line>
+                                  <col>10</col>
+                                  <endline>5</endline>
+                                  <endcol>10</endcol>
+                                </sloc>
+                                <defName>X</defName>
+                                <def>ada://component/SimpleRecordTests-1:9/Object-3:6/X-5:10</def>
+                                <type>null</type>
+                              </org.sireum.bakar.xml.DefiningIdentifier>
+                              <org.sireum.bakar.xml.DefiningIdentifier>
+                                <sloc>
+                                  <line>5</line>
+                                  <col>13</col>
+                                  <endline>5</endline>
+                                  <endcol>13</endcol>
+                                </sloc>
+                                <defName>Y</defName>
+                                <def>ada://component/SimpleRecordTests-1:9/Object-3:6/Y-5:13</def>
+                                <type>null</type>
+                              </org.sireum.bakar.xml.DefiningIdentifier>
+                            </definingNames>
+                          </namesQl>
+                          <hasAliasedQ>
+                            <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                              <sloc>
+                                <line>1</line>
+                                <col>1</col>
+                                <endline>0</endline>
+                                <endcol>0</endcol>
+                              </sloc>
+                            </hasAliased>
+                          </hasAliasedQ>
+                          <objectDeclarationViewQ>
+                            <definition class="org.sireum.bakar.xml.ComponentDefinition">
+                              <sloc>
+                                <line>5</line>
+                                <col>17</col>
+                                <endline>5</endline>
+                                <endcol>21</endcol>
+                              </sloc>
+                              <hasAliasedQ>
+                                <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                                  <sloc>
+                                    <line>1</line>
+                                    <col>1</col>
+                                    <endline>0</endline>
+                                    <endcol>0</endcol>
+                                  </sloc>
+                                </hasAliased>
+                              </hasAliasedQ>
+                              <componentDefinitionViewQ>
+                                <definition class="org.sireum.bakar.xml.SubtypeIndication">
+                                  <sloc>
+                                    <line>5</line>
+                                    <col>17</col>
+                                    <endline>5</endline>
+                                    <endcol>21</endcol>
+                                  </sloc>
+                                  <hasAliasedQ>
+                                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </hasAliased>
+                                  </hasAliasedQ>
+                                  <hasNullExclusionQ>
+                                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </hasNullExclusion>
+                                  </hasNullExclusionQ>
+                                  <subtypeMarkQ>
+                                    <expression class="org.sireum.bakar.xml.Identifier">
+                                      <sloc>
+                                        <line>5</line>
+                                        <col>17</col>
+                                        <endline>5</endline>
+                                        <endcol>21</endcol>
+                                      </sloc>
+                                      <refName>Float</refName>
+                                      <ref>ada://ordinary_type/Standard-1:1/Float-1:1</ref>
+                                      <type>null</type>
+                                    </expression>
+                                  </subtypeMarkQ>
+                                  <subtypeConstraintQ>
+                                    <constraint class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </constraint>
+                                  </subtypeConstraintQ>
+                                </definition>
+                              </componentDefinitionViewQ>
+                            </definition>
+                          </objectDeclarationViewQ>
+                          <initializationExpressionQ>
+                            <expression class="org.sireum.bakar.xml.NotAnElement">
+                              <sloc>
+                                <line>1</line>
+                                <col>1</col>
+                                <endline>0</endline>
+                                <endcol>0</endcol>
+                              </sloc>
+                            </expression>
+                          </initializationExpressionQ>
+                          <aspectSpecificationsQl/>
+                        </org.sireum.bakar.xml.ComponentDeclaration>
+                      </recordComponents>
+                    </recordComponentsQl>
+                  </definition>
+                </recordDefinitionQ>
+              </definition>
+            </typeDeclarationViewQ>
+            <aspectSpecificationsQl/>
+          </org.sireum.bakar.xml.OrdinaryTypeDeclaration>
+          <org.sireum.bakar.xml.OrdinaryTypeDeclaration>
+            <sloc>
+              <line>8</line>
+              <col>1</col>
+              <endline>11</endline>
+              <endcol>17</endcol>
+            </sloc>
+            <namesQl>
+              <definingNames>
+                <org.sireum.bakar.xml.DefiningIdentifier>
+                  <sloc>
+                    <line>8</line>
+                    <col>6</col>
+                    <endline>8</endline>
+                    <endcol>17</endcol>
+                  </sloc>
+                  <defName>NestedObject</defName>
+                  <def>ada://ordinary_type/SimpleRecordTests-1:9/NestedObject-8:6</def>
+                  <type>null</type>
+                </org.sireum.bakar.xml.DefiningIdentifier>
+              </definingNames>
+            </namesQl>
+            <discriminantPartQ>
+              <definition class="org.sireum.bakar.xml.NotAnElement">
+                <sloc>
+                  <line>1</line>
+                  <col>1</col>
+                  <endline>0</endline>
+                  <endcol>0</endcol>
+                </sloc>
+              </definition>
+            </discriminantPartQ>
+            <typeDeclarationViewQ>
+              <definition class="org.sireum.bakar.xml.RecordTypeDefinition">
+                <sloc>
+                  <line>9</line>
+                  <col>7</col>
+                  <endline>11</endline>
+                  <endcol>16</endcol>
+                </sloc>
+                <hasAbstractQ>
+                  <hasAbstract class="org.sireum.bakar.xml.NotAnElement">
+                    <sloc>
+                      <line>1</line>
+                      <col>1</col>
+                      <endline>0</endline>
+                      <endcol>0</endcol>
+                    </sloc>
+                  </hasAbstract>
+                </hasAbstractQ>
+                <hasLimitedQ>
+                  <hasLimited class="org.sireum.bakar.xml.NotAnElement">
+                    <sloc>
+                      <line>1</line>
+                      <col>1</col>
+                      <endline>0</endline>
+                      <endcol>0</endcol>
+                    </sloc>
+                  </hasLimited>
+                </hasLimitedQ>
+                <recordDefinitionQ>
+                  <definition class="org.sireum.bakar.xml.RecordDefinition">
+                    <sloc>
+                      <line>9</line>
+                      <col>7</col>
+                      <endline>11</endline>
+                      <endcol>16</endcol>
+                    </sloc>
+                    <hasLimitedQ>
+                      <hasLimited class="org.sireum.bakar.xml.NotAnElement">
+                        <sloc>
+                          <line>1</line>
+                          <col>1</col>
+                          <endline>0</endline>
+                          <endcol>0</endcol>
+                        </sloc>
+                      </hasLimited>
+                    </hasLimitedQ>
+                    <recordComponentsQl>
+                      <recordComponents>
+                        <org.sireum.bakar.xml.ComponentDeclaration>
+                          <sloc>
+                            <line>10</line>
+                            <col>10</col>
+                            <endline>10</endline>
+                            <endcol>20</endcol>
+                          </sloc>
+                          <namesQl>
+                            <definingNames>
+                              <org.sireum.bakar.xml.DefiningIdentifier>
+                                <sloc>
+                                  <line>10</line>
+                                  <col>10</col>
+                                  <endline>10</endline>
+                                  <endcol>10</endcol>
+                                </sloc>
+                                <defName>O</defName>
+                                <def>ada://component/SimpleRecordTests-1:9/NestedObject-8:6/O-10:10</def>
+                                <type>null</type>
+                              </org.sireum.bakar.xml.DefiningIdentifier>
+                            </definingNames>
+                          </namesQl>
+                          <hasAliasedQ>
+                            <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                              <sloc>
+                                <line>1</line>
+                                <col>1</col>
+                                <endline>0</endline>
+                                <endcol>0</endcol>
+                              </sloc>
+                            </hasAliased>
+                          </hasAliasedQ>
+                          <objectDeclarationViewQ>
+                            <definition class="org.sireum.bakar.xml.ComponentDefinition">
+                              <sloc>
+                                <line>10</line>
+                                <col>14</col>
+                                <endline>10</endline>
+                                <endcol>19</endcol>
+                              </sloc>
+                              <hasAliasedQ>
+                                <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                                  <sloc>
+                                    <line>1</line>
+                                    <col>1</col>
+                                    <endline>0</endline>
+                                    <endcol>0</endcol>
+                                  </sloc>
+                                </hasAliased>
+                              </hasAliasedQ>
+                              <componentDefinitionViewQ>
+                                <definition class="org.sireum.bakar.xml.SubtypeIndication">
+                                  <sloc>
+                                    <line>10</line>
+                                    <col>14</col>
+                                    <endline>10</endline>
+                                    <endcol>19</endcol>
+                                  </sloc>
+                                  <hasAliasedQ>
+                                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </hasAliased>
+                                  </hasAliasedQ>
+                                  <hasNullExclusionQ>
+                                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </hasNullExclusion>
+                                  </hasNullExclusionQ>
+                                  <subtypeMarkQ>
+                                    <expression class="org.sireum.bakar.xml.Identifier">
+                                      <sloc>
+                                        <line>10</line>
+                                        <col>14</col>
+                                        <endline>10</endline>
+                                        <endcol>19</endcol>
+                                      </sloc>
+                                      <refName>Object</refName>
+                                      <ref>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</ref>
+                                      <type>null</type>
+                                    </expression>
+                                  </subtypeMarkQ>
+                                  <subtypeConstraintQ>
+                                    <constraint class="org.sireum.bakar.xml.NotAnElement">
+                                      <sloc>
+                                        <line>1</line>
+                                        <col>1</col>
+                                        <endline>0</endline>
+                                        <endcol>0</endcol>
+                                      </sloc>
+                                    </constraint>
+                                  </subtypeConstraintQ>
+                                </definition>
+                              </componentDefinitionViewQ>
+                            </definition>
+                          </objectDeclarationViewQ>
+                          <initializationExpressionQ>
+                            <expression class="org.sireum.bakar.xml.NotAnElement">
+                              <sloc>
+                                <line>1</line>
+                                <col>1</col>
+                                <endline>0</endline>
+                                <endcol>0</endcol>
+                              </sloc>
+                            </expression>
+                          </initializationExpressionQ>
+                          <aspectSpecificationsQl/>
+                        </org.sireum.bakar.xml.ComponentDeclaration>
+                      </recordComponents>
+                    </recordComponentsQl>
+                  </definition>
+                </recordDefinitionQ>
+              </definition>
+            </typeDeclarationViewQ>
+            <aspectSpecificationsQl/>
+          </org.sireum.bakar.xml.OrdinaryTypeDeclaration>
+          <org.sireum.bakar.xml.ProcedureDeclaration>
+            <sloc>
+              <line>14</line>
+              <col>1</col>
+              <endline>14</endline>
+              <endcol>36</endcol>
+            </sloc>
+            <isOverridingDeclarationQ>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
+                <sloc>
+                  <line>1</line>
+                  <col>1</col>
+                  <endline>0</endline>
+                  <endcol>0</endcol>
+                </sloc>
+              </isOverriding>
+            </isOverridingDeclarationQ>
+            <isNotOverridingDeclarationQ>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
+                <sloc>
+                  <line>1</line>
+                  <col>1</col>
+                  <endline>0</endline>
+                  <endcol>0</endcol>
+                </sloc>
+              </isNotOverriding>
+            </isNotOverridingDeclarationQ>
+            <namesQl>
+              <definingNames>
+                <org.sireum.bakar.xml.DefiningIdentifier>
+                  <sloc>
+                    <line>14</line>
+                    <col>11</col>
+                    <endline>14</endline>
+                    <endcol>16</endcol>
+                  </sloc>
+                  <defName>Test01</defName>
+                  <def>ada://procedure/SimpleRecordTests-1:9/Test01-14:11</def>
+                  <type>null</type>
+                </org.sireum.bakar.xml.DefiningIdentifier>
+              </definingNames>
+            </namesQl>
+            <parameterProfileQl>
+              <parameterSpecifications>
+                <org.sireum.bakar.xml.ParameterSpecification>
+                  <sloc>
+                    <line>14</line>
+                    <col>18</col>
+                    <endline>14</endline>
+                    <endcol>34</endcol>
+                  </sloc>
+                  <namesQl>
+                    <definingNames>
+                      <org.sireum.bakar.xml.DefiningIdentifier>
+                        <sloc>
+                          <line>14</line>
+                          <col>18</col>
+                          <endline>14</endline>
+                          <endcol>18</endcol>
+                        </sloc>
+                        <defName>Q</defName>
+                        <def>ada://parameter/SimpleRecordTests-1:9/Test01-14:11/Q-14:18</def>
+                        <type>null</type>
+                      </org.sireum.bakar.xml.DefiningIdentifier>
+                    </definingNames>
+                  </namesQl>
+                  <hasAliasedQ>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
+                      <sloc>
+                        <line>1</line>
+                        <col>1</col>
+                        <endline>0</endline>
+                        <endcol>0</endcol>
+                      </sloc>
+                    </hasAliased>
+                  </hasAliasedQ>
+                  <hasNullExclusionQ>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
+                      <sloc>
+                        <line>1</line>
+                        <col>1</col>
+                        <endline>0</endline>
+                        <endcol>0</endcol>
+                      </sloc>
+                    </hasNullExclusion>
+                  </hasNullExclusionQ>
+                  <objectDeclarationViewQ>
+                    <definition class="org.sireum.bakar.xml.Identifier">
+                      <sloc>
+                        <line>14</line>
+                        <col>29</col>
+                        <endline>14</endline>
+                        <endcol>34</endcol>
+                      </sloc>
+                      <refName>Object</refName>
+                      <ref>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</ref>
+                      <type>null</type>
+                    </definition>
+                  </objectDeclarationViewQ>
+                  <initializationExpressionQ>
+                    <expression class="org.sireum.bakar.xml.NotAnElement">
+                      <sloc>
+                        <line>1</line>
+                        <col>1</col>
+                        <endline>0</endline>
+                        <endcol>0</endcol>
+                      </sloc>
+                    </expression>
+                  </initializationExpressionQ>
+                  <mode>AN_IN_OUT_MODE</mode>
+                </org.sireum.bakar.xml.ParameterSpecification>
+              </parameterSpecifications>
+            </parameterProfileQl>
+            <hasAbstractQ>
+              <hasAbstract class="org.sireum.bakar.xml.NotAnElement">
+                <sloc>
+                  <line>1</line>
+                  <col>1</col>
+                  <endline>0</endline>
+                  <endcol>0</endcol>
+                </sloc>
+              </hasAbstract>
+            </hasAbstractQ>
+            <aspectSpecificationsQl/>
+          </org.sireum.bakar.xml.ProcedureDeclaration>
+        </declarativeItems>
+      </visiblePartDeclarativeItemsQl>
+      <privatePartDeclarativeItemsQl/>
+    </declaration>
+  </unitDeclarationQ>
+  <pragmasAfterQl/>
+  <unitKind>A_Package</unitKind>
+  <unitClass>A_Public_Declaration</unitClass>
+  <unitOrigin>An_Application_Unit</unitOrigin>
+  <unitFullName>SimpleRecordTests</unitFullName>
+  <defName>SimpleRecordTests</defName>
+  <sourceFile>simplerecordtests.ads</sourceFile>
+</org.sireum.bakar.xml.CompilationUnit>
+
 simplerecordtests.adb.xml
 <org.sireum.bakar.xml.CompilationUnit>
   <sloc>
@@ -41,24 +636,24 @@ simplerecordtests.adb.xml
               <endcol>14</endcol>
             </sloc>
             <isOverridingDeclarationQ>
-              <notAnElement>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isOverriding>
             </isOverridingDeclarationQ>
             <isNotOverridingDeclarationQ>
-              <notAnElement>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isNotOverriding>
             </isNotOverridingDeclarationQ>
             <namesQl>
               <definingNames>
@@ -100,24 +695,24 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -172,14 +767,14 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -190,24 +785,24 @@ simplerecordtests.adb.xml
                         <endcol>15</endcol>
                       </sloc>
                       <hasAliasedQ>
-                        <notAnElement>
+                        <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasAliased>
                       </hasAliasedQ>
                       <hasNullExclusionQ>
-                        <notAnElement>
+                        <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasNullExclusion>
                       </hasNullExclusionQ>
                       <subtypeMarkQ>
                         <expression class="org.sireum.bakar.xml.Identifier">
@@ -463,24 +1058,24 @@ simplerecordtests.adb.xml
               <endcol>14</endcol>
             </sloc>
             <isOverridingDeclarationQ>
-              <notAnElement>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isOverriding>
             </isOverridingDeclarationQ>
             <isNotOverridingDeclarationQ>
-              <notAnElement>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isNotOverriding>
             </isNotOverridingDeclarationQ>
             <namesQl>
               <definingNames>
@@ -533,24 +1128,24 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -611,24 +1206,24 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -683,14 +1278,14 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -701,24 +1296,24 @@ simplerecordtests.adb.xml
                         <endcol>16</endcol>
                       </sloc>
                       <hasAliasedQ>
-                        <notAnElement>
+                        <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasAliased>
                       </hasAliasedQ>
                       <hasNullExclusionQ>
-                        <notAnElement>
+                        <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasNullExclusion>
                       </hasNullExclusionQ>
                       <subtypeMarkQ>
                         <expression class="org.sireum.bakar.xml.Identifier">
@@ -1009,24 +1604,24 @@ simplerecordtests.adb.xml
               <endcol>14</endcol>
             </sloc>
             <isOverridingDeclarationQ>
-              <notAnElement>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isOverriding>
             </isOverridingDeclarationQ>
             <isNotOverridingDeclarationQ>
-              <notAnElement>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isNotOverriding>
             </isNotOverridingDeclarationQ>
             <namesQl>
               <definingNames>
@@ -1079,24 +1674,24 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -1157,24 +1752,24 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -1229,14 +1824,14 @@ simplerecordtests.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -1247,24 +1842,24 @@ simplerecordtests.adb.xml
                         <endcol>22</endcol>
                       </sloc>
                       <hasAliasedQ>
-                        <notAnElement>
+                        <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasAliased>
                       </hasAliasedQ>
                       <hasNullExclusionQ>
-                        <notAnElement>
+                        <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasNullExclusion>
                       </hasNullExclusionQ>
                       <subtypeMarkQ>
                         <expression class="org.sireum.bakar.xml.Identifier">
@@ -1656,600 +2251,5 @@ simplerecordtests.adb.xml
   <unitFullName>SimpleRecordTests</unitFullName>
   <defName>SimpleRecordTests</defName>
   <sourceFile>simplerecordtests.adb</sourceFile>
-</org.sireum.bakar.xml.CompilationUnit>
-
-simplerecordtests.ads.xml
-<org.sireum.bakar.xml.CompilationUnit>
-  <sloc>
-    <line>1</line>
-    <col>1</col>
-    <endline>16</endline>
-    <endcol>22</endcol>
-  </sloc>
-  <contextClauseElementsQl/>
-  <unitDeclarationQ>
-    <declaration class="org.sireum.bakar.xml.PackageDeclaration">
-      <sloc>
-        <line>1</line>
-        <col>1</col>
-        <endline>16</endline>
-        <endcol>22</endcol>
-      </sloc>
-      <namesQl>
-        <definingNames>
-          <org.sireum.bakar.xml.DefiningIdentifier>
-            <sloc>
-              <line>1</line>
-              <col>9</col>
-              <endline>1</endline>
-              <endcol>25</endcol>
-            </sloc>
-            <defName>SimpleRecordTests</defName>
-            <def>ada://package/SimpleRecordTests-1:9</def>
-            <type>null</type>
-          </org.sireum.bakar.xml.DefiningIdentifier>
-        </definingNames>
-      </namesQl>
-      <aspectSpecificationsQl/>
-      <visiblePartDeclarativeItemsQl>
-        <declarativeItems>
-          <org.sireum.bakar.xml.OrdinaryTypeDeclaration>
-            <sloc>
-              <line>3</line>
-              <col>1</col>
-              <endline>6</endline>
-              <endcol>17</endcol>
-            </sloc>
-            <namesQl>
-              <definingNames>
-                <org.sireum.bakar.xml.DefiningIdentifier>
-                  <sloc>
-                    <line>3</line>
-                    <col>6</col>
-                    <endline>3</endline>
-                    <endcol>11</endcol>
-                  </sloc>
-                  <defName>Object</defName>
-                  <def>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</def>
-                  <type>null</type>
-                </org.sireum.bakar.xml.DefiningIdentifier>
-              </definingNames>
-            </namesQl>
-            <discriminantPartQ>
-              <definition class="org.sireum.bakar.xml.NotAnElement">
-                <sloc>
-                  <line>1</line>
-                  <col>1</col>
-                  <endline>0</endline>
-                  <endcol>0</endcol>
-                </sloc>
-              </definition>
-            </discriminantPartQ>
-            <typeDeclarationViewQ>
-              <definition class="org.sireum.bakar.xml.RecordTypeDefinition">
-                <sloc>
-                  <line>4</line>
-                  <col>7</col>
-                  <endline>6</endline>
-                  <endcol>16</endcol>
-                </sloc>
-                <hasAbstractQ>
-                  <notAnElement>
-                    <sloc>
-                      <line>1</line>
-                      <col>1</col>
-                      <endline>0</endline>
-                      <endcol>0</endcol>
-                    </sloc>
-                  </notAnElement>
-                </hasAbstractQ>
-                <hasLimitedQ>
-                  <notAnElement>
-                    <sloc>
-                      <line>1</line>
-                      <col>1</col>
-                      <endline>0</endline>
-                      <endcol>0</endcol>
-                    </sloc>
-                  </notAnElement>
-                </hasLimitedQ>
-                <recordDefinitionQ>
-                  <definition class="org.sireum.bakar.xml.RecordDefinition">
-                    <sloc>
-                      <line>4</line>
-                      <col>7</col>
-                      <endline>6</endline>
-                      <endcol>16</endcol>
-                    </sloc>
-                    <hasLimitedQ>
-                      <notAnElement>
-                        <sloc>
-                          <line>1</line>
-                          <col>1</col>
-                          <endline>0</endline>
-                          <endcol>0</endcol>
-                        </sloc>
-                      </notAnElement>
-                    </hasLimitedQ>
-                    <recordComponentsQl>
-                      <recordComponents>
-                        <org.sireum.bakar.xml.ComponentDeclaration>
-                          <sloc>
-                            <line>5</line>
-                            <col>10</col>
-                            <endline>5</endline>
-                            <endcol>22</endcol>
-                          </sloc>
-                          <namesQl>
-                            <definingNames>
-                              <org.sireum.bakar.xml.DefiningIdentifier>
-                                <sloc>
-                                  <line>5</line>
-                                  <col>10</col>
-                                  <endline>5</endline>
-                                  <endcol>10</endcol>
-                                </sloc>
-                                <defName>X</defName>
-                                <def>ada://component/SimpleRecordTests-1:9/Object-3:6/X-5:10</def>
-                                <type>null</type>
-                              </org.sireum.bakar.xml.DefiningIdentifier>
-                              <org.sireum.bakar.xml.DefiningIdentifier>
-                                <sloc>
-                                  <line>5</line>
-                                  <col>13</col>
-                                  <endline>5</endline>
-                                  <endcol>13</endcol>
-                                </sloc>
-                                <defName>Y</defName>
-                                <def>ada://component/SimpleRecordTests-1:9/Object-3:6/Y-5:13</def>
-                                <type>null</type>
-                              </org.sireum.bakar.xml.DefiningIdentifier>
-                            </definingNames>
-                          </namesQl>
-                          <hasAliasedQ>
-                            <notAnElement>
-                              <sloc>
-                                <line>1</line>
-                                <col>1</col>
-                                <endline>0</endline>
-                                <endcol>0</endcol>
-                              </sloc>
-                            </notAnElement>
-                          </hasAliasedQ>
-                          <objectDeclarationViewQ>
-                            <definition class="org.sireum.bakar.xml.ComponentDefinition">
-                              <sloc>
-                                <line>5</line>
-                                <col>17</col>
-                                <endline>5</endline>
-                                <endcol>21</endcol>
-                              </sloc>
-                              <hasAliasedQ>
-                                <notAnElement>
-                                  <sloc>
-                                    <line>1</line>
-                                    <col>1</col>
-                                    <endline>0</endline>
-                                    <endcol>0</endcol>
-                                  </sloc>
-                                </notAnElement>
-                              </hasAliasedQ>
-                              <componentDefinitionViewQ>
-                                <definition class="org.sireum.bakar.xml.SubtypeIndication">
-                                  <sloc>
-                                    <line>5</line>
-                                    <col>17</col>
-                                    <endline>5</endline>
-                                    <endcol>21</endcol>
-                                  </sloc>
-                                  <hasAliasedQ>
-                                    <notAnElement>
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </notAnElement>
-                                  </hasAliasedQ>
-                                  <hasNullExclusionQ>
-                                    <notAnElement>
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </notAnElement>
-                                  </hasNullExclusionQ>
-                                  <subtypeMarkQ>
-                                    <expression class="org.sireum.bakar.xml.Identifier">
-                                      <sloc>
-                                        <line>5</line>
-                                        <col>17</col>
-                                        <endline>5</endline>
-                                        <endcol>21</endcol>
-                                      </sloc>
-                                      <refName>Float</refName>
-                                      <ref>ada://ordinary_type/Standard-1:1/Float-1:1</ref>
-                                      <type>null</type>
-                                    </expression>
-                                  </subtypeMarkQ>
-                                  <subtypeConstraintQ>
-                                    <constraint class="org.sireum.bakar.xml.NotAnElement">
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </constraint>
-                                  </subtypeConstraintQ>
-                                </definition>
-                              </componentDefinitionViewQ>
-                            </definition>
-                          </objectDeclarationViewQ>
-                          <initializationExpressionQ>
-                            <expression class="org.sireum.bakar.xml.NotAnElement">
-                              <sloc>
-                                <line>1</line>
-                                <col>1</col>
-                                <endline>0</endline>
-                                <endcol>0</endcol>
-                              </sloc>
-                            </expression>
-                          </initializationExpressionQ>
-                          <aspectSpecificationsQl/>
-                        </org.sireum.bakar.xml.ComponentDeclaration>
-                      </recordComponents>
-                    </recordComponentsQl>
-                  </definition>
-                </recordDefinitionQ>
-              </definition>
-            </typeDeclarationViewQ>
-            <aspectSpecificationsQl/>
-          </org.sireum.bakar.xml.OrdinaryTypeDeclaration>
-          <org.sireum.bakar.xml.OrdinaryTypeDeclaration>
-            <sloc>
-              <line>8</line>
-              <col>1</col>
-              <endline>11</endline>
-              <endcol>17</endcol>
-            </sloc>
-            <namesQl>
-              <definingNames>
-                <org.sireum.bakar.xml.DefiningIdentifier>
-                  <sloc>
-                    <line>8</line>
-                    <col>6</col>
-                    <endline>8</endline>
-                    <endcol>17</endcol>
-                  </sloc>
-                  <defName>NestedObject</defName>
-                  <def>ada://ordinary_type/SimpleRecordTests-1:9/NestedObject-8:6</def>
-                  <type>null</type>
-                </org.sireum.bakar.xml.DefiningIdentifier>
-              </definingNames>
-            </namesQl>
-            <discriminantPartQ>
-              <definition class="org.sireum.bakar.xml.NotAnElement">
-                <sloc>
-                  <line>1</line>
-                  <col>1</col>
-                  <endline>0</endline>
-                  <endcol>0</endcol>
-                </sloc>
-              </definition>
-            </discriminantPartQ>
-            <typeDeclarationViewQ>
-              <definition class="org.sireum.bakar.xml.RecordTypeDefinition">
-                <sloc>
-                  <line>9</line>
-                  <col>7</col>
-                  <endline>11</endline>
-                  <endcol>16</endcol>
-                </sloc>
-                <hasAbstractQ>
-                  <notAnElement>
-                    <sloc>
-                      <line>1</line>
-                      <col>1</col>
-                      <endline>0</endline>
-                      <endcol>0</endcol>
-                    </sloc>
-                  </notAnElement>
-                </hasAbstractQ>
-                <hasLimitedQ>
-                  <notAnElement>
-                    <sloc>
-                      <line>1</line>
-                      <col>1</col>
-                      <endline>0</endline>
-                      <endcol>0</endcol>
-                    </sloc>
-                  </notAnElement>
-                </hasLimitedQ>
-                <recordDefinitionQ>
-                  <definition class="org.sireum.bakar.xml.RecordDefinition">
-                    <sloc>
-                      <line>9</line>
-                      <col>7</col>
-                      <endline>11</endline>
-                      <endcol>16</endcol>
-                    </sloc>
-                    <hasLimitedQ>
-                      <notAnElement>
-                        <sloc>
-                          <line>1</line>
-                          <col>1</col>
-                          <endline>0</endline>
-                          <endcol>0</endcol>
-                        </sloc>
-                      </notAnElement>
-                    </hasLimitedQ>
-                    <recordComponentsQl>
-                      <recordComponents>
-                        <org.sireum.bakar.xml.ComponentDeclaration>
-                          <sloc>
-                            <line>10</line>
-                            <col>10</col>
-                            <endline>10</endline>
-                            <endcol>20</endcol>
-                          </sloc>
-                          <namesQl>
-                            <definingNames>
-                              <org.sireum.bakar.xml.DefiningIdentifier>
-                                <sloc>
-                                  <line>10</line>
-                                  <col>10</col>
-                                  <endline>10</endline>
-                                  <endcol>10</endcol>
-                                </sloc>
-                                <defName>O</defName>
-                                <def>ada://component/SimpleRecordTests-1:9/NestedObject-8:6/O-10:10</def>
-                                <type>null</type>
-                              </org.sireum.bakar.xml.DefiningIdentifier>
-                            </definingNames>
-                          </namesQl>
-                          <hasAliasedQ>
-                            <notAnElement>
-                              <sloc>
-                                <line>1</line>
-                                <col>1</col>
-                                <endline>0</endline>
-                                <endcol>0</endcol>
-                              </sloc>
-                            </notAnElement>
-                          </hasAliasedQ>
-                          <objectDeclarationViewQ>
-                            <definition class="org.sireum.bakar.xml.ComponentDefinition">
-                              <sloc>
-                                <line>10</line>
-                                <col>14</col>
-                                <endline>10</endline>
-                                <endcol>19</endcol>
-                              </sloc>
-                              <hasAliasedQ>
-                                <notAnElement>
-                                  <sloc>
-                                    <line>1</line>
-                                    <col>1</col>
-                                    <endline>0</endline>
-                                    <endcol>0</endcol>
-                                  </sloc>
-                                </notAnElement>
-                              </hasAliasedQ>
-                              <componentDefinitionViewQ>
-                                <definition class="org.sireum.bakar.xml.SubtypeIndication">
-                                  <sloc>
-                                    <line>10</line>
-                                    <col>14</col>
-                                    <endline>10</endline>
-                                    <endcol>19</endcol>
-                                  </sloc>
-                                  <hasAliasedQ>
-                                    <notAnElement>
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </notAnElement>
-                                  </hasAliasedQ>
-                                  <hasNullExclusionQ>
-                                    <notAnElement>
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </notAnElement>
-                                  </hasNullExclusionQ>
-                                  <subtypeMarkQ>
-                                    <expression class="org.sireum.bakar.xml.Identifier">
-                                      <sloc>
-                                        <line>10</line>
-                                        <col>14</col>
-                                        <endline>10</endline>
-                                        <endcol>19</endcol>
-                                      </sloc>
-                                      <refName>Object</refName>
-                                      <ref>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</ref>
-                                      <type>null</type>
-                                    </expression>
-                                  </subtypeMarkQ>
-                                  <subtypeConstraintQ>
-                                    <constraint class="org.sireum.bakar.xml.NotAnElement">
-                                      <sloc>
-                                        <line>1</line>
-                                        <col>1</col>
-                                        <endline>0</endline>
-                                        <endcol>0</endcol>
-                                      </sloc>
-                                    </constraint>
-                                  </subtypeConstraintQ>
-                                </definition>
-                              </componentDefinitionViewQ>
-                            </definition>
-                          </objectDeclarationViewQ>
-                          <initializationExpressionQ>
-                            <expression class="org.sireum.bakar.xml.NotAnElement">
-                              <sloc>
-                                <line>1</line>
-                                <col>1</col>
-                                <endline>0</endline>
-                                <endcol>0</endcol>
-                              </sloc>
-                            </expression>
-                          </initializationExpressionQ>
-                          <aspectSpecificationsQl/>
-                        </org.sireum.bakar.xml.ComponentDeclaration>
-                      </recordComponents>
-                    </recordComponentsQl>
-                  </definition>
-                </recordDefinitionQ>
-              </definition>
-            </typeDeclarationViewQ>
-            <aspectSpecificationsQl/>
-          </org.sireum.bakar.xml.OrdinaryTypeDeclaration>
-          <org.sireum.bakar.xml.ProcedureDeclaration>
-            <sloc>
-              <line>14</line>
-              <col>1</col>
-              <endline>14</endline>
-              <endcol>36</endcol>
-            </sloc>
-            <isOverridingDeclarationQ>
-              <notAnElement>
-                <sloc>
-                  <line>1</line>
-                  <col>1</col>
-                  <endline>0</endline>
-                  <endcol>0</endcol>
-                </sloc>
-              </notAnElement>
-            </isOverridingDeclarationQ>
-            <isNotOverridingDeclarationQ>
-              <notAnElement>
-                <sloc>
-                  <line>1</line>
-                  <col>1</col>
-                  <endline>0</endline>
-                  <endcol>0</endcol>
-                </sloc>
-              </notAnElement>
-            </isNotOverridingDeclarationQ>
-            <namesQl>
-              <definingNames>
-                <org.sireum.bakar.xml.DefiningIdentifier>
-                  <sloc>
-                    <line>14</line>
-                    <col>11</col>
-                    <endline>14</endline>
-                    <endcol>16</endcol>
-                  </sloc>
-                  <defName>Test01</defName>
-                  <def>ada://procedure/SimpleRecordTests-1:9/Test01-14:11</def>
-                  <type>null</type>
-                </org.sireum.bakar.xml.DefiningIdentifier>
-              </definingNames>
-            </namesQl>
-            <parameterProfileQl>
-              <parameterSpecifications>
-                <org.sireum.bakar.xml.ParameterSpecification>
-                  <sloc>
-                    <line>14</line>
-                    <col>18</col>
-                    <endline>14</endline>
-                    <endcol>34</endcol>
-                  </sloc>
-                  <namesQl>
-                    <definingNames>
-                      <org.sireum.bakar.xml.DefiningIdentifier>
-                        <sloc>
-                          <line>14</line>
-                          <col>18</col>
-                          <endline>14</endline>
-                          <endcol>18</endcol>
-                        </sloc>
-                        <defName>Q</defName>
-                        <def>ada://parameter/SimpleRecordTests-1:9/Test01-14:11/Q-14:18</def>
-                        <type>null</type>
-                      </org.sireum.bakar.xml.DefiningIdentifier>
-                    </definingNames>
-                  </namesQl>
-                  <hasAliasedQ>
-                    <notAnElement>
-                      <sloc>
-                        <line>1</line>
-                        <col>1</col>
-                        <endline>0</endline>
-                        <endcol>0</endcol>
-                      </sloc>
-                    </notAnElement>
-                  </hasAliasedQ>
-                  <hasNullExclusionQ>
-                    <notAnElement>
-                      <sloc>
-                        <line>1</line>
-                        <col>1</col>
-                        <endline>0</endline>
-                        <endcol>0</endcol>
-                      </sloc>
-                    </notAnElement>
-                  </hasNullExclusionQ>
-                  <objectDeclarationViewQ>
-                    <definition class="org.sireum.bakar.xml.Identifier">
-                      <sloc>
-                        <line>14</line>
-                        <col>29</col>
-                        <endline>14</endline>
-                        <endcol>34</endcol>
-                      </sloc>
-                      <refName>Object</refName>
-                      <ref>ada://ordinary_type/SimpleRecordTests-1:9/Object-3:6</ref>
-                      <type>null</type>
-                    </definition>
-                  </objectDeclarationViewQ>
-                  <initializationExpressionQ>
-                    <expression class="org.sireum.bakar.xml.NotAnElement">
-                      <sloc>
-                        <line>1</line>
-                        <col>1</col>
-                        <endline>0</endline>
-                        <endcol>0</endcol>
-                      </sloc>
-                    </expression>
-                  </initializationExpressionQ>
-                  <mode>AN_IN_OUT_MODE</mode>
-                </org.sireum.bakar.xml.ParameterSpecification>
-              </parameterSpecifications>
-            </parameterProfileQl>
-            <hasAbstractQ>
-              <notAnElement>
-                <sloc>
-                  <line>1</line>
-                  <col>1</col>
-                  <endline>0</endline>
-                  <endcol>0</endcol>
-                </sloc>
-              </notAnElement>
-            </hasAbstractQ>
-            <aspectSpecificationsQl/>
-          </org.sireum.bakar.xml.ProcedureDeclaration>
-        </declarativeItems>
-      </visiblePartDeclarativeItemsQl>
-      <privatePartDeclarativeItemsQl/>
-    </declaration>
-  </unitDeclarationQ>
-  <pragmasAfterQl/>
-  <unitKind>A_Package</unitKind>
-  <unitClass>A_Public_Declaration</unitClass>
-  <unitOrigin>An_Application_Unit</unitOrigin>
-  <unitFullName>SimpleRecordTests</unitFullName>
-  <defName>SimpleRecordTests</defName>
-  <sourceFile>simplerecordtests.ads</sourceFile>
 </org.sireum.bakar.xml.CompilationUnit>
 

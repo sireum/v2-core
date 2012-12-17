@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/test/scala"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-compiler"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-core-test"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaTest"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-module"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pilar"/>
-	<classpathentry kind="output" path="bin"/>
+  <classpathentry kind="src" path="src/test/scala"/>
+  <classpathentry kind="src" path="src/test/resources"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-compiler"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-xml"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-core-test"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-module"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-pilar"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
+  <classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>	
+  <classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaTest"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XStream"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>  
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+  <classpathentry kind="output" path="bin"/>
 </classpath>

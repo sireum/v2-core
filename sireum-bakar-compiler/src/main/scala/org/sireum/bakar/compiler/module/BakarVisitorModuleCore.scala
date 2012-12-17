@@ -1,4 +1,4 @@
-package org.sireum.bakar.xml.module
+package org.sireum.bakar.compiler.module
 
 import org.sireum.util._
 import org.sireum.pipeline._
@@ -16,7 +16,7 @@ object BakarVisitorModule extends PipelineModule {
   def compute(job : PipelineJob, info : PipelineJobModuleInfo) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
     try {
-      val module = Class.forName("org.sireum.bakar.xml.module.BakarVisitorDef")
+      val module = Class.forName("org.sireum.bakar.compiler.module.BakarVisitorDef")
       val cons = module.getConstructors()(0)
       val params = Array[AnyRef](job, info)
       val inst = cons.newInstance(params : _*)

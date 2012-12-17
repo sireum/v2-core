@@ -41,24 +41,24 @@ test_case_10.adb.xml
               <endcol>11</endcol>
             </sloc>
             <isOverridingDeclarationQ>
-              <notAnElement>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isOverriding>
             </isOverridingDeclarationQ>
             <isNotOverridingDeclarationQ>
-              <notAnElement>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isNotOverriding>
             </isNotOverridingDeclarationQ>
             <namesQl>
               <definingNames>
@@ -122,24 +122,24 @@ test_case_10.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -200,24 +200,24 @@ test_case_10.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -283,14 +283,14 @@ test_case_10.adb.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.SubtypeIndication">
@@ -301,24 +301,24 @@ test_case_10.adb.xml
                         <endcol>24</endcol>
                       </sloc>
                       <hasAliasedQ>
-                        <notAnElement>
+                        <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasAliased>
                       </hasAliasedQ>
                       <hasNullExclusionQ>
-                        <notAnElement>
+                        <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </hasNullExclusion>
                       </hasNullExclusionQ>
                       <subtypeMarkQ>
                         <expression class="org.sireum.bakar.xml.Identifier">
@@ -609,24 +609,24 @@ test_case_10.adb.xml
                         </associations>
                       </functionCallParametersQl>
                       <isPrefixCallQ>
-                        <notAnElement>
+                        <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </isPrefixCall>
                       </isPrefixCallQ>
                       <isPrefixNotationQ>
-                        <notAnElement>
+                        <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                           <sloc>
                             <line>1</line>
                             <col>1</col>
                             <endline>0</endline>
                             <endcol>0</endcol>
                           </sloc>
-                        </notAnElement>
+                        </isPrefixNotation>
                       </isPrefixNotationQ>
                       <type>ada://ordinary_type/Standard-1:1/Integer-1:1</type>
                     </expression>
@@ -736,24 +736,24 @@ test_case_10.adb.xml
                               </associations>
                             </functionCallParametersQl>
                             <isPrefixCallQ>
-                              <notAnElement>
+                              <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixCall>
                             </isPrefixCallQ>
                             <isPrefixNotationQ>
-                              <notAnElement>
+                              <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                 <sloc>
                                   <line>1</line>
                                   <col>1</col>
                                   <endline>0</endline>
                                   <endcol>0</endcol>
                                 </sloc>
-                              </notAnElement>
+                              </isPrefixNotation>
                             </isPrefixNotationQ>
                             <type>ada://ordinary_type/Standard-1:1/Boolean-1:1</type>
                           </expression>
@@ -864,24 +864,24 @@ test_case_10.adb.xml
                                           </associations>
                                         </functionCallParametersQl>
                                         <isPrefixCallQ>
-                                          <notAnElement>
+                                          <isPrefixCall class="org.sireum.bakar.xml.NotAnElement">
                                             <sloc>
                                               <line>1</line>
                                               <col>1</col>
                                               <endline>0</endline>
                                               <endcol>0</endcol>
                                             </sloc>
-                                          </notAnElement>
+                                          </isPrefixCall>
                                         </isPrefixCallQ>
                                         <isPrefixNotationQ>
-                                          <notAnElement>
+                                          <isPrefixNotation class="org.sireum.bakar.xml.NotAnElement">
                                             <sloc>
                                               <line>1</line>
                                               <col>1</col>
                                               <endline>0</endline>
                                               <endcol>0</endcol>
                                             </sloc>
-                                          </notAnElement>
+                                          </isPrefixNotation>
                                         </isPrefixNotationQ>
                                         <type>ada://ordinary_type/Standard-1:1/Boolean-1:1</type>
                                       </expression>
@@ -1077,24 +1077,24 @@ test_case_10.ads.xml
               <endcol>65</endcol>
             </sloc>
             <isOverridingDeclarationQ>
-              <notAnElement>
+              <isOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isOverriding>
             </isOverridingDeclarationQ>
             <isNotOverridingDeclarationQ>
-              <notAnElement>
+              <isNotOverriding class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </isNotOverriding>
             </isNotOverridingDeclarationQ>
             <namesQl>
               <definingNames>
@@ -1158,24 +1158,24 @@ test_case_10.ads.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -1236,24 +1236,24 @@ test_case_10.ads.xml
                     </definingNames>
                   </namesQl>
                   <hasAliasedQ>
-                    <notAnElement>
+                    <hasAliased class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasAliased>
                   </hasAliasedQ>
                   <hasNullExclusionQ>
-                    <notAnElement>
+                    <hasNullExclusion class="org.sireum.bakar.xml.NotAnElement">
                       <sloc>
                         <line>1</line>
                         <col>1</col>
                         <endline>0</endline>
                         <endcol>0</endcol>
                       </sloc>
-                    </notAnElement>
+                    </hasNullExclusion>
                   </hasNullExclusionQ>
                   <objectDeclarationViewQ>
                     <definition class="org.sireum.bakar.xml.Identifier">
@@ -1283,14 +1283,14 @@ test_case_10.ads.xml
               </parameterSpecifications>
             </parameterProfileQl>
             <hasAbstractQ>
-              <notAnElement>
+              <hasAbstract class="org.sireum.bakar.xml.NotAnElement">
                 <sloc>
                   <line>1</line>
                   <col>1</col>
                   <endline>0</endline>
                   <endcol>0</endcol>
                 </sloc>
-              </notAnElement>
+              </hasAbstract>
             </hasAbstractQ>
             <aspectSpecificationsQl/>
           </org.sireum.bakar.xml.ProcedureDeclaration>

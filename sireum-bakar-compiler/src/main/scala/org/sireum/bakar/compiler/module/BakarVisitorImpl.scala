@@ -1,9 +1,18 @@
-package org.sireum.bakar.xml.module
+package org.sireum.bakar.compiler.module
 
 import org.sireum.bakar.xml._
 import org.sireum.pilar.ast._
 import org.sireum.pipeline._
 import org.sireum.util._
+import org.sireum.pilar.ast.AssignAction.apply
+import org.sireum.pilar.ast.BinaryExp.apply
+import org.sireum.pilar.ast.CallExp.apply
+import org.sireum.pilar.ast.LiteralExp.apply
+import org.sireum.pilar.ast.NameExp.apply
+import org.sireum.pilar.ast.NameUser.apply
+import org.sireum.pilar.ast.TupleExp.apply
+import scala.Some.apply
+import scala.collection.JavaConversions.asScalaBuffer
 
 class BakarVisitorDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BakarVisitorModule {
 
