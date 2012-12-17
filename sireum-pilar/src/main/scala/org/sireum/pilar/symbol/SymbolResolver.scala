@@ -760,7 +760,7 @@ trait JumpResolver extends SymbolResolver {
         }
     loc match {
       case loc : ActionLocation =>
-        loc.action.isInstanceOf[ThrowAction]
+        !loc.action.isInstanceOf[ThrowAction]
       case loc : EmptyLocation  => true
       case loc : JumpLocation   => hasImplicit(loc.jump)
       case loc : ComplexLocation =>
