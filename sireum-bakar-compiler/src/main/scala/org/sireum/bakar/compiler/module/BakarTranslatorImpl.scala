@@ -16,10 +16,9 @@ import scala.collection.JavaConversions.asScalaBuffer
 
 class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BakarTranslatorModule {
 
-  type Visitor = Any => Boolean
+  type BVisitor = Any => Boolean
 
   trait Context {
-    var elemStack = mstackEmpty[Any]
 
     var unhandledSet = msetEmpty[String]
 
@@ -76,7 +75,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     }
   }
 
-  def packageH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def packageH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o @ CompilationUnitEx(
       sloc,
       contextClauseElements,
@@ -103,7 +102,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
   }
 
-  def methodH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def methodH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o @ ProcedureDeclarationEx(sloc, isOverridingDec, isNotOverridingDec, name, paramProfile, hasAbstract, aspectSpec) =>
       println(o.getClass().getSimpleName())
       true
@@ -118,7 +117,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
   }
 
-  def nameH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def nameH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o @ IdentifierEx(sloc, refName, ref, theType) =>
       ctx.pushResult(NameExp(NameUser(refName)))
       false
@@ -135,7 +134,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
   }
 
-  def statementH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def statementH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o @ StatementListEx(statements) =>
       println(o.getClass().getSimpleName())
       true
@@ -195,7 +194,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
   }
 
-  def expressionH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def expressionH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case ExpressionClassEx(expr) =>
       true
     case o @ FunctionCallEx(sloc, prefix, functionCallParameters, isPrefixCall, isPrefixNotation, theType) =>
@@ -257,7 +256,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
   }
 
-  def everythingElseH(ctx : Context, v : => Visitor) : VisitorFunction = {
+  def everythingElseH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o if (o != null) =>
       ctx.unhandledSet += o.getClass.getSimpleName()
       true
@@ -266,42 +265,17 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       false
   }
 
-  def visitor : Visitor = b
-
-  def preStep(ctx : Context, v : => Visitor) : VisitorFunction = {
-    case o =>
-      println("prestep")
-      ctx.elemStack.push(o)
-      false
-  }
-
-  def postStep(ctx : Context, v : => Visitor) : VisitorFunction = {
-    case o =>
-      ctx.elemStack.pop
-      false
-  }
-
+  def theVisitor : BVisitor = b
   val ctx = new Context {}
-
-  def step[A] //
-  (f1 : A --> Boolean, f2 : A --> Boolean) : A --> Boolean = {
-    new PartialFunction[A, Boolean] {
-      def isDefinedAt(a : A) = (f1 isDefinedAt a) || (f2 isDefinedAt a)
-      def apply(a : A) : Boolean = {
-        f1(a)
-        if (f2 isDefinedAt a) f2(a) else false
-      }
-    }
-  }
 
   val b = Visitor.build(Visitor.map(
     ilist(
-      packageH(ctx, visitor),
-      methodH(ctx, visitor),
-      statementH(ctx, visitor),
-      expressionH(ctx, visitor),
-      nameH(ctx, visitor),
-      everythingElseH(ctx, visitor))
+      packageH(ctx, theVisitor),
+      methodH(ctx, theVisitor),
+      statementH(ctx, theVisitor),
+      expressionH(ctx, theVisitor),
+      nameH(ctx, theVisitor),
+      everythingElseH(ctx, theVisitor))
   ))
 
   this.parseGnat2XMLresults.foreach {
