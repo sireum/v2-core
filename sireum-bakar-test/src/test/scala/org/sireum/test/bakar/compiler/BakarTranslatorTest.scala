@@ -1,18 +1,17 @@
 package org.sireum.test.bakar.compiler
+
 import org.junit.runner.RunWith
 import java.io.Writer
-import org.sireum.pipeline.PipelineJob
-import org.sireum.pipeline.PipelineConfiguration.apply
-import org.scalatest.junit.JUnitRunner
-import org.sireum.test.bakar.xml.BakarXmlTest
-import org.sireum.pipeline.PipelineConfiguration
-import org.sireum.pipeline.PipelineStage
+import org.sireum.pipeline._
 import org.sireum.bakar.xml.module.Gnat2XMLWrapperModule
 import org.sireum.bakar.xml.module.ParseGnat2XMLModule
 import org.sireum.bakar.compiler.module._
+import org.sireum.test.bakar.xml.BakarXmlTest
+import org.sireum.pipeline._
+import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class BakarVisitorTest extends BakarXmlTest {
+class BakarTranslatorTest extends BakarXmlTest {
 
   override def pipeline =
     PipelineConfiguration(
@@ -29,9 +28,9 @@ class BakarVisitorTest extends BakarXmlTest {
         ParseGnat2XMLModule
       ),
       PipelineStage(
-        "visitor stage",
+        "translator stage",
         false,
-        BakarVisitorModule)
+        BakarTranslatorModule)
     )
 
   override def generateExpected = false

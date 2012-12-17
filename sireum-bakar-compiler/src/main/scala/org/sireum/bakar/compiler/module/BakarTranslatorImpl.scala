@@ -14,7 +14,7 @@ import org.sireum.pilar.ast.TupleExp.apply
 import scala.Some.apply
 import scala.collection.JavaConversions.asScalaBuffer
 
-class BakarVisitorDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BakarVisitorModule {
+class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BakarTranslatorModule {
 
   type Visitor = Any => Boolean
 

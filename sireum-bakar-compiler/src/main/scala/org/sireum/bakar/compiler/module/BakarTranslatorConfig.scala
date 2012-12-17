@@ -10,7 +10,7 @@ import org.sireum.option.PipelineMode
 import org.sireum.pipeline.Input
 import org.sireum.pipeline.Produce
 
-case class BakarVisitor (
+case class BakarTranslator (
 
     title : String = "Bakar Vistor",
     
@@ -24,9 +24,9 @@ case class BakarVisitor (
 object hold2 {
   def main(args : Array[String]) {
     val opt = PipelineMode()
-    opt.classNames = Array(BakarVisitor.getClass.getName.dropRight(1))
+    opt.classNames = Array(BakarTranslator.getClass.getName.dropRight(1))
     opt.dir = "./src/main/scala/org/sireum/bakar/compiler/module"
-    opt.genClassName = "BakarVisitorModuleCore"
+    opt.genClassName = "BakarTranslatorModuleCore"
 
     ModuleGenerator.run(opt)
   }

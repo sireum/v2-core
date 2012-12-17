@@ -6,17 +6,17 @@ import java.lang.String
 import org.sireum.bakar.xml.CompilationUnit
 import scala.collection.mutable.Map
 
-object BakarVisitorModule extends PipelineModule {
+object BakarTranslatorModule extends PipelineModule {
   def title = "Bakar Vistor"
-  def origin = classOf[BakarVisitor]
+  def origin = classOf[BakarTranslator]
 
-  val resultsKey = "BakarVisitor.results"
   val globalParseGnat2XMLresultsKey = "Global.parseGnat2XMLresults"
+  val resultsKey = "BakarTranslator.results"
 
   def compute(job : PipelineJob, info : PipelineJobModuleInfo) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
     try {
-      val module = Class.forName("org.sireum.bakar.compiler.module.BakarVisitorDef")
+      val module = Class.forName("org.sireum.bakar.compiler.module.BakarTranslatorDef")
       val cons = module.getConstructors()(0)
       val params = Array[AnyRef](job, info)
       val inst = cons.newInstance(params : _*)
@@ -49,7 +49,7 @@ object BakarVisitorModule extends PipelineModule {
     var _parseGnat2XMLresults : scala.Option[AnyRef] = None
     var _parseGnat2XMLresultsKey : scala.Option[String] = None
 
-    val keylistparseGnat2XMLresults = List(BakarVisitorModule.globalParseGnat2XMLresultsKey)
+    val keylistparseGnat2XMLresults = List(BakarTranslatorModule.globalParseGnat2XMLresultsKey)
     keylistparseGnat2XMLresults.foreach(key => 
       if(job ? key) { 
         if(_parseGnat2XMLresults.isEmpty) {
@@ -78,22 +78,22 @@ object BakarVisitorModule extends PipelineModule {
 
   def outputDefined (job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    if(!(job ? BakarVisitorModule.resultsKey)) {
+    if(!(job ? BakarTranslatorModule.resultsKey)) {
       tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
-        "Output error for '" + this.title + "': No entry found for 'results'. Expecting (BakarVisitorModule.resultsKey)") 
+        "Output error for '" + this.title + "': No entry found for 'results'. Expecting (BakarTranslatorModule.resultsKey)") 
     }
 
-    if(job ? BakarVisitorModule.resultsKey && !job(BakarVisitorModule.resultsKey).isInstanceOf[scala.Boolean]) {
+    if(job ? BakarTranslatorModule.resultsKey && !job(BakarTranslatorModule.resultsKey).isInstanceOf[scala.Boolean]) {
       tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, 
-        "Output error for '" + this.title + "': Wrong type found for BakarVisitorModule.resultsKey.  Expecting 'scala.Boolean' but found '" + 
-        job(BakarVisitorModule.resultsKey).getClass.toString + "'")
+        "Output error for '" + this.title + "': Wrong type found for BakarTranslatorModule.resultsKey.  Expecting 'scala.Boolean' but found '" + 
+        job(BakarTranslatorModule.resultsKey).getClass.toString + "'")
     } 
     return tags
   }
 
   def modGetParseGnat2XMLresults (options : scala.collection.Map[Property.Key, Any]) : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit] = {
-    if (options.contains(BakarVisitorModule.globalParseGnat2XMLresultsKey)) {
-       return options(BakarVisitorModule.globalParseGnat2XMLresultsKey).asInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]
+    if (options.contains(BakarTranslatorModule.globalParseGnat2XMLresultsKey)) {
+       return options(BakarTranslatorModule.globalParseGnat2XMLresultsKey).asInstanceOf[scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]]
     }
 
     throw new Exception("Pipeline checker should guarantee we never reach here")
@@ -101,14 +101,14 @@ object BakarVisitorModule extends PipelineModule {
 
   def setParseGnat2XMLresults (options : MMap[Property.Key, Any], parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit]) : MMap[Property.Key, Any] = {
 
-    options(BakarVisitorModule.globalParseGnat2XMLresultsKey) = parseGnat2XMLresults
+    options(BakarTranslatorModule.globalParseGnat2XMLresultsKey) = parseGnat2XMLresults
 
     return options
   }
 
   def getResults (options : scala.collection.Map[Property.Key, Any]) : scala.Boolean = {
-    if (options.contains(BakarVisitorModule.resultsKey)) {
-       return options(BakarVisitorModule.resultsKey).asInstanceOf[scala.Boolean]
+    if (options.contains(BakarTranslatorModule.resultsKey)) {
+       return options(BakarTranslatorModule.resultsKey).asInstanceOf[scala.Boolean]
     }
 
     throw new Exception("Pipeline checker should guarantee we never reach here")
@@ -116,17 +116,17 @@ object BakarVisitorModule extends PipelineModule {
 
   def modSetResults (options : MMap[Property.Key, Any], results : scala.Boolean) : MMap[Property.Key, Any] = {
 
-    options(BakarVisitorModule.resultsKey) = results
+    options(BakarTranslatorModule.resultsKey) = results
 
     return options
   }
 }
 
-trait BakarVisitorModule {
+trait BakarTranslatorModule {
   def job : PipelineJob
 
-  def parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit] = BakarVisitorModule.modGetParseGnat2XMLresults(job.properties)
+  def parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit] = BakarTranslatorModule.modGetParseGnat2XMLresults(job.properties)
 
 
-  def results_=(results : scala.Boolean) { BakarVisitorModule.modSetResults(job.properties, results) }
+  def results_=(results : scala.Boolean) { BakarTranslatorModule.modSetResults(job.properties, results) }
 }
