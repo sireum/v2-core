@@ -1499,7 +1499,8 @@ Sireum Distro managed apps are currently running.""")
         result(i) = sFeatures(sfName)
       } else {
         val camel =
-          if (sfName.forall(_.isLower)) sfName.toUpperCase else sfName
+          if (sfName.forall(c => c.isLower || c.isDigit)) sfName.toUpperCase
+          else sfName
         val matches = camelMatches(camel, sFeatures)
         if (matches.size == 1) {
           result(i) = matches.head
