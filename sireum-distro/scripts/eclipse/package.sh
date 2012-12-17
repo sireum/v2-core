@@ -45,7 +45,7 @@ cp $PACKAGE_HOME/mac/eclipse classic/Eclipse.app/Contents/MacOS/
 chmod 755 classic/Eclipse.app/Contents/MacOS/eclipse
 cp -R $PACKAGE_HOME/links classic/
 sireum tools sapper classic-mac64.sapp classic
-tar cfz classic-mac64.tar.gz classic
+#tar cfz classic-mac64.tar.gz classic
 rm -R classic
 #
 echo Packaging classic-linux64.sapp
@@ -57,7 +57,7 @@ cp $PACKAGE_HOME/linux/eclipse classic/
 chmod 755 classic/eclipse
 cp -R $PACKAGE_HOME/links classic/
 sireum tools sapper classic-linux64.sapp classic
-tar cfz classic-linux64.tar.gz classic
+#tar cfz classic-linux64.tar.gz classic
 rm -fR classic
 #
 echo Packaging classic-linux32.sapp
@@ -69,7 +69,7 @@ cp $PACKAGE_HOME/linux/eclipse classic/
 chmod 755 classic/eclipse
 cp -R $PACKAGE_HOME/links classic/
 sireum tools sapper classic-linux32.sapp classic
-tar cfz classic-linux32.tar.gz classic
+#tar cfz classic-linux32.tar.gz classic
 rm -fR classic
 #
 echo Packaging classic-win64.sapp
@@ -81,7 +81,7 @@ rm classic/eclipsec.exe
 cp $PACKAGE_HOME/windows/eclipse.bat classic/
 cp $PACKAGE_HOME/windows/README.TXT classic/
 cp -R $PACKAGE_HOME/links classic/
-zip -r classic-win64.sapp classic
+zip -q -r classic-win64.sapp classic
 rm -R classic
 #
 echo Packaging classic-win32.sapp
@@ -93,7 +93,7 @@ rm classic/eclipsec.exe
 cp $PACKAGE_HOME/windows/eclipse.bat classic/
 cp $PACKAGE_HOME/windows/README.TXT classic/
 cp -R $PACKAGE_HOME/links classic/
-zip -r classic-win32.sapp classic
+zip -q -r classic-win32.sapp classic
 rm -R classic
 echo
 echo ...done!
