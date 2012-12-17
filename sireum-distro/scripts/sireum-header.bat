@@ -44,7 +44,8 @@ IF EXIST %SCRIPT%.new (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   SET RELOAD=true
 )
-IF DEFINED RELOAD (
+IF %RELOAD% == "true" (
+  SET RELOAD=false
   ECHO Reloading Sireum...
   ECHO.
   %SCRIPT% %*
