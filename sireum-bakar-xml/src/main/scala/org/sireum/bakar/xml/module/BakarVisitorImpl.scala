@@ -3,7 +3,7 @@ package org.sireum.bakar.xml.module
 import org.sireum.pipeline.PipelineJob
 import org.sireum.pipeline.PipelineJobModuleInfo
 import org.sireum.util.VisitorFunction
-import org.sireum.bakar.xml.extractor._
+import org.sireum.bakar.xml._
 import org.sireum.util.Visitor
 import org.sireum.util.PartialFunctionUtil
 
