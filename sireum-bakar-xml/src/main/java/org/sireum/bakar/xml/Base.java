@@ -1,6 +1,7 @@
 package org.sireum.bakar.xml;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.sireum.util.Visitable;
 
@@ -26,19 +27,22 @@ public abstract class Base
   }
 
   private void populate() {
-    final Field[] fields = this.getClass().getDeclaredFields();
-    this.cache = new Object[fields.length];
+    this.cache = new Object[this.getClass().getDeclaredFields().length];
 
+    // Note: using jaxb getter methods rather than accessing the fields 
+    // directly as the getters for lists types always return an empty list
+    // rather than null
     int i = 0;
-    for (final Field f : fields) {
+    for (final Method m : this.getClass().getDeclaredMethods()) {
       try {
-        final boolean isAccessible = f.isAccessible();
-        f.setAccessible(true);
-        this.cache[i++] = f.get(this);
-        f.setAccessible(isAccessible);
-      } catch (IllegalArgumentException | IllegalAccessException e) {
+        if (m.getName().startsWith("get")) {
+          this.cache[i++] = m.invoke(this);
+        }
+      } catch (IllegalAccessException | IllegalArgumentException
+          | InvocationTargetException e) {
         e.printStackTrace();
       }
     }
+    assert (i == this.cache.length);
   }
 }

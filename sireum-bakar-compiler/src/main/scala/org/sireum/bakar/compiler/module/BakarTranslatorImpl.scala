@@ -46,21 +46,21 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       val x = o.asInstanceOf[ExpressionClass].getExpression().asInstanceOf[Any]
 
       x match {
-        case AndOperatorEx                => Some(PilarAstUtil.LOGICAL_AND_BINOP)
-        case OrOperatorEx                 => Some(PilarAstUtil.LOGICAL_OR_BINOP)
+        case AndOperatorEx(_)                => Some(PilarAstUtil.LOGICAL_AND_BINOP)
+        case OrOperatorEx(_)                 => Some(PilarAstUtil.LOGICAL_OR_BINOP)
 
-        case EqualOperatorEx              => Some(PilarAstUtil.EQ_BINOP)
-        case GreaterThanOperatorEx        => Some(PilarAstUtil.GT_BINOP)
-        case GreaterThanOrEqualOperatorEx => Some(PilarAstUtil.GE_BINOP)
-        case LessThanOperatorEx           => Some(PilarAstUtil.LT_BINOP)
-        case LessThanOrEqualOperatorEx    => Some(PilarAstUtil.LE_BINOP)
-        case NotEqualOperatorEx           => Some(PilarAstUtil.NE_BINOP)
+        case EqualOperatorEx(_)              => Some(PilarAstUtil.EQ_BINOP)
+        case GreaterThanOperatorEx(_)        => Some(PilarAstUtil.GT_BINOP)
+        case GreaterThanOrEqualOperatorEx(_) => Some(PilarAstUtil.GE_BINOP)
+        case LessThanOperatorEx(_)           => Some(PilarAstUtil.LT_BINOP)
+        case LessThanOrEqualOperatorEx(_)    => Some(PilarAstUtil.LE_BINOP)
+        case NotEqualOperatorEx(_)           => Some(PilarAstUtil.NE_BINOP)
 
-        case DivideOperatorEx             => Some(PilarAstUtil.DIV_BINOP)
-        case MinusOperatorEx              => Some(PilarAstUtil.SUB_BINOP)
-        case MultiplyOperatorEx           => Some(PilarAstUtil.MUL_BINOP)
-        case PlusOperatorEx               => Some(PilarAstUtil.PLUS_UNOP)
-        case RemOperatorEx                => Some(PilarAstUtil.REM_BINOP)
+        case DivideOperatorEx(_)             => Some(PilarAstUtil.DIV_BINOP)
+        case MinusOperatorEx(_)              => Some(PilarAstUtil.SUB_BINOP)
+        case MultiplyOperatorEx(_)           => Some(PilarAstUtil.MUL_BINOP)
+        case PlusOperatorEx(_)               => Some(PilarAstUtil.PLUS_UNOP)
+        case RemOperatorEx(_)                => Some(PilarAstUtil.REM_BINOP)
 
         case XorOperatorEx =>
           println("Don't know how to handle bin op " + o)
