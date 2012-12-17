@@ -45,7 +45,7 @@ SET COND=true
 IF NOT EXIST %SCRIPT%.new IF %RELOAD%==false SET COND=false 
 IF %COND%==true (
   SET RELOAD=false
-  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
+  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL 2>&1
   ECHO Reloading Sireum...
   ECHO.
   %SCRIPT% %*
