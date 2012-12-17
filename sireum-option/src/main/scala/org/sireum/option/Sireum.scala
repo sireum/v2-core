@@ -8,6 +8,8 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.option
 
+import org.sireum.util._
+
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
@@ -70,33 +72,45 @@ case class SireumLaunchMode(
   bakar : LaunchBakarV1Mode = LaunchBakarV1Mode(),
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode())
 
+abstract class LaunchEclipseAppMode {
+  def args : ISeq[String]
+}
+
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "eclipse", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "Eclipse.sapp",
   desc = "Launch Eclipse")
-case class LaunchEclipseMode()
+case class LaunchEclipseMode(
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "sireumdev", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "SireumDev.sapp",
   desc = "Launch Eclipse with Sireum Dev Plugins")
-case class LaunchSireumDevMode()
+case class LaunchSireumDevMode(
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
+  var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "compilerdev", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "CompilerDev.sapp",
   desc = "Launch Eclipse with Compiler Dev Plugins")
-case class LaunchCompilerDevMode()
+case class LaunchCompilerDevMode(
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "bakar", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "BakarV1.sapp",
   desc = "Launch Eclipse with Bakar Plugins")
-case class LaunchBakarV1Mode()
+case class LaunchBakarV1Mode(
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

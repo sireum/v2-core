@@ -44,11 +44,11 @@ class $className$ {
     }
   }
   
-  $entry; separator="\n\n"$
+$entry; separator="\n\n"$
 
-  $process()$
+$process()$
 
-  $tagRoutines()$
+$tagRoutines()$
 }
 
 class CliResult {
@@ -84,9 +84,13 @@ $name$ $if(desc)$$desc$$endif$
 parseMode(className, header, mode, modeName, caseMode, name) ::= <<
 def parse$className$(args : Seq[String], i : Int) {
   if (i == args.length) {
-    addInfoTag("""$header$""".trim
+    addInfoTag(
+"""
+$header$
+""".trim
 $if(mode)$
-+ "\n\n" + """
++ "\n\n" + 
+"""
 Available Modes:
   $mode; separator="\n"$
 """.trim
@@ -123,7 +127,10 @@ $opt; separator="\n"$
 parseMain(className, header, featureName, targetName, caseOpt, name, caseArg, nummeth, key, optCheck, hasVarg, nonempty) ::= <<
 def parse$className$(args : Seq[String], i : Int) {
   $if(nonempty)$if (i == args.length) {
-    addInfoTag("""$header; separator="\n\n"$""".trim) 
+    addInfoTag(
+"""
+$header; separator="\n\n"$
+""".trim) 
   } else $endif${
     val opt = $className$()
     result.options = Some(opt)
@@ -212,15 +219,28 @@ process() ::= <<
 >>
 
 optionsetCheck(shortkey, longkey) ::= <<  
-if(seenopts.exists(s => s == "$longkey$" | s == "$shortkey$")){
+if(seenopts.exists{s => 
+    var r = false 
+    $if(longkey)$r = r || s == "$longkey$"$endif$
+    $if(shortkey)$r = r || s == "$shortkey$"$endif$
+    r
+  }){
   addWarningTag("Option already set: %s".format(args(j)))
 }
 else {
-  seenopts += "$longkey$"
-  seenopts += "$shortkey$"
+  $if(longkey)$seenopts += "$longkey$"$endif$
+  $if(shortkey)$seenopts += "$shortkey$"$endif$
 }
 >>
 
+caseRawProcess(matching, gname, fname, optioncheck) ::= <<
+case $matching$ => 
+  $optioncheck$
+  $lhs(gname, fname)$ = 
+    if (j + 1 == args.length) List()
+    else args.slice(j + 1, args.length).toList
+  j = args.length
+>>
 
 caseProcess(matching, guard, value, instance, f, gname, fname, type, optCheck, isVarg, isArg, optioncheck) ::= <<
 case $matching; separator=" | "$ $if(guard)$ $guard$ $endif$=> 

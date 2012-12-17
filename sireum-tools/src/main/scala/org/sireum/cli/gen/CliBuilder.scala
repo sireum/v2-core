@@ -42,7 +42,7 @@ object CliBuilder {
 
       cgm = new XStream().fromXML(arg).asInstanceOf[CliGenMode]
     } catch {
-      case e =>
+      case e : Throwable =>
         //e.printStackTrace() 
 
         cgm = CliGenMode()
@@ -95,7 +95,7 @@ class CliBuilder {
           imports += c.getPackage.getName
           val stMode = stg.getInstanceOf("parseMode")
           stMode.add("className", c.getSimpleName)
-          stMode.add("header", s.header)
+          stMode.add("header", s.header.trim)
           stMode.add("name", s.command)
 
           val q1 = getMainModeInfo(filter(c.getDeclaredMethods))
@@ -155,7 +155,7 @@ class CliBuilder {
           val stuse = stg.getInstanceOf("usage")
           path.foreach { s => stuse.add("name", s) }
           stuse.add("name", s.value)
-          stMain.add("header", stuse)
+          stMain.add("header", stuse.render.trim)
 
           val md = filter(c.getDeclaredMethods, true)
 
@@ -213,7 +213,7 @@ class CliBuilder {
           })
           val optblockst = stg.getInstanceOf("optblock")
           sortedopts.foreach(so => optblockst.add("opt", so))
-          stMain.add("header", optblockst)
+          stMain.add("header", optblockst.render.trim)
 
           for (m <- filter(c.getDeclaredMethods)) {
             stuse.add("hasOptions", true)
@@ -225,7 +225,7 @@ class CliBuilder {
           imports += c.getPackage.getName
           val stgroup = stg.getInstanceOf("groupy")
           stgroup.add("groupName", s.value)
-          stMain.add("header", stgroup)
+          stMain.add("header", stgroup.render.trim)
 
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
@@ -318,26 +318,28 @@ class CliBuilder {
     if (longKey.isDefined) {
       keys += (if (!keys.isEmpty) " | " else "") + longKey.get
       stMain.add("key", longKey.get)
-      optioncheckst.add("longkey", longKey.get)
       matchings.add("g", longKey.get)
+      optioncheckst.add("longkey", longKey.get)
     }
 
     val stoption_desc = stg.getInstanceOf("option_desc")
     stoption_desc.add("desc", ot.desc)
 
-    val defval = mo.invoke(o)
-    val (_, _, simpleName, ochoices) = prettify(mo, defval)
+    if (!ot.isRaw) {
+      val defval = mo.invoke(o)
+      val (_, _, simpleName, ochoices) = prettify(mo, defval)
 
-    if (defval.isInstanceOf[Seq[_]])
-      stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
+      if (defval.isInstanceOf[Seq[_]])
+        stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
 
-    if (!defval.isInstanceOf[Boolean])
-      stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", simpleName))
+      if (!defval.isInstanceOf[Boolean])
+        stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", simpleName))
 
-    if (ochoices.isDefined) {
-      val stchoices = stg.getInstanceOf("choices")
-      ochoices.get.foreach(c => stchoices.add("c", c))
-      stoption_desc.add("opt", stchoices)
+      if (ochoices.isDefined) {
+        val stchoices = stg.getInstanceOf("choices")
+        ochoices.get.foreach(c => stchoices.add("c", c))
+        stoption_desc.add("opt", stchoices)
+      }
     }
 
     val stoption = stg.getInstanceOf("combine")
@@ -346,11 +348,26 @@ class CliBuilder {
     val value = if (mo.getReturnType() == classOf[scala.Boolean]) "\"true\""
     else "args(j + 1)"
 
-    val stcase = handleCase(matchings.render, optioncheckst.render, value,
-      (mo, o), check, groupName, mo.getName, tenum.DEFAULT)
+    val stcase =
+      if (ot.isRaw)
+        handleRawCase(matchings.render, optioncheckst.render, groupName, mo.getName)
+      else
+        handleCase(matchings.render, optioncheckst.render, value,
+          (mo, o), check, groupName, mo.getName, tenum.DEFAULT)
 
     (stoption, stcase)
   }
+
+  def handleRawCase(matching : String, optcheck : String,
+                    groupName : String, fieldName : String) : ST = {
+    val result = stg.getInstanceOf("caseRawProcess")
+    result.add("matching", matching)
+    result.add("optioncheck", optcheck)
+    if (groupName != null)
+      result.add("gname", groupName)
+    result.add("fname", fieldName)
+  }
+                    
 
   def format(d : String, max : Int, curCol : Int) : String = {
 

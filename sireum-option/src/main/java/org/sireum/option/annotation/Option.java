@@ -23,4 +23,6 @@ public @interface Option {
   String longKey() default "";
   
   String separator() default ",";
+  
+  boolean isRaw() default false;
 }
