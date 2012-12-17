@@ -2,7 +2,7 @@ package org.sireum.bakar.xml;
 
 import java.lang.reflect.Field;
 
-import org.sireum.util.traversal.Visitable;
+import org.sireum.util.Visitable;
 
 public abstract class Base
     implements Visitable {
