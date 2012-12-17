@@ -53,7 +53,7 @@ IF %COND%==true (
 ENDLOCAL
 EXIT /B %CODE%
 ::!#
-SireumDistro.main(argv)/*
+SireumDistro.main(argv)
 /*
 Copyright (c) 2011-2012 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      

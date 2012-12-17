@@ -20,6 +20,7 @@ if [ -d $SIREUM_HOME/apps/platform/scala ]; then
 fi
 ${SCALA_BIN:=scala} -target:jvm-1.7 -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 code=$?
+export RELOAD=false
 if [ -d $SIREUM_HOME/apps/platform/java.new ]; then
   rm -fR $SIREUM_HOME/apps/platform/java
   mv $SIREUM_HOME/apps/platform/java.new $SIREUM_HOME/apps/platform/java
@@ -37,7 +38,8 @@ if [ -f $0.new ]; then
   chmod +x $0
   export RELOAD=true
 fi
-if [ ! -z "$RELOAD" ]; then 
+if [ "$RELOAD" == "true" ]; then
+  export RELOAD=false
   echo "Reloading Sireum..."
   echo
   exec "$0" "$@"
