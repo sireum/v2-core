@@ -57,6 +57,7 @@ object SireumDistro extends App {
   val SAPP_LINK_EXT = ".sapp_link"
   val SAPP_INFO = ".sapp_info"
   val CHECKSUM_SUFFIX = ".checksum"
+  val POST_INSTALL = "sireum-postinstall"
 
   val BUFFER_SIZE = 1024
   val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -929,6 +930,38 @@ object SireumDistro extends App {
         if (fileList.isDefined)
           fileList.get.close
       outPrintln("... done!")
+
+      val postInstallFile = new File(installDir,
+        if (getOsString.contains("win")) POST_INSTALL + ".bat" else POST_INSTALL)
+      if (postInstallFile.exists) {
+        if (postInstallFile.canExecute) {
+          outPrint("Running post-installer... ")
+          val e = new Exec
+          e.run(-1, Seq(postInstallFile.getAbsolutePath), None) match {
+            case Exec.StringResult(s, _) =>
+              if (!s.isEmpty) {
+                outPrintln
+                outPrintln(s)
+              }
+              outPrintln("... done!")
+            case Exec.ExceptionRaised(e) =>
+              outPrintln
+              logError("Error during post-installation: ", e)
+              abnormalExit
+            case _ =>
+              outPrintln
+              errPrintln("Timeout during post-installation")
+              abnormalExit
+          }
+        } else {
+          errPrintln("Cannot execute post-installer...")
+          abnormalExit
+        }
+        var f = new File(installDir, POST_INSTALL)
+        if (f.exists) f.delete
+        f = new File(installDir, POST_INSTALL + ".bat")
+        if (f.exists) f.delete
+      }
     } catch {
       case e : Throwable =>
         logError("Error installing app: ", e)
@@ -1038,7 +1071,7 @@ Sireum Distro managed apps are currently running.""")
   def deleteAppsBackups(dir : File) {
     for (f <- dir.listFiles)
       if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f)
-        || f.getName.endsWith(".new"))
+        || f.getName.endsWith(".new") || f.getName.startsWith(POST_INSTALL))
         deleteRec(f, "Deleting " + relativize(sireumDir, f), false)
       else if (f.isDirectory)
         deleteAppsBackups(f)
