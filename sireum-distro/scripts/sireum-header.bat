@@ -41,12 +41,11 @@ IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   DEL /Q %SCRIPT%.jar
   SET RELOAD=true
 )
-IF EXIST %SCRIPT%.new (
-  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
-  SET RELOAD=true
-)
-IF %RELOAD% == "true" (
+SET COND=true
+IF NOT EXIST %SCRIPT%.new IF %RELOAD%==false SET COND=false 
+IF %COND%==true (
   SET RELOAD=false
+  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
   %SCRIPT% %*
@@ -54,4 +53,4 @@ IF %RELOAD% == "true" (
 ENDLOCAL
 EXIT /B %CODE%
 ::!#
-SireumDistro.main(argv)
+SireumDistro.main(argv)/*
