@@ -41,10 +41,10 @@ IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   SET RELOAD=true
 )
 IF EXIST %SCRIPT%.new (
+  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   SET RELOAD=true
 )
 IF DEFINED RELOAD (
-  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
   %SCRIPT% %*
