@@ -32,13 +32,18 @@ IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
   MOVE %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java
   DEL /Q %SCRIPT%.jar
+  SET RELOAD=true
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   RD %SIREUM_HOME%apps\platform\scala /S /Q
   MOVE %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala
   DEL /Q %SCRIPT%.jar
+  SET RELOAD=true
 )
 IF EXIST %SCRIPT%.new (
+  SET RELOAD=true
+)
+IF DEFINED RELOAD (
   MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
