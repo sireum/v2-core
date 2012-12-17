@@ -30,21 +30,21 @@ CALL %SCALA_BIN% -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SC
 SET CODE=%ERRORLEVEL%
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
-  MOVE %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java
+  MOVE /Y %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java > NUL
   DEL /Q %SCRIPT%.jar
   SET RELOAD=true
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   RD %SIREUM_HOME%apps\platform\scala /S /Q
-  MOVE %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala
+  MOVE /Y %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala > NUL
   DEL /Q %SCRIPT%.jar
   SET RELOAD=true
 )
 IF EXIST %SCRIPT%.new (
+  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   SET RELOAD=true
 )
 IF DEFINED RELOAD (
-  MOVE /Y %SCRIPT%.new %SCRIPT% > NUL
   ECHO Reloading Sireum...
   ECHO.
   %SCRIPT% %*
