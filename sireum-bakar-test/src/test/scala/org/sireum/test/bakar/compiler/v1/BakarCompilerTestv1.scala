@@ -1,21 +1,21 @@
-package org.sireum.test.bakar.compiler
+package org.sireum.test.bakar.compiler.v1
 
 import java.io.Writer
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 import org.sireum.example.bakar.BakarExamples
 import org.sireum.example.bakar.BakarExamplesAnchor
-import org.sireum.pipeline.PipelineConfiguration
 import org.sireum.pipeline.PipelineJob
-import org.sireum.pipeline.PipelineStage
 import org.sireum.test.bakar.framework.BakarTestFileFramework
 import org.sireum.util.FileUtil
 import org.sireum.bakar.compiler.v1.option.OptionFactory
-import org.sireum.core.module.PilarSourcesModule
-import org.sireum.core.module.PilarParserModule
 import org.sireum.bakar.compiler.v1.module.BakarCompilerv1Module
 import org.sireum.util.ISeq
 import org.sireum.util.FileResourceUri
+import org.sireum.pipeline.PipelineConfiguration.apply
+import org.sireum.pipeline.PipelineStage.apply
+import org.scalatest.junit.JUnitRunner
+import org.sireum.pipeline.PipelineConfiguration
+import org.sireum.pipeline.PipelineStage
 
 @RunWith(classOf[JUnitRunner])
 class BakarCompilerTestv1 extends BakarTestFileFramework {

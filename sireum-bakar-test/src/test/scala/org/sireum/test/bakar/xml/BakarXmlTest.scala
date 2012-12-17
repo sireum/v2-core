@@ -1,5 +1,5 @@
 package org.sireum.test.bakar.xml
-import org.sireum.test.bakar.compiler.BakarCompilerTestv1
+import org.sireum.test.bakar.compiler.v1.BakarCompilerTestv1
 import org.junit.runner.RunWith
 import org.sireum.bakar.xml.module.Gnat2XMLWrapperModule
 import org.sireum.bakar.xml.module.ParseGnat2XMLModule
