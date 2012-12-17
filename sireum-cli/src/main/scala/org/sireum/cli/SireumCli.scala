@@ -45,7 +45,10 @@ class SireumCli {
 
   def parseSireumDistroMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Sireum Distro""".trim
+      addInfoTag(
+        """
+Sireum Distro
+""".trim
       )
     }
   }
@@ -56,7 +59,7 @@ class SireumCli {
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "Eclipse.sapp"
-      val keys = List[String]("")
+      val keys = List[String]("--args")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -71,6 +74,21 @@ class SireumCli {
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "--args" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--args"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--args"
+                }
+                opt.args =
+                  if (j + 1 == args.length) List()
+                  else args.slice(j + 1, args.length).toList
+                j = args.length
               case _ =>
             }
           } else {
@@ -100,7 +118,7 @@ class SireumCli {
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "SireumDev.sapp"
-      val keys = List[String]("")
+      val keys = List[String]("--args")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -115,6 +133,21 @@ class SireumCli {
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "--args" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--args"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--args"
+                }
+                opt.args =
+                  if (j + 1 == args.length) List()
+                  else args.slice(j + 1, args.length).toList
+                j = args.length
               case _ =>
             }
           } else {
@@ -144,7 +177,7 @@ class SireumCli {
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "CompilerDev.sapp"
-      val keys = List[String]("")
+      val keys = List[String]("--args")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -159,6 +192,21 @@ class SireumCli {
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "--args" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--args"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--args"
+                }
+                opt.args =
+                  if (j + 1 == args.length) List()
+                  else args.slice(j + 1, args.length).toList
+                j = args.length
               case _ =>
             }
           } else {
@@ -188,7 +236,7 @@ class SireumCli {
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "BakarV1.sapp"
-      val keys = List[String]("")
+      val keys = List[String]("--args")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -203,6 +251,21 @@ class SireumCli {
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "--args" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--args"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--args"
+                }
+                opt.args =
+                  if (j + 1 == args.length) List()
+                  else args.slice(j + 1, args.length).toList
+                j = args.length
               case _ =>
             }
           } else {
@@ -272,15 +335,19 @@ class SireumCli {
 
   def parseSireumLaunchMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Sireum Launcher""".trim
-        + "\n\n" + """
-  Available Modes:
-    antlrworks   Launch ANTLRWorks
-    bakar        Launch Eclipse with Bakar Plugins
-    compilerdev  Launch Eclipse with Compiler Dev Plugins
-    eclipse      Launch Eclipse
-    sireumdev    Launch Eclipse with Sireum Dev Plugins
-  """.trim
+      addInfoTag(
+        """
+Sireum Launcher
+""".trim
+          + "\n\n" +
+          """
+Available Modes:
+  antlrworks   Launch ANTLRWorks
+  bakar        Launch Eclipse with Bakar Plugins
+  compilerdev  Launch Eclipse with Compiler Dev Plugins
+  eclipse      Launch Eclipse
+  sireumdev    Launch Eclipse with Sireum Dev Plugins
+""".trim
       )
     } else {
       parseModeHelper("launch", Seq("eclipse", "sireumdev", "compilerdev", "bakar", "antlrworks"), args, i) {
@@ -302,17 +369,18 @@ class SireumCli {
 
   def parseCliGenMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Usage:
-      sireum tools cligen [options] <class-name> 
+      addInfoTag(
+        """
+  Usage:
+    sireum tools cligen <>
 
-    where the available options are:
-
-    -c | --class-name Fully qualified name for the generated class [Default: "Cli"]
-    -d | --directory  Directory where generated class should be saved [Default: "."]
-    -p | --packages   Package name prefixes used to filter which classes to process
-                      [Separator: ";", Default: ISeq[String]]
-    --max-col         Maximum number of characters per line [Default: 80]
-    --min-col         Column where description should begin [Default: 20]""".trim)
+  -c | --class-name Fully qualified name for the generated class [Default: "Cli"]
+  -d | --directory  Directory where generated class should be saved [Default: "."]
+  -p | --packages   Package name prefixes used to filter which classes to process
+                    [Separator: ";", Default: ISeq[String]]
+  --max-col         Maximum number of characters per line [Default: 80]
+  --min-col         Column where description should begin [Default: 20]
+  """.trim)
     } else {
       val opt = CliGenMode()
       result.options = Some(opt)
@@ -335,7 +403,12 @@ class SireumCli {
             args(j) match {
               case "-d" | "--directory" =>
 
-                if (seenopts.exists(s => s == "--directory" | s == "-d")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--directory"
@@ -349,11 +422,14 @@ class SireumCli {
                 }
               case "--min-col" =>
 
-                if (seenopts.exists(s => s == "--min-col" | s == "")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--min-col"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--min-col"
-                  seenopts += ""
                 }
                 val v = process(args(j), args(j + 1), keys, 20)
                 if (result.status) {
@@ -362,11 +438,14 @@ class SireumCli {
                 }
               case "--max-col" =>
 
-                if (seenopts.exists(s => s == "--max-col" | s == "")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--max-col"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--max-col"
-                  seenopts += ""
                 }
                 val v = process(args(j), args(j + 1), keys, 80)
                 if (result.status) {
@@ -375,7 +454,12 @@ class SireumCli {
                 }
               case "-c" | "--class-name" =>
 
-                if (seenopts.exists(s => s == "--class-name" | s == "-c")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--class-name"
+                  r = r || s == "-c"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--class-name"
@@ -389,7 +473,12 @@ class SireumCli {
                 }
               case "-p" | "--packages" =>
 
-                if (seenopts.exists(s => s == "--packages" | s == "-p")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--packages"
+                  r = r || s == "-p"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--packages"
@@ -432,19 +521,20 @@ class SireumCli {
 
   def parsePipelineMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Usage:
-      sireum tools pipeline [options] <class-names> 
+      addInfoTag(
+        """
+  Usage:
+    sireum tools pipeline <>
 
-    where the available options are:
-
-    -d   | --directory   Directory where generated class should be saved
-                         [Default: ""]
-    -gcn | --generated-class-name 
-                         Name for the generated class [Default: ""]
-    -ts  | --type-substitutions 
-                         Pairs of fully qualified type names separated by '/' (e.g.
-                         java.lang.Boolean/scala.Boolean) [Separator: ",",
-                         Default: ISeq[String]]""".trim)
+  -d   | --directory   Directory where generated class should be saved
+                       [Default: ""]
+  -gcn | --generated-class-name 
+                       Name for the generated class [Default: ""]
+  -ts  | --type-substitutions 
+                       Pairs of fully qualified type names separated by '/' (e.g.
+                       java.lang.Boolean/scala.Boolean) [Separator: ",",
+                       Default: ISeq[String]]
+  """.trim)
     } else {
       val opt = PipelineMode()
       result.options = Some(opt)
@@ -467,7 +557,12 @@ class SireumCli {
             args(j) match {
               case "-d" | "--directory" =>
 
-                if (seenopts.exists(s => s == "--directory" | s == "-d")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--directory"
@@ -480,7 +575,12 @@ class SireumCli {
                 }
               case "-gcn" | "--generated-class-name" =>
 
-                if (seenopts.exists(s => s == "--generated-class-name" | s == "-gcn")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--generated-class-name"
+                  r = r || s == "-gcn"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--generated-class-name"
@@ -493,7 +593,12 @@ class SireumCli {
                 }
               case "-ts" | "--type-substitutions" =>
 
-                if (seenopts.exists(s => s == "--type-substitutions" | s == "-ts")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--type-substitutions"
+                  r = r || s == "-ts"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--type-substitutions"
@@ -532,15 +637,16 @@ class SireumCli {
 
   def parseTreeVisitorGenMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Usage:
-      sireum tools antlr [options] <token-file> 
+      addInfoTag(
+        """
+  Usage:
+    sireum tools antlr <>
 
-    where the available options are:
-
-    -c | --class-name Name for the generated class [Default: "TreeVisitor"]
-    -d | --directory  Directory for the generated class [Default: "(parent directory
-                      of token file)"]
-    -p | --package    Package name for the generated class [Default: "parser"]""".trim)
+  -c | --class-name Name for the generated class [Default: "TreeVisitor"]
+  -d | --directory  Directory for the generated class [Default: "(parent directory
+                    of token file)"]
+  -p | --package    Package name for the generated class [Default: "parser"]
+  """.trim)
     } else {
       val opt = TreeVisitorGenMode()
       result.options = Some(opt)
@@ -563,7 +669,12 @@ class SireumCli {
             args(j) match {
               case "-d" | "--directory" =>
 
-                if (seenopts.exists(s => s == "--directory" | s == "-d")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--directory"
@@ -576,7 +687,12 @@ class SireumCli {
                 }
               case "-c" | "--class-name" =>
 
-                if (seenopts.exists(s => s == "--class-name" | s == "-c")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--class-name"
+                  r = r || s == "-c"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--class-name"
@@ -589,7 +705,12 @@ class SireumCli {
                 }
               case "-p" | "--package" =>
 
-                if (seenopts.exists(s => s == "--package" | s == "-p")) {
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--package"
+                  r = r || s == "-p"
+                  r
+                }) {
                   addWarningTag("Option already set: %s".format(args(j)))
                 } else {
                   seenopts += "--package"
@@ -630,11 +751,13 @@ class SireumCli {
 
   def parseSapperMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Usage:
-      sireum tools sapper <file.sapp> <files> 
+      addInfoTag(
+        """
+  Usage:
+    sireum tools sapper <>
 
 
-    """.trim)
+  """.trim)
     } else {
       val opt = SapperMode()
       result.options = Some(opt)
@@ -688,14 +811,18 @@ class SireumCli {
 
   def parseSireumToolsMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""Sireum Tools""".trim
-        + "\n\n" + """
-  Available Modes:
-    antlr 
-    cligen 
-    pipeline 
-    sapper 
-  """.trim
+      addInfoTag(
+        """
+Sireum Tools
+""".trim
+          + "\n\n" +
+          """
+Available Modes:
+  antlr 
+  cligen 
+  pipeline 
+  sapper 
+""".trim
       )
     } else {
       parseModeHelper("tools", Seq("cligen", "pipeline", "antlr", "sapper"), args, i) {
@@ -715,16 +842,18 @@ class SireumCli {
 
   def parseSireumMode(args : Seq[String], i : Int) {
     if (i == args.length) {
-      addInfoTag("""
-  Sireum: A Software Analysis Platform
-  (c) 2012, SAnToS Laboratory, Kansas State University
-  """.trim
-        + "\n\n" + """
-  Available Modes:
-    distro  Sireum Package Manager
-    launch  Sireum Launcher
-    tools   Sireum Development Tools
-  """.trim
+      addInfoTag(
+        """
+Sireum: A Software Analysis Platform
+(c) 2012, SAnToS Laboratory, Kansas State University
+""".trim
+          + "\n\n" +
+          """
+Available Modes:
+  distro  Sireum Package Manager
+  launch  Sireum Launcher
+  tools   Sireum Development Tools
+""".trim
       )
     } else {
       parseModeHelper("sireum", Seq("distro", "launch", "tools"), args, i) {
