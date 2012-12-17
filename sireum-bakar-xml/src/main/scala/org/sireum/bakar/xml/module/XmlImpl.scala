@@ -14,7 +14,6 @@ import org.sireum.util.ilist
 import org.sireum.util.mlistEmpty
 import org.sireum.util.mmapEmpty
 import org.sireum.util.msetEmpty
-import com.thoughtworks.xstream.XStream
 import javax.xml.bind.JAXBContext
 import org.sireum.util.FileResourceUri
 
