@@ -155,7 +155,7 @@ $header; separator="\n\n"$
           }
           args(j) match {
             $caseOpt; separator="\n"$
-            case "-h" | "--help" => usage; sys.exit
+            case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
         } else { 
