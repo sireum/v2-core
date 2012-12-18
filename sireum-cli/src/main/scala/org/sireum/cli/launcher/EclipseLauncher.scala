@@ -34,10 +34,7 @@ class EclipseLauncher {
     val exeExt = if (osArch == OsArch.Win32 || osArch == OsArch.Win64) ".exe" else ""
     val sireumHome = System.getenv("SIREUM_HOME")
     val javaHomeDir = new File(sireumHome, "apps/platform/java")
-    var javaOptions =
-      if (System.getenv("JAVA_OPTIONS") != null)
-        ilist(System.getenv("JAVA_OPTIONS").split(" ") : _*)
-      else ilist("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m")
+    var javaOptions = opt.jvmopts.toList
     var java =
       if (javaHomeDir.exists) new File(javaHomeDir, "bin/java" + exeExt).getCanonicalPath
       else "java"

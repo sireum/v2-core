@@ -73,6 +73,7 @@ case class SireumLaunchMode(
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode())
 
 abstract class LaunchEclipseAppMode {
+  def jvmopts : ISeq[String]
   def args : ISeq[String]
 }
 
@@ -82,6 +83,8 @@ abstract class LaunchEclipseAppMode {
 @Main(value = "eclipse", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "Eclipse.sapp",
   desc = "Launch Eclipse")
 case class LaunchEclipseMode(
+  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
+  var jvmopts : ISeq[String] = ilist("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
@@ -91,6 +94,8 @@ case class LaunchEclipseMode(
 @Main(value = "sireumdev", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "SireumDev.sapp",
   desc = "Launch Eclipse with Sireum Dev Plugins")
 case class LaunchSireumDevMode(
+  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
+  var jvmopts : ISeq[String] = ilist("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
   var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
@@ -100,6 +105,8 @@ case class LaunchSireumDevMode(
 @Main(value = "compilerdev", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "CompilerDev.sapp",
   desc = "Launch Eclipse with Compiler Dev Plugins")
 case class LaunchCompilerDevMode(
+  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
+  var jvmopts : ISeq[String] = ilist("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 
@@ -109,6 +116,8 @@ case class LaunchCompilerDevMode(
 @Main(value = "bakar", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "BakarV1.sapp",
   desc = "Launch Eclipse with Bakar Plugins")
 case class LaunchBakarV1Mode(
+  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
+  var jvmopts : ISeq[String] = ilist("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ilistEmpty) extends LaunchEclipseAppMode
 

@@ -54,12 +54,25 @@ Sireum Distro
   }
 
   def parseLaunchEclipseMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch eclipse [options]  
+
+
+-h | --help
+-j | --jvmopts Options for Java [Separator: ",",
+               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+--args         Arguments for Eclipse (accepts all following string arguments) 
+""".trim)
+      }
     {
       val opt = LaunchEclipseMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "Eclipse.sapp"
-      val keys = List[String]("--args")
+      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -89,7 +102,26 @@ Sireum Distro
                   if (j + 1 == args.length) List()
                   else args.slice(j + 1, args.length).toList
                 j = args.length
-              case _ =>
+              case "-j" | "--jvmopts" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--jvmopts"
+                  r = r || s == "-j"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--jvmopts"
+                  seenopts += "-j"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -113,12 +145,25 @@ Sireum Distro
   }
 
   def parseLaunchSireumDevMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch sireumdev [options]  
+
+
+-h | --help
+-j | --jvmopts Options for Java [Separator: ",",
+               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+--args         Arguments for Eclipse (accepts all following string arguments) 
+""".trim)
+      }
     {
       val opt = LaunchSireumDevMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "SireumDev.sapp"
-      val keys = List[String]("--args")
+      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -148,7 +193,26 @@ Sireum Distro
                   if (j + 1 == args.length) List()
                   else args.slice(j + 1, args.length).toList
                 j = args.length
-              case _ =>
+              case "-j" | "--jvmopts" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--jvmopts"
+                  r = r || s == "-j"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--jvmopts"
+                  seenopts += "-j"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -172,12 +236,25 @@ Sireum Distro
   }
 
   def parseLaunchCompilerDevMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch compilerdev [options]  
+
+
+-h | --help
+-j | --jvmopts Options for Java [Separator: ",",
+               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+--args         Arguments for Eclipse (accepts all following string arguments) 
+""".trim)
+      }
     {
       val opt = LaunchCompilerDevMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "CompilerDev.sapp"
-      val keys = List[String]("--args")
+      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -207,7 +284,26 @@ Sireum Distro
                   if (j + 1 == args.length) List()
                   else args.slice(j + 1, args.length).toList
                 j = args.length
-              case _ =>
+              case "-j" | "--jvmopts" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--jvmopts"
+                  r = r || s == "-j"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--jvmopts"
+                  seenopts += "-j"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -231,12 +327,25 @@ Sireum Distro
   }
 
   def parseLaunchBakarV1Mode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch bakar [options]  
+
+
+-h | --help
+-j | --jvmopts Options for Java [Separator: ",",
+               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+--args         Arguments for Eclipse (accepts all following string arguments) 
+""".trim)
+      }
     {
       val opt = LaunchBakarV1Mode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.EclipseLauncher"
       result.featureName = "BakarV1.sapp"
-      val keys = List[String]("--args")
+      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -266,7 +375,26 @@ Sireum Distro
                   if (j + 1 == args.length) List()
                   else args.slice(j + 1, args.length).toList
                 j = args.length
-              case _ =>
+              case "-j" | "--jvmopts" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--jvmopts"
+                  r = r || s == "-j"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--jvmopts"
+                  seenopts += "-j"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -290,12 +418,22 @@ Sireum Distro
   }
 
   def parseLaunchAntlrWorksMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch antlrworks [options]  
+
+
+-h | --help
+""".trim)
+      }
     {
       val opt = LaunchAntlrWorksMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.launcher.AntlrWorksLauncher"
       result.featureName = "Antlr.sapp"
-      val keys = List[String]("")
+      val keys = List[String]("-h", "--help", "")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -310,7 +448,8 @@ Sireum Distro
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case _ =>
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -368,25 +507,30 @@ Available Modes:
   }
 
   def parseCliGenMode(args : Seq[String], i : Int) {
-    if (i == args.length) {
-      addInfoTag(
-        """
-  Usage:
-    sireum tools cligen <>
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum tools cligen [options] <class-name> 
 
-  -c | --class-name Fully qualified name for the generated class [Default: "Cli"]
-  -d | --directory  Directory where generated class should be saved [Default: "."]
-  -p | --packages   Package name prefixes used to filter which classes to process
-                    [Separator: ";", Default: ISeq[String]]
-  --max-col         Maximum number of characters per line [Default: 80]
-  --min-col         Column where description should begin [Default: 20]
-  """.trim)
+
+-h | --help
+-c | --class-name Fully qualified name for the generated class [Default: "Cli"]
+-d | --directory  Directory where generated class should be saved [Default: "."]
+-p | --packages   Package name prefixes used to filter which classes to process
+                  [Separator: ";", Default: ""]
+--max-col         Maximum number of characters per line [Default: 80]
+--min-col         Column where description should begin [Default: 20]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
     } else {
       val opt = CliGenMode()
       result.options = Some(opt)
       result.className = "org.sireum.cli.gen.CliBuilder"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-d", "--directory", "--min-col", "--max-col", "-c", "--class-name", "-p", "--packages")
+      val keys = List[String]("-h", "--help", "-d", "--directory", "--min-col", "--max-col", "-c", "--class-name", "-p", "--packages")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -489,7 +633,8 @@ Available Modes:
                   opt.packages = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case _ =>
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -520,27 +665,32 @@ Available Modes:
   }
 
   def parsePipelineMode(args : Seq[String], i : Int) {
-    if (i == args.length) {
-      addInfoTag(
-        """
-  Usage:
-    sireum tools pipeline <>
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum tools pipeline [options] <class-names> 
 
-  -d   | --directory   Directory where generated class should be saved
-                       [Default: ""]
-  -gcn | --generated-class-name 
-                       Name for the generated class [Default: ""]
-  -ts  | --type-substitutions 
-                       Pairs of fully qualified type names separated by '/' (e.g.
-                       java.lang.Boolean/scala.Boolean) [Separator: ",",
-                       Default: ISeq[String]]
-  """.trim)
+
+-h | --help
+-d   | --directory   Directory where generated class should be saved
+                     [Default: ""]
+-gcn | --generated-class-name 
+                     Name for the generated class [Default: ""]
+-ts  | --type-substitutions 
+                     Pairs of fully qualified type names separated by '/' (e.g.
+                     java.lang.Boolean/scala.Boolean) [Separator: ",",
+                     Default: ""]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
     } else {
       val opt = PipelineMode()
       result.options = Some(opt)
       result.className = "org.sireum.pipeline.gen.ModuleGenerator"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-d", "--directory", "-gcn", "--generated-class-name", "-ts", "--type-substitutions")
+      val keys = List[String]("-h", "--help", "-d", "--directory", "-gcn", "--generated-class-name", "-ts", "--type-substitutions")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -609,7 +759,8 @@ Available Modes:
                   opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case _ =>
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -636,23 +787,28 @@ Available Modes:
   }
 
   def parseTreeVisitorGenMode(args : Seq[String], i : Int) {
-    if (i == args.length) {
-      addInfoTag(
-        """
-  Usage:
-    sireum tools antlr <>
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum tools antlr [options] <token-file> 
 
-  -c | --class-name Name for the generated class [Default: "TreeVisitor"]
-  -d | --directory  Directory for the generated class [Default: "(parent directory
-                    of token file)"]
-  -p | --package    Package name for the generated class [Default: "parser"]
-  """.trim)
+
+-h | --help
+-c | --class-name Name for the generated class [Default: "TreeVisitor"]
+-d | --directory  Directory for the generated class [Default: "(parent directory
+                  of token file)"]
+-p | --package    Package name for the generated class [Default: "parser"]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
     } else {
       val opt = TreeVisitorGenMode()
       result.options = Some(opt)
       result.className = "org.sireum.tools.antlr.TreeVisitorGen"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-d", "--directory", "-c", "--class-name", "-p", "--package")
+      val keys = List[String]("-h", "--help", "-d", "--directory", "-c", "--class-name", "-p", "--package")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -721,7 +877,8 @@ Available Modes:
                   opt.packageName = v.get.asInstanceOf[java.lang.String]
                   j += 1
                 }
-              case _ =>
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -750,20 +907,24 @@ Available Modes:
   }
 
   def parseSapperMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum tools sapper [options] <file.sapp> <files> 
+
+
+-h | --help
+""".trim)
+      }
     if (i == args.length) {
-      addInfoTag(
-        """
-  Usage:
-    sireum tools sapper <>
-
-
-  """.trim)
+      usage
     } else {
       val opt = SapperMode()
       result.options = Some(opt)
       result.className = "org.sireum.tools.sapp.Sapper"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("")
+      val keys = List[String]("-h", "--help", "")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -778,7 +939,8 @@ Available Modes:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case _ =>
+              case "-h" | "--help" => usage
+              case _               =>
             }
           } else {
             k = k + 1
@@ -899,8 +1061,8 @@ Available Modes:
           addErrorTag("Unknown option type " + clazz)
       }
     } catch {
-      case e =>
-        addErrorTag("wrong argument type supplied " + e.toString())
+      case e : Throwable =>
+        addErrorTag("Wrong argument type supplied " + e.toString())
     }
     return v
   }
