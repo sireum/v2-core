@@ -177,7 +177,7 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
 
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritIntegerExtension.KonkritIntegerValue
+  type C = KonkritIntegerValue
   type K = KiasanIntegerValue
 
   @inline
