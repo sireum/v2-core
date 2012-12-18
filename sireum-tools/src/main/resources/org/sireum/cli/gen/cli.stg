@@ -112,9 +112,9 @@ case "$modeName$" =>
   parse$className$(args, i + 1)
 >>
 
-usage(name, arg, optArg, hasOptions) ::= <<
+usage(name, arg, optArg) ::= <<
 Usage:
-  $name; separator=" "$ $if(hasOptions)$[options] $endif$<$arg; separator="> <"$> $if(optArg)$[<$optArg; separator=">] [<"$>]$endif$
+  $name; separator=" "$ [options] $if(arg)$<$arg; separator="> <"$>$endif$ $if(optArg)$[<$optArg; separator=">] [<"$>]$endif$
 $if(hasOptions)$
 
 where the available options are:$endif$
@@ -126,17 +126,20 @@ $opt; separator="\n"$
   
 parseMain(className, header, featureName, targetName, caseOpt, name, caseArg, nummeth, key, optCheck, hasVarg, nonempty) ::= <<
 def parse$className$(args : Seq[String], i : Int) {
-  $if(nonempty)$if (i == args.length) {
+  def usage {
     addInfoTag(
 """
 $header; separator="\n\n"$
 """.trim) 
+  }
+  $if(nonempty)$if (i == args.length) {
+    usage
   } else $endif${
     val opt = $className$()
     result.options = Some(opt)
     result.className = "$targetName$"
     result.featureName = "$featureName$"
-    val keys = List[String]("$key; separator="\", \""$")
+    val keys = List[String]("-h", "--help", "$key; separator="\", \""$")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -152,6 +155,7 @@ $header; separator="\n\n"$
           }
           args(j) match {
             $caseOpt; separator="\n"$
+            case "-h" | "--help" => usage
             case _ =>
           }
         } else { 
@@ -211,8 +215,8 @@ process() ::= <<
           addErrorTag("Unknown option type " + clazz)
       }
     } catch {
-      case e =>
-        addErrorTag("wrong argument type supplied " + e.toString())
+      case e : Throwable =>
+        addErrorTag("Wrong argument type supplied " + e.toString())
     }
     return v
   }

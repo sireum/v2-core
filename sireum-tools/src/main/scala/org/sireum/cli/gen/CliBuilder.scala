@@ -155,7 +155,7 @@ class CliBuilder {
           val stuse = stg.getInstanceOf("usage")
           path.foreach { s => stuse.add("name", s) }
           stuse.add("name", s.value)
-          stMain.add("header", stuse.render.trim)
+          stMain.add("header", stuse)
 
           val md = filter(c.getDeclaredMethods, true)
 
@@ -197,7 +197,6 @@ class CliBuilder {
           val (l1, l2) = computeMaxLen(options)
           val optblock = marrayEmpty[String]
           for ((mo, opt, optCheck) <- options) {
-            stuse.add("hasOptions", true)
             val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck)
             optblock += st1.render
             stMain.add("caseOpt", st2)
@@ -205,6 +204,7 @@ class CliBuilder {
           val sortedopts = optblock.sortWith({ (a, b) =>
               def isLongKey(s : String) = s.startsWith(LONG_KEY_PREFIX)
               def isShortKey(s : String) = s.startsWith(SHORT_KEY_PREFIX) && !s.startsWith(LONG_KEY_PREFIX)
+
             if (isLongKey(a) && isShortKey(b))
               false
             else if (isShortKey(a) && isLongKey(b))
@@ -212,11 +212,11 @@ class CliBuilder {
             else a.compareTo(b) <= 0
           })
           val optblockst = stg.getInstanceOf("optblock")
+          optblockst.add("opt", "-h | --help")
           sortedopts.foreach(so => optblockst.add("opt", so))
-          stMain.add("header", optblockst.render.trim)
+          stMain.add("header", optblockst)
 
           for (m <- filter(c.getDeclaredMethods)) {
-            stuse.add("hasOptions", true)
             mineClass(m.getReturnType, m.invoke(o), path :+ s.value, m.getName)
           }
           stMain = null
@@ -225,7 +225,7 @@ class CliBuilder {
           imports += c.getPackage.getName
           val stgroup = stg.getInstanceOf("groupy")
           stgroup.add("groupName", s.value)
-          stMain.add("header", stgroup.render.trim)
+          stMain.add("header", stgroup)
 
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
@@ -340,6 +340,8 @@ class CliBuilder {
         ochoices.get.foreach(c => stchoices.add("c", c))
         stoption_desc.add("opt", stchoices)
       }
+    } else {
+      stoption_desc.add("desc", " (accepts all following string arguments)")
     }
 
     val stoption = stg.getInstanceOf("combine")
@@ -367,7 +369,6 @@ class CliBuilder {
       result.add("gname", groupName)
     result.add("fname", fieldName)
   }
-                    
 
   def format(d : String, max : Int, curCol : Int) : String = {
 
@@ -495,7 +496,7 @@ class CliBuilder {
         val castType = pt.toString.replaceAll("<", "[").replaceAll(">", "]")
         val genericType = pt.getActualTypeArguments.head.asInstanceOf[Class[_]]
         val fqn = v.getClass.getName.replace("Nil$", "List[" + genericType.getName + "]") + "()"
-        val simpleName = v.toString
+        val simpleName = "\"" + v.asInstanceOf[Seq[_]].mkString(",") + "\""
 
         /*
         println("castType: " + castType)
@@ -512,7 +513,7 @@ class CliBuilder {
         if (genericType != classOf[java.lang.String]) {
           throw new RuntimeException("Only supporting lists of strings at this time: " + genericType.getName)
         }
-        ("ISeq[String]", "ilistEmpty[String]", "ISeq[String]", None)
+        ("ISeq[String]", "ilistEmpty[String]", simpleName, None)
       case s : scala.Option[_] =>
         throw new RuntimeException("Not handling Option type yet")
       case _ =>
