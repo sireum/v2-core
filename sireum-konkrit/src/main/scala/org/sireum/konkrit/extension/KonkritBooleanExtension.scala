@@ -20,6 +20,14 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait KonkritBooleanValue extends BooleanValue with ConcreteValue with IsBoolean {
+  def value : Boolean
+  def asBoolean = value
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object KonkritBooleanExtension extends ExtensionCompanion {
   def create[S <: State[S]](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
@@ -30,36 +38,126 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   @inline
   def b2v(b : Boolean) = if (b) TT else FF
 
+  private type Op = String
+
   @inline
-  def binopEquSem(opEqu : String)(b1 : Boolean, b2 : Boolean) =
+  def binopEquSem(opEqu : Op)(b1 : Boolean, b2 : Boolean) =
     opEqu match {
       case "==" => b1 == b2
       case "!=" => b1 != b2
     }
-}
 
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait KonkritBooleanValue extends BooleanValue with ConcreteValue with IsBoolean {
-  def value : Boolean
-  def asBoolean = value
-}
+  @inline
+  def binopLSem(opL : Op)(b1 : Boolean, b2 : Boolean) =
+    opL match {
+      case "=="   => b1 == b2
+      case "!="   => b1 != b2
+      case "&&&"  => b1 && b2
+      case "|||"  => b1 || b2
+      case "<===" => b1 || !b2
+      case "===>" => !b1 || b2
+    }
 
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object TT extends KonkritBooleanValue {
-  val typeUri = KonkritBooleanExtension.Type
-  val value = true
-}
+  @inline
+  def binopSCSem(opA : Op)(b1 : Boolean) : Either[Boolean, Boolean => Boolean] =
+    opA match {
+      case "&&"  => if (b1) Right(identity) else Left(false)
+      case "||"  => if (b1) Left(true) else Right(identity)
+      case "<==" => if (b1) Left(true) else Right(!_)
+      case "==>" => if (!b1) Left(true) else Right(identity)
+    }
 
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object FF extends KonkritBooleanValue {
-  val typeUri = KonkritBooleanExtension.Type
-  val value = false
+  private type CV = IsBoolean
+  private type V = Value
+  private type Cnd[S] = (S, V) --> ISeq[(S, Boolean)]
+
+  import language.implicitConversions
+
+  @inline
+  private implicit def re2r[S, T](p : (S, T)) = ilist(p)
+
+  @inline
+  def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, v : CV, BooleanExtension.Type)        => (s, v)
+    case (s, v : CV, KonkritBooleanExtension.Type) => (s, v)
+  }
+
+  @inline
+  def cond[S] : (S, V) --> ISeq[(S, Boolean)] = {
+    case (s, b : CV) => (s, b.asBoolean)
+  }
+
+  @inline
+  def trueLit[S] : S --> ISeq[(S, V)] = { case s => (s, TT) }
+
+  @inline
+  def falseLit[S] : S --> ISeq[(S, V)] = { case s => (s, FF) }
+
+  @inline
+  def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, BooleanExtension.Type) => (s, FF)
+  }
+
+  @inline
+  def binopLEval[S](cond : Cnd[S]) : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, v1 : V, opL : Op, v2 : V) =>
+      for {
+        (s2, b1) <- cond(s, v1)
+        (s3, b2) <- cond(s2, v2)
+      } yield (s3, b2v(binopLSem(opL)(b1, b2)))
+  }
+
+  @inline
+  def binopEqu[S] : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, b1 : CV, opEqu, b2 : CV) =>
+      (s, b2v(opEqu match {
+        case "==" => b1.asBoolean == b2.asBoolean
+        case "!=" => b1.asBoolean != b2.asBoolean
+      }))
+  }
+
+  @inline
+  def binopSCEval[S](cond : Cnd[S]) : //
+  (S, V, String, S => ISeq[(S, V)]) --> ISeq[(S, V)] = {
+    case (s, v1 : V, opSC : String, f) =>
+      for {
+        (s2, b1) <- cond(s, v1)
+        (s5, v) <- {
+          binopSCSem(opSC)(b1) match {
+            case Left(b) => ilist((s2, b2v(b)))
+            case Right(fb) =>
+              for {
+                (s3, v2) <- f(s2)
+                (s4, b2) <- cond(s3, v2)
+              } yield (s4, b2v(fb(b2)))
+          }
+        }
+      } yield (s5, v)
+  }
+
+  @inline
+  def notEval[S](cond : Cnd[S]) : (S, V) --> ISeq[(S, V)] = {
+    case (s, v : V) =>
+      for {
+        (s2, b) <- cond(s, v)
+      } yield (s2, b2v(!b))
+  }
+
+  /**
+   * @author <a href="mailto:robby@k-state.edu">Robby</a>
+   */
+  object TT extends KonkritBooleanValue {
+    val typeUri = KonkritBooleanExtension.Type
+    val value = true
+  }
+
+  /**
+   * @author <a href="mailto:robby@k-state.edu">Robby</a>
+   */
+  object FF extends KonkritBooleanValue {
+    val typeUri = KonkritBooleanExtension.Type
+    val value = false
+  }
 }
 
 /**
@@ -73,98 +171,33 @@ final class KonkritBooleanExtension[S <: State[S]](
 
   val uriPath = UriUtil.classUri(this)
 
-  type C = IsBoolean
-
   @inline
-  private implicit def re2r(p : (S, Value)) = ilist(p)
+  def cnd = config.semanticsExtension.cond
 
   @Cast
-  def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, v : C, BooleanExtension.Type)        => (s, v)
-    case (s, v : C, KonkritBooleanExtension.Type) => (s, v)
-  }
-
-  val se = config.semanticsExtension
+  def cast = KonkritBooleanExtension.cast[S]
 
   @Cond
-  def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, b : C) => ilist((s, b.asBoolean))
-  }
+  def cond = KonkritBooleanExtension.cond[S]
 
   @Literal(value = classOf[Boolean], isTrue = true)
-  def literalT : S --> ISeq[(S, Value)] = { case s => (s, TT) }
+  def trueLit = KonkritBooleanExtension.trueLit[S]
 
   @Literal(value = classOf[Boolean], isTrue = false)
-  def literalF : S --> ISeq[(S, Value)] = { case s => (s, FF) }
+  def falseLit = KonkritBooleanExtension.falseLit[S]
 
   @DefaultValue
-  def defValue : (S, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, BooleanExtension.Type) => (s, FF)
-  }
-
-  val sec = config.semanticsExtension
+  def defValue = KonkritBooleanExtension.defValue[S]
 
   @Binaries(Array("&&&", "|||", "===>", "<==="))
-  def binopLEval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, v1 : Value, opL : String, v2 : Value) =>
-      for {
-        (s2, b1) <- sec.cond(s, v1)
-        (s3, b2) <- sec.cond(s2, v2)
-      } yield (s3, b2v(binopLSem(opL)(b1, b2)))
-  }
+  def binopLEval = KonkritBooleanExtension.binopLEval(cnd)
 
   @Binaries(Array("==", "!="))
-  def binopEqu : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, b1 : C, opEqu, b2 : C) =>
-      (s, b2v(opEqu match {
-        case "==" => b1.asBoolean == b2.asBoolean
-        case "!=" => b1.asBoolean != b2.asBoolean
-      }))
-  }
+  def binopEqu = KonkritBooleanExtension.binopEqu[S]
 
   @RBinaries(Array("&&", "||", "==>", "<=="))
-  def binopSCEval : (S, Value, String, S => ISeq[(S, Value)]) --> ISeq[(S, Value)] = {
-    case (s, v1 : Value, opSC : String, f) =>
-      for {
-        (s2, b1) <- sec.cond(s, v1)
-        (s5, v) <- {
-          binopSCSem(opSC)(b1) match {
-            case Left(b) => ilist((s2, b2v(b)))
-            case Right(fb) =>
-              for {
-                (s3, v2) <- f(s2)
-                (s4, b2) <- se.cond(s3, v2)
-              } yield (s4, b2v(fb(b2)))
-          }
-        }
-      } yield (s5, v)
-  }
+  def binopSCEval = KonkritBooleanExtension.binopSCEval(cnd)
 
   @Unary("!")
-  def unopEval : (S, Value) --> ISeq[(S, Value)] = {
-    case (s, v : Value) =>
-      for {
-        (s2, b) <- sec.cond(s, v)
-      } yield (s2, b2v(!b))
-  }
-
-  @inline
-  private def binopLSem(opL : String)(b1 : Boolean, b2 : Boolean) =
-    opL match {
-      case "=="   => b1 == b2
-      case "!="   => b1 != b2
-      case "&&&"  => b1 && b2
-      case "|||"  => b1 || b2
-      case "<===" => b1 || !b2
-      case "===>" => !b1 || b2
-    }
-
-  @inline
-  private def binopSCSem(opA : String)(b1 : Boolean) : Either[Boolean, Boolean => Boolean] =
-    opA match {
-      case "&&"  => if (b1) Right(identity) else Left(false)
-      case "||"  => if (b1) Left(true) else Right(identity)
-      case "<==" => if (b1) Left(true) else Right(!_)
-      case "==>" => if (!b1) Left(true) else Right(identity)
-    }
+  def notEval = KonkritBooleanExtension.notEval(cnd)
 }

@@ -20,6 +20,13 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait KonkritIntValue extends IntegerValue with ConcreteValue {
+  def value : Int
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object KonkritIntExtension extends ExtensionCompanion {
   def create[S <: State[S]](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
@@ -27,11 +34,106 @@ object KonkritIntExtension extends ExtensionCompanion {
 
   val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  trait KonkritIntValue extends IntegerValue with ConcreteValue {
-    def value : Int
+  private type Op = String
+
+  @inline
+  def binopASem(opA : Op)(c : Int, d : Int) =
+    opA match {
+      case "+"   => c + d
+      case "-"   => c - d
+      case "*"   => c * d
+      case "/"   => c / d
+      case "%"   => c % d
+      case "^>>" => c >>> d
+      case "^>"  => c >> d
+      case "^<"  => c << d
+    }
+
+  @inline
+  def opRSem(opR : Op)(c : Int, d : Int) =
+    opR match {
+      case "==" => c == d
+      case "!=" => c != d
+      case ">"  => c > d
+      case ">=" => c >= d
+      case "<"  => c < d
+      case "<=" => c <= d
+    }
+
+  @inline
+  def unopASem(opA : Op)(c : Int) =
+    opA match {
+      case "+" => c
+      case "-" => -c
+    }
+
+  private type CV = KonkritIntValue
+  private type V = Value
+
+  import language.implicitConversions
+
+  @inline
+  private implicit def re2r[S](p : (S, V)) = ilist(p)
+
+  @inline
+  private implicit def int2v(n : Int) = CInt(n)
+
+  @inline
+  private implicit def kiv2int(c : CV) = c.value
+
+  @inline
+  def nativeIndexConverter : V --> Integer = {
+    case (v : CV) => SireumNumber(v)
+  }
+
+  @inline
+  def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, IntegerExtension.Type) => ilist((s, 0))
+  }
+
+  @inline
+  def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, v : CV, IntegerExtension.Type)    => (s, v)
+    case (s, v : CV, KonkritIntExtension.Type) => (s, v)
+  }
+
+  @inline
+  def literal[S] : (S, Int) --> ISeq[(S, V)] = {
+    case (s, n) => ilist((s, n))
+  }
+
+  @inline
+  def binopAEval[S] : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, c : CV, opA, d : CV) => ilist((s, binopASem(opA)(c, d)))
+  }
+
+  @inline
+  def binopREval[S](b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, c : CV, opR, d : CV) => ilist((s, b2v(opRSem(opR)(c, d))))
+  }
+
+  @inline
+  def unopAEval[S] : (S, Op, V) --> ISeq[(S, V)] = {
+    case (s, opA, c : CV) => ilist((s, unopASem(opA)(c)))
+  }
+
+  @inline
+  def b2vAsBoolean(b : Boolean) = {
+    import KonkritBooleanExtension._
+    if (b) TT else FF
+  }
+
+  @inline
+  def b2vAsInt(b : Boolean) : V = if (b) 1 else 0
+
+  @inline
+  def cond[S](canCast : (S, V, ResourceUri) => Boolean,
+              cast : (S, V, ResourceUri) --> ISeq[(S, V)]) //
+              : (S, V) --> ISeq[(S, Boolean)] = {
+    case (s, c : CV) => ilist((s, c.value != 0))
+    case (s, v) if canCast(s, v, KonkritIntExtension.Type) =>
+      val r = cast(s, v, KonkritIntExtension.Type)
+      r.map { p => (p._1, p._2.asInstanceOf[CV].value != 0) }
   }
 
   /**
@@ -52,85 +154,28 @@ trait KonkritIntExtension[S <: State[S]]
 
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritIntValue
-
-  @inline
-  private implicit def re2r(p : (S, Value)) = ilist(p)
-
-  @inline
-  private implicit def int2integer(n : Int) = SireumNumber(n)
-
-  @inline
-  private implicit def kiv2int(c : C) = c.value
-
   @NativeIndex
-  def nativeIndexConverter : Value --> Integer = {
-    case (v : C) => SireumNumber(v)
-  }
+  def nativeIndexConverter = KonkritIntExtension.nativeIndexConverter
 
   @DefaultValue
-  def defValue : (S, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, IntegerExtension.Type) => (s, CInt(0))
-  }
+  def defValue = KonkritIntExtension.defValue[S]
 
   @Cast
-  def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, v : C, IntegerExtension.Type)    => (s, v)
-    case (s, v : C, KonkritIntExtension.Type) => (s, v)
-  }
+  def cast = KonkritIntExtension.cast[S]
 
   @Literal(classOf[Int])
-  def literal : (S, Int) --> ISeq[(S, Value)] = {
-    case (s, n) => (s, CInt(n))
-  }
+  def literal = KonkritIntExtension.literal[S]
 
   @Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
-  def binopAEval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, c : C, opA : String, d : C) => (s, CInt(binopASem(opA)(c, d)))
-  }
-
-  @inline
-  private def binopASem(opA : String)(c : Int, d : Int) =
-    opA match {
-      case "+"   => c + d
-      case "-"   => c - d
-      case "*"   => c * d
-      case "/"   => c / d
-      case "%"   => c % d
-      case "^>>" => c >>> d
-      case "^>"  => c >> d
-      case "^<"  => c << d
-    }
+  def binopAEval = KonkritIntExtension.binopAEval[S]
 
   @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
-  def binopREval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, c : C, opR : String, d : C) => (s, b2v(opRSem(opR)(c, d)))
-  }
-
-  def b2v(b : Boolean) : Value
-
-  @inline
-  private def opRSem(opR : String)(c : Int, d : Int) =
-    opR match {
-      case "==" => c == d
-      case "!=" => c != d
-      case ">"  => c > d
-      case ">=" => c >= d
-      case "<"  => c < d
-      case "<=" => c <= d
-    }
+  def binopREval = KonkritIntExtension.binopREval[S](b2v _)
 
   @Unaries(Array("-", "+"))
-  def unopAEval : (S, String, Value) --> ISeq[(S, Value)] = {
-    case (s, opA, c : C) => (s, CInt(unopASem(opA)(c)))
-  }
+  def unopAEval = KonkritIntExtension.unopAEval[S]
 
-  @inline
-  private def unopASem(opA : String)(c : Int) =
-    opA match {
-      case "+" => c
-      case "-" => -c
-    }
+  def b2v(b : Boolean) : Value
 }
 
 /**
@@ -150,7 +195,7 @@ final class KonkritIntBExtension[S <: State[S]](
     extends KonkritIntExtension[S] {
   import KonkritBooleanExtension._
 
-  def b2v(b : Boolean) : Value = if (b) TT else FF
+  def b2v(b : Boolean) = KonkritIntExtension.b2vAsBoolean(b)
 }
 
 /**
@@ -170,15 +215,10 @@ final class KonkritIntIExtension[S <: State[S]](
     extends KonkritIntExtension[S] {
   import KonkritIntExtension._
 
-  def b2v(b : Boolean) : Value = if (b) CInt(1) else CInt(0)
+  def b2v(b : Boolean) = KonkritIntExtension.b2vAsInt(b)
 
   val se = config.semanticsExtension
 
   @Cond
-  def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, c : C) => ilist((s, c.value != 0))
-    case (s, v) if se.canCast(s, v, KonkritIntExtension.Type) =>
-      val r = se.cast(s, v, KonkritIntExtension.Type)
-      r.map { p => (p._1, p._2.asInstanceOf[C].value != 0) }
-  }
+  def cond = KonkritIntExtension.cond(se.canCast, se.cast)
 }
