@@ -120,7 +120,7 @@ Usage:
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -211,7 +211,7 @@ Usage:
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -302,7 +302,7 @@ Usage:
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -393,7 +393,7 @@ Usage:
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -448,7 +448,7 @@ Usage:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -530,7 +530,7 @@ Usage:
       result.options = Some(opt)
       result.className = "org.sireum.cli.gen.CliBuilder"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "-d", "--directory", "--min-col", "--max-col", "-c", "--class-name", "-p", "--packages")
+      val keys = List[String]("-h", "--help", "-p", "--packages", "-d", "--directory", "--min-col", "--max-col", "-c", "--class-name")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -545,6 +545,24 @@ Usage:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "-p" | "--packages" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--packages"
+                  r = r || s == "-p"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--packages"
+                  seenopts += "-p"
+                }
+                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                if (result.status) {
+                  opt.packages = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
               case "-d" | "--directory" =>
 
                 if (seenopts.exists { s =>
@@ -615,25 +633,7 @@ Usage:
                   result.status &= new org.sireum.option.CliGenOption().genClassNameCheck(opt, result.tags)
                   j += 1
                 }
-              case "-p" | "--packages" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--packages"
-                  r = r || s == "-p"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--packages"
-                  seenopts += "-p"
-                }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
-                if (result.status) {
-                  opt.packages = v.get.asInstanceOf[ISeq[String]]
-                  j += 1
-                }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -759,7 +759,7 @@ Usage:
                   opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -877,7 +877,7 @@ Usage:
                   opt.packageName = v.get.asInstanceOf[java.lang.String]
                   j += 1
                 }
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
@@ -939,7 +939,7 @@ Usage:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-h" | "--help" => usage
+              case "-h" | "--help" => usage; sys.exit
               case _               =>
             }
           } else {
