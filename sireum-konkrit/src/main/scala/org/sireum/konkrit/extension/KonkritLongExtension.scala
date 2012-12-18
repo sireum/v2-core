@@ -79,7 +79,7 @@ object KonkritLongExtension extends ExtensionCompanion {
   private implicit def long2v(n : Long) = CLong(n)
 
   @inline
-  private implicit def klv2long(c : CV) = c.value
+  private implicit def cv2long(c : CV) = c.value
 
   @inline
   def nativeIndexConverter : V --> Integer = {
@@ -123,8 +123,9 @@ object KonkritLongExtension extends ExtensionCompanion {
               (S, V) --> ISeq[(S, Boolean)] = {
     case (s, c : CV) => ilist((s, c.value != 0))
     case (s, v) if canCast(s, v, KonkritLongExtension.Type) =>
-      val r = cast(s, v, KonkritLongExtension.Type)
-      r.map { p => (p._1, p._2.asInstanceOf[CV].value != 0) }
+      for {
+        (s1, v1) <- cast(s, v, KonkritLongExtension.Type)
+      } yield (s1, v1.asInstanceOf[CV].value != 0)
   }
 
   @inline

@@ -79,7 +79,7 @@ object KonkritIntExtension extends ExtensionCompanion {
   private implicit def int2v(n : Int) = CInt(n)
 
   @inline
-  private implicit def kiv2int(c : CV) = c.value
+  private implicit def cv2int(c : CV) = c.value
 
   @inline
   def nativeIndexConverter : V --> Integer = {
@@ -118,13 +118,7 @@ object KonkritIntExtension extends ExtensionCompanion {
   }
 
   @inline
-  def b2vAsBoolean(b : Boolean) = {
-    import KonkritBooleanExtension._
-    if (b) TT else FF
-  }
-
-  @inline
-  def b2vAsInt(b : Boolean) : V = if (b) 1 else 0
+  def b2v(b : Boolean) : V = if (b) 1 else 0
 
   @inline
   def cond[S](canCast : (S, V, ResourceUri) => Boolean,
@@ -132,8 +126,9 @@ object KonkritIntExtension extends ExtensionCompanion {
               : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, c : CV) => ilist((s, c.value != 0))
     case (s, v) if canCast(s, v, KonkritIntExtension.Type) =>
-      val r = cast(s, v, KonkritIntExtension.Type)
-      r.map { p => (p._1, p._2.asInstanceOf[CV].value != 0) }
+      for {
+        (s1, v1) <- cast(s, v, KonkritIntExtension.Type)
+      } yield (s1, v1.asInstanceOf[CV].value != 0)
   }
 
   /**
@@ -195,7 +190,7 @@ final class KonkritIntBExtension[S <: State[S]](
     extends KonkritIntExtension[S] {
   import KonkritBooleanExtension._
 
-  def b2v(b : Boolean) = KonkritIntExtension.b2vAsBoolean(b)
+  def b2v(b : Boolean) = KonkritBooleanExtension.b2v(b)
 }
 
 /**
@@ -215,7 +210,7 @@ final class KonkritIntIExtension[S <: State[S]](
     extends KonkritIntExtension[S] {
   import KonkritIntExtension._
 
-  def b2v(b : Boolean) = KonkritIntExtension.b2vAsInt(b)
+  def b2v(b : Boolean) = KonkritIntExtension.b2v(b)
 
   val se = config.semanticsExtension
 

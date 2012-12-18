@@ -50,8 +50,6 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   @inline
   def binopLSem(opL : Op)(b1 : Boolean, b2 : Boolean) =
     opL match {
-      case "=="   => b1 == b2
-      case "!="   => b1 != b2
       case "&&&"  => b1 && b2
       case "|||"  => b1 || b2
       case "<===" => b1 || !b2
@@ -100,7 +98,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 
   @inline
   def binopLEval[S](cond : Cnd[S]) : (S, V, Op, V) --> ISeq[(S, V)] = {
-    case (s, v1 : V, opL : Op, v2 : V) =>
+    case (s, v1, opL : Op, v2) =>
       for {
         (s2, b1) <- cond(s, v1)
         (s3, b2) <- cond(s2, v2)
@@ -110,16 +108,13 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   @inline
   def binopEqu[S] : (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, b1 : CV, opEqu, b2 : CV) =>
-      (s, b2v(opEqu match {
-        case "==" => b1.asBoolean == b2.asBoolean
-        case "!=" => b1.asBoolean != b2.asBoolean
-      }))
+      (s, b2v(binopEquSem(opEqu)(b1.asBoolean, b2.asBoolean)))
   }
 
   @inline
   def binopSCEval[S](cond : Cnd[S]) : //
-  (S, V, String, S => ISeq[(S, V)]) --> ISeq[(S, V)] = {
-    case (s, v1 : V, opSC : String, f) =>
+  (S, V, Op, S => ISeq[(S, V)]) --> ISeq[(S, V)] = {
+    case (s, v1, opSC, f) =>
       for {
         (s2, b1) <- cond(s, v1)
         (s5, v) <- {
@@ -137,7 +132,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 
   @inline
   def notEval[S](cond : Cnd[S]) : (S, V) --> ISeq[(S, V)] = {
-    case (s, v : V) =>
+    case (s, v) =>
       for {
         (s2, b) <- cond(s, v)
       } yield (s2, b2v(!b))

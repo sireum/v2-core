@@ -83,7 +83,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   private implicit def int2v(n : Int) = CI(SireumNumber(n))
 
   @inline
-  private implicit def kiv2integer(c : CV) = c.asInteger
+  private implicit def cv2integer(c : CV) = c.asInteger
 
   @inline
   def nativeIndexConverter : V --> Integer = {
@@ -108,7 +108,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 
   @inline
   def binopAEval[S] : (S, V, Op, V) --> ISeq[(S, V)] = {
-    case (s, c : CV, opA, d : CV) => (s, CI(binopASem(opA)(c, d)))
+    case (s, c : CV, opA, d : CV) => ilist((s, binopASem(opA)(c, d)))
   }
 
   @inline
@@ -127,8 +127,9 @@ object KonkritIntegerExtension extends ExtensionCompanion {
               (S, V) --> ISeq[(S, Boolean)] = {
     case (s, i : CV) => ilist((s, !i.asInteger.isZero))
     case (s, v) if canCast(s, v, KonkritIntegerExtension.Type) =>
-      val r = cast(s, v, KonkritIntegerExtension.Type)
-      r.map { p => (p._1, !p._2.asInstanceOf[CV].asInteger.isZero) }
+      for {
+        (s1, v1) <- cast(s, v, KonkritIntegerExtension.Type)
+      } yield (s1, !v1.asInstanceOf[CV].asInteger.isZero)
   }
 
   @inline
