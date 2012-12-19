@@ -6,7 +6,7 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html                             
 */
 
-package org.sireum.konkrit.extension
+package org.sireum.kiasan.extension
 
 import org.sireum.extension._
 import org.sireum.extension.BooleanExtension._
@@ -24,17 +24,80 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait KiasanBooleanValue extends BooleanValue with KiasanValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object KiasanBooleanExtension extends ExtensionCompanion {
   def create[S <: KiasanStatePart[S]](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KiasanBooleanExtension(config)
 
-  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+  private type Op = String
+  private type V = Value
+  private type KS[S <: KS[S]] = KiasanStatePart[S]
+
+  import language.implicitConversions
+
+  private type CV = org.sireum.konkrit.extension.KonkritBooleanValue
+  private type KV = KiasanBooleanValue
 
   @inline
-  def fresh[S <: KiasanStatePart[S]](s : S) = {
+  private implicit def re2r[S](p : (S, V)) = ilist(p)
+
+  @inline
+  def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, v : KV, BooleanExtension.Type)       => (s, v)
+    case (s, v : KV, KiasanBooleanExtension.Type) => (s, v)
+  }
+
+  @inline
+  def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
+    case (s, b : KV) =>
+      ilist((s.addPathCondition(ValueExp(b)).requestInconsistencyCheck, true),
+        (s.addPathCondition(UnaryExp("!", ValueExp(b))).
+          requestInconsistencyCheck, false))
+  }
+
+  @inline
+  def fresh[S <: KS[S]](s : S) = {
     val (nextS, num) = s.next(KiasanBooleanExtension.Type)
     (nextS, KB(num))
+  }
+
+  @inline
+  def fresh[S <: KS[S]] : (S, ResourceUri) --> (S, Value) = {
+    case (s, KiasanBooleanExtension.Type) => fresh(s)
+  }
+
+  @inline
+  def binopEqu[S <: KS[S]](cond : (S, V) --> ISeq[(S, Boolean)]) : // 
+  (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, b1 : CV, opEqu, b2 : KV) => binopEquHelper(cond, s, b1, opEqu, b2)
+    case (s, b1 : KV, opEqu, b2 : CV) => binopEquHelper(cond, s, b1, opEqu, b2)
+    case (s, b1 : KV, opEqu, b2 : KV) => binopEquHelper(cond, s, b1, opEqu, b2)
+  }
+
+  @inline
+  def binopEquHelper[S <: KS[S]](
+    cond : (S, V) --> ISeq[(S, Boolean)], s : S, v1 : V, opEqu : Op, v2 : V) = {
+    import org.sireum.konkrit.extension._
+    for {
+      (s2, b1) <- cond(s, v1)
+      (s3, b2) <- cond(s2, v2)
+    } yield (s3,
+      KonkritBooleanExtension.b2v(
+        KonkritBooleanExtension.binopEquSem(opEqu)(b1, b2)))
+  }
+
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+
+  /**
+   * @author <a href="mailto:robby@k-state.edu">Robby</a>
+   */
+  final case class KB(num : Int) extends KiasanBooleanValue {
+    val typeUri = KiasanBooleanExtension.Type
   }
 
   @BackEnd(value = "Z3", mode = "Process")
@@ -90,67 +153,23 @@ object KiasanBooleanExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KiasanBooleanValue extends BooleanValue with KiasanValue
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class KB(num : Int) extends KiasanBooleanValue {
-  val typeUri = KiasanBooleanExtension.Type
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
 
-  import KiasanBooleanExtension._
-
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritBooleanValue
-  type K = KiasanBooleanValue
-
-  import language.implicitConversions
-
-  @inline
-  private implicit def re2r(p : (S, Value)) = ilist(p)
-
   @Cast
-  def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, v : K, BooleanExtension.Type)       => (s, v)
-    case (s, v : K, KiasanBooleanExtension.Type) => (s, v)
-  }
-
-  val sec = config.semanticsExtension
+  val cast = KiasanBooleanExtension.cast[S]
 
   @Cond
-  def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, b : K) =>
-      ilist((s.addPathCondition(ValueExp(b)).requestInconsistencyCheck, true),
-        (s.addPathCondition(UnaryExp("!", ValueExp(b))).
-          requestInconsistencyCheck, false))
-  }
+  val cond = KiasanBooleanExtension.cond[S]
 
   @FreshKiasanValueProvider
-  def freshKB : (S, ResourceUri) --> (S, Value) = {
-    case (s, KiasanBooleanExtension.Type) => fresh(s)
-  }
+  val fresh = KiasanBooleanExtension.fresh[S]
+
+  val se = config.semanticsExtension
 
   @Binaries(Array("==", "!="))
-  def binopEqu : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, b1 : C, opEqu, b2 : K) => binopEquHelper(s, b1, opEqu, b2)
-    case (s, b1 : K, opEqu, b2 : C) => binopEquHelper(s, b1, opEqu, b2)
-    case (s, b1 : K, opEqu, b2 : K) => binopEquHelper(s, b1, opEqu, b2)
-  }
-
-  def binopEquHelper(s : S, v1 : Value, opEqu : String, v2 : Value) =
-    for {
-      (s2, b1) <- sec.cond(s, v1)
-      (s3, b2) <- sec.cond(s2, v2)
-    } yield (s3,
-      KonkritBooleanExtension.b2v(
-        KonkritBooleanExtension.binopEquSem(opEqu)(b1, b2)))
+  val binopEqu = KiasanBooleanExtension.binopEqu[S](se.cond)
 }

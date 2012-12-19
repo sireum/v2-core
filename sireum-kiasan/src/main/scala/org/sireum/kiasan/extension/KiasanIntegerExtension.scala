@@ -12,6 +12,7 @@ import org.sireum.extension._
 import org.sireum.extension.IntegerExtension._
 import org.sireum.kiasan.state._
 import org.sireum.kiasan.extension._
+import org.sireum.kiasan.extension.KiasanExtension._
 import org.sireum.konkrit.extension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
@@ -24,17 +25,114 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait KiasanIntegerValue extends IntegerValue with KiasanValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object KiasanIntegerExtension extends ExtensionCompanion {
   def create[S <: KiasanStatePart[S]](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KiasanIntegerBExtension(config)
 
-  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+  private type Op = String
+  private type V = Value
+  private type CV = KonkritIntegerValue
+  private type KV = KiasanIntegerValue
+  private type KS[S <: KS[S]] = KiasanStatePart[S]
+
+  import language.implicitConversions
+
+  @inline
+  private implicit def re2r[S](p : (S, Value)) = ilist(p)
+
+  @inline
+  final implicit def v2e(v : Value) : Exp = ValueExp(v)
+
+  @inline
+  def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
+    case (s, v : KV, IntegerExtension.Type)       => (s, v)
+    case (s, v : KV, KiasanIntegerExtension.Type) => (s, v)
+  }
 
   @inline
   def fresh[S <: KiasanStatePart[S]](s : S) = {
     val (nextS, num) = s.next(KiasanIntegerExtension.Type)
     (nextS, KI(num))
+  }
+
+  @inline
+  def fresh[S <: KS[S]] : (S, ResourceUri) --> (S, V) = {
+    case (s, KiasanIntegerExtension.Type) => fresh(s)
+  }
+
+  @inline
+  def binopAEval[S <: KS[S]] : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, v : CV, opA : String, w : KV) => binopAHelper(s, v, opA, w)
+    case (s, v : KV, opA : String, w : CV) => binopAHelper(s, v, opA, w)
+    case (s, v : KV, opA : String, w : KV) => binopAHelper(s, v, opA, w)
+  }
+
+  @inline
+  def binopAHelper[S <: KS[S]](s : S, v : V, opA : Op, w : V) : ISeq[(S, V)] = {
+    val (nextS, a) = fresh(s, KiasanIntegerExtension.Type)
+    (nextS.addPathCondition(BinaryExp("==", a, BinaryExp(opA, v, w))), a)
+  }
+
+  @inline
+  def binopREval[S <: KS[S]](b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
+    case (s, v : CV, opR : String, w : KV) => binopRHelper(b2v, s, v, opR, w)
+    case (s, v : KV, opR : String, w : CV) => binopRHelper(b2v, s, v, opR, w)
+    case (s, v : KV, opR : String, w : KV) => binopRHelper(b2v, s, v, opR, w)
+  }
+
+  @inline
+  def binopRHelper[S <: KS[S]](
+    b2v : Boolean => V, s : S, v : V, opR : Op, w : V) : ISeq[(S, Value)] = {
+    ilist(
+      (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck, b2v(true)),
+      (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck, b2v(false)))
+  }
+
+  @inline
+  def unopAEval[S <: KS[S]] : (S, Op, V) --> ISeq[(S, V)] = {
+    case (s, opA, v : KV) => unopAHelper(s, opA, v)
+  }
+
+  @inline
+  def unopAHelper[S <: KS[S]](s : S, opA : Op, v : V) : ISeq[(S, V)] = {
+    opA match {
+      case "-" =>
+        val (nextS, a) = fresh(s, KiasanIntegerExtension.Type)
+        (nextS.addPathCondition(BinaryExp("==", a, UnaryExp(opA, v))), a)
+      case "+" => (s, v)
+    }
+  }
+
+  @inline
+  def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
+    case (s, v : KV) =>
+      val w = KonkritIntegerExtension.CI(SireumNumber(0))
+      ilist(
+        (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck, true),
+        (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck, false))
+  }
+
+  val comp =
+    Map("==" -> "!=",
+      "!=" -> "==",
+      ">" -> "<=",
+      ">=" -> "<",
+      "<" -> ">=",
+      "<=" -> ">")
+
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+
+  /**
+   * @author <a href="mailto:robby@k-state.edu">Robby</a>
+   */
+  final case class KI(num : Int) extends KiasanIntegerValue {
+    val typeUri = KiasanIntegerExtension.Type
   }
 
   @BackEnd(value = "Z3", mode = "Process")
@@ -152,101 +250,30 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   }
 }
 
-import org.sireum.kiasan.extension.KiasanExtension._
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait KiasanIntegerValue extends IntegerValue with KiasanValue
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class KI(num : Int) extends KiasanIntegerValue {
-  val typeUri = KiasanIntegerExtension.Type
-}
-
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
     extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
 
-  import KiasanIntegerExtension._
-
   val uriPath = UriUtil.classUri(this)
 
-  type C = KonkritIntegerValue
-  type K = KiasanIntegerValue
-
-  @inline
-  private implicit def re2r(p : (S, Value)) = ilist(p)
-
-  @inline
-  final implicit def v2e(v : Value) : Exp = ValueExp(v)
-
   @Cast
-  def castType : (S, Value, ResourceUri) --> ISeq[(S, Value)] = {
-    case (s, v : K, IntegerExtension.Type)       => (s, v)
-    case (s, v : K, KiasanIntegerExtension.Type) => (s, v)
-  }
+  val cast = KiasanIntegerExtension.cast[S]
 
   @FreshKiasanValueProvider
-  def freshKI : (S, ResourceUri) --> (S, Value) = {
-    case (s, KiasanIntegerExtension.Type) => fresh(s)
-  }
+  val fresh = KiasanIntegerExtension.fresh[S]
 
   @Binaries(Array("+", "-", "*", "/", "%"))
-  def binopAEval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, v : C, opA : String, w : K) => binopAHelper(s, v, opA, w)
-    case (s, v : K, opA : String, w : C) => binopAHelper(s, v, opA, w)
-    case (s, v : K, opA : String, w : K) => binopAHelper(s, v, opA, w)
-  }
-
-  @inline
-  private def binopAHelper(s : S, v : Value, opA : String, w : Value) : ISeq[(S, Value)] = {
-    val (nextS, a) = freshKI(s, KiasanIntegerExtension.Type)
-    (nextS.addPathCondition(BinaryExp("==", a, BinaryExp(opA, v, w))), a)
-  }
+  val binopAEval = KiasanIntegerExtension.binopAEval[S]
 
   @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
-  def binopREval : (S, Value, String, Value) --> ISeq[(S, Value)] = {
-    case (s, v : C, opR : String, w : K) => binopRHelper(s, v, opR, w)
-    case (s, v : K, opR : String, w : C) => binopRHelper(s, v, opR, w)
-    case (s, v : K, opR : String, w : K) => binopRHelper(s, v, opR, w)
-  }
-
-  @inline
-  private def binopRHelper(s : S, v : Value, opR : String, w : Value) : ISeq[(S, Value)] = {
-    ilist(
-      (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck, b2v(true)),
-      (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck, b2v(false)))
-  }
-
-  def b2v(b : Boolean) : Value
+  val binopREval = KiasanIntegerExtension.binopREval(b2v)
 
   @Unaries(Array("-", "+"))
-  def unopAEval : (S, String, Value) --> ISeq[(S, Value)] = {
-    case (s, opA, v : K) => unopAHelper(s, opA, v)
-  }
+  def unopAEval = KiasanIntegerExtension.unopAEval[S]
 
-  @inline
-  private def unopAHelper(s : S, opA : String, v : Value) : ISeq[(S, Value)] = {
-    opA match {
-      case "-" =>
-        val (nextS, a) = freshKI(s, KiasanIntegerExtension.Type)
-        (nextS.addPathCondition(BinaryExp("==", a, UnaryExp(opA, v))), a)
-      case "+" => (s, v)
-    }
-  }
-
-  val comp =
-    Map("==" -> "!=",
-      "!=" -> "==",
-      ">" -> "<=",
-      ">=" -> "<",
-      "<" -> ">=",
-      "<=" -> ">")
+  def b2v(b : Boolean) : Value
 }
 
 /**
@@ -266,7 +293,7 @@ final class KiasanIntegerBExtension[S <: KiasanStatePart[S]](
     extends KiasanIntegerExtension[S] {
   import KonkritBooleanExtension._
 
-  def b2v(b : Boolean) : Value = if (b) TT else FF
+  def b2v(b : Boolean) = KonkritBooleanExtension.b2v(b)
 }
 
 /**
@@ -287,14 +314,8 @@ final class KiasanIntegerIExtension[S <: KiasanStatePart[S]](
   import KonkritIntegerExtension._
   import KiasanIntegerExtension._
 
-  def b2v(b : Boolean) : Value = if (b) CI(SireumNumber(1)) else CI(SireumNumber(0))
+  def b2v(b : Boolean) = KonkritIntegerExtension.b2v(b)
 
   @Cond
-  def cond : (S, Value) --> ISeq[(S, Boolean)] = {
-    case (s, v : K) =>
-      val w = CI(SireumNumber(0))
-      ilist(
-        (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck, true),
-        (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck, false))
-  }
+  val cond = KiasanIntegerExtension.cond[S]
 }
