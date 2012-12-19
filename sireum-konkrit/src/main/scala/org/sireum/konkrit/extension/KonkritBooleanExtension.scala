@@ -33,8 +33,6 @@ object KonkritBooleanExtension extends ExtensionCompanion {
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritBooleanExtension(config)
 
-  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
-
   @inline
   def b2v(b : Boolean) = if (b) TT else FF
 
@@ -137,6 +135,8 @@ object KonkritBooleanExtension extends ExtensionCompanion {
         (s2, b) <- cond(s, v)
       } yield (s2, b2v(!b))
   }
+
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>

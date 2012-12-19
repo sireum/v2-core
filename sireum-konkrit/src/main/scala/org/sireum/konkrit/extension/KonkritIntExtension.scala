@@ -32,8 +32,6 @@ object KonkritIntExtension extends ExtensionCompanion {
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritIntBExtension(config)
 
-  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
-
   private type Op = String
 
   @inline
@@ -130,6 +128,8 @@ object KonkritIntExtension extends ExtensionCompanion {
         (s1, v1) <- cast(s, v, KonkritIntExtension.Type)
       } yield (s1, v1.asInstanceOf[CV].value != 0)
   }
+
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>

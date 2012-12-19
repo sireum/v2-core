@@ -32,8 +32,6 @@ object KonkritLongExtension extends ExtensionCompanion {
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritLongBExtension(config)
 
-  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
-
   type Op = String
 
   @inline
@@ -130,6 +128,8 @@ object KonkritLongExtension extends ExtensionCompanion {
 
   @inline
   def b2v(b : Boolean) : V = if (b) CLong(1) else CLong(0)
+
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
