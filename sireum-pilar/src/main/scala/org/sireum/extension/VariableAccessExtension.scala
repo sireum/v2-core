@@ -8,7 +8,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.extension
 
-import org.sireum.extension.annotation._
 import org.sireum.pilar.ast.NameUser
 import org.sireum.pilar.state._
 import org.sireum.util._

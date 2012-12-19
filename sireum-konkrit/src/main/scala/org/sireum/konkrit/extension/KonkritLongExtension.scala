@@ -10,12 +10,12 @@ package org.sireum.konkrit.extension
 
 import org.sireum.extension._
 import org.sireum.extension.IntegerExtension._
-import org.sireum.extension.annotation._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
 import org.sireum.util._
 import org.sireum.util.math._
+import scala.annotation.meta.getter
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -150,25 +150,25 @@ trait KonkritLongExtension[S <: State[S]]
   val uriPath = UriUtil.classUri(this)
 
   @NativeIndex
-  def nativeIndexConverter = KonkritLongExtension.nativeIndexConverter
+  val nativeIndexConverter = KonkritLongExtension.nativeIndexConverter
 
-  @DefaultValue
-  def defValue = KonkritLongExtension.defValue[S]
+  @DefaultValueProvider
+  val defValue = KonkritLongExtension.defValue[S]
 
   @Cast
-  def cast = KonkritLongExtension.cast[S]
+  val cast = KonkritLongExtension.cast[S]
 
   @Literal(classOf[Long])
-  def literal = KonkritLongExtension.literal[S]
+  val literal = KonkritLongExtension.literal[S]
 
-  @Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
-  def binopAEval = KonkritLongExtension.binopAEval[S]
+  @org.sireum.extension.Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
+  val binopAEval = KonkritLongExtension.binopAEval[S]
 
   @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
-  def binopREval = KonkritLongExtension.binopREval[S](b2v _)
+  val binopREval = KonkritLongExtension.binopREval[S](b2v _)
 
   @Unaries(Array("-", "+"))
-  def unopAEval = KonkritLongExtension.unopAEval[S]
+  val unopAEval = KonkritLongExtension.unopAEval[S]
 
   def b2v(b : Boolean) : V
 }
@@ -215,5 +215,5 @@ final class KonkritLongIExtension[S <: State[S]](
   val se = config.semanticsExtension
 
   @Cond
-  def cond = KonkritLongExtension.cond(se.canCast, se.cast)
+  val cond = KonkritLongExtension.cond(se.canCast, se.cast)
 }

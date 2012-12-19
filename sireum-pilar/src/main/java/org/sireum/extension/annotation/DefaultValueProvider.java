@@ -6,7 +6,7 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html                             
 */
 
-package org.sireum.kiasan.extension.annotation;
+package org.sireum.extension.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -15,6 +15,6 @@ import java.lang.annotation.RetentionPolicy;
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ProcessTranslator {
+public @interface DefaultValueProvider {
 
 }

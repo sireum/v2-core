@@ -10,8 +10,7 @@ package org.sireum.konkrit.extension
 
 import org.sireum.extension._
 import org.sireum.extension.BooleanExtension._
-import org.sireum.extension.annotation._
-import org.sireum.kiasan.extension.annotation._
+import org.sireum.kiasan.extension._
 import org.sireum.kiasan.extension.KiasanExtension._
 import org.sireum.kiasan.state._
 import org.sireum.pilar.ast._
@@ -135,7 +134,7 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
           requestInconsistencyCheck, false))
   }
 
-  @FreshKiasanValue
+  @FreshKiasanValueProvider
   def freshKB : (S, ResourceUri) --> (S, Value) = {
     case (s, KiasanBooleanExtension.Type) => fresh(s)
   }

@@ -10,9 +10,8 @@ package org.sireum.kiasan.extension
 
 import org.sireum.extension._
 import org.sireum.extension.IntegerExtension._
-import org.sireum.extension.annotation._
 import org.sireum.kiasan.state._
-import org.sireum.kiasan.extension.annotation._
+import org.sireum.kiasan.extension._
 import org.sireum.konkrit.extension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
@@ -192,7 +191,7 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
     case (s, v : K, KiasanIntegerExtension.Type) => (s, v)
   }
 
-  @FreshKiasanValue
+  @FreshKiasanValueProvider
   def freshKI : (S, ResourceUri) --> (S, Value) = {
     case (s, KiasanIntegerExtension.Type) => fresh(s)
   }

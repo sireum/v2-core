@@ -6,15 +6,13 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html                             
 */
 
-package org.sireum.kiasan.extension.annotation;
+package org.sireum.kiasan
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import scala.annotation.target._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface FreshKiasanValue {
-
+package object extension {
+  type FreshKiasanValueProvider = org.sireum.kiasan.extension.annotation.FreshKiasanValueProvider @getter
 }

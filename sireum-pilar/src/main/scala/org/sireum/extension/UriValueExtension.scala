@@ -34,7 +34,7 @@ final class UriValueExtensionImpl[S](
 
   def uriPath = "org/sireum/extension/UriValue"
 
-  @org.sireum.extension.annotation.UriValue
+  @UriValueProvider
   def valueProviderExtractor : ((S, ResourceUri) --> R, V --> ResourceUri) =
     ({ case (s, r) => ilist((s, UriValueImpl(r))) },
       { case v : UriValue => v.uri })

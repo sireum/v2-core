@@ -10,7 +10,6 @@ package org.sireum.konkrit.extension
 
 import org.sireum.extension._
 import org.sireum.extension.BooleanExtension._
-import org.sireum.extension.annotation._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
@@ -167,32 +166,32 @@ final class KonkritBooleanExtension[S <: State[S]](
   val uriPath = UriUtil.classUri(this)
 
   @inline
-  def cnd = config.semanticsExtension.cond
+  val cnd = config.semanticsExtension.cond
 
   @Cast
-  def cast = KonkritBooleanExtension.cast[S]
+  val cast = KonkritBooleanExtension.cast[S]
 
   @Cond
-  def cond = KonkritBooleanExtension.cond[S]
+  val cond = KonkritBooleanExtension.cond[S]
 
   @Literal(value = classOf[Boolean], isTrue = true)
-  def trueLit = KonkritBooleanExtension.trueLit[S]
+  val trueLit = KonkritBooleanExtension.trueLit[S]
 
   @Literal(value = classOf[Boolean], isTrue = false)
-  def falseLit = KonkritBooleanExtension.falseLit[S]
+  val falseLit = KonkritBooleanExtension.falseLit[S]
 
-  @DefaultValue
-  def defValue = KonkritBooleanExtension.defValue[S]
+  @DefaultValueProvider
+  val defValue = KonkritBooleanExtension.defValue[S]
 
   @Binaries(Array("&&&", "|||", "===>", "<==="))
-  def binopLEval = KonkritBooleanExtension.binopLEval(cnd)
+  val binopLEval = KonkritBooleanExtension.binopLEval(cnd)
 
   @Binaries(Array("==", "!="))
-  def binopEqu = KonkritBooleanExtension.binopEqu[S]
+  val binopEqu = KonkritBooleanExtension.binopEqu[S]
 
   @RBinaries(Array("&&", "||", "==>", "<=="))
-  def binopSCEval = KonkritBooleanExtension.binopSCEval(cnd)
+  val binopSCEval = KonkritBooleanExtension.binopSCEval(cnd)
 
   @Unary("!")
-  def notEval = KonkritBooleanExtension.notEval(cnd)
+  val notEval = KonkritBooleanExtension.notEval(cnd)
 }

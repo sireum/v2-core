@@ -9,7 +9,7 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.kiasan.extension
 
 import org.sireum.extension._
-import org.sireum.kiasan.extension.annotation._
+import org.sireum.kiasan.extension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
@@ -108,7 +108,7 @@ object KiasanExtensionMiner {
 
     val ksei = sei.asInstanceOf[KiasanSemanticsExtensionInit[S, V, R, C, SR]]
     ann match {
-      case ann : FreshKiasanValue =>
+      case ann : FreshKiasanValueProvider =>
         ksei.addFreshKiasanValue(m.invoke(ext).asInstanceOf[(S, ResourceUri) --> (S, V)])
       case _ =>
         return false

@@ -8,7 +8,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.extension
 
-import org.sireum.extension.annotation._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.symbol._
@@ -638,10 +637,10 @@ object ExtensionMiner {
       case ann : NewList =>
         val extF = m.invoke(ext).asInstanceOf[(S, ISeq[V]) --> R]
         sei.addNewList(extF)
-      case ann : DefaultValue =>
+      case ann : DefaultValueProvider =>
         val extF = m.invoke(ext).asInstanceOf[(S, ResourceUri) --> R]
         sei.addDefaultValue(extF)
-      case ann : UriValue =>
+      case ann : UriValueProvider =>
         val uriFE = m.invoke(ext).asInstanceOf[((S, ResourceUri) --> R, V --> ResourceUri)]
         sei.addUriValue(uriFE._1, uriFE._2)
       case ann : ExpExt =>

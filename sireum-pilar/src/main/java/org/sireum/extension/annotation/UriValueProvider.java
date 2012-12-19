@@ -15,6 +15,6 @@ import java.lang.annotation.RetentionPolicy;
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UriValue {
+public @interface UriValueProvider {
 
 }

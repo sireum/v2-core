@@ -10,7 +10,6 @@ package org.sireum.konkrit.extension
 
 import org.sireum.extension._
 import org.sireum.extension.IntegerExtension._
-import org.sireum.extension.annotation._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
@@ -150,25 +149,25 @@ trait KonkritIntExtension[S <: State[S]]
   val uriPath = UriUtil.classUri(this)
 
   @NativeIndex
-  def nativeIndexConverter = KonkritIntExtension.nativeIndexConverter
+  val nativeIndexConverter = KonkritIntExtension.nativeIndexConverter
 
-  @DefaultValue
-  def defValue = KonkritIntExtension.defValue[S]
+  @DefaultValueProvider
+  val defValue = KonkritIntExtension.defValue[S]
 
   @Cast
-  def cast = KonkritIntExtension.cast[S]
+  val cast = KonkritIntExtension.cast[S]
 
   @Literal(classOf[Int])
-  def literal = KonkritIntExtension.literal[S]
+  val literal = KonkritIntExtension.literal[S]
 
   @Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
-  def binopAEval = KonkritIntExtension.binopAEval[S]
+  val binopAEval = KonkritIntExtension.binopAEval[S]
 
   @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
-  def binopREval = KonkritIntExtension.binopREval[S](b2v _)
+  val binopREval = KonkritIntExtension.binopREval[S](b2v _)
 
   @Unaries(Array("-", "+"))
-  def unopAEval = KonkritIntExtension.unopAEval[S]
+  val unopAEval = KonkritIntExtension.unopAEval[S]
 
   def b2v(b : Boolean) : Value
 }
@@ -215,5 +214,5 @@ final class KonkritIntIExtension[S <: State[S]](
   val se = config.semanticsExtension
 
   @Cond
-  def cond = KonkritIntExtension.cond(se.canCast, se.cast)
+  val cond = KonkritIntExtension.cond(se.canCast, se.cast)
 }
