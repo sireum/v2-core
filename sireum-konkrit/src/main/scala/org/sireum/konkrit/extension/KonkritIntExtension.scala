@@ -9,7 +9,6 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.konkrit.extension
 
 import org.sireum.extension._
-import org.sireum.extension.IntegerExtension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
