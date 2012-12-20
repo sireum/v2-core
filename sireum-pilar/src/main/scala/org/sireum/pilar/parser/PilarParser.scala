@@ -94,7 +94,7 @@ object PilarParser {
                      sourceFile : Option[FileResourceUri] = None,
                      claz : Class[T] = classOf[Model],
                      lineOffset : Int = 0) =
-    parseProduction(None, new ANTLRStringStream(source), reporter, claz,
+    parseProduction(sourceFile, new ANTLRStringStream(source), reporter, claz,
       lineOffset)
 
   def parseStringWithErrorAsString[T](source : String,
@@ -102,8 +102,8 @@ object PilarParser {
                                       claz : Class[T] = classOf[Model],
                                       lineOffset : Int = 0) = {
     val reporter = new StringErrorReporter
-    val n = parseProduction(None, new ANTLRStringStream(source), reporter, claz,
-      lineOffset)
+    val n = parseProduction(sourceFile, new ANTLRStringStream(source), reporter, 
+        claz, lineOffset)
     (n, reporter.errorAsString)
   }
 
