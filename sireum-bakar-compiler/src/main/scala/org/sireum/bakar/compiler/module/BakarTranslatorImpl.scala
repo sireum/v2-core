@@ -105,6 +105,10 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       ActionLocation(Some(locName), annots, a)
     }
 
+    def createPushAssignmentLocation(lhs : Exp, rhs : Exp, annots : ISeq[Annotation]) = {
+      createPushLocation(createAssignment(lhs,rhs,annots), TranslatorUtil.emptyAnnot)  
+    }
+    
     def createAssignment(lhs : Exp, rhs : Exp, annots : ISeq[Annotation]) = {
       AssignAction(annots, lhs, ":=", rhs)
     }
@@ -288,14 +292,27 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
     case o @ SelectedComponentEx(sloc, prefix, selector, theType) =>
       println(o.getClass().getSimpleName())
-      
+            
       v(prefix.getExpression())
-      val p = ctx.popResult.asInstanceOf[NameExp]
-      
+      val p = ctx.popResult.asInstanceOf[Exp]
+
       val sel = selector.getExpression().asInstanceOf[Identifier]
       
-      val ret = NameExp(NameUser(p.name.name + "::" + sel.getRefName()))
-      ctx.pushResult(ret)
+      // TODO: need to type prefix to determine if this is a 
+      // AccessExp, field lookup, etc...
+      var ret : Option[Exp] = None
+      p match {
+        case NameExp(ns) =>
+          ret = Some(NameExp(NameUser(ns.name + "::" + sel.getRefName())))
+        case x : IndexingExp =>
+          ret = Some(AccessExp(x, NameUser(sel.getRefName())))
+        case q =>
+          println("what to do with " + q)
+          assert(false)
+      }
+      assert (ret.isDefined)
+      
+      ctx.pushResult(ret.get)
       false
     case o @ (
       NameClassEx(_) |
@@ -318,8 +335,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       v(assignmentExpression)
       val rhs = ctx.popResult.asInstanceOf[Exp]
 
-      val aa = AssignAction(ilistEmpty[Annotation], lhs, ":=", rhs)
-      ctx.pushResult(aa)
+      ctx.createPushAssignmentLocation(lhs, rhs, TranslatorUtil.emptyAnnot)
       false
     case o @ IfStatementEx(sloc, labelNames, statementPaths) =>
       println(o.getClass().getSimpleName())
@@ -412,6 +428,19 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     case o @ IfExpressionEx(_) =>
       println("expressionH: need to handle: " + o.getClass.getSimpleName)
       true
+    case o @ IndexedComponentEx(sloc, prefix, indexExp, theType) =>
+      v(prefix)
+      val pprefix = ctx.popResult.asInstanceOf[Exp]
+      
+      val indices = mlistEmpty[Exp]
+      indexExp.getExpressions().foreach{ e =>
+        v(e)
+        indices += ctx.popResult.asInstanceOf[Exp] 
+      }
+      
+      val ie = IndexingExp(pprefix, indices.toList)
+      ctx.pushResult(ie)
+      false
     case o @ (
       RealLiteralEx(_) |
       //ExpressionClassEx(_) |
@@ -421,7 +450,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       CharacterLiteralEx(_) |
       EnumerationLiteralEx(_) |
       FunctionCallEx(_) |
-      IndexedComponentEx(_) |
+
       NullLiteralEx(_) |
       QualifiedExpressionEx(_) |
       ForAllQuantifiedExpressionEx(_) |
