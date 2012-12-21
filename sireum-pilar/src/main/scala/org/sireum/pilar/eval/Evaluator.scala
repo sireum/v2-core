@@ -124,20 +124,6 @@ trait ElseGuardExpander {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait EvaluatorConfig[S, V, R, C, SR] {
-  def symbolProvider : SymbolProvider[S]
-  def typeProvider : TypeProvider
-  def elseGuardExpander : Option[ElseGuardExpander]
-  def semanticExtensionConsumer(ev : Evaluator[S, R, C, SR]) : SemanticsExtensionConsumer[S, V, R, C, SR]
-
-  def computeDisabledTransitions : Boolean
-  def valueToV(v : Value) : V
-  def vToValue(v : V) : Value
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 trait EvaluatorModule[S, V, R, C, SR] {
   def initialize(ec : EvaluatorConfiguration[S, V, R, C, SR])
 }
