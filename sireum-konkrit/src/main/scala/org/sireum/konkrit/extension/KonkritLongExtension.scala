@@ -33,35 +33,37 @@ object KonkritLongExtension extends ExtensionCompanion {
 
   type Op = String
 
+  import PilarAstUtil._
+
   @inline
   def binopASem(opA : Op)(c : Long, d : Long) =
     opA match {
-      case "+"   => c + d
-      case "-"   => c - d
-      case "*"   => c * d
-      case "/"   => c / d
-      case "%"   => c % d
-      case "^>>" => c >>> d
-      case "^>"  => c >> d
-      case "^<"  => c << d
+      case ADD_BINOP  => c + d
+      case SUB_BINOP  => c - d
+      case MUL_BINOP  => c * d
+      case DIV_BINOP  => c / d
+      case REM_BINOP  => c % d
+      case USHR_BINOP => c >>> d
+      case SHR_BINOP  => c >> d
+      case SHL_BINOP  => c << d
     }
 
   @inline
   private def opRSem(opR : Op)(c : Long, d : Long) =
     opR match {
-      case "==" => c == d
-      case "!=" => c != d
-      case ">"  => c > d
-      case ">=" => c >= d
-      case "<"  => c < d
-      case "<=" => c <= d
+      case EQ_BINOP => c == d
+      case NE_BINOP => c != d
+      case GT_BINOP => c > d
+      case GE_BINOP => c >= d
+      case LT_BINOP => c < d
+      case LE_BINOP => c <= d
     }
 
   @inline
   private def unopASem(opA : Op)(c : Long) =
     opA match {
-      case "+" => c
-      case "-" => -c
+      case PLUS_UNOP  => c
+      case MINUS_UNOP => -c
     }
 
   private type CV = KonkritLongValue
@@ -160,13 +162,16 @@ trait KonkritLongExtension[S <: State[S]]
   @Literal(classOf[Long])
   val literal = KonkritLongExtension.literal[S]
 
-  @org.sireum.extension.Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
+  import PilarAstUtil._
+
+  @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP,
+    USHR_BINOP, SHR_BINOP, SHL_BINOP))
   val binopAEval = KonkritLongExtension.binopAEval[S]
 
-  @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
+  @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
   val binopREval = KonkritLongExtension.binopREval[S](b2v _)
 
-  @Unaries(Array("-", "+"))
+  @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
   val unopAEval = KonkritLongExtension.unopAEval[S]
 
   def b2v(b : Boolean) : V

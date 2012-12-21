@@ -32,35 +32,37 @@ object KonkritIntExtension extends ExtensionCompanion {
 
   private type Op = String
 
+  import PilarAstUtil._
+
   @inline
   def binopASem(opA : Op)(c : Int, d : Int) =
     opA match {
-      case "+"   => c + d
-      case "-"   => c - d
-      case "*"   => c * d
-      case "/"   => c / d
-      case "%"   => c % d
-      case "^>>" => c >>> d
-      case "^>"  => c >> d
-      case "^<"  => c << d
+      case ADD_BINOP  => c + d
+      case SUB_BINOP  => c - d
+      case MUL_BINOP  => c * d
+      case DIV_BINOP  => c / d
+      case REM_BINOP  => c % d
+      case USHR_BINOP => c >>> d
+      case SHR_BINOP  => c >> d
+      case SHL_BINOP  => c << d
     }
 
   @inline
   def opRSem(opR : Op)(c : Int, d : Int) =
     opR match {
-      case "==" => c == d
-      case "!=" => c != d
-      case ">"  => c > d
-      case ">=" => c >= d
-      case "<"  => c < d
-      case "<=" => c <= d
+      case EQ_BINOP => c == d
+      case NE_BINOP => c != d
+      case GT_BINOP => c > d
+      case GE_BINOP => c >= d
+      case LT_BINOP => c < d
+      case LE_BINOP => c <= d
     }
 
   @inline
   def unopASem(opA : Op)(c : Int) =
     opA match {
-      case "+" => c
-      case "-" => -c
+      case PLUS_UNOP  => c
+      case MINUS_UNOP => -c
     }
 
   private type CV = KonkritIntValue
@@ -159,13 +161,16 @@ trait KonkritIntExtension[S <: State[S]]
   @Literal(classOf[Int])
   val literal = KonkritIntExtension.literal[S]
 
-  @Binaries(Array("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
+  import PilarAstUtil._
+
+  @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP,
+    USHR_BINOP, SHR_BINOP, SHL_BINOP))
   val binopAEval = KonkritIntExtension.binopAEval[S]
 
-  @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
+  @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
   val binopREval = KonkritIntExtension.binopREval[S](b2v _)
 
-  @Unaries(Array("-", "+"))
+  @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
   val unopAEval = KonkritIntExtension.unopAEval[S]
 
   def b2v(b : Boolean) : Value

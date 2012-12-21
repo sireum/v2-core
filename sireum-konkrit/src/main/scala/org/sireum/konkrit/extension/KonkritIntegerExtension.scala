@@ -33,32 +33,34 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 
   private type Op = String
 
+  import PilarAstUtil._
+
   @inline
   def binopASem(opA : Op)(c : Integer, d : Integer) =
     opA match {
-      case "+" => c + d
-      case "-" => c - d
-      case "*" => c * d
-      case "/" => c / d
-      case "%" => c % d
+      case ADD_BINOP => c + d
+      case SUB_BINOP => c - d
+      case MUL_BINOP => c * d
+      case DIV_BINOP => c / d
+      case REM_BINOP => c % d
     }
 
   @inline
   def opRSem(opR : Op)(c : Integer, d : Integer) =
     opR match {
-      case "==" => c == d
-      case "!=" => c != d
-      case ">"  => c > d
-      case ">=" => c >= d
-      case "<"  => c < d
-      case "<=" => c <= d
+      case EQ_BINOP => c == d
+      case NE_BINOP => c != d
+      case GT_BINOP => c > d
+      case GE_BINOP => c >= d
+      case LT_BINOP => c < d
+      case LE_BINOP => c <= d
     }
 
   @inline
   def unopASem(opA : Op)(c : Integer) =
     opA match {
-      case "+" => c
-      case "-" => -c
+      case PLUS_UNOP  => c
+      case MINUS_UNOP => -c
     }
 
   private type CV = IsInteger
@@ -163,13 +165,15 @@ trait KonkritIntegerExtension[S <: State[S]]
   @Literal(classOf[BigInt])
   val literal = KonkritIntegerExtension.literal[S]
 
-  @Binaries(Array("+", "-", "*", "/", "%"))
+  import PilarAstUtil._
+  
+  @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP))
   val binopAEval = KonkritIntegerExtension.binopAEval[S]
 
-  @Unaries(Array("-", "+"))
+  @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
   val unopAEval = KonkritIntegerExtension.unopAEval[S]
 
-  @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
+  @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
   val binopREval = KonkritIntegerExtension.binopREval(b2v _)
 
   def b2v(b : Boolean) : V

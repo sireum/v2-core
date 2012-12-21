@@ -36,29 +36,31 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 
   private type Op = String
 
+  import PilarAstUtil._
+
   @inline
   def binopEquSem(opEqu : Op)(b1 : Boolean, b2 : Boolean) =
     opEqu match {
-      case "==" => b1 == b2
-      case "!=" => b1 != b2
+      case EQ_BINOP => b1 == b2
+      case NE_BINOP => b1 != b2
     }
 
   @inline
   def binopLSem(opL : Op)(b1 : Boolean, b2 : Boolean) =
     opL match {
-      case "&&&"  => b1 && b2
-      case "|||"  => b1 || b2
-      case "<===" => b1 || !b2
-      case "===>" => !b1 || b2
+      case LOGICAL_AND_BINOP     => b1 && b2
+      case LOGICAL_OR_BINOP      => b1 || b2
+      case LOGICAL_IMPLIED_BINOP => b1 || !b2
+      case LOGICAL_IMPLY_BINOP   => !b1 || b2
     }
 
   @inline
   def binopSCSem(opA : Op)(b1 : Boolean) : Either[Boolean, Boolean => Boolean] =
     opA match {
-      case "&&"  => if (b1) Right(identity) else Left(false)
-      case "||"  => if (b1) Left(true) else Right(identity)
-      case "<==" => if (b1) Left(true) else Right(!_)
-      case "==>" => if (!b1) Left(true) else Right(identity)
+      case COND_AND_BINOP     => if (b1) Right(identity) else Left(false)
+      case COND_OR_BINOP      => if (b1) Left(true) else Right(identity)
+      case COND_IMPLIED_BINOP => if (b1) Left(true) else Right(!_)
+      case COND_IMPLY_BINOP   => if (!b1) Left(true) else Right(identity)
     }
 
   private type CV = IsBoolean
@@ -182,15 +184,19 @@ final class KonkritBooleanExtension[S <: State[S]](
   @DefaultValueProvider
   val defValue = KonkritBooleanExtension.defValue[S]
 
-  @Binaries(Array("&&&", "|||", "===>", "<==="))
+  import PilarAstUtil._
+
+  @Binaries(Array(LOGICAL_AND_BINOP, LOGICAL_OR_BINOP, LOGICAL_IMPLIED_BINOP,
+    LOGICAL_IMPLY_BINOP))
   val binopLEval = KonkritBooleanExtension.binopLEval(cnd)
 
-  @Binaries(Array("==", "!="))
+  @Binaries(Array(EQ_BINOP, NE_BINOP))
   val binopEqu = KonkritBooleanExtension.binopEqu[S]
 
-  @RBinaries(Array("&&", "||", "==>", "<=="))
+  @RBinaries(Array(COND_AND_BINOP, COND_OR_BINOP, COND_IMPLIED_BINOP,
+    COND_IMPLY_BINOP))
   val binopSCEval = KonkritBooleanExtension.binopSCEval(cnd)
 
-  @Unary("!")
+  @Unary(NOT_UNOP)
   val notEval = KonkritBooleanExtension.notEval(cnd)
 }
