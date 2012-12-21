@@ -75,6 +75,25 @@ trait Evaluator[S, R, C, SR]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SymbolProvider[S] {
+  def extUri(e : NameExp, extPresent : ResourceUri => Boolean) : Option[ResourceUri] = {
+    val name = e.name
+    if (name.hasResourceInfo && extPresent(name.uri))
+      Some(name.uri)
+    else if (extPresent(name.name))
+      Some(name.name)
+    else None
+  }
+  def isVar(e : NameExp) : Boolean
+  def procedureUri(e : NameExp) : Option[ResourceUri]
+  def funUri(e : NameExp) : Option[ResourceUri]
+  def isFieldAccess(f : NameUser) : Boolean
+  def initLocation(procUri : ResourceUri) : Option[ResourceUri]
+  def location(s : S, nu : NameUser) : S
+  def nextLocation(s : S) : S
+  def initStore(s : S, procUri : ResourceUri, args : Value*) : State.Store
+}
+
+trait PilarSymbolProvider[S] extends SymbolProvider[S] {
   def isVar(e : NameExp) = {
     import org.sireum.pilar.symbol.H
     val name = e.name
@@ -91,14 +110,6 @@ trait SymbolProvider[S] {
   def isFieldAccess(f : NameUser) : Boolean = {
     import H._
     f.hasResourceInfo && !(isConstElem(f) || isEnumElem(f))
-  }
-  def extUri(e : NameExp, extPresent : ResourceUri => Boolean) : Option[ResourceUri] = {
-    val name = e.name
-    if (name.hasResourceInfo && extPresent(name.uri))
-      Some(name.uri)
-    else if (extPresent(name.name))
-      Some(name.name)
-    else None
   }
   def initLocation(procUri : ResourceUri) : Option[ResourceUri]
   def location(s : S, nu : NameUser) : S
