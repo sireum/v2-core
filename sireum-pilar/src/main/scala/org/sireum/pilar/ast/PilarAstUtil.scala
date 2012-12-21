@@ -45,6 +45,11 @@ object PilarAstUtil {
   final val LOGICAL_IMPLIED_BINOP = "<==="
   final val DISTINCT_BINOP = "<!"
 
+  @inline
+  def varUri(x : NameUser) =
+    if (x.hasResourceInfo) x.uri
+    else x.name
+
   def toBigInt(l : LiteralExp) : BigInt = {
     (l.typ : @unchecked) match {
       case LiteralType.INT     => BigInt(l.literal.asInstanceOf[Int])
