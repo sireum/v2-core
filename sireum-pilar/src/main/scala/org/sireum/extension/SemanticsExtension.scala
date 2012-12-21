@@ -31,11 +31,6 @@ object BinaryOpMode extends Enum {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SemanticsExtensionConsumer[S, V, R, C, SR] {
-  def adapter[T <: SemanticsExtensionConsumer[S, V, R, C, SR]] : T = {
-    require(isInstanceOf[T])
-    asInstanceOf[T]
-  }
-
   def isNativeIndexValue(v : V) : Boolean = toNativeIndex.isDefinedAt(v)
   def toNativeIndex : V --> Integer
 
@@ -700,6 +695,7 @@ trait SemanticsExtensionModule[S, V, R, C, SR] extends EvaluatorModule[S, V, R, 
   def miners : ISeq[ExtensionMiner.Miner[S, V, R, C, SR]]
 
   def initialize(ec : EvaluatorConfiguration[S, V, R, C, SR]) {
+    import language.reflectiveCalls
     ec.semanticsExtension = sei
     for (extC <- ec.extensions) {
       val ext = extC.asInstanceOf[EC].create(ec)

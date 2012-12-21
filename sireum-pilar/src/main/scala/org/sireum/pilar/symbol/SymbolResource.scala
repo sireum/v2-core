@@ -53,7 +53,7 @@ object Symbol {
       })
 
   implicit object ResourceAdapter
-      extends PropertyAdapter[Resource] {
+      extends Adapter[PropertyProvider, Resource] {
     def adapt(pp : PropertyProvider) : Resource = pp
   }
 }

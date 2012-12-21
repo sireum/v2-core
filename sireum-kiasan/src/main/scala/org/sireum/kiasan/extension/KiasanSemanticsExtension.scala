@@ -26,10 +26,18 @@ trait KiasanSemanticsExtensionConsumer[S, V, R, C, SR]
   import org.sireum.topi._
   import org.sireum.topi.process._
 
-  def freshKiasanValue: (S, ResourceUri) --> (S, V)
+  def kiasanSemanticsExtension = this
+
+  def freshKiasanValue : (S, ResourceUri) --> (S, V)
 
   def rep : (S, V) --> V
   def rep2 : (S, V, V) --> V
+}
+
+object KiasanSemanticsExtensionConsumer {
+  import language.implicitConversions
+  implicit def sec2ksec[S, V, R, C, SR](sec : SemanticsExtensionConsumer[S, V, R, C, SR]) =
+    sec.asInstanceOf[KiasanSemanticsExtensionConsumer[S, V, R, C, SR]]
 }
 
 /**
@@ -67,9 +75,9 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
     }
     r
   }
-  
+
   val rep : (S, V) --> V = PartialFunctionUtil.orElses(_repPFA)
-  
+
   def addGetRep(repF : (S, V) --> V) {
     assert(!PartialFunctionUtil.empty.equals(repF))
     _repPFA += repF
@@ -84,9 +92,9 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
     }
     r
   }
-  
+
   val rep2 : (S, V, V) --> V = PartialFunctionUtil.orElses(_rep2PFA)
-  
+
   def addValueRep(rep2F : (S, V, V) --> V) {
     assert(!PartialFunctionUtil.empty.equals(rep2F))
     _rep2PFA += rep2F

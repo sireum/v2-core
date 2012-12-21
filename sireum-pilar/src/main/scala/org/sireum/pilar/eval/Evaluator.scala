@@ -142,10 +142,16 @@ trait EvaluatorConfiguration[S, V, R, C, SR] extends PropertyProvider {
 
   def valueToV(v : Value) : V
   def vToValue(v : V) : Value
-  def adapter[T] : T = {
-    require(isInstanceOf[T])
-    asInstanceOf[T]
-  }
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object EvaluatorHeapConfiguration {
+  import language.implicitConversions
+  
+  implicit def ec2ehc[S, V, R, C, SR](ec : EvaluatorConfiguration[S, V, R, C, SR]) =
+    ec.asInstanceOf[EvaluatorHeapConfiguration[S, V, R, C, SR]]
 }
 
 /**
@@ -157,6 +163,8 @@ trait EvaluatorHeapConfiguration[S, V, R, C, SR] {
   val HEAP_KEY = getClass.getName + ".numOfHeaps"
 
   import org.sireum.pilar.state.Heap._
+
+  def heapConfig = this
 
   def heapId(heapIdKey : AnyRef) : HeapId =
     self.getPropertyOrElseUpdate(heapIdKey, {
