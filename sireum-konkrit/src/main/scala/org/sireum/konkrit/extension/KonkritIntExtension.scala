@@ -26,7 +26,7 @@ trait KonkritIntValue extends IntegerValue with ConcreteValue {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
+  def create[S](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritIntBExtension(config)
 
@@ -142,7 +142,7 @@ object KonkritIntExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritIntExtension[S <: State[S]]
+trait KonkritIntExtension[S]
     extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
 
   import KonkritIntExtension._
@@ -180,7 +180,7 @@ trait KonkritIntExtension[S <: State[S]]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntBExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
+  def create[S](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritIntBExtension(config)
 }
@@ -188,7 +188,7 @@ object KonkritIntBExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritIntBExtension[S <: State[S]](
+final class KonkritIntBExtension[S](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends KonkritIntExtension[S] {
   import KonkritBooleanExtension._
@@ -200,7 +200,7 @@ final class KonkritIntBExtension[S <: State[S]](
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntIExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
+  def create[S](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritIntIExtension(config)
 }
@@ -208,7 +208,7 @@ object KonkritIntIExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritIntIExtension[S <: State[S]](
+final class KonkritIntIExtension[S](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends KonkritIntExtension[S] {
   import KonkritIntExtension._

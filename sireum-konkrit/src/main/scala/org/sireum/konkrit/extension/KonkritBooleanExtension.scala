@@ -27,7 +27,7 @@ trait KonkritBooleanValue extends BooleanValue with ConcreteValue with IsBoolean
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritBooleanExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
+  def create[S](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
     new KonkritBooleanExtension(config)
 
@@ -158,7 +158,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritBooleanExtension[S <: State[S]](
+final class KonkritBooleanExtension[S](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
 
