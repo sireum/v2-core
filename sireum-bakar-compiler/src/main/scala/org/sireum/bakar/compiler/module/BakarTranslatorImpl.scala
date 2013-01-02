@@ -13,6 +13,7 @@ import org.sireum.pilar.ast.NameUser.apply
 import org.sireum.pilar.ast.TupleExp.apply
 import scala.Some.apply
 import scala.collection.JavaConversions.asScalaBuffer
+import java.io.File
 
 class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BakarTranslatorModule {
 
@@ -23,6 +24,8 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     val TEMP_VAR_PREFIX = "_t"
     val LOCATION_PREFIX = "l"
 
+    var models = mlistEmpty[Model]
+    
     var unhandledSet = msetEmpty[String]
 
     var countLocation = 0
@@ -106,9 +109,9 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     }
 
     def createPushAssignmentLocation(lhs : Exp, rhs : Exp, annots : ISeq[Annotation]) = {
-      createPushLocation(createAssignment(lhs,rhs,annots), TranslatorUtil.emptyAnnot)  
+      createPushLocation(createAssignment(lhs, rhs, annots), TranslatorUtil.emptyAnnot)
     }
-    
+
     def createAssignment(lhs : Exp, rhs : Exp, annots : ISeq[Annotation]) = {
       AssignAction(annots, lhs, ":=", rhs)
     }
@@ -150,7 +153,20 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       defName,
       sourceFile) =>
       println(o.getClass().getSimpleName())
-      true
+
+      // v(contextClauseElements)
+
+      v(unitDeclaration)
+
+      ctx.popResult match {
+        case p : PackageDecl =>
+          val fru = new File(sourceFile).toURI().toASCIIString()
+          ctx.models += Model(Some(fru), ilistEmpty[Annotation], ilist(p))
+        case x =>
+          println("Expecting a PackageDecl, received " + x)
+      }
+
+      false
     case o @ PackageDeclarationEx(
       sloc,
       names,
@@ -158,7 +174,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       visiblePartDecItems,
       privatePartDecItems) =>
       println(o.getClass().getSimpleName())
-      true
+      false
     case o @ PackageBodyDeclarationEx(sloc, names, aspectSpec, bodyDecItems,
       bodyStatements, bodyExceptionHandlers) =>
       println(o.getClass().getSimpleName())
@@ -232,11 +248,11 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         val body = ImplementedBody(locals, ctx.popLocationList.toList, ilistEmpty[CatchClause])
 
         val returnType : Option[TypeSpec] = resultProfile match {
-          case Some(p) => 
+          case Some(p) =>
             None
           case None => None
         }
-             
+
         val annots = TranslatorUtil.emptyAnnot
         val typeVars = ilistEmpty[(NameDefinition, ISeq[Annotation])]
         val varArity = false
@@ -254,7 +270,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         names, paramProfile, isNotNullReturn, resultProfile, hasAbstract, aspectSpec) =>
         println(o.getClass().getSimpleName())
         true
-        
+
       case o @ ProcedureBodyDeclarationEx(sloc, isOverridingDec, isNotOverridingDec,
         names, paramProfile, aspectSpec, bodyDecItems, bodyStatements, bodyExceptionHandlers) =>
         println(o.getClass().getSimpleName())
@@ -292,12 +308,12 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       true
     case o @ SelectedComponentEx(sloc, prefix, selector, theType) =>
       println(o.getClass().getSimpleName())
-            
+
       v(prefix.getExpression())
       val p = ctx.popResult.asInstanceOf[Exp]
 
       val sel = selector.getExpression().asInstanceOf[Identifier]
-      
+
       // TODO: need to type prefix to determine if this is a 
       // AccessExp, field lookup, etc...
       var ret : Option[Exp] = None
@@ -310,8 +326,8 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
           println("what to do with " + q)
           assert(false)
       }
-      assert (ret.isDefined)
-      
+      assert(ret.isDefined)
+
       ctx.pushResult(ret.get)
       false
     case o @ (
@@ -431,13 +447,13 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     case o @ IndexedComponentEx(sloc, prefix, indexExp, theType) =>
       v(prefix)
       val pprefix = ctx.popResult.asInstanceOf[Exp]
-      
+
       val indices = mlistEmpty[Exp]
-      indexExp.getExpressions().foreach{ e =>
+      indexExp.getExpressions().foreach { e =>
         v(e)
-        indices += ctx.popResult.asInstanceOf[Exp] 
+        indices += ctx.popResult.asInstanceOf[Exp]
       }
-      
+
       val ie = IndexingExp(pprefix, indices.toList)
       ctx.pushResult(ie)
       false
@@ -462,11 +478,11 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
 
   def everythingElseH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o if (o != null) =>
-      //println("everythingElseH: need to handle " + o.getClass.getSimpleName())
       ctx.unhandledSet += o.getClass.getSimpleName()
       true
     case null =>
       println("everythingElseH: it is null")
+      assert(false)
       false
   }
 
@@ -492,5 +508,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     }
   }
 
-  println(ctx.unhandledSet.toList.sorted)
+  println("Not handling: " + ctx.unhandledSet.toList.sorted)
+
+  this.results_=(ctx.models)
 }

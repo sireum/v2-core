@@ -4,6 +4,8 @@ import org.sireum.util._
 import org.sireum.pipeline._
 import java.lang.String
 import org.sireum.bakar.xml.CompilationUnit
+import org.sireum.pilar.ast.Model
+import scala.collection.Seq
 import scala.collection.mutable.Map
 
 object BakarTranslatorModule extends PipelineModule {
@@ -83,9 +85,9 @@ object BakarTranslatorModule extends PipelineModule {
         "Output error for '" + this.title + "': No entry found for 'results'. Expecting (BakarTranslatorModule.resultsKey)") 
     }
 
-    if(job ? BakarTranslatorModule.resultsKey && !job(BakarTranslatorModule.resultsKey).isInstanceOf[scala.Boolean]) {
+    if(job ? BakarTranslatorModule.resultsKey && !job(BakarTranslatorModule.resultsKey).isInstanceOf[scala.collection.Seq[org.sireum.pilar.ast.Model]]) {
       tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker, 
-        "Output error for '" + this.title + "': Wrong type found for BakarTranslatorModule.resultsKey.  Expecting 'scala.Boolean' but found '" + 
+        "Output error for '" + this.title + "': Wrong type found for BakarTranslatorModule.resultsKey.  Expecting 'scala.collection.Seq[org.sireum.pilar.ast.Model]' but found '" + 
         job(BakarTranslatorModule.resultsKey).getClass.toString + "'")
     } 
     return tags
@@ -106,15 +108,15 @@ object BakarTranslatorModule extends PipelineModule {
     return options
   }
 
-  def getResults (options : scala.collection.Map[Property.Key, Any]) : scala.Boolean = {
+  def getResults (options : scala.collection.Map[Property.Key, Any]) : scala.collection.Seq[org.sireum.pilar.ast.Model] = {
     if (options.contains(BakarTranslatorModule.resultsKey)) {
-       return options(BakarTranslatorModule.resultsKey).asInstanceOf[scala.Boolean]
+       return options(BakarTranslatorModule.resultsKey).asInstanceOf[scala.collection.Seq[org.sireum.pilar.ast.Model]]
     }
 
     throw new Exception("Pipeline checker should guarantee we never reach here")
   }
 
-  def modSetResults (options : MMap[Property.Key, Any], results : scala.Boolean) : MMap[Property.Key, Any] = {
+  def modSetResults (options : MMap[Property.Key, Any], results : scala.collection.Seq[org.sireum.pilar.ast.Model]) : MMap[Property.Key, Any] = {
 
     options(BakarTranslatorModule.resultsKey) = results
 
@@ -128,5 +130,5 @@ trait BakarTranslatorModule {
   def parseGnat2XMLresults : scala.collection.mutable.Map[java.lang.String, org.sireum.bakar.xml.CompilationUnit] = BakarTranslatorModule.modGetParseGnat2XMLresults(job.properties)
 
 
-  def results_=(results : scala.Boolean) { BakarTranslatorModule.modSetResults(job.properties, results) }
+  def results_=(results : scala.collection.Seq[org.sireum.pilar.ast.Model]) { BakarTranslatorModule.modSetResults(job.properties, results) }
 }

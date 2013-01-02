@@ -1,14 +1,13 @@
 package org.sireum.bakar.compiler.module
 
-import scala.Array.apply
 import org.sireum.bakar.xml.CompilationUnit
-import org.sireum.option.PipelineMode.apply
 import org.sireum.pipeline.gen.ModuleGenerator
 import org.sireum.util.FileResourceUri
 import org.sireum.util.MMap
 import org.sireum.option.PipelineMode
 import org.sireum.pipeline.Input
 import org.sireum.pipeline.Produce
+import org.sireum.pilar.ast.Model
 
 case class BakarTranslator (
 
@@ -18,7 +17,7 @@ case class BakarTranslator (
     parseGnat2XMLresults : MMap[FileResourceUri, CompilationUnit],
     
     @Produce
-    results : Boolean
+    results : Seq[Model]
 )
 
 object hold2 {
