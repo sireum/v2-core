@@ -99,6 +99,7 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
     var i = 0
     while (i < size) {
       conjuncts = pcs.head :: conjuncts
+      pcs = pcs.tail
       i += 1
     }
     val newTc = TopiCache(topi.compile(conjuncts, tc.state), pcs.length)
@@ -143,8 +144,8 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
           if (s.inconsistencyCheckRequested) {
             val (s2, tr) = check(s)
             if (tr == org.sireum.topi.TopiResult.UNSAT) None
-            else Some(s2)
-          } else Some(s)
+            else Some(s2.requestInconsistencyCheck(false))
+          } else Some(s.requestInconsistencyCheck(false))
 
         if (s3Opt.isDefined) {
           val s3 = s3Opt.get

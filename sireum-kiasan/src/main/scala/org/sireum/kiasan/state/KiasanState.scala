@@ -39,7 +39,7 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
 
   def init : Self
 
-  def requestInconsistencyCheck : Self
+  def requestInconsistencyCheck(shouldCheck : Boolean = true) : Self
 
   def inconsistencyCheckRequested : Boolean
 
@@ -114,10 +114,10 @@ final case class BasicKiasanState(
       pathConditions, counters, properties, assertionViolation, raisedException,
       inconsistencyCheckRequested, schedule)
 
-  def requestInconsistencyCheck : BasicKiasanState =
+  def requestInconsistencyCheck(shouldCheck : Boolean) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
       counters, properties, assertionViolation, raisedException,
-      true, schedule)
+      shouldCheck, schedule)
 
   def recordSchedule(numChoices : Int, chosen : Int) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
@@ -209,10 +209,10 @@ final case class KiasanStateWithHeap(
       pathConditions, counters, properties, assertionViolation, raisedException,
       inconsistencyCheckRequested, schedule)
 
-  def requestInconsistencyCheck : KiasanStateWithHeap =
+  def requestInconsistencyCheck(shouldCheck : Boolean) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties, assertionViolation,
-      raisedException, true, schedule)
+      raisedException, shouldCheck, schedule)
 
   def recordSchedule(numChoices : Int, chosen : Int) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,

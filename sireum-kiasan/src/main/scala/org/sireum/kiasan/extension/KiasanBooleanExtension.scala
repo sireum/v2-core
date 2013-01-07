@@ -55,9 +55,9 @@ object KiasanBooleanExtension extends ExtensionCompanion {
   @inline
   def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, b : KV) =>
-      ilist((s.addPathCondition(ValueExp(b)).requestInconsistencyCheck, true),
+      ilist((s.addPathCondition(ValueExp(b)).requestInconsistencyCheck(), true),
         (s.addPathCondition(UnaryExp("!", ValueExp(b))).
-          requestInconsistencyCheck, false))
+          requestInconsistencyCheck(), false))
   }
 
   @inline

@@ -91,8 +91,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   def binopRHelper[S <: KS[S]](
     b2v : Boolean => V, s : S, v : V, opR : Op, w : V) : ISeq[(S, Value)] = {
     ilist(
-      (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck, b2v(true)),
-      (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck, b2v(false)))
+      (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck(), b2v(true)),
+      (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck(), b2v(false)))
   }
 
   @inline
@@ -115,8 +115,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
     case (s, v : KV) =>
       val w = KonkritIntegerExtension.CI(SireumNumber(0))
       ilist(
-        (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck, true),
-        (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck, false))
+        (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck(), true),
+        (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck(), false))
   }
 
   val comp =
