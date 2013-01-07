@@ -58,17 +58,26 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object BasicKiasanState {
+  def apply() : BasicKiasanState =
+    BasicKiasanState(imapEmpty, ilistEmpty, ilistEmpty, ilistEmpty, imapEmpty,
+      imapEmpty, None, None, false, ilistEmpty)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class BasicKiasanState(
-  globalStore : State.Store = imapEmpty,
-  closureStoreStack : State.StoreStack = ilistEmpty,
-  callStack : State.CallStack = ilistEmpty,
-  pathConditions : ISeq[Exp] = ilistEmpty,
-  counters : IMap[ResourceUri, Int] = imapEmpty,
-  properties : Property.ImmutableProperties = imapEmpty,
-  assertionViolation : Option[AssertionViolationInfo] = None,
-  raisedException : Option[BasicExceptionInfo] = None,
-  inconsistencyCheckRequested : Boolean = false,
-  schedule : ISeq[(Int, Int)] = ilistEmpty)
+  globalStore : State.Store,
+  closureStoreStack : State.StoreStack,
+  callStack : State.CallStack,
+  pathConditions : ISeq[Exp],
+  counters : IMap[ResourceUri, Int],
+  properties : Property.ImmutableProperties,
+  assertionViolation : Option[AssertionViolationInfo],
+  raisedException : Option[BasicExceptionInfo],
+  inconsistencyCheckRequested : Boolean,
+  schedule : ISeq[(Int, Int)])
     extends State[BasicKiasanState] with KiasanStatePart[BasicKiasanState]
     with ScheduleRecordingState[BasicKiasanState] {
 
@@ -91,16 +100,19 @@ final case class BasicKiasanState(
   def raiseException(exceptionValue : Value, li : LocationInfo) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))))
+      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))),
+      inconsistencyCheckRequested, schedule)
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, Some(avi), raisedException)
+      pathConditions, counters, properties, Some(avi), raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException)
+      pathConditions, counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def requestInconsistencyCheck : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
@@ -123,7 +135,8 @@ final case class BasicKiasanState(
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException)
+      pathConditions, counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def self = this
 }
@@ -131,18 +144,27 @@ final case class BasicKiasanState(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object KiasanStateWithHeap {
+  def apply(heaps : ISeq[ISeq[HeapObject]]) : KiasanStateWithHeap =
+    KiasanStateWithHeap(heaps, imapEmpty, ilistEmpty, ilistEmpty, ilistEmpty,
+      imapEmpty, imapEmpty, None, None, false, ilistEmpty)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class KiasanStateWithHeap(
   heaps : ISeq[ISeq[HeapObject]],
-  globalStore : State.Store = imapEmpty,
-  closureStoreStack : State.StoreStack = ilistEmpty,
-  callStack : State.CallStack = ilistEmpty,
-  pathConditions : ISeq[Exp] = ilistEmpty,
-  counters : IMap[ResourceUri, Int] = imapEmpty,
-  properties : Property.ImmutableProperties = imapEmpty,
-  assertionViolation : Option[AssertionViolationInfo] = None,
-  raisedException : Option[BasicExceptionInfo] = None,
-  inconsistencyCheckRequested : Boolean = false,
-  schedule : ISeq[(Int, Int)] = ilistEmpty)
+  globalStore : State.Store,
+  closureStoreStack : State.StoreStack,
+  callStack : State.CallStack,
+  pathConditions : ISeq[Exp],
+  counters : IMap[ResourceUri, Int],
+  properties : Property.ImmutableProperties,
+  assertionViolation : Option[AssertionViolationInfo],
+  raisedException : Option[BasicExceptionInfo],
+  inconsistencyCheckRequested : Boolean,
+  schedule : ISeq[(Int, Int)])
     extends State[KiasanStateWithHeap] with KiasanStatePart[KiasanStateWithHeap]
     with HeapPart[KiasanStateWithHeap] with DummyDuplicateHeap[KiasanStateWithHeap]
     with ScheduleRecordingState[KiasanStateWithHeap] {
@@ -153,7 +175,8 @@ final case class KiasanStateWithHeap(
   def make(hid : HeapId, objects : ISeq[HeapObject]) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps.updated(hid, objects), globalStore,
       closureStoreStack, callStack, pathConditions, counters, properties,
-      assertionViolation, raisedException)
+      assertionViolation, raisedException, inconsistencyCheckRequested,
+      schedule)
 
   def init : KiasanStateWithHeap = {
     val newCounters : MMap[ResourceUri, Int] = mmapEmpty
@@ -172,16 +195,19 @@ final case class KiasanStateWithHeap(
   def raiseException(exceptionValue : Value, li : LocationInfo) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))))
+      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))),
+      inconsistencyCheckRequested, schedule)
 
   def assertionViolation(avi : AssertionViolationInfo) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, Some(avi), raisedException)
+      pathConditions, counters, properties, Some(avi), raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException)
+      pathConditions, counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def requestInconsistencyCheck : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
@@ -204,7 +230,8 @@ final case class KiasanStateWithHeap(
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException)
+      pathConditions, counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, schedule)
 
   def self = this
 }

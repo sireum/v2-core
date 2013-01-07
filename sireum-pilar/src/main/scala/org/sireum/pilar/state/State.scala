@@ -127,24 +127,24 @@ trait State[Self <: State[Self]]
   def globalStore : Store
   def closureStoreStack : StoreStack
   def callStack : CallStack
-  
+
   def make(globalStore : Store,
            closureStoreStack : StoreStack,
            callStack : CallStack,
            properties : Property.ImmutableProperties) : Self
 
   def procedure = {
-    require (!callStack.isEmpty)
+    require(!callStack.isEmpty)
     callStack.head.procedure
   }
-  
+
   def locationUri = {
-    require (!callStack.isEmpty)
+    require(!callStack.isEmpty)
     callStack.head.locationUri
   }
-  
+
   def locationIndex = {
-    require (!callStack.isEmpty)
+    require(!callStack.isEmpty)
     callStack.head.locationIndex
   }
 
@@ -253,15 +253,24 @@ trait ScheduleRecordingState[Self <: ScheduleRecordingState[Self]] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object BasicCallFrame {
+  def apply(procLoc : (ResourceUri, Option[ResourceUri], Int)) : BasicCallFrame =
+    BasicCallFrame(procLoc._1, procLoc._2, procLoc._3, imapEmpty, None, None,
+      -1, None)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class BasicCallFrame(
     procedure : ResourceUri,
     locationUri : Option[ResourceUri],
     locationIndex : Int,
-    store : State.Store = imapEmpty,
-    result : Option[Value] = None,
-    returnLocationUri : Option[ResourceUri] = None,
-    returnLocationIndex : Int = -1,
-    returnVariableUri : Option[ResourceUri] = None) extends CallFrame {
+    store : State.Store,
+    result : Option[Value],
+    returnLocationUri : Option[ResourceUri],
+    returnLocationIndex : Int,
+    returnVariableUri : Option[ResourceUri]) extends CallFrame {
 
   import State._
 
@@ -288,13 +297,21 @@ final case class BasicExceptionInfo(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object BasicState {
+  def apply() : BasicState =
+    BasicState(imapEmpty, ilistEmpty, ilistEmpty, imapEmpty, None, None)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class BasicState(
-  globalStore : State.Store = imapEmpty,
-  closureStoreStack : State.StoreStack = ilistEmpty,
-  callStack : State.CallStack = ilistEmpty,
-  properties : Property.ImmutableProperties = imapEmpty,
-  assertionViolation : Option[AssertionViolationInfo] = None,
-  raisedException : Option[BasicExceptionInfo] = None)
+  globalStore : State.Store,
+  closureStoreStack : State.StoreStack,
+  callStack : State.CallStack,
+  properties : Property.ImmutableProperties,
+  assertionViolation : Option[AssertionViolationInfo],
+  raisedException : Option[BasicExceptionInfo])
     extends State[BasicState] {
 
   import State._
@@ -327,21 +344,42 @@ final case class BasicState(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class Thread(
-  closureStoreStack : State.StoreStack = ilistEmpty,
-  callStack : State.CallStack = ilistEmpty,
-  assertionViolation : Option[AssertionViolationInfo] = None,
-  raisedException : Option[BasicExceptionInfo] = None)
+object Thread {
+  def apply() : Thread = Thread(ilistEmpty, ilistEmpty, None, None)
+  def apply(stacks : (State.StoreStack, State.CallStack)) : Thread =
+    Thread(stacks._1, stacks._2, None, None)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+final case class Thread(
+  closureStoreStack : State.StoreStack,
+  callStack : State.CallStack,
+  assertionViolation : Option[AssertionViolationInfo],
+  raisedException : Option[BasicExceptionInfo])
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object BasicMultiThreadState {
+  def apply() : BasicMultiThreadState =
+    BasicMultiThreadState(imapEmpty, None,
+      isortedMapEmpty[State.ThreadId, Thread], imapEmpty, ilistEmpty)
+  def apply(storeThreads : (State.Store, Option[State.ThreadId], ISortedMap[State.ThreadId, Thread])) : BasicMultiThreadState =
+    BasicMultiThreadState(storeThreads._1, storeThreads._2,
+      storeThreads._3, imapEmpty, ilistEmpty)
+
+}
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class BasicMultiThreadState(
-  globalStore : State.Store = imapEmpty,
+  globalStore : State.Store,
   currentThreadId : Option[State.ThreadId],
-  threads : ISortedMap[State.ThreadId, Thread] = isortedMapEmpty[State.ThreadId, Thread],
-  properties : Property.ImmutableProperties = imapEmpty,
-  schedule : ISeq[(Int, Int)] = ilistEmpty)
+  threads : ISortedMap[State.ThreadId, Thread],
+  properties : Property.ImmutableProperties,
+  schedule : ISeq[(Int, Int)])
     extends State[BasicMultiThreadState]
     with MultiThreadState[BasicMultiThreadState]
     with ScheduleRecordingState[BasicMultiThreadState] {
