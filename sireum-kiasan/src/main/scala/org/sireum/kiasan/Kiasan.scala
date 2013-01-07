@@ -72,17 +72,24 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
   def reporter : KiasanReporter[S]
 
   def topi : org.sireum.topi.Topi
+  
+  def depthBound : Int
 
   def search {
     var workList : GenSeq[S] = initialStatesProvider.initialStates
 
-    while (!workList.isEmpty) {
+    var i = 0
+    val depth = depthBound
+    
+    while (!workList.isEmpty && i < depth) {
       val ps = inconNextStatesPairs(workList)
       val inconsistencyCheckRequested = ps.exists(first2)
       val nextStates = ps.flatMap(second2)
 
       workList =
         filterTerminatingStates(par(inconsistencyCheckRequested, nextStates))
+        
+      i += 1
     }
   }
 
