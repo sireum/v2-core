@@ -2,3 +2,10 @@
 /target
 /.cache
 /.scala_dependencies
+
+*.ali
+*.o
+
+*.lst
+*.sli
+*.rep

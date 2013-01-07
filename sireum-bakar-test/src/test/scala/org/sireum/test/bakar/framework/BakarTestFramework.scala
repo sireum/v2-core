@@ -11,6 +11,7 @@ import java.io.File
 import java.net.URI
 import org.sireum.example.bakar.BakarExamples
 import scala.util.matching.Regex
+import org.sireum.example.bakar.Project
 
 trait BakarTestFramework extends TestFramework {
 
@@ -32,6 +33,15 @@ trait BakarTestFramework extends TestFramework {
         excludes.exists(r => r.findFirstMatchIn(name).isEmpty))
   }
 
+  def register(projects : ISeq[Project]) {
+    projects.foreach(p =>
+      if(accept(p.testName, p.files)) 
+        execute(p.testName, p.files)
+      else
+        reject(p.testName, p.files)
+      )
+  }
+  
   def register(map : MMap[String, ISeq[FileResourceUri]]) {
     val sorted = isortedMapEmpty[String, ISeq[FileResourceUri]] ++ map
     sorted.foreach(f =>
@@ -59,14 +69,13 @@ trait BakarTestFileFramework extends BakarTestFramework {
   def pre(c : Configuration) : Boolean = true
   def post(c : Configuration) : Boolean = true
 
-  case class Configuration (
-      testName : String,
-      sources : ISeq[FileResourceUri],
-      expectedDir : File,
-      resultsDir : File,
-      job : PipelineJob
-      )
-  
+  case class Configuration(
+    testName : String,
+    sources : ISeq[FileResourceUri],
+    expectedDir : File,
+    resultsDir : File,
+    job : PipelineJob)
+
   override def execute(testName : String, files : ISeq[FileResourceUri]) = {
     test(testName) {
       val edir = new File(new URI(EXPECTED_DIR))
@@ -87,9 +96,10 @@ trait BakarTestFileFramework extends BakarTestFramework {
 
       pipeline.compute(c.job)
 
-      val tags = c.job.tags
+      val tags = if(!c.job.tags.isEmpty) c.job.tags else c.job.lastStageInfo.tags 
+      
       if (!tags.isEmpty) {
-        println(Tag.collateAsString(tags))
+        println(tags)
         assert(false)
       } else {
         try {
@@ -122,9 +132,8 @@ trait BakarTestFileFramework extends BakarTestFramework {
 
       def createGitIgnore(dir : File) {
         try {
-          val f = new File(dir, ".gitignore")
-          val fw = new FileWriter(f)
-          fw.write("*.*\n\n!.gitignore")
+          val fw = new FileWriter(new File(dir, ".gitignore"))
+          fw.write("*\n\n!.gitignore")
           fw.close
         } catch {
           case e : Throwable => e.printStackTrace

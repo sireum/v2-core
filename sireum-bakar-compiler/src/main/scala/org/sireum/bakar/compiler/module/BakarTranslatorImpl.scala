@@ -25,7 +25,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
     val LOCATION_PREFIX = "l"
 
     var models = mlistEmpty[Model]
-    
+
     var unhandledSet = msetEmpty[String]
 
     var countLocation = 0
@@ -229,17 +229,23 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         paramProfile.getParameterSpecifications().foreach {
           case ps @ ParameterSpecificationEx(sloc, pnames, _hasAliased, _hasNullEx,
             objDecView, _initExpr, mode) =>
+              // e.g (I : Integer) or (I, J : 
             assert(ctx.isEmpty(_hasAliased.getHasAliased()))
             assert(ctx.isEmpty(_hasNullEx.getHasNullExclusion()))
             assert(ctx.isEmpty(_initExpr.getExpression()))
 
-            assert(pnames.getDefiningNames().length == 1)
-            val pname = pnames.getDefiningNames().get(0).asInstanceOf[DefiningIdentifier]
-            val name = NameDefinition(pname.getDefName())
-
-            val typeSpec : Option[TypeSpec] = None
-            params += ParamDecl(typeSpec, name, TranslatorUtil.emptyAnnot)
-          case q => println("Not handling param " + q)
+            pnames.getDefiningNames().foreach {
+              case pname : DefiningIdentifier =>
+                val name = NameDefinition(pname.getDefName())
+                val typeSpec : Option[TypeSpec] = None
+                params += ParamDecl(typeSpec, name, TranslatorUtil.emptyAnnot)
+              case x => 
+                println("Not expecting: " + x)
+                assert(false)
+            }
+          case x => 
+            println("Not expecting: " + x)
+            assert(false)
         }
 
         ctx.pushLocationList

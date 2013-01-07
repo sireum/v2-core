@@ -6,6 +6,12 @@ import java.net.URI
 
 import org.sireum.util._
 
+case class Project(testName : String, files : ISeq[FileResourceUri])
+
+trait ProjectProvider {
+  def getProjects(dir : File) : ISeq[Project]
+}
+
 object BakarExamples {
   val BAKAR_FILE_EXTS = ilist(".ada", ".ads", ".adb", ".cfg")
   val SEQ_PATTERN = ".*(__x.*)$".r
@@ -19,6 +25,22 @@ object BakarExamples {
     val name = files.head
     val subs = sourceDirUri(BakarExamplesAnchor.getClass, "")
     (if (!prefix.isEmpty) prefix + "_" else "") + name.replace(subs, "").replaceAll("/", "_")
+  }
+
+  def getProjects(pp : ProjectProvider, dirUri : FileResourceUri,
+                  recursive : Boolean = false) : ISeq[Project] = {
+    val ret = mlistEmpty[Project]
+    val dir = new File(new URI(dirUri))
+    if (dir.exists && dir.isDirectory()) {
+      ret ++= pp.getProjects(dir)
+
+      if (recursive) {
+        dir.listFiles.filter(f => f.isDirectory()).foreach(d =>
+          ret ++= getProjects(pp, FileUtil.toUri(d), recursive)
+        )
+      }
+    }
+    ret.toList
   }
 
   def exampleMap(dirUri : FileResourceUri,
