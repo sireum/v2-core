@@ -326,9 +326,10 @@ object SireumDistro extends App {
       }
     } else {
       notMode(mode, parentMode)
-      outPrintln("Did you mean one of the following modes?")
-      for (mm <- modeMatches) {
-        outPrintln("  " + mm)
+      if (modeMatches.length > 0) {
+        outPrintln("Did you mean one of the following modes?")
+        for (mm <- modeMatches)
+          outPrintln("  " + mm)
       }
     }
   }
