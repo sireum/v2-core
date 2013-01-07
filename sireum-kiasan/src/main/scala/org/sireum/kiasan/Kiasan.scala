@@ -138,13 +138,21 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
       if (s.callStack.isEmpty) {
         reporter.foundEndState(s)
         None
-      } else if (s.assertionViolation.isDefined) {
-        reporter.foundAssertionViolation(s)
-        None
       } else {
-        val (s2, tr) = check(s)
-        if (tr == org.sireum.topi.TopiResult.UNSAT) None
-        else Some(s2)
+        val s3Opt =
+          if (s.inconsistencyCheckRequested) {
+            val (s2, tr) = check(s)
+            if (tr == org.sireum.topi.TopiResult.UNSAT) None
+            else Some(s2)
+          } else Some(s)
+
+        if (s3Opt.isDefined) {
+          val s3 = s3Opt.get
+          if (s3.assertionViolation.isDefined) {
+            reporter.foundAssertionViolation(s3)
+            None
+          } else s3Opt
+        } else None
       }
     }
 }
