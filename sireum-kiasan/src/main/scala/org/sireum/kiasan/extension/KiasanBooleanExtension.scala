@@ -68,6 +68,7 @@ object KiasanBooleanExtension extends ExtensionCompanion {
 
   @inline
   def fresh[S <: KS[S]] : (S, ResourceUri) --> (S, Value) = {
+    case (s, BooleanExtension.Type)       => fresh(s)
     case (s, KiasanBooleanExtension.Type) => fresh(s)
   }
 

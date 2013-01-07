@@ -63,6 +63,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   @inline
   def fresh[S <: KS[S]] : (S, ResourceUri) --> (S, V) = {
+    case (s, IntegerExtension.Type)       => fresh(s)
     case (s, KiasanIntegerExtension.Type) => fresh(s)
   }
 
@@ -195,8 +196,6 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
     @inline
     implicit def v2s : Exp --> String = {
-      case e : LiteralExp =>
-        e.literal.toString
       case ValueExp(c : IsInteger) =>
         val n = c.asInteger
         if (n < 0)
