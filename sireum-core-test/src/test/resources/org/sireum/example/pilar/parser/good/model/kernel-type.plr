@@ -1,0 +1,171 @@
+/**
+ * Pilar Kernel (Type).
+ * 
+ * @author robby
+ */
+ 
+@Profile org::sireum::profile::modeling::classdesign
+
+@Factory TypeFactory
+@Interface
+
+package org::sireum::pilar::kernel;
+
+
+record Type 
+    @Abstract
+    @Serializable
+{
+}
+
+record RecordType
+    extends Type
+{
+  ( -!> Set<Attribute> ) attributes;
+}
+
+record BoolType
+    @Unique
+    extends RecordType
+{
+}
+
+record CharType
+    @Abstract
+    @Unique
+    extends RecordType
+{
+}
+
+record EnumType
+    extends RecordType
+{
+}
+
+record NumberType
+    @Abstract
+    extends RecordType
+{
+}
+
+record IntegerType
+    @Unique
+    extends NumberType
+{
+}
+
+record RealType
+    @Abstract
+    @Unique
+    extends NumberType
+{
+}
+
+record RangedIntegerType
+    extends IntegerType
+{
+  ( -!> Bool ) wrap;
+  ( -!> Integer ) min;
+  ( -!> Integer ) max;
+}
+
+record FloatType
+    @Unique
+    extends RealType
+{
+}
+
+record DoubleType
+    @Unique
+    extends RealType
+{
+}
+
+record StringType
+    @Unique
+    extends RecordType
+{
+}
+
+record SymbolType
+    @Unique
+    extends RecordType
+{
+}
+
+record TupleType
+    @Unique
+    extends RecordType
+{
+  ( Integer -!> Type ) typeAtIndex;
+}
+
+record ProcedureType
+    extends RecordType
+{
+  ( -!> Bool ) variableArguments;
+  ( -!> Type[] ) parameterType;
+  ( -!> Type ) returnType;
+}
+
+record SetType
+    @Unique
+    extends RecordType
+{
+  ( -!> Type ) baseType;
+}
+
+record FunctionType
+    extends SetType
+{
+  ( -!> Type ) domainType;
+  ( -!> Type ) imageType;
+}
+
+record RelationType
+    extends SetType
+{
+}
+
+record ListType
+    extends RecordType
+{
+  ( -!> Type ) baseType;
+}
+
+record MultiArrayType
+    extends RecordType
+{
+  ( -!> Type ) baseType;
+}
+
+record ExtType
+    extends RecordType
+{
+}
+
+record UnresolvedType
+    @Abstract
+    extends Type
+{
+}
+
+record SelfType
+    extends UnresolvedType
+{
+}
+
+record TypeVar
+    extends UnresolvedType
+{
+}
+
+record NamedType
+    extends UnresolvedType
+{
+}
+
+record NamedExtType
+    extends UnresolvedType
+{
+}

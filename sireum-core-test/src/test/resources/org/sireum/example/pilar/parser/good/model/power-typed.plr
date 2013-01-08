@@ -1,0 +1,14 @@
+procedure Int power (Integer x, n @Type Integer) { // mixed forms of type declarations
+  local
+    i @Type Integer; // type declaration using the @Type annotation
+    Integer result; // type declaration using the usual mechanism
+  # result := 1;
+    i := 0;
+  #loop
+       (i < n) +>
+         result := result * x;
+         i := i + 1;
+         goto loop;
+     | else
+         return result;
+}

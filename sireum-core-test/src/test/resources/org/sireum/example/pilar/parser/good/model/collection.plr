@@ -1,0 +1,21 @@
+procedure foo {
+  local
+    Integer[] a; // list type
+    Integer[][] a2; // list of list type
+    Integer{} b; // set type
+    { String -> Integer } c; // function type
+    { String , String } d; // relation type
+    ( String , String ){} e; // relation type using tuple and set
+    Integer[,] f; // multi-array type
+    
+  # a  := `[ 1, 2, 3 ]; // list creation
+    a2 := `[ `[1], `[2, 3] ]; // list of list creation
+    a  := `[ 1 .. a[1][0]]; // ranged list creation
+    b  := `{ 1, 2, 3 }; // set creation
+    c  := `{ "x" -> 5, "y" -> 6, "z" -> 10 }; // function creation
+    d  := `{ ("l0", "l1"), ("l0", "l2"), ("l2", "l3") }; // relation creation
+    e  := +x; // transitive closure
+    e  := *x; // reflexive and transitive closure
+    f  := new Integer[3, 3]; // new matrix
+    g  := `[ [ 2, 3 ], [ 4, 5 ] ]; // matrix creation
+}

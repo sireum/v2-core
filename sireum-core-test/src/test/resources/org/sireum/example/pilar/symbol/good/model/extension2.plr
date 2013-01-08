@@ -1,0 +1,29 @@
+extension VM {
+  typedef Frame { // declares VM.Frame containing a local slot and a stack
+    actiondef ICONST_1; // push integer constant 1 to self's stack
+    actiondef ICONST (x); // push integer constant x to self's stack
+    actiondef IADD; // pop two integers, push sum to stack
+    actiondef ISTORE (x); // pop the top of stack, store it to local slot x
+    actiondef ILOAD (x); // pop the top of stack, store it to local slot x
+    expdef IFEQ; // jump to x if the top of the stack is zero, and pop it
+  }
+  
+  expdef VM.Frame create; // create a new VM.Frame
+}
+
+procedure foo (VM.Frame f)
+    @LocalSlots 2
+    @StackSlots 2
+{
+  #    f.ICONST_1 ();
+  #    f.ICONST 100;
+  #    f.IADD ();
+  #    f.ISTORE 0;
+  #    f.ILOAD 0;
+  #    if f.IFEQ then goto l1;
+  #    ICONST 5;
+  #    goto l2;
+  #l1. ICONST 7;
+  #l2. ISTORE 1;
+  #    return;
+}

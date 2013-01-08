@@ -1,0 +1,18 @@
+record R {}
+
+extension VM {
+  typedef Frame extends R {
+    actiondef lcl(opcode, slot);
+  }
+  
+  expdef VM.Frame create;
+}
+
+procedure foo {
+local 
+  VM.Frame f;
+  
+  # f := VM.create ();
+  # f.lcl (0, 0);
+  # return;
+}

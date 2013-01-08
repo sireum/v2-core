@@ -1,0 +1,11 @@
+procedure bar {
+  #l1.   goto l2; 
+  #l2.   goto l3;
+	     | goto l4;
+  #l3.   goto l5;
+       | goto l6;
+  #l4.   return;
+  #l5.   goto l7;
+  #l6.   goto l7;
+  #l7.   goto l2;
+}

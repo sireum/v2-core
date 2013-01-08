@@ -1,0 +1,25 @@
+procedure foo (x, y, z) {
+  local o;
+  
+  #startB1 // start of region B1
+
+  #startB2 // start of region B2
+
+  # x := x / y;
+  # z[x] := y;
+
+  #endB2 // end of region B2
+    return x;
+
+  #handlerB2 // handler of region B1
+    return -2;
+
+  #endB1 // end of region B1
+
+  #handlerB1 // handler of region B1
+    return -1;
+
+  catch ArithmeticException o @[startB2..endB2] goto handlerB2;
+
+  catch o @[startB1..endB1] goto handlerB1;
+}

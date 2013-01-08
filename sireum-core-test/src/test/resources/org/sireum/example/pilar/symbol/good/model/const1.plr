@@ -1,0 +1,27 @@
+const State {
+  FRESH = 0;
+  STALE = 1;
+}
+
+enum State {
+  FRESH, STALE
+}
+
+const State {
+  FOO = 2;
+}
+
+procedure foo {
+  # return (State.FRESH, State.STALE);
+}
+
+package a;
+
+procedure bar {
+  # return (State.FRESH, State.STALE, Mode.SLOW, Mode.FAST);
+}
+
+const Mode {
+  SLOW = 0;
+  FAST = 1;
+}

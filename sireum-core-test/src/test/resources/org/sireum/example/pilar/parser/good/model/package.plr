@@ -1,0 +1,7 @@
+package test;
+
+global Int @@a;
+
+procedure foo() {
+  # return;
+}

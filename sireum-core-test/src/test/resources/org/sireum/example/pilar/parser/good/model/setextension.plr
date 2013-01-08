@@ -1,0 +1,45 @@
+extension<'a> Set {
+  typedef type extends Collection<'a> { // declares a new type Set.type<'a>
+
+    // check whether self is empty
+    expdef Bool isEmpty; // isEmpty's type is (Set.type<'a> -> boolean)
+
+    // non-deterministically choose an element of self
+    expdef 'a choose;
+    
+    // check whether all self's elements satisfy p
+    expdef Bool forall (('a -> Bool) p);
+
+    // check whether one of self's elements satisfy p
+    expdef Bool exists (('a -> Bool) p);
+
+    // add an element to self
+    actiondef add ('a);
+
+    // remove an element from self
+    actiondef remove ('a);
+
+    // create a new set containing self's elements that are mapped by f
+    expdef<'b> Set.type<'b> map (('a -> 'b) f);
+  }
+  
+  // create a new Set, create's type is ('a ... -> Set.type<'a>)
+  expdef Set.type<'a> create ('a elements ...); // variable-arity
+}
+
+global Set.type<Object> @@resourcePool;
+
+procedure run @Active 2 { // two active run threads in the model's initial state
+  local x;
+
+  #loop
+    @@resourcePool.isEmpty +> // blocking if resourcePool isEmpty
+        x := @@resourcePool.choose;
+        @@resourcePool.remove x;
+
+  // ... elided
+
+  # @@resourcePool.add x;
+    goto loop;
+}
+  

@@ -1,0 +1,206 @@
+/**
+ * Pilar Kernel (Value).
+ * 
+ * @author robby
+ */
+
+@Profile org::sireum::profile::modeling::classdesign
+
+@Factory ValueFactory
+@Interface
+
+package org::sireum::pilar::kernel;
+
+
+enum Comparably
+{
+  LT, GT, EQ
+}
+
+record Iterator<'a>
+    @Abstract
+{
+  ( -!> Bool ) end;
+  ( -!> 'a ) next;
+}
+
+record Collection<'a>
+    @Abstract
+{
+  ( -!> Bool ) empty;
+  ( 'a -!> Bool ) contains;
+  ( ( 'a -!> Bool ) -!> Bool ) forall;
+  ( ( 'a -!> Bool ) -!> Bool ) exists;
+  ( ( 'a -!> Bool ) -!> Self<'a> ) filter;
+  ( ( 'a -!> 'b ) -!> Self<'b> ) map;
+  ( ( 'a , 'b -!> 'b ) , 'b -!> 'b ) foldr;
+  ( ( 'a , 'b -!> 'b ) , 'b -!> 'b ) foldl;
+  ( -!> Iterator<'a> ) iterator;
+  ( -!> Integer ) size;
+}
+
+record Indexable<'a, 'b>
+    @Abstract
+{
+  ( 'a -!> 'b ) get;
+  ( 'a -!> Bool ) index;
+  ( 'a , 'b -!> Bool ) indexed;
+  ( -!> Collection<'a> ) keys;
+  ( -!> Collection<'b> ) values;
+  ( -!> Collection<('a , 'b)> ) elements;
+}
+
+record Map<'a, 'b>
+    @Abstract
+    extends Indexable<'a, 'b>
+{
+  ( 'a , 'b -!> ) set;
+}
+
+record Vector<'a>
+  @Abstract
+  extends Collection<'a>,
+     Indexable<Int, 'a>
+{
+  ( 'a -!> Integer ) indexOf;
+  ( -!> Iterator<'a> ) reverseIterator;
+}
+
+record Object
+{
+  ( -!> Type) type;
+  ( -!> Bool ) frozen;
+  ( Object -!> Bool ) freeze;
+  ( Object -!> Bool ) thaw;
+  ( Attribute -!> Object ) get;
+  ( Attribute , Object -!> ) set;
+  ( Self -!> Comparably ) compare;
+  ( -!> String ) toString;
+}
+
+record Bool
+{
+}
+
+record Char
+{
+  ( -!> Integer ) toInteger;
+}
+
+record Enum
+{
+}
+
+record Number
+    @Abstract
+{
+}
+
+record Integer
+    extends Number
+{
+  ( -!> Char ) toChar;
+}
+
+record RangedInteger
+    extends Integer
+{
+}
+
+record Real
+    extends Number
+{
+  ( -!> Integer ) toInteger;
+}
+
+record Float
+    extends Real
+{
+}
+
+record Double
+    extends Real
+{
+}
+
+record String
+    extends Vector<Char>,
+       Indexable<Int, Char>
+{
+}
+
+record Symbol
+{
+}
+
+record Tuple
+    extends Collection<Object>,
+       Indexable<Int, Object>
+{
+  ( -!> Integer ) size;
+}
+
+record Procedure
+{
+}
+
+record Set<'a>
+    extends Collection<'a>
+{
+  ( Self<'a> -!> Bool ) disjoint;
+  ( 'a -!> ) add;
+  ( Collection<'a> -!> ) addAll;
+  ( 'a -!> ) remove;
+  ( Collection<'a> -!> ) removeAll;
+  ( Collection<'a> -!> ) retainAll;
+  ( Self<'a> -!> Self<'a> ) union;
+  ( Self<'a> -!> Self<'a> ) intersect;
+  ( Self<'a> ... -!> Self<Tuple> ) product;
+  ( -!> List<'a> ) toList;
+}
+
+record Relation<'a @Invariant self <: Tuple>
+    extends Set<'a>,
+       Map<Object, Object>    
+{
+  ( -!> Relation<'a> ) inverse;
+  ( -!> Relation<'a> ) tclosure;
+  ( -!> Relation<'a> ) rtclosure;
+  ( -!> Function<'a> ) toFunction;
+}
+
+record Function<'a, 'b>
+    extends Relation<('a , 'b)>,
+       Map<'a, 'b>
+{
+  ( -!> Relation<('a , 'b)> ) toRelation;
+}
+
+record List<'a>
+    extends Vector<'a>,
+       Map<Int, 'a>
+{
+  ( 'a -!> ) addFirst;
+  ( Collection<'a> -!> ) addAllFirst;
+  ( 'a -!> ) addLast;
+  ( Collection<'a> -!> ) addAllLast;
+  ( 'a , Integer ) insert;
+  ( Collection<'a> , Integer ) insertAll;
+  ( 'a -!> ) remove;
+  ( Collection<'a> -!> ) removeAll;
+  ( Self<'a> -!> Self<'a> ) append;
+  ( Self<'a> ... -!> Self<Tuple> ) product;
+  ( -!> Set<'a> ) toSet;
+}
+
+record MultiArray<'a>
+    extends Collection<'a>,
+       Indexable<Tuple, 'a>
+{
+  ( -!> Tuple) sizes;
+  ( Tuple , 'a -!> ) set;
+}
+
+record ExtValue
+{
+}

@@ -1,0 +1,33 @@
+package a; // the following declarations are prefixed with a
+
+record A { // A's fully qualified name is a::A, :: is a package separator
+  vfoo foo;
+}
+
+package a::A; // the following declarations are prefixed with a::A
+
+vset vfoo {
+  a::A::foo, c::C::foo // dynamically dispatched based on arguments
+}
+
+procedure foo (a::A this) {
+  // ... elided
+  # return;
+}
+
+
+package b; // the following declaration is prefixed with b
+
+record B extends A { }
+
+
+package c; // the following declarations are prefixed with c
+
+record C extends B { }
+
+package c::C; // the following declarations are prefixed with c::C
+
+procedure foo (c::C this) {
+  // ... elided
+  # return;
+}

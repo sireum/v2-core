@@ -1,0 +1,1654 @@
+/**
+ * Pilar Model.
+ * 
+ * @author robby
+ */
+ 
+@Profile org::sireum::profile::modeling::classdesign
+
+@Top     :Node
+@Visitor (packageName = org::sireum::pilar::model, 
+          visitorName = :ModelVisitor,
+          @AvoidVisitRecord :Name, :SimpleName, :QualifiedName,
+          @AvoidVisitAttribute :theParent, :theIDStrings, :theProcedureSet)
+
+package org::sireum::pilar::model;
+
+record Node
+    @Abstract
+    @Serializable
+{
+}
+
+record Model extends Node
+{
+  String theOptionalSource
+      @MaybeNull;
+  
+  { String , Annotation } theOptionalAnnotations 
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+  
+  Import[] theOptionalImports
+      @MaybeNull
+      @Link :theParent;
+  
+  Package[] thePackages 
+      @NonNull 
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Annotation extends Node
+{
+  Node theParent
+      @NonNull;
+
+  String theIDString 
+      @NonNull;
+      
+  AnnotationParam[] theOptionalParameters 
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+} 
+
+record AnnotationParam
+    @Abstract
+    extends Node
+{
+  Annotation theParent
+      @NonNull;
+      
+  String theOptionalIDString
+      @MaybeNull;
+}
+
+record ExpAnnotationParam extends AnnotationParam
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record AnnotationAnnotationParam extends AnnotationParam
+{
+  Annotation theAnnotation
+      @NonNull
+      @Link :theParent;
+}
+
+record Import extends Node
+{
+  Model theParent
+      @NonNull;
+      
+  Name theName
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Package extends Node
+{
+  Model theParent
+      @NonNull;
+      
+  Name theOptionalName
+      @MaybeNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  PackageElement[] thePackageElements
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record PackageElement
+    @Abstract
+    extends Node
+{
+  Package theParent
+      @NonNull;
+      
+  String theIDString
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Const extends PackageElement
+{
+  ConstElement[] theConstElements
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ConstElement extends Node
+{
+  Const theParent 
+      @NonNull;
+      
+  String theIDString
+      @NonNull;
+
+  Type theOptionalCastType
+      @MaybeNull
+      @Link :theParent;
+      
+  Literal theLiteral
+      @NonNull
+      @Link :theParent;
+  
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Enum extends PackageElement
+{
+  EnumElement[] theEnumElements
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record EnumElement extends Node
+{
+  Enum theParent
+      @NonNull;
+      
+  String theIDString
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record TypeAlias extends PackageElement
+{
+  Type theType
+      @NonNull
+      @Link :theParent;
+}
+
+record Record extends PackageElement
+{
+  Bool theAbstractFlag
+      @Default false;
+      
+  TypeVar[] theOptionalTypeVars
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  ExtendClause[] theOptionalExtendClauses
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Attribute[] theOptionalAttributes
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ExtendClause extends Node
+{
+  Node theParent
+      @NonNull
+      @Invariant self.type <: Record || self.type <: TypeExtension;
+      
+  Name theSuperRecordName
+      @NonNull;
+
+  Type[] theOptionalTypeParameters
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Attribute extends Node
+{
+  Record theParent
+      @NonNull;
+     
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+     
+  String theIDString
+      @NonNull;
+     
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+     
+  Name theOptionalBindingFunctionName
+      @MaybeNull;
+}
+
+record GlobalVar extends PackageElement
+{
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+}
+
+record Procedure extends PackageElement
+{
+  TypeVar[] theOptionalTypeVars
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+    
+  Literal theActiveLiteral
+      @Invariant self >= 0;
+  
+  Type theOptionalReturnType
+      @MaybeNull
+      @Link :theParent;
+  
+  Param[] theOptionalParams
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Bool theVariableArityFlag
+      @Default false;
+      
+  Body theBody
+      @NonNull
+      @Link :theParent;
+}
+
+record Param 
+    @Abstract
+    extends Node
+{
+  Node theParent
+      @NonNull
+      @Invariant self.type <: Procedure || self.type <: Matching
+                 || self.type <: ParamTuple;
+}
+
+record ParamTuple extends Param
+{
+  Param[] theParams
+      @NonNull
+      @NonNullElement
+      @Link :theParent;
+}
+
+record SingleParam extends Param
+{
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+  
+  String theIDString
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record VSet extends PackageElement
+{
+  VSetElement[] theVSetElements
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record VSetElement extends Node
+{
+  VSet theParent
+      @NonNull;
+
+  Name theProcedureName
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Fun extends PackageElement
+{
+  FunExp theFunExp
+      @NonNull
+      @Link :theParent;  
+}
+
+record Extension extends PackageElement
+{
+  TypeVar[] theOptionalTypeVars
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  ExtElement[] theExtElements
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ExtElement 
+    @Abstract
+    extends Node
+{
+  Node theParent
+      @NonNull
+      @Invariant self.type <: Extension
+                 || self.type <: TypeExtension;
+
+  TypeVar[] theOptionalTypeVars
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  String theIDString
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record TypeExtension extends ExtElement
+    @Invariant theExtendClauses != null ==> 
+                  theOptionalTypeExtAttributeBinding != null
+{
+  ExtendClause[] theOptionalExtendClauses
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  TypeExtElement[] theOptionalTypeExtElements
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record TypeExtElement 
+    @Abstract
+    extends ExtElement
+{
+}
+
+record TypeExtAttributeBinding extends TypeExtElement
+{
+  TypeExtension theParent
+      @NonNull;
+
+  String theAttributeIDString
+      @NonNull;
+  
+  String theExtIDString
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ParameterizedTypeExtElement
+    @Abstract 
+    extends TypeExtElement
+{
+  ExtParam[] theOptionalExtParams
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Bool theVariableArityFlag
+      @Default false;
+}
+
+record ActionExtension extends ParameterizedTypeExtElement
+{
+  Bool theCallBackFlag
+      @Default false;
+}
+
+record ExpExtension extends ParameterizedTypeExtElement
+{
+  Bool theCallBackFlag
+      @Default false;
+      
+  Type theOptionalReturnType
+      @MaybeNull
+      @Link :theParent;
+}
+
+record JumpExtension extends ParameterizedTypeExtElement
+{
+}
+
+record ExtParam extends Node
+{
+  TypeExtElement theParent
+      @NonNull;
+
+  Bool theLazyFlag
+      @Default false;
+
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+  
+  String theOptionalIDString
+      @MaybeNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Body extends Node
+{
+  Procedure theParent
+      @NonNull;
+
+  LocalVar[] theOptionalLocalVars
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+  
+  Location[] theLocations
+      @NonNull
+      @NonNullElements
+      @Link :theParent
+      @Index :theLocationIndex;  
+  
+  CatchClause[] theOptionalCatchClauses
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent
+      @Index :theCatchClauseIndex;
+}
+
+record LocalVar extends Node
+{
+  Body theParent
+      @NonNull;
+      
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+
+  String theIDString
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Location extends Node
+{
+  Body theParent
+      @NonNull;
+      
+  Integer theLocationIndex;
+  
+  String theOptionalIDString
+      @MaybeNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Transformation[] theTransformations
+      @NonNull
+      @NonNullElements
+      @Link :theParent
+      @Index :theTransformationIndex
+      @Invariant !`[0 .. self.size - 2].exists 
+               { Integer i => self[i].theOptionalGuard.type <: ElseGuard }; 
+               // !(NullType extends ElseGuard)
+}
+
+record Transformation
+    @Abstract
+    extends Node
+{
+  Location theParent
+      @NonNull;
+      
+  Integer theTransformationIndex;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+  
+  Guard theOptionalGuard
+      @MaybeNull
+      @Link :theParent;
+  
+  Jump theOptionalJump
+      @MaybeNull
+      @Link :theParent;
+}
+
+record Guard
+    @Abstract
+    extends Node
+{
+  Transformation theParent
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ExpGuard extends Guard
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record ElseGuard extends Guard
+{
+}
+
+record CallTransformation extends Transformation
+{
+  LHS[] theOptionalLHSs
+      @MaybeNull
+      @NonNullElement
+      @Link :theParent
+      @Invariant let s = `{ IndexExp, AccessExp, NameExp },
+                     b = if self == null then `{}
+                         else s.product self.toSet
+                 in b.forall { Type t, Exp e => e.type <: t };
+  
+  Exp theCallExp
+      @NonNull
+      @Link :theParent;
+}
+
+record LHS extends Node
+{
+  Node theParent
+      @NonNull
+      @Invariant self.type <: Assign || self.type <: CallTransformation;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent
+      @Invariant let s = `{ IndexExp, AccessExp, NameExp }
+                 in s.exists { Type t => self.type <: t };
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record SeqTransformation extends Transformation
+{
+  Location theParent
+      @NonNull;
+  
+  Action[] theOptionalActions
+      @NonNull
+      @NonNullElements
+      @Link :theParent
+      @Index :theActionIndex;      
+}
+
+record Action extends Node
+    @Abstract
+{
+  SeqTransformation theParent
+      @NonNull;
+      
+  Integer theActionIndex;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;      
+}
+
+record Assert extends Action
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Assume extends Action
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Throw extends Action
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Assign extends Action
+{
+  LHS[] theLHSs
+      @NonNull
+      @NonNullElement
+      @Link :theParent
+      @Invariant let s = `{ IndexExp, AccessExp, NameExp },
+                     b = if self == null then `{}
+                         else s.product self.toSet
+                 in b.forall { Type t, Exp e => e.type <: t };
+  
+  RHS[] theRHSs
+      @NonNull
+      @NonNullElement
+      @Link :theParent;
+}
+
+record RHS extends Node
+{
+  Assign theParent
+      @NonNull;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Start extends Action
+{
+  Name theName
+      @NonNull;
+    
+  Exp theOptionalInstanceCountExp
+      @MaybeNull
+      @Link :theParent;
+  
+  Exp theOptionalArgument
+      @MaybeNull
+      @Link :theParent;
+}
+
+record ExtCall extends Action
+{
+  Exp theCallExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Jump extends Node
+    @Abstract
+{
+  Node theParent
+      @NonNull
+      @Invariant self.type <: Transformation || self.type <: CatchClause;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Goto extends Jump
+{
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record Return extends Jump
+{
+  Exp theOptionalExp
+      @MaybeNull
+      @Link :theParent;
+}
+
+record IfJump extends Jump
+{
+  IfThenJump[] theIfThenJumps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  IfElseJump theOptionalIfElseJump
+      @MaybeNull
+      @Link :theParent;
+}
+
+record IfThenJump extends Node
+{
+  IfJump theParent
+      @NonNull;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record IfElseJump extends Node
+{
+  IfJump theParent
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record SwitchJump extends Jump
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  SwitchCaseJump[] theSwitchCaseJumps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  SwitchDefaultJump theOptionalSwitchDefaultJump
+      @MaybeNull
+      @Link :theParent;
+}
+
+record SwitchCaseJump extends Node
+{
+  SwitchJump theParent
+      @NonNull;
+      
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record SwitchDefaultJump extends Node
+{
+  SwitchJump theParent
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record TypeSwitchJump extends Jump
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  TypeSwitchCaseJump[] theTypeSwitchCaseJumps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  TypeSwitchDefaultJump theOptionalTypeSwitchDefaultJump
+      @MaybeNull
+      @Link :theParent;
+}
+
+record TypeSwitchCaseJump extends Node
+{
+  TypeSwitchJump theParent
+      @NonNull;
+      
+  Param[] theParams
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record TypeSwitchDefaultJump extends Node
+{
+  TypeSwitchJump theParent
+      @NonNull;
+      
+  String theOptionalLocalIDString
+      @MaybeNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  String theTargetIDString
+      @NonNull;
+  
+  Location theOptionalTargetLocation
+      @MaybeNull;
+}
+
+record JumpExtCall extends Jump
+{
+  CallExp theCallExp
+      @NonNull
+      @Link :theParent;
+}
+
+record CatchClause extends Node
+{
+  Body theParent
+      @NonNull;
+      
+  Integer theCatchClauseIndex;
+      
+  Type theOptionalType
+      @MaybeNull
+      @Link :theParent;
+  
+  String theOptionalLocalIDString
+      @MaybeNull;
+      
+  String theFromLocationIDString
+      @NonNull;
+      
+  String theToLocationIDString
+      @NonNull;
+  
+  Jump theJump
+      @NonNull
+      @Link :theParent;
+}
+
+enum CondBinaryOp
+{
+  IMPLY, OR, AND, NON_NULL_TRUE, NON_NULL_FALSE, NON_NULL_SELF
+}
+
+enum BinaryOp
+{
+  BIT_OR, BIT_XOR, BIT_AND, EQ, NEQ, SUBTYPE, TYPE_EQ, COMPOSE,
+  LE, GE, LT, GT, SHL, SHR, USHR, ADD, SUB, MUL, DIV, REM
+}
+
+enum UnaryOp
+{
+  NEG, POS, COMP, NOT, TRANS, RTRANS
+}
+
+record Exp
+    @Abstract
+    extends Node
+{
+  Node theParent
+      @NonNull;
+}
+
+record IfExp extends Exp
+{
+  IfThenExp[] theIfThenExps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  IfElseExp theIfElseExp
+      @NonNull
+      @Link :theParent;
+}
+
+record IfThenExp extends Node
+{
+  IfExp theParent
+      @NonNull;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  Exp theThenExp
+      @NonNull
+      @Link :theParent;
+}
+
+record IfElseExp extends Node
+{
+  IfExp theParent
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record SwitchExp extends Exp
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  SwitchCaseExp[] theSwitchCaseExps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  SwitchDefaultExp theSwitchDefaultExp
+      @NonNull
+      @Link :theParent;
+}
+
+record SwitchCaseExp extends Node
+{
+  SwitchExp theParent
+      @NonNull;
+      
+  Exp theCaseExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record SwitchDefaultExp extends Node
+{
+  SwitchExp theParent
+      @NonNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record TypeSwitchExp extends Exp
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  TypeSwitchCaseExp[] theTypeSwitchCaseExps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+      
+  TypeSwitchDefaultExp theTypeSwitchDefaultExp
+      @NonNull
+      @Link :theParent;
+}
+
+record TypeSwitchCaseExp extends Node
+{
+  TypeSwitchExp theParent
+      @NonNull;
+      
+  Param[] theParams
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+      
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record TypeSwitchDefaultExp extends Node
+{
+  TypeSwitchExp theParent
+      @NonNull;
+      
+  String theOptionalLocalIDString
+      @MaybeNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+ 
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record CondBinaryExp extends Exp
+{
+  Integer theCondBinaryOp;
+  
+  Exp theLeftExp
+      @NonNull
+      @Link :theParent;
+      
+  Exp theRightExp
+      @NonNull
+      @Link :theParent;
+}
+
+record BinaryExp extends Exp
+{
+  Integer theBinaryOp;
+  
+  Exp theLeftExp
+      @NonNull
+      @Link :theParent;
+      
+  Exp theRightExp
+      @NonNull
+      @Link :theParent;
+}
+
+record UnaryExp extends Exp
+{
+  Integer theUnaryOp;
+  
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record CastExp extends Exp
+{
+  Type theType
+      @NonNull
+      @Link :theParent;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record IndexingExp extends Exp
+{
+  Exp theIndexedExp
+      @NonNull
+      @Link :theParent;
+  
+  Exp[] theIndices
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record AccessExp extends Exp
+{
+  Exp theAccessedExp
+      @NonNull
+      @Link :theParent;
+      
+  String theAttributeIDString
+      @NonNull;
+      
+  AccessRef theOptionalAccessRef
+      @MaybeNull
+      @Link :theParent;
+}
+
+record AccessRef
+    @Abstract
+    extends Node
+{
+  AccessExp theParent
+      @NonNull;
+}
+
+record EnumAccessRef extends AccessRef
+{
+  Enum theEnum
+      @NonNull;
+      
+  EnumElement theEnumElement
+      @NonNull;
+}
+
+record ConstAccessRef extends AccessRef
+{
+  Const theConst
+      @NonNull;
+
+  ConstElement theConstElement
+      @NonNull;
+}
+
+record AttributeAcessRef extends AccessRef
+{
+  Attribute theAttribute
+      @NonNull;
+}
+
+record CallExp extends Exp
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+      
+  Exp theArgumentExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Literal
+    @Abstract
+    extends Exp
+{
+}
+
+record BoolLiteral extends Literal
+{
+  Bool theBoolValue;
+}
+
+record NullLiteral extends Literal
+{
+}
+
+record IntegerLiteral extends Literal
+{
+  String theIntegerString;
+}
+
+record CharLiteral extends Literal
+{
+  String theCharString;
+}
+
+record FloatLiteral extends Literal
+{
+  String theFloatString;
+}
+
+record DoubleLiteral extends Literal
+{
+  String theDoubleString;
+}
+
+record StringLiteral extends Literal
+{
+  String theString;
+}
+
+record SymbolLiteral extends Literal
+{
+  Symbol theSymbolString;
+}
+
+record RawLiteral extends Literal
+{
+  Raw theRawString;
+}
+
+record ConstLiteral extends Literal
+{
+  Name theConstName
+      @NonNull;
+      
+  String theConstElementIDString
+      @NonNull;
+}
+
+record TupleExp extends Exp
+{
+  AnnotatedExp[] theAnnotatedExps
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record AnnotatedExp extends Exp
+{
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record NewExp extends Exp
+{
+  Type theBaseType
+      @NonNull
+      @Link :theParent;
+  
+  Exp[][] theOptionalMultiArraySizes
+      @NonNull
+      @Link :theParent;
+ 
+  TypeFragment[] theOptionalTypeFragments
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record TypeFragment
+    @Abstract
+    extends Node
+{
+  NewExp theParent
+      @NonNull
+      @Link :theParent;
+}
+
+record ListTypeFragment extends TypeFragment
+{
+}
+
+record MultiArrayTypeFragment extends TypeFragment
+{
+  Integer theRank
+      @Invariant self > 1;
+}
+
+record SetTypeFragment extends TypeFragment
+{
+}
+
+record NameExp extends Exp
+{
+  Name theName
+      @NonNull;
+      
+  NameRef theOptionalNameRef
+      @MaybeNull
+      @Link :theParent;
+}
+
+record NameRef
+    @Abstract 
+    extends Node
+{
+  NameExp theParent
+      @NonNull;
+}
+
+record GlobalVarRef extends NameRef
+{
+  GlobalVar theGlobalVar
+      @NonNull;
+}
+
+record ParamRef extends NameRef
+{
+  SingleParam theSingleParam
+      @NonNull;
+}
+
+record LocalVarRef extends NameRef
+{
+  LocalVar theLocalVar
+      @NonNull;
+}
+
+record BindingRef extends NameRef
+{
+  Binding theBinding
+      @NonNull;
+      
+  Integer theIndex
+      @Invariant self >= 0;
+}
+
+record ProcedureRef extends NameRef
+{
+  ProcedureSet theProcedureSet
+      @NonNull;
+}
+
+record FunRef extends NameRef
+{
+  Fun theFun
+      @NonNull;
+}
+
+record TypeExp extends Exp
+{
+  Type theType
+      @NonNull
+      @Link :theParent;
+}
+
+record NewListRangedExp extends Exp
+{
+  Exp theLowRangeExp
+      @NonNull
+      @Link :theParent;
+      
+  Exp theHighRangeExp
+      @NonNull
+      @Link :theParent;
+}
+
+record NewListExp extends Exp
+{
+  Exp[] theOptionalElementExps
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record NewSetExp extends Exp
+{
+  Exp[] theOptionalElementExps
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record NewFunctionExp extends Exp
+{
+  ( Exp , Exp )[] theMappingExps
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record FunExp extends Exp
+{
+  Matching[] theMatchings
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record Matching extends Node
+{
+  FunExp theParent
+      @NonNull
+      @Link :theParent;
+      
+  Param[] theOptionalParams
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record LetExp extends Exp
+{
+  Binding[] theBindings
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+  
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record Binding extends Node
+{
+  LetExp theParent
+      @NonNull;
+      
+  String[] theIDStrings
+      @NonNull
+      @NonNullElements;
+      
+  Exp theExp
+      @NonNull
+      @Link :theParent;
+}
+
+record SelfExp extends Exp
+{
+}
+
+record Type
+    @Abstract 
+    extends Node
+{
+  Node theParent
+      @NonNull;
+}
+
+record RangedIntegerType
+    @Invariant theMinimum < theMaximum
+    extends Type
+{
+  Bool theWrapFlag
+      @Default true;
+  
+  IntegerLiteral theMinimumIntegerLiteral;
+  
+  IntegerLiteral theMaximumIntegerLiteral;
+}
+
+record ProcedureType extends Type
+{
+  Bool theVariableArityFlag
+      @Default false;
+  
+  TypeParam[] theTypeParams
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+  
+  Type theReturnType
+      @MaybeNull
+      @Link :theParent;
+}
+
+record TupleType extends Type
+{
+  TypeParam[] theElementTypes
+      @NonNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record FunctionType extends Type
+{
+  TupleType theDomainType
+      @NonNull
+      @Link :theParent;
+      
+  Type theImageType
+      @NonNull
+      @Link :theParent;
+}
+
+record RelationType extends Type
+{
+  TupleType theElementType
+      @NonNull
+      @Link :theParent
+      @Invariant self.size >= 2;
+}
+
+record SetType extends Type
+{
+  Type theElementType
+      @NonNull
+      @Link :theParent;
+}
+
+record SelfType extends Type
+{
+  Type[] theOptionalTypeParameters
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record ListType extends Type
+{
+  Type theElementType
+      @NonNull
+      @Link :theParent;
+}
+
+record MultiArrayType extends Type
+{
+  Type theElementType
+      @NonNull
+      @Link :theParent;
+  
+  Integer theRank
+      @Invariant self > 1;
+}
+
+record TypeVar extends Type
+{
+  String theIDString
+      @NonNull;
+
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record NamedType extends Type
+{
+  Name theName
+      @NonNull;
+
+  Type[] theOptionalTypeParameters
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record NamedExtType extends Type
+{
+  Name theExtName
+      @NonNull;
+      
+  String theExtTypeIDString
+      @NonNull;
+
+  Type[] theOptionalTypeParameters
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}
+
+record TypeParam extends Node
+{
+  Type theParent
+      @NonNull
+      @Link :theParent
+      @Invariant self.type <: ProcedureType || self.type <: TupleType;
+  
+  Type theType
+      @NonNull
+      @Link :theParent;
+  
+  String theOptionalIDString
+      @MaybeNull;
+      
+  { String , Annotation } theOptionalAnnotations
+      @MaybeNull
+      @NonNullElements
+      @Link :theParent;
+}

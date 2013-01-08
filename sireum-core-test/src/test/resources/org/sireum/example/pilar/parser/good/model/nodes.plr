@@ -1,0 +1,21 @@
+record LinkedNode { // implicitly extends Object
+  data; // data is not statically typed, at least it is an Object
+  LinkedNode next;
+}
+
+record TreeNode @Abstract { }
+
+record LeafTreeNode extends TreeNode { data; }
+
+record InTreeNode extends TreeNode {
+  data;
+  LinkedNode children;
+}
+
+procedure foo {
+  local
+    LinkedNode head;
+  
+  # head := `LinkedNode { data = 4, next = null };
+  # return;
+}

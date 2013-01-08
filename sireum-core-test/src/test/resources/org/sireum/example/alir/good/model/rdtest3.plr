@@ -1,0 +1,106 @@
+// Test Purpose:
+//    Test parallel assign, multiple assignments per location
+//
+procedure rdtest3 (int x, int y) {
+  local int a, b, c, z;
+  
+ // Single transformation, multiple actions (assignments). 
+ // All definitions are strong defs. 
+ //  Defs: {b,c,y}
+ //  StrongDefs: {b,c,y}
+ //  Refs: {y,z}
+ //  FreeRefs: {z}
+ // RDA Outset Expected Results:
+ //   a: ? (initial value)
+ //   b: l1@1
+ //   c: l1@2
+ //   x: . (initial value)
+ //   y: l1@0
+ //   z: ? (initial value)
+// DDG (locations that current node depends on) Expected Results:
+//   {}
+ #l1. y := z;  // z should be the only free ref for this block
+      b := 1;
+      c := y;  // c is def'ed, y is ref'ed but is not a free ref
+ //
+ // Single transformation, single parallel assignment.
+ // All definitions are strong defs.    
+ //      z and y are ref'ed and free ref'ed, y and b are (strong) def'ed
+  //     y depends on z (but not y), b depends on y (but not z)     
+ //  Defs: {b,y}
+ //  StrongDefs: {b,y}
+ //  Refs: {y,z}
+ //  FreeRefs: {y,z}
+ // RDA Outset Expected Results:
+ //   a: ? (initial value)
+ //   b: l2
+ //   c: l1@2
+ //   x: . (initial value)
+ //   y: l2
+ //   z: ? (initial value)
+ // DDG (locations that current node depends on) Expected Results:
+//   {l1}
+ #l2. y, b := z+1, y;
+ //
+ // Multiple transformations, multiple assignments in each.
+ // All definitions are weak defs (since the Pilar syntax represents a 
+ //   non-deterministic choice over the two transformations).
+ //  Defs: {a,x,y,z}
+ //  StrongDefs: {}
+ //  Refs: {a,b,c,x,y}
+ //  FreeRefs: {a,b,c,y}
+ // RDA Outset Expected Results:
+ //   a: ? (initial value), l3@0@0
+ //   b: l2
+ //   c: l1@2
+ //   x: . (initial value), l3@1@0
+ //   y: l2, l3@0@1
+ //   z: ? (initial value), l3@1@1
+ // DDG (locations that current node depends on) Expected Results:
+ //   {l1 (for c), l2 (for y,b)}
+  #l3.   a := b + c;  // b and c are free refs
+         y := a + 1;  // a is ref'ed but is not a free ref
+       | x := y + 1;  // y is a free ref
+         z := c + a + x; // c and a are free refs, x is not free
+ //
+ // Multiple transformations, multiple (sometimes parallel) assignments in each.
+ // Definitions to x and a are strong -- since they are def'ed in both branches, they
+ //   kill off previous definitions.  The definitions to y and z are weak since they
+ //   don't occur in each branch.
+ //  Defs: {a,x,y,z}
+ //  StrongDefs: {a,x}
+ //  Refs: {a,c,x,y}
+ //  FreeRefs: {a,c,x,y}
+ // RDA Outset Expected Results:
+ //   a: l4@0@0, l4@1@1
+ //   b: l2
+ //   c: l1@2
+ //   x: l4@0@0, l4@1@0
+ //   y: l2, l3@0@1, l4@0@1
+ //   z: ? (initial value), l3@1@1, l4@1@1
+ // DDG (locations that current node depends on) Expected Results:
+ //   {l1 (for c,y), l2 (for y), l3 (for a,x,y)}
+  #l4.   x, a := y, x + c;  // y and x and c are free refs
+         y := a + 1;  // a is ref'ed but is not a free ref
+       | x := y + 1;  // y is a free ref
+         a, z := a + 1, c + a + x; // a and c are free refs, x is not free
+ //
+ // Illustrating that a ref that is not free does not generate a dependence.
+ //  Defs: {a,x}
+ //  StrongDefs: {a,x}
+ //  Refs: {x}
+ //  FreeRefs: {}
+ // RDA Outset Expected Results:
+ //   a: l5@1
+ //   b: l2
+ //   c: l1@2
+ //   x: l5@0
+ //   y: l2, l3@0@1, l4@0@1
+ //   z: ? (initial value), l3@1@1, l4@1@1
+ // DDG (locations that current node depends on) Expected Results:
+ //   {}
+  #l5. x := 2;      // x is strong def'ed
+       a := x + 1;  // a is strong def'ed, x is ref'ed but is not a free ref
+
+ #l6. return;
+}

@@ -1,0 +1,12 @@
+procedure min(x, y) {
+  local min, max;
+  
+  #    if x < y then goto l1;
+  #    min := y;
+  #    max := x;
+  #    goto l2;
+  #l1. min := x;
+  #    max := y;
+  #l2. assert min <= x && min <= y && x <= max && y <= max;
+  #    return min;
+}

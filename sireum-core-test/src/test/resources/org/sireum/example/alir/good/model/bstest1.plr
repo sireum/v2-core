@@ -1,0 +1,17 @@
+// Test Purpose:
+//   Simple integer manipulation with a conditional.
+//   Note: default is a backward slice
+
+procedure bstest1 (x, y, z @SlicingCriterion) 
+{
+  local 
+    temp;
+  
+ #l1. temp := x > 0;
+ #l2. if temp then goto l4;
+ #l3. z := y + 1;
+      goto l6;
+ #l4. z := y;
+ #l5. y := 2;
+ #l6. return;
+}

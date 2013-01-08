@@ -1,0 +1,88 @@
+//  Test Purpose:
+//    Simple Pilar procedure containing simple integer manipulations with a loop.
+//          No parallel assign, no multiple actions, no multiple transformations.
+//
+
+procedure rdtest1 (int x, int y) {
+  local int z;
+
+// Def Ref Expected Results:
+//    Def: {y}  
+//    StrongDef: {y}  
+//    Ref: {x}  
+//    FreeRef: {x}
+// RDA Outset Expected Results:
+//   x: . (init para value)
+//   y: l1
+//   z: ? (init loc value) 
+// DDG (locations that current node depends on) Expected Results:
+//   {}
+ #l1. y := x;
+
+// Def Ref Expected Results:
+//    Def: {z}  
+//    StrongDef: {z}  
+//    Ref: {}  
+//    FreeRef: {}  
+// RDA Outset Expected Results:
+//   x: . (init para value)
+//   y: l1
+//   z: l2
+// DDG (locations that current node depends on) Expected Results:
+//   {}
+ #l2. z := 1;
+ 
+// Def Ref Expected Results:
+//    Def: {}  
+//    StrongDef: {}  
+//    Ref: {y}  
+//    FreeRef: {y}  
+// RDA Outset Expected Results: (note loop from l5 back to l3)
+//   x: . (init para value)
+//   y: l1,l5
+//   z: l2,l4
+// DDG (locations that current node depends on) Expected Results:
+//   {l1,l5}
+ #l3. if y <= 1 then goto l6;
+
+// Def Ref Expected Results:
+//    Def: {z}  
+//    StrongDef: {z}  
+//    Ref: {y,z}  
+//    FreeRef: {y,z}  
+// RDA Outset Expected Results: 
+//   x: . (init para value)
+//   y: l1,l5
+//   z: l4
+// DDG (locations that current node depends on) Expected Results:
+//   {l1,l2,l4,l5}
+ #l4. z := z * y;
+
+// Def Ref Expected Results:
+//    Def: {y}  
+//    StrongDef: {y}  
+//    Ref: {y}  
+//    FreeRef: {y}  
+// RDA Outset Expected Results: 
+//   x: . (init para value)
+//   y: l5
+//   z: l4
+// DDG (locations that current node depends on) Expected Results:
+//   {l1,l5}
+ #l5. y := y - 1;
+      goto l3;
+      
+// Def Ref Expected Results:
+//    Def: {y}  
+//    StrongDef: {y}  
+//    Ref: {}  
+//    FreeRef: {}  
+// RDA Outset Expected Results: 
+//   x: . (init para value)
+//   y: l6
+//   z: l2,l4
+// DDG (locations that current node depends on) Expected Results:
+//   {}
+ #l6. y := 0;
+      return;
+}

@@ -1,0 +1,21 @@
+enum State {
+  FRESH, STALE
+}
+
+enum State {
+  FOO
+}
+
+procedure foo {
+  # return (State.FRESH, State.STALE);
+}
+
+package a;
+
+procedure bar {
+  # return (State.FRESH, State.STALE, Mode.SLOW, Mode.FAST);
+}
+
+enum Mode {
+  SLOW, FAST
+}

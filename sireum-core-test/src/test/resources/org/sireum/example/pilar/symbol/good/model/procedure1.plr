@@ -1,0 +1,39 @@
+procedure foo {
+# return;
+}
+
+procedure foo (x) {
+# return;
+}
+
+procedure foo (x, y) {
+# return;
+}
+
+procedure bar {
+# call foo ();
+# return;
+}
+
+package a;
+
+procedure foo {
+# return;
+}
+
+procedure foo (x) {
+# return;
+}
+
+procedure foo (x, y) {
+# return;
+}
+
+procedure bar {
+# call a::foo ();
+# return;
+}
+
+vset FOO {
+  foo, a::foo
+}

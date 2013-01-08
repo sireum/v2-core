@@ -1,0 +1,21 @@
+@Profile org::sireum::profile::modeling::classdesign
+
+@Implementation
+@Factory ProcedureSetFactory
+
+package org::sireum::pilar::model;
+
+record ProcedureSetFactory
+{
+  ( Procedure{} -!> ProcedureSet ) procedureSet;
+}
+
+record ProcedureSet
+    @Abstract
+    @Unique
+    @Comparable
+{
+  Procedure{} theSet
+      @NonNull
+      @NonNullElements;
+}

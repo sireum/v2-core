@@ -1,0 +1,31 @@
+package a;
+
+record A {
+  ( Self -!> ) foo = a::A::foo; // initially bound foo to a::A::foo for any A Object
+}
+
+package a::A;
+
+procedure foo (a::A this) {
+  // ... elided
+  # return;
+}
+
+
+package b;
+
+record B extends A { }
+
+
+package c;
+
+record C extends B {
+  foo = c::C::foo; // initially bound foo to c::C::foo for any C Object
+}
+
+package c::C;
+
+procedure foo (c::C this) {
+  // ... elided
+  # return;
+}

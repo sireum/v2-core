@@ -1,0 +1,33 @@
+@Profile org::sireum::profile::modeling::classdesign
+
+@Implementation
+@Factory NameFactory
+
+package org::sireum::pilar::model;
+
+record NameFactory
+{
+  ( String theIDString @NonNull -!> SimpleName ) simpleName;
+  
+  ( String thePackageString @NonNull 
+    * String theIDString @NonNull -!> QualifiedName ) qualifiedName;
+}
+
+record Name
+    @Abstract
+    @Unique
+    @Comparable
+{
+  String theIDString
+      @NonNull;
+}
+
+record SimpleName extends Name
+{
+}
+
+record QualifiedName extends Name
+{
+  String thePackageString
+      @NonNull;
+}

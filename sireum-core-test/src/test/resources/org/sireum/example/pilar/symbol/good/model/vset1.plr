@@ -1,0 +1,16 @@
+procedure foo {
+  # return;
+}
+
+procedure bar {
+  # return;
+}
+
+vset foobar {
+  foo, bar
+}
+
+procedure baz {
+  # foobar ();
+    return;
+}

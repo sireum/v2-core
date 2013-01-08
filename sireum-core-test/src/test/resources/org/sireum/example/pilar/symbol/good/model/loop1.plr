@@ -1,0 +1,122 @@
+/*
+  -- simple for loop, summing values from 1 to 10
+  -- for loop range expression is constant only
+  procedure Success15 (O1 : out Integer)
+    --# derives O1 from ;
+  is
+     Sum : Integer;
+  begin
+     Sum := 0;
+     -- note on SPARK restrictions: J must not be previously declared.
+     --       The "for" loop range represents a declaration.
+     --       J must not be used outside the body of the for loop
+     --       J cannot be assigned in body of loop
+     for J in Integer range 1..10 loop
+        Sum := Sum + J;
+     end loop;
+
+     O1 := Sum;
+  end Success15;
+*/
+procedure Success15 (O1) {
+  local
+    Sum, J, temp$0, temp$1;
+    
+  # Sum := 0;
+  
+  # J := 1;
+  
+  #L0. // index var, low limit, high limit, increment 
+    if J > 10 then goto L1;
+    
+  # < @LoopStart (:J, 1, 10, 1) >
+    temp$0 := Sum + J;
+  
+  # Sum := temp$0;
+  
+  # < @LoopEnd (:J) >
+    temp$1 := J + 1;
+  
+  # J := temp1;
+  
+  # goto L0;
+  
+  #L1.
+    O1 := Sum;
+    
+  # return;
+}
+
+procedure ArrayCopy (A, B) {
+  local
+    I, temp$0, temp$1, temp$2, temp$3;
+    
+  # I := 0;
+  
+  #L0.
+    if I > 10 then goto L1;
+    
+  # < @LoopStart (:I, 1, 10, 1) >
+    temp$0 := I;
+    
+  # temp$1 := B[(temp$0 @Exp I)];
+  
+  # temp$2 := I;
+  
+  # A[(temp$2 @Exp I)] := temp1;
+  
+  # < @LoopEnd (:I) >
+    temp$3 := I + 1;
+  
+  # I := temp$3;
+  
+  # goto L0;
+  
+  #L1.
+    return;
+}
+
+/*
+for     i   =  1 to     100   do
+   for      j = i   to    100   do
+       A[i,    j+1]     = A[100,   j]
+*/
+procedure PughExample1 (A) {
+  local
+    i, j, temp$0, temp$1, temp$2, temp$3;
+    
+  # i := 1;
+  
+  #L0.
+    if i > 100 then goto L3;
+    
+  # < @LoopStart (:i, 1, 100, 1) >
+    j := i;
+  
+  #L1.
+    if j > 100 then goto L2;
+    
+  # < @LoopStart (:j, 1, 100, 1) >
+    temp$0 := A[100, j];
+  
+  # temp$1 := j + 1;
+  
+  # A[i, (temp$1 @Exp j + 1)] := temp$0;
+  
+  # < @LoopEnd (:j) >
+    temp$2 := j + 1;
+  
+  # j := temp$2;
+  
+  # goto L1;
+  
+  #L2. < @LoopEnd (:i) >
+    temp$3 := i + 1;
+    
+  # i := temp$3;
+  
+  # goto L0;
+  
+  #L3.
+    return;
+}

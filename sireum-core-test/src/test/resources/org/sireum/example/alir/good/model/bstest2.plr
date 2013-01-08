@@ -1,0 +1,14 @@
+procedure bstest2 (x, y @SlicingCriterion, z) 
+  @ForwardSlice
+{
+  local 
+    temp;
+  
+ #l1. temp := x > 0;
+ #l2. if temp then goto l4;
+ #l3. z := y + 1;
+      goto l6;
+ #l4. z := y;
+ #l5. y := 2;
+ #l6. return;
+}

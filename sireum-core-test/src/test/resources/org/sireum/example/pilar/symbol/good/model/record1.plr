@@ -1,0 +1,19 @@
+record A {
+  A a;
+}
+
+record B extends A {
+  B b;
+}
+
+record C extends A {
+  C c;
+}
+
+record D extends B, A {
+  A a2;
+}
+
+procedure foo {
+  # return D;
+}
