@@ -17,29 +17,12 @@ import java.io.File
 import java.io.FilenameFilter
 import org.sireum.example.bakar.BakarExamples
 import org.sireum.example.bakar.BakarExamplesAnchor
-
-object BakarProjectProvider extends ProjectProvider {
-  override def getProjects(dir : File) : ISeq[Project] = {
-    var projs = mlistEmpty[Project]
-    dir.listFiles.filter(f => f.getName().endsWith(".smf")).foreach{ smf =>
-      val files = io.Source.fromFile(smf).getLines.toList.map{ s =>
-        if(new File(s).exists) 
-          new File(s).toURI().toASCIIString()
-        else if(new File(smf.getParentFile(), s).exists())
-          new File(smf.getParentFile(), s).toURI.toASCIIString()
-        else
-          throw new RuntimeException("Couldn't locate %s from %s".format(s, smf))
-      }
-      projs += Project(smf.getName(), files)
-    }
-    projs.toList
-  }
-}
+import org.sireum.test.bakar.framework.BakarSmfProjectProvider
 
 @RunWith(classOf[JUnitRunner])
 class BakarTranslatorTestv2 extends BakarTestFileFramework {
 
-  this.register(BakarExamples.getProjects(BakarProjectProvider, BakarExamplesAnchor.GNAT_2012_DIR, true))
+  this.register(BakarExamples.getProjects(BakarSmfProjectProvider, BakarExamplesAnchor.GNAT_2012_DIR, true))
 
   override def pre(c : Configuration) : Boolean = {
     Gnat2XMLWrapperModule.setSrcFiles(c.job.properties, c.sources)
