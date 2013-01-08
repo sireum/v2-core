@@ -35,10 +35,10 @@ trait BakarTestFramework extends TestFramework {
 
   def register(projects : ISeq[Project]) {
     projects.foreach(p =>
-      if(accept(p.testName, p.files)) 
-        execute(p.testName, p.files)
+      if(accept(p.projectName, p.files)) 
+        execute(p.projectName, p.files)
       else
-        reject(p.testName, p.files)
+        reject(p.projectName, p.files)
       )
   }
   

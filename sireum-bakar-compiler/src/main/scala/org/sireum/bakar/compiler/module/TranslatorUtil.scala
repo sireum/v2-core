@@ -5,6 +5,12 @@ import org.sireum.bakar.xml._
 import org.sireum.pilar.ast._
 import org.sireum.util._
 
+object URIS {
+  val TYPE_URI = "BAKAR_TYPE_URI"
+  val REF_URI = "BAKAR_REF_URI"
+}
+
+
 object TranslatorUtil {
   val emptyAnnot = ilistEmpty[Annotation]
       

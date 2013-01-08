@@ -53,7 +53,7 @@ class BakarKiasanExpTest extends TestFramework {
 
     val tags = if (!job.tags.isEmpty) job.tags else job.lastStageInfo.tags
     if (!tags.isEmpty) {
-      println("Error encountered while processing " + p.testName)
+      println("Error encountered while processing " + p.projectName)
       println(tags)
     } else {
       BakarTranslatorModule.getResults(job.properties) foreach { v =>

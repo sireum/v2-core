@@ -4,14 +4,6 @@ import org.sireum.bakar.xml._
 import org.sireum.pilar.ast._
 import org.sireum.pipeline._
 import org.sireum.util._
-import org.sireum.pilar.ast.AssignAction.apply
-import org.sireum.pilar.ast.BinaryExp.apply
-import org.sireum.pilar.ast.CallExp.apply
-import org.sireum.pilar.ast.LiteralExp.apply
-import org.sireum.pilar.ast.NameExp.apply
-import org.sireum.pilar.ast.NameUser.apply
-import org.sireum.pilar.ast.TupleExp.apply
-import scala.Some.apply
 import scala.collection.JavaConversions.asScalaBuffer
 import java.io.File
 
@@ -122,6 +114,11 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       tempVar
     }
 
+    def handleBE(sloc : SourceLocation,
+                 op : BinaryOp, lhs : Exp, rhs : Exp, theType : String) : Exp = {
+      handleExp(addProperty(URIS.TYPE_URI, theType, BinaryExp(op, lhs, rhs)))
+    }
+
     def handleBE(v : => BVisitor, sloc : SourceLocation,
                  op : BinaryOp, lhs : ExpressionClass, rhs : ExpressionClass, theType : String) : Exp = {
       v(lhs)
@@ -129,7 +126,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
       v(rhs)
       val prhs = popResult.asInstanceOf[Exp]
 
-      handleExp(BinaryExp(op, plhs, prhs))
+      handleBE(sloc, op, plhs, prhs, theType)
     }
 
     def handleExp(e : Exp) : Exp = {
@@ -137,6 +134,15 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         assignToTemp(e)
       else
         e
+    }
+
+    def addProperty[T <: PropertyProvider](key : String, value : Any, pp : T) : T = {
+      if (value == null || value == "") {
+        println("null/empty value for %s from %s".format(key, pp))
+      } else {
+        pp.setProperty(key, value)
+      }
+      pp
     }
   }
 
@@ -229,7 +235,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         paramProfile.getParameterSpecifications().foreach {
           case ps @ ParameterSpecificationEx(sloc, pnames, _hasAliased, _hasNullEx,
             objDecView, _initExpr, mode) =>
-              // e.g (I : Integer) or (I, J : 
+            // e.g (I : Integer) or (I, J : 
             assert(ctx.isEmpty(_hasAliased.getHasAliased()))
             assert(ctx.isEmpty(_hasNullEx.getHasNullExclusion()))
             assert(ctx.isEmpty(_initExpr.getExpression()))
@@ -239,11 +245,11 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
                 val name = NameDefinition(pname.getDefName())
                 val typeSpec : Option[TypeSpec] = None
                 params += ParamDecl(typeSpec, name, TranslatorUtil.emptyAnnot)
-              case x => 
+              case x =>
                 println("Not expecting: " + x)
                 assert(false)
             }
-          case x => 
+          case x =>
             println("Not expecting: " + x)
             assert(false)
         }
@@ -306,12 +312,16 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
   def nameH(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o @ IdentifierEx(sloc, refName, ref, theType) =>
       println(o.getClass().getSimpleName() + " " + refName)
-      ctx.pushResult(NameExp(NameUser(refName)))
+      val ret = ctx.addProperty(URIS.TYPE_URI, theType, NameExp(
+        ctx.addProperty(URIS.REF_URI, ref, NameUser(refName))))
+      ctx.pushResult(ret)
       false
     case o @ DefiningIdentifierEx(sloc, defName, theDef, theType) =>
       println(o.getClass().getSimpleName() + " " + defName)
-      ctx.pushResult(NameExp(NameUser(defName)))
-      true
+      val ret = ctx.addProperty(URIS.TYPE_URI, theType, NameExp(
+        ctx.addProperty(URIS.REF_URI, theDef, NameUser(defName))))
+      ctx.pushResult(ret)
+      false
     case o @ SelectedComponentEx(sloc, prefix, selector, theType) =>
       println(o.getClass().getSimpleName())
 
@@ -425,8 +435,7 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
 
       if (ctx.isBinaryOp(prefix)) {
         assert(plist.length == 2)
-        val be = BinaryExp(ctx.getBinaryOp(prefix).get, plist(0), plist(1))
-        ctx.pushResult(ctx.handleExp(be))
+        ctx.handleBE(sloc, ctx.getBinaryOp(prefix).get, plist(0), plist(1), theType)
       } else {
         v(prefix)
         val mname = ctx.popResult.asInstanceOf[Exp]

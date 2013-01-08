@@ -6,7 +6,7 @@ import java.net.URI
 
 import org.sireum.util._
 
-case class Project(testName : String, files : ISeq[FileResourceUri])
+case class Project(projectName : String, files : ISeq[FileResourceUri])
 
 trait ProjectProvider {
   def getProjects(dir : File) : ISeq[Project]
