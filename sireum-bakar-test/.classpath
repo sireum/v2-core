@@ -5,7 +5,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-compiler"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-xml"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-core-test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-internal-core-test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-konkrit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-konkrit-extension"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-module"/>
@@ -13,7 +13,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apfloat"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Guava"/>	
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Guava"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaTest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XStream"/>
