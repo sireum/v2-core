@@ -28,7 +28,19 @@ object BooleanExtension {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait BooleanValue extends NonReferenceValue
+abstract class BooleanValue extends NonReferenceValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object IntegralExtension {
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+abstract class IntegralValue extends NonReferenceValue
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -40,7 +52,31 @@ object IntegerExtension {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait IntegerValue extends NonReferenceValue
+abstract class IntegerValue extends IntegralValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object IntExtension {
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+abstract class IntValue extends IntegralValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object LongExtension {
+  val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+abstract class LongValue extends IntegralValue
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -49,6 +85,6 @@ object ObjectExtension {
   val Type = "pilar://typeext/org/sireum/pilar/state/extension/Object/Type"
 
   val RefType = "pilar://typeext/org/sireum/pilar/state/extension/Object/RefType"
-    
+
   val ValType = "pilar://typeext/org/sireum/pilar/state/extension/Object/ValType"
 }

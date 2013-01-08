@@ -18,7 +18,8 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritBooleanValue extends BooleanValue with ConcreteValue with IsBoolean {
+abstract class KonkritBooleanValue
+    extends BooleanValue with ConcreteValue with IsBoolean {
   def value : Boolean
   def asBoolean = value
 }

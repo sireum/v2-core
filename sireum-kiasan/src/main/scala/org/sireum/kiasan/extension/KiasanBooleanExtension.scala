@@ -24,7 +24,7 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KiasanBooleanValue extends BooleanValue with KiasanValue
+abstract class KiasanBooleanValue extends BooleanValue with KiasanValue
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

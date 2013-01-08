@@ -18,8 +18,9 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritIntValue extends IntegerValue with ConcreteValue {
+abstract class KonkritIntValue extends IntValue with ConcreteValue with IsInt {
   def value : Int
+  def asInt = value
 }
 
 /**
@@ -86,12 +87,12 @@ object KonkritIntExtension extends ExtensionCompanion {
 
   @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, IntegerExtension.Type) => ilist((s, 0))
+    case (s, IntExtension.Type) => ilist((s, 0))
   }
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, v : CV, IntegerExtension.Type)    => (s, v)
+    case (s, v : CV, IntExtension.Type)    => (s, v)
     case (s, v : CV, KonkritIntExtension.Type) => (s, v)
   }
 

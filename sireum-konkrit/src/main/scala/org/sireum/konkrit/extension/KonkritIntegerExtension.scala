@@ -18,7 +18,8 @@ import org.sireum.util.math._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritIntegerValue extends IntegerValue with ConcreteValue with IsInteger {
+abstract class KonkritIntegerValue
+    extends IntegerValue with ConcreteValue with IsInteger {
   def value : Integer
   def asInteger = value
 }
@@ -166,7 +167,7 @@ trait KonkritIntegerExtension[S]
   val literal = KonkritIntegerExtension.literal[S]
 
   import PilarAstUtil._
-  
+
   @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP))
   val binopAEval = KonkritIntegerExtension.binopAEval[S]
 

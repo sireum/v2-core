@@ -19,8 +19,10 @@ import scala.annotation.meta.getter
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritLongValue extends IntegerValue with ConcreteValue {
+abstract class KonkritLongValue
+    extends LongValue with ConcreteValue with IsLong {
   def value : Long
+  def asLong = value
 }
 
 /**
@@ -87,12 +89,12 @@ object KonkritLongExtension extends ExtensionCompanion {
 
   @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, IntegerExtension.Type) => (s, CLong(0))
+    case (s, LongExtension.Type) => (s, CLong(0))
   }
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, v : CV, IntegerExtension.Type)     => (s, v)
+    case (s, v : CV, LongExtension.Type)        => (s, v)
     case (s, v : CV, KonkritLongExtension.Type) => (s, v)
   }
 
