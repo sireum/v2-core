@@ -260,7 +260,12 @@ class BakarTranslatorDef(val job : PipelineJob, info : PipelineJobModuleInfo) ex
         val body = ImplementedBody(locals, ctx.popLocationList.toList, ilistEmpty[CatchClause])
 
         val returnType : Option[TypeSpec] = resultProfile match {
-          case Some(p) =>
+          case Some(e) =>
+            v(e)
+            val ne = ctx.popResult.asInstanceOf[NameExp]
+            val nts = NamedTypeSpec(ne.name, ilistEmpty[TypeSpec])
+            ne.propertyMap.foreach{case (key, value) => nts.setProperty(key, value)}
+            Some(nts)
             None
           case None => None
         }
