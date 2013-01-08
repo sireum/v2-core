@@ -5,7 +5,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-compiler"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bakar-xml"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-internal-core-test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-konkrit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-konkrit-extension"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-module"/>
@@ -19,5 +18,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XStream"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-core-test"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
