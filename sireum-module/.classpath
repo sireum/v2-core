@@ -6,7 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-alir"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pilar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/sireum-bogor"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ANTLR v3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JGraphT"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-option"/>
