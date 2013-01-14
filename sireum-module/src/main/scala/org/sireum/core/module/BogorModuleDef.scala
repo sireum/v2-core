@@ -47,7 +47,7 @@ object BogorModuleDef {
  */
 class BogorModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends BogorModule {
   // add implementation here
-  this.factory.create(job).search
+  //this.factory.create(job).search
 }
 /*
 package org.sireum.core.module

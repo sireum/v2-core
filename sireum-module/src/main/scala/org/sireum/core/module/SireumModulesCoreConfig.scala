@@ -96,7 +96,7 @@ case class PilarSymbolResolver(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait BogorFactory {
-  def create(job : PipelineJob) : org.sireum.bogor.Bogor
+//  def create(job : PipelineJob) : org.sireum.bogor.Bogor
 }
 
 /**
