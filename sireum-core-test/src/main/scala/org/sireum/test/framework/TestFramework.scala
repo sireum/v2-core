@@ -28,7 +28,7 @@ trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions
     tagsToInclude += SINGLE_TAG_NAME
     this
   }
-  
+
   def Case(s : String) : this.type = {
     casePrefix = s
     this
@@ -41,15 +41,17 @@ trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions
     super.test(testName, tags : _*)(f)
   }
 
-  override def run //
-  (testName : Option[String], reporter : Reporter, stopper : Stopper,
-   filter : Filter, configMap : Map[String, Any],
-   distributor : Option[Distributor], tracker : Tracker) = {
-    val f = new Filter(filter.tagsToInclude match {
+  override def run(testName : Option[String], args : Args) : Status = {
+    val f = Filter(args.filter.tagsToInclude match {
       case Some(s) => Some(s ++ tagsToInclude)
       case _       => if (tagsToInclude.isEmpty) None else Some(tagsToInclude.toSet)
-    }, filter.tagsToExclude)
-    super.run(testName, reporter, stopper, f, configMap, distributor, tracker)
+    }, args.filter.tagsToExclude)
+    super.run(testName,
+      Args(args.reporter, args.stopper, f, args.configMap, args.distributor,
+        args.tracker, args.chosenStyles,
+        args.runTestInNewInstance,
+        args.distributedTestSorter,
+        args.distributedSuiteSorter))
   }
 
   private object SingleTestTag extends T(SINGLE_TAG_NAME)
