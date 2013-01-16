@@ -106,19 +106,19 @@ object SireumDistro extends App {
     def setProperty(k : Object, v : Object) : Object
   }
 
-  val METADATA_DIR = ".metadata/"
-  val BUILD_FILENAME = "BUILD"
-  val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
-  val SAPP_EXT = ".sapp"
-  val SAPP_LINK_EXT = ".sapp_link"
-  val SAPP_INFO = ".sapp_info"
-  val CHECKSUM_SUFFIX = ".checksum"
-  val POST_INSTALL = "sireum-postinstall"
+  final val METADATA_DIR = ".metadata/"
+  final val BUILD_FILENAME = "BUILD"
+  final val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
+  final val SAPP_EXT = ".sapp"
+  final val SAPP_LINK_EXT = ".sapp_link"
+  final val SAPP_INFO = ".sapp_info"
+  final val CHECKSUM_SUFFIX = ".checksum"
+  final val POST_INSTALL = "sireum-postinstall"
 
-  val BUFFER_SIZE = 1024
-  val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
-  val CLI_FEATURE = "Sireum CLI"
-  val CLI_CLASS = "org.sireum.cli.SireumCli"
+  final val BUFFER_SIZE = 1024
+  final val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
+  final val CLI_FEATURE = "Sireum CLI"
+  final val CLI_CLASS = "org.sireum.cli.SireumCli"
 
   def outPrint(s : String) {
     scala.Console.out.print(s)
