@@ -30,7 +30,7 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
   (var state : S = null.asInstanceOf[S]) {
     val caseStr = caseString
     val casePrefix =
-      if (caseStr == "") "" else caseStr.substring(0, caseStr.length - 2)
+      if (caseStr == "") "" else caseStr.substring(5, caseStr.length - 2)
 
     def source : Either[String, FileResourceUri]
 
