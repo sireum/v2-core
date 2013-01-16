@@ -590,7 +590,7 @@ object SireumDistro extends App {
         new File(sireumDir, filePath), Some(checksum)))
     }
 
-    printStatus(true, replacedCount, deleteCount, errorCount, 0, Seq())
+    printStatus(replacedCount, deleteCount, errorCount, 0, Seq())
 
     if (errorCount != 0)
       new File(sireumDir, scriptName + ".new").delete
@@ -702,21 +702,19 @@ object SireumDistro extends App {
     updateInstalledFeatures
     updateExisting(sireumDir, "")
 
-    printStatus(true, replacedFiles.size - installedFileCount, deleteCount,
+    printStatus(replacedFiles.size - installedFileCount, deleteCount,
       errorCount, downloadCount, newFeatures)
 
     updateClasspath(sireumDir)
   }
 
-  def printStatus(buildDownload : Boolean,
-                  replacedCount : Int, deleteCount : Int, errorCount : Int,
+  def printStatus(replacedCount : Int, deleteCount : Int, errorCount : Int,
                   downloadCount : Int, newFeatures : Seq[String]) {
     if (replacedCount == 0 && deleteCount == 0 && errorCount == 0 &&
       downloadCount == 0)
       outPrintln("There was no update.")
     else {
-      if (buildDownload)
-        downloadBuild
+      downloadBuild
       outPrintln
       outPrintln("Finished updating Sireum.")
       if (newFeatures.size > 0) {
