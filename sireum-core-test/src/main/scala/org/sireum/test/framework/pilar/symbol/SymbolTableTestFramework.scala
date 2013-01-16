@@ -25,7 +25,6 @@ trait SymbolResolverTestFramework extends TestFramework {
 
   def title(s : String) : this.type = {
     _title = caseString + s
-    casePrefix = ""
     this
   }
 

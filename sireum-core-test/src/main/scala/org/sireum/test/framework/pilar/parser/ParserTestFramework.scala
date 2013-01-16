@@ -25,71 +25,61 @@ trait ParserTestFramework extends TestFramework {
 
   def model(title : String) : this.type = {
     claz = classOf[Model]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def annotation(title : String) : this.type = {
     claz = classOf[Annotation]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def package_decl(title : String) : this.type = {
     claz = classOf[Model]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def package_elem(title : String) : this.type = {
     claz = classOf[PackageElement]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def location(title : String) : this.type = {
     claz = classOf[LocationDecl]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def transformation(title : String) : this.type = {
     claz = classOf[Transformation]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def action(title : String) : this.type = {
     claz = classOf[Action]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def jump(title : String) : this.type = {
     claz = classOf[Jump]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def expression(title : String) : this.type = {
     claz = classOf[Exp]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 
   def type_spec(title : String) : this.type = {
     claz = classOf[TypeSpec]
-    _title = "Case " + casePrefix + ": " + title
-    casePrefix = ""
+    _title = caseString + title
     this
   }
 

@@ -29,11 +29,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
   def Executing : this.type = this
 
-  def file(fUri : FileResourceUri) = {
-    val prefix = casePrefix
-    casePrefix = ""
-    new KiasanBfsConfiguration(prefix, fUri)
-  }
+  def file(fUri : FileResourceUri) = new KiasanBfsConfiguration(fUri)
 
   def parallelThreshold : Int = 1
 
@@ -51,8 +47,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
-  class KiasanBfsConfiguration(val casePrefix : String,
-                               val source : FileResourceUri,
+  class KiasanBfsConfiguration(val source : FileResourceUri,
                                var stStates : SymbolTable => ISeq[S] = { st => ilistEmpty },
                                var _depthBound : Int = 10) {
 

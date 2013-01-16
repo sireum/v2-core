@@ -20,7 +20,7 @@ trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions
   private type T = org.scalatest.Tag
 
   private var isSingle = false
-  protected var casePrefix = ""
+  private var _casePrefix = ""
   private val tagsToInclude = marrayEmpty[String]
 
   def Single : this.type = {
@@ -30,11 +30,19 @@ trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions
   }
 
   def Case(s : String) : this.type = {
-    casePrefix = s
+    this.synchronized {
+      _casePrefix = s
+    }
     this
   }
-  
-  def caseString = if (casePrefix != "") ("Case " + casePrefix + ": ") else ""
+
+  def caseString : String = {
+    this.synchronized {
+      val r = if (_casePrefix != "") ("Case " + _casePrefix + ": ") else ""
+      _casePrefix = ""
+      return r
+    }
+  }
 
   protected override def test(testName : String, testTags : T*)(f : => Unit) {
     val tags = if (isSingle) testTags.+:(SingleTestTag) else testTags

@@ -28,8 +28,10 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
    */
   abstract class EvalConfiguration[R] //
   (var state : S = null.asInstanceOf[S]) {
+    val caseStr = caseString
+    val casePrefix =
+      if (caseStr == "") "" else caseStr.substring(0, caseStr.length - 2)
 
-    def casePrefix : String
     def source : Either[String, FileResourceUri]
 
     def on(s : S) : this.type = { this.state = s; this }
@@ -80,7 +82,7 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
     }
 
     protected def toString(mode : String) =
-      caseString +
+      caseStr +
         "Evaluating %s %s".format(
           source match {
             case Left(code) =>
@@ -112,23 +114,12 @@ trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFrame
 
   def newExpEvaluator(s : S) : ExpEvaluator[S, R]
 
-  def expression(code : String) = {
-    val prefix = casePrefix
-    casePrefix = ""
-    ExpEvalConfiguration(prefix, Either3.First(code))
-  }
+  def expression(code : String) = ExpEvalConfiguration(Either3.First(code))
 
-  def expressionFile(fileUri : FileResourceUri) = {
-    val prefix = casePrefix
-    casePrefix = ""
-    ExpEvalConfiguration(prefix, Either3.Second(fileUri))
-  }
+  def expressionFile(fileUri : FileResourceUri) =
+    ExpEvalConfiguration(Either3.Second(fileUri))
 
-  def expression(e : Exp) = {
-    val prefix = casePrefix
-    casePrefix = ""
-    ExpEvalConfiguration(prefix, Either3.Third(e))
-  }
+  def expression(e : Exp) = ExpEvalConfiguration(Either3.Third(e))
 
   def expRewriter(exp : Exp) : Exp = identity(exp)
 
@@ -138,8 +129,7 @@ trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFrame
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class ExpEvalConfiguration //
-  (casePrefix : String,
-   src : Either3[String, FileResourceUri, Exp])
+  (src : Either3[String, FileResourceUri, Exp])
       extends EvalConfiguration[R] {
 
     var expS : String = ""
@@ -194,11 +184,7 @@ trait ActionEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestF
 
   def newActionEvaluator(s : S) : ActionEvaluator[S, SR]
 
-  def action(code : String) : EvalConfiguration[SR] = {
-    val prefix = casePrefix
-    casePrefix = ""
-    ActionEvalConfiguration(prefix, Left(code))
-  }
+  def action(code : String) : EvalConfiguration[SR] = ActionEvalConfiguration(Left(code))
 
   def actionRewriter(action : Action) : Action = identity(action)
 
@@ -208,8 +194,7 @@ trait ActionEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestF
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class ActionEvalConfiguration //
-  (casePrefix : String,
-   source : Either[String, FileResourceUri])
+  (source : Either[String, FileResourceUri])
       extends EvalConfiguration[SR] {
 
     var actionS : String = ""
@@ -250,11 +235,8 @@ trait JumpEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestFra
 
   def newJumpEvaluator(s : S) : JumpEvaluator[S, SR]
 
-  def jump(code : String) : EvalConfiguration[SR] = {
-    val prefix = casePrefix
-    casePrefix = ""
-    JumpEvalConfiguration(prefix, Left(code))
-  }
+  def jump(code : String) : EvalConfiguration[SR] =
+    JumpEvalConfiguration(Left(code))
 
   def jumpRewriter(jump : Jump) : Jump = identity(jump)
 
@@ -264,8 +246,7 @@ trait JumpEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestFra
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class JumpEvalConfiguration //
-  (casePrefix : String,
-   source : Either[String, FileResourceUri])
+  (source : Either[String, FileResourceUri])
       extends EvalConfiguration[SR] {
 
     var jumpS : String = ""
@@ -307,11 +288,8 @@ trait TransformationEvaluatorTestFramework[S <: State[S], Se, SR]
 
   def newTransformationEvaluator(s : S) : TransformationEvaluator[S, SR]
 
-  def transformation(code : String) : EvalConfiguration[SR] = {
-    val prefix = casePrefix
-    casePrefix = ""
-    TransformationEvalConfiguration(prefix, Left(code))
-  }
+  def transformation(code : String) : EvalConfiguration[SR] =
+    TransformationEvalConfiguration(Left(code))
 
   def transformationRewriter(transformation : Transformation) : Transformation =
     identity(transformation)
@@ -322,8 +300,7 @@ trait TransformationEvaluatorTestFramework[S <: State[S], Se, SR]
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class TransformationEvalConfiguration //
-  (casePrefix : String,
-   source : Either[String, FileResourceUri])
+  (source : Either[String, FileResourceUri])
       extends EvalConfiguration[SR] {
 
     var transformationS : String = ""
@@ -368,11 +345,8 @@ trait LocationEvaluatorTestFramework[S <: State[S], C] extends EvaluatorTestFram
 
   def newLocationEvaluator(s : S) : LocationEvaluator[S, C]
 
-  def location(code : String) : EvalConfiguration[Transitions[S]] = {
-    val prefix = casePrefix
-    casePrefix = ""
-    LocationEvalConfiguration(prefix, Left(code))
-  }
+  def location(code : String) : EvalConfiguration[Transitions[S]] =
+    LocationEvalConfiguration(Left(code))
 
   def locationRewriter(location : LocationDecl) : LocationDecl = identity(location)
 
@@ -384,8 +358,7 @@ trait LocationEvaluatorTestFramework[S <: State[S], C] extends EvaluatorTestFram
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class LocationEvalConfiguration //
-  (casePrefix : String,
-   source : Either[String, FileResourceUri])
+  (source : Either[String, FileResourceUri])
       extends EvalConfiguration[Transitions[S]] {
 
     var locationS : String = ""
