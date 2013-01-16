@@ -80,7 +80,7 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
     }
 
     protected def toString(mode : String) =
-      (if (casePrefix != "") ("Case " + casePrefix + ": ") else "") +
+      caseString +
         "Evaluating %s %s".format(
           source match {
             case Left(code) =>

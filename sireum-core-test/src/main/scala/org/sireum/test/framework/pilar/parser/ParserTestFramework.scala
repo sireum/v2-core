@@ -159,7 +159,7 @@ trait ParserTestFramework extends TestFramework {
     }
 
     private def title =
-      ("Parsing %s from %s ").format(
+      (caseString + "Parsing %s from %s ").format(
         claz.getSimpleName + (if (_title == "") "" else " " + _title),
         source match {
           case Left(code)     => "string " + code

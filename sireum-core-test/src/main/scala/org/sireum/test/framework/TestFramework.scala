@@ -33,6 +33,8 @@ trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions
     casePrefix = s
     this
   }
+  
+  def caseString = if (casePrefix != "") ("Case " + casePrefix + ": ") else ""
 
   protected override def test(testName : String, testTags : T*)(f : => Unit) {
     val tags = if (isSingle) testTags.+:(SingleTestTag) else testTags

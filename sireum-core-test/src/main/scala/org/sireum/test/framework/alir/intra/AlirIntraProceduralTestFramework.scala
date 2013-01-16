@@ -27,7 +27,7 @@ trait AlirIntraProceduralTestFramework extends TestFramework {
   def Analyzing : this.type = this
 
   def title(s : String) : this.type = {
-    _title = "Case " + casePrefix + ": " + s
+    _title = caseString + s
     casePrefix = ""
     this
   }

@@ -111,7 +111,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
     }
 
     protected def toString(mode : String) =
-      "Case " + casePrefix + ": " +
+      caseString +
         "Evaluating %s %s".format(source, mode)
 
     protected def exe : ResultingStates = {
