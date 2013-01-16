@@ -62,7 +62,7 @@ object KiasanBooleanExtension extends ExtensionCompanion {
 
   @inline
   def fresh[S <: KS[S]](s : S) = {
-    val (nextS, num) = s.next(KiasanBooleanExtension.Type)
+    val (nextS, num) = s.fresh(KiasanBooleanExtension.Type)
     (nextS, KB(num))
   }
 

@@ -46,10 +46,10 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
   def addPathCondition(e : Exp) : Self =
     make(e +: pathConditions, counters)
 
-  def next(uri : ResourceUri) : (Self, Int) = {
-    val i = counters.getOrElse(uri, 0)
-    val next = i + 1
-    (make(pathConditions, counters + (uri -> next)), next)
+  def fresh(uri : ResourceUri) : (Self, Int) = {
+    val last = counters.getOrElse(uri, 0)
+    val r = last + 1
+    (make(pathConditions, counters + (uri -> r)), r)
   }
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) : Self

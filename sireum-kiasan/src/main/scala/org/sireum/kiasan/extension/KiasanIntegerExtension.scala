@@ -57,7 +57,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   @inline
   def fresh[S <: KiasanStatePart[S]](s : S) = {
-    val (nextS, num) = s.next(KiasanIntegerExtension.Type)
+    val (nextS, num) = s.fresh(KiasanIntegerExtension.Type)
     (nextS, KI(num))
   }
 
