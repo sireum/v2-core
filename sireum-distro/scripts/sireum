@@ -639,7 +639,7 @@ object SireumDistro extends App {
         new File(sireumDir, filePath), Some(checksum)))
     }
 
-    printStatus(false, replacedCount, deleteCount, errorCount, 0, Seq())
+    printStatus(true, replacedCount, deleteCount, errorCount, 0, Seq())
 
     if (errorCount != 0)
       new File(sireumDir, scriptName + ".new").delete
