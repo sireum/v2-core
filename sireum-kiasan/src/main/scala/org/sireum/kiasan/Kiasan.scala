@@ -44,6 +44,7 @@ trait KiasanLocationProvider[S <: Kiasan.KiasanState[S]] {
 trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
   def foundAssertionViolation(s : S)
   def foundEndState(s : S)
+  def foundDepthBoundExhaustion(s : S)
 }
 
 /**
@@ -90,6 +91,10 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
         filterTerminatingStates(par(inconsistencyCheckRequested, nextStates))
         
       i += 1
+    }
+    
+    if (i >= depth) {
+      workList.foreach(reporter.foundDepthBoundExhaustion)
     }
   }
 

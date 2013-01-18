@@ -42,7 +42,8 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
-  case class ResultingStates(endStates : ISeq[S], errorStates : ISeq[S])
+  case class ResultingStates(endStates : ISeq[S], errorStates : ISeq[S],
+      depthBoundExStates : ISeq[S])
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -127,6 +128,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
       var endStates = ilistEmpty[S]
       var avStates = ilistEmpty[S]
+      var boundDepthExStates = ilistEmpty[S]
       val ecs = extensions
 
       val kiasan = new KiasanBfs[S, R, C] {
@@ -155,6 +157,9 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
           def foundEndState(s : S) {
             endStates = s :: endStates
           }
+          def foundDepthBoundExhaustion(s : S) {
+            boundDepthExStates = s :: boundDepthExStates
+          }
         }
 
         def topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 1000,
@@ -163,7 +168,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
       kiasan.search
 
-      ResultingStates(endStates, avStates)
+      ResultingStates(endStates, avStates, boundDepthExStates)
     }
 
     protected var funs : ISeq[ResultingStates => Unit] = ilistEmpty

@@ -1,0 +1,13 @@
+procedure sum(n) {
+  local r, t;
+  
+  #    assume n >= 0ii;
+  #    r := 0ii;
+  #    t := n - 1ii;
+  #l1. if t < 0ii then goto l2;    
+  #    r := r + 1ii;
+  #    t := t - 1ii;
+  #    goto l1;
+  #l2. assert n == r; 
+  #    return r;
+}
