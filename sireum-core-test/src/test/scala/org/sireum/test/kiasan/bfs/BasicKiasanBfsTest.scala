@@ -32,7 +32,7 @@ class BasicKiasanBfsTest
     Executing file fUri on stateInitializer gives "sat models" satisfying { r =>
       r.errorStates should be('empty)
       if (fUri.endsWith("sum.plr"))
-        r.depthBoundExStates should have size (1)
+        r.depthBoundExStates.size should be > 0
     }
   }
 

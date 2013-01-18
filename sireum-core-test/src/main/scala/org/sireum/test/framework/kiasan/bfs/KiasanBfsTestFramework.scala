@@ -30,10 +30,12 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
   def Executing : this.type = this
 
   def file(fUri : FileResourceUri) = new KiasanBfsConfiguration(fUri)
+  
+  def parallelMode = true
 
   def parallelThreshold : Int = 1
 
-  def parallelismLevel : Int = Runtime.getRuntime.availableProcessors
+  def parallelismLevel : Int = 0
 
   def extensions : ISeq[ExtensionCompanion]
 
@@ -132,7 +134,10 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
       val ecs = extensions
 
       val kiasan = new KiasanBfs[S, R, C] {
+        
         def depthBound = _depthBound
+        
+        def parallelMode = self.parallelMode
 
         def parallelThreshold = self.parallelThreshold
 

@@ -59,6 +59,8 @@ trait Kiasan {
  */
 trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
   import State._
+  
+  def parallelMode : Boolean
 
   def parallelThreshold : Int
 
@@ -73,15 +75,17 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
   def reporter : KiasanReporter[S]
 
   def topi : org.sireum.topi.Topi
-  
+
   def depthBound : Int
+
+  lazy val taskSupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
 
   def search {
     var workList : GenSeq[S] = initialStatesProvider.initialStates
 
     var i = 0
     val depth = depthBound
-    
+
     while (!workList.isEmpty && i < depth) {
       val ps = inconNextStatesPairs(workList)
       val inconsistencyCheckRequested = ps.exists(first2)
@@ -89,10 +93,10 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
 
       workList =
         filterTerminatingStates(par(inconsistencyCheckRequested, nextStates))
-        
+
       i += 1
     }
-    
+
     if (i >= depth) {
       workList.foreach(reporter.foundDepthBoundExhaustion)
     }
@@ -122,9 +126,10 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
 
   @inline
   private def par[T](shouldParallize : Boolean, l : GenSeq[T]) =
-    if (shouldParallize && parallelThreshold < l.size) {
+    if (parallelMode && shouldParallize && parallelThreshold < l.size) {
       val pl = l.par
-      pl.tasksupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
+      if (parallelismLevel >= 2)
+        pl.tasksupport = taskSupport
       pl
     } else l
 
