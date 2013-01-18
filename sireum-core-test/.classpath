@@ -7,6 +7,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JUnit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XStream"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaLogging for SLF4J"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SLF4J"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-alir"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-kiasan"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pilar"/>

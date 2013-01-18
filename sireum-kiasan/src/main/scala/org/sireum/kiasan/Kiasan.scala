@@ -17,6 +17,8 @@ import org.sireum.pilar.eval._
 import org.sireum.util._
 import org.sireum.kiasan.state._
 
+import com.typesafe.scalalogging.slf4j._
+
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
@@ -57,9 +59,9 @@ trait Kiasan {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
+trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
   import State._
-  
+
   def parallelMode : Boolean
 
   def parallelThreshold : Int
@@ -81,6 +83,17 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan {
   lazy val taskSupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
 
   def search {
+
+    logger.debug(s"""
+Parallel mode: ${parallelMode}
+${
+      if (parallelMode) "Parallelism level: " +
+        (if (parallelismLevel >= 2) parallelismLevel.toString
+        else "default")
+    }
+Parallel threshold: ${parallelThreshold}
+Depth bound: ${depthBound}""")
+
     var workList : GenSeq[S] = initialStatesProvider.initialStates
 
     var i = 0
