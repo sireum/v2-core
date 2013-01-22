@@ -58,6 +58,7 @@ object SireumDistro extends App {
   final val SAPP_INFO = ".sapp_info"
   final val CHECKSUM_SUFFIX = ".checksum"
   final val POST_INSTALL = "sireum-postinstall"
+  final val SKIP_UPDATE_ENV_KEY = "SIREUM_SKIP_UPDATE"
 
   final val BUFFER_SIZE = 1024
   final val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -108,7 +109,12 @@ object SireumDistro extends App {
 
   val isDevelopment = {
     val d = System.getenv("SIREUM_DIST")
-    if (d == null) true else false
+    if (d == null || d.trim != "true") true else false
+  }
+
+  val skipUpdate = {
+    val env = System.getenv(SKIP_UPDATE_ENV_KEY)
+    if (env == null) false else env.trim == "true"
   }
 
   val sireumDir = new File(args(0))
@@ -472,9 +478,6 @@ object SireumDistro extends App {
   def install(featureNames : String*) {
     updateClasspath(sireumDir)
 
-    if (isDevelopment)
-      return
-
     {
       val installedFeatures = loadInstalledFeatures
       if (featureNames.forall(installedFeatures.contains(_)))
@@ -538,6 +541,8 @@ object SireumDistro extends App {
       f.exists
 
   def updateScriptAndPlatform {
+    if (skipUpdate) return
+
     val checksums = getChecksums
 
     val file = new File(sireumDir, scriptName)
@@ -563,8 +568,9 @@ object SireumDistro extends App {
 
     val pfiles = getPlatformFileUpdates
 
-    if (checksum == getChecksum(file) && pfiles.isEmpty)
+    if (isDevelopment || (checksum == getChecksum(file) && pfiles.isEmpty)) {
       return
+    }
 
     outPrintln("Updating Sireum in " + sireumDir.getAbsolutePath)
 
@@ -584,6 +590,7 @@ object SireumDistro extends App {
         }
 
     status(updateFile(checksum, scriptName, file, None))
+
     pfiles.foreach { pfile =>
       val (filePath, checksum) = pfile
       status(updateFile(checksums(filePath), filePath,
@@ -600,6 +607,8 @@ object SireumDistro extends App {
 
   def update(newFeatures : ArrayBuffer[String], isApp : Boolean,
              installedFiles : Set[String] = Set()) {
+    if (skipUpdate) return
+
     val checksums = getChecksums
     val features = getFeatures
 
@@ -900,7 +909,7 @@ object SireumDistro extends App {
     val relPath = relativize(sireumDir, file)
     val managed = isManaged(file)
     val installDir = if (managed) file.getParentFile else unmanagedDir
-    val dirs = movePrevApp(file, installDir)
+    val dirs = if (managed) movePrevApp(file, installDir) else None
     deleteRemainingAppFiles(relPath)
     if (managed)
       outPrint("Installing managed app file: " + file.getName)
