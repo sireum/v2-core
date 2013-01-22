@@ -83,16 +83,19 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
   lazy val taskSupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
 
   def search {
-
-    logger.debug(s"""
-Parallel mode: ${parallelMode}
-${
-      if (parallelMode) "Parallelism level: " +
-        (if (parallelismLevel >= 2) parallelismLevel.toString
-        else "default")
-    }
-Parallel threshold: ${parallelThreshold}
-Depth bound: ${depthBound}""")
+    logger.debug((({ pLevel : String =>
+      var parInfo =
+        if (parallelMode)
+          s"""
+Parallelism level: ${pLevel}
+Parallel threshold: ${parallelThreshold}"""
+        else ""
+      s"""
+Parallel mode: ${parallelMode}${parInfo}
+Depth bound: ${depthBound}"""
+    })(
+      if (parallelismLevel >= 2) parallelismLevel.toString
+      else "default")))
 
     var workList : GenSeq[S] = initialStatesProvider.initialStates
 
