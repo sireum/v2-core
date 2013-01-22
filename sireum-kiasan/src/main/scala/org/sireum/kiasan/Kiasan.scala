@@ -62,6 +62,10 @@ trait Kiasan {
 trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
   import State._
 
+  var dpTime = 0l
+
+  var dpTotalTime = 0l
+
   def parallelMode : Boolean
 
   def parallelThreshold : Int
@@ -83,6 +87,29 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
   lazy val taskSupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
 
   def search {
+    var workList : GenSeq[S] = initialStatesProvider.initialStates
+
+    var i = 0
+    val depth = depthBound
+
+    var searchTime = System.currentTimeMillis
+    while (!workList.isEmpty && i < depth) {
+      val ps = inconNextStatesPairs(workList)
+      val inconsistencyCheckRequested = ps.exists(first2)
+      val nextStates = ps.flatMap(second2)
+
+      workList =
+        filterTerminatingStates(inconsistencyCheckRequested, nextStates)
+
+      i += 1
+    }
+
+    if (i >= depth) {
+      workList.foreach(reporter.foundDepthBoundExhaustion)
+    }
+
+    searchTime = System.currentTimeMillis - searchTime
+
     logger.debug((({ pLevel : String =>
       var parInfo =
         if (parallelMode)
@@ -92,30 +119,13 @@ Parallel threshold: ${parallelThreshold}"""
         else ""
       s"""
 Parallel mode: ${parallelMode}${parInfo}
-Depth bound: ${depthBound}"""
+Depth bound: ${depthBound}
+Search time: ${searchTime} ms
+DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
     })(
       if (parallelismLevel >= 2) parallelismLevel.toString
       else "default")))
 
-    var workList : GenSeq[S] = initialStatesProvider.initialStates
-
-    var i = 0
-    val depth = depthBound
-
-    while (!workList.isEmpty && i < depth) {
-      val ps = inconNextStatesPairs(workList)
-      val inconsistencyCheckRequested = ps.exists(first2)
-      val nextStates = ps.flatMap(second2)
-
-      workList =
-        filterTerminatingStates(par(inconsistencyCheckRequested, nextStates))
-
-      i += 1
-    }
-
-    if (i >= depth) {
-      workList.foreach(reporter.foundDepthBoundExhaustion)
-    }
   }
 
   case class TopiCache(state : org.sireum.topi.TopiState,
@@ -146,12 +156,12 @@ Depth bound: ${depthBound}"""
       val pl = l.par
       if (parallelismLevel >= 2)
         pl.tasksupport = taskSupport
-      pl
-    } else l
+      (pl, true)
+    } else (l.seq, false)
 
   @inline
   private def inconNextStatesPairs(l : GenSeq[S]) =
-    par(true, l).map { s =>
+    first2(par(true, l)).map { s =>
       var inconsistencyCheckRequested = false
       val nextStates =
         for {
@@ -167,26 +177,46 @@ Depth bound: ${depthBound}"""
     }
 
   @inline
-  private def filterTerminatingStates(gs : GenSeq[S]) =
-    gs.flatMap { s =>
-      if (s.callStack.isEmpty) {
-        reporter.foundEndState(s)
-        None
-      } else {
-        val s3Opt =
-          if (s.inconsistencyCheckRequested) {
-            val (s2, tr) = check(s)
-            if (tr == org.sireum.topi.TopiResult.UNSAT) None
-            else Some(s2.requestInconsistencyCheck(false))
-          } else Some(s.requestInconsistencyCheck(false))
+  private def filterTerminatingStates(inconsistencyCheckRequested : Boolean,
+                                      states : GenSeq[S]) = {
+    val (gs, isPar) = par(inconsistencyCheckRequested, states)
+    val stateTimePairs =
+      gs.flatMap { s =>
+        var time = 0l
+        if (s.callStack.isEmpty) {
+          reporter.foundEndState(s)
+          None
+        } else {
+          val s3Opt =
+            if (s.inconsistencyCheckRequested) {
+              time = System.currentTimeMillis
+              val (s2, tr) = check(s)
+              time = System.currentTimeMillis - time
+              if (tr == org.sireum.topi.TopiResult.UNSAT) None
+              else Some(s2.requestInconsistencyCheck(false))
+            } else Some(s.requestInconsistencyCheck(false))
 
-        if (s3Opt.isDefined) {
-          val s3 = s3Opt.get
-          if (s3.assertionViolation.isDefined) {
-            reporter.foundAssertionViolation(s3)
-            None
-          } else s3Opt
-        } else None
+          if (s3Opt.isDefined) {
+            val s3 = s3Opt.get
+            if (s3.assertionViolation.isDefined) {
+              reporter.foundAssertionViolation(s3)
+              None
+            } else {
+              Some(s3, time)
+            }
+          } else None
+        }
       }
+    if (!stateTimePairs.isEmpty) {
+      dpTime += stateTimePairs.map(second2).reduce(
+        if (isPar) dpTimeMaxF else dpTimeTotalF
+      )
+      dpTotalTime += stateTimePairs.map(second2).reduce(dpTimeTotalF)
     }
+
+    stateTimePairs.map(first2)
+  }
+
+  def dpTimeMaxF(t1 : Long, t2 : Long) = if (t1 < t2) t2 else t1
+  def dpTimeTotalF(t1 : Long, t2 : Long) = t1 + t2
 }
