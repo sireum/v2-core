@@ -965,7 +965,11 @@ object SireumDistro extends App {
     val relPath = relativize(sireumDir, file)
     val managed = isManaged(file)
     val installDir = if (managed) file.getParentFile else unmanagedDir
-    val dirs = if (managed) movePrevApp(file, installDir) else None
+    val dirs =
+      if (managed && relativize(sireumDir, installDir) == "apps/platform")
+        None
+      else
+        movePrevApp(file, installDir)
     deleteRemainingAppFiles(relPath)
     if (managed)
       outPrint("Installing managed app file: " + file.getName)
@@ -1071,29 +1075,26 @@ object SireumDistro extends App {
     appPath
   }
 
-  def movePrevApp(file : File, installDir : File) : Option[(File, File)] =
-    if (relativize(sireumDir, installDir) == "apps/platform")
-      None
-    else {
-      val appName = getAppPath(file.getName)
-      val appDir = new File(installDir, appName)
-      if (appDir.exists) {
-        val appDirBackup = new File(appDir.getParentFile, appDir.getName +
-          "-backup-" + timeStamp)
-        if (appDir.renameTo(appDirBackup)) {
-          outPrintln("Moved " + appDir.getName + " to " + appDirBackup.getName)
-          Some((appDir, appDirBackup))
-        } else {
-          errPrintln("Unable to move " + appDir.getName + " to " +
-            appDirBackup.getName)
-          outPrintln("""This might happen due to file permission issues or it is because some 
+  def movePrevApp(file : File, installDir : File) : Option[(File, File)] = {
+    val appName = getAppPath(file.getName)
+    val appDir = new File(installDir, appName)
+    if (appDir.exists) {
+      val appDirBackup = new File(appDir.getParentFile, appDir.getName +
+        "-backup-" + timeStamp)
+      if (appDir.renameTo(appDirBackup)) {
+        outPrintln("Moved " + appDir.getName + " to " + appDirBackup.getName)
+        Some((appDir, appDirBackup))
+      } else {
+        errPrintln("Unable to move " + appDir.getName + " to " +
+          appDirBackup.getName)
+        outPrintln("""This might happen due to file permission issues or it is because some 
 Sireum Distro managed apps are currently running.""")
-          abnormalExit
-          None
-        }
-      } else
+        abnormalExit
         None
-    }
+      }
+    } else
+      None
+  }
 
   def delete(file : File, onExit : Boolean) : Boolean = {
     if (file.isDirectory)
