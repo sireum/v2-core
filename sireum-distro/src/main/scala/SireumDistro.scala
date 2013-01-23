@@ -623,10 +623,13 @@ object SireumDistro extends App {
     var deleteCount = 0
 
       def update(filePath : String, f : File,
-                 currChecksum : Option[String] = None) {
+                 currChecksum : Option[String] = None,
+                 checksumOverride : Boolean = false) {
         if (!replacedFiles.contains(filePath) && shouldUpdate(filePath) &&
-          checksums.contains(filePath)) {
-          updateFile(checksums(filePath), filePath, f, currChecksum) match {
+          (checksumOverride || checksums.contains(filePath))) {
+          val checksum =
+            if (checksums.contains(filePath)) checksums(filePath) else "0"
+          updateFile(checksum, filePath, f, currChecksum) match {
             case Replaced =>
               replacedFiles = replacedFiles + filePath
             case Deleted =>
@@ -647,7 +650,7 @@ object SireumDistro extends App {
               val file = new File(sireumDir, fPath)
               if (!features.contains(fPath)) {
                 if (!isAppFile(file))
-                  update(fPath, file)
+                  update(fPath, file, None, true)
                 else if (isApp && !new File(sireumDir, METADATA_DIR + fPath +
                   CHECKSUM_SUFFIX).exists &&
                   (file.getParentFile != new File(sireumDir, "apps")))
@@ -702,7 +705,7 @@ object SireumDistro extends App {
                 filePath = filePath.substring(0, filePath.length -
                   CHECKSUM_SUFFIX.length)
                 update(filePath, new File(sireumDir, filePath),
-                  Some(currentChecksum))
+                  Some(currentChecksum), true)
               }
             }
         }
