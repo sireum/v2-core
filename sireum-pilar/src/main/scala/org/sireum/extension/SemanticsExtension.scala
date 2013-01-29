@@ -24,7 +24,7 @@ object BinaryOpMode extends Enum {
   object LAZY_LEFT extends Type
   object LAZY_RIGHT extends Type
 
-  def elements = List(REGULAR, LAZY_LEFT, LAZY_RIGHT)
+  def elements = ivector(REGULAR, LAZY_LEFT, LAZY_RIGHT)
 }
 
 /**
@@ -556,7 +556,7 @@ object ExtensionMiner {
                            ext : Extension[S, V, R, C, SR]) : Boolean = {
     import org.sireum.pilar.symbol.H._
     val mName = m.getName
-    val extUri = Resource.getResourceUri(SCHEME, EXTENSION_ELEM_TYPE, ilist(ext.uriPath, mName))
+    val extUri = Resource.getResourceUri(SCHEME, EXTENSION_ELEM_TYPE, ivector(ext.uriPath, mName))
     ann match {
       case ann : VarLookup =>
         val extF = m.invoke(ext).asInstanceOf[(S, NameUser) --> R]

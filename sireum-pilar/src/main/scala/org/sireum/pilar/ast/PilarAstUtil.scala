@@ -60,9 +60,9 @@ object PilarAstUtil {
 
   def getJumps(l : LocationDecl) : ISeq[Option[Jump]] = {
     l match {
-      case l : EmptyLocation   => ilistEmpty
-      case l : ActionLocation  => ilistEmpty
-      case l : JumpLocation    => ilist(Some(l.jump))
+      case l : EmptyLocation   => ivectorEmpty
+      case l : ActionLocation  => ivectorEmpty
+      case l : JumpLocation    => ivector(Some(l.jump))
       case l : ComplexLocation => l.transformations.map { t => t.jump }
     }
   }

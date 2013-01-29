@@ -60,8 +60,8 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
  */
 object BasicKiasanState {
   def apply() : BasicKiasanState =
-    BasicKiasanState(imapEmpty, ilistEmpty, ilistEmpty, ilistEmpty, imapEmpty,
-      imapEmpty, None, None, false, ilistEmpty)
+    BasicKiasanState(imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty, imapEmpty,
+      imapEmpty, None, None, false, ivectorEmpty)
 }
 
 /**
@@ -100,7 +100,7 @@ final case class BasicKiasanState(
   def raiseException(exceptionValue : Value, li : LocationInfo) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))),
+      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))),
       inconsistencyCheckRequested, schedule)
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicKiasanState =
@@ -146,8 +146,8 @@ final case class BasicKiasanState(
  */
 object KiasanStateWithHeap {
   def apply(heaps : ISeq[ISeq[HeapObject]]) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, imapEmpty, ilistEmpty, ilistEmpty, ilistEmpty,
-      imapEmpty, imapEmpty, None, None, false, ilistEmpty)
+    KiasanStateWithHeap(heaps, imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty,
+      imapEmpty, imapEmpty, None, None, false, ivectorEmpty)
 }
 
 /**
@@ -195,7 +195,7 @@ final case class KiasanStateWithHeap(
   def raiseException(exceptionValue : Value, li : LocationInfo) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))),
+      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))),
       inconsistencyCheckRequested, schedule)
 
   def assertionViolation(avi : AssertionViolationInfo) : KiasanStateWithHeap =

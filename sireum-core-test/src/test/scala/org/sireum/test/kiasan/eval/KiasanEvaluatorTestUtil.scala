@@ -68,7 +68,7 @@ object KiasanEvaluatorTestUtil {
     new EvaluatorConfigurationImpl[S](st, new EvaluatorImpl,
       new KiasanSemanticsExtensionModule[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
         val sei = new KiasanSemanticsExtensionInitImpl[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {}
-        val miners = ilist(KiasanExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _,
+        val miners = ivector(KiasanExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _,
           ExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _)
       },
       extCompanions : _*)
@@ -77,7 +77,7 @@ object KiasanEvaluatorTestUtil {
     new EvaluatorConfigurationImpl[S](None, new EvaluatorImpl,
       new KiasanSemanticsExtensionModule[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
         val sei = new KiasanSemanticsExtensionInitImpl[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {}
-        val miners = ilist(KiasanExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _,
+        val miners = ivector(KiasanExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _,
           ExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _)
       },
       extCompanions : _*)

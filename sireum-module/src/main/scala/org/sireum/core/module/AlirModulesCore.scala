@@ -85,7 +85,7 @@ object AlirIntraProceduralModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilistEmpty[PipelineModule]
+    val deps = ivectorEmpty[PipelineModule]
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -785,7 +785,7 @@ object CfgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilistEmpty[PipelineModule]
+    val deps = ivectorEmpty[PipelineModule]
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -1003,7 +1003,7 @@ object IdgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule, CfgModule)
+    val deps = ivector[PipelineModule](CfgModule, CfgModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -1192,7 +1192,7 @@ object DfgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule, CfgModule, IdgModule)
+    val deps = ivector[PipelineModule](CfgModule, CfgModule, IdgModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -1428,7 +1428,7 @@ object CdgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule, CfgModule)
+    val deps = ivector[PipelineModule](CfgModule, CfgModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -1628,7 +1628,7 @@ object RdaModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule)
+    val deps = ivector[PipelineModule](CfgModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -1952,7 +1952,7 @@ object DdgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule, CfgModule, RdaModule)
+    val deps = ivector[PipelineModule](CfgModule, CfgModule, RdaModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -2322,7 +2322,7 @@ object PdgModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](CfgModule, CfgModule, CdgModule, DdgModule)
+    val deps = ivector[PipelineModule](CfgModule, CfgModule, CdgModule, DdgModule)
     deps.foreach(d =>
       if (stage.modules.contains(d)) {
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,

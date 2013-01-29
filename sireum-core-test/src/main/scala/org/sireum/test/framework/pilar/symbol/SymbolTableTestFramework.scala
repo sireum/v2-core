@@ -29,10 +29,10 @@ trait SymbolResolverTestFramework extends TestFramework {
   }
 
   def model(code : String) =
-    SymbolResolveConfiguration(title, ilist(Left(code)))
+    SymbolResolveConfiguration(title, ivector(Left(code)))
 
   def file(fileUri : FileResourceUri) =
-    SymbolResolveConfiguration(title, ilist(Right(fileUri)))
+    SymbolResolveConfiguration(title, ivector(Right(fileUri)))
 
   case class SymbolResolveConfiguration //
   (title : String, srcs : ISeq[Either[String, FileResourceUri]]) {

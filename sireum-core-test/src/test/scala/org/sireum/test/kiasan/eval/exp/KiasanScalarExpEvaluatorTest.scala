@@ -47,7 +47,7 @@ class KiasanScalarExpEvaluatorTest
   implicit def any2is(any : Any) = IsMatcher(any)
   implicit def i2ii(n : Int) = SireumNumber(n)
 
-  val extensions = ilist(KiasanIntegerExtension, KonkritIntegerExtension,
+  val extensions = ivector(KiasanIntegerExtension, KonkritIntegerExtension,
     KiasanBooleanExtension, KonkritBooleanExtension)
   val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*)
 
@@ -77,8 +77,8 @@ class KiasanScalarExpEvaluatorTest
   val random = new Random()
 
   // test integer arith binop
-  val integerBinopInputs = ilist(("alpha", "c"), ("c", "alpha"), ("beta", "alpha"))
-  for (op <- ilist("+", "-", "*", "/", "%"))
+  val integerBinopInputs = ivector(("alpha", "c"), ("c", "alpha"), ("beta", "alpha"))
+  for (op <- ivector("+", "-", "*", "/", "%"))
     for ((i1, i2) <- integerBinopInputs) {
       val numOfIts = if (i1 == "c" || i2 == "c") numOfTests else 1
       for (i <- 0 until numOfIts) {
@@ -91,7 +91,7 @@ class KiasanScalarExpEvaluatorTest
     }
 
   // test integer rel binop
-  for (op <- ilist("==", "!=", ">", ">=", "<=", "<"))
+  for (op <- ivector("==", "!=", ">", ">=", "<=", "<"))
     for ((i1, i2) <- integerBinopInputs) {
       val numOfIts = if (i1 == "c" || i2 == "c") numOfTests else 1
       for (i <- 0 until numOfIts) {
@@ -110,10 +110,10 @@ class KiasanScalarExpEvaluatorTest
   }
 
   // test boolean binop
-  val booleanBinopInputs = ilist(("b_alpha", "true"), ("b_alpha", "false"),
+  val booleanBinopInputs = ivector(("b_alpha", "true"), ("b_alpha", "false"),
     ("true", "b_alpha"), ("false", "b_alpha"), ("b_beta", "b_alpha"))
   for (
-    op <- ilist("==", "!=", "&&", "||", "==>", "<==", "&&&", "|||", "===>",
+    op <- ivector("==", "!=", "&&", "||", "==>", "<==", "&&&", "|||", "===>",
       "<===")
   ) for ((b1, b2) <- booleanBinopInputs) {
     val s = state
@@ -213,9 +213,9 @@ class KiasanScalarExpEvaluatorTest
   }
 
   def toSeq(p : Product) : Seq[String] = {
-    var l = ilistEmpty[String]
+    var l = ivectorEmpty[String]
     for (o <- p.productIterator) {
-      l = o.toString :: l
+      l = o.toString +: l
     }
     l.reverse
   }

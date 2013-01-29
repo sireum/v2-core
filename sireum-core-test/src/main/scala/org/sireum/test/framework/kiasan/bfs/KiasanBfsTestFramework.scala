@@ -51,7 +51,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   class KiasanBfsConfiguration(val source : FileResourceUri,
-                               var stStates : SymbolTable => ISeq[S] = { st => ilistEmpty },
+                               var stStates : SymbolTable => ISeq[S] = { st => ivectorEmpty },
                                var _depthBound : Int = 10) {
 
     def on(f : SymbolTable => ISeq[S]) : this.type = {
@@ -116,7 +116,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
       val job = PipelineJob()
       val options = job.properties
 
-      PilarParserModule.setSources(options, ilist(Right(source)))
+      PilarParserModule.setSources(options, ivector(Right(source)))
       PilarSymbolResolverModule.setParallel(options, true)
       PilarSymbolResolverModule.setHasExistingModels(options, None)
       PilarSymbolResolverModule.setHasExistingSymbolTable(options, None)
@@ -128,9 +128,9 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
       val st = PilarSymbolResolverModule.getSymbolTable(options)
 
-      var endStates = ilistEmpty[S]
-      var avStates = ilistEmpty[S]
-      var boundDepthExStates = ilistEmpty[S]
+      var endStates = ivectorEmpty[S]
+      var avStates = ivectorEmpty[S]
+      var boundDepthExStates = ivectorEmpty[S]
       val ecs = extensions
 
       val kiasan = new KiasanBfs[S, R, C] {
@@ -157,13 +157,13 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
         def reporter = new KiasanReporter[S] {
           def foundAssertionViolation(s : S) {
-            avStates = s :: avStates
+            avStates = s +: avStates
           }
           def foundEndState(s : S) {
-            endStates = s :: endStates
+            endStates = s +: endStates
           }
           def foundDepthBoundExhaustion(s : S) {
-            boundDepthExStates = s :: boundDepthExStates
+            boundDepthExStates = s +: boundDepthExStates
           }
         }
 
@@ -176,8 +176,8 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
       ResultingStates(endStates, avStates, boundDepthExStates)
     }
 
-    protected var funs : ISeq[ResultingStates => Unit] = ilistEmpty
-    protected var fails : ISeq[Throwable => Unit] = ilistEmpty
+    protected var funs : ISeq[ResultingStates => Unit] = ivectorEmpty
+    protected var fails : ISeq[Throwable => Unit] = ivectorEmpty
     protected var resultText = "unknown"
 
     protected val pipeline =

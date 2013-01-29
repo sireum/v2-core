@@ -30,9 +30,9 @@ class AntlrWorksLauncher {
     val args =
       OsArchUtil.detect match {
         case OsArch.Mac32 | OsArch.Mac64 =>
-          e.run(-1, ilist("open", antlrworks), None)
+          e.run(-1, ivector("open", antlrworks), None)
         case _ =>
-          e.run(-1, ilist("java", "-jar", antlrworks), None)
+          e.run(-1, ivector("java", "-jar", antlrworks), None)
       }
   }
 }

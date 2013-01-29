@@ -70,7 +70,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   import language.implicitConversions
 
   @inline
-  private implicit def re2r[S](p : (S, V)) = ilist(p)
+  private implicit def re2r[S](p : (S, V)) = ivector(p)
 
   @inline
   private implicit def bigint2v(n : BigInt) = CI(SireumNumber(n))
@@ -91,7 +91,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 
   @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, IntegerExtension.Type) => ilist((s, 0))
+    case (s, IntegerExtension.Type) => ivector((s, 0))
   }
 
   @inline
@@ -102,17 +102,17 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 
   @inline
   def literal[S] : (S, BigInt) --> ISeq[(S, V)] = {
-    case (s, n) => ilist((s, n))
+    case (s, n) => ivector((s, n))
   }
 
   @inline
   def binopAEval[S] : (S, V, Op, V) --> ISeq[(S, V)] = {
-    case (s, c : CV, opA, d : CV) => ilist((s, binopASem(opA)(c, d)))
+    case (s, c : CV, opA, d : CV) => ivector((s, binopASem(opA)(c, d)))
   }
 
   @inline
   def unopAEval[S] : (S, Op, V) --> ISeq[(S, V)] = {
-    case (s, opA, c : CV) => ilist((s, unopASem(opA)(c)))
+    case (s, opA, c : CV) => ivector((s, unopASem(opA)(c)))
   }
 
   @inline
@@ -124,7 +124,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   def cond[S](canCast : (S, V, ResourceUri) => Boolean,
               cast : (S, V, ResourceUri) --> ISeq[(S, V)]) : //
               (S, V) --> ISeq[(S, Boolean)] = {
-    case (s, i : CV) => ilist((s, !i.asInteger.isZero))
+    case (s, i : CV) => ivector((s, !i.asInteger.isZero))
     case (s, v) if canCast(s, v, KonkritIntegerExtension.Type) =>
       for {
         (s1, v1) <- cast(s, v, KonkritIntegerExtension.Type)

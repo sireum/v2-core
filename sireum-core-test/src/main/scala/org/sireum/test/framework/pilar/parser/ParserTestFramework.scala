@@ -107,7 +107,7 @@ trait ParserTestFramework extends TestFramework {
 
     test(title) {
       val job = PipelineJob()
-      PilarParserModule.setSources(job.properties, ilist(source).toSeq)
+      PilarParserModule.setSources(job.properties, ivector(source).toSeq)
       pipeline.compute(job)
       val tags = job.tags
 

@@ -16,13 +16,13 @@ import org.sireum.util._
  */
 object PipelineUtil {
   val InfoMarker = MarkerType("Information", None, "Information Marker",
-    MarkerTagSeverity.Info, MarkerTagPriority.Normal, ilist(MarkerTagKind.Text))
+    MarkerTagSeverity.Info, MarkerTagPriority.Normal, ivector(MarkerTagKind.Text))
 
   val ErrorMarker = MarkerType("Error", None, "Error Marker",
-    MarkerTagSeverity.Error, MarkerTagPriority.Normal, ilist(MarkerTagKind.Problem))
+    MarkerTagSeverity.Error, MarkerTagPriority.Normal, ivector(MarkerTagKind.Problem))
 
   val WarningMarker = MarkerType("Warning", None, "Warning Marker",
-    MarkerTagSeverity.Warning, MarkerTagPriority.Normal, ilist(MarkerTagKind.Problem))
+    MarkerTagSeverity.Warning, MarkerTagPriority.Normal, ivector(MarkerTagKind.Problem))
 
   def genTag(mt : MarkerType, desc : String) : InfoTag = {
     return InfoTag(mt, Some(desc))

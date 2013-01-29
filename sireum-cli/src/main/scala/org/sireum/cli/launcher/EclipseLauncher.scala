@@ -42,7 +42,7 @@ class EclipseLauncher {
     val launcherJarRelPath = "apps/eclipse/classic/plugins/org.eclipse.equinox.launcher_" + launcherVersion + ".jar"
     val launcherJar = new File(sireumHome, launcherJarRelPath).getCanonicalPath
     val launcherArgs =
-      ilist(
+      ivector(
         "-Dosgi.requiredJavaVersion=1.5",
         "-jar", launcherJar,
         "-showsplash", "org.eclipse.platform",
@@ -52,7 +52,7 @@ class EclipseLauncher {
       osArch match {
         case OsArch.Mac32 | OsArch.Mac64 =>
           java :: javaOptions ++
-            ilist(
+            ivector(
               "-Xdock:icon=../Resources/Eclipse.icns",
               "-XstartOnFirstThread",
               "-Dorg.eclipse.swt.internal.carbon.smallFonts") ++

@@ -89,7 +89,7 @@ trait Heap[Self <: Heap[Self]] extends SelfType[Self] {
         dangling -= cocon
         heap(ref.aid) = o
       }
-      r = r.make(i, seq2iarr(heap))
+      r = r.make(i, seq2ivect(heap))
     }
     assert(dangling.isEmpty)
     r

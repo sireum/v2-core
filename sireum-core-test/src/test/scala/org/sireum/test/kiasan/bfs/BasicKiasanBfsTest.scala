@@ -42,7 +42,7 @@ class BasicKiasanBfsTest
     val locationIndex = 0
     val locationUri = pst.locations(0).name.map(_.name)
     s = s.enterCallFrame(pst.procedureUri, locationUri, locationIndex)
-    ilist(s.init)
+    ivector(s.init)
   }
 
   def evaluator(st : SymbolTable) =
@@ -50,7 +50,7 @@ class BasicKiasanBfsTest
       Some(st),
       extensions : _*)
 
-  val extensions = ilist(
+  val extensions = ivector(
     KiasanBooleanExtension,
     KiasanIntegerExtension,
     KiasanVariableAccessExtension,

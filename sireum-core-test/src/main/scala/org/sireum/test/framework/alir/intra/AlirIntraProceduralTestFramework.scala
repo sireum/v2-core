@@ -32,10 +32,10 @@ trait AlirIntraProceduralTestFramework extends TestFramework {
   }
 
   def model(code : String) =
-    AlirConfiguration(title, ilist(Left(code)))
+    AlirConfiguration(title, ivector(Left(code)))
 
   def file(fileUri : FileResourceUri) =
-    AlirConfiguration(title, ilist(Right(fileUri)))
+    AlirConfiguration(title, ivector(Right(fileUri)))
 
   case class AlirConfiguration //
   (title : String, srcs : ISeq[Either[String, FileResourceUri]]) {

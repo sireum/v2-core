@@ -115,7 +115,7 @@ Usage:
                   seenopts += "--jvmopts"
                   seenopts += "-j"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
@@ -206,7 +206,7 @@ Usage:
                   seenopts += "--jvmopts"
                   seenopts += "-j"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
@@ -297,7 +297,7 @@ Usage:
                   seenopts += "--jvmopts"
                   seenopts += "-j"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
@@ -388,7 +388,7 @@ Usage:
                   seenopts += "--jvmopts"
                   seenopts += "-j"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
                   j += 1
@@ -628,7 +628,7 @@ Usage:
                   seenopts += "--packages"
                   seenopts += "-p"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.packages = v.get.asInstanceOf[ISeq[String]]
                   j += 1
@@ -754,7 +754,7 @@ Usage:
                   seenopts += "--type-substitutions"
                   seenopts += "-ts"
                 }
-                val v = process(args(j), args(j + 1), keys, ilistEmpty[String])
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
                 if (result.status) {
                   opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
                   j += 1

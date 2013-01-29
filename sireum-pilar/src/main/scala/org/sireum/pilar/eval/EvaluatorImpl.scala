@@ -95,11 +95,11 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   private def eval(s : S, j : Jump) : SR = mainEvaluator.evalJump(s, j)
 
   @inline
-  private def evalGotoJump(s : S, j : GotoJump) : SR = ilist(sp.location(s, j.target))
+  private def evalGotoJump(s : S, j : GotoJump) : SR = ivector(sp.location(s, j.target))
 
   @inline
   private def evalIfJump(s : S, j : IfJump) : SR = {
-    var r : ISeq[S] = ilistEmpty
+    var r : ISeq[S] = ivectorEmpty
 
       def it(s : S, i : Int) {
         if (i == j.ifThens.size)
@@ -123,7 +123,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   @inline
   private def evalSwitchJump(s : S, j : SwitchJump) : SR = {
-    var r : ISeq[S] = ilistEmpty
+    var r : ISeq[S] = ivectorEmpty
 
       def it(s : S, v : ValueExp, i : Int) {
         if (i == j.cases.size)
@@ -151,9 +151,9 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     if (j.exp.isEmpty) {
       val (newS, cf) = s.exitCallFrame
       if (newS.callStack.size == 0)
-        ilist(newS)
+        ivector(newS)
       else
-        ilist(newS.location(cf.returnLocationUri, cf.returnLocationIndex))
+        ivector(newS.location(cf.returnLocationUri, cf.returnLocationIndex))
     } else {
       val eValues = eval(s, j.exp.get)
       eValues.map { p =>
@@ -316,20 +316,20 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     if (varargs)
       arg match {
         case arg : TupleExp if extParamSize == 1 && arg.exps.size == 0 =>
-          ilist((s, ilistEmpty[V]))
+          ivector((s, ivectorEmpty[V]))
         case arg : TupleExp if extParamSize - 1 <= arg.exps.size =>
           case class ExtArgV(state : S,
-                             paramArgs : IList[Any] = ilistEmpty,
-                             paramVarArgs : IList[Any] = ilistEmpty)
-          var eavs = ilist(ExtArgV(s))
+                             paramArgs : IVector[Any] = ivectorEmpty,
+                             paramVarArgs : IVector[Any] = ivectorEmpty)
+          var eavs = ivector(ExtArgV(s))
           for (i <- 0 until extParamSize - 1) {
             val exp = arg.exps(i)
             eavs = eavs.flatMap { eav =>
               if (bitMask.contains(i))
-                ilist(ExtArgV(eav.state, (mkLazyArg(exp) _) :: eav.paramArgs))
+                ivector(ExtArgV(eav.state, eav.paramArgs :+ (mkLazyArg(exp) _)))
               else
                 eval(eav.state, exp).map { re =>
-                  ExtArgV(re2s(re), re2v(re) :: eav.paramArgs)
+                  ExtArgV(re2s(re), eav.paramArgs :+ re2v(re))
                 }
             }
           }
@@ -337,26 +337,26 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             val exp = arg.exps(i)
             eavs = eavs.flatMap { vss =>
               if (bitMask.contains(extParamSize - 1))
-                ilist(ExtArgV(vss.state, vss.paramArgs,
-                  (mkLazyArg(exp) _) :: vss.paramVarArgs))
+                ivector(ExtArgV(vss.state, vss.paramArgs,
+                  vss.paramVarArgs :+ (mkLazyArg(exp) _)))
               else
                 eval(vss.state, exp).map { re =>
-                  ExtArgV(re2s(re), vss.paramArgs, re2v(re) :: vss.paramVarArgs)
+                  ExtArgV(re2s(re), vss.paramArgs, vss.paramVarArgs :+ re2v(re))
                 }
             }
           }
           eavs.map { vss =>
-            val args = (vss.state :: (vss.paramArgs.reverse)) ++
-              ilist(vss.paramVarArgs.reverse.toSeq)
+            val args = (vss.state +: vss.paramArgs) ++
+              ivector(vss.paramVarArgs.toSeq)
             TupleHelper.makeTuple(args)
           }
         case _ if !arg.isInstanceOf[TupleExp] && extParamSize == 1 =>
           if (bitMask.contains(0)) {
-            val args : ISeq[Any] = s :: ilist(Seq(mkLazyArg(arg) _))
-            ilist(TupleHelper.makeTuple(args))
+            val args : ISeq[Any] = s +: ivector(Seq(mkLazyArg(arg) _))
+            ivector(TupleHelper.makeTuple(args))
           } else
             eval(s, arg).map { re =>
-              val args = re2s(re) :: ilist(Seq(re2v(re)))
+              val args = (re2s(re)) +: ivector(Seq(re2v(re)))
               TupleHelper.makeTuple(args)
             }
         case _ =>
@@ -366,34 +366,34 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       arg match {
         case arg : TupleExp if extParamSize == arg.exps.size =>
           if (extParamSize == 0)
-            ilist(Tuple1(s))
+            ivector(Tuple1(s))
           else {
             case class ExtArg(state : S,
-                              paramArgs : IList[Any] = ilistEmpty)
-            var eas = ilist(ExtArg(s))
+                              paramArgs : IVector[Any] = ivectorEmpty)
+            var eas = ivector(ExtArg(s))
             for (i <- 0 until extParamSize) {
               val exp = arg.exps(i)
               eas = eas.flatMap { ea =>
                 if (bitMask.contains(i))
-                  ilist((ExtArg(ea.state, (mkLazyArg(exp) _) :: ea.paramArgs)))
+                  ivector((ExtArg(ea.state, ea.paramArgs :+ (mkLazyArg(exp) _))))
                 else
                   eval(ea.state, exp).map { re =>
-                    ExtArg(re2s(re), re2v(re) :: ea.paramArgs)
+                    ExtArg(re2s(re), ea.paramArgs :+ re2v(re))
                   }
               }
             }
             eas.map { ea =>
-              val args = ea.state :: ea.paramArgs.reverse
+              val args = ea.state +: ea.paramArgs
               TupleHelper.makeTuple(args)
             }
           }
         case _ if !arg.isInstanceOf[TupleExp] && extParamSize == 1 =>
           if (bitMask.contains(0)) {
-            val args : ISeq[Any] = s :: ilist(mkLazyArg(arg) _)
-            ilist(TupleHelper.makeTuple(args))
+            val args : ISeq[Any] = s +: ivector(mkLazyArg(arg) _)
+            ivector(TupleHelper.makeTuple(args))
           } else
             eval(s, arg).map { re =>
-              val args = re2s(re) :: ilist(re2v(re))
+              val args = re2s(re) +: ivector(re2v(re))
               TupleHelper.makeTuple(args)
             }
         case _ =>
@@ -408,7 +408,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   private def isNormal(s : S) =
     s.raisedException.isEmpty && s.assertionViolation.isEmpty
 
-  private val EMPTY_TRANS = Transformation(ilistEmpty, None, ilistEmpty, None)
+  private val EMPTY_TRANS = Transformation(ivectorEmpty, None, ivectorEmpty, None)
 
   var ev : Evaluator[S, R, C, SR] = this
   def mainEvaluator = ev
@@ -418,31 +418,31 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   def evalTransformation : (S, LocationDecl, Transformation) --> SR = {
     case (state, l, t) =>
-      var ss = ilist(state)
+      var ss = ivector(state)
       for (a <- t.actions) {
-        ss = ss.flatMap { s => if (isNormal(s)) eval(s, a) else ilist(s) }
+        ss = ss.flatMap { s => if (isNormal(s)) eval(s, a) else ivector(s) }
       }
 
       if (t.jump.isDefined)
-        ss.flatMap { s => if (isNormal(s)) eval(s, t.jump.get) else ilist(s) }
+        ss.flatMap { s => if (isNormal(s)) eval(s, t.jump.get) else ivector(s) }
       else
         ss.map { s => if (isNormal(s)) sp.nextLocation(s) else s }
   }
 
   def transitions : (S, LocationDecl) --> Transitions[S] = {
     case (s, l : ActionLocation) =>
-      Trans(ilist((s, l, Transformation(ilistEmpty, None, ilist(l.action), None))),
-        ilistEmpty)
+      Trans(ivector((s, l, Transformation(ivectorEmpty, None, ivector(l.action), None))),
+        ivectorEmpty)
     case (s, l : JumpLocation) =>
-      Trans(ilist((s, l, Transformation(ilistEmpty, None, ilistEmpty, Some(l.jump)))),
-        ilistEmpty)
+      Trans(ivector((s, l, Transformation(ivectorEmpty, None, ivectorEmpty, Some(l.jump)))),
+        ivectorEmpty)
     case (s, l : EmptyLocation) =>
-      Trans(ilist((s, l, EMPTY_TRANS)), ilistEmpty)
+      Trans(ivector((s, l, EMPTY_TRANS)), ivectorEmpty)
     case (s, l : ComplexLocation) =>
       var elseTrans : Option[Transformation] = None
 
-      var enabledTrans : ISeq[(S, LocationDecl, Transformation)] = ilistEmpty
-      var disabledTrans : ISeq[(S, LocationDecl, Transformation)] = ilistEmpty
+      var enabledTrans : ISeq[(S, LocationDecl, Transformation)] = ivectorEmpty
+      var disabledTrans : ISeq[(S, LocationDecl, Transformation)] = ivectorEmpty
       for (t <- l.transformations) {
         if (t.guard.isEmpty)
           enabledTrans = (s, l, t) +: enabledTrans
@@ -471,14 +471,14 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
         val cond = conds.reduce(expander.conjunct)
         val enabledElseTran = ((s, l, Transformation(elseT.annotations,
-          Some(ExpGuard(ilistEmpty, cond)), elseT.actions, elseT.jump)))
+          Some(ExpGuard(ivectorEmpty, cond)), elseT.actions, elseT.jump)))
 
         Trans(enabledElseTran +: enabledTrans, disabledTrans)
       } else if (enabledTrans.isEmpty)
         if (elseTrans.isEmpty)
-          Trans(ilistEmpty, ilistEmpty)
+          Trans(ivectorEmpty, ivectorEmpty)
         else
-          Trans(ilist((s, l, elseTrans.get)), ilistEmpty)
+          Trans(ivector((s, l, elseTrans.get)), ivectorEmpty)
       else if (elseTrans.isDefined && ec.computeDisabledTransitions)
         Trans(enabledTrans, (s, l, elseTrans.get) +: disabledTrans)
       else
@@ -504,7 +504,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   def evalExp : (S, Exp) --> R = {
     case (s, ValueExp(v)) =>
-      ilist((s, ec.valueToV(v)))
+      ivector((s, ec.valueToV(v)))
     case (s, LiteralExp(_, b : Boolean, _)) =>
       if (b) sec.trueLiteral(s) else sec.falseLiteral(s)
     case (s, LiteralExp(_, n : Int, _)) =>
@@ -582,18 +582,18 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         }
       } yield re3
     case (s, e : NewListExp) =>
-      def rec(s : S, l : ISeq[Exp], acc : IList[V]) : ISeq[(S, ISeq[V])] =
+      def rec(s : S, l : ISeq[Exp], acc : IVector[V]) : ISeq[(S, ISeq[V])] =
           l match {
             case e :: tail =>
               for {
                 re <- eval(s, e)
-                svs <- rec(re2s(re), tail, re2v(re) :: acc)
+                svs <- rec(re2s(re), tail, acc :+ re2v(re))
               } yield svs
             case nil =>
-              ilist((s, acc.reverse))
+              ivector((s, acc))
           }
       for {
-        (s1, vs) <- rec(s, e.elements, ilistEmpty[V])
+        (s1, vs) <- rec(s, e.elements, ivectorEmpty[V])
         re <- sec.newList(s1, vs)
       } yield re
   }

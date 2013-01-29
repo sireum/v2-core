@@ -185,7 +185,7 @@ object H {
 
   def packagePath(symDef : Option[SymbolDefinition],
                   name : String) =
-    ilist(packageName(symDef), name);
+    ivector(packageName(symDef), name);
 
   def paths(symDef : SymbolDefinition, name : String) =
     symDef.uriPaths :+ name
@@ -274,7 +274,7 @@ object H {
 
     val packageElementMiner =
       Visitor.build(Visitor.map(
-        ilist(packageMiner, constMiner, enumMiner,
+        ivector(packageMiner, constMiner, enumMiner,
           extensionMiner, funMiner, globalVarMiner,
           procedureMiner, recordMiner, typeAliasMiner,
           vsetMiner), false))
@@ -290,10 +290,10 @@ object H {
     def symbolTableProducer() : SymbolTableProducer = pstp.symbolTableProducer
 
     val procMiner =
-      Visitor.build(Visitor.map(ilist(procedureHeaderMiner,
+      Visitor.build(Visitor.map(ivector(procedureHeaderMiner,
         procedureBodyMiner), false))
 
-    val procResolver = Visitor.build(Visitor.map(ilist(
+    val procResolver = Visitor.build(Visitor.map(ivector(
       procedureHeaderResolver, procedureBodyResolver,
       jumpResolver), false))
   }
@@ -309,11 +309,11 @@ object H {
 
     val packageElementResolver =
       Visitor.buildEnd(
-        Visitor.map(ilist(constResolver, enumResolver, extensionResolver,
+        Visitor.map(ivector(constResolver, enumResolver, extensionResolver,
           funResolver, globalVarResolver, procedureResolver,
           recordResolver, typeAliasResolver, vsetResolver,
           funParamResolver), false),
-        Visitor.map(ilist(funParamResolverEnd), false))
+        Visitor.map(ivector(funParamResolverEnd), false))
   }
 
   def tearDown(tables : SymbolTableData, m : Model) = {

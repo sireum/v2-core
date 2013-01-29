@@ -210,7 +210,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
         val result = e.exps.map { exp => refCache.getOrElseUpdate(exp, getRefs(exp)) }
         result
       case e =>
-        ilist(refCache.getOrElseUpdate(j, getRefs(e)))
+        ivector(refCache.getOrElseUpdate(j, getRefs(e)))
     }
   }
 
@@ -220,7 +220,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
       case e: TupleExp =>
         e.exps.map { exp => isetEmpty[Slot] }
       case e =>
-        ilist(isetEmpty[Slot])
+        ivector(isetEmpty[Slot])
     }
   }
 

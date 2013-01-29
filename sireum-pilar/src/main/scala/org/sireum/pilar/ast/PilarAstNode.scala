@@ -141,7 +141,7 @@ sealed trait AnnotableProperty extends Annotable {
   private val annPropKey = ".annotations"
 
   def annotations : ISeq[Annotation] =
-    this.getPropertyOrElse(annPropKey, ilistEmpty)
+    this.getPropertyOrElse(annPropKey, ivectorEmpty)
 
   def annotations_=(anns : ISeq[Annotation]) {
     this(annPropKey) = anns

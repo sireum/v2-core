@@ -513,7 +513,7 @@ class CliBuilder {
         if (genericType != classOf[java.lang.String]) {
           throw new RuntimeException("Only supporting lists of strings at this time: " + genericType.getName)
         }
-        ("ISeq[String]", "ilistEmpty[String]", simpleName, None)
+        ("ISeq[String]", "ivectorEmpty[String]", simpleName, None)
       case s : scala.Option[_] =>
         throw new RuntimeException("Not handling Option type yet")
       case _ =>

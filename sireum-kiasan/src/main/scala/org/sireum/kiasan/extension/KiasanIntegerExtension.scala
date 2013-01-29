@@ -44,7 +44,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   import language.implicitConversions
 
   @inline
-  private implicit def re2r[S](p : (S, Value)) = ilist(p)
+  private implicit def re2r[S](p : (S, Value)) = ivector(p)
 
   @inline
   final implicit def v2e(v : Value) : Exp = ValueExp(v)
@@ -90,7 +90,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   @inline
   def binopRHelper[S <: KS[S]](
     b2v : Boolean => V, s : S, v : V, opR : Op, w : V) : ISeq[(S, Value)] = {
-    ilist(
+    ivector(
       (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck(), b2v(true)),
       (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck(), b2v(false)))
   }
@@ -114,7 +114,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, v : KV) =>
       val w = KonkritIntegerExtension.CI(SireumNumber(0))
-      ilist(
+      ivector(
         (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck(), true),
         (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck(), false))
   }

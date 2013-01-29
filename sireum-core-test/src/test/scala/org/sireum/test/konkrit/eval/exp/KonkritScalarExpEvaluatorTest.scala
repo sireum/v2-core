@@ -47,11 +47,11 @@ class KonkritScalarExpEvaluatorTest
   val random = new Random()
   val state = BasicState()
 
-  val integerOpInputs = ilist[BigInt](Int.MinValue, Int.MaxValue,
+  val integerOpInputs = ivector[BigInt](Int.MinValue, Int.MaxValue,
     Long.MinValue, Long.MaxValue, 0, 1, -1)
 
   // test arith binop corners
-  for (op <- ilist("+", "-", "*", "/", "%"))
+  for (op <- ivector("+", "-", "*", "/", "%"))
     for (n1 <- integerOpInputs)
       for (n2 <- integerOpInputs if !(op == "/" || op == "%") || n2 != 0) {
         val result = binopASem(op)(n1, n2)
@@ -60,7 +60,7 @@ class KonkritScalarExpEvaluatorTest
       }
 
   // test integer arith binop from long
-  for (op <- ilist("+", "-", "*", "/", "%"))
+  for (op <- ivector("+", "-", "*", "/", "%"))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextLong
       var n2 = random.nextLong
@@ -75,7 +75,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer arith binop from int
-  for (op <- ilist("+", "-", "*", "/", "%"))
+  for (op <- ivector("+", "-", "*", "/", "%"))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextInt
       var n2 = random.nextInt
@@ -90,7 +90,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer arith unop corners
-  for (op <- ilist("+", "-"))
+  for (op <- ivector("+", "-"))
     for (n <- integerOpInputs) {
       val result = unopASem(op)(n)
       val exp = op + " " + n + "ii"
@@ -99,7 +99,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer arith unop
-  for (op <- ilist("+", "-"))
+  for (op <- ivector("+", "-"))
     for (i <- 0 until numOfTests) {
       val n = random.nextLong
       val result = unopASem(op)(n)
@@ -109,7 +109,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer rel binop
-  for (op <- ilist("==", "!=", ">", ">=", "<", "<="))
+  for (op <- ivector("==", "!=", ">", ">=", "<", "<="))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextLong
       val n2 =
@@ -122,7 +122,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test int arith binop
-  for (op <- ilist("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
+  for (op <- ivector("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextInt
       var n2 = random.nextInt
@@ -137,7 +137,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer arith unop
-  for (op <- ilist("+", "-"))
+  for (op <- ivector("+", "-"))
     for (i <- 0 until numOfTests) {
       val n = random.nextInt
       val result = unopASemInt(op)(n)
@@ -147,7 +147,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test integer rel binop
-  for (op <- ilist("==", "!=", ">", ">=", "<", "<="))
+  for (op <- ivector("==", "!=", ">", ">=", "<", "<="))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextInt
       val n2 =
@@ -160,7 +160,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test long arith binop
-  for (op <- ilist("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
+  for (op <- ivector("+", "-", "*", "/", "%", "^>>", "^>", "^<"))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextLong
       var n2 = random.nextLong
@@ -175,7 +175,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test long arith unop
-  for (op <- ilist("+", "-"))
+  for (op <- ivector("+", "-"))
     for (i <- 0 until numOfTests) {
       val n = random.nextLong
       val result = unopASemLong(op)(n)
@@ -185,7 +185,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test long rel binop
-  for (op <- ilist("==", "!=", ">", ">=", "<", "<="))
+  for (op <- ivector("==", "!=", ">", ">=", "<", "<="))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextLong
       val n2 =
@@ -198,7 +198,7 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test boolean binop
-  val boolBinopInputs = ilist((true, true), (true, false), (false, true), (false, false))
+  val boolBinopInputs = ivector((true, true), (true, false), (false, true), (false, false))
   for (op <- Seq("&&&", "|||", "===>", "<===", "&&", "||", "==>", "<=="))
     for ((b1, b2) <- boolBinopInputs) {
       val result = binopBoolSem(op)(b1, b2)
@@ -207,8 +207,8 @@ class KonkritScalarExpEvaluatorTest
     }
 
   // test boolean unop
-  for (op <- ilist("!"))
-    for (b <- ilist(true, false)) {
+  for (op <- ivector("!"))
+    for (b <- ivector(true, false)) {
       val result = unopBoolSem(op)(b)
       val exp = op + " " + b
       makeTest(exp, result)

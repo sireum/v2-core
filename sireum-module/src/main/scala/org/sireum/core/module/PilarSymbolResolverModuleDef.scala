@@ -30,14 +30,14 @@ object PilarSymbolResolverDef{
     "Pilar Symbol Resolution Error",
     MarkerTagSeverity.Error,
     MarkerTagPriority.Normal,
-    ilist(MarkerTagKind.Problem, MarkerTagKind.Text))
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))
   val WARNING_TAG_TYPE = MarkerType(
     "org.sireum.pilar.tag.error.symtab",
     None,
     "Pilar Symbol Resolution Warning",
     MarkerTagSeverity.Warning,
     MarkerTagPriority.Normal,
-    ilist(MarkerTagKind.Problem, MarkerTagKind.Text))
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))
 }
 
 /**
@@ -124,7 +124,7 @@ class PilarSymbolResolverDef(val job : PipelineJob, info : PipelineJobModuleInfo
       def locations =
         tables.bodyTables match {
           case Some(bt) => procedure.body.asInstanceOf[ImplementedBody].locations
-          case _        => ilistEmpty
+          case _        => ivectorEmpty
         }
       def typeVar(typeVarUri : ResourceUri) : NameDefinition =
         tables.typeVarTable(typeVarUri)

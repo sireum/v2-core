@@ -22,7 +22,7 @@ case class PipelineMode(
   var genClassName : String = "",
   
   @Option(shortKey = "ts", longKey = "type-substitutions", desc = "Pairs of fully qualified type names separated by '/' (e.g. java.lang.Boolean/scala.Boolean)")
-  var typeSubstitutions : ISeq[String] = ilistEmpty,
+  var typeSubstitutions : ISeq[String] = ivectorEmpty,
   
   @Args("class-names") //
   var classNames : Array[String] = Array())

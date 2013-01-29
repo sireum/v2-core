@@ -94,8 +94,8 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
     protected def eval : R
     protected def post(r : R)
 
-    protected var funs : ISeq[R => Unit] = ilistEmpty
-    protected var fails : ISeq[Throwable => Unit] = ilistEmpty
+    protected var funs : ISeq[R => Unit] = ivectorEmpty
+    protected var fails : ISeq[Throwable => Unit] = ivectorEmpty
     protected var resultText = "unknown"
   }
 }
@@ -333,7 +333,7 @@ trait TransformationEvaluatorTestFramework[S <: State[S], Se, SR]
       if (t.jump.isDefined)
         t.jump.get.commandDescriptorInfo(None, 0, 0, i)
 
-      te.evalTransformation(state, ComplexLocation(None, ilistEmpty, ilist(t)), t)
+      te.evalTransformation(state, ComplexLocation(None, ivectorEmpty, ivector(t)), t)
     }
   }
 }

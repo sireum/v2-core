@@ -82,7 +82,7 @@ case class CliGenMode(
   var genClassName : String = "Cli",
 
   @Option(shortKey = "p", longKey = "packages", desc = "Package name prefixes used to filter which classes to process", separator = ";") 
-  var packages : ISeq[String] = ilistEmpty,
+  var packages : ISeq[String] = ivectorEmpty,
 
   @Option(longKey = "min-col", desc = "Column where description should begin")
   var minCol : Integer = 20,

@@ -30,7 +30,7 @@ object BogorModuleDef {
     "Bogor Error",
     MarkerTagSeverity.Error,
     MarkerTagPriority.Normal,
-    ilist(MarkerTagKind.Problem, MarkerTagKind.Text))
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))
 
   val WARNING_TAG_TYPE = MarkerType(
     "org.sireum.bogor.tag.error",
@@ -38,7 +38,7 @@ object BogorModuleDef {
     "Bogor Warning",
     MarkerTagSeverity.Warning,
     MarkerTagPriority.Normal,
-    ilist(MarkerTagKind.Problem, MarkerTagKind.Text))  
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))  
 }
 
 /**

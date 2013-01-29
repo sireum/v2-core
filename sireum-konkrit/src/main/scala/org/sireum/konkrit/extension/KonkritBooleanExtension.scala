@@ -71,7 +71,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   import language.implicitConversions
 
   @inline
-  private implicit def re2r[S, T](p : (S, T)) = ilist(p)
+  private implicit def re2r[S, T](p : (S, T)) = ivector(p)
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
@@ -118,7 +118,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
         (s2, b1) <- cond(s, v1)
         (s5, v) <- {
           binopSCSem(opSC)(b1) match {
-            case Left(b) => ilist((s2, b2v(b)))
+            case Left(b) => ivector((s2, b2v(b)))
             case Right(fb) =>
               for {
                 (s3, v2) <- f(s2)

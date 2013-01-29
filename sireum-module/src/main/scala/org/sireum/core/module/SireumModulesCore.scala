@@ -35,7 +35,7 @@ object PilarSourcesModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule]()
+    val deps = ivector[PipelineModule]()
     deps.foreach(d =>
       if(stage.modules.contains(d)){
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -161,7 +161,7 @@ object ChunkingPilarParserModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule]()
+    val deps = ivector[PipelineModule]()
     deps.foreach(d =>
       if(stage.modules.contains(d)){
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -297,7 +297,7 @@ object PilarParserModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule]()
+    val deps = ivector[PipelineModule]()
     deps.foreach(d =>
       if(stage.modules.contains(d)){
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -436,7 +436,7 @@ object PilarSymbolResolverModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](PilarParserModule)
+    val deps = ivector[PipelineModule](PilarParserModule)
     deps.foreach(d =>
       if(stage.modules.contains(d)){
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,
@@ -736,7 +736,7 @@ object BogorModule extends PipelineModule {
 
   override def validPipeline(stage : PipelineStage, job : PipelineJob) : MBuffer[Tag] = {
     val tags = marrayEmpty[Tag]
-    val deps = ilist[PipelineModule](PilarSymbolResolverModule)
+    val deps = ivector[PipelineModule](PilarSymbolResolverModule)
     deps.foreach(d =>
       if(stage.modules.contains(d)){
         tags += PipelineUtil.genTag(PipelineUtil.ErrorMarker,

@@ -34,7 +34,7 @@ trait PackageMiner extends SymbolMiner {
 
   def packageSymbol(nameDef : Option[NameDefinition]) : Unit =
     nameDef match {
-      case Some(nd) => H.symbolInit(nd, H.PACKAGE_TYPE, ilist(nd.name))
+      case Some(nd) => H.symbolInit(nd, H.PACKAGE_TYPE, ivector(nd.name))
       case _        =>
     }
 }
@@ -586,7 +586,7 @@ trait ProcedureSymbolMiner extends SymbolMiner {
   def locationSymbol(loc : LocationDecl, index : Int) = {
     loc.name match {
       case Some(nameDef) =>
-        H.symbolInit(nameDef, H.LOCATION_TYPE, ilist(nameDef.name), true)
+        H.symbolInit(nameDef, H.LOCATION_TYPE, ivector(nameDef.name), true)
         val key = nameDef.uri
         val lt = tables.bodyTables.get.locationTable
         lt.get(key) match {

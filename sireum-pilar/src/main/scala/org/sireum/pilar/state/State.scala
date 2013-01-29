@@ -299,7 +299,7 @@ final case class BasicExceptionInfo(
  */
 object BasicState {
   def apply() : BasicState =
-    BasicState(imapEmpty, ilistEmpty, ilistEmpty, imapEmpty, None, None)
+    BasicState(imapEmpty, ivectorEmpty, ivectorEmpty, imapEmpty, None, None)
 }
 
 /**
@@ -318,7 +318,7 @@ final case class BasicState(
 
   def raiseException(exceptionValue : Value, li : LocationInfo) : BasicState =
     BasicState(globalStore, closureStoreStack, callStack, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ilist(li))))
+      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))))
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicState =
     BasicState(globalStore, closureStoreStack, callStack, properties,
@@ -345,7 +345,7 @@ final case class BasicState(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Thread {
-  def apply() : Thread = Thread(ilistEmpty, ilistEmpty, None, None)
+  def apply() : Thread = Thread(ivectorEmpty, ivectorEmpty, None, None)
   def apply(stacks : (State.StoreStack, State.CallStack)) : Thread =
     Thread(stacks._1, stacks._2, None, None)
 }
@@ -365,10 +365,10 @@ final case class Thread(
 object BasicMultiThreadState {
   def apply() : BasicMultiThreadState =
     BasicMultiThreadState(imapEmpty, None,
-      isortedMapEmpty[State.ThreadId, Thread], imapEmpty, ilistEmpty)
+      isortedMapEmpty[State.ThreadId, Thread], imapEmpty, ivectorEmpty)
   def apply(storeThreads : (State.Store, Option[State.ThreadId], ISortedMap[State.ThreadId, Thread])) : BasicMultiThreadState =
     BasicMultiThreadState(storeThreads._1, storeThreads._2,
-      storeThreads._3, imapEmpty, ilistEmpty)
+      storeThreads._3, imapEmpty, ivectorEmpty)
 
 }
 /**
@@ -405,7 +405,7 @@ final case class BasicMultiThreadState(
     val newThreads = threads + (tid ->
       Thread(t.closureStoreStack, t.callStack,
         t.assertionViolation,
-        Some(BasicExceptionInfo(exceptionValue, ilist(li)))))
+        Some(BasicExceptionInfo(exceptionValue, ivector(li)))))
     BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
   }
 

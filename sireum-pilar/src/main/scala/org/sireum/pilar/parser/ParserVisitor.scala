@@ -73,7 +73,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   }
   val tto2pair = { x : Option[ISeq[TypeVarSpec]] =>
     x match {
-      case None                         => ilistEmpty[(NameDefinition, ISeq[Annotation])]
+      case None                         => ivectorEmpty[(NameDefinition, ISeq[Annotation])]
       case Some(tt : ISeq[TypeVarSpec]) => tt.map(tt2pair)
     }
   }
@@ -91,50 +91,50 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   }
 
   def getChildren[T](index : Int, t : Tree)(implicit m : Manifest[T]) : ISeq[T] = {
-    var result = ilistEmpty[T]
+    var result = ivectorEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
-      return ilistEmpty
+      return ivectorEmpty
     }
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
-      result = context.popResult[T] :: result
+      result = result :+ context.popResult[T] 
     }
-    return result.reverse
+    return result
   }
 
   def getChildrenBox[T](index : Int, t : Tree, f : Any => T)(
     implicit m : Manifest[T]) : ISeq[T] = {
-    var result = ilistEmpty[T]
+    var result = ivectorEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
-      return ilistEmpty
+      return ivectorEmpty
     }
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
-      result = f(context.popResult[AnyRef]) :: result
+      result = result :+ f(context.popResult[AnyRef]) 
     }
-    return result.reverse
+    return result
   }
 
   def getChildrenFlat[T](index : Int, t : Tree)(implicit m : Manifest[T]) : ISeq[T] = {
-    var result = ilistEmpty[T]
+    var result = ivectorEmpty[T]
     val list = t.getChild(index)
     if (list == null) {
-      return ilistEmpty
+      return ivectorEmpty
     }
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
       val v = context.popResult[Any] match {
-        case l : ISeq[_] => l.foreach { x => result = x.asInstanceOf[T] :: result }
-        case e : T       => result = e :: result
+        case l : ISeq[_] => l.foreach { x => result = x.asInstanceOf[T] +: result }
+        case e : T       => result = e +: result
         case _           => sys.error("unexpected case")
       }
     }
-    return result.reverse
+    return result
   }
 
   def getChild[T](index : Int, t : Tree)(implicit m : Manifest[T]) : T = {
@@ -827,7 +827,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     n += 1
 
     // optional type tuple: 1
-    val typeArgs = getOptChild[ISeq[TypeSpec]](n, t).getOrElse(ilistEmpty)
+    val typeArgs = getOptChild[ISeq[TypeSpec]](n, t).getOrElse(ivectorEmpty)
     n += 1
 
     // annotation list: 2
@@ -973,7 +973,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
       visitTUPLE_TYPE(t)
     } else {
       val typeParam = getChild[TypeParam](n, t)
-      context.pushResult(TupleTypeSpec(ilist(typeParam)))
+      context.pushResult(TupleTypeSpec(ivector(typeParam)))
     }
     val domainTypeSpec = context.popResult[TupleTypeSpec].elementTypes
     n += 1
@@ -1488,7 +1488,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val defaultPackageElements =
       getChildrenFlat[PackageElement](n, t)
     val defaultPackage =
-      PackageDecl(None, ilistEmpty, defaultPackageElements)
+      PackageDecl(None, ivectorEmpty, defaultPackageElements)
     n += 1
 
     // package list: 2
@@ -1567,7 +1567,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     n += 1
 
     // optional type tuple: 2
-    val typeTuple = getOptChild[ISeq[TypeSpec]](n, t).getOrElse(ilistEmpty)
+    val typeTuple = getOptChild[ISeq[TypeSpec]](n, t).getOrElse(ivectorEmpty)
     n += 1
 
     var result =
@@ -2334,7 +2334,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
     val result =
       TypeExtAttributeBinding(
-        ilistEmpty,
+        ivectorEmpty,
         getNameDefinition(extId), annList,
         getNameUser(id))
     context.pushResult(result, t)

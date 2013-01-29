@@ -75,6 +75,6 @@ final class TestExtensionImpl[S <: State[S]](
   @ActionExt
   @TopLevel
   def nop : S --> SR = {
-    case s => ilist(s)
+    case s => ivector(s)
   }
 }

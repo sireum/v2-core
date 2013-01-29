@@ -98,7 +98,7 @@ object TopiSolver extends Enum {
     }
   }
 
-  def elements = List(Z3)
+  def elements = ivector(Z3)
 }
 
 /**
@@ -108,7 +108,7 @@ object TopiMode extends Enum {
   sealed abstract class Type extends EnumElem
   object Process extends Type
 
-  def elements = List(Process)
+  def elements = ivector(Process)
 }
 
 /**
@@ -121,5 +121,5 @@ object TopiResult extends Enum {
   object UNKNOWN extends Type
   object TIMEOUT extends Type
 
-  def elements = List(SAT, UNSAT, UNKNOWN, TIMEOUT)
+  def elements = ivector(SAT, UNSAT, UNKNOWN, TIMEOUT)
 }

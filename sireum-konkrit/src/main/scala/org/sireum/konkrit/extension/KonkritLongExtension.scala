@@ -74,7 +74,7 @@ object KonkritLongExtension extends ExtensionCompanion {
   import language.implicitConversions
 
   @inline
-  private implicit def re2r[S](p : (S, V)) = ilist(p)
+  private implicit def re2r[S](p : (S, V)) = ivector(p)
 
   @inline
   private implicit def long2v(n : Long) = CLong(n)
@@ -115,14 +115,14 @@ object KonkritLongExtension extends ExtensionCompanion {
 
   @inline
   def unopAEval[S] : (S, String, V) --> ISeq[(S, V)] = {
-    case (s, opA, c : CV) => ilist((s, unopASem(opA)(c)))
+    case (s, opA, c : CV) => ivector((s, unopASem(opA)(c)))
   }
 
   @inline
   def cond[S](canCast : (S, V, ResourceUri) => Boolean,
               cast : (S, V, ResourceUri) --> ISeq[(S, V)]) : //
               (S, V) --> ISeq[(S, Boolean)] = {
-    case (s, c : CV) => ilist((s, c.value != 0))
+    case (s, c : CV) => ivector((s, c.value != 0))
     case (s, v) if canCast(s, v, KonkritLongExtension.Type) =>
       for {
         (s1, v1) <- cast(s, v, KonkritLongExtension.Type)

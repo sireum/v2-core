@@ -31,7 +31,7 @@ object TopiProcess {
   def mine(solver : TopiSolver.Type,
            mode : TopiMode.Type,
            extensions : ExtensionCompanion*) : ISeq[BackEndPart] = {
-    var result = ilistEmpty[BackEndPart]
+    var result = ivectorEmpty[BackEndPart]
     for (ext <- extensions)
       for (m <- ext.getClass.getDeclaredMethods)
         for (ann <- m.getDeclaredAnnotations)
@@ -39,8 +39,8 @@ object TopiProcess {
             case ann : BackEnd =>
               if (solver.toString.replace("$", "") == ann.value &&
                 mode.toString.replace("$", "") == ann.mode)
-                result = m.invoke(ext).asInstanceOf[BackEndPart] :: result
+                result = m.invoke(ext).asInstanceOf[BackEndPart] +: result
           }
-    result.reverse
+    result
   }
 }

@@ -45,8 +45,8 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
     val z3Path = z3.getAbsolutePath
     val args =
       OsArchUtil.detect match {
-        case OsArch.Win64 | OsArch.Win32 => ilist(z3Path, "/smt2", "/in")
-        case _                           => ilist(z3Path, "-smt2", "-in")
+        case OsArch.Win64 | OsArch.Win32 => ivector(z3Path, "/smt2", "/in")
+        case _                           => ivector(z3Path, "-smt2", "-in")
       }
 
     val e = new Exec

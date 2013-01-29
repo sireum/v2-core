@@ -30,7 +30,7 @@ object PilarParserDef{
     "Pilar Parser Error",
     MarkerTagSeverity.Error,
     MarkerTagPriority.Normal,
-    ilist(MarkerTagKind.Problem, MarkerTagKind.Text))
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))
 }
 
 /**

@@ -112,7 +112,7 @@ final class TestExtensionImpl[S <: State[S]](
   @TopLevel
   def last : (S, V, ISeq[S => R]) --> R = {
     case (s, v, vs) =>
-      if (vs.length == 0) ilist((s, v))
+      if (vs.length == 0) ivector((s, v))
       else vs(vs.length - 1)(s)
   }
 
@@ -120,18 +120,18 @@ final class TestExtensionImpl[S <: State[S]](
   @TopLevel
   def fst : (S, V, ISeq[V]) --> R = {
     case (s, v, vs) =>
-      ilist((s, v))
+      ivector((s, v))
   }
 
   @ExpExt
   @TopLevel
   def id : (S, V) --> R = {
-    case (s, v) => ilist((s, v))
+    case (s, v) => ivector((s, v))
   }
 
   @ExpExt
   @TopLevel
   def one : S --> R = {
-    case s => ilist((s, n(1)))
+    case s => ivector((s, n(1)))
   }
 }

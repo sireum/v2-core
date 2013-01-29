@@ -25,7 +25,7 @@ object KonkritVariableAccessExtension extends ExtensionCompanion {
   import language.implicitConversions
   import PilarAstUtil._
 
-  private implicit def t2l[T](t : T) = ilist(t)
+  private implicit def t2l[T](t : T) = ivector(t)
 
   private type V = Value
   private type SS[S <: SS[S]] = State[S]

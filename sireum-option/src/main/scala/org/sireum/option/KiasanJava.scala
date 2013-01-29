@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.option
 
-import org.sireum.util.Enum
+import org.sireum.util._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -68,7 +68,7 @@ object SmtSolver extends Enum {
   object Z3 extends Type
   object Yices extends Type
 
-  def elements = List(Z3, Yices)
+  def elements = ivector(Z3, Yices)
 }
 
 /**
