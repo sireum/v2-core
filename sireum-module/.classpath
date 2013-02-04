@@ -11,5 +11,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-option"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-tools"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaLogging for SLF4J"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SLF4J"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

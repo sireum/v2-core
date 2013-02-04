@@ -7,6 +7,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ANTLR v3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/StringTemplate v4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JGraphT"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ScalaLogging for SLF4J"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SLF4J"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

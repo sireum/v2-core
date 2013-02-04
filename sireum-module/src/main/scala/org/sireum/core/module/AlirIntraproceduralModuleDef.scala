@@ -18,7 +18,8 @@ import org.sireum.pilar.ast.CatchClause
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class AlirIntraProceduralDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends AlirIntraProceduralModule {
+class AlirIntraProceduralDef(val job : PipelineJob, info : PipelineJobModuleInfo) 
+  extends AlirIntraProceduralModule with ImplicitLogging {
   val par = this.parallel
   val st = this.symbolTable
   val psts = st.procedureSymbolTables.toSeq

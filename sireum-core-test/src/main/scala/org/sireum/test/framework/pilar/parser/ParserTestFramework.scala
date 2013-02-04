@@ -9,7 +9,6 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.test.framework.pilar.parser
 
 import org.sireum.test.framework._
-
 import org.sireum.core.module._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.parser._
@@ -106,8 +105,15 @@ trait ParserTestFramework extends TestFramework {
   (source : Either[String, FileResourceUri]) {
 
     test(title) {
+
       val job = PipelineJob()
-      PilarParserModule.setSources(job.properties, ivector(source).toSeq)
+
+      {
+        import PilarSourcesModule._
+        job.sources = ivector(source)
+      }
+
+      //PilarParserModule.setSources(job.properties, ivector(source).toSeq)
       pipeline.compute(job)
       val tags = job.tags
 

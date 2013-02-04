@@ -16,7 +16,9 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait TestFramework extends FunSuite with ShouldMatchersForJUnit with Assertions {
+trait TestFramework
+    extends FunSuite with ShouldMatchersForJUnit with Assertions
+    with ImplicitLogging {
   private type T = org.scalatest.Tag
 
   private var isSingle = false
