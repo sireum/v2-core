@@ -10,18 +10,26 @@ package org.sireum.pipeline
 
 import org.sireum.util._
 
+import com.typesafe.scalalogging.slf4j._
+
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class PipelineConfiguration(
     title : String,
     exclusive : Boolean,
-    stages : PipelineStage*) {
+    stages : PipelineStage*)(implicit logger : Logger) {
 
   def compute(job : PipelineJob) : PipelineJob = {
 
       def initialize(stage : PipelineStage) {
-        stage.modules.foreach(m => m.initialize(job))
+        logger.debug(s"Begin initializing modules of stage: ${stage.title}")
+        for (m <- stage.modules) {
+          logger.debug(s"Begin Initializing module: ${m.title}")
+          m.initialize(job)
+          logger.debug(s"End Initializing module: ${m.title}")
+        }
+        logger.debug(s"End initializing modules of stage: ${stage.title}")
       }
 
       def preStage(stageInfo : PipelineJobStageInfo, stage : PipelineStage) : Boolean = {
@@ -40,20 +48,40 @@ final case class PipelineConfiguration(
       }
 
       def run = {
+        logger.debug(s"Begin computing pipeline: ${title}")
+
         val j = if (stages.exists { _.parallel }) job.par else job
 
         var hasError = false
-        for (stage <- stages if !j.hasInternalError && !j.hasError && !j.isCancelled && !hasError) {
-          val stageInfo = PipelineJobStageInfo(stage.title, System.currentTimeMillis)
+        for (
+          stage <- stages //
+          if !j.hasInternalError && !j.hasError && !j.isCancelled && !hasError
+        ) {
+
+          logger.debug(s"Begin computing stage: ${stage.title}")
+
+          val stageInfo =
+            PipelineJobStageInfo(stage.title, System.currentTimeMillis)
+
           initialize(stage)
+
           hasError = preStage(stageInfo, stage)
           if (!hasError) {
+
             stage.compute(j, stageInfo)
+
             hasError = postStage(stageInfo, stage)
           }
+
           stageInfo.endTime = System.currentTimeMillis
           j.info += stageInfo
+
+          logger.debug(s"""End computing stage: ${stage.title}
+Time: ${(stageInfo.endTime - stageInfo.startTime) / 1000d} s
+Tags: ${if (stageInfo.tags.isEmpty) "None" else Tag.collateAsString(stageInfo.tags)}""")
         }
+
+        logger.debug(s"End computing pipeline: ${title}")
       }
 
     if (exclusive) PipelineConfiguration.this.synchronized { run }
@@ -71,14 +99,16 @@ final case class PipelineConfiguration(
 final case class PipelineStage(
     title : String,
     parallel : Boolean,
-    modules : PipelineModule*) {
+    modules : PipelineModule*)(implicit logger : Logger) {
   def compute(job : PipelineJob, stageInfo : PipelineJobStageInfo) {
     val ms : GenSeq[PipelineModule] = if (parallel) modules.par else modules.toSeq
 
-    ms.foreach { m =>
+    for (m <- ms) {
       val moduleInfo = PipelineJobModuleInfo(m.title, System.currentTimeMillis)
 
       try {
+        logger.debug(s"Begin computing module: ${m.title}")
+
         m.compute(job, moduleInfo)
       } catch {
         case t : Throwable =>
@@ -87,6 +117,12 @@ final case class PipelineStage(
       } finally {
         moduleInfo.endTime = System.currentTimeMillis
         stageInfo.info += moduleInfo
+
+        logger.debug(
+          (if (moduleInfo.hasInternalError) "Abnormal end" else "End") +
+            s"""computing module: ${m.title}
+Time: ${(moduleInfo.endTime - moduleInfo.startTime) / 1000d} s
+Tags: ${if (moduleInfo.tags.isEmpty) "None" else Tag.collateAsString(moduleInfo.tags)}""")
       }
     }
   }
