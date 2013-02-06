@@ -46,7 +46,8 @@ class EclipseLauncher {
         "-Dosgi.requiredJavaVersion=1.5",
         "-jar", launcherJar,
         "-showsplash", "org.eclipse.platform",
-        "--launcher.defaultAction", "openFile")
+        "--launcher.defaultAction", "openFile") ++
+        (if (java == "java") ivectorEmpty else ivector("-vm", java))
 
     val cmd =
       osArch match {
