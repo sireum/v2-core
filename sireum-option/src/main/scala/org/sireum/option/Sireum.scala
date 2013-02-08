@@ -22,7 +22,8 @@ case class SireumMode(
   //  kiasan : KiasanMode = KiasanMode(),
   distro : SireumDistroMode = SireumDistroMode(),
   launch : SireumLaunchMode = SireumLaunchMode(),
-  tools : SireumToolsMode = SireumToolsMode())
+  tools : SireumToolsMode = SireumToolsMode(),
+  bakar : SireumBakarMode = SireumBakarMode())
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
