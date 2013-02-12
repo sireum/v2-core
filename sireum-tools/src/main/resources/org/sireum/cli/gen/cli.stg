@@ -115,9 +115,8 @@ case "$modeName$" =>
 usage(name, arg, optArg) ::= <<
 Usage:
   $name; separator=" "$ [options] $if(arg)$<$arg; separator="> <"$>$endif$ $if(optArg)$[<$optArg; separator=">] [<"$>]$endif$
-$if(hasOptions)$
 
-where the available options are:$endif$
+where the available options are:
 >>
 
 optblock(opt) ::= <<

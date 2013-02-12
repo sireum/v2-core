@@ -8,17 +8,38 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.cli.gen
 
-import org.sireum.option._
-import org.sireum.cli._
-import org.sireum.util._
-import com.thoughtworks.xstream.XStream
+import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
+import java.net.URL
+import java.net.URLClassLoader
+
+import scala.Array.canBuildFrom
+
+import org.apache.commons.lang3.StringUtils
+import org.sireum.cli.PipelineRunner
+import org.sireum.option.Arg
+import org.sireum.option.Args
+import org.sireum.option.Check
+import org.sireum.option.Check
+import org.sireum.option.CliGenMode
+import org.sireum.option.Group
+import org.sireum.option.Main
+import org.sireum.option.Mode
+import org.sireum.option.Option
+import org.sireum.option.Option
+import org.sireum.option.OptionUtil
+import org.sireum.option.OptionalArg
+import org.sireum.option.SireumMode
+import org.sireum.util.InfoTag
+import org.sireum.util.MBuffer
+import org.sireum.util.Tag
+import org.sireum.util.ilist
+import org.sireum.util.marrayEmpty
 import org.stringtemplate.v4.ST
 import org.stringtemplate.v4.STGroupFile
-import org.sireum.pipeline._
-import java.io.File
-import org.apache.commons.lang3.StringUtils
+
+import com.thoughtworks.xstream.XStream
 
 /**
  * @author <a href="mailto:sitt@k-state.edu">Singkhorn Sittirug</a>
@@ -43,11 +64,10 @@ object CliBuilder {
       cgm = new XStream().fromXML(arg).asInstanceOf[CliGenMode]
     } catch {
       case e : Throwable =>
-        //e.printStackTrace() 
-
         cgm = CliGenMode()
         cgm.dir = "../sireum-cli/src/main/scala/"
         cgm.genClassName = "org.sireum.cli.SireumCli"
+        cgm.classpathUrls = ilist(new File("../../sireum-bakar-tools/bin").toURI().toASCIIString())
         cgm.packages = List("org.sireum")
         cgm.className = SireumMode.getClass.getName.replace("$", "")
     }
@@ -126,13 +146,23 @@ class CliBuilder {
           assert(stMain == null)
 
           try {
-            val cclass = Class.forName(s.className)
-            val oclass = Class.forName(s.className + "$")
-            if (!classOf[PipelineRunner].isAssignableFrom(cclass) && !classOf[PipelineRunner].isAssignableFrom(oclass)) {
-              tags += OptionUtil.genTag(OptionUtil.ErrorMarker, (s.className + " is not an instance of PipelineRunner"))
+            val sysLoader = getClass.getClassLoader.asInstanceOf[URLClassLoader]
+            val m = classOf[URLClassLoader].getDeclaredMethod("addURL", classOf[URL])
+            m.setAccessible(true)
+            for (u <- this.cgm.classpathUrls)
+              m.invoke(sysLoader, new URL(u))
+
+            val cclass = sysLoader.loadClass(s.className)
+            val rm = try Some(cclass.getDeclaredMethod("run", c))
+            catch { case _ : Throwable => None }
+
+            if (!rm.isDefined && !(classOf[PipelineRunner].isAssignableFrom(cclass))) {
+              tags += OptionUtil.genTag(OptionUtil.ErrorMarker, (s.className +
+                " does not contain a run method and is not an instance of PipelineRunner"))
             }
           } catch {
-            case e => tags += OptionUtil.genTag(OptionUtil.ErrorMarker, (e.getClass.getSimpleName + " " + e.getMessage))
+            case e : ClassNotFoundException => tags += OptionUtil.genTag(OptionUtil.ErrorMarker,
+              "Could not find %s declared in %s".format(s.className, c.getName))
           }
 
           stMain = stg.getInstanceOf("parseMain")
@@ -641,7 +671,7 @@ class CliBuilder {
       out.close()
       println("Succesfully wrote: " + fname.getAbsolutePath)
     } catch {
-      case s => println(s)
+      case s : Throwable => Console.err.println(s)
     }
 
     for (t @ InfoTag(mt, Some(desc)) <- tags) {

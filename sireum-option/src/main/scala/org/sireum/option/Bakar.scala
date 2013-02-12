@@ -20,8 +20,8 @@ Sireum for Spark
 (c) 2012, SAnToS Laboratory, Kansas State University
 """)
 case class SireumBakarMode(
-  typ: SireumBakarTypeMode = SireumBakarTypeMode(),
-  program: SireumBakarProgramMode = SireumBakarProgramMode())
+  typ : SireumBakarTypeMode = SireumBakarTypeMode(),
+  program : SireumBakarProgramMode = SireumBakarProgramMode())
 
 object TypeTarget extends Enum {
   sealed abstract class Type extends EnumElem
@@ -33,16 +33,22 @@ object TypeTarget extends Enum {
   def elements = ivector(Ocaml, Coq, Java, Scala)
 }
 
-@Main(value = "type", className = "org.sireum.bakar.BakarType",
-  featureName = "Sireum Bakar XML", desc = "Generate Type Definitions")
+@Main(value = "type",
+  className = "org.sireum.bakar.tools.BakarType",
+  featureName = "Sireum Bakar XML",
+  desc = "Generate Type Definitions")
 case class SireumBakarTypeMode(
-  @Option(shortKey = "t", longKey = "type", desc = "") var typ: TypeTarget.Type = TypeTarget.Coq,
+  @Option(shortKey = "t", longKey = "type", desc = "")
+  var typ : TypeTarget.Type = TypeTarget.Coq,
 
-  @Option(longKey = "dir", desc = "Destination directory") var dir: String = "",
+  @Option(longKey = "dir", desc = "Destination directory")
+  var dir : String = "",
 
-  @Option(longKey = "packageName", desc = "Package Name for Java") var packageName: String = "",
+  @Option(longKey = "packageName", desc = "Package Name for Java") 
+  var packageName : String = "",
 
-  @Arg(index = 0, value = "xml-schema") var xmlSchemaLoc: String = "")
+  @Arg(index = 0, value = "xml-schema") 
+  var xmlSchemaLoc : String = "")
 
 object ProgramTarget extends Enum {
   sealed abstract class Type extends EnumElem
@@ -53,11 +59,16 @@ object ProgramTarget extends Enum {
   def elements = ivector(Ocaml, Coq, Java)
 }
 
-@Main(value = "program", className = "org.sireum.bakar.BakarProgram", featureName = "Sireum Bakar Translator",
+@Main(value = "program",
+  className = "org.sireum.bakar.tools.BakarProgram",
+  featureName = "Sireum Bakar Translator",
   desc = "Translation of Spark/Ada Programs")
 case class SireumBakarProgramMode(
-  @Option(shortKey = "p", longKey = "program", desc = "") var typ: ProgramTarget.Type = ProgramTarget.Coq,
+  @Option(shortKey = "p", longKey = "program", desc = "")
+  var typ : ProgramTarget.Type = ProgramTarget.Coq,
 
-  @Option(longKey = "dir", desc = "Destination directory") var destDir: String = "",
+  @Option(longKey = "dir", desc = "Destination directory")
+  var destDir : String = "",
 
-  @Arg(index = 0, value = "src-files") var srcFiles: ISeq[String] = ivectorEmpty)
+  @Arg(index = 0, value = "src-files")
+  var srcFiles : ISeq[String] = ivectorEmpty)
