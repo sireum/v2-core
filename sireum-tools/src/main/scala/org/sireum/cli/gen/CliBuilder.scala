@@ -67,7 +67,7 @@ object CliBuilder {
         cgm = CliGenMode()
         cgm.dir = "../sireum-cli/src/main/scala/"
         cgm.genClassName = "org.sireum.cli.SireumCli"
-        cgm.classpathUrls = ilist(new File("../../sireum-bakar-tools/bin").toURI().toASCIIString())
+        cgm.classpath = ilist("../../sireum-bakar-tools/bin")
         cgm.packages = List("org.sireum")
         cgm.className = SireumMode.getClass.getName.replace("$", "")
     }
@@ -149,8 +149,8 @@ class CliBuilder {
             val sysLoader = getClass.getClassLoader.asInstanceOf[URLClassLoader]
             val m = classOf[URLClassLoader].getDeclaredMethod("addURL", classOf[URL])
             m.setAccessible(true)
-            for (u <- this.cgm.classpathUrls)
-              m.invoke(sysLoader, new URL(u))
+            for (u <- this.cgm.classpath)
+              m.invoke(sysLoader, new File(u).toURL())
 
             val cclass = sysLoader.loadClass(s.className)
             val rm = try Some(cclass.getDeclaredMethod("run", c))

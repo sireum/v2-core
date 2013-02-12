@@ -90,8 +90,8 @@ case class CliGenMode(
   @Option(longKey = "max-col", desc = "Maximum number of characters per line")
   var maxCol : Integer = 80,
   
-  @Option(longKey = "classpath-urls", desc = "Specify additional locations which contain the className attribute of Main modes")
-  var classpathUrls : ISeq[String] = ivectorEmpty,
+  @Option(shortKey = "cp", longKey = "classpath", desc = "Classpaths containing the className attribute of Main modes")
+  var classpath : ISeq[String] = ivectorEmpty,
   
   @Arg(index = 0, value="class-name") //
   @Check(classOf[CliGenOption])
