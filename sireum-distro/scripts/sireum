@@ -48,7 +48,7 @@ exit $code
 !#
 SireumDistro.main(argv)
 /*
-Copyright (c) 2011-2012 Robby, Kansas State University.        
+Copyright (c) 2011-2013 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -238,7 +238,7 @@ object SireumDistro extends App {
       }
     val last = i + 1 == args.length
     val strLe = { (s1 : String, s2 : String) => s1 <= s2 }
-    val appModes = Seq("distro", "launch", "tools")
+    val appModes = Seq("bakar", "distro", "launch", "tools")
     val distroModes = Seq("clean", "install", "list", "uninstall", "update",
       "version")
     val mode = args(i)

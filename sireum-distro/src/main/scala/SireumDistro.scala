@@ -189,7 +189,7 @@ object SireumDistro extends App {
       }
     val last = i + 1 == args.length
     val strLe = { (s1 : String, s2 : String) => s1 <= s2 }
-    val appModes = Seq("distro", "launch", "tools")
+    val appModes = Seq("bakar", "distro", "launch", "tools")
     val distroModes = Seq("clean", "install", "list", "uninstall", "update",
       "version")
     val mode = args(i)
