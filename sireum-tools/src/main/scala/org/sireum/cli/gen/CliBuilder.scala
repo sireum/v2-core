@@ -150,7 +150,7 @@ class CliBuilder {
             val m = classOf[URLClassLoader].getDeclaredMethod("addURL", classOf[URL])
             m.setAccessible(true)
             for (u <- this.cgm.classpath)
-              m.invoke(sysLoader, new File(u).toURL())
+              m.invoke(sysLoader, new File(u).toURI().toURL())
 
             val cclass = sysLoader.loadClass(s.className)
             val rm = try Some(cclass.getDeclaredMethod("run", c))

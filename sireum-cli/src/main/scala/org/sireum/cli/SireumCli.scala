@@ -845,7 +845,7 @@ where the available options are:
 
 -h | --help
 -c  | --class-name Fully qualified name for the generated class [Default: "Cli"]
--cp | --classpath  Classpath containing the className attribute of Main modes
+-cp | --classpath  Classpaths containing the className attribute of Main modes
                    [Separator: ",", Default: ""]
 -d  | --directory  Directory where generated class should be saved [Default: "."]
 -p  | --packages   Package name prefixes used to filter which classes to process
