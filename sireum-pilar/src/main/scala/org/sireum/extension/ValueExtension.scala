@@ -77,14 +77,3 @@ object LongExtension {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 abstract class LongValue extends IntegralValue
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object ObjectExtension {
-  val Type = "pilar://typeext/org/sireum/pilar/state/extension/Object/Type"
-
-  val RefType = "pilar://typeext/org/sireum/pilar/state/extension/Object/RefType"
-
-  val ValType = "pilar://typeext/org/sireum/pilar/state/extension/Object/ValType"
-}

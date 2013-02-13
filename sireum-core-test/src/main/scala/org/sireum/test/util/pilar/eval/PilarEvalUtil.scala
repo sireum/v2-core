@@ -28,8 +28,6 @@ object PilarEvalUtil {
       val i = symUri.indexOf('_')
       val ext = if (i >= 0) symUri.substring(i + 1) else ""
       ext match {
-        case "obj"  => ObjectExtension.RefType
-        case "vobj" => ObjectExtension.ValType
         case _      => IntegerExtension.Type
       }
     }
