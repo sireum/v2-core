@@ -38,9 +38,20 @@ class EclipseLauncher {
     var java =
       if (javaHomeDir.exists) new File(javaHomeDir, "bin/java" + exeExt).getCanonicalPath
       else "java"
-    val launcherVersion = "1.3.0.v20120522-1813"
-    val launcherJarRelPath = "apps/eclipse/classic/plugins/org.eclipse.equinox.launcher_" + launcherVersion + ".jar"
-    val launcherJar = new File(sireumHome, launcherJarRelPath).getCanonicalPath
+    val launcherJar =
+      try {
+        val pluginsDir = new File(sireumHome, "apps/eclipse/classic/plugins")
+        pluginsDir.listFiles(new FilenameFilter {
+          def accept(dir : File, name : String) = {
+            name.startsWith("org.eclipse.equinox.launcher_")
+          }
+        })(0).getCanonicalPath
+      } catch {
+        case ex : Exception =>
+          System.err.println("Could not find Eclipse Equinox launcher jar...")
+          System.err.flush
+          sys.exit(-1)
+      }
     val launcherArgs =
       ivector(
         "-Dosgi.requiredJavaVersion=1.5",
