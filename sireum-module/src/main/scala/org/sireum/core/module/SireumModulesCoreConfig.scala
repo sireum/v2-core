@@ -26,6 +26,7 @@ import org.sireum.alir.ImmediateDominatorGraph
 import org.sireum.alir.DominanceFrontierGraph
 import org.sireum.alir.ProgramDependenceGraph
 import org.sireum.option.PipelineMode
+import org.sireum.pipeline.Consume
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -34,7 +35,7 @@ import org.sireum.option.PipelineMode
 case class PilarSources(
   title : String = "Pilar Source",
   
-  @Input 
+  @Output 
   @Produce 
   sources : ISeq[Either[String, ResourceUri]])
 
@@ -46,6 +47,7 @@ case class PilarParser(
   title : String = "Pilar Parser",
   
   @Input
+  @Consume(Array(classOf[PilarSources]))
   sources : ISeq[Either[String, ResourceUri]],
   
   @Output 
@@ -60,6 +62,7 @@ case class ChunkingPilarParser(
   title : String = "Pilar Parser",
   
   @Input
+  @Consume(Array(classOf[PilarSources]))
   sources : ISeq[Either[String, ResourceUri]],
   
   @Output 

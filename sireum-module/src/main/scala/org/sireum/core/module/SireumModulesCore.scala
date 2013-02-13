@@ -126,7 +126,7 @@ object PilarSourcesModule extends PipelineModule {
 
   implicit class PilarSourcesPropertyProvider(pp : PropertyProvider) extends PropertyProvider {
     val propertyMap = pp.propertyMap
-    
+
     def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarSourcesModule.modGetSources(pp.propertyMap)
 
     def sources_=(sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]]) { PilarSourcesModule.modSetSources(pp.propertyMap, sources) }
@@ -401,14 +401,33 @@ object PilarParserModule extends PipelineModule {
 
     return options
   }
+
+  object Consumer {
+
+    implicit class PilarParserConsumerPropertyProvider(pp : PropertyProvider) extends PropertyProvider {
+      val propertyMap = pp.propertyMap
+
+      def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(propertyMap)
+    }
+  }
+
+  object Producer {
+    implicit class PilarParserProducerPropertyProvider(pp : PropertyProvider) extends PropertyProvider {
+      val propertyMap = pp.propertyMap
+
+      def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.modGetSources(propertyMap)
+      def sources_=(srcs : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]]) { PilarParserModule.setSources(propertyMap, srcs) }
+    }
+  }
 }
 
 trait PilarParserModule {
   def job : PipelineJob
 
-  def models_=(models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) { PilarParserModule.modSetModels(job.properties, models) }
-
   def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.modGetSources(job.properties)
+
+  def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.properties)
+  def models_=(models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) { PilarParserModule.modSetModels(job.properties, models) }
 }
 
 object PilarSymbolResolverModule extends PipelineModule {
