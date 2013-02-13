@@ -48,19 +48,19 @@ class ExtensionActionEvaluatorTest
 
   def newActionEvaluator(s : S) =
     KonkritEvaluatorTestUtil.newEvaluator[S](None,
-      TestExtensionImpl,
-      UriValueExtensionImpl,
+      TestExtension,
+      UriValueExtension,
       KonkritVariableAccessExtension,
       KonkritIntegerExtension)
 }
 
-object TestExtensionImpl extends ExtensionCompanion {
+object TestExtension extends ExtensionCompanion {
   def create[S <: State[S]](
     config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new TestExtensionImpl(config)
+    new TestExtension(config)
 }
 
-final class TestExtensionImpl[S <: State[S]](
+final class TestExtension[S <: State[S]](
   config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
     extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
   import KonkritEvaluatorTestUtil._
