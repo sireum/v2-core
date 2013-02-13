@@ -13,41 +13,34 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object Value {
-}
+object Value
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait Value {
-}
+trait Value
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait ConcreteValue extends Value {
-  
-}
+trait ConcreteValue extends Value
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait AbstractValue extends Value {
-  
-}
+trait AbstractValue extends Value
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait NonReferenceValue extends Value {
+trait ScalarValue extends Value {
   def typeUri : ResourceUri
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait ReferenceValue extends Value {
-}
+trait ReferenceValue extends Value
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

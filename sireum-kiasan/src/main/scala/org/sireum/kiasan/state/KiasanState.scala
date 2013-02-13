@@ -19,7 +19,7 @@ import org.sireum.util._
 object KiasanState {
   def updateCounters(m : MMap[ResourceUri, Int], v : Value) {
     v match {
-      case kv : KiasanExtension.KiasanValue with NonReferenceValue =>
+      case kv : KiasanExtension.KiasanValue with ScalarValue =>
         val turi = kv.typeUri
         val counter = m.getOrElse(kv.typeUri, 0)
         if (kv.num > counter)

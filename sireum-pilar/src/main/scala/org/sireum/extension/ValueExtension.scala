@@ -28,7 +28,7 @@ object BooleanExtension {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-abstract class BooleanValue extends NonReferenceValue
+abstract class BooleanValue extends ScalarValue
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -40,7 +40,7 @@ object IntegralExtension {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-abstract class IntegralValue extends NonReferenceValue
+abstract class IntegralValue extends ScalarValue
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
