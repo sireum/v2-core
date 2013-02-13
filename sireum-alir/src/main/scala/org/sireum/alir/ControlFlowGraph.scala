@@ -83,14 +83,20 @@ object ControlFlowGraph {
     var transIndex = -1
     val visitor = Visitor.build({
       case al : ActionLocation =>
-        result.addEdge(source, next)
+        al.action match {
+          case ta : ThrowAction => result.addEdge(source, exitNode)
+          case _                => result.addEdge(source, next)
+        }
         false
       case jl : JumpLocation =>
         transIndex = 0
         true
       case t : Transformation =>
         transIndex += 1
-        if (t.jump.isEmpty) {
+        if (t.actions.exists(_.isInstanceOf[ThrowAction])) {
+          result.addEdge(source, exitNode)
+          false
+        } else if (t.jump.isEmpty) {
           result.addEdge(source, next)
           false
         } else {
