@@ -8,6 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.pilar.state
 
+import org.sireum.pilar.ast._
 import org.sireum.util._
 
 /**
@@ -18,6 +19,13 @@ object State {
   type StoreStack = ISeq[Store]
   type CallStack = ISeq[CallFrame]
   type ThreadId = Int
+
+  def uri(x : NameUser) = if (x.hasResourceInfo) x.uri else x.name
+
+  implicit class StateWithNameUserAccess[S <: State[S]](val s : S) {
+    def variable(x : NameUser) : Value = s.variable(uri(x))
+    def variable(x : NameUser, value : Value) : S = s.variable(uri(x), value)
+  }
 }
 
 /**

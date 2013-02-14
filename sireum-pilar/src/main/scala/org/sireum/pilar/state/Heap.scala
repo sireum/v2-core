@@ -9,6 +9,7 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.pilar.state
 
 import org.sireum.util._
+import org.sireum.pilar.ast.NameUser
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -37,6 +38,15 @@ object Heap {
     rv(cocon)
   }
 
+  @inline
+  def isVarHid[S <: State[S] with Heap[S]](s : S, x : NameUser, hid : Int) = {
+    val o = s.variable(x)
+    o match {
+      case Heap.RV(rvhid, _) => rvhid == hid
+      case _                 => false
+    }
+  }
+
   final case class RV(hid : HeapId, aid : AddressId)
     extends ReferenceValue
 
@@ -48,6 +58,15 @@ object Heap {
     def lookup(k : AnyRef) : Any = m(k)
     def update(kv : (AnyRef, Any)) : O = make(m + kv)
     def make(m : ILinkedMap[AnyRef, Any]) : O = O(m)
+  }
+
+  implicit class HeapWithNameUserAccess[S <: Heap[S]](val s : S) {
+    def hasFieldValue(rv : ReferenceValue, f : NameUser) =
+      s.hasFieldValue(rv, State.uri(f))
+    def lookup(rv : ReferenceValue, f : NameUser) =
+      s.lookup(rv, State.uri(f))
+    def update(rv : ReferenceValue, f : NameUser, v : Value) =
+      s.update(rv, State.uri(f), v)
   }
 }
 
