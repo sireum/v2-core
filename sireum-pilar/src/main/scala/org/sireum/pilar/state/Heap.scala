@@ -60,13 +60,31 @@ object Heap {
     def make(m : ILinkedMap[AnyRef, Any]) : O = O(m)
   }
 
-  implicit class HeapWithNameUserAccess[S <: Heap[S]](val s : S) {
+  implicit class HeapWithNameUserAccess[S <: Heap[S]](val s : S) extends AnyVal {
+    @inline
     def hasFieldValue(rv : ReferenceValue, f : NameUser) =
       s.hasFieldValue(rv, State.uri(f))
+      
+    @inline
     def lookup(rv : ReferenceValue, f : NameUser) =
       s.lookup(rv, State.uri(f))
+      
+    @inline
     def update(rv : ReferenceValue, f : NameUser, v : Value) =
       s.update(rv, State.uri(f), v)
+  }
+  
+  implicit class HeapWithInfoAccess[S <: Heap[S]](val s : S) extends AnyVal {
+    @inline
+    def apply[T](rvk : (ReferenceValue, AnyRef)) : T =
+      s.lookupInfo(rvk._1, rvk._2)
+      
+    @inline
+    def update(rvk : (ReferenceValue, AnyRef), v : Any) =
+      s.updateInfo(rvk._1, rvk._2, v)
+      
+    @inline
+    def ?(rvk : (ReferenceValue, AnyRef)) = s.hasInfo(rvk._1, rvk._2)
   }
 }
 
