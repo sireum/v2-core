@@ -73,7 +73,7 @@ object KiasanBooleanExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopEqu[S <: KS[S]](cond : (S, V) --> ISeq[(S, Boolean)]) : // 
+  def binopEqu[S <: KS[S]](implicit cond : (S, V) --> ISeq[(S, Boolean)]) : // 
   (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, b1 : CV, opEqu, b2 : KV) => binopEquHelper(cond, s, b1, opEqu, b2)
     case (s, b1 : KV, opEqu, b2 : CV) => binopEquHelper(cond, s, b1, opEqu, b2)
@@ -161,16 +161,18 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
   val uriPath = UriUtil.classUri(this)
 
   @Cast
-  val cast = KiasanBooleanExtension.cast[S]
+  val cast = KiasanBooleanExtension.cast
 
   @Cond
-  val cond = KiasanBooleanExtension.cond[S]
+  val cond = KiasanBooleanExtension.cond
 
   @FreshKiasanValueProvider
-  val fresh = KiasanBooleanExtension.fresh[S]
+  val fresh = KiasanBooleanExtension.fresh
 
   val se = config.semanticsExtension
 
+  implicit val condF = se.cond
+
   @Binaries(Array("==", "!="))
-  val binopEqu = KiasanBooleanExtension.binopEqu[S](se.cond)
+  val binopEqu = KiasanBooleanExtension.binopEqu
 }

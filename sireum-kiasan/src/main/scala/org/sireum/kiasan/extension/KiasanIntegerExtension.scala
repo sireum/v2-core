@@ -81,7 +81,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopREval[S <: KS[S]](b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
+  def binopREval[S <: KS[S]](
+    implicit b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, v : CV, opR : String, w : KV) => binopRHelper(b2v, s, v, opR, w)
     case (s, v : KV, opR : String, w : CV) => binopRHelper(b2v, s, v, opR, w)
     case (s, v : KV, opR : String, w : KV) => binopRHelper(b2v, s, v, opR, w)
@@ -258,21 +259,22 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
   val uriPath = UriUtil.classUri(this)
 
   @Cast
-  val cast = KiasanIntegerExtension.cast[S]
+  val cast = KiasanIntegerExtension.cast
 
   @FreshKiasanValueProvider
-  val fresh = KiasanIntegerExtension.fresh[S]
+  val fresh = KiasanIntegerExtension.fresh
 
   @Binaries(Array("+", "-", "*", "/", "%"))
-  val binopAEval = KiasanIntegerExtension.binopAEval[S]
+  val binopAEval = KiasanIntegerExtension.binopAEval
 
   @Binaries(Array("==", "!=", ">", ">=", "<", "<="))
-  val binopREval = KiasanIntegerExtension.binopREval(b2v)
+  val binopREval = KiasanIntegerExtension.binopREval
 
   @Unaries(Array("-", "+"))
-  def unopAEval = KiasanIntegerExtension.unopAEval[S]
+  def unopAEval = KiasanIntegerExtension.unopAEval
 
-  def b2v(b : Boolean) : Value
+  import language.implicitConversions
+  implicit def b2v(b : Boolean) : Value
 }
 
 /**
@@ -316,5 +318,5 @@ final class KiasanIntegerIExtension[S <: KiasanStatePart[S]](
   def b2v(b : Boolean) = KonkritIntegerExtension.b2v(b)
 
   @Cond
-  val cond = KiasanIntegerExtension.cond[S]
+  val cond = KiasanIntegerExtension.cond
 }

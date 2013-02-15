@@ -96,7 +96,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopLEval[S](cond : Cnd[S]) : (S, V, Op, V) --> ISeq[(S, V)] = {
+  def binopLEval[S](implicit cond : Cnd[S]) : (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, v1, opL : Op, v2) =>
       for {
         (s2, b1) <- cond(s, v1)
@@ -111,7 +111,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopSCEval[S](cond : Cnd[S]) : //
+  def binopSCEval[S](implicit cond : Cnd[S]) : //
   (S, V, Op, S => ISeq[(S, V)]) --> ISeq[(S, V)] = {
     case (s, v1, opSC, f) =>
       for {
@@ -130,7 +130,7 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   }
 
   @inline
-  def notEval[S](cond : Cnd[S]) : (S, V) --> ISeq[(S, V)] = {
+  def notEval[S](implicit cond : Cnd[S]) : (S, V) --> ISeq[(S, V)] = {
     case (s, v) =>
       for {
         (s2, b) <- cond(s, v)
@@ -167,37 +167,36 @@ final class KonkritBooleanExtension[S](
 
   val uriPath = UriUtil.classUri(this)
 
-  @inline
-  val cnd = config.semanticsExtension.cond
+  implicit val cnd = config.semanticsExtension.cond
 
   @Cast
-  val cast = KonkritBooleanExtension.cast[S]
+  val cast = KonkritBooleanExtension.cast
 
   @Cond
-  val cond = KonkritBooleanExtension.cond[S]
+  val cond = KonkritBooleanExtension.cond
 
   @Literal(value = classOf[Boolean], isTrue = true)
-  val trueLit = KonkritBooleanExtension.trueLit[S]
+  val trueLit = KonkritBooleanExtension.trueLit
 
   @Literal(value = classOf[Boolean], isTrue = false)
-  val falseLit = KonkritBooleanExtension.falseLit[S]
+  val falseLit = KonkritBooleanExtension.falseLit
 
   @DefaultValueProvider
-  val defValue = KonkritBooleanExtension.defValue[S]
+  val defValue = KonkritBooleanExtension.defValue
 
   import PilarAstUtil._
 
   @Binaries(Array(LOGICAL_AND_BINOP, LOGICAL_OR_BINOP, LOGICAL_IMPLIED_BINOP,
     LOGICAL_IMPLY_BINOP))
-  val binopLEval = KonkritBooleanExtension.binopLEval(cnd)
+  val binopLEval = KonkritBooleanExtension.binopLEval
 
   @Binaries(Array(EQ_BINOP, NE_BINOP))
-  val binopEqu = KonkritBooleanExtension.binopEqu[S]
+  val binopEqu = KonkritBooleanExtension.binopEqu
 
   @RBinaries(Array(COND_AND_BINOP, COND_OR_BINOP, COND_IMPLIED_BINOP,
     COND_IMPLY_BINOP))
-  val binopSCEval = KonkritBooleanExtension.binopSCEval(cnd)
+  val binopSCEval = KonkritBooleanExtension.binopSCEval
 
   @Unary(NOT_UNOP)
-  val notEval = KonkritBooleanExtension.notEval(cnd)
+  val notEval = KonkritBooleanExtension.notEval
 }

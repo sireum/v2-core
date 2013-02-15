@@ -58,8 +58,8 @@ final class KonkritVariableAccessExtension[S <: State[S]](
   val uriPath = UriUtil.classUri(this)
 
   @VarLookup
-  val variableLookup = KonkritVariableAccessExtension.variableLookup[S]
+  val variableLookup = KonkritVariableAccessExtension.variableLookup
 
   @VarUpdate
-  val variableUpdate = KonkritVariableAccessExtension.variableUpdate[S]
+  val variableUpdate = KonkritVariableAccessExtension.variableUpdate
 }

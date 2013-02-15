@@ -116,12 +116,13 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopREval[S](b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
+  def binopREval[S](
+    implicit b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, c : CV, opR, d : CV) => (s, b2v(opRSem(opR)(c, d)))
   }
 
   @inline
-  def cond[S](canCast : (S, V, ResourceUri) => Boolean,
+  def cond[S](implicit canCast : (S, V, ResourceUri) => Boolean,
               cast : (S, V, ResourceUri) --> ISeq[(S, V)]) : //
               (S, V) --> ISeq[(S, Boolean)] = {
     case (s, i : CV) => ivector((s, !i.asInteger.isZero))
@@ -158,26 +159,27 @@ trait KonkritIntegerExtension[S]
   val nativeIndexConverter = KonkritIntegerExtension.nativeIndexConverter
 
   @DefaultValueProvider
-  val defValue = KonkritIntegerExtension.defValue[S]
+  val defValue = KonkritIntegerExtension.defValue
 
   @Cast
-  val cast = KonkritIntegerExtension.cast[S]
+  val cast = KonkritIntegerExtension.cast
 
   @Literal(classOf[BigInt])
-  val literal = KonkritIntegerExtension.literal[S]
+  val literal = KonkritIntegerExtension.literal
 
   import PilarAstUtil._
 
   @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP))
-  val binopAEval = KonkritIntegerExtension.binopAEval[S]
+  val binopAEval = KonkritIntegerExtension.binopAEval
 
   @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
-  val unopAEval = KonkritIntegerExtension.unopAEval[S]
+  val unopAEval = KonkritIntegerExtension.unopAEval
 
   @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
-  val binopREval = KonkritIntegerExtension.binopREval(b2v _)
+  val binopREval = KonkritIntegerExtension.binopREval
 
-  def b2v(b : Boolean) : V
+  import language.implicitConversions
+  implicit def b2v(b : Boolean) : V
 }
 
 /**
@@ -221,6 +223,11 @@ final class KonkritIntegerIExtension[S](
 
   val se = config.semanticsExtension
 
+  @inline
+  implicit def canCastF = se.canCast _
+  
+  implicit val castF = se.cast
+
   @Cond
-  val cond = KonkritIntegerExtension.cond(se.canCast, se.cast)
+  val cond = KonkritIntegerExtension.cond
 }

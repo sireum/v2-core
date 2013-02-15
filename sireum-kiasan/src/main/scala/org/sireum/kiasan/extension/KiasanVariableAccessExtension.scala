@@ -32,7 +32,7 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
 
   @inline
   def variableLookup[S <: SS[S]](
-    fresh : (S, ResourceUri) => (S, V),
+    implicit fresh : (S, ResourceUri) => (S, V),
     rep : (S, V) --> V) : (S, NameUser) --> ISeq[(S, V)] = {
     case (s, x) =>
       val vuri = varUri(x)
@@ -47,7 +47,7 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
 
   @inline
   def variableUpdate[S <: SS[S]](
-    rep : (S, V) --> V) : (S, NameUser, V) --> ISeq[S] = {
+    implicit rep : (S, V) --> V) : (S, NameUser, V) --> ISeq[S] = {
     case (s, x, v) => s.variable(varUri(x), rep(s, v))
   }
 }
@@ -61,18 +61,20 @@ final class KiasanVariableAccessExtension[S <: State[S]](
 
   val uriPath = UriUtil.classUri(this)
 
-  val sei = {
+  val se = {
     import KiasanSemanticsExtensionConsumer._
     config.semanticsExtension.kiasanSemanticsExtension
   }
 
   @inline
-  def fresh(s : S, varUri : ResourceUri) =
-    sei.freshKiasanValue(s, config.typeProvider.typeUri(varUri))
+  implicit def fresh(s : S, varUri : ResourceUri) =
+    se.freshKiasanValue(s, config.typeProvider.typeUri(varUri))
+
+  implicit val repF = se.rep
 
   @VarLookup
-  val variableLookup = KiasanVariableAccessExtension.variableLookup(fresh, sei.rep)
+  val variableLookup = KiasanVariableAccessExtension.variableLookup
 
   @VarUpdate
-  val variableUpdate = KiasanVariableAccessExtension.variableUpdate(sei.rep)
+  val variableUpdate = KiasanVariableAccessExtension.variableUpdate
 }

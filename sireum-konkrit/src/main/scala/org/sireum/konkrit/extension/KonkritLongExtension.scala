@@ -109,7 +109,8 @@ object KonkritLongExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopREval[S](b2v : Boolean => V) : (S, V, String, V) --> ISeq[(S, V)] = {
+  def binopREval[S](
+    implicit b2v : Boolean => V) : (S, V, String, V) --> ISeq[(S, V)] = {
     case (s, c : CV, opR : String, d : CV) => (s, b2v(opRSem(opR)(c, d)))
   }
 
@@ -119,7 +120,7 @@ object KonkritLongExtension extends ExtensionCompanion {
   }
 
   @inline
-  def cond[S](canCast : (S, V, ResourceUri) => Boolean,
+  def cond[S](implicit canCast : (S, V, ResourceUri) => Boolean,
               cast : (S, V, ResourceUri) --> ISeq[(S, V)]) : //
               (S, V) --> ISeq[(S, Boolean)] = {
     case (s, c : CV) => ivector((s, c.value != 0))
@@ -156,27 +157,28 @@ trait KonkritLongExtension[S]
   val nativeIndexConverter = KonkritLongExtension.nativeIndexConverter
 
   @DefaultValueProvider
-  val defValue = KonkritLongExtension.defValue[S]
+  val defValue = KonkritLongExtension.defValue
 
   @Cast
-  val cast = KonkritLongExtension.cast[S]
+  val cast = KonkritLongExtension.cast
 
   @Literal(classOf[Long])
-  val literal = KonkritLongExtension.literal[S]
+  val literal = KonkritLongExtension.literal
 
   import PilarAstUtil._
 
   @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP,
     USHR_BINOP, SHR_BINOP, SHL_BINOP))
-  val binopAEval = KonkritLongExtension.binopAEval[S]
+  val binopAEval = KonkritLongExtension.binopAEval
 
   @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
-  val binopREval = KonkritLongExtension.binopREval[S](b2v _)
+  val binopREval = KonkritLongExtension.binopREval
 
   @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
-  val unopAEval = KonkritLongExtension.unopAEval[S]
+  val unopAEval = KonkritLongExtension.unopAEval
 
-  def b2v(b : Boolean) : V
+  import language.implicitConversions
+  implicit def b2v(b : Boolean) : V
 }
 
 /**
@@ -220,6 +222,11 @@ final class KonkritLongIExtension[S](
 
   val se = config.semanticsExtension
 
+  @inline
+  implicit def canCastF = se.canCast _
+
+  implicit val castF = se.cast
+
   @Cond
-  val cond = KonkritLongExtension.cond(se.canCast, se.cast)
+  val cond = KonkritLongExtension.cond
 }

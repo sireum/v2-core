@@ -92,7 +92,7 @@ object KonkritIntExtension extends ExtensionCompanion {
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
-    case (s, v : CV, IntExtension.Type)    => (s, v)
+    case (s, v : CV, IntExtension.Type)        => (s, v)
     case (s, v : CV, KonkritIntExtension.Type) => (s, v)
   }
 
@@ -107,7 +107,8 @@ object KonkritIntExtension extends ExtensionCompanion {
   }
 
   @inline
-  def binopREval[S](b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
+  def binopREval[S](
+    implicit b2v : Boolean => V) : (S, V, Op, V) --> ISeq[(S, V)] = {
     case (s, c : CV, opR, d : CV) => ivector((s, b2v(opRSem(opR)(c, d))))
   }
 
@@ -120,7 +121,7 @@ object KonkritIntExtension extends ExtensionCompanion {
   def b2v(b : Boolean) : V = if (b) 1 else 0
 
   @inline
-  def cond[S](canCast : (S, V, ResourceUri) => Boolean,
+  def cond[S](implicit canCast : (S, V, ResourceUri) => Boolean,
               cast : (S, V, ResourceUri) --> ISeq[(S, V)]) //
               : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, c : CV) => ivector((s, c.value != 0))
@@ -154,27 +155,28 @@ trait KonkritIntExtension[S]
   val nativeIndexConverter = KonkritIntExtension.nativeIndexConverter
 
   @DefaultValueProvider
-  val defValue = KonkritIntExtension.defValue[S]
+  val defValue = KonkritIntExtension.defValue
 
   @Cast
-  val cast = KonkritIntExtension.cast[S]
+  val cast = KonkritIntExtension.cast
 
   @Literal(classOf[Int])
-  val literal = KonkritIntExtension.literal[S]
+  val literal = KonkritIntExtension.literal
 
   import PilarAstUtil._
 
   @Binaries(Array(ADD_BINOP, SUB_BINOP, MUL_BINOP, DIV_BINOP, REM_BINOP,
     USHR_BINOP, SHR_BINOP, SHL_BINOP))
-  val binopAEval = KonkritIntExtension.binopAEval[S]
+  val binopAEval = KonkritIntExtension.binopAEval
 
   @Binaries(Array(EQ_BINOP, NE_BINOP, GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP))
-  val binopREval = KonkritIntExtension.binopREval[S](b2v _)
+  val binopREval = KonkritIntExtension.binopREval
 
   @Unaries(Array(PLUS_UNOP, MINUS_UNOP))
-  val unopAEval = KonkritIntExtension.unopAEval[S]
+  val unopAEval = KonkritIntExtension.unopAEval
 
-  def b2v(b : Boolean) : Value
+  import language.implicitConversions
+  implicit def b2v(b : Boolean) : Value
 }
 
 /**
@@ -218,6 +220,11 @@ final class KonkritIntIExtension[S](
 
   val se = config.semanticsExtension
 
+  @inline
+  implicit def canCastF = se.canCast _
+
+  implicit val castF = se.cast
+
   @Cond
-  val cond = KonkritIntExtension.cond(se.canCast, se.cast)
+  val cond = KonkritIntExtension.cond
 }
