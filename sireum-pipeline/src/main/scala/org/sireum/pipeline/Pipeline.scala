@@ -120,7 +120,7 @@ final case class PipelineStage(
 
         logger.debug(
           (if (moduleInfo.hasInternalError) "Abnormal end" else "End") +
-            s"""computing module: ${m.title}
+            s""" computing module: ${m.title}
 Time: ${(moduleInfo.endTime - moduleInfo.startTime) / 1000d} s
 Tags: ${if (moduleInfo.tags.isEmpty) "None" else Tag.collateAsString(moduleInfo.tags)}""")
       }
