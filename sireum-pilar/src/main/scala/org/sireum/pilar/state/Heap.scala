@@ -54,7 +54,6 @@ object Heap {
       extends HeapObject {
     def ?(k : AnyRef) : Boolean = m.contains(k)
     def apply(k : AnyRef) : Any = lookup(k)
-    def apply(kv : (AnyRef, Any)) : O = update(kv)
     def lookup(k : AnyRef) : Any = m(k)
     def update(kv : (AnyRef, Any)) : O = make(m + kv)
     def make(m : ILinkedMap[AnyRef, Any]) : O = O(m)
@@ -72,6 +71,14 @@ object Heap {
         s.lookup(rv, State.uri(f))
 
       @inline
+      def lookupOrElse(rv : ReferenceValue, f : NameUser, dflt : Value) =
+        s.lookupOrElse(rv, State.uri(f), dflt)
+
+      @inline
+      def lookupOrElseUpdate(rv : ReferenceValue, f : NameUser, dflt : Value) =
+        s.lookupOrElse(rv, State.uri(f), dflt)
+
+      @inline
       def update(rv : ReferenceValue, f : NameUser, v : Value) =
         s.update(rv, State.uri(f), v)
     }
@@ -84,7 +91,15 @@ object Heap {
         s.lookupInfo(rvk._1, rvk._2)
 
       @inline
-      def update(rvk : (ReferenceValue, AnyRef), v : Any) =
+      def lookupOrElse[T](rv : ReferenceValue, k : AnyRef, dflt : => T) =
+        s.lookupInfoOrElse(rv, k, dflt)
+
+      @inline
+      def lookupOrElseUpdate[T](rv : ReferenceValue, k : AnyRef, dflt : => T) =
+        s.lookupInfoOrElseUpdate(rv, k, dflt)
+
+      @inline
+      def update[T](rvk : (ReferenceValue, AnyRef), v : T) =
         s.updateInfo(rvk._1, rvk._2, v)
 
       @inline
@@ -151,16 +166,22 @@ trait Heap[Self <: Heap[Self]] extends SelfType[Self] {
 
   def hasFieldValue(rv : ReferenceValue, f : ResourceUri) : Boolean
   def lookup(rv : ReferenceValue, f : ResourceUri) : Value
+  def lookupOrElse(rv : ReferenceValue, f : ResourceUri, dflt : => Value) : Value
   def update(rv : ReferenceValue, f : ResourceUri, v : Value) : Self
+  def lookupOrElseUpdate(rv : ReferenceValue, f : ResourceUri, dflt : => Value) : (Self, Value)
 
   def hasIndexValue(rv : ReferenceValue, idx : Value) : Boolean
   def lookup(rv : ReferenceValue, idx : Value) : Value
+  def lookupOrElse(rv : ReferenceValue, idx : Value, dflt : => Value) : Value
   def update(rv : ReferenceValue, idx : Value, v : Value) : Self
+  def lookupOrElseUpdate(rv : ReferenceValue, idx : Value, dflt : => Value) : (Self, Value)
 
   def hasInfo(rv : ReferenceValue, k : AnyRef) : Boolean
   def lookupInfo[T](rv : ReferenceValue, k : AnyRef) : T
+  def lookupInfoOrElse[T](rv : ReferenceValue, k : AnyRef, dflt : => T) : T
   def getInfo[T](rv : ReferenceValue, k : AnyRef) : Option[T]
   def updateInfo[T](rv : ReferenceValue, k : AnyRef, v : T) : Self
+  def lookupInfoOrElseUpdate[T](rv : ReferenceValue, k : AnyRef, dflt : => T) : (Self, T)
 
   def infos(rv : ReferenceValue) : Iterator[(AnyRef, Any)]
 
@@ -212,6 +233,12 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
   def update(rv : ReferenceValue, f : ResourceUri, v : Value) : Self =
     updateInfo(rv, f, v)
 
+  def lookupOrElse(rv : ReferenceValue, f : ResourceUri, dflt : => Value) =
+    lookupInfoOrElse(rv, f, dflt)
+
+  def lookupOrElseUpdate(rv : ReferenceValue, f : ResourceUri, dflt : => Value) =
+    lookupInfoOrElseUpdate(rv, f, dflt)
+
   def hasIndexValue(rv : ReferenceValue, idx : Value) : Boolean =
     hasInfo(rv, idx)
 
@@ -220,6 +247,12 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
 
   def update(rv : ReferenceValue, idx : Value, v : Value) : Self =
     updateInfo(rv, idx, v)
+
+  def lookupOrElse(rv : ReferenceValue, idx : Value, dflt : => Value) =
+    lookupInfoOrElse(rv, idx, dflt)
+
+  def lookupOrElseUpdate(rv : ReferenceValue, idx : Value, dflt : => Value) =
+    lookupOrElseUpdate(rv, idx, dflt)
 
   def hasInfo(rv : ReferenceValue, k : AnyRef) : Boolean = {
     val ref = rv.asInstanceOf[RV]
@@ -246,10 +279,30 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
   def updateInfo[T](rv : ReferenceValue, k : AnyRef, v : T) : Self = {
     val ref = rv.asInstanceOf[RV]
     val hid = ref.hid
-    val heap = heaps(hid)
     val aid = ref.aid
-    val kv = (k, v)
-    make(hid, aid, heap(aid).asInstanceOf[O](kv))
+    val heap = heaps(hid)
+    val o = heap(aid).asInstanceOf[O]
+    make(hid, aid, o(k) = v)
+  }
+
+  def lookupInfoOrElse[T](rv : ReferenceValue, k : AnyRef,
+                          dflt : => T) : T = {
+    val ref = rv.asInstanceOf[RV]
+    val heap = heaps(ref.hid)
+    val o = heap(ref.aid).asInstanceOf[O]
+    if (o ? k) o(k).asInstanceOf[T]
+    else dflt
+  }
+
+  def lookupInfoOrElseUpdate[T](rv : ReferenceValue, k : AnyRef,
+                                dflt : => T) : (Self, T) = {
+    val ref = rv.asInstanceOf[RV]
+    val hid = ref.hid
+    val aid = ref.aid
+    val heap = heaps(hid)
+    val o = heap(aid).asInstanceOf[O]
+    if (o ? k) (self, o(k).asInstanceOf[T])
+    else (make(hid, aid, o(k) = dflt), dflt)
   }
 
   def infos(rv : ReferenceValue) : Iterator[(AnyRef, Any)] = {

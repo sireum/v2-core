@@ -39,12 +39,12 @@ object KonkritVariableAccessExtension extends ExtensionCompanion {
 
   @inline
   def variableLookup[S <: SS[S]] : (S, NameUser) --> ISeq[(S, V)] = {
-    case (s, x) => (s, s.variable(varUri(x)))
+    case (s, x) => (s, s(x))
   }
 
   @inline
   def variableUpdate[S <: SS[S]] : (S, NameUser, V) --> ISeq[S] = {
-    case (s, x, v) => s.variable(varUri(x), v)
+    case (s, x, v) => s(x) = v
   }
 }
 

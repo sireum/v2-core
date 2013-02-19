@@ -23,8 +23,15 @@ object State {
   def uri(x : NameUser) = if (x.hasResourceInfo) x.uri else x.name
 
   implicit class StateWithNameUserAccess[S <: State[S]](val s : S) {
+    def apply(x : NameUser) = variable(x)
+    def update(x : NameUser, value : Value) = variable(x, value)
     def variable(x : NameUser) : Value = s.variable(uri(x))
     def variable(x : NameUser, value : Value) : S = s.variable(uri(x), value)
+    def variableOpt(x : NameUser) = {
+      val varUri = uri(x)
+      if (s.hasVariableValue(varUri)) Some(s(varUri))
+      else None
+    }
   }
 }
 
@@ -131,6 +138,7 @@ trait State[Self <: State[Self]]
     varUriPairs.foreach { p => s = s.variable(p._1, p._2) }
     s
   }
+  def update(varUri : ResourceUri, v : Value) = variable(varUri, v)
 
   def globalStore : Store
   def closureStoreStack : StoreStack
