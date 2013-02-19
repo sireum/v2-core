@@ -44,9 +44,9 @@ trait KiasanLocationProvider[S <: Kiasan.KiasanState[S]] {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
-  def foundAssertionViolation(s : S)
-  def foundEndState(s : S)
-  def foundDepthBoundExhaustion(s : S)
+  def foundAssertionViolation(s : S) : S
+  def foundEndState(s : S) : S
+  def foundDepthBoundExhaustion(s : S) : S
 }
 
 /**
