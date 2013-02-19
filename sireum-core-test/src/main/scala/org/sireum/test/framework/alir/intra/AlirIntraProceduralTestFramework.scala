@@ -43,23 +43,42 @@ trait AlirIntraProceduralTestFramework extends TestFramework {
     test(title) {
 
       val job = PipelineJob()
-      val options = job.properties
-      PilarParserModule.setSources(options, srcs)
-      PilarSymbolResolverModule.setHasExistingModels(options, None)
-      PilarSymbolResolverModule.setHasExistingSymbolTable(options, None)
-      PilarSymbolResolverModule.setParallel(options, false)
+      
+      {
+        import PilarParserModule.ProducerView._
+        import PilarSymbolResolverModule.ProducerView._
 
-      AlirIntraProceduralModule.setShouldBuildCfg(options, true)
-      AlirIntraProceduralModule.setShouldBuildCdg(options, true)
-      AlirIntraProceduralModule.setShouldBuildRda(options, true)
-      AlirIntraProceduralModule.setShouldBuildDdg(options, true)
-      AlirIntraProceduralModule.setShouldBuildPdg(options, true)
-      AlirIntraProceduralModule.setShouldBuildDfg(options, true)
-      AlirIntraProceduralModule.setShouldBuildIdg(options, true)
-
-      AlirIntraProceduralModule.setProcedureAbsUriIterator(options,
-        None)
-
+        job.sources = srcs
+        job.hasExistingModels = None
+        job.hasExistingSymbolTable = None
+        job.parallel = false
+        
+        //PilarParserModule.setSources(options, srcs)
+        //PilarSymbolResolverModule.setHasExistingModels(options, None)
+        //PilarSymbolResolverModule.setHasExistingSymbolTable(options, None)
+        //PilarSymbolResolverModule.setParallel(options, false)
+        
+        import AlirIntraProceduralModule.ProducerView._
+        
+        job.shouldBuildCfg = true
+        job.shouldBuildCdg = true
+        job.shouldBuildRda = true
+        job.shouldBuildDdg = true
+        job.shouldBuildPdg = true
+        job.shouldBuildDfg = true
+        job.shouldBuildIdg = true
+        job.procedureAbsUriIterator = None
+        
+        //AlirIntraProceduralModule.setShouldBuildCfg(options, true)
+        //AlirIntraProceduralModule.setShouldBuildCdg(options, true)
+        //AlirIntraProceduralModule.setShouldBuildRda(options, true)
+        //AlirIntraProceduralModule.setShouldBuildDdg(options, true)
+        //AlirIntraProceduralModule.setShouldBuildPdg(options, true)
+        //AlirIntraProceduralModule.setShouldBuildDfg(options, true)
+        //AlirIntraProceduralModule.setShouldBuildIdg(options, true)
+        //AlirIntraProceduralModule.setProcedureAbsUriIterator(options, None)
+      }
+      
       pipeline.compute(job)
 
       if (job.lastStageInfo.hasError) {
@@ -78,24 +97,20 @@ trait AlirIntraProceduralTestFramework extends TestFramework {
         }
       }
 
-      //val job = pipeline.compute(PipelineJob().sources(srcs))
-      //val tags = job.tags
+      import PilarSymbolResolverModule.ConsumerView._
+      val st = job.symbolTable 
+      
+      import AlirIntraProceduralModule.ConsumerView._
+      val r = job.result
 
-      //assert(tags.isEmpty,
-      //  "Unexpecting warnings/errors but found:\n" + Tag.collateAsString(tags))
+      //val st = PilarSymbolResolverModule.getSymbolTable(options)
+      //val r = AlirIntraProceduralModule.getResult(options)
 
-      val st = PilarSymbolResolverModule.getSymbolTable(options)
-      val r = AlirIntraProceduralModule.getResult(options)
-      //      val w = new OutputStreamWriter(Console.out)
       r.foreach { p =>
         val (procedureUri, result) = p
         alirF.foreach { f =>
           f(st.procedureSymbolTable(procedureUri), result)
         }
-        //        result.cfg.toDot(w)
-        //        w.write('\n')
-        //        result.cdgOpt.get.toDot(w)
-        //        w.write('\n')
       }
     }
 

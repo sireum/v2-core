@@ -18,8 +18,8 @@ import org.sireum.pilar.ast.CatchClause
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class AlirIntraProceduralDef(val job : PipelineJob, info : PipelineJobModuleInfo) 
-  extends AlirIntraProceduralModule with ImplicitLogging {
+class AlirIntraProceduralModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo)
+    extends AlirIntraProceduralModule with ImplicitLogging {
   val par = this.parallel
   val st = this.symbolTable
   val psts = st.procedureSymbolTables.toSeq
@@ -108,7 +108,7 @@ class AlirIntraProceduralDef(val job : PipelineJob, info : PipelineJobModuleInfo
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class CfgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CfgModule {
+class CfgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CfgModule {
   val ENTRY_NODE_LABEL = "Entry"
   val EXIT_NODE_LABEL = "Exit"
   val pl : AlirIntraProceduralGraph.NodePool = mmapEmpty
@@ -123,7 +123,7 @@ class CfgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CfgMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class IdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends IdgModule {
+class IdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends IdgModule {
   this.idg_=(ImmediateDominatorGraph[String](this.pool, this.cfg))
 }
 
@@ -131,7 +131,7 @@ class IdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends IdgMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class DfgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DfgModule {
+class DfgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DfgModule {
   this.dfg_=(DominanceFrontierGraph[String](this.pool, this.cfg, this.idg))
 }
 
@@ -139,7 +139,7 @@ class DfgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DfgMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class CdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CdgModule {
+class CdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CdgModule {
   this.cdg_=(ControlDependenceGraph[String](this.pool, this.cfg, "<r>"))
 }
 
@@ -147,12 +147,12 @@ class CdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends CdgMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class RdaDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends RdaModule {
+class RdaModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends RdaModule {
   val pst = this.procedureSymbolTable
   val iiopp = this.isInputOutputParamPredicate(pst)
   this.rda_=(ReachingDefinitionAnalysis[String](pst,
     this.cfg,
-    this.defRef(pst.symbolTable), 
+    this.defRef(pst.symbolTable),
     first2(iiopp),
     this.switchAsOrderedMatch))
 }
@@ -161,7 +161,7 @@ class RdaDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends RdaMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class DdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DdgModule {
+class DdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DdgModule {
   val pst = this.procedureSymbolTable
   val iiopp = this.isInputOutputParamPredicate(pst)
   val result = DataDependenceGraph[String](this.pool, this.cfg, this.rda,
@@ -173,7 +173,7 @@ class DdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends DdgMod
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class PdgDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PdgModule {
+class PdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PdgModule {
   val pst = this.procedureSymbolTable
   this.pdg_=(ProgramDependenceGraph[String](
     pst, this.pool,

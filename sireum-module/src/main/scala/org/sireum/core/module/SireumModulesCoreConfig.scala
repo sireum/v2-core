@@ -34,10 +34,8 @@ import org.sireum.pipeline.Consume
  */
 case class PilarSources(
   title : String = "Pilar Source",
-  
-  @Output 
-  @Produce 
-  sources : ISeq[Either[String, ResourceUri]])
+
+  @Output @Produce sources : ISeq[Either[String, ResourceUri]])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -45,14 +43,10 @@ case class PilarSources(
  */
 case class PilarParser(
   title : String = "Pilar Parser",
-  
-  @Input
-  @Consume(Array(classOf[PilarSources]))
-  sources : ISeq[Either[String, ResourceUri]],
-  
-  @Output 
-  @Produce 
-  models : ISeq[Model])
+
+  @Input @Consume(Array(classOf[PilarSources])) sources : ISeq[Either[String, ResourceUri]],
+
+  @Output @Produce models : ISeq[Model])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -60,14 +54,10 @@ case class PilarParser(
  */
 case class ChunkingPilarParser(
   title : String = "Pilar Parser",
-  
-  @Input
-  @Consume(Array(classOf[PilarSources]))
-  sources : ISeq[Either[String, ResourceUri]],
-  
-  @Output 
-  @Produce 
-  models : ISeq[Model])
+
+  @Input @Consume(Array(classOf[PilarSources])) sources : ISeq[Either[String, ResourceUri]],
+
+  @Output @Produce models : ISeq[Model])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -75,31 +65,23 @@ case class ChunkingPilarParser(
  */
 case class PilarSymbolResolver(
   title : String = "Pilar Symbol Resolver",
-  
-  @Input
-  parallel : Boolean,
-  
-  @Input 
-  @Consume(Array(classOf[PilarParser]))
-  @Output 
-  @Produce 
-  models : ISeq[Model],
-  
-  @Input
-  hasExistingSymbolTable : scala.Option[SymbolTable],
-  
-  @Input
-  hasExistingModels : scala.Option[ISeq[Model]],
-  
-  @Output
-  symbolTable : SymbolTable)
-  
+
+  @Input parallel : Boolean,
+
+  @Input @Consume(Array(classOf[PilarParser]))@Output @Produce models : ISeq[Model],
+
+  @Input hasExistingSymbolTable : scala.Option[SymbolTable],
+
+  @Input hasExistingModels : scala.Option[ISeq[Model]],
+
+  @Output symbolTable : SymbolTable)
+
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait BogorFactory {
-//  def create(job : PipelineJob) : org.sireum.bogor.Bogor
+  //  def create(job : PipelineJob) : org.sireum.bogor.Bogor
 }
 
 /**
@@ -108,26 +90,23 @@ trait BogorFactory {
  */
 case class Bogor(
   title : String = "Bogor",
-  
-  @Input 
-  @Consume(Array(classOf[PilarSymbolResolver])) 
-  models : ISeq[Model],
-  
-  @Input
-  factory : BogorFactory)
+
+  @Input @Consume(Array(classOf[PilarSymbolResolver])) models : ISeq[Model],
+
+  @Input factory : BogorFactory)
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object hold {
+object SireumModuleCoreConfig {
   def main(args : Array[String]) {
     val opt = PipelineMode()
     opt.classNames = Array(
-        PilarSources.getClass().getName().dropRight(1),
-        ChunkingPilarParser.getClass().getName().dropRight(1),
-        PilarSymbolResolver.getClass().getName().dropRight(1),
-        Bogor.getClass.getName.dropRight(1))
+      PilarSources.getClass().getName().dropRight(1),
+      ChunkingPilarParser.getClass().getName().dropRight(1),
+      PilarSymbolResolver.getClass().getName().dropRight(1),
+      Bogor.getClass.getName.dropRight(1))
     opt.dir = "./src/main/scala/org/sireum/core/module"
     opt.genClassName = "SireumModulesCore"
 

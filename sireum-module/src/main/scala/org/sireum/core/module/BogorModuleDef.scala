@@ -38,7 +38,7 @@ object BogorModuleDef {
     "Bogor Warning",
     MarkerTagSeverity.Warning,
     MarkerTagPriority.Normal,
-    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))  
+    ivector(MarkerTagKind.Problem, MarkerTagKind.Text))
 }
 
 /**

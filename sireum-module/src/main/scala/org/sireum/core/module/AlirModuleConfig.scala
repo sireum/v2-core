@@ -38,13 +38,12 @@ object AlirIntraProcedural {
     rdaOpt : Option[AlirIntraProcedural.RDA],
     ddgOpt : Option[AlirIntraProcedural.DDG],
     pdgOpt : Option[AlirIntraProcedural.PDG])
-    
-    // helper type matching ControlFlowGraph.ShouldIncludeFlowFunction except 
-    // scala.Boolean is replaced with java.lang.Boolean. Note that the 
-    // ModuleGenerator automatically substitutes java.lang.Boolean with 
-    // scala.Boolean
-    type ShouldIncludeFlowFunction = (LocationDecl, Iterable[CatchClause]) => 
-      (Iterable[CatchClause], java.lang.Boolean)    
+
+  // helper type matching ControlFlowGraph.ShouldIncludeFlowFunction except 
+  // scala.Boolean is replaced with java.lang.Boolean. Note that the 
+  // ModuleGenerator automatically substitutes java.lang.Boolean with 
+  // scala.Boolean
+  type ShouldIncludeFlowFunction = (LocationDecl, Iterable[CatchClause]) => (Iterable[CatchClause], java.lang.Boolean)
 }
 
 /**
@@ -53,60 +52,41 @@ object AlirIntraProcedural {
  */
 case class AlirIntraProcedural(
   title : String = "Alir Intraprocedural Module",
-  
-  @Input 
-  parallel : Boolean,
 
-  @Input 
-  symbolTable : SymbolTable,
+  @Input parallel : Boolean,
 
-  @Input
-  shouldBuildCfg : Boolean,
-  
-  @Input
-  shouldBuildIdg : Boolean,
-  
-  @Input
-  shouldBuildDfg : Boolean,
-  
-  @Input
-  shouldBuildCdg : Boolean,
-  
-  @Input
-  shouldBuildRda : Boolean,
-  
-  @Input
-  shouldBuildDdg : Boolean,
-  
-  @Input
-  shouldBuildPdg : Boolean,
-  
-  @Input 
-  shouldIncludeFlowFunction : AlirIntraProcedural.ShouldIncludeFlowFunction =
-    // ControlFlowGraph.defaultSiff,
-    { (_, _) => (Array.empty[CatchClause], false) },
-  
-  @Input
-  defRef : SymbolTable => DefRef = 
-    {st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st))},
-  
-  @Input 
-  isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean) = 
-    {  pst =>
-          val params = pst.params.toSet[ResourceUri]
-          ({localUri => params.contains(localUri)},
-              {s => falsePredicate1[ResourceUri](s)})
-    },
-  
-  @Input 
-  switchAsOrderedMatch : Boolean = true,
+  @Input symbolTable : SymbolTable,
 
-  @Input 
-  procedureAbsUriIterator : scala.Option[Iterator[ResourceUri]] = None,
+  @Input shouldBuildCfg : Boolean,
 
-  @Output 
-  result : MMap[ResourceUri, AlirIntraProcedural.AlirIntraproceduralAnalysisResult])
-  
+  @Input shouldBuildIdg : Boolean,
+
+  @Input shouldBuildDfg : Boolean,
+
+  @Input shouldBuildCdg : Boolean,
+
+  @Input shouldBuildRda : Boolean,
+
+  @Input shouldBuildDdg : Boolean,
+
+  @Input shouldBuildPdg : Boolean,
+
+  @Input shouldIncludeFlowFunction : AlirIntraProcedural.ShouldIncludeFlowFunction = // ControlFlowGraph.defaultSiff,
+  { (_, _) => (Array.empty[CatchClause], false) },
+
+  @Input defRef : SymbolTable => DefRef = { st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st)) },
+
+  @Input isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean) = { pst =>
+    val params = pst.params.toSet[ResourceUri]
+    ({ localUri => params.contains(localUri) },
+      { s => falsePredicate1[ResourceUri](s) })
+  },
+
+  @Input switchAsOrderedMatch : Boolean = true,
+
+  @Input procedureAbsUriIterator : scala.Option[Iterator[ResourceUri]] = None,
+
+  @Output result : MMap[ResourceUri, AlirIntraProcedural.AlirIntraproceduralAnalysisResult])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -115,34 +95,22 @@ case class AlirIntraProcedural(
 case class Cfg(
   title : String = "Control Flow Graph Builder",
 
-  @Input 
-  shouldIncludeFlowFunction : AlirIntraProcedural.ShouldIncludeFlowFunction,
+  @Input shouldIncludeFlowFunction : AlirIntraProcedural.ShouldIncludeFlowFunction,
 
-  @Input
-  procedureSymbolTable : ProcedureSymbolTable,
-  
-  @Output
-  @Produce
-  pool : AlirIntraProceduralGraph.NodePool,
-  
-  @Output
-  @Produce
-  cfg : ControlFlowGraph[String])
+  @Input procedureSymbolTable : ProcedureSymbolTable,
+
+  @Output @Produce pool : AlirIntraProceduralGraph.NodePool,
+
+  @Output @Produce cfg : ControlFlowGraph[String])
 
 case class Idg(
   title : String = "Immediate Dominator Graph Builder",
-    
-  @Input
-  @Consume(Array(classOf[Cfg]))
-  pool : AlirIntraProceduralGraph.NodePool,
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))  
-  cfg : ControlFlowGraph[String],
 
-  @Output
-  @Produce
-  idg : ImmediateDominatorGraph[String])
+  @Input @Consume(Array(classOf[Cfg])) pool : AlirIntraProceduralGraph.NodePool,
+
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
+
+  @Output @Produce idg : ImmediateDominatorGraph[String])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -150,22 +118,14 @@ case class Idg(
  */
 case class Dfg(
   title : String = "Dominance Frontier Graph Builder",
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))      
-  pool : AlirIntraProceduralGraph.NodePool,
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))      
-  cfg : ControlFlowGraph[String],
 
-  @Input
-  @Consume(Array(classOf[Idg]))      
-  idg : ImmediateDominatorGraph[String],
-  
-  @Output
-  @Produce
-  dfg : DominanceFrontierGraph[String])
+  @Input @Consume(Array(classOf[Cfg])) pool : AlirIntraProceduralGraph.NodePool,
+
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
+
+  @Input @Consume(Array(classOf[Idg])) idg : ImmediateDominatorGraph[String],
+
+  @Output @Produce dfg : DominanceFrontierGraph[String])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -173,18 +133,12 @@ case class Dfg(
  */
 case class Cdg(
   title : String = "Control Dependence Graph Builder",
-    
-  @Input
-  @Consume(Array(classOf[Cfg]))        
-  pool : AlirIntraProceduralGraph.NodePool,
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))  
-  cfg : ControlFlowGraph[String],
-  
-  @Output
-  @Produce
-  cdg : ControlDependenceGraph[String])
+
+  @Input @Consume(Array(classOf[Cfg])) pool : AlirIntraProceduralGraph.NodePool,
+
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
+
+  @Output @Produce cdg : ControlDependenceGraph[String])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -192,27 +146,18 @@ case class Cdg(
  */
 case class Rda(
   title : String = "Reaching Definition Analysis Builder",
-  
-  @Input
-  procedureSymbolTable : ProcedureSymbolTable,
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))  
-  cfg : ControlFlowGraph[String],
 
-  @Input
-  defRef : SymbolTable => DefRef = 
-    {st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st))},  
-  
-  @Input 
-  isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean),
-  
-  @Input 
-  switchAsOrderedMatch : Boolean = false,
+  @Input procedureSymbolTable : ProcedureSymbolTable,
 
-  @Output
-  @Produce
-  rda : ReachingDefinitionAnalysis.Result)
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
+
+  @Input defRef : SymbolTable => DefRef = { st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st)) },
+
+  @Input isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean),
+
+  @Input switchAsOrderedMatch : Boolean = false,
+
+  @Output @Produce rda : ReachingDefinitionAnalysis.Result)
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -220,77 +165,54 @@ case class Rda(
  */
 case class Ddg(
   title : String = "Data Dependence Graph Builder",
-    
-  @Input
-  procedureSymbolTable : ProcedureSymbolTable,
 
-  @Input
-  @Consume(Array(classOf[Cfg]))        
-  pool : AlirIntraProceduralGraph.NodePool,
+  @Input procedureSymbolTable : ProcedureSymbolTable,
 
-  @Input
-  @Consume(Array(classOf[Cfg]))  
-  cfg : ControlFlowGraph[String],
+  @Input @Consume(Array(classOf[Cfg])) pool : AlirIntraProceduralGraph.NodePool,
 
-  @Input
-  @Consume(Array(classOf[Rda]))  
-  rda : ReachingDefinitionAnalysis.Result,
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
 
-  @Input 
-  defRef : SymbolTable => DefRef = 
-    {st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st))},
+  @Input @Consume(Array(classOf[Rda])) rda : ReachingDefinitionAnalysis.Result,
 
-  @Input
-  isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean),
+  @Input defRef : SymbolTable => DefRef = { st => new org.sireum.alir.BasicVarDefRef(st, new org.sireum.alir.BasicVarAccesses(st)) },
 
-  @Output
-  @Produce
-  ddg : DataDependenceGraph[String])
+  @Input isInputOutputParamPredicate : ProcedureSymbolTable => (ResourceUri => java.lang.Boolean, ResourceUri => java.lang.Boolean),
+
+  @Output @Produce ddg : DataDependenceGraph[String])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 case class Pdg(
-  title : String = "Program Dependence Graph Builder",    
- 
-  @Input
-  @Consume(Array(classOf[Cfg]))        
-  pool : AlirIntraProceduralGraph.NodePool,
-  
-  @Input
-  @Consume(Array(classOf[Cfg]))
-  cfg : ControlFlowGraph[String],
-  
-  @Input 
-  @Consume(Array(classOf[Cdg]))
-  cdg : ControlDependenceGraph[String],
-  
-  @Input
-  @Consume(Array(classOf[Ddg]))
-  ddg : DataDependenceGraph[String],
-  
-  @Input
-  procedureSymbolTable : ProcedureSymbolTable,
-  
-  @Output
-  pdg : ProgramDependenceGraph[String]
-)
+  title : String = "Program Dependence Graph Builder",
+
+  @Input @Consume(Array(classOf[Cfg])) pool : AlirIntraProceduralGraph.NodePool,
+
+  @Input @Consume(Array(classOf[Cfg])) cfg : ControlFlowGraph[String],
+
+  @Input @Consume(Array(classOf[Cdg])) cdg : ControlDependenceGraph[String],
+
+  @Input @Consume(Array(classOf[Ddg])) ddg : DataDependenceGraph[String],
+
+  @Input procedureSymbolTable : ProcedureSymbolTable,
+
+  @Output pdg : ProgramDependenceGraph[String])
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  */
-object temp {
+object AlirModuleConfig {
   def main(args : Array[String]) {
     import org.sireum.option.PipelineMode
     val opt = PipelineMode()
     opt.classNames = Array(AlirIntraProcedural.getClass.getName.dropRight(1),
-        Idg.getClass.getName.dropRight(1),
-        Dfg.getClass.getName.dropRight(1),
-                         Pdg.getClass.getName.dropRight(1))
+      Idg.getClass.getName.dropRight(1),
+      Dfg.getClass.getName.dropRight(1),
+      Pdg.getClass.getName.dropRight(1))
     opt.dir = "./src/main/scala/org/sireum/core/module"
     opt.genClassName = "AlirModulesCore"
-    
+
     ModuleGenerator.run(opt)
   }
 }

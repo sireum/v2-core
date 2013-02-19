@@ -13,17 +13,17 @@ import org.sireum.pilar.symbol._
 import org.sireum.util._
 import org.sireum.pipeline._
 
-/** The following class will be called reflectively.  Create the file 
-  * PilarSourcesDef.scala in the directory corresponding to org.sireum.core.module
-  * and paste the code into it
-  */
-
+/**
+ * The following class will be called reflectively.  Create the file
+ * PilarSourcesDef.scala in the directory corresponding to org.sireum.core.module
+ * and paste the code into it
+ */
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class PilarSourcesDef (val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarSourcesModule {
+class PilarSourcesModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarSourcesModule {
   // simply moves the sources from the global key to the local key
   this.sources = this.sources
 }
@@ -90,4 +90,4 @@ object PilarSourceModuleConstants {
   val EXISTING_MODEL_KEY = "Existing Pilar Models"
   val EXISTING_SYMBOL_TABLE_KEY = "Existing Pilar Symbol Table"
 }
-*/
+*/ 

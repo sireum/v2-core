@@ -14,6 +14,7 @@ import scala.Array.fallbackCanBuildFrom
 import org.sireum.option.PipelineMode
 import org.sireum.pipeline.{ Produce, Output, Input, Consume }
 import org.sireum.util._
+import org.stringtemplate.v4.ST
 import org.stringtemplate.v4.STGroupFile
 
 /**
@@ -21,33 +22,17 @@ import org.stringtemplate.v4.STGroupFile
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  */
 object ModuleGenerator {
-  def main(args : Array[String]) {
-    val opt = PipelineMode()
-
-    if (args.isEmpty) {
-      opt.classNames = Array("org.sireum.pipeline.examples.C2")
-      opt.dir = "./src/main/scala/org/sireum/pipeline/examples"
-      opt.genClassName = "testpipeline"
-    } else {
-      opt.classNames = Array(args(0))
-    }
-    run(opt)
-  }
-
-  def run(poptions : PipelineMode) {
-    new ModuleGenerator().execute(poptions)
-  }
+  def run(p : PipelineMode) = new ModuleGenerator(p).execute
 }
 
 /**
  * @author <a href="mailto:sitt@k-state.edu">Singkhorn Sittirug</a>
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  */
-class ModuleGenerator {
+class ModuleGenerator(p : PipelineMode) {
   type Method = java.lang.reflect.Method
   val stg : STGroupFile = new STGroupFile(getClass.getResource("module.stg"), "UTF-8", '$', '$')
-  val topLevel = stg.getInstanceOf("topLevel")
-  val skeletons = marrayEmpty[String]
+  val moduleDefs = marrayEmpty[String]
   val imports = msetEmpty[String]
   val seenSet = msetEmpty[Class[_]]
   val rtMap = mmapEmpty[Method, String]
@@ -134,7 +119,7 @@ class ModuleGenerator {
   def filter(meths : Array[Method]) : Array[Method] =
     meths.filter(f => !f.getName.startsWith("copy") && !f.getName.contains("$"))
 
-  def getReflectName(c : Class[_]) = (c.getName + "Def", c.getSimpleName + "Def")
+  def getReflectName(c : Class[_]) = (c.getName + "ModuleDef", c.getSimpleName + "ModuleDef")
 
   def getModName(c : Class[_]) = c.getSimpleName + "Module"
 
@@ -168,7 +153,7 @@ class ModuleGenerator {
 
           methodDefValues(actualMethod.getName) = (i + 1, params(i))
         } catch {
-          case _ =>
+          case _ : Throwable =>
             // assign a default value for the param so that we can create an
             // instance of c
             val t = const.getParameterTypes()(i)
@@ -203,7 +188,7 @@ class ModuleGenerator {
       usertemp.add("package", c.getPackage.getName)
       usertemp.add("cname", getReflectName(c)._2)
       usertemp.add("mname", getModName(c))
-      ModuleGenerator.this.skeletons += usertemp.render
+      moduleDefs += usertemp.render
     }
 
     val modLevel = stg.getInstanceOf("modLevel")
@@ -213,235 +198,262 @@ class ModuleGenerator {
     modLevel.add("reflectClass", getReflectName(c)._1)
     modLevel.add("origin", c.getSimpleName)
 
+    var consumptions = ilistEmpty[ST]
+    var productions = ilistEmpty[ST]
+
     for (m <- filter(c.getDeclaredMethods())) yield {
-      val (loc_className, loc_keyName, loc_keyVal) = getKeyName(c, m, true)
-      val (glob_className, glob_keyName, glob_keyVal) = getKeyName(c, m, false)
 
       val hasInput = collect(m, classOf[Input]).isDefined
       val consumes = collect(m, classOf[Consume])
       val hasOutputs = collect(m, classOf[Output]).isDefined
       val hasProduces = collect(m, classOf[Produce]).isDefined
 
-      if (hasInput || consumes.isDefined) {
-        inputConsume(hasInput, consumes)
-      }
+      if (hasInput || consumes.isDefined || hasOutputs || hasProduces) {
+        val isGlobalField = hasInput || hasOutputs
+        val isLocalField = consumes.isDefined || hasProduces
 
-      if (hasOutputs || hasProduces) {
-        outputProduce(hasOutputs, hasProduces)
-      }
+        val (glob_className, glob_keyName, glob_keyVal) = getKeyName(c, m, false)
+        val globalKeyName = glob_className + "." + glob_keyName
 
-        def outputProduce(hasOutput : Boolean, hasProduce : Boolean) {
-          val modsetname = "modSet" + cap(m.getName)
-          val extGetName = "get" + cap(m.getName)
-          var rt = ModuleGenerator.this.getActualRetTypeName(m)
+        val (loc_className, loc_keyName, loc_keyVal) = getKeyName(c, m, true)
+        val localKeyName = loc_className + "." + loc_keyName
 
-          val extGetst = stg.getInstanceOf("get_mod_method")
-          extGetst.add("mname", extGetName)
-          extGetst.add("rtype", rt)
+        val rt = ModuleGenerator.this.getActualRetTypeName(m)
 
-          var smmst = stg.getInstanceOf("set_mod_method")
-          smmst.add("mname", modsetname)
-          smmst.add("pname", m.getName)
-          smmst.add("rtype", rt)
-          if (hasOutput) {
-            val keyname = glob_className + "." + glob_keyName
+        // each annotated field yields a getter and setter in the companion
+        val companionGetter = stg.getInstanceOf("get_mod_method")
+        val companionGetName = "get" + cap(m.getName)
+        companionGetter.add("mname", companionGetName)
+        companionGetter.add("rtype", rt)
+        modLevel.add("mod_meth", companionGetter)
 
-            val akvst = stg.getInstanceOf("assign_key_value")
-            akvst.add("key", keyname)
-            akvst.add("pname", m.getName)
-            smmst.add("assign_key_value", akvst)
+        val companionSetter = stg.getInstanceOf("set_mod_method")
+        val companionSetName = "set" + cap(m.getName)
+        companionSetter.add("mname", companionSetName)
+        companionSetter.add("pname", m.getName)
+        companionSetter.add("rtype", rt)
+        modLevel.add("mod_meth", companionSetter)
 
-            val icst = stg.getInstanceOf("inputchk")
-            icst.add("key", keyname)
-            icst.add("rtype", rt)
-            extGetst.add("inputchk", icst)
-          }
-          if (hasProduce) {
-            val keyname = loc_className + "." + loc_keyName
-            val akvst = stg.getInstanceOf("assign_key_value")
-            akvst.add("key", keyname)
-            akvst.add("pname", m.getName)
-            smmst.add("assign_key_value", akvst)
+        {
+          // each annotated field yields a consumer and producer view
+          val consumerGet = stg.getInstanceOf("get_trait_method")
+          consumerGet.add("modname", modName)
+          consumerGet.add("modget", companionGetName)
+          consumerGet.add("mname", m.getName)
+          consumerGet.add("rtype", rt)
+          consumptions :+= consumerGet
 
-            val icst = stg.getInstanceOf("inputchk")
-            icst.add("key", keyname)
-            icst.add("rtype", rt)
-            extGetst.add("inputchk", icst)
-          }
-
-          modLevel.add("mod_meth", extGetst)
-          modLevel.add("mod_meth", smmst)
-
-          val stm = stg.getInstanceOf("set_trait_method")
-
-          stm.add("mname", m.getName)
-          stm.add("modname", modName)
-          stm.add("modset", modsetname)
-          stm.add("rtype", rt)
-          modLevel.add("trait_meth", stm);
-
-          val oknfst = stg.getInstanceOf("outdef_key_not_found")
-          oknfst.add("mname", m.getName);
-          modLevel.add("outdef", oknfst)
-
-          if (hasProduce) doit(false, loc_className, loc_keyName, loc_keyVal)
-          if (hasOutput) doit(true, glob_className, glob_keyName, glob_keyVal)
-
-            def doit(isProduce : Boolean, cn : String, kn : String, kv : String) {
-              val keyst = stg.getInstanceOf("key")
-              keyst.add("value", kv)
-              keyst.add("keyname", kn)
-              keys += keyst.render
-              oknfst.add("key", cn + "." + kn);
-
-              val outdefhst = stg.getInstanceOf("outdef_is_valid_entry")
-              outdefhst.add("rtype", rt)
-              outdefhst.add("key", cn + "." + kn)
-              modLevel.add("outdef", outdefhst);
-            }
+          val producerSet = stg.getInstanceOf("set_trait_method")
+          producerSet.add("mname", m.getName)
+          producerSet.add("modname", modName)
+          producerSet.add("setter_name", companionSetName)
+          producerSet.add("getter_name", companionGetName)
+          producerSet.add("rtype", rt)
+          productions :+= producerSet
         }
 
-        def inputConsume(hasInput : Boolean, hasConsume : scala.Option[Consume]) {
-          val modGetName = "modGet" + cap(m.getName)
-          val extSetName = "set" + cap(m.getName)
+        if (isGlobalField) {
+          // add a set entry in companion
+          val akvst = stg.getInstanceOf("assign_key_value")
+          akvst.add("key", globalKeyName)
+          akvst.add("pname", m.getName)
+          companionSetter.add("assign_key_value", akvst)
 
-          val extSetst = stg.getInstanceOf("set_mod_method")
-          val gmmst = stg.getInstanceOf("get_mod_method")
-          val gtmst = stg.getInstanceOf("get_trait_method")
-          val idst = stg.getInstanceOf("indef")
+          // add a get entry in companion
+          val icst = stg.getInstanceOf("inputchk")
+          icst.add("key", globalKeyName)
+          icst.add("rtype", rt)
+          companionGetter.add("inputchk", icst)
 
-          var rt = getActualRetTypeName(m)
+          val keyst = stg.getInstanceOf("key")
+          keyst.add("value", glob_keyVal)
+          keyst.add("keyname", glob_keyName)
+          keys += keyst.render
+        }
 
-          extSetst.add("mname", extSetName)
-          extSetst.add("rtype", rt)
-          extSetst.add("pname", m.getName)
+        if (isLocalField) {
+          val akvst = stg.getInstanceOf("assign_key_value")
+          akvst.add("key", loc_keyName)
+          akvst.add("pname", m.getName)
+          companionSetter.add("assign_key_value", akvst)
 
-          val init = stg.getInstanceOf("init")
+          val icst = stg.getInstanceOf("inputchk")
+          icst.add("key", localKeyName)
+          icst.add("rtype", rt)
+          companionGetter.add("inputchk", icst)
 
-          if (ci.methodDefValues.contains(m.getName)) {
-            val (index, value) = ci.methodDefValues(m.getName)
-            init.add("set_mod_name", extSetName)
-            init.add("spec_name", c.getName)
-            init.add("mname", m.getName)
-            init.add("static_mname", "$lessinit$greater$default$" + index)
-            init.add("rtype", rt)
-            modLevel.add("init", init)
-          }
+          val keyst = stg.getInstanceOf("key")
+          keyst.add("value", loc_keyVal)
+          keyst.add("keyname", loc_keyName)
+          keys += keyst.render
+        }
 
-          gmmst.add("mname", modGetName)
-          gmmst.add("rtype", rt)
-          idst.add("mname", m.getName);
-          idst.add("rtype", rt);
+        if (hasInput || consumes.isDefined) {
+          inputConsume(hasInput, consumes)
+        }
 
-          gtmst.add("modname", modName)
-          gtmst.add("modget", modGetName)
-          gtmst.add("mname", m.getName)
-          gtmst.add("rtype", rt)
+        if (hasOutputs || hasProduces) {
+          outputProduce(hasOutputs, hasProduces)
+        }
 
-          if (hasInput) {
-            val gkeyname = glob_className + "." + glob_keyName
+          def outputProduce(hasOutput : Boolean, hasProduce : Boolean) {
+            val traitSet = stg.getInstanceOf("set_trait_method")
+            traitSet.add("mname", m.getName)
+            traitSet.add("modname", modName)
+            traitSet.add("setter_name", companionSetName)
+            traitSet.add("getter_name", companionGetName)
+            traitSet.add("rtype", rt)
+            modLevel.add("trait_meth", traitSet);
 
-            init.add("key", gkeyname)
+            val oknfst = stg.getInstanceOf("outdef_key_not_found")
+            oknfst.add("mname", m.getName);
+            modLevel.add("outdef", oknfst)
 
-            val consumchkst = stg.getInstanceOf("inputchk")
-            consumchkst.add("key", gkeyname)
-            consumchkst.add("rtype", rt)
-            gmmst.add("inputchk", consumchkst)
-            idst.add("key", gkeyname)
+            if (hasProduce) doit(false, localKeyName, loc_keyVal)
+            if (hasOutput) doit(true, globalKeyName, glob_keyVal)
 
-            val akvst = stg.getInstanceOf("assign_key_value")
-            akvst.add("key", gkeyname).add("pname", m.getName)
-            extSetst.add("assign_key_value", akvst)
+              def doit(isProduce : Boolean, key : String, kv : String) {
 
-            val keyst = stg.getInstanceOf("key")
-            keyst.add("keyname", glob_keyName)
-            keyst.add("value", glob_keyVal)
-            keys += keyst.render
-          }
+                oknfst.add("key", key);
 
-          hasConsume match {
-            case Some(s) =>
-              for (d <- s.value) {
-                methodExists(d, m) match {
-                  case Some(message) =>
-                    println("Error: " + message)
-                    System.exit(0)
-                  case None =>
-                }
-                val (d_className, d_keyName, d_keyValue) = getKeyName(d, m, true)
-                val dkeyname = d_className + "." + d_keyName
-
-                init.add("key", d_keyName)
-                modLevel.add("dep", d_className)
-
-                val consumchkst = stg.getInstanceOf("inputchk")
-                consumchkst.add("rtype", rt)
-                consumchkst.add("key", dkeyname)
-                gmmst.add("inputchk", consumchkst)
-                idst.add("key", dkeyname)
-
-                val akvst = stg.getInstanceOf("assign_key_value")
-                akvst.add("key", dkeyname).add("pname", m.getName)
-                extSetst.add("assign_key_value", akvst)
-
-                mineClass(d)
+                val outdefhst = stg.getInstanceOf("outdef_is_valid_entry")
+                outdefhst.add("rtype", rt)
+                outdefhst.add("key", key)
+                modLevel.add("outdef", outdefhst);
               }
-            case None =>
           }
 
-          modLevel.add("indef", idst)
-          modLevel.add("mod_meth", gmmst)
-          modLevel.add("mod_meth", extSetst)
-          modLevel.add("trait_meth", gtmst)
-        }
+          def inputConsume(hasInput : Boolean, hasConsume : scala.Option[Consume]) {
+
+            if (!hasOutputs && !hasProduces) {
+              val traitGet = stg.getInstanceOf("get_trait_method")
+              traitGet.add("modname", modName)
+              traitGet.add("modget", companionGetName)
+              traitGet.add("mname", m.getName)
+              traitGet.add("rtype", rt)
+              modLevel.add("trait_meth", traitGet)
+            }
+
+            val init = stg.getInstanceOf("init")
+
+            if (ci.methodDefValues.contains(m.getName)) {
+              val (index, value) = ci.methodDefValues(m.getName)
+              init.add("set_mod_name", companionSetName)
+              init.add("spec_name", c.getName)
+              init.add("mname", m.getName)
+              init.add("static_mname", "$lessinit$greater$default$" + index)
+              init.add("rtype", rt)
+              modLevel.add("init", init)
+            }
+
+            val idst = stg.getInstanceOf("indef")
+            idst.add("mname", m.getName);
+            idst.add("rtype", rt);
+
+            if (hasInput) {
+              init.add("key", globalKeyName)
+              idst.add("key", globalKeyName)
+            }
+
+            hasConsume match {
+              case Some(s) =>
+                for (d <- s.value) {
+                  methodExists(d, m) match {
+                    case Some(message) =>
+                      println("Error: " + message)
+                      System.exit(0)
+                    case None =>
+                  }
+                  val (d_className, d_keyName, d_keyValue) = getKeyName(d, m, true)
+                  val dkeyname = d_className + "." + d_keyName
+
+                  init.add("key", d_keyName)
+                  modLevel.add("dep", d_className)
+
+                  val consumchkst = stg.getInstanceOf("inputchk")
+                  consumchkst.add("rtype", rt)
+                  consumchkst.add("key", dkeyname)
+                  companionGetter.add("inputchk", consumchkst)
+
+                  idst.add("key", dkeyname)
+                  mineClass(d)
+                }
+              case None =>
+            }
+
+            modLevel.add("indef", idst)
+          }
+      }
     } // end for loop
+
+    if (!consumptions.isEmpty) {
+      // add a consumer view
+      val consumerst = stg.getInstanceOf("consumerProducer")
+      consumerst.add("type", "ConsumerView")
+      consumerst.add("cname", ci.modName)
+
+      for (c <- consumptions)
+        consumerst.add("entry", c)
+
+      modLevel.add("mod_meth", consumerst)
+    }
+
+    if (!productions.isEmpty) {
+      // add a production view
+      val producerst = stg.getInstanceOf("consumerProducer")
+      producerst.add("type", "ProducerView")
+      producerst.add("cname", ci.modName)
+
+      for (p <- productions)
+        producerst.add("entry", p)
+
+      modLevel.add("mod_meth", producerst)
+    }
 
     // now add the generated key defs to the top level
     keys.foreach(k => modLevel.add("key", k))
+
+    val topLevel = stg.getInstanceOf("topLevel")
     topLevel.add("module", modLevel)
-  }
-
-  def execute(poptions : PipelineMode) {
-
-    if (!poptions.typeSubstitutions.isEmpty) {
-      poptions.typeSubstitutions.foreach { t =>
-        val q = t.split("/")
-        assert(q.size == 2)
-        ModuleGenerator.this.typeSubMap(q(0)) = q(1)
-      }
-    }
-
-    val packs = msetEmpty[String]
-    poptions.classNames.foreach(cn => {
-      val clazz = Class.forName(cn)
-      mineClass(clazz)
-      packs += clazz.getPackage.getName
-    })
-    assert(packs.size == 1)
-    ModuleGenerator.this.topLevel.add("_package", packs.head)
-
-    ModuleGenerator.this.skeletons.foreach(s => println(s))
+    topLevel.add("_package", c.getPackage().getName)
+    topLevel.add("moduleName", c.getName)
+    topLevel.add("generatorName", this.getClass().getName)
 
     (isortedSetEmpty[String] ++ imports).foreach(i => {
-      if (i != "boolean") ModuleGenerator.this.topLevel.add("imports", cleanup(i))
+      if (i != "boolean") topLevel.add("imports", cleanup(i))
     })
 
-    if (!poptions.dir.isEmpty && !poptions.genClassName.isEmpty) {
-      val dir = poptions.dir
-      val genName = poptions.genClassName
+    if (!p.dir.isEmpty) {
+      val genName = c.getSimpleName + "Module.scala"
 
       try {
-        val fname = dir + "/" + genName + ".scala"
+        val fname = p.dir + "/" + genName
         val out = new PrintWriter(new FileWriter(fname))
         out.write(topLevel.render())
         out.close()
 
         println("Succesfully wrote: " + fname)
       } catch {
-        case s => println(s)
+        case s : Throwable => println(s)
       }
     } else {
       println(topLevel.render())
     }
+  }
+
+  def execute {
+
+    if (!p.typeSubstitutions.isEmpty) {
+      p.typeSubstitutions.foreach { t =>
+        val q = t.split("/")
+        assert(q.size == 2)
+        ModuleGenerator.this.typeSubMap(q(0)) = q(1)
+      }
+    }
+
+    for (cn <- p.classNames)
+      mineClass(Class.forName(cn))
+
+    moduleDefs.foreach(s => println(s))
   }
 }

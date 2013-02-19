@@ -39,19 +39,21 @@ trait SymbolResolverTestFramework extends TestFramework {
 
     test(title) {
       val job = PipelineJob()
-      val options = job.properties
-      
-      //val job = pipeline.compute(PipelineJob().sources(srcs))
-      PilarParserModule.setSources(options, srcs)
-      PilarSymbolResolverModule.setParallel(options, false)
-      PilarSymbolResolverModule.setHasExistingModels(options, None)
-      PilarSymbolResolverModule.setHasExistingSymbolTable(options, None)
+
+      {
+        import PilarParserModule.ProducerView._
+        import PilarSymbolResolverModule.ProducerView._
+        job.sources = srcs
+        job.parallel = false
+        job.hasExistingModels = None
+        job.hasExistingSymbolTable = None
+      }
       pipeline.compute(job)
-      
+
       val tags = job.tags
 
-      import PilarSymbolResolverDef.WARNING_TAG_TYPE
-      import PilarSymbolResolverDef.ERROR_TAG_TYPE
+      import PilarSymbolResolverModuleDef.WARNING_TAG_TYPE
+      import PilarSymbolResolverModuleDef.ERROR_TAG_TYPE
 
       if (warningF.isEmpty) {
         val f = { _ : Tag => true }
@@ -71,11 +73,10 @@ trait SymbolResolverTestFramework extends TestFramework {
           "Unexpecting a symbol resolution error but found:\n" +
             Tag.collateAsString(Tag.filter(ERROR_TAG_TYPE, f, tags)))
 
-        //val st = job.symbolTable
-        //val ms = job.models
-        val st = PilarSymbolResolverModule.getSymbolTable(job.properties)
-        val ms = PilarSymbolResolverModule.getModels(job.properties)
-        
+        import PilarSymbolResolverModule.ConsumerView._
+        val st = job.symbolTable
+        val ms = job.models
+
         assert(symtabF.forall { _(st) },
           "The symbol table does not satisfy the given constraint function(s)")
         val visitor =

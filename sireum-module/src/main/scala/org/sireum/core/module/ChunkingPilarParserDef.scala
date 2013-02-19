@@ -23,7 +23,7 @@ import org.sireum.pilar._
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object ChunkingPilarParserDef {
+object ChunkingPilarParserModuleDef {
   val ERROR_TAG_TYPE = MarkerType(
     "org.sireum.pilar.tag.error.parse",
     None,
@@ -37,7 +37,7 @@ object ChunkingPilarParserDef {
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class ChunkingPilarParserDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarParserModule {
+class ChunkingPilarParserModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarParserModule {
   val srcs = this.sources
   val result = marrayEmpty[Model]
   for (src <- srcs) {
@@ -54,6 +54,6 @@ class ChunkingPilarParserDef(val job : PipelineJob, info : PipelineJobModuleInfo
     new org.sireum.pilar.parser.PilarParser.ErrorReporter {
       def report(source : Option[FileResourceUri], line : Int,
                  column : Int, message : String) =
-        info.tags += Tag.toTag(source, line, column, message, PilarParserDef.ERROR_TAG_TYPE)
+        info.tags += Tag.toTag(source, line, column, message, PilarParserModuleDef.ERROR_TAG_TYPE)
     }
 }

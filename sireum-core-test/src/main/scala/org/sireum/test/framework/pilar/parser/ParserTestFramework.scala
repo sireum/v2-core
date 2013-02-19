@@ -109,11 +109,10 @@ trait ParserTestFramework extends TestFramework {
       val job = PipelineJob()
 
       {
-        import PilarSourcesModule._
+        import PilarSourcesModule.ProducerView._
         job.sources = ivector(source)
       }
 
-      //PilarParserModule.setSources(job.properties, ivector(source).toSeq)
       pipeline.compute(job)
       val tags = job.tags
 
@@ -121,7 +120,7 @@ trait ParserTestFramework extends TestFramework {
         assert(errorF.forall { f =>
           import PilarParserModule._
 
-          Tag.exists(org.sireum.core.module.PilarParserDef.ERROR_TAG_TYPE, f, tags)
+          Tag.exists(org.sireum.core.module.PilarParserModuleDef.ERROR_TAG_TYPE, f, tags)
         }, "The given error function(s) do not match anything")
       } else if (!tags.isEmpty) {
         assert(false,
@@ -134,7 +133,8 @@ trait ParserTestFramework extends TestFramework {
           else
             Visitor.buildEnd(Visitor.map(visitorF.toList, false), Visitor.map(visitorG.toList, false))
 
-        val model = PilarParserModule.getModels(job.properties)(0)
+        import PilarParserModule.ConsumerView._
+        val model = job.models(0)
         visitor(model)
       }
     }

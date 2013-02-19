@@ -23,8 +23,8 @@ import org.sireum.pipeline._
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object PilarSymbolResolverDef{
-    val ERROR_TAG_TYPE = MarkerType(
+object PilarSymbolResolverModuleDef {
+  val ERROR_TAG_TYPE = MarkerType(
     "org.sireum.pilar.tag.error.symtab",
     None,
     "Pilar Symbol Resolution Error",
@@ -44,7 +44,7 @@ object PilarSymbolResolverDef{
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class PilarSymbolResolverDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarSymbolResolverModule {
+class PilarSymbolResolverModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarSymbolResolverModule {
   val ms = this.models
   val par = this.parallel
   val fst = { _ : Unit => new ST }
@@ -73,9 +73,9 @@ class PilarSymbolResolverDef(val job : PipelineJob, info : PipelineJobModuleInfo
   class ST extends SymbolTable with SymbolTableProducer {
     st =>
 
-    import PilarSymbolResolverDef.ERROR_TAG_TYPE
-    import PilarSymbolResolverDef.WARNING_TAG_TYPE
-    
+    import PilarSymbolResolverModuleDef.ERROR_TAG_TYPE
+    import PilarSymbolResolverModuleDef.WARNING_TAG_TYPE
+
     val tables = SymbolTableData()
     val tags = marrayEmpty[LocationTag]
     var hasErrors = false

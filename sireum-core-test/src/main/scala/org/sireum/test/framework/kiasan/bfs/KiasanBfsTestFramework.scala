@@ -30,7 +30,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
   def Executing : this.type = this
 
   def file(fUri : FileResourceUri) = new KiasanBfsConfiguration(fUri)
-  
+
   def parallelMode = true
 
   def parallelThreshold : Int = 1
@@ -45,7 +45,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class ResultingStates(endStates : ISeq[S], errorStates : ISeq[S],
-      depthBoundExStates : ISeq[S])
+                             depthBoundExStates : ISeq[S])
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -114,19 +114,27 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
     protected def exe : ResultingStates = {
       val job = PipelineJob()
-      val options = job.properties
 
-      PilarParserModule.setSources(options, ivector(Right(source)))
-      PilarSymbolResolverModule.setParallel(options, true)
-      PilarSymbolResolverModule.setHasExistingModels(options, None)
-      PilarSymbolResolverModule.setHasExistingSymbolTable(options, None)
+      {
+        import PilarParserModule.ProducerView._
+        import PilarSymbolResolverModule.ProducerView._
+
+        job.sources = ivector(Right(source))
+        job.parallel = true
+        job.hasExistingModels = None
+        job.hasExistingSymbolTable = None
+      }
+
       pipeline.compute(job)
 
       val tags = job.tags
 
       tags should be('empty)
 
-      val st = PilarSymbolResolverModule.getSymbolTable(options)
+      val st = {
+        import PilarSymbolResolverModule.ConsumerView._
+        job.symbolTable
+      }
 
       var endStates = ivectorEmpty[S]
       var avStates = ivectorEmpty[S]
@@ -134,9 +142,9 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
       val ecs = extensions
 
       val kiasan = new KiasanBfs[S, R, C] {
-        
+
         def depthBound = _depthBound
-        
+
         def parallelMode = self.parallelMode
 
         def parallelThreshold = self.parallelThreshold
