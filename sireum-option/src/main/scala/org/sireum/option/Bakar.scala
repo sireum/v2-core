@@ -27,10 +27,8 @@ object TypeTarget extends Enum {
   sealed abstract class Type extends EnumElem
   object Ocaml extends Type
   object Coq extends Type
-  object Java extends Type
-  object Scala extends Type
 
-  def elements = ivector(Ocaml, Coq, Java, Scala)
+  def elements = ivector(Ocaml, Coq)
 }
 
 @Main(value = "type",
@@ -41,14 +39,8 @@ case class SireumBakarTypeMode(
   @Option(shortKey = "t", longKey = "type", desc = "")
   var typ : TypeTarget.Type = TypeTarget.Coq,
 
-  @Option(longKey = "dir", desc = "Destination directory")
-  var dir : String = "",
-
-  @Option(longKey = "packageName", desc = "Package Name for Java") 
-  var packageName : String = "",
-
-  @Arg(index = 0, value = "xml-schema") 
-  var xmlSchemaLoc : String = "")
+  @OptionalArg(index = 0, value = "Output file")
+  var outFile : String = "")
 
 object ProgramTarget extends Enum {
   sealed abstract class Type extends EnumElem
