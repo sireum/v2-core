@@ -202,12 +202,13 @@ process() ::= <<
           v = Some(true)          
         case s : org.sireum.util.Enum#EnumElem =>
           s.elements collectFirst
-          { case s if s.toString.toLowerCase == value.toLowerCase => s } match {
-          case Some(valid) =>
-            v = Some(valid)
-          case _ =>
-            addErrorTag(value + " is not a member")
-          }
+            { case e if e.toString.stripSuffix("\$").equalsIgnoreCase(value) => e } match {
+              case Some(valid) =>
+                v = Some(valid)
+              case _ =>
+                addErrorTag(value + " is not a valid choice for " + key + ".  Select one of [" +
+                    s.elements.map{s => s.toString.stripSuffix("\$")}.mkString(", ") + "]")
+            }
         case s : Seq[_] =>
           v = Some(value.split(",").toList)
         case _ =>
