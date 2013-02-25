@@ -40,8 +40,8 @@ object Heap {
 
   @inline
   def isVarHid[S <: State[S] with Heap[S]](s : S, x : NameUser, hid : Int) = {
-    val o = s.variable(x)
-    o match {
+    import State.NameAccess._
+    s(x) match {
       case Heap.RV(rvhid, _) => rvhid == hid
       case _                 => false
     }

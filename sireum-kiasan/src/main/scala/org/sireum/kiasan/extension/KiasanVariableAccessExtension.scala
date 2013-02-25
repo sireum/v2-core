@@ -35,6 +35,7 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
     implicit fresh : (S, ResourceUri) => (S, V),
     rep : (S, V) --> V) : (S, NameUser) --> ISeq[(S, V)] = {
     case (s, x) =>
+      import State.NameAccess._
       s.variableOpt(x) match {
         case Some(v) => (s, rep(s, v))
         case _ =>
@@ -46,7 +47,9 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
   @inline
   def variableUpdate[S <: SS[S]](
     implicit rep : (S, V) --> V) : (S, NameUser, V) --> ISeq[S] = {
-    case (s, x, v) => s(x) = rep(s, v)
+    case (s, x, v) => 
+      import State.NameAccess._
+      s(x) = rep(s, v)
   }
 }
 

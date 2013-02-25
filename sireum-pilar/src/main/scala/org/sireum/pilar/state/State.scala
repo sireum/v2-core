@@ -22,15 +22,17 @@ object State {
 
   def uri(x : NameUser) = if (x.hasResourceInfo) x.uri else x.name
 
-  implicit class StateWithNameUserAccess[S <: State[S]](val s : S) {
-    def apply(x : NameUser) = variable(x)
-    def update(x : NameUser, value : Value) = variable(x, value)
-    def variable(x : NameUser) : Value = s.variable(uri(x))
-    def variable(x : NameUser, value : Value) : S = s.variable(uri(x), value)
-    def variableOpt(x : NameUser) = {
-      val varUri = uri(x)
-      if (s.hasVariableValue(varUri)) Some(s(varUri))
-      else None
+  object NameAccess {
+    implicit class StateWithNameUserAccess[S <: State[S]](val s : S) extends AnyVal {
+      def apply(x : NameUser) = variable(x)
+      def update(x : NameUser, value : Value) = variable(x, value)
+      def variable(x : NameUser) : Value = s.variable(uri(x))
+      def variable(x : NameUser, value : Value) : S = s.variable(uri(x), value)
+      def variableOpt(x : NameUser) = {
+        val varUri = uri(x)
+        if (s.hasVariableValue(varUri)) Some(s(varUri))
+        else None
+      }
     }
   }
 }
