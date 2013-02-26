@@ -44,7 +44,10 @@ object KiasanBooleanExtension extends ExtensionCompanion {
   private type KV = KiasanBooleanValue
 
   @inline
-  private implicit def re2r[S](p : (S, V)) = ivector(p)
+  private implicit def t2s[T](t : T) = ivector(t)
+
+  @inline
+  private implicit def v2e(v : Value) = ValueExp(v)
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
@@ -55,9 +58,11 @@ object KiasanBooleanExtension extends ExtensionCompanion {
   @inline
   def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, b : KV) =>
-      ivector((s.addPathCondition(ValueExp(b)).requestInconsistencyCheck(), true),
-        (s.addPathCondition(UnaryExp("!", ValueExp(b))).
-          requestInconsistencyCheck(), false))
+      import KiasanState.PathCondition._
+
+      ivector(
+        (s +? b, true),
+        (s +? UnaryExp("!", b), false))
   }
 
   @inline

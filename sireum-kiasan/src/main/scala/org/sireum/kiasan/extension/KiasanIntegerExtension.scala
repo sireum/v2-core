@@ -44,7 +44,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   import language.implicitConversions
 
   @inline
-  private implicit def re2r[S](p : (S, Value)) = ivector(p)
+  private implicit def t2s[T](t : T) = ivector(t)
 
   @inline
   final implicit def v2e(v : Value) : Exp = ValueExp(v)
@@ -57,8 +57,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   @inline
   def fresh[S <: KiasanStatePart[S]](s : S) = {
-    val (nextS, num) = s.fresh(KiasanIntegerExtension.Type)
-    (nextS, KI(num))
+    val (s2, num) = s.fresh(KiasanIntegerExtension.Type)
+    (s2, KI(num))
   }
 
   @inline
@@ -76,8 +76,9 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 
   @inline
   def binopAHelper[S <: KS[S]](s : S, v : V, opA : Op, w : V) : ISeq[(S, V)] = {
-    val (nextS, a) = fresh(s, KiasanIntegerExtension.Type)
-    (nextS.addPathCondition(BinaryExp("==", a, BinaryExp(opA, v, w))), a)
+    import KiasanState.PathCondition._
+    val (s2, a) = fresh(s, KiasanIntegerExtension.Type)
+    (s2 + BinaryExp("==", a, BinaryExp(opA, v, w)), a)
   }
 
   @inline
@@ -91,9 +92,10 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   @inline
   def binopRHelper[S <: KS[S]](
     b2v : Boolean => V, s : S, v : V, opR : Op, w : V) : ISeq[(S, Value)] = {
+    import KiasanState.PathCondition._
     ivector(
-      (s.addPathCondition(BinaryExp(opR, v, w)).requestInconsistencyCheck(), b2v(true)),
-      (s.addPathCondition(BinaryExp(comp(opR), v, w)).requestInconsistencyCheck(), b2v(false)))
+      (s +? BinaryExp(opR, v, w), b2v(true)),
+      (s +? BinaryExp(comp(opR), v, w), b2v(false)))
   }
 
   @inline
@@ -105,8 +107,9 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   def unopAHelper[S <: KS[S]](s : S, opA : Op, v : V) : ISeq[(S, V)] = {
     opA match {
       case "-" =>
-        val (nextS, a) = fresh(s, KiasanIntegerExtension.Type)
-        (nextS.addPathCondition(BinaryExp("==", a, UnaryExp(opA, v))), a)
+        import KiasanState.PathCondition._
+        val (s2, a) = fresh(s, KiasanIntegerExtension.Type)
+        (s2 + BinaryExp("==", a, UnaryExp(opA, v)), a)
       case "+" => (s, v)
     }
   }
@@ -114,10 +117,11 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   @inline
   def cond[S <: KS[S]] : (S, V) --> ISeq[(S, Boolean)] = {
     case (s, v : KV) =>
+      import KiasanState.PathCondition._
       val w = KonkritIntegerExtension.CI(SireumNumber(0))
       ivector(
-        (s.addPathCondition(BinaryExp("==", v, w)).requestInconsistencyCheck(), true),
-        (s.addPathCondition(BinaryExp("!=", v, w)).requestInconsistencyCheck(), false))
+        (s +? BinaryExp("==", v, w), true),
+        (s +? BinaryExp("!=", v, w), false))
   }
 
   val comp =

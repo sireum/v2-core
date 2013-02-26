@@ -27,6 +27,24 @@ object KiasanState {
       case _ =>
     }
   }
+
+  object PathCondition {
+    final implicit class KiasanStateWithPcAccess[S <: KiasanStatePart[S]](
+        val s : S) extends AnyVal {
+      
+      @inline
+      def +(v : Value) : S = s.addPathCondition(ValueExp(v))
+      
+      @inline
+      def +(e : Exp) : S = s.addPathCondition(e)  
+
+      @inline
+      def +?(e : Exp) : S = s.addPathCondition(e).requestInconsistencyCheck()
+      
+      @inline
+      def ++(es : Exp*) : S = es.foldLeft(s)(_ + _)  
+    }
+  }
 }
 
 /**
