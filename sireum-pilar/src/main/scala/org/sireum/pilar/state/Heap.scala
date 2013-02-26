@@ -84,19 +84,11 @@ object Heap {
     }
   }
 
-  object InfoAccess {
+  object ElementAccess {
     implicit class H[S <: Heap[S]](val s : S) extends AnyVal {
       @inline
       def apply[T](rvk : (ReferenceValue, AnyRef)) : T =
         s.lookup(rvk._1, rvk._2)
-
-      @inline
-      def lookupOrElse[T](rv : ReferenceValue, k : AnyRef, dflt : => T) =
-        s.lookupOrElse(rv, k, dflt)
-
-      @inline
-      def lookupOrElseUpdate[T](rv : ReferenceValue, k : AnyRef, dflt : => T) =
-        s.lookupOrElseUpdate(rv, k, dflt)
 
       @inline
       def update[T](rvk : (ReferenceValue, AnyRef), v : T) =
