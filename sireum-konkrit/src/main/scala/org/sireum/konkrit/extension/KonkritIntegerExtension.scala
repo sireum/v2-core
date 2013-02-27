@@ -73,13 +73,13 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   private implicit def re2r[S](p : (S, V)) = ivector(p)
 
   @inline
-  private implicit def bigint2v(n : BigInt) = CI(SireumNumber(n))
+  implicit def bigint2v(n : BigInt) = CI(SireumNumber(n))
 
   @inline
-  private implicit def integer2v(n : Integer) = CI(n)
+  implicit def integer2v(n : Integer) = CI(n)
 
   @inline
-  private implicit def int2v(n : Int) = CI(SireumNumber(n))
+  implicit def int2v(n : Int) = CI(SireumNumber(n))
 
   @inline
   private implicit def cv2integer(c : CV) = c.asInteger
