@@ -31,16 +31,13 @@ object BinaryOpMode extends Enum {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SemanticsExtensionConsumer[S, V, R, C, SR] {
-  def isNativeIndexValue(v : V) : Boolean = toNativeIndex.isDefinedAt(v)
-  def toNativeIndex : V --> Integer
-
   def defaultValue : (S, ResourceUri) --> R
-  def trueLiteral : S --> R
-  def falseLiteral : S --> R
-  def intLiteral : (S, Int) --> R
-  def longLiteral : (S, Long) --> R
-  def integerLiteral : (S, BigInt) --> R
-  def nullLiteral : S --> R
+  def trueLiteral : S --> (S, V)
+  def falseLiteral : S --> (S, V)
+  def intLiteral : (S, Int) --> (S, V)
+  def longLiteral : (S, Long) --> (S, V)
+  def integerLiteral : (S, BigInt) --> (S, V)
+  def nullLiteral : S --> (S, V)
   def cond : (S, V) --> C
   def tupleDecon : (S, V) --> (S, ISeq[V])
   def variable : (S, NameUser) --> R
@@ -82,15 +79,14 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
  */
 trait SemanticsExtensionInit[S, V, R, C, SR]
     extends SemanticsExtensionConsumer[S, V, R, C, SR] {
-  def addNativeIndexConverter(convF : V --> Integer)
   def addDefaultValue(valueF : (S, ResourceUri) --> R)
-  def addTrueLiteral(trueF : S --> R)
-  def addFalseLiteral(falseF : S --> R)
+  def addTrueLiteral(trueF : S --> (S, V))
+  def addFalseLiteral(falseF : S --> (S, V))
   def addCond(condF : (S, V) --> C)
-  def addIntLiteral(intF : (S, Int) --> R)
-  def addLongLiteral(intF : (S, Long) --> R)
-  def addIntegerLiteral(integerF : (S, BigInt) --> R)
-  def addNullLiteral(nullF : S --> R)
+  def addIntLiteral(intF : (S, Int) --> (S, V))
+  def addLongLiteral(intF : (S, Long) --> (S, V))
+  def addIntegerLiteral(integerF : (S, BigInt) --> (S, V))
+  def addNullLiteral(nullF : S --> (S, V))
   def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V]))
   def addVariableLookup(variableF : (S, NameUser) --> R)
   def addFieldLookup(fieldF : (S, V, NameUser) --> R)
@@ -127,14 +123,6 @@ trait SemanticsExtensionInit[S, V, R, C, SR]
 trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     extends SemanticsExtensionInit[S, V, R, C, SR] {
 
-  protected val _nativeIndexConverterA : MArray[V --> Integer] = marrayEmpty
-  val toNativeIndex : V --> Integer = PartialFunctionUtil.orElses(_nativeIndexConverterA)
-
-  def addNativeIndexConverter(convF : V --> Integer) {
-    require(!PartialFunctionUtil.empty.equals(convF))
-    _nativeIndexConverterA += convF
-  }
-
   protected val _defaultA : MArray[(S, ResourceUri) --> R] = marrayEmpty
   val defaultValue : (S, ResourceUri) --> R = PartialFunctionUtil.orElses(_defaultA)
 
@@ -143,50 +131,50 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     _defaultA += valueF
   }
 
-  protected val _trueLiteralA : MArray[S --> R] = marrayEmpty
-  val trueLiteral : S --> R = PartialFunctionUtil.orElses(_trueLiteralA)
+  protected val _trueLiteralA : MArray[S --> (S, V)] = marrayEmpty
+  val trueLiteral : S --> (S, V) = PartialFunctionUtil.orElses(_trueLiteralA)
 
-  def addTrueLiteral(trueF : S --> R) {
+  def addTrueLiteral(trueF : S --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(trueF))
     _trueLiteralA += trueF
   }
 
-  protected val _falseLiteralA : MArray[S --> R] = marrayEmpty
-  val falseLiteral : S --> R = PartialFunctionUtil.orElses(_falseLiteralA)
+  protected val _falseLiteralA : MArray[S --> (S, V)] = marrayEmpty
+  val falseLiteral : S --> (S, V) = PartialFunctionUtil.orElses(_falseLiteralA)
 
-  def addFalseLiteral(falseF : S --> R) {
+  def addFalseLiteral(falseF : S --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(falseF))
     _falseLiteralA += falseF
   }
 
-  protected val _intLiteralA : MArray[(S, Int) --> R] = marrayEmpty
-  val intLiteral : (S, Int) --> R = PartialFunctionUtil.orElses(_intLiteralA)
+  protected val _intLiteralA : MArray[(S, Int) --> (S, V)] = marrayEmpty
+  val intLiteral : (S, Int) --> (S, V) = PartialFunctionUtil.orElses(_intLiteralA)
 
-  def addIntLiteral(intF : (S, Int) --> R) {
+  def addIntLiteral(intF : (S, Int) --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(intF))
     _intLiteralA += intF
   }
 
-  protected val _longLiteralA : MArray[(S, Long) --> R] = marrayEmpty
-  val longLiteral : (S, Long) --> R = PartialFunctionUtil.orElses(_longLiteralA)
+  protected val _longLiteralA : MArray[(S, Long) --> (S, V)] = marrayEmpty
+  val longLiteral : (S, Long) --> (S, V) = PartialFunctionUtil.orElses(_longLiteralA)
 
-  def addLongLiteral(longF : (S, Long) --> R) {
+  def addLongLiteral(longF : (S, Long) --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(longF))
     _longLiteralA += longF
   }
 
-  protected val _integerLiteralA : MArray[(S, BigInt) --> R] = marrayEmpty
-  val integerLiteral : (S, BigInt) --> R = PartialFunctionUtil.orElses(_integerLiteralA)
+  protected val _integerLiteralA : MArray[(S, BigInt) --> (S, V)] = marrayEmpty
+  val integerLiteral : (S, BigInt) --> (S, V) = PartialFunctionUtil.orElses(_integerLiteralA)
 
-  def addIntegerLiteral(integerF : (S, BigInt) --> R) {
+  def addIntegerLiteral(integerF : (S, BigInt) --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(integerF))
     _integerLiteralA += integerF
   }
 
-  protected val _nullLiteralA : MArray[S --> R] = marrayEmpty
-  val nullLiteral : S --> R = PartialFunctionUtil.orElses(_nullLiteralA)
+  protected val _nullLiteralA : MArray[S --> (S, V)] = marrayEmpty
+  val nullLiteral : S --> (S, V) = PartialFunctionUtil.orElses(_nullLiteralA)
 
-  def addNullLiteral(nullF : S --> R) {
+  def addNullLiteral(nullF : S --> (S, V)) {
     require(!PartialFunctionUtil.empty.equals(nullF))
     _nullLiteralA += nullF
   }
@@ -609,20 +597,17 @@ object ExtensionMiner {
       case ann : Literal =>
         val c = ann.value
         if (c == classOf[Boolean]) {
-          val pf = m.invoke(ext).asInstanceOf[S --> R]
+          val pf = m.invoke(ext).asInstanceOf[S --> (S, V)]
           if (ann.isTrue) sei.addTrueLiteral(pf)
           else sei.addFalseLiteral(pf)
         } else if (c == classOf[BigInt])
-          sei.addIntegerLiteral(m.invoke(ext).asInstanceOf[(S, BigInt) --> R])
+          sei.addIntegerLiteral(m.invoke(ext).asInstanceOf[(S, BigInt) --> (S, V)])
         else if (c == classOf[Int])
-          sei.addIntLiteral(m.invoke(ext).asInstanceOf[(S, Int) --> R])
+          sei.addIntLiteral(m.invoke(ext).asInstanceOf[(S, Int) --> (S, V)])
         else if (c == classOf[Long])
-          sei.addLongLiteral(m.invoke(ext).asInstanceOf[(S, Long) --> R])
+          sei.addLongLiteral(m.invoke(ext).asInstanceOf[(S, Long) --> (S, V)])
         else if (c == classOf[Object])
-          sei.addNullLiteral(m.invoke(ext).asInstanceOf[S --> R])
-      case ann : NativeIndex =>
-        val extF = m.invoke(ext).asInstanceOf[V --> Integer]
-        sei.addNativeIndexConverter(extF)
+          sei.addNullLiteral(m.invoke(ext).asInstanceOf[S --> (S, V)])
       case ann : Cond =>
         val extF = m.invoke(ext).asInstanceOf[(S, V) --> C]
         sei.addCond(extF)

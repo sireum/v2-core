@@ -9,11 +9,20 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.pilar.state
 
 import org.sireum.util._
+import org.sireum.util.math._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object Value
+object Value {
+  def toInteger : Value --> Integer = {
+    case v : IsInteger => v.asInteger
+  }
+
+  def toBoolean : Value --> Boolean = {
+    case v : IsBoolean => v.asBoolean
+  }
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

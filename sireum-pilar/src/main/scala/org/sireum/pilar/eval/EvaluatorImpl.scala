@@ -506,15 +506,15 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     case (s, ValueExp(v)) =>
       ivector((s, ec.valueToV(v)))
     case (s, LiteralExp(_, b : Boolean, _)) =>
-      if (b) sec.trueLiteral(s) else sec.falseLiteral(s)
+      ivector(if (b) sec.trueLiteral(s) else sec.falseLiteral(s))
     case (s, LiteralExp(_, n : Int, _)) =>
-      sec.intLiteral(s, n)
+      ivector(sec.intLiteral(s, n))
     case (s, LiteralExp(_, n : Long, _)) =>
-      sec.longLiteral(s, n)
+      ivector(sec.longLiteral(s, n))
     case (s, LiteralExp(_, n : BigInt, _)) =>
-      sec.integerLiteral(s, n)
+      ivector(sec.integerLiteral(s, n))
     case (s, LiteralExp(_, null, _)) =>
-      sec.nullLiteral(s)
+      ivector(sec.nullLiteral(s))
     case (s, TupleExp(Seq(e))) =>
       eval(s, e)
     case (s, UnaryExp(op, e)) =>

@@ -85,11 +85,6 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   private implicit def cv2integer(c : CV) = c.asInteger
 
   @inline
-  def nativeIndexConverter : V --> Integer = {
-    case (v : CV) => v.asInteger
-  }
-
-  @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
     case (s, IntegerExtension.Type) => ivector((s, 0))
   }
@@ -101,8 +96,8 @@ object KonkritIntegerExtension extends ExtensionCompanion {
   }
 
   @inline
-  def literal[S] : (S, BigInt) --> ISeq[(S, V)] = {
-    case (s, n) => ivector((s, n))
+  def literal[S] : (S, BigInt) --> (S, V) = {
+    case (s, n) => (s, n)
   }
 
   @inline
@@ -154,9 +149,6 @@ trait KonkritIntegerExtension[S]
   import KonkritIntegerExtension._
 
   val uriPath = UriUtil.classUri(this)
-
-  @NativeIndex
-  val nativeIndexConverter = KonkritIntegerExtension.nativeIndexConverter
 
   @DefaultValueProvider
   val defValue = KonkritIntegerExtension.defValue

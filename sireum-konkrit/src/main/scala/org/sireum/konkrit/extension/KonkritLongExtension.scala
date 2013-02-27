@@ -83,11 +83,6 @@ object KonkritLongExtension extends ExtensionCompanion {
   private implicit def cv2long(c : CV) = c.value
 
   @inline
-  def nativeIndexConverter : V --> Integer = {
-    case (v : CV) => SireumNumber(v)
-  }
-
-  @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {
     case (s, LongExtension.Type) => (s, CLong(0))
   }
@@ -99,7 +94,7 @@ object KonkritLongExtension extends ExtensionCompanion {
   }
 
   @inline
-  def literal[S] : (S, Long) --> ISeq[(S, V)] = {
+  def literal[S] : (S, Long) --> (S, V) = {
     case (s, n) => (s, CLong(n))
   }
 
@@ -152,9 +147,6 @@ trait KonkritLongExtension[S]
   import KonkritLongExtension._
 
   val uriPath = UriUtil.classUri(this)
-
-  @NativeIndex
-  val nativeIndexConverter = KonkritLongExtension.nativeIndexConverter
 
   @DefaultValueProvider
   val defValue = KonkritLongExtension.defValue

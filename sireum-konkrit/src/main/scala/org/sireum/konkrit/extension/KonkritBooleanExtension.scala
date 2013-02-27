@@ -85,10 +85,10 @@ object KonkritBooleanExtension extends ExtensionCompanion {
   }
 
   @inline
-  def trueLit[S] : S --> ISeq[(S, V)] = { case s => (s, TT) }
+  def trueLit[S] : S --> (S, V) = { case s => (s, TT) }
 
   @inline
-  def falseLit[S] : S --> ISeq[(S, V)] = { case s => (s, FF) }
+  def falseLit[S] : S --> (S, V) = { case s => (s, FF) }
 
   @inline
   def defValue[S] : (S, ResourceUri) --> ISeq[(S, V)] = {

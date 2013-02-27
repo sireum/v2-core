@@ -31,7 +31,6 @@ package object extension {
   type LBinaries = org.sireum.extension.annotation.LBinaries @getter
   type LBinary = org.sireum.extension.annotation.LBinary @getter
   type Literal = org.sireum.extension.annotation.Literal @getter
-  type NativeIndex = org.sireum.extension.annotation.NativeIndex @getter
   type NewList = org.sireum.extension.annotation.NewList @getter
   type NewObject = org.sireum.extension.annotation.NewObject @getter
   type ProcExt = org.sireum.extension.annotation.ProcExt @getter
