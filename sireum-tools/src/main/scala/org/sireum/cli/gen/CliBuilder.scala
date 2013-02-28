@@ -282,15 +282,13 @@ class CliBuilder {
   def validate(c : Class[_], args : List[(Method, Arg, _)], optArgs : List[(Method, OptionalArg, _)],
                varArg : List[(Method, Args, _)]) {
 
-    if (args.isEmpty && varArg.isEmpty) {
-      tags += OptionUtil.genTag(OptionUtil.ErrorMarker, ("No arguments provided for %s".format(c.getName)))
-    } else if (!optArgs.isEmpty) {
+    if (!optArgs.isEmpty) {
       if (!varArg.isEmpty) {
         tags += OptionUtil.genTag(OptionUtil.ErrorMarker,
           ("Annotations @OptionalArg and @Args cannot appear in the same class: %s".format(c.getName)))
       }
 
-      if (args(args.length - 1)._2.index >= optArgs.head._2.index) {
+      if (!args.isEmpty && args(args.length - 1)._2.index >= optArgs.head._2.index) {
         tags += OptionUtil.genTag(OptionUtil.ErrorMarker,
           ("Optional arguments must occur after required arguments: %s".format(c.getName)))
       }
