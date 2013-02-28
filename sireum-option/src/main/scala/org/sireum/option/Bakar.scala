@@ -59,8 +59,8 @@ case class SireumBakarProgramMode(
   @Option(shortKey = "p", longKey = "program", desc = "")
   var typ : ProgramTarget.Type = ProgramTarget.Coq,
 
-  @Option(longKey = "dir", desc = "Destination directory")
-  var destDir : String = "",
-
   @Arg(index = 0, value = "src-files")
-  var srcFiles : ISeq[String] = ivectorEmpty)
+  var srcFiles : ISeq[String] = ivectorEmpty,
+
+  @OptionalArg(index = 1, value = "Output file")
+  var outFile : String = "")
