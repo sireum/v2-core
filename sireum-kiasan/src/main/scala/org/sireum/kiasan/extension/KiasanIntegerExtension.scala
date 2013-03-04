@@ -47,7 +47,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
   private implicit def t2s[T](t : T) = ivector(t)
 
   @inline
-  final implicit def v2e(v : Value) : Exp = ValueExp(v)
+  protected final implicit def v2e(v : Value) : Exp = ValueExp(v)
 
   @inline
   def cast[S] : (S, V, ResourceUri) --> ISeq[(S, V)] = {
