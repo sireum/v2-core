@@ -1,0 +1,607 @@
+/******************************************************************************
+ * Copyright (c) 2007 Robby, Kansas State University, and others.             *
+ * All rights reserved. This program and the accompanying materials           *
+ * are made available under the terms of the Eclipse Public License v1.0      *
+ * which accompanies this distribution, and is available at                   *
+ * http://www.eclipse.org/legal/epl-v10.html                                  *
+ *                                                                            *
+ * Contributors:                                                              *
+ *     Robby - initial design and implementation                              *
+ ******************************************************************************/
+
+group PILAR_MODEL;
+
+model(annotationList, importPackage, packageElement, packageDeclaration) ::= <<
+$if(annotationList)$$annotationList$
+
+$endif$
+$packageDeclaration; separator="\n\n"$
+>>
+
+annotationListNoIndent(annotation) ::= <<
+
+$annotation; separator="\n"$
+>>
+
+annotationList(annotation) ::= <<
+
+    $annotation; separator="\n"$
+>>
+
+annotation(ID, annotationParam, annotationParams) ::= <<
+@$ID$$if(annotationParam)$ $annotationParam$$endif$$if(annotationParams)$
+
+  ($annotationParams$)
+$endif$
+>>
+
+annotationParams(annotationParam) ::= <<
+   $annotationParam; separator=",\n"$
+>>
+
+annotationParam(ID, annotationOrExp) ::= <<
+$if(ID)$$ID$ = $endif$$annotationOrExp$
+>>
+
+importPackage(name, annotationList) ::= <<
+import $name$$annotationList$;
+>>
+
+packageDeclaration(name, annotationList, packageElement) ::= <<
+$if(name)$
+package $name$$annotationList$;
+
+
+$endif$
+$packageElement; separator="\n\n"$
+>>
+
+constDeclaration(ID, annotationList, constElement) ::= <<
+const $ID$$annotationList$ {
+  $constElement; separator="\n\n"$
+}
+>>
+
+constElement(ID, exp, annotationList) ::= <<
+$ID$ = $exp$$annotationList$;
+>>
+
+enumDeclaration(ID, annotationList, enumElement) ::= <<
+enum $ID$$annotationList$ {
+  $enumElement; separator=", "$
+}
+>>
+
+enumElement(ID, annotationList) ::= <<
+$ID$$annotationList$
+>>
+
+typealiasDeclaration(type, ID, annotationList) ::= <<
+typealias $type$ $ID$$annotationList$;
+>>
+
+recordDeclaration(abstract, ID, typeVarTuple, annotationList, extendClause, attribute) ::= <<
+record$abstract$ $ID$$typeVarTuple$$annotationList$$if(extendClause)$
+    
+  $extendClause$ {$if(attribute)$
+    
+
+  $attribute; separator="\n\n"$
+}$else$}
+$endif$
+$else$ {$if(attribute)$
+
+  $attribute; separator="\n\n"$
+}$else$}
+$endif$
+$endif$
+>>
+
+typeVarTuple(typeVar) ::= <<
+<$typeVar; separator=", "$>
+>>
+
+typeVar(TYPEVARID, annotationList) ::= <<
+$TYPEVARID$$annotationList$
+>>
+
+extendClause(extendClauseElement) ::= <<
+extends
+  $extendClauseElement; separator=",\n"$
+>>
+
+extendClauseElement(name, typeTuple, annotationList) ::= <<
+$name$$typeTuple$$annotationList$
+>>
+
+typeTuple(type) ::= <<
+<$type; separator=", "$>
+>>
+
+attribute(type, ID, annotationList, name) ::= <<
+$if(type)$$type$ $endif$$ID$$annotationList$$if(name)$ = $name$$endif$;
+>>
+
+globalVarDeclaration(type, GLOBALID, annotationList) ::= <<
+global$if(type)$ $type$$endif$ $GLOBALID$$annotationList$;
+>>
+
+procedureDeclaration(typeVarTuple, literal, name, constID, type, ID, params, annotationList, body) ::= <<
+procedure$typeVarTuple$$if(literal)$ active[$literal$]$endif$$if(type)$ $type$$endif$ $ID$$if(params)$ ($params$)$endif$$annotationList$ $body$
+>>
+
+params(param) ::= <<
+
+        $param;separator=",\n"$
+>>
+
+param(type, ID, variable, annotationList) ::= <<
+$type$ $ID$$if(variable)$ ...$endif$$annotationList$
+>>
+
+paramTuple(params2) ::= <<
+($params2$)
+>>
+
+params2(param) ::= <<
+ $param;separator=",\n"$
+>>
+
+virtualSetDeclaration(ID, annotationList, vsetElement) ::= <<
+vset $ID$$annotationList$ {
+  $vsetElement; separator=", "$
+}
+>>
+
+vsetElement(name, annotationList) ::= <<
+$name$$annotationList$
+>>
+
+funexpDeclaration(ID, annotationList, funExp) ::= <<
+fun $ID$$annotationList$ =
+    $funExp$;
+>>
+
+extDeclaration(typeVarTuple, ID, annotationList, extElement) ::= <<
+extension$typeVarTuple$ $ID$$annotationList$ {
+  $extElement; separator="\n\n"$
+}
+>>
+
+typeExtension(typeVarTuple, ID, annotationList, extendClause, typeExtensionMember) ::= <<
+typedef$typeVarTuple$ $ID$$annotationList$$if(extendClause)$
+    
+  $extendClause$ {$if(typeExtensionMember)$
+    
+
+  $typeExtensionMember; separator="\n\n"$
+}$else$}
+$endif$
+$else$ {$if(typeExtensionMember)$
+
+  $typeExtensionMember; separator="\n\n"$
+}$else$}
+$endif$
+$endif$
+
+>>
+
+typeExtensionAttributeBinding(id1, id2, annotationList) ::= <<
+$id1$ = $id2$$annotationList$;
+>>
+
+actionExtension(typeVarTuple, callback, ID, extParams, annotationList) ::= <<
+actiondef$typeVarTuple$$callback$ $ID$$if(extParams)$ $extParams$$endif$$annotationList$;
+>>
+
+expExtension(typeVarTuple, type, callback, ID, extParams, annotationList) ::= <<
+expdef$typeVarTuple$$if(type)$ $type$$endif$$callback$ $ID$$if(extParams)$ $extParams$$endif$$annotationList$;
+>>
+
+jumpExtension(typeVarTuple, ID, extParams, annotationList) ::= <<
+jumpdef$typeVarTuple$ $ID$$if(extParams)$ $extParams$$endif$$annotationList$;
+>>
+
+extParams(extParam) ::= <<
+($extParam;separator=", "$)
+>>
+
+extParam(lazy, type, ID, variable, annotationList) ::= <<
+$lazy$$if(type)$$type$$if(ID)$ $endif$$endif$$ID$$if(variable)$ ...$endif$$annotationList$
+>>
+
+body(localVarDeclaration, location, catchClause) ::= <<
+{
+$if(localVarDeclaration)$
+  local
+    $localVarDeclaration; separator="\n"$
+$endif$
+
+
+  $location; separator="\n\n"$
+$if(catchClause)$
+
+  $catchClause; separator="\n\n"$
+$endif$
+
+}
+>>
+
+localVarDeclaration(type, ID, annotationList) ::= <<
+$if(type)$$type$ $endif$$ID$$annotationList$;
+>>
+
+location(LOCID, annotationList, singleTransformation, choiceOrTransformation) ::= <<
+#$if(LOCID)$$LOCID$.$endif$$if(annotationList)$<$annotationList$>$endif$
+  $singleTransformation$$if(choiceOrTransformation)$
+
+  $choiceOrTransformation$$endif$
+>>
+
+choice(transformation) ::= <<
+:: $transformation; separator="\n | "$
+>>
+
+callTransformation(annotationList, guard, lhs, exp, jump) ::= <<
+$if(guard)$$if(annotationList)$($annotationList$)
+
+$endif$$guard$
+    call $if(lhs)$$lhs; separator=", "$ := $endif$$exp$;$if(jump)$
+
+    $jump$
+$endif$
+$else$$if(annotationList)$($annotationList$)
+
+$endif$call $if(lhs)$$lhs; separator=", "$ := $endif$$exp$;$if(jump)$
+
+$jump$
+$endif$
+$endif$
+>>
+
+guard(exp, annotationList) ::= <<
+$if(exp)$$exp$$annotationList$ +> $else$else$annotationList$ $endif$
+>>
+
+lhs(exp, annotationList) ::= <<
+$exp$$annotationList$
+>>
+
+seqTransformation(annotationList, guard, action, jump) ::= <<
+$if(guard)$
+$if(annotationList)$($annotationList$)
+
+$endif$$guard$$if(action)$
+
+    $action; separator="\n"$$if(jump)$
+
+$jump$$endif$$else$$jump$$endif$
+$else$
+$if(annotationList)$($annotationList$)
+
+$endif$$if(action)$$action; separator="\n"$$if(jump)$
+
+$jump$$endif$$else$$jump$$endif$
+$endif$
+>>
+
+assert(exp, annotationList) ::= <<
+assert $exp$$annotationList$;
+>>
+
+assume(exp, annotationList) ::= <<
+assume $exp$$annotationList$;
+>>
+
+throw(exp, annotationList) ::= <<
+throw $exp$$annotationList$;
+>>
+
+assignment(op, lhs, rhs, annotationList) ::= <<
+$lhs; separator=", "$ $op$ $rhs; separator=","$$annotationList$;
+>>
+
+rhs(exp, annotationList) ::= <<
+$exp$$annotationList$
+>>
+
+startThread(name, num, arg, annotationList) ::= <<
+start $name$$if(num)$[$num$]$endif$ $arg$$annotationList$;
+>>
+
+extCall(exp, annotationList) ::= <<
+$exp$$annotationList$;
+>>
+
+goto(ID, annotationList) ::= <<
+goto $ID$$annotationList$;
+>>
+
+return(exp, annotationList) ::= <<
+return$if(exp)$ $exp$$endif$$annotationList$;
+>>
+
+ifJump(ifThenJump, ifElseJump, annotationList) ::= <<
+$ifThenJump; separator="\nelse "$$if(ifElseJump)$
+
+$ifElseJump$$endif$$if(annotationList)$
+
+$annotationList$$endif$;
+>>
+
+ifThenJump(exp, annotationList, ID) ::= <<
+if $exp$ then$annotationList$ goto $ID$
+>>
+
+ifElseJump(annotationList, ID) ::= <<
+else$annotationList$ goto $ID$
+>>
+
+switchJump(exp, switchCaseJump, switchDefaultJump, annotationList) ::= <<
+switch $exp$
+  $switchCaseJump; separator="\n"$
+  $switchDefaultJump$$if(annotationList)$
+  
+  annotationList$endif$;
+>>
+
+switchCaseJump(exp, annotationList, ID) ::= <<
+case $exp$ =>$annotationList$ goto $ID$
+>>
+
+switchDefaultJump(annotationList, ID) ::= <<
+default =>$annotationList$ goto $ID$
+>>
+
+typeSwitchJump(exp, typeSwitchCaseJump, typeSwitchDefaultJump, annotationList) ::= <<
+typeswitch $exp$
+  $typeSwitchCaseJump; separator="\n"$
+  $typeSwitchDefaultJump$$if(annotationList)$
+  
+  annotationList$endif$;
+>>
+
+typeSwitchCaseJump(param, annotationList, ID) ::= <<
+case $param; separator=", "$ =>$annotationList$ goto $ID$
+>>
+
+typeSwitchDefaultJump(l, annotationList, ID) ::= <<
+default $l$ =>$annotationList$ goto $ID$
+>>
+
+jumpExtCall(exp, annotationList) ::= <<
+jmp $exp$$annotationList$;
+>>
+
+catchClause(annotationList, type, local, from, to, jump) ::= <<
+catch$annotationList$$if(type)$ $type$$endif$$if(local)$ $local$$endif$ from $from$ to $to$ $jump$
+>>
+
+ifExp(ifThenExp, ifElseExp) ::= <<
+
+    $ifThenExp; separator="\nelse "$
+    $ifElseExp$
+>>
+
+ifThenExp(exp, annotationList, exp2) ::= <<
+if $exp$ then$annotationList$ $exp2$
+>>
+
+ifElseExp(annotationList, exp) ::= <<
+else$annotationList$ $exp$
+>>
+
+switchExp(exp, switchCaseExp, switchDefaultExp) ::= <<
+
+    switch $exp$
+      $switchCaseExp; separator="\n"$
+      $switchDefaultExp$
+>>
+
+switchCaseExp(exp, annotationList, exp2) ::= <<
+case $exp$ =>$annotationList$ $exp2$
+>>
+
+switchDefaultExp(annotationList, exp) ::= <<
+default =>$annotationList$ $exp$
+>>
+
+typeSwitchExp(exp, typeSwitchCaseExp, typeSwitchDefaultExp, annotationList) ::= <<
+
+    typeswitch $exp$
+      $typeSwitchCaseExp; separator="\n"$
+      $typeSwitchDefaultExp$
+>>
+
+typeSwitchCaseExp(param, annotationList, exp) ::= <<
+case $param; separator=", "$ =>$annotationList$ $exp$
+>>
+
+typeSwitchDefaultExp(l, annotationList, exp) ::= <<
+default $l$ =>$annotationList$ $exp$
+>>
+
+binaryExp(binop, exp1, exp2) ::= <<
+$exp1$ $binop$ $exp2$
+>>
+
+unaryExp(unop, exp) ::= <<
+$unop$$exp$
+>>
+
+transExp(exp) ::= <<
+$exp$^+
+>>
+
+rtransExp(exp) ::= <<
+$exp$^*
+>>
+
+castExp(type, exp) ::= <<
+($type$) $exp$
+>>
+
+indexingExp(exp, expi) ::= <<
+$exp$[$expi; separator=", "$]
+>>
+
+accessExp(exp, ID) ::= <<
+$exp$.$ID$
+>>
+
+callExp(exp, arg) ::= <<
+$exp$ $arg$
+>>
+
+literal(literal) ::= <<
+$literal; separator="::"$
+>>
+
+tuple(annotatedExp) ::= <<
+($annotatedExp; separator=", "$)
+>>
+
+annotatedExp(exp, annotationList) ::= <<
+$exp$$annotationList$
+>>
+
+newExp(baseType, multiArrayFragment, typeFragment) ::= <<
+new $baseType$$multiArrayFragment$$typeFragment$
+>>
+
+multiArrayFragment(exp) ::= <<
+[$exp; separator=", "$]
+>>
+
+typeExp(type) ::= <<
+^$type$
+>>
+
+newListRanged(exp1, exp2) ::= <<
+^[$exp1$ .. $exp2$]
+>>
+
+newRecord(type, attrInit) ::= <<
+^$type$ {
+  $attrInit; separator=",\n"$
+}
+>>
+
+newMultiArray(fragment) ::= <<
+^[
+   $fragment; separator=",\n"$
+ ]
+>>
+
+multiArrayFragments(fragment) ::= <<
+[ 
+  $fragment; separator=",\n"$
+]
+>>
+
+attrInit(id, exp) ::= <<
+$id$ = $exp$
+>>
+
+newList(exp) ::= <<
+^[$exp; separator=", "$]
+>>
+
+newSet(exp) ::= <<
+^{$exp; separator=", "$}
+>>
+
+newFunction(mapping) ::= <<
+^{$if(!mapping)$ -> $endif$$mapping; separator=", "$}
+>>
+
+mapping(e1, e2) ::= <<
+$e1$ -> $e2$
+>>
+
+funExp(matching) ::= <<
+($matching; separator="\n| "$)
+>>
+
+matching(param, exp) ::= <<
+$param; separator=", "$ => $exp$
+>>
+
+letExp(binding, exp) ::= <<
+    
+    let
+      $binding; separator=",\n"$
+    in $exp$
+>>
+
+binding(ID, exp) ::= <<
+$ID; separator=", "$ = $exp$
+>>
+
+self() ::= <<
+self
+>>
+
+name(ID) ::= <<
+$ID; separator="::"$
+>>
+
+multiArrayType(elementType, comma) ::= <<
+$elementType$[$comma$]
+>>
+
+listTypeFragment() ::= <<
+[]
+>>
+
+multiarrayTypeFragment(comma) ::= <<
+[$comma$]
+>>
+
+setTypeFragment() ::= <<
+{}
+>>
+
+rangedIntegerType(wrap, i1, ie2) ::= <<
+Integer $wrap$ ($i1$, $i2$)
+>>
+
+namedType(name, ID, typeTuple) ::= <<
+$name$$if(ID)$.$ID$$endif$$typeTuple$
+>>
+
+procedureType(typeParam, type) ::= <<
+($typeParam; separator=" * "$ -> $type$)
+>>
+
+typeParam(type, ID, variable, annotationList) ::= <<
+$type$$if(ID)$ $ID$$endif$$if(variable)$ ... $endif$$annotationList$
+>>
+
+annotatedType(type, annotationList) ::= <<
+$type$$annotationList$
+>>
+
+tupleType(typeParam) ::= <<
+($typeParam; separator=" * "$)
+>>
+
+listType(type) ::= <<
+$type$[]
+>>
+
+setType(type) ::= <<
+$type${}
+>>
+
+functionType(typeParam, type) ::= <<
+{$typeParam; separator=" * "$ -> $type$}
+>>
+
+relationType(typeParam) ::= <<
+{$typeParam; separator=" * "$}
+>>
+
+selfType(type) ::= <<
+Self$if(type)$<$type; separator=", "$>$endif$
+>>
