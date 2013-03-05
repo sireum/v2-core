@@ -1,53 +1,39 @@
+/*
+Copyright (c) 2011-2013 Jason Belt, Robby, Kansas State University.        
+All rights reserved. This program and the accompanying materials      
+are made available under the terms of the Eclipse Public License v1.0 
+which accompanies this distribution, and is available at              
+http://www.eclipse.org/legal/epl-v10.html                             
+*/
+
 package org.sireum.pilar.pretty
 
-import org.sireum.pilar.ast.ActionLocation
-import org.sireum.pilar.ast.Annotation
-import org.sireum.pilar.ast.AssertAction
-import org.sireum.pilar.ast.AssignAction
-import org.sireum.pilar.ast.AssumeAction
-import org.sireum.pilar.ast.BinaryExp
-import org.sireum.pilar.ast.CallExp
-import org.sireum.pilar.ast.ComplexLocation
-import org.sireum.pilar.ast.ElseGuard
-import org.sireum.pilar.ast.EmptyLocation
-import org.sireum.pilar.ast.ExpGuard
-import org.sireum.pilar.ast.ExtCallAction
-import org.sireum.pilar.ast.GotoJump
-import org.sireum.pilar.ast.IfJump
-import org.sireum.pilar.ast.IfThenJump
-import org.sireum.pilar.ast.ImplementedBody
-import org.sireum.pilar.ast.JumpLocation
-import org.sireum.pilar.ast.LiteralExp
-import org.sireum.pilar.ast.LocalVarDecl
-import org.sireum.pilar.ast.Model
-import org.sireum.pilar.ast.NameDefinition
-import org.sireum.pilar.ast.NameExp
-import org.sireum.pilar.ast.NameUser
-import org.sireum.pilar.ast.NamedTypeSpec
-import org.sireum.pilar.ast.PackageDecl
-import org.sireum.pilar.ast.ParamDecl
-import org.sireum.pilar.ast.PilarAstNode
-import org.sireum.pilar.ast.ProcedureDecl
-import org.sireum.pilar.ast.ReturnJump
-import org.sireum.pilar.ast.StartAction
-import org.sireum.pilar.ast.ThrowAction
-import org.sireum.pilar.ast.Transformation
-import org.sireum.pilar.ast.TupleExp
-import org.sireum.pilar.ast.UnaryExp
-import org.sireum.util.ISeq
-import org.sireum.util.Visitor
-import org.sireum.util.VisitorFunction
-import org.sireum.util.ivector
-import org.stringtemplate.v4.ST
-import org.stringtemplate.v4.STGroupFile
+import org.stringtemplate.v4._
 
+import org.sireum.pilar.ast._
+import org.sireum.pilar.state._
+import org.sireum.util._
+
+/**
+ * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object NodePrettyPrinter {
-  def print(o : PilarAstNode) = new NodePrettyPrinter().print(o)
+  def print(o : PilarAstNode, vprint : Value => String = { _.toString }) = 
+    new NodePrettyPrinter(vprint).print(o)
 }
 
-class NodePrettyPrinter {
+/**
+ * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+class NodePrettyPrinter(vprint : Value => String) {
   type BVisitor = Any => Boolean
 
+  /**
+   * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
+   * @author <a href="mailto:robby@k-state.edu">Robby</a>
+   */
   trait Context {
     val stg : STGroupFile = new STGroupFile(getClass.getResource("pretty.stg"), "UTF-8", '$', '$')
     var result : ST = null
@@ -196,6 +182,11 @@ class NodePrettyPrinter {
       v(o.arg)
       st.add("arg", ctx.popResult)
 
+      ctx.pushResult(st)
+      false
+    case o : ValueExp =>
+      val st = ctx.stg.getInstanceOf("literal")
+      st.add("literal", vprint(o.value))
       ctx.pushResult(st)
       false
     case o : LiteralExp =>
