@@ -13,8 +13,8 @@ import org.sireum.pilar.parser._
 import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
 import org.sireum.util._
-
 import org.sireum.test.framework._
+import org.sireum.pilar.pretty.NodePrettyPrinter
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -104,6 +104,8 @@ trait EvaluatorTestFramework[S <: State[S]] extends TestFramework {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFramework[S] {
+  self =>
+
   type Result = {
     def value : Value
   }
@@ -125,6 +127,43 @@ trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFrame
 
   def postProcess(casePrefix : String, s : S, expS : String, exp : Exp, r : R) {}
 
+  def source(src : Either3[String, FileResourceUri, Exp]) : Either[String, FileResourceUri] =
+    src match {
+      case Either3.First(s)  => Left(s)
+      case Either3.Second(s) => Right(s)
+      case Either3.Third(e)  => Left(NodePrettyPrinter.print(e))
+    }
+
+  protected def eval(
+    src : Either3[String, FileResourceUri, Exp],
+    state : S) : (R, String, Exp) = {
+    import TestUtil._
+
+    var exp : Exp = null
+    var expS = ""
+
+    val (eOpt, errors) =
+      src match {
+        case Either3.First(s) =>
+          expS = s
+          parse(source(src), classOf[Exp])
+        case Either3.Second(s) =>
+          expS = FileUtil.readFile(s)._1
+          parse(source(src), classOf[Exp])
+        case Either3.Third(e) =>
+          (Some(e), "")
+      }
+
+    assert(errors == "", "Expecting no parse error, but found:\n" + errors)
+
+    val ee = newExpEvaluator(state)
+    exp = expRewriter(eOpt.get)
+    if (state == null)
+      (ee.evalExp(null.asInstanceOf[S], exp), expS, exp)
+    else
+      (ee.evalExp(state, exp), expS, exp)
+  }
+
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
@@ -135,41 +174,19 @@ trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFrame
     var expS : String = ""
     var exp : Exp = null
 
-    def source =
-      src match {
-        case Either3.First(s)  => Left(s)
-        case Either3.Second(s) => Right(s)
-        case Either3.Third(e)  => Left(e.toString.replace(')', ']').replace('(', '[')) // TODO: pretty print exp
-      }
+    def source : Either[String, FileResourceUri] = self.source(src)
 
     protected def post(r : R) {
       postProcess(casePrefix, state, expS, exp, r)
     }
 
     protected def eval : R = {
-      import TestUtil._
-
-      val (eOpt, errors) =
-        src match {
-          case Either3.First(s) =>
-            expS = s
-            parse(source, classOf[Exp])
-          case Either3.Second(s) =>
-            expS = FileUtil.readFile(s)._1
-            parse(source, classOf[Exp])
-          case Either3.Third(e) =>
-            (Some(e), "")
-        }
-
-      assert(errors == "", "Expecting no parse error, but found:\n" + errors)
-
-      val ee = newExpEvaluator(state)
-      exp = expRewriter(eOpt.get)
-      if (state == null)
-        ee.evalExp(null.asInstanceOf[S], exp)
-      else
-        ee.evalExp(state, exp)
+      val (r, expSt, expt) = self.eval(src, state)
+      expS = expSt
+      exp = expt
+      r
     }
+
   }
 }
 
