@@ -62,7 +62,7 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
   def inconsistencyCheckRequested : Boolean
 
   def addPathCondition(e : Exp) : Self =
-    make(e +: pathConditions, counters)
+    make(pathConditions :+ e, counters)
 
   def fresh(uri : ResourceUri) : (Self, Int) = {
     val last = counters.getOrElse(uri, 0)
