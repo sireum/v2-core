@@ -10,7 +10,10 @@ package org.sireum.test.kiasan.eval.exp
 
 import java.io._
 import org.junit.runner._
+
+import scala.util.Random
 import org.scalatest.junit._
+
 import org.sireum.kiasan.extension._
 import org.sireum.kiasan.extension.KiasanBooleanExtension._
 import org.sireum.kiasan.extension.KiasanIntegerExtension._
@@ -19,11 +22,11 @@ import org.sireum.konkrit.extension._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.state._
 import org.sireum.test.framework.pilar.eval._
+import org.sireum.test.framework.kiasan._
 import org.sireum.test.kiasan.eval._
 import org.sireum.topi._
 import org.sireum.util._
 import org.sireum.util.math._
-import scala.util.Random
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -131,26 +134,7 @@ class KiasanScalarExpEvaluatorTest
       if (result.isDefined) {
         r.value is result.get
       }
-      check(r.state) match {
-        case TopiResult.SAT =>
-          val (m, cs) = checkConcretizedState(r.state)
-          val getValue : Value --> Value = {
-            case KI(num) if m.contains("ii!" + num) => m("ii!" + num)
-            case KB(num) if m.contains("b!" + num)  => m("b!" + num)
-            case v                                  => v
-          }
-          val rwr = Rewriter.build[Exp]({
-            case ValueExp(v) => ValueExp(getValue(v))
-          })
-          val e = rwr(pc(exp)(0))
-          val s = BasicKiasanState()
-          val result = newExpEvaluator(s).evalExp(s, e)
-          result should have size 1
-          result.foreach(_.value is getValue(r.value))
-        case TopiResult.UNKNOWN =>
-        case tr =>
-          assert(false, "Expecting either SAT or UNKNOWN")
-      }
+      checkConcExe(r.state, state, exp, r.value)
     }
 
   override def expRewriter(exp : Exp) = rewriter(exp)
@@ -168,33 +152,15 @@ class KiasanScalarExpEvaluatorTest
       else (s, v)
   }
 
-  def pc(exp : String*) : Seq[Exp] = exp.map { source =>
-    import org.sireum.test.framework.TestUtil._
+  def pc(exp : String*) : Seq[Exp] = KiasanStateCheck.pc(rewriter, exp : _*)
 
-    val (eOpt, errors) = parse(Left(source), classOf[Exp])
-
-    assert(errors == "", "Expecting no parse error, but found:\n" + errors)
-
-    rewriter(eOpt.get)
-  }
-
-  def check(s : S) = topi.check(s.pathConditions.reverse)
-
-  def concretizeState(s : S) = {
-    val mOpt = topi.getModel(s.pathConditions.reverse)
-    mOpt.map { m => (m, Rewriter.build[S](topi.stateRewriter(m))(s)) }
-  }
-
-  def checkConcretizedState(s : S) = {
-    val mcsOpt = concretizeState(s)
-    assert(mcsOpt.isDefined)
-    val (m, cs) = mcsOpt.get
-    val is = BasicKiasanState()
-    val evaluator = newExpEvaluator(is)
-    for (pc <- cs.pathConditions)
-      evaluator.evalExp(is, pc).foreach(_.value is true)
-    (m, cs)
-  }
+  def checkConcExe(s : S, s0 : S, exp : String, v : V) =
+    KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
+      newExpEvaluator(s0), exp, v, rewriter) match {
+        case TopiResult.SAT | TopiResult.UNKNOWN =>
+        case _ =>
+          assert(false, "Expecting SAT or UNKNOWN")
+      }
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
