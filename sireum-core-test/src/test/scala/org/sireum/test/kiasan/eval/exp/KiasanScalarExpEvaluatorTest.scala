@@ -181,9 +181,9 @@ class KiasanScalarExpEvaluatorTest
   def toSeq(p : Product) : Seq[String] = {
     var l = ivectorEmpty[String]
     for (o <- p.productIterator) {
-      l = o.toString +: l
+      l = l :+ o.toString
     }
-    l.reverse
+    l
   }
 
   def newExpEvaluator(s : S) =
