@@ -212,6 +212,13 @@ object KiasanIntegerExtension extends ExtensionCompanion {
     }
 
     def expTranslator = {
+      case (tc, BinaryExp("==", ValueExp(KI(n1)), BinaryExp("+", BinaryExp("-", ValueExp(KI(n2)), ValueExp(KI(n3))), n))) =>
+        implicit val ctx = new Context(new StringBuilder, tc)
+        declareConst(n1)
+        declareConst(n2)
+        declareConst(n3)
+        println(s"(assert (= ii!$n1 (+ (- ii!$n2 ii!$n3) ${v2s(n)})))")
+        (ctx.tc, ctx.sb.toString)
       case (tc, BinaryExp("==", ValueExp(KI(freshNum)), BinaryExp(op, n, m))) //
       if (v2s isDefinedAt n) && (v2s isDefinedAt m) && (op == "+" || op == "-" || op == "*" || op == "/" || op == "%") =>
         implicit val ctx = new Context(new StringBuilder, tc)
