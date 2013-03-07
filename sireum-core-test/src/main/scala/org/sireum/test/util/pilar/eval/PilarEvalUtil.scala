@@ -28,6 +28,9 @@ object PilarEvalUtil {
       val i = symUri.indexOf('_')
       val ext = if (i >= 0) symUri.substring(i + 1) else ""
       ext match {
+        case "rec" | "arr" |
+          "recrec" | "recarr" |
+          "arrrec" | "arrarr" => ext
         case _      => IntegerExtension.Type
       }
     }
