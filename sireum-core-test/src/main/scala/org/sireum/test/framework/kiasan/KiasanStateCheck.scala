@@ -25,31 +25,61 @@ object KiasanStateCheck {
   def check[S <: KiasanStatePart[S]](topi : Topi, s : S) =
     topi.check(s.pathConditions)
 
-  def concretizeState[S <: KiasanStatePart[S]](topi : Topi, s : S) = {
+  def concretizeState[S <: KiasanStatePart[S]](
+    topi : Topi, s : S,
+    before : Option[RewriteFunction] = None,
+    after : Option[RewriteFunction] = None) = {
     val mOpt = topi.getModel(s.pathConditions)
-    mOpt.map { m => (m, Rewriter.build[S](topi.stateRewriter(m))(s)) }
+    mOpt.map { m =>
+      import Rewriter._
+      (before, after) match {
+        case (Some(f), Some(g)) =>
+          (m, buildEnd[S](all(f, topi.stateRewriter(m)), g)(s))
+        case (Some(f), None) =>
+          (m, build[S](all(f, topi.stateRewriter(m)))(s))
+        case (None, Some(g)) =>
+          (m, buildEnd[S](topi.stateRewriter(m), g)(s))
+        case _ =>
+          (m, build[S](topi.stateRewriter(m))(s))
+      }
+    }
   }
 
   def checkConcretizedState[S <: KiasanStatePart[S]](
     topi : Topi, s : S, s0 : S, trueValue : Value,
-    evaluator : ExpEvaluator[S, ISeq[(S, Value)]]) = {
+    evaluator : ExpEvaluator[S, ISeq[(S, Value)]]) : (IMap[String, Value], S) = {
     val mcsOpt = concretizeState(topi, s)
     assert(mcsOpt.isDefined)
-    val (m, cs) = mcsOpt.get
+    val mcs = mcsOpt.get
+    checkConcretizedState(topi, s, s0, trueValue, evaluator, mcs)
+    mcs
+  }
+
+  def checkConcretizedState[S <: KiasanStatePart[S]](
+    topi : Topi, s : S, s0 : S, trueValue : Value,
+    evaluator : ExpEvaluator[S, ISeq[(S, Value)]],
+    mcs : (IMap[String, Value], S)) {
+    val (m, cs) = mcs
     for (pc <- cs.pathConditions)
       evaluator.evalExp(s0, pc).foreach {
         re => assert(second2(re) == trueValue)
       }
-    (m, cs)
   }
 
   def checkConcExe[S <: KiasanStatePart[S]](
     topi : Topi, s : S, s0 : S, trueValue : Value,
     evaluator : ExpEvaluator[S, ISeq[(S, Value)]], exp : String, v : Value,
-    rewriter : Exp => Exp) =
+    rewriter : Exp => Exp, mcsOpt : Option[(IMap[String, Value], S)] = None) =
     check(topi, s) match {
       case TopiResult.SAT =>
-        val (m, cs) = checkConcretizedState(topi, s, s0, trueValue, evaluator)
+        val (m, cs) =
+          mcsOpt match {
+            case Some(mcs) =>
+              checkConcretizedState(topi, s, s0, trueValue, evaluator, mcs)
+              mcs
+            case _ =>
+              checkConcretizedState(topi, s, s0, trueValue, evaluator)
+          }
         val getValue : Value --> Value = {
           case KiasanIntegerExtension.KI(num) if m.contains("ii!" + num) => m("ii!" + num)
           case KiasanBooleanExtension.KB(num) if m.contains("b!" + num) => m("b!" + num)
