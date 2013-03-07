@@ -31,18 +31,18 @@ object KiasanState {
   object PathCondition {
     final implicit class KiasanStateWithPcAccess[S <: KiasanStatePart[S]](
         val s : S) extends AnyVal {
-      
+
       @inline
       def +(v : Value) : S = s.addPathCondition(ValueExp(v))
-      
+
       @inline
-      def +(e : Exp) : S = s.addPathCondition(e)  
+      def +(e : Exp) : S = s.addPathCondition(e)
 
       @inline
       def +?(e : Exp) : S = s.addPathCondition(e).requestInconsistencyCheck()
-      
+
       @inline
-      def ++(es : Exp*) : S = es.foldLeft(s)(_ + _)  
+      def ++(es : Exp*) : S = es.foldLeft(s)(_ + _)
     }
   }
 }
@@ -183,8 +183,9 @@ final case class KiasanStateWithHeap(
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
   schedule : ISeq[(Int, Int)])
-    extends State[KiasanStateWithHeap] with KiasanStatePart[KiasanStateWithHeap]
-    with HeapPart[KiasanStateWithHeap] with DummyDuplicateHeap[KiasanStateWithHeap]
+    extends State[KiasanStateWithHeap]
+    with KiasanStatePart[KiasanStateWithHeap]
+    with HeapPart[KiasanStateWithHeap]
     with ScheduleRecordingState[KiasanStateWithHeap] {
 
   import State._

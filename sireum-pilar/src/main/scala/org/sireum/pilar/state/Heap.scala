@@ -168,12 +168,6 @@ trait Heap[Self <: Heap[Self]] extends SelfType[Self] {
   def duplicate(rv : ReferenceValue) : (Self, ReferenceValue)
 }
 
-trait DummyDuplicateHeap[Self <: DummyDuplicateHeap[Self]] {
-  def duplicate(rv : ReferenceValue) : (Self, ReferenceValue) = {
-    sys.error("unhandled")
-  }
-}
-
 trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
   import Heap._
   import Value._
@@ -236,7 +230,7 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
   }
 
   def lookupOrElse[T](rv : ReferenceValue, k : AnyRef,
-                          dflt : => T) : T = {
+                      dflt : => T) : T = {
     val ref = rv.asInstanceOf[RV]
     val heap = heaps(ref.hid)
     val o = heap(ref.aid).asInstanceOf[O]
@@ -245,7 +239,7 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
   }
 
   def lookupOrElseUpdate[T](rv : ReferenceValue, k : AnyRef,
-                                dflt : => T) : (Self, T) = {
+                            dflt : => T) : (Self, T) = {
     val ref = rv.asInstanceOf[RV]
     val hid = ref.hid
     val aid = ref.aid
@@ -260,5 +254,15 @@ trait HeapPart[Self <: Heap[Self]] extends Heap[Self] {
     val heap = heaps(ref.hid)
     val o = heap(ref.aid).asInstanceOf[O]
     o.m.iterator
+  }
+
+  def duplicate(rv : ReferenceValue) : (Self, ReferenceValue) = {
+    val ref = rv.asInstanceOf[RV]
+    val hid = ref.hid
+    val aid = ref.aid
+    val heap = heaps(hid)
+    val o = heap(aid).asInstanceOf[O]
+    val numOfObjects = heap.size
+    (make(hid, heap :+ o), RV(hid, numOfObjects))
   }
 }
