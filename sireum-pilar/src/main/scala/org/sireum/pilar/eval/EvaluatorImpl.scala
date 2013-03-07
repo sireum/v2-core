@@ -250,19 +250,18 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             re1 <- eval(s, a.rhs)
             re2 <- sec.variableUpdate(re2s(re1), e.name, re2v(re1))
           } yield re2
-        case AccessExp(e : NameExp, f) if sp.isVar(e) =>
+        case AccessExp(e : NameExp, f) if sp.isVar(e) || !e.name.hasResourceInfo =>
           for {
-            re1 <- eval(s, a.rhs)
+            re1 <- sec.variable(s, e.name)
+            re2 <- eval(re2s(re1), a.rhs)
             s1 <- {
-              val arg = (re2s(re1), e.name, f, re2v(re1))
+              val s2 = re2s(re2)
+              val v = re2v(re2)
+              val arg = (s2, e.name, f, v)
               if (sec.fieldUpdateVar.isDefinedAt(arg))
-                sec.fieldUpdateVar(re2s(re1), e.name, f, re2v(re1))
-              else {
-                val s2 = re2s(re1)
-                sec.variable(s2, e.name).flatMap {
-                  re2 => sec.fieldUpdate(re2s(re2), re2v(re2), f, re2v(re1))
-                }
-              }
+                sec.fieldUpdateVar(arg)
+              else
+                sec.fieldUpdate(s2, re2v(re1), f, v)
             }
           } yield s1
         case AccessExp(e : Exp, f) =>
@@ -271,19 +270,21 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             re2 <- eval(re2s(re1), a.rhs)
             s1 <- sec.fieldUpdate(re2s(re2), re2v(re1), f, re2v(re2))
           } yield s1
-        case IndexingExp(e : NameExp, ies) if ies.length == 1 =>
+        case IndexingExp(e : NameExp, ies) if (
+          sp.isVar(e) || !e.name.hasResourceInfo) && ies.length == 1 =>
           for {
-            re1 <- eval(s, a.rhs)
+            re1 <- sec.variable(s, e.name)
             re2 <- eval(re2s(re1), ies(0))
+            re3 <- eval(re2s(re2), a.rhs)
             s1 <- {
-              val arg = (re2s(re2), e.name, re2v(re2), re2v(re1))
+              val s2 = re2s(re3)
+              val index = re2v(re2)
+              val v = re2v(re3)
+              val arg = (s2, e.name, index, v)
               if (sec.indexUpdateVar.isDefinedAt(arg))
                 sec.indexUpdateVar(arg)
-              else {
-                sec.variable(re2s(re2), e.name).flatMap {
-                  re3 => sec.indexUpdate(re2s(re3), re2v(re3), re2v(re2), re2v(re1))
-                }
-              }
+              else
+                sec.indexUpdate(s2, re2v(re1), index, v)
             }
           } yield s1
         case IndexingExp(e : Exp, ies) if ies.length == 1 =>
