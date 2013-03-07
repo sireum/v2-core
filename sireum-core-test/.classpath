@@ -23,5 +23,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-module"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-cli"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-extension-composite"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-extension-composite-value"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

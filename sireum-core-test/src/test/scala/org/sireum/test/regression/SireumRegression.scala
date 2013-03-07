@@ -27,6 +27,8 @@ import org.sireum.test.extension.eval.action.ExtensionActionEvaluatorTest
 import org.sireum.test.konkrit.eval.exp.KonkritScalarExpEvaluatorTest
 import org.sireum.test.kiasan.bfs.BasicKiasanBfsTest
 import org.sireum.test.cli.Clitest
+import org.sireum.test.extension.composite.eval.exp.ValCompositeExpEvaluatorTest
+import org.sireum.test.extension.composite.eval.action.ValCompositeActionEvaluatorTest
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -79,6 +81,8 @@ class KonkritTests {}
 @RunWith(classOf[Suite])
 @SuiteClasses(Array(
   classOf[ExtensionExpEvaluatorTest],
-  classOf[ExtensionActionEvaluatorTest]
+  classOf[ExtensionActionEvaluatorTest],
+  classOf[ValCompositeExpEvaluatorTest],
+  classOf[ValCompositeActionEvaluatorTest]
 ))
 class ExtensionTests {}

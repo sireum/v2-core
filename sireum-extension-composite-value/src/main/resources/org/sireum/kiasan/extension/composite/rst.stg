@@ -1,0 +1,43 @@
+state(name, entry) ::= <<
+State: $name$
+
+$entry; separator="\n\n"$
+>>
+
+globalVars(var) ::= <<
+* Global Variables$if(var)$
+
+  $var; separator="\n\n"$$endif$
+>>
+
+slot(name, value, element) ::= <<
+* $name$ = $value$$if(element)$
+
+  $element; separator="\n\n"$$endif$
+>>
+
+callStack(frame) ::= <<
+* Call Stack Frames$if(frame)$
+
+  $frame; separator="\n\n"$$endif$
+>>
+
+callFrame(loc, sig, localVar) ::= <<
+* $loc$: $sig$$if(localVar)$
+
+  $localVar; separator="\n\n"$$endif$
+>>
+
+pathConditions(element) ::= <<
+* Path Conditions$if(element)$
+
+  $element; separator="\n\n"$$endif$
+>>
+
+pc(text) ::= <<
+* $text$
+>>
+
+status(text) ::= <<
+* Status: $text$
+>>
