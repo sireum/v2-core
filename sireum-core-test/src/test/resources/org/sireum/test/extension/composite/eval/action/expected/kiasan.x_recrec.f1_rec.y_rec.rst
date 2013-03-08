@@ -10,7 +10,7 @@ State: After
 
 * Global Variables
 
-  * @@x_recrec = KRecord#2
+  * @@x_recrec = KRecord#3
 
     * f1_rec = KRecord#1
 

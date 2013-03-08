@@ -121,11 +121,13 @@ object KiasanValCompositeExtension {
         }
 
         def update(f : NameUser, v : V)(
-          implicit rv : RV, rep : (S, Value) --> Value) = {
-          val (s2, rv2) = s.duplicate(rv)
-          assert(rep(s2, v) eq v)
-          val s3 = (Access.StateWithKiasanRecordAccess(s2)(State.uri(f)) = v)(rv2) 
-          (s3, rv2)
+          implicit rv : RV, fresh : (S, ResourceUri) --> (S, V),
+          rep : (S, Value) --> Value, tp : TypeProvider) = {
+          val (s2, _) = s(f)
+          val (s3, rv2) = s2.duplicate(rv)
+          assert(rep(s3, v) eq v)
+          val s4 = (Access.StateWithKiasanRecordAccess(s3)(State.uri(f)) = v)(rv2)
+          (s4, rv2)
         }
       }
     }
@@ -151,8 +153,8 @@ object KiasanValCompositeExtension {
     @inline
     def fieldLookup[S <: H[S]](
       implicit khid : Int, fresh : (S, ResourceUri) --> (S, V),
-      rep : (S, Value) --> Value,
-      tp : TypeProvider) : (S, V, NameUser) --> ISeq[(S, V)] = {
+      rep : (S, Value) --> Value, tp : TypeProvider) : // 
+      (S, V, NameUser) --> ISeq[(S, V)] = {
       case (s, rv @ Heap.RV(hid, _), f) if hid == khid =>
         implicit val irv = rv
         Field.StateWithKiasanFieldAccess(s)(f)
@@ -160,7 +162,8 @@ object KiasanValCompositeExtension {
 
     @inline
     def fieldUpdate[S <: SH[S]](
-      implicit khid : Int, rep : (S, V) --> V) : //
+      implicit khid : Int, fresh : (S, ResourceUri) --> (S, V),
+      rep : (S, Value) --> Value, tp : TypeProvider) : //
       (S, NameUser, NameUser, V) --> ISeq[S] = {
       case (s, x, f, v) if Heap.isVarHid(s, x, khid) =>
         import State.NameAccess._

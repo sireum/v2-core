@@ -12,7 +12,7 @@ State: Before
 |                                   |                                   |
 | * Global Variables                | * Global Variables                |
 |                                   |                                   |
-|   * @@x_recarr = KRecord#2        |   * @@x_recarr = KRecord#2        |
+|   * @@x_recarr = KRecord#3        |   * @@x_recarr = KRecord#3        |
 |                                   |                                   |
 |     * f1_rec = KArray#1           |     * f1_rec = KArray#1           |
 |                                   |                                   |
