@@ -39,7 +39,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
   def extensions : ISeq[ExtensionCompanion]
 
-  def evaluator(st : SymbolTable) : Evaluator[S, R, C, ISeq[S]]
+  def config(st : SymbolTable) : EvaluatorConfiguration[S, Value, R, C, ISeq[S]]
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -50,11 +50,12 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
-  class KiasanBfsConfiguration(val source : FileResourceUri,
-                               var stStates : SymbolTable => ISeq[S] = { st => ivectorEmpty },
-                               var _depthBound : Int = 10) {
+  class KiasanBfsConfiguration(
+      val source : FileResourceUri,
+      var stStates : (SymbolTable, EvaluatorConfiguration[S, Value, R, C, ISeq[S]]) => ISeq[S] = { (st, ec) => ivectorEmpty },
+      var _depthBound : Int = 10) {
 
-    def on(f : SymbolTable => ISeq[S]) : this.type = {
+    def on(f : (SymbolTable, EvaluatorConfiguration[S, Value, R, C, ISeq[S]]) => ISeq[S]) : this.type = {
       stStates = f
       this
     }
@@ -140,30 +141,31 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
       var avStates = ivectorEmpty[S]
       var boundDepthExStates = ivectorEmpty[S]
       val ecs = extensions
+      val conf = config(st)
 
       val kiasan = new KiasanBfs[S, R, C] {
 
-        def depthBound = _depthBound
+        val depthBound = _depthBound
 
-        def parallelMode = self.parallelMode
+        val parallelMode = self.parallelMode
 
-        def parallelThreshold = self.parallelThreshold
+        val parallelThreshold = self.parallelThreshold
 
-        def parallelismLevel = self.parallelismLevel
+        val parallelismLevel = self.parallelismLevel
 
-        def locationProvider = new KiasanLocationProvider[S] {
+        val locationProvider = new KiasanLocationProvider[S] {
           def location(s : S) : LocationDecl = {
             st.procedureSymbolTable(s.procedure).location(s.locationIndex)
           }
         }
 
-        def evaluator = self.evaluator(st)
+        val evaluator = conf.evaluator.mainEvaluator
 
         def initialStatesProvider = new KiasanInitialStateProvider[S] {
-          def initialStates = stStates(st)
+          val initialStates = stStates(st, conf)
         }
 
-        def reporter = new KiasanReporter[S] {
+        val reporter = new KiasanReporter[S] {
           def foundAssertionViolation(s : S) : S = {
             avStates = s +: avStates
             s
@@ -178,7 +180,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
           }
         }
 
-        def topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 1000,
+        val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 1000,
           extensions : _*)
       }
 
