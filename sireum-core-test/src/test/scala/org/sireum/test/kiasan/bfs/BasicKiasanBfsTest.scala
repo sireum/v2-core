@@ -20,6 +20,8 @@ import org.sireum.test.kiasan.eval._
 import org.sireum.kiasan.extension._
 import org.sireum.konkrit.extension._
 import org.sireum.example.kiasan._
+import org.sireum.pilar.eval.EvaluatorConfiguration
+import org.sireum.pilar.ast.NameUser
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -36,17 +38,41 @@ class BasicKiasanBfsTest
     }
   }
 
-  def stateInitializer(st : SymbolTable) : ISeq[BasicKiasanState] = {
+  type S = BasicKiasanState
+  type V = Value
+  type R = ISeq[(S, V)]
+  type C = ISeq[(S, Boolean)]
+  type SR = ISeq[S]
+
+  def stateInitializer(st : SymbolTable, config : EvaluatorConfiguration[S, V, R, C, SR]) : ISeq[S] = {
+    val sec = config.semanticsExtension
+      def lazyInit(ss : ISeq[S], varUri : ResourceUri) =
+        for {
+          s1 <- ss
+          (s2, _) <- sec.variable(s1, NameUser(varUri))
+        } yield s2
+
     val pst = st.procedureSymbolTables.head
-    var s = BasicKiasanState()
     val locationIndex = 0
     val locationUri = pst.locations(0).name.map(_.name)
-    s = s.enterCallFrame(pst.procedureUri, locationUri, locationIndex)
-    ivector(s.init)
+
+    val s = BasicKiasanState()
+    var ss : ISeq[S] = ivector(s.enterCallFrame(pst.procedureUri, locationUri, locationIndex))
+
+    for (paramUri <- pst.params)
+      ss = lazyInit(ss, paramUri)
+
+    for (globalVarUri <- st.globalVars)
+      ss = lazyInit(ss, globalVarUri)
+
+    for { s <- ss } yield {
+      val s1 = s.init
+      s1.setProperty(".initstate", s1)
+    }
   }
 
-  def evaluator(st : SymbolTable) =
-    KiasanEvaluatorTestUtil.newEvaluator[BasicKiasanState](
+  def config(st : SymbolTable) =
+    KiasanEvaluatorTestUtil.newConfig[BasicKiasanState](
       Some(st),
       extensions : _*)
 
