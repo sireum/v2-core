@@ -3,7 +3,7 @@
 # This script assumes that Sireum is reachable from the PATH environment variable.
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export DROP_URL=${MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/eclipse/downloads/drops4}/${REL:=R}-${VERSION:=4.2.1}-${BUILD_DATE:=201209141800}
+export DROP_URL=${MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/eclipse/downloads/drops4}/${REL:=R}-${VERSION:=4.2.2}-${BUILD_DATE:=201302041200}
 if [ ! -f eclipse-SDK-$VERSION-macosx-cocoa-x86_64.tar.gz ]; then
   echo
   echo Downloading Eclipse Classic $VERSION mac64
@@ -45,7 +45,7 @@ cp $PACKAGE_HOME/mac/eclipse classic/Eclipse.app/Contents/MacOS/
 chmod 755 classic/Eclipse.app/Contents/MacOS/eclipse
 cp -R $PACKAGE_HOME/links classic/
 sireum tools sapper classic-mac64.sapp classic
-#tar cfz classic-mac64.tar.gz classic
+tar cfz classic-mac64.tar.gz classic
 rm -R classic
 #
 echo Packaging classic-linux64.sapp
