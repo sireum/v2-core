@@ -36,6 +36,21 @@ object KiasanValCompositeExtension {
 
   final val BASE_KEY = ".base"
 
+  def makePreState[S <: H[S]](hid : Int, bhid : Int, post : S, init : S) =
+    init.make(bhid, post.heaps(bhid)).make(hid,
+      for { o <- post.heaps(hid) } yield //
+      o match {
+        case o @ Heap.O(m) if m.contains(BASE_KEY) =>
+          if (m.contains(Record.FIELDS_KEY))
+            Heap.O(m + (Record.FIELDS_KEY -> ilinkedMapEmpty[ResourceUri, V]))
+          else if (m.contains(Array.CONCRETE_ARRAY_KEY))
+            Heap.O(m +
+              (Array.CONCRETE_ARRAY_KEY -> ilinkedMapEmpty[Integer, V]) +
+              (Array.SYMBOLIC_ARRAY_KEY -> ilinkedMapEmpty[V, V]))
+          else o
+        case _ => o
+      })
+
   @inline
   def baseKey(implicit rv : RV) = (rv, BASE_KEY)
 
