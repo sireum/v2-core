@@ -19,7 +19,7 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object NodePrettyPrinter {
-  def print(o : PilarAstNode, vprint : Value => String = { _.toString }) = 
+  def print(o : PilarAstNode, vprint : Value => String = { _.toString }) =
     new NodePrettyPrinter(vprint).print(o)
 }
 
@@ -75,6 +75,166 @@ class NodePrettyPrinter(vprint : Value => String) {
       this.result = null
       r
     }
+  }
+
+  def model(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : Model =>
+      val st = ctx.stg.getInstanceOf("model")
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      for (p <- o.packages) {
+        v(p)
+        st.add("packageDeclaration", ctx.popResult)
+      }
+      ctx.pushResult(st)
+      false
+    case o : PackageDecl =>
+      val st = ctx.stg.getInstanceOf("packageDeclaration")
+
+      if (o.name.isDefined)
+        st.add("name", ctx.processName(o.name.get))
+
+      for (pe <- o.elements) {
+        v(pe)
+        st.add("packageElement", ctx.popResult)
+      }
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      ctx.pushResult(st)
+      false
+  }
+
+  def packageElement(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : ImplementedBody =>
+      val st = ctx.stg.getInstanceOf("body")
+
+      for (lv <- o.locals) {
+        v(lv)
+        st.add("localVarDeclaration", ctx.popResult)
+      }
+
+      for (l <- o.locations) {
+        v(l)
+        st.add("location", ctx.popResult)
+      }
+
+      for (cc <- o.catchClauses) {
+        Console.err.println("body catch clauses not handled")
+      }
+
+      ctx.pushResult(st)
+      false
+    case o : LocalVarDecl =>
+      val st = ctx.stg.getInstanceOf("localVarDeclaration")
+
+      if (o.typeSpec.isDefined) {
+        v(o.typeSpec.get)
+        st.add("type", ctx.popResult)
+      }
+
+      st.add("ID", o.name.name)
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      ctx.pushResult(st)
+      false
+    case o : ParamDecl =>
+      val st = ctx.stg.getInstanceOf("param")
+
+      if (o.typeSpec.isDefined) {
+        v(o.typeSpec.get)
+        st.add("type", ctx.popResult)
+      }
+
+      st.add("ID", o.name.name)
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      if (ctx.variableArity)
+        st.add("variable", "...")
+
+      ctx.pushResult(st)
+      false
+    case o : ProcedureDecl =>
+      val st = ctx.stg.getInstanceOf("procedureDeclaration")
+
+      //ctx.processTypeVarTuple(st, o.typeVars)
+
+      if (o.returnType.isDefined) {
+        v(o.returnType.get)
+        st.add("type", ctx.popResult)
+      }
+
+      st.add("ID", o.name.name)
+
+      if (!o.params.isEmpty) {
+        val stParams = ctx.stg.getInstanceOf("params")
+        val params = o.params
+        val size = params.size
+        val variableArity = o.varArity
+        for (i <- 0 to size - 1) {
+          ctx.variableArity = variableArity && ((i + 1) == size);
+          v(params(i))
+          stParams.add("param", ctx.popResult)
+        }
+        st.add("params", stParams)
+      }
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      v(o.body)
+      st.add("body", ctx.popResult)
+
+      ctx.pushResult(st)
+      false
+    case o : RecordDecl =>
+      val st = ctx.stg.getInstanceOf("recordDeclaration")
+      st.add("ID", ctx.processName(o.name))
+
+      if (!o.typeVars.isEmpty)
+        Console.err.println("Not handling RecordDecl typeVars")
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      if (!o.extendsClauses.isEmpty)
+        Console.err.println("Not handling RecordDecl extendsClauses")
+
+      for (a <- o.attributes) {
+        var sta = ctx.stg.getInstanceOf("attribute")
+
+        if (a.typeSpec.isDefined) {
+          v(a.typeSpec.get)
+          sta.add("type", ctx.popResult)
+        }
+
+        sta.add("ID", ctx.processName(a.name))
+
+        ctx.processAnnotationList(v, sta, a.annotations)
+
+        if (a.binding.isDefined)
+          Console.err.println("Not handling AttributeDecl binding")
+
+        st.add("attribute", sta)
+      }
+      ctx.pushResult(st)
+      false
+  }
+
+  def typeSpec(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : NamedTypeSpec =>
+      val st = ctx.stg.getInstanceOf("namedType")
+
+      st.add("name", o.name.name)
+
+      if (!o.typeArgs.isEmpty) {
+        Console.err.println("NamedTypeSpec typeArgs not handled")
+      }
+
+      ctx.pushResult(st)
+
+      false
   }
 
   def location(ctx : Context, v : => BVisitor) : VisitorFunction = {
@@ -163,12 +323,12 @@ class NodePrettyPrinter(vprint : Value => String) {
   def exp(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o : AccessExp =>
       val st = ctx.stg.getInstanceOf("accessExp")
-      
+
       v(o.exp)
       st.add("exp", ctx.popResult)
-      
+
       st.add("ID", o.attributeName.name)
-      
+
       ctx.pushResult(st)
       false
     case o : BinaryExp =>
@@ -198,7 +358,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       val st = ctx.stg.getInstanceOf("indexingExp")
       v(o.exp)
       st.add("exp", ctx.popResult)
-      for(e <- o.indices){
+      for (e <- o.indices) {
         v(e)
         st.add("expi", ctx.popResult)
       }
@@ -309,130 +469,6 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def H(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : Model =>
-      val st = ctx.stg.getInstanceOf("model")
-
-      ctx.processAnnotationList(v, st, o.annotations)
-
-      for (p <- o.packages) {
-        v(p)
-        st.add("packageDeclaration", ctx.popResult)
-      }
-      ctx.pushResult(st)
-      false
-    case o : PackageDecl =>
-      val st = ctx.stg.getInstanceOf("packageDeclaration")
-
-      if (o.name.isDefined)
-        st.add("name", ctx.processName(o.name.get))
-
-      for (pe <- o.elements) {
-        v(pe)
-        st.add("packageElement", ctx.popResult)
-      }
-
-      ctx.processAnnotationList(v, st, o.annotations)
-
-      ctx.pushResult(st)
-      false
-    case o : ProcedureDecl =>
-      val st = ctx.stg.getInstanceOf("procedureDeclaration")
-
-      //ctx.processTypeVarTuple(st, o.typeVars)
-
-      if (o.returnType.isDefined) {
-        v(o.returnType.get)
-        st.add("type", ctx.popResult)
-      }
-
-      st.add("ID", o.name.name)
-
-      if (!o.params.isEmpty) {
-        val stParams = ctx.stg.getInstanceOf("params")
-        val params = o.params
-        val size = params.size
-        val variableArity = o.varArity
-        for (i <- 0 to size - 1) {
-          ctx.variableArity = variableArity && ((i + 1) == size);
-          v(params(i))
-          stParams.add("param", ctx.popResult)
-        }
-        st.add("params", stParams)
-      }
-
-      ctx.processAnnotationList(v, st, o.annotations)
-
-      v(o.body)
-      st.add("body", ctx.popResult)
-
-      ctx.pushResult(st)
-      false
-    case o : ParamDecl =>
-      val st = ctx.stg.getInstanceOf("param")
-
-      if (o.typeSpec.isDefined) {
-        v(o.typeSpec.get)
-        st.add("type", ctx.popResult)
-      }
-
-      st.add("ID", o.name.name)
-
-      ctx.processAnnotationList(v, st, o.annotations)
-
-      if (ctx.variableArity)
-        st.add("variable", "...")
-
-      ctx.pushResult(st)
-      false
-    case o : LocalVarDecl =>
-      val st = ctx.stg.getInstanceOf("localVarDeclaration")
-
-      if (o.typeSpec.isDefined) {
-        v(o.typeSpec.get)
-        st.add("type", ctx.popResult)
-      }
-
-      st.add("ID", o.name.name)
-
-      ctx.processAnnotationList(v, st, o.annotations)
-
-      ctx.pushResult(st)
-      false
-    case o : ImplementedBody =>
-      val st = ctx.stg.getInstanceOf("body")
-
-      for (lv <- o.locals) {
-        v(lv)
-        st.add("localVarDeclaration", ctx.popResult)
-      }
-
-      for (l <- o.locations) {
-        v(l)
-        st.add("location", ctx.popResult)
-      }
-
-      for (cc <- o.catchClauses) {
-        Console.err.println("body catch clauses not handled")
-      }
-
-      ctx.pushResult(st)
-      false
-
-    case o : NamedTypeSpec =>
-      val st = ctx.stg.getInstanceOf("namedType")
-
-      st.add("name", o.name.name)
-
-      if (!o.typeArgs.isEmpty) {
-        Console.err.println("NamedTypeSpec typeArgs not handled")
-      }
-
-      ctx.pushResult(st)
-
-      false
-  }
-
   def e(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case x =>
       Console.err.println("Not handling: " + x)
@@ -444,7 +480,9 @@ class NodePrettyPrinter(vprint : Value => String) {
 
   val b = Visitor.build(
     Visitor.first(
-      ivector(H(ctx, v),
+      ivector(model(ctx, v),
+        packageElement(ctx, v),
+        typeSpec(ctx, v),
         location(ctx, v),
         jump(ctx, v),
         action(ctx, v),
