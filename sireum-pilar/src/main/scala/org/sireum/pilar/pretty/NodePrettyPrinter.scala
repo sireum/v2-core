@@ -161,6 +161,16 @@ class NodePrettyPrinter(vprint : Value => String) {
   }
 
   def exp(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : AccessExp =>
+      val st = ctx.stg.getInstanceOf("accessExp")
+      
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+      
+      st.add("ID", o.attributeName.name)
+      
+      ctx.pushResult(st)
+      false
     case o : BinaryExp =>
       val st = ctx.stg.getInstanceOf("binaryExp")
 
@@ -182,6 +192,16 @@ class NodePrettyPrinter(vprint : Value => String) {
       v(o.arg)
       st.add("arg", ctx.popResult)
 
+      ctx.pushResult(st)
+      false
+    case o : IndexingExp =>
+      val st = ctx.stg.getInstanceOf("indexingExp")
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+      for(e <- o.indices){
+        v(e)
+        st.add("expi", ctx.popResult)
+      }
       ctx.pushResult(st)
       false
     case o : ValueExp =>
