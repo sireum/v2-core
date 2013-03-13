@@ -185,11 +185,13 @@ final case class PipelineJob(
   }
 
   def tags : ISeq[Tag] = {
-    val result = marrayEmpty[Tag]
-    for (si <- info)
+    var result = ivectorEmpty[Tag]
+    for (si <- info) {
+      result ++= si.tags
       for (mi <- si.info)
         result ++= mi.tags
-    result.toList
+    }
+    result
   }
 }
 
