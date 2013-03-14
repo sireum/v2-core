@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
+Copyright (c) 2011 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -24,593 +24,593 @@ public class TreeVisitor<G> {
 
   public void visit(final Tree t) {
     switch (t.getType()) {
-      case 108:
-        if (visitANNOTATED_TYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 6:
+      case 81:
         if (visitMODEL(t)) {
           visitChildren(t);
         }
         return;
-      case 151:
-        if (visitTX_Exponent(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 83:
-        if (visitFLOAT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 34:
-        if (visitEXT_PARAM_VARIABLE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 40:
-        if (visitELSE_GUARD(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 59:
-        if (visitCATCH_CLAUSE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 26:
-        if (visitEXTENSION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 71:
-        if (visitCALL(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 148:
-        if (visitTX_BASICID(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 145:
-        if (visitBIN_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 76:
-        if (visitDEC_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 113:
-        if (visitLET_BINDING(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 61:
-        if (visitIF_THEN_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 36:
-        if (visitLOCAL(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 152:
-        if (visitTX_FloatTypeSuffix(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 134:
-        if (visitEQ_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 125:
-        if (visitTYPEVARID(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 15:
-        if (visitRECORD(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 17:
-        if (visitATTRIBUTE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 75:
-        if (visitHEX_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 39:
-        if (visitEXP_GUARD(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 56:
-        if (visitSWITCH_CASE_JUMP(t)) {
+      case 10:
+        if (visitANNOTATED_TYPE(t)) {
           visitChildren(t);
         }
         return;
       case 136:
-        if (visitREL_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 18:
-        if (visitATTRIBUTE_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 50:
-        if (visitGOTO(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 12:
-        if (visitENUM(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 150:
-        if (visitTX_IntTypeSuffix(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 98:
-        if (visitMAPPING(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 13:
-        if (visitENUM_ELEMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 60:
-        if (visitIF_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 144:
-        if (visitRAW_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 132:
-        if (visitXOR_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 161:
-        if (visitTX_OctalEscape(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 163:
-        if (visitCOMMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 95:
-        if (visitNFUNCTION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 115:
-        if (visitNEW_MULTI_ARRAY_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 44:
-        if (visitRHS(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 4:
-        if (visitOPTION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 27:
-        if (visitTYPEVAR(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 84:
-        if (visitRATIONAL(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 116:
-        if (visitTYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 117:
-        if (visitARRAY_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 88:
-        if (visitNLIST_RANGE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 43:
-        if (visitLHS(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 42:
-        if (visitASSIGN(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 130:
-        if (visitCOND_AND_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 97:
-        if (visitFUN(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 74:
-        if (visitNULL(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 109:
-        if (visitPROCEDURE_TYPE_PARAM_VARIABLE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 129:
-        if (visitCOND_OR_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 20:
-        if (visitGLOBAL_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 101:
-        if (visitINT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 7:
-        if (visitANNOTATION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 123:
-        if (visitANN_TYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 22:
-        if (visitPARAM(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 91:
-        if (visitNMULTI_ARRAY_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 9:
-        if (visitPACKAGE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 35:
-        if (visitBODY(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 139:
-        if (visitMUL_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 128:
-        if (visitACTION_EXT_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 30:
-        if (visitACTION_EXT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 70:
-        if (visitACCESS(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 5:
-        if (visitLIST(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 89:
-        if (visitNLIST(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 158:
-        if (visitTX_Letter(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 85:
-        if (visitCHAR(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 90:
-        if (visitNMULTI_ARRAY(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 138:
-        if (visitADD_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 72:
-        if (visitTRUE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 92:
-        if (visitNRECORD(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 45:
-        if (visitASSERT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 81:
-        if (visitNAME(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 99:
-        if (visitMATCHING(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 66:
-        if (visitBINARY(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 96:
-        if (visitFUN_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 21:
-        if (visitPROCEDURE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 16:
-        if (visitEXTENDCLAUSE_ELEMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 38:
-        if (visitLOCATION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 65:
-        if (visitSWITCH_DEFAULT_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 23:
-        if (visitPARAM_VARIABLE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 142:
-        if (visitSTRING_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 68:
-        if (visitCAST(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 127:
-        if (visitLOCID(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 156:
-        if (visitTX_OPID_CHARMLT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 80:
-        if (visitNAME_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 102:
-        if (visitNAME_TYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 112:
-        if (visitLET_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 28:
-        if (visitTYPE_EXT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 120:
-        if (visitSET_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 87:
-        if (visitTYPE_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 153:
-        if (visitTX_EscapeSequence(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 131:
-        if (visitOR_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 47:
-        if (visitTHROW(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 133:
-        if (visitAND_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 24:
-        if (visitVSET(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 11:
-        if (visitCONST_ELEMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 10:
-        if (visitCONST(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 77:
-        if (visitOCT_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 104:
-        if (visitTUPLE_TYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 135:
-        if (visitCOLON_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 154:
-        if (visitTX_OPID_SUFFIX(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 143:
-        if (visitSYMBOL_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 114:
-        if (visitNEW_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 107:
-        if (visitTYPE_PARAM(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 62:
-        if (visitIF_ELSE_EXP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 137:
-        if (visitSHIFT_OP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 14:
-        if (visitTYPEALIAS(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 55:
-        if (visitSWITCH_JUMP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 54:
-        if (visitIF_ELSE_JUMP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 105:
-        if (visitFUN_TYPE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 79:
-        if (visitTUPLE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 126:
-        if (visitGLOBALID(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 69:
-        if (visitINDEXING(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 46:
-        if (visitASSUME(t)) {
+        if (visitTX_Exponent(t)) {
           visitChildren(t);
         }
         return;
       case 49:
-        if (visitACTION_EXT_CALL(t)) {
+        if (visitFLOAT(t)) {
           visitChildren(t);
         }
         return;
-      case 31:
-        if (visitEXP_EXT(t)) {
+      case 47:
+        if (visitEXT_PARAM_VARIABLE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 38:
+        if (visitELSE_GUARD(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 28:
+        if (visitCATCH_CLAUSE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 45:
+        if (visitEXTENSION(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 25:
+        if (visitCALL(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 134:
+        if (visitTX_BASICID(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 23:
+        if (visitBIN_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 37:
+        if (visitDEC_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 69:
+        if (visitLET_BINDING(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 65:
+        if (visitIF_THEN_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 75:
+        if (visitLOCAL(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 137:
+        if (visitTX_FloatTypeSuffix(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 41:
+        if (visitEQ_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 151:
+        if (visitTYPEVARID(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 111:
+        if (visitRECORD(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 19:
+        if (visitATTRIBUTE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 59:
+        if (visitHEX_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 43:
+        if (visitEXP_GUARD(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 122:
+        if (visitSWITCH_CASE_JUMP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 113:
+        if (visitREL_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 20:
+        if (visitATTRIBUTE_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 58:
+        if (visitGOTO(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 39:
+        if (visitENUM(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 139:
+        if (visitTX_IntTypeSuffix(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 79:
+        if (visitMAPPING(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 40:
+        if (visitENUM_ELEMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 63:
+        if (visitIF_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 110:
+        if (visitRAW_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 164:
+        if (visitXOR_OP(t)) {
           visitChildren(t);
         }
         return;
       case 146:
-        if (visitFLOAT_LIT(t)) {
+        if (visitTX_OctalEscape(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 32:
+        if (visitCOMMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 89:
+        if (visitNFUNCTION(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 88:
+        if (visitNEW_MULTI_ARRAY_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 115:
+        if (visitRHS(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 98:
+        if (visitOPTION(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 150:
+        if (visitTYPEVAR(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 107:
+        if (visitRATIONAL(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 148:
+        if (visitTYPE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 15:
+        if (visitARRAY_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 91:
+        if (visitNLIST_RANGE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 71:
+        if (visitLHS(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 17:
+        if (visitASSIGN(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 96:
+        if (visitNULL(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 51:
+        if (visitFUN(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 33:
+        if (visitCOND_AND_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 105:
+        if (visitPROCEDURE_TYPE_PARAM_VARIABLE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 34:
+        if (visitCOND_OR_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 57:
+        if (visitGLOBAL_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 68:
+        if (visitINT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 11:
+        if (visitANNOTATION(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 101:
+        if (visitPARAM(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 14:
+        if (visitANN_TYPE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 93:
+        if (visitNMULTI_ARRAY_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 100:
+        if (visitPACKAGE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 24:
+        if (visitBODY(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 83:
+        if (visitMUL_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 7:
+        if (visitACTION_EXT_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 5:
+        if (visitACTION_EXT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 4:
+        if (visitACCESS(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 73:
+        if (visitLIST(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 90:
+        if (visitNLIST(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 141:
+        if (visitTX_Letter(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 29:
+        if (visitCHAR(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 92:
+        if (visitNMULTI_ARRAY(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 8:
+        if (visitADD_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 131:
+        if (visitTRUE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 94:
+        if (visitNRECORD(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 16:
+        if (visitASSERT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 84:
+        if (visitNAME(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 80:
+        if (visitMATCHING(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 22:
+        if (visitBINARY(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 53:
+        if (visitFUN_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 103:
+        if (visitPROCEDURE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 44:
+        if (visitEXTENDCLAUSE_ELEMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 77:
+        if (visitLOCATION(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 123:
+        if (visitSWITCH_DEFAULT_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 102:
+        if (visitPARAM_VARIABLE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 120:
+        if (visitSTRING_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 27:
+        if (visitCAST(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 78:
+        if (visitLOCID(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 144:
+        if (visitTX_OPID_CHARMLT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 85:
+        if (visitNAME_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 86:
+        if (visitNAME_TYPE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 155:
+        if (visitTYPE_EXT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 70:
+        if (visitLET_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 154:
+        if (visitTYPE_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 116:
+        if (visitSET_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 135:
+        if (visitTX_EscapeSequence(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 99:
+        if (visitOR_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 129:
+        if (visitTHROW(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 9:
+        if (visitAND_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 161:
+        if (visitVSET(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 36:
+        if (visitCONST_ELEMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 35:
+        if (visitCONST(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 97:
+        if (visitOCT_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 133:
+        if (visitTUPLE_TYPE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 31:
+        if (visitCOLON_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 145:
+        if (visitTX_OPID_SUFFIX(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 128:
+        if (visitSYMBOL_LIT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 87:
+        if (visitNEW_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 157:
+        if (visitTYPE_PARAM(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 61:
+        if (visitIF_ELSE_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 149:
+        if (visitTYPEALIAS(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 117:
+        if (visitSHIFT_OP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 126:
+        if (visitSWITCH_JUMP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 62:
+        if (visitIF_ELSE_JUMP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 54:
+        if (visitFUN_TYPE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 132:
+        if (visitTUPLE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 56:
+        if (visitGLOBALID(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 67:
+        if (visitINDEXING(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 18:
+        if (visitASSUME(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 6:
+        if (visitACTION_EXT_CALL(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 42:
+        if (visitEXP_EXT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 125:
+        if (visitSWITCH_EXP(t)) {
           visitChildren(t);
         }
         return;
@@ -619,8 +619,8 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 63:
-        if (visitSWITCH_EXP(t)) {
+      case 50:
+        if (visitFLOAT_LIT(t)) {
           visitChildren(t);
         }
         return;
@@ -664,57 +664,57 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
+      case 114:
+        if (visitRETURN(t)) {
+          visitChildren(t);
+        }
+        return;
       case 190:
         if (visitT__190(t)) {
           visitChildren(t);
         }
         return;
-      case 51:
-        if (visitRETURN(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 162:
+      case 163:
         if (visitWS(t)) {
           visitChildren(t);
         }
         return;
-      case 164:
+      case 72:
         if (visitLINE_COMMENT(t)) {
           visitChildren(t);
         }
         return;
-      case 73:
+      case 48:
         if (visitFALSE(t)) {
           visitChildren(t);
         }
         return;
-      case 122:
-        if (visitRAW(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 86:
+      case 127:
         if (visitSYMBOL(t)) {
           visitChildren(t);
         }
         return;
-      case 121:
+      case 109:
+        if (visitRAW(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 153:
         if (visitTYPEVAR_TUPLE(t)) {
           visitChildren(t);
         }
         return;
-      case 118:
-        if (visitLIST_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 111:
+      case 112:
         if (visitRELATION_TYPE(t)) {
           visitChildren(t);
         }
         return;
-      case 78:
+      case 74:
+        if (visitLIST_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 119:
         if (visitSTRING(t)) {
           visitChildren(t);
         }
@@ -769,13 +769,18 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 110:
+      case 184:
+        if (visitT__184(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 52:
         if (visitFUNCTION_TYPE(t)) {
           visitChildren(t);
         }
         return;
-      case 184:
-        if (visitT__184(t)) {
+      case 130:
+        if (visitTRANSFORMATION(t)) {
           visitChildren(t);
         }
         return;
@@ -784,23 +789,8 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 41:
-        if (visitTRANSFORMATION(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 147:
+      case 108:
         if (visitRATIONAL_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 119:
-        if (visitMULTIARRAY_FRAGMENT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 100:
-        if (visitANN_EXP(t)) {
           visitChildren(t);
         }
         return;
@@ -809,12 +799,22 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
+      case 13:
+        if (visitANN_EXP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 82:
+        if (visitMULTIARRAY_FRAGMENT(t)) {
+          visitChildren(t);
+        }
+        return;
       case 181:
         if (visitT__181(t)) {
           visitChildren(t);
         }
         return;
-      case 149:
+      case 138:
         if (visitTX_HexDigit(t)) {
           visitChildren(t);
         }
@@ -824,47 +824,47 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 58:
+      case 26:
         if (visitCALL_JUMP(t)) {
           visitChildren(t);
         }
         return;
-      case 29:
+      case 156:
         if (visitTYPE_EXT_ATTRIBUTE_BINDING(t)) {
           visitChildren(t);
         }
         return;
-      case 159:
+      case 140:
         if (visitTX_JavaIDDigit(t)) {
           visitChildren(t);
         }
         return;
-      case 37:
+      case 76:
         if (visitLOCAL_FRAGMENT(t)) {
           visitChildren(t);
         }
         return;
-      case 94:
+      case 95:
         if (visitNSET(t)) {
           visitChildren(t);
         }
         return;
-      case 32:
+      case 106:
         if (visitPROC_EXT(t)) {
           visitChildren(t);
         }
         return;
-      case 155:
+      case 142:
         if (visitTX_OPID_CHAR(t)) {
           visitChildren(t);
         }
         return;
-      case 48:
+      case 118:
         if (visitSTART(t)) {
           visitChildren(t);
         }
         return;
-      case 33:
+      case 46:
         if (visitEXT_PARAM(t)) {
           visitChildren(t);
         }
@@ -894,13 +894,13 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 93:
-        if (visitATTR_INIT(t)) {
+      case 214:
+        if (visitT__214(t)) {
           visitChildren(t);
         }
         return;
-      case 214:
-        if (visitT__214(t)) {
+      case 21:
+        if (visitATTR_INIT(t)) {
           visitChildren(t);
         }
         return;
@@ -969,17 +969,12 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 157:
+      case 143:
         if (visitTX_OPID_CHARMGT(t)) {
           visitChildren(t);
         }
         return;
-      case 141:
-        if (visitCHAR_LIT(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 106:
+      case 104:
         if (visitPROCEDURE_TYPE(t)) {
           visitChildren(t);
         }
@@ -989,22 +984,27 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 57:
-        if (visitSWITCH_DEFAULT_JUMP(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 52:
-        if (visitIF_JUMP(t)) {
+      case 30:
+        if (visitCHAR_LIT(t)) {
           visitChildren(t);
         }
         return;
       case 124:
+        if (visitSWITCH_DEFAULT_JUMP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 64:
+        if (visitIF_JUMP(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 60:
         if (visitID(t)) {
           visitChildren(t);
         }
         return;
-      case 53:
+      case 66:
         if (visitIF_THEN_JUMP(t)) {
           visitChildren(t);
         }
@@ -1019,7 +1019,7 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 64:
+      case 121:
         if (visitSWITCH_CASE_EXP(t)) {
           visitChildren(t);
         }
@@ -1029,7 +1029,7 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 25:
+      case 162:
         if (visitVSET_ELEMENT(t)) {
           visitChildren(t);
         }
@@ -1079,7 +1079,7 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 140:
+      case 160:
         if (visitUN_OP(t)) {
           visitChildren(t);
         }
@@ -1099,32 +1099,32 @@ public class TreeVisitor<G> {
           visitChildren(t);
         }
         return;
-      case 103:
-        if (visitTYPE_TUPLE(t)) {
-          visitChildren(t);
-        }
-        return;
-      case 67:
+      case 159:
         if (visitUNARY(t)) {
           visitChildren(t);
         }
         return;
-      case 8:
+      case 158:
+        if (visitTYPE_TUPLE(t)) {
+          visitChildren(t);
+        }
+        return;
+      case 12:
         if (visitANNOTATION_PARAM_IDED(t)) {
           visitChildren(t);
         }
         return;
-      case 19:
+      case 55:
         if (visitGLOBAL(t)) {
           visitChildren(t);
         }
         return;
-      case 160:
+      case 147:
         if (visitTX_UnicodeEscape(t)) {
           visitChildren(t);
         }
         return;
-      case 82:
+      case 152:
         if (visitTYPEVARID_TYPE(t)) {
           visitChildren(t);
         }
