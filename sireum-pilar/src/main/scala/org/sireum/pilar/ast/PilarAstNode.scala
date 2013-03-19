@@ -19,6 +19,16 @@ import org.sireum.util._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object PilarAstNode {
+  trait XStreamer extends Location.XStreamer {
+    self : org.sireum.util.XStreamer =>
+      self.aliasPackage("ast", "org.sireum.pilar.ast")
+  }
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 sealed trait PilarAstNode extends PropertyProvider {
   val propertyMap = mlinkedMapEmpty[Property.Key, Any]
 }
