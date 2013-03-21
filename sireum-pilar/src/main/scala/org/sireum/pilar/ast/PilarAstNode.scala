@@ -29,9 +29,7 @@ object PilarAstNode {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait PilarAstNode extends PropertyProviderInit {
-  var propertyMap : MMap[Property.Key, Any] = mlinkedMapEmpty
-}
+sealed trait PilarAstNode extends PropertyProviderInitLinked
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
