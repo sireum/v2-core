@@ -220,6 +220,18 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
+    case o : TypeAliasDecl =>
+      val st = ctx.stg.getInstanceOf("typealiasDeclaration")
+
+      v(o.typeSpec)
+      st.add("type", ctx.popResult)
+
+      st.add("ID", ctx.processName(o.name))
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      ctx.pushResult(st)
+      false
   }
 
   def typeSpec(ctx : Context, v : => BVisitor) : VisitorFunction = {
@@ -320,6 +332,50 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
+  def annotations(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : Annotation =>
+      val st = ctx.stg.getInstanceOf("annotation")
+      st.add("ID", o.name.name)
+
+      if (!o.params.isEmpty) {
+        val params = o.params
+        if (params.size == 1 && params.head.isInstanceOf[ExpAnnotationParam] &&
+          params.head.name.isDefined) {
+          v(params.head)
+          val s = ctx.popResult.asInstanceOf[String]
+          st.add("annotaitonParams", s)
+        } else {
+          val stAnnotParams = ctx.stg.getInstanceOf("annotationParams")
+          for (ap <- params) {
+            v(ap)
+            stAnnotParams.add("annotationParam", ctx.popResult)
+          }
+          st.add("annotationParams", stAnnotParams)
+        }
+      }
+      ctx.pushResult(st)
+      false
+    case o : AnnotationAnnotationParam =>
+      val st = ctx.stg.getInstanceOf("annotationParam")
+      if (o.name.isDefined)
+        st.add("ID", ctx.processName(o.name.get))
+
+      v(o.annotation)
+      st.add("annotationOrExp", ctx.popResult)
+
+      ctx.pushResult(st)
+      false
+    case o : ExpAnnotationParam =>
+      val st = ctx.stg.getInstanceOf("annotationParam")
+      if (o.name.isDefined) {
+        st.add("ID", ctx.processName(o.name.get))
+      }
+      v(o.exp)
+      st.add("annotationOrExp", ctx.popResult)
+      ctx.pushResult(st)
+      false
+  }
+
   def exp(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case o : AccessExp =>
       val st = ctx.stg.getInstanceOf("accessExp")
@@ -329,7 +385,12 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       st.add("ID", o.attributeName.name)
 
-      ctx.pushResult(st)
+      val ast = ctx.stg.getInstanceOf("annotatedExp")
+      ast.add("exp", st)
+
+      ctx.processAnnotationList(v, ast, o.annotations)
+
+      ctx.pushResult(ast)
       false
     case o : BinaryExp =>
       val st = ctx.stg.getInstanceOf("binaryExp")
@@ -487,6 +548,7 @@ class NodePrettyPrinter(vprint : Value => String) {
         jump(ctx, v),
         action(ctx, v),
         exp(ctx, v),
+        annotations(ctx, v),
         e(ctx, v))
     )
   )
