@@ -54,53 +54,15 @@ final case class NameUser(name : String)
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class Model(
-  sourceURI : Option[FileResourceUri],
-  annotations : ISeq[Annotation],
-  packages : ISeq[PackageDecl])
-    extends PilarAstNode
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class Annotation(
-  name : NameUser,
-  params : ISeq[AnnotationParam])
-    extends PilarAstNode
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-sealed abstract class AnnotationParam extends PilarAstNode {
-  def name : Option[NameUser]
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class AnnotationAnnotationParam(
-  name : Option[NameUser],
-  annotation : Annotation)
-    extends AnnotationParam
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class ExpAnnotationParam(
-  name : Option[NameUser],
-  exp : Exp)
-    extends AnnotationParam
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-sealed trait Annotable extends PilarAstNode {
+sealed trait Annotable[T <: Annotable[T]] extends PilarAstNode {
   private lazy val markerCache = computeMarkerAnnotationCache
   private lazy val valueCache = computeValueAnnotationCache
   private lazy val annotationCache = computeAnnotationCache
   private var markerCacheInitialized = false
 
   def annotations : ISeq[Annotation]
+
+  def make(anns : ISeq[Annotation]) : T
 
   def hasMarkerAnnotation(name : String) : Boolean =
     if (annotations.size == 0) false
@@ -145,7 +107,8 @@ sealed trait Annotable extends PilarAstNode {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait AnnotableProperty extends Annotable {
+sealed trait AnnotableProperty[T <: AnnotableProperty[T]]
+    extends Product with Annotable[T] {
   private val annPropKey = ".annotations"
 
   def annotations : ISeq[Annotation] =
@@ -154,7 +117,60 @@ sealed trait AnnotableProperty extends Annotable {
   def annotations_=(anns : ISeq[Annotation]) {
     this(annPropKey) = anns
   }
+
+  def make(anns : ISeq[Annotation]) : T = {
+    val elements = new Array[Object](productArity)
+    for (i <- 0 until elements.length) {
+      elements(i) = productElement(i).asInstanceOf[Object]
+    }
+    val r = ProductUtil.make(getClass, elements : _*)
+    r.propertyMap ++= propertyMap
+    r.annotations = anns
+    r.asInstanceOf[T]
+  }
 }
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class Model(
+  sourceURI : Option[FileResourceUri],
+  annotations : ISeq[Annotation],
+  packages : ISeq[PackageDecl])
+    extends Annotable[Model] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class Annotation(
+  name : NameUser,
+  params : ISeq[AnnotationParam])
+    extends PilarAstNode
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+sealed abstract class AnnotationParam extends PilarAstNode {
+  def name : Option[NameUser]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class AnnotationAnnotationParam(
+  name : Option[NameUser],
+  annotation : Annotation)
+    extends AnnotationParam
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class ExpAnnotationParam(
+  name : Option[NameUser],
+  exp : Exp)
+    extends AnnotationParam
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -163,12 +179,14 @@ final case class PackageDecl(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation],
   elements : ISeq[PackageElement])
-    extends Annotable
+    extends Annotable[PackageDecl] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class PackageElement extends Annotable {
+sealed abstract class PackageElement extends Annotable[PackageElement] {
   def name : NameDefinition
   def annotations : ISeq[Annotation]
 }
@@ -180,7 +198,9 @@ final case class ConstDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[ConstElement])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -189,7 +209,9 @@ final case class ConstElement(
   name : NameDefinition,
   exp : Exp,
   annotations : ISeq[Annotation])
-    extends Annotable
+    extends Annotable[ConstElement] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -198,7 +220,9 @@ final case class EnumDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[EnumElement])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -206,7 +230,9 @@ final case class EnumDecl(
 final case class EnumElement(
   name : NameDefinition,
   annotations : ISeq[Annotation])
-    extends Annotable
+    extends Annotable[EnumElement] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -215,7 +241,9 @@ final case class TypeAliasDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   typeSpec : TypeSpec)
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -226,7 +254,9 @@ final case class RecordDecl(
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   extendsClauses : ISeq[ExtendClause],
   attributes : ISeq[AttributeDecl])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -235,7 +265,9 @@ final case class ExtendClause(
   name : NameUser,
   annotations : ISeq[Annotation],
   typeArgs : ISeq[TypeSpec])
-    extends Annotable
+    extends Annotable[ExtendClause] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -245,7 +277,9 @@ final case class AttributeDecl(
   annotations : ISeq[Annotation],
   typeSpec : Option[TypeSpec],
   binding : Option[NameUser])
-    extends Annotable
+    extends Annotable[AttributeDecl] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -254,7 +288,9 @@ final case class GlobalVarDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   typeSpec : Option[TypeSpec])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -276,6 +312,8 @@ final case class ProcedureDecl(
         ProcedureDecl(name, annotations, typeVars, params, returnType,
           varArity, EmptyBody())
     }
+
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
 /**
@@ -285,7 +323,9 @@ final case class ParamDecl(
   typeSpec : Option[TypeSpec],
   name : NameDefinition,
   annotations : ISeq[Annotation])
-    extends LocalVar
+    extends LocalVar {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -294,7 +334,9 @@ final case class VSetDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[VSetElement])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -302,7 +344,9 @@ final case class VSetDecl(
 final case class VSetElement(
   name : NameUser,
   annotations : ISeq[Annotation])
-    extends Annotable
+    extends Annotable[VSetElement] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -311,7 +355,9 @@ final case class FunDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   matchings : ISeq[Matching])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -321,12 +367,14 @@ final case class ExtensionDecl(
   annotations : ISeq[Annotation],
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   elements : ISeq[ExtElement])
-    extends PackageElement
+    extends PackageElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class ExtElement extends Annotable {
+sealed abstract class ExtElement extends Annotable[ExtElement] {
   def typeVars : ISeq[(NameDefinition, ISeq[Annotation])]
   def name : NameDefinition
   def annotations : ISeq[Annotation]
@@ -341,7 +389,9 @@ final case class TypeExtensionDecl(
   annotations : ISeq[Annotation],
   extendClauses : ISeq[ExtendClause],
   elements : ISeq[TypeExtElement])
-    extends ExtElement
+    extends ExtElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -356,7 +406,9 @@ final case class TypeExtAttributeBinding(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   extName : NameUser)
-    extends TypeExtElement
+    extends TypeExtElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -375,7 +427,9 @@ final case class ActionExtensionDecl(
   annotations : ISeq[Annotation],
   params : ISeq[ExtParam],
   varArity : Boolean)
-    extends ParameterizedTypeExtElement
+    extends ParameterizedTypeExtElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -387,7 +441,9 @@ final case class ExpExtensionDecl(
   params : ISeq[ExtParam],
   varArity : Boolean,
   returnTypeSpec : Option[TypeSpec])
-    extends ParameterizedTypeExtElement
+    extends ParameterizedTypeExtElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -399,7 +455,9 @@ final case class ProcedureExtensionDecl(
   params : ISeq[ExtParam],
   varArity : Boolean,
   returnTypeSpec : Option[TypeSpec])
-    extends ParameterizedTypeExtElement
+    extends ParameterizedTypeExtElement {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -408,7 +466,9 @@ final case class ExtParam(
   typeSpec : Option[TypeSpec],
   name : Option[NameDefinition],
   annotations : ISeq[Annotation])
-    extends Annotable
+    extends Annotable[ExtParam] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -432,7 +492,7 @@ final case class ImplementedBody(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait LocalVar extends Annotable {
+sealed trait LocalVar extends Annotable[LocalVar] {
   def name() : NameDefinition
 }
 
@@ -443,12 +503,14 @@ final case class LocalVarDecl(
   typeSpec : Option[TypeSpec],
   name : NameDefinition,
   annotations : ISeq[Annotation])
-    extends LocalVar
+    extends LocalVar {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class LocationDecl extends Annotable {
+sealed abstract class LocationDecl extends Annotable[LocationDecl] {
   private val propKey = classOf[LocationDecl].getName
 
   def name : Option[NameDefinition]
@@ -467,7 +529,9 @@ final case class ActionLocation(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation],
   action : Action)
-    extends LocationDecl
+    extends LocationDecl {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -476,7 +540,9 @@ final case class JumpLocation(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation],
   jump : Jump)
-    extends LocationDecl
+    extends LocationDecl {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -485,6 +551,9 @@ final case class EmptyLocation(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation])
     extends LocationDecl
+ {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -493,7 +562,9 @@ final case class ComplexLocation(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation],
   transformations : ISeq[Transformation])
-    extends LocationDecl
+    extends LocationDecl {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -503,12 +574,14 @@ final case class Transformation(
   guard : Option[Guard],
   actions : ISeq[Action],
   jump : Option[Jump])
-    extends Annotable
+    extends Annotable[Transformation] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class Guard extends Annotable
+sealed abstract class Guard extends Annotable[Guard]
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -516,18 +589,22 @@ sealed abstract class Guard extends Annotable
 final case class ExpGuard(
   annotations : ISeq[Annotation],
   cond : Exp)
-    extends Guard
+    extends Guard {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class ElseGuard(annotations : ISeq[Annotation])
-  extends Guard
+  extends Guard {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait Command extends Annotable {
+sealed trait Command extends Annotable[Command] {
   private val propKey = classOf[Command].getName
   def hasCommandDescriptorInfo = this ? propKey
 
@@ -569,7 +646,9 @@ final case class AssertAction(
   annotations : ISeq[Annotation],
   cond : Exp,
   message : Option[Exp])
-    extends Action
+    extends Action {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -577,7 +656,9 @@ final case class AssertAction(
 final case class AssumeAction(
   annotations : ISeq[Annotation],
   cond : Exp)
-    extends Action
+    extends Action {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -585,7 +666,9 @@ final case class AssumeAction(
 final case class ThrowAction(
   annotations : ISeq[Annotation],
   exp : Exp)
-    extends Action
+    extends Action {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -600,7 +683,9 @@ final case class AssignAction(
   lhs : Exp,
   op : String,
   rhs : Exp)
-    extends Action with Assignment
+    extends Action with Assignment {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -610,7 +695,9 @@ final case class StartAction(
   name : NameUser,
   count : Option[Exp],
   arg : Option[Exp])
-    extends Action
+    extends Action {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -618,7 +705,9 @@ final case class StartAction(
 final case class ExtCallAction(
   annotations : ISeq[Annotation],
   callExp : CallExp)
-    extends Action with Assignment
+    extends Action with Assignment {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -636,7 +725,9 @@ sealed trait Branch
 final case class GotoJump(
   annotations : ISeq[Annotation],
   target : NameUser)
-    extends Jump with Branch
+    extends Jump with Branch {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -644,7 +735,9 @@ final case class GotoJump(
 final case class ReturnJump(
   annotations : ISeq[Annotation],
   exp : Option[Exp])
-    extends Jump with Branch
+    extends Jump with Branch {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -653,7 +746,9 @@ final case class IfJump(
   annotations : ISeq[Annotation],
   ifThens : ISeq[IfThenJump],
   ifElse : Option[GotoJump])
-    extends Jump
+    extends Jump {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -662,7 +757,9 @@ final case class IfThenJump(
   cond : Exp,
   annotations : ISeq[Annotation],
   target : NameUser)
-    extends Annotable with Branch
+    extends Annotable[IfThenJump] with Branch {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -672,7 +769,9 @@ final case class SwitchJump(
   cond : Exp,
   cases : ISeq[SwitchCaseJump],
   defaultCase : Option[GotoJump])
-    extends Jump
+    extends Jump {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -681,7 +780,9 @@ final case class SwitchCaseJump(
   cond : Exp,
   annotations : ISeq[Annotation],
   target : NameUser)
-    extends Annotable with Branch
+    extends Annotable[SwitchCaseJump] with Branch {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -691,7 +792,9 @@ final case class CallJump(
   lhs : Option[NameExp],
   callExp : CallExp,
   jump : Option[GotoJump])
-    extends Jump with Assignment
+    extends Jump with Assignment {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -703,12 +806,14 @@ final case class CatchClause(
   fromTarget : NameUser,
   toTarget : NameUser,
   jump : GotoJump)
-    extends Annotable
+    extends Annotable[CatchClause] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class Exp extends AnnotableProperty
+sealed abstract class Exp extends AnnotableProperty[Exp]
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -725,7 +830,9 @@ final case class IfThenExp(
   cond : Exp,
   annotations : ISeq[Annotation],
   exp : Exp)
-    extends Annotable
+    extends Annotable[IfThenExp] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -743,7 +850,9 @@ final case class SwitchCaseExp(
   cond : Exp,
   annotations : ISeq[Annotation],
   exp : Exp)
-    extends Annotable
+    extends Annotable[SwitchCaseExp] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -974,7 +1083,7 @@ final case class ExternalExp(obj : Any)
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class TypeSpec extends AnnotableProperty
+sealed abstract class TypeSpec extends AnnotableProperty[TypeSpec]
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -1001,7 +1110,9 @@ final case class TypeParam(
   typeSpec : TypeSpec,
   name : Option[String],
   annotations : ISeq[Annotation])
-    extends Annotable
+    extends Annotable[TypeParam] {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
