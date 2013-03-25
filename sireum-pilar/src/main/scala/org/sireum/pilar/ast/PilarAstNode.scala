@@ -107,10 +107,18 @@ sealed trait Annotable[T <: Annotable[T]] extends PilarAstNode {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object AnnotableProperty {
+  final val annPropKey = ".annotations"
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 sealed trait AnnotableProperty[T <: AnnotableProperty[T]]
     extends Product with Annotable[T] {
-  private val annPropKey = ".annotations"
-
+  
+  import AnnotableProperty._
+  
   def annotations : ISeq[Annotation] =
     this.getPropertyOrElse(annPropKey, ivectorEmpty)
 
