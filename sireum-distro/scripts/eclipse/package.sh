@@ -40,10 +40,14 @@ echo Packaging classic-mac64.sapp
 #
 tar xfz eclipse-SDK-$VERSION-macosx-cocoa-x86_64.tar.gz
 mv eclipse classic
-rm classic/Eclipse.app/Contents/MacOS/eclipse
-cp $PACKAGE_HOME/mac/eclipse classic/Eclipse.app/Contents/MacOS/
-chmod 755 classic/Eclipse.app/Contents/MacOS/eclipse
+cp $PACKAGE_HOME/mac/eclipse.sh classic/Eclipse.app/Contents/MacOS/
+cp $PACKAGE_HOME/mac/Info.plist classic/Eclipse.app/Contents/
+chmod 755 classic/Eclipse.app/Contents/MacOS/eclipse.sh
 cp -R $PACKAGE_HOME/links classic/
+rm classic/eclipse
+cd classic
+ln -s Eclipse.app/Contents/MacOS/eclipse.sh eclipse
+cd ..
 sireum tools sapper classic-mac64.sapp classic
 tar cfz classic-mac64.tar.gz classic
 rm -R classic
