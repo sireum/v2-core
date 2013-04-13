@@ -40,8 +40,12 @@ class EclipseLauncher {
       osArch match {
         case OsArch.Mac32 | OsArch.Mac64 =>
           val eclipse = new File(sireumHome,
-            "apps/eclipse/classic/Eclipse.app/Contents/MacOS/eclipse").getCanonicalPath
-          (eclipse :: opt.args.toList) ++ (
+            "apps/eclipse/classic/Eclipse.app/Contents/MacOS/eclipse.orig").getCanonicalPath
+          val args =
+            if (opt.args.length > 0 && opt.args(0).startsWith("-psn"))
+              opt.args.slice(1, opt.args.length)
+            else opt.args
+          (eclipse :: args.toList) ++ (
             if (javaHomeDir.exists)
               ilist("-vm", new File(javaHomeDir,
               "jre/lib/server/libjvm.dylib").getCanonicalPath)
