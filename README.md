@@ -18,7 +18,7 @@ Setting up Development Environment
     instead.
 
 3.  Launch [Sireum Development Environment
-    (DE)](http://www.sireum.org/features):
+    (DE)](http://www.sireum.org/features) (add `-h` for help):
 
     sireum launch sireumdev
 

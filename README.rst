@@ -12,7 +12,8 @@ Setting up Development Environment
    If you are a MDCF team member at GitHub with SSH key installed, you can use the 
    `project set file with write access <https://github.com/mdcf/devicemodel/blob/master/dms.psf>`_ instead.
 
-3. Launch `Sireum Development Environment (DE) <http://www.sireum.org/features>`_::
+3. Launch `Sireum Development Environment (DE) <http://www.sireum.org/features>`_
+   (add ``-h`` for help)::
 
    sireum launch sireumdev
 
