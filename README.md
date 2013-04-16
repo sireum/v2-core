@@ -20,7 +20,7 @@ Setting up Development Environment
 3.  Launch [Sireum Development Environment
     (DE)](http://www.sireum.org/features) (add `-h` for help):
 
-    sireum launch sireumdev
+        sireum launch sireumdev
 
     Pick a directory for your workspace when asked. Moreover, agree when
     asked to run Scala diagnostics; enable JDT Weaving for Scala IDE and
