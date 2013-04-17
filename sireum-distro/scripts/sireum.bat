@@ -32,13 +32,13 @@ SET RELOAD=false
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
   RD %SIREUM_HOME%apps\platform\java /S /Q
   MOVE /Y %SIREUM_HOME%apps\platform\java.new %SIREUM_HOME%apps\platform\java > NUL
-  DEL /Q %SCRIPT%.jar
+  DEL %SCRIPT%.jar > NUL 2>&1
   SET RELOAD=true
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala.new (
   RD %SIREUM_HOME%apps\platform\scala /S /Q
   MOVE /Y %SIREUM_HOME%apps\platform\scala.new %SIREUM_HOME%apps\platform\scala > NUL
-  DEL /Q %SCRIPT%.jar
+  DEL %SCRIPT%.jar > NUL 2>&1
   SET RELOAD=true
 )
 SET COND=true
