@@ -220,8 +220,7 @@ object SireumDistro extends App {
                   } else if (!unmanagedDir.isDirectory) {
                     errPrintln(unmanagedDir.getAbsolutePath +
                       " is not a directory")
-                  } else
-                    updateScriptAndPlatform
+                  }
                   install(args.slice(i + 3, args.length) : _*)
                 } else if (args.length == i + 2) {
                   errPrintln("Missing install option -d argument")
@@ -231,7 +230,6 @@ object SireumDistro extends App {
               case arg if arg.startsWith("-") =>
                 errPrintln(arg + " is not an option of install")
               case _ =>
-                updateScriptAndPlatform
                 install(args.slice(i + 1, args.length) : _*)
             }
           }
@@ -493,6 +491,7 @@ object SireumDistro extends App {
       val installedFeatures = loadInstalledFeatures
       if (!installedFeatures.contains(featureName))
         if (features.contains(featureName)) {
+          updateScriptAndPlatform
           outPrintln("Installing " + featureName + " feature in " +
             sireumDir.getAbsolutePath)
 
@@ -1415,8 +1414,20 @@ Sireum Distro managed apps are currently running.""")
     import scala.actors._
     import scala.actors.Actor._
 
-    def run(waitTime : Long, args : Seq[String], input : Option[String],
-            dir : Option[File] = None) : Result = {
+    private var _env : Option[HashMap[String, String]] = None
+
+    def env =
+      _env match {
+        case Some(m) => m
+        case _ =>
+          import scala.collection.JavaConversions._
+          val m = HashMap[String, String]()
+          m ++= System.getenv()
+          _env = Some(m)
+          m
+      }
+
+    def run(waitTime : Long, args : Seq[String], input : Option[String], dir : Option[File] = None) : Result = {
       singleReader(self, waitTime, dir) ! (args, input)
 
       (if (waitTime < 0)
@@ -1431,8 +1442,7 @@ Sireum Distro managed apps are currently running.""")
       }
     }
 
-    private def singleReader(caller : Actor, waitTime : Long,
-                             dir : Option[File]) = actor {
+    private def singleReader(caller : Actor, waitTime : Long, dir : Option[File]) = actor {
       (if (waitTime < 0)
         react _
       else
@@ -1441,11 +1451,20 @@ Sireum Distro managed apps are currently running.""")
           caller ! Some(TIMEOUT)
         case (args : Seq[_], in : Option[_]) =>
           import java.io._
-          val processBuilder = new ProcessBuilder(
-            args.asInstanceOf[Seq[String]] : _*)
+          val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
           if (dir.isDefined)
             processBuilder.directory(dir.get)
           processBuilder.redirectErrorStream(true)
+
+          _env match {
+            case Some(m) =>
+              import scala.collection.JavaConversions._
+              val pbEnv = processBuilder.environment()
+              pbEnv.clear
+              pbEnv.putAll(env)
+            case _ =>
+          }
+
           try {
             val proc = processBuilder.start()
             if (in.isDefined) {
@@ -1453,8 +1472,7 @@ Sireum Distro managed apps are currently running.""")
               osr.write(in.get.asInstanceOf[String])
               osr.flush
             }
-            val br = new BufferedReader(
-              new InputStreamReader(proc.getInputStream))
+            val br = new BufferedReader(new InputStreamReader(proc.getInputStream))
             val sb = new StringBuilder()
             var line : String = null
             while ({ line = br.readLine; line != null }) {
