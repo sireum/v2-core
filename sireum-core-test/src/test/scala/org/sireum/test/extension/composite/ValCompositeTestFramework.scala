@@ -221,8 +221,9 @@ trait ValCompositeTestFramework extends TestFramework {
       val fw = new FileWriter(new File(new URI(frUri)))
       try fw.write(result)
       finally fw.close
-      val (expected, _) = FileUtil.readFile(fUri.toString)
-      result should equal(expected)
+      val resultLines = StringUtil.readLines(result)
+      val (expectedLines, _) = FileUtil.readFileLines(fUri.toString)
+      resultLines should equal(expectedLines)
     }
   }
 }
