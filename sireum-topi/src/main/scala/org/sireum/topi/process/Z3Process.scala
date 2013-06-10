@@ -18,7 +18,7 @@ import org.sireum.util.sexp.ast._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
+final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
   def stateRewriter(m : IMap[String, Value]) =
     PartialFunctionUtil.orElses[Any, Any](trans.map { _.stateRewriter(m) })
 
@@ -42,11 +42,10 @@ final class Z3Process(z3 : File, waitTime : Long, trans : TopiProcess.BackEndPar
     }
 
   def exec(script : String) = {
-    val z3Path = z3.getAbsolutePath
     val args =
       OsArchUtil.detect match {
-        case OsArch.Win64 | OsArch.Win32 => ivector(z3Path, "/smt2", "/in")
-        case _                           => ivector(z3Path, "-smt2", "-in")
+        case OsArch.Win64 | OsArch.Win32 => ivector(z3, "/smt2", "/in")
+        case _                           => ivector(z3, "-smt2", "-in")
       }
 
     val e = new Exec

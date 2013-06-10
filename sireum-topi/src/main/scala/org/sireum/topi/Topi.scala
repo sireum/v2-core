@@ -25,7 +25,7 @@ object Topi {
              extensions : ExtensionCompanion*) : Topi = {
     (solver, mode) match {
       case (TopiSolver.Z3, TopiMode.Process) =>
-        new Z3Process(TopiSolver.Z3.exeFile, waitTime,
+        new Z3Process(TopiSolver.Z3.exeFilePath, waitTime,
           TopiProcess.mine(solver, mode, extensions : _*) : _*)
     }
   }
@@ -70,8 +70,8 @@ trait Topi {
 object TopiSolver extends Enum {
   sealed abstract class Type extends EnumElem
   object Z3 extends Type {
-    def exeFile : File = {
-      var z3 : Option[File] = None
+    def exeFilePath : String = {
+      var z3 : Option[String] = None
 
       val sireumHome = System.getenv("SIREUM_HOME")
       if (sireumHome != null) {
@@ -82,17 +82,17 @@ object TopiSolver extends Enum {
         }
         val f = new File(sireumHome, z3Path)
         if (f.canExecute)
-          z3 = Some(f)
+          z3 = Some(f.getAbsolutePath)
       }
 
       if (z3.isEmpty) {
         val z3Path = System.getenv("Z3")
         if (z3Path != null)
-          z3 = Some(new File(z3Path))
+          z3 = Some(new File(z3Path).getAbsolutePath)
       }
 
       if (z3.isEmpty)
-        z3 = Some(new File("z3"))
+        z3 = Some("z3")
 
       z3.get
     }
