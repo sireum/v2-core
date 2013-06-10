@@ -386,7 +386,7 @@ object SireumDistro extends App {
       new PrintWriter(new OutputStreamWriter(scala.Console.err)))
 
     if (cr.status && cr.className != "") {
-      install(cr.featureName)
+      install(cr.featureName.split(":") : _*)
       execute(cr.className, cr.options.get)
     }
   }

@@ -33,7 +33,7 @@ object TypeTarget extends Enum {
 
 @Main(value = "type",
   className = "org.sireum.bakar.tools.BakarType",
-  featureName = "Sireum Bakar Tools",
+  featureName = "Sireum Bakar Tools:Gnat.sapp",
   desc = "Generate Type Definitions")
 case class SireumBakarTypeMode(
   @Option(shortKey = "t", longKey = "type", desc = "")
@@ -53,7 +53,7 @@ object ProgramTarget extends Enum {
 
 @Main(value = "program",
   className = "org.sireum.bakar.tools.BakarProgram",
-  featureName = "Sireum Bakar Tools",
+  featureName = "Sireum Bakar Tools:Gnat.sapp",
   desc = "Translation of Spark/Ada Programs")
 case class SireumBakarProgramMode(
   @Option(shortKey = "p", longKey = "program", desc = "")
