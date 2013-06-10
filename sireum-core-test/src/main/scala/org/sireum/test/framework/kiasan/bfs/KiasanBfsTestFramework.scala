@@ -180,7 +180,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
           }
         }
 
-        val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 1000,
+        val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 7000,
           extensions : _*)
       }
 
