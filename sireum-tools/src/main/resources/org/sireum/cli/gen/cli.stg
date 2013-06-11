@@ -33,14 +33,16 @@ class $className$ {
     else {
       val lineSep = System.getProperty("line.separator")
       addErrorTag(mode + " is not a mode of " + parentMode)
-      val sb = new StringBuilder("Did you mean one of the following modes?")
-      sb.append(lineSep)
-      for (mm <- modeMatches) {
-        sb.append("  ")
-        sb.append(mm)
+      if (modeMatches.length > 0) {
+        val sb = new StringBuilder("Did you mean one of the following modes?")
         sb.append(lineSep)
+        for (mm <- modeMatches) {
+          sb.append("  ")
+          sb.append(mm)
+          sb.append(lineSep)
+        }
+        addInfoTag(sb.toString)
       }
-      addInfoTag(sb.toString)
     }
   }
   
