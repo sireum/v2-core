@@ -1387,24 +1387,41 @@ Sireum Distro managed apps are currently running.""")
       entryName.indexOf(SAPP_INFO) < 0)) return
 
     if (entryName.endsWith(SAPP_LINK_EXT)) {
+      val outputFile =
+        new File(outputDir,
+          entryName.substring(0, entryName.length - SAPP_LINK_EXT.length))
+      if (outputFile.exists)
+        delete(outputFile, false)
+      val outputParentFile = outputFile.getParentFile
+      outputParentFile.mkdirs
       val bytes = new Array[Byte](entry.getSize.toInt)
       val is = zipFile.getInputStream(entry)
       try {
         val n = is.read(bytes)
         assert(n == bytes.length)
       } finally is.close
-      val outputFile = new File(outputDir,
-        entryName.substring(0, entryName.length - SAPP_LINK_EXT.length))
-      if (outputFile.exists)
-        delete(outputFile, false)
-      val path = new File(new String(bytes)).toPath
-      try {
-        Files.createSymbolicLink(outputFile.toPath, path)
-      } catch {
-        case e : IOException =>
-          errPrintln("Could not create symbolic link: " +
-            outputFile.getAbsolutePath + " to " + path)
-      }
+      val linkPath = new String(bytes)
+      val path = new File(linkPath).toPath
+      val outputPath = outputFile.toPath
+
+      try Files.createSymbolicLink(outputPath, path)
+      catch { case e : Exception => }
+      if (!Files.isSymbolicLink(outputPath))
+        getOsString match {
+          case "linux32" | "linux64" | "mac64" | "mac32" =>
+            new Exec().
+              run(-1, Seq("ln", "-s", linkPath, outputFile.getName),
+                None, Some(outputParentFile)) match {
+                  case Exec.StringResult(_, exitCode) if exitCode == 0 =>
+                  case _ =>
+                    errPrintln("Could not create symbolic link: " +
+                      outputFile.getAbsolutePath + " to " + path)
+                }
+          case _ =>
+            errPrintln("Could not create symbolic link: " +
+              outputFile.getAbsolutePath + " to " + path)
+        }
+
       val time = entry.getTime
       if (time != 0)
         outputFile.setLastModified(time)
