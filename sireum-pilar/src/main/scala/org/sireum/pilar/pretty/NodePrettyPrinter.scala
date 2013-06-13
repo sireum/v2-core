@@ -13,6 +13,7 @@ import org.stringtemplate.v4._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.state._
 import org.sireum.util._
+import org.apache.commons.lang3.StringEscapeUtils
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -450,7 +451,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       o.typ match {
         case LiteralType.STRING   =>
-          st.add("literal", "\"" + o.text + "\"")
+          st.add("literal", "\"" + StringEscapeUtils.escapeJava(o.text) + "\"")
         case LiteralType.RAW      =>
           st.add("literal", "\"\"\"" + o.text + "\"\"\"")
         case _ =>
