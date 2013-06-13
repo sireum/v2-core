@@ -126,6 +126,21 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
+    case o : GlobalVarDecl =>
+      val st = ctx.stg.getInstanceOf("globalVarDeclaration")
+      
+      if (o.typeSpec.isDefined) {
+        v(o.typeSpec.get)
+        st.add("type", ctx.popResult)
+      }
+      
+      st.add("GLOBALID", o.name.name)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      ctx.pushResult(st)
+      
+      false
     case o : LocalVarDecl =>
       val st = ctx.stg.getInstanceOf("localVarDeclaration")
 
@@ -433,24 +448,15 @@ class NodePrettyPrinter(vprint : Value => String) {
     case o : LiteralExp =>
       val st = ctx.stg.getInstanceOf("literal")
 
-      st.add("literal", o.text)
-
-      /*
       o.typ match {
-        case LiteralType.BOOLEAN  =>
-        case LiteralType.INTEGER  =>
-        case LiteralType.INT      =>
-        case LiteralType.LONG     =>
-        case LiteralType.CHAR     =>
-        case LiteralType.FLOAT    =>
-        case LiteralType.DOUBLE   =>
-        case LiteralType.RATIONAL =>
         case LiteralType.STRING   =>
-        case LiteralType.SYMBOL   =>
+          st.add("literal", "\"" + o.text + "\"")
         case LiteralType.RAW      =>
-        case LiteralType.NULL     =>
+          st.add("literal", "\"\"\"" + o.text + "\"\"\"")
+        case _ =>
+          st.add("literal", o.text)
       }
-      */
+
 
       ctx.pushResult(st)
       false
