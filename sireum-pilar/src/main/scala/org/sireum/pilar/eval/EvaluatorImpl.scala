@@ -583,18 +583,18 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         }
       } yield re3
     case (s, e : NewListExp) =>
-      def rec(s : S, l : ISeq[Exp], acc : IVector[V]) : ISeq[(S, ISeq[V])] =
+      def rec(s : S, l : IList[Exp], acc : IVector[V]) : ISeq[(S, ISeq[V])] =
           l match {
             case e :: tail =>
               for {
                 re <- eval(s, e)
                 svs <- rec(re2s(re), tail, acc :+ re2v(re))
               } yield svs
-            case nil =>
+            case Nil =>
               ivector((s, acc))
           }
       for {
-        (s1, vs) <- rec(s, e.elements, ivectorEmpty[V])
+        (s1, vs) <- rec(s, e.elements.toList, ivectorEmpty[V])
         re <- sec.newList(s1, vs)
       } yield re
   }
