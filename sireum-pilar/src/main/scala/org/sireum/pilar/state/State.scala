@@ -30,9 +30,21 @@ object State {
       def variable(x : NameUser, value : Value) : S = s.variable(uri(x), value)
       def variableOpt(x : NameUser) = {
         val varUri = uri(x)
-        if (s.hasVariableValue(varUri)) Some(s(varUri))
+        if (s.hasVariableValue(varUri)) Some(s.variable(varUri))
         else None
       }
+    }
+  }
+
+  object UriAccess {
+    implicit class StateWithUriAccess[S <: State[S]](val s : S) extends AnyVal {
+      def apply(varUri : ResourceUri) : Value = s.variable(varUri)
+      def apply(varUriPairs : (ResourceUri, Value)*) : S = {
+        var s2 = s
+        varUriPairs.foreach { p => s2 = s2.variable(p._1, p._2) }
+        s2
+      }
+      def update(varUri : ResourceUri, v : Value) = s.variable(varUri, v)
     }
   }
 }
@@ -133,14 +145,6 @@ trait State[Self <: State[Self]]
     with AssertionViolationStatePart[Self]
     with RaisedExceptionStatePart[Self] {
   import State._
-
-  def apply(varUri : ResourceUri) : Value = variable(varUri)
-  def apply(varUriPairs : (ResourceUri, Value)*) : Self = {
-    var s : Self = self
-    varUriPairs.foreach { p => s = s.variable(p._1, p._2) }
-    s
-  }
-  def update(varUri : ResourceUri, v : Value) = variable(varUri, v)
 
   def globalStore : Store
   def closureStoreStack : StoreStack

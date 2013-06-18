@@ -30,25 +30,25 @@ trait KonkritJumpEvaluatorTestCases[S <: State[S], Se, SR] {
   import org.sireum.test.konkrit.eval.KonkritEvaluatorTestUtil._
 
   Case("GotoTarget").
-    Evaluating jump "goto target;" on (state()) gives "target location" satisfying {
+    Evaluating jump "goto target;" on state gives "target location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target"))
     }
 
   Case("IfTarget").
-    Evaluating jump "if true then goto target;" on (state()) gives
+    Evaluating jump "if true then goto target;" on state gives
     "target location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target"))
     }
 
   Case("IfNext").
-    Evaluating jump "if false then goto target;" on (state()) gives
+    Evaluating jump "if false then goto target;" on state gives
     "next location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("next"))
     }
 
   Case("IfElseTarget").
     Evaluating jump "if false then goto target else goto target2;" on
-    (state()) gives "target2 location" satisfying {
+    state gives "target2 location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target2"))
     }
 
@@ -56,20 +56,20 @@ trait KonkritJumpEvaluatorTestCases[S <: State[S], Se, SR] {
     Evaluating jump """if false then goto target 
                         else if true then goto target2 
                         else goto target3;""" on
-    (state()) gives "target2 location" satisfying {
+    state gives "target2 location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target2"))
     }
 
   Case("SwitchTarget").
     Evaluating jump """switch true 
-                       | true => goto target;""" on (state()) gives
+                       | true => goto target;""" on state gives
     "target location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target"))
     }
 
   Case("SwitchNext").
     Evaluating jump """switch false 
-                       | true => goto target;""" on (state()) gives
+                       | true => goto target;""" on state gives
     "next location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("next"))
     }
@@ -77,7 +77,7 @@ trait KonkritJumpEvaluatorTestCases[S <: State[S], Se, SR] {
   Case("SwitchTarget2").
     Evaluating jump """switch false 
                        | true => goto target
-                       | false => goto target2;""" on (state()) gives
+                       | false => goto target2;""" on state gives
     "target2 location" satisfying {
       s : Se => s.callStack.head.locationUri should equal(Some("target2"))
     }
@@ -89,7 +89,7 @@ trait KonkritJumpEvaluatorTestCases[S <: State[S], Se, SR] {
   //    }
 
   Case("ReturnEmpty").
-    Evaluating jump "return;" on (state()) gives "empty state" satisfying {
+    Evaluating jump "return;" on state gives "empty state" satisfying {
       s : Se => s should equal(emptyState)
     }
 

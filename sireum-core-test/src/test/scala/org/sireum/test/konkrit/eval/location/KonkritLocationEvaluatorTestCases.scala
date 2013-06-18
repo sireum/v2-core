@@ -35,10 +35,10 @@ trait KonkritLocationEvaluatorTestCases[S <: State[S]] {
   import org.sireum.test.konkrit.eval.KonkritEvaluatorTestUtil._
 
   Case("AssignX1").
-    Evaluating location "# @@x := 1II;" on (state()) gives "x==1" satisfying {
+    Evaluating location "# @@x := 1II;" on state gives "x==1" satisfying {
       trans : Transitions[S] =>
         trans.enabled.foreach { t =>
-          t.state should equal(state())
+          t.state should equal (state)
         }
         assert(trans.disabled.isEmpty)
     }

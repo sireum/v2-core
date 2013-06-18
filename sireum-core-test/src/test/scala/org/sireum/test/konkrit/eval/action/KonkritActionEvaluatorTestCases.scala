@@ -26,16 +26,18 @@ trait KonkritActionEvaluatorTestCases[S <: State[S], Se, SR] {
 
   import org.sireum.test.konkrit.eval.KonkritEvaluatorTestUtil._
 
+  import State.UriAccess._
+  
   Case("AssignX1").
     Evaluating action "@@x := 1II;" on (state("@@x" -> 0)) gives "x==1" satisfying {
       s : Se =>
-        s("@@x") should equal(n(1))
+        se2s(s)("@@x") should equal(n(1))
     }
 
   Case("AssignXTrue").
     Evaluating action "@@x := true;" on (state("@@x" -> false)) gives "x==1" satisfying {
       s : Se =>
-        s("@@x") should equal(b(true))
+        se2s(s)("@@x") should equal(b(true))
     }
 
   Case("AssertTrue").

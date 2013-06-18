@@ -15,6 +15,7 @@ import org.sireum.kiasan.extension._
 import org.sireum.kiasan.state._
 import org.sireum.konkrit.extension._
 import org.sireum.pilar.ast._
+import org.sireum.pilar.state._
 import org.sireum.util._
 
 import org.sireum.test.extension.composite._
@@ -60,6 +61,8 @@ class ValCompositeActionEvaluatorTest
         ""
     })
   }
+  
+  import State.UriAccess._
 
   {
     val s = {

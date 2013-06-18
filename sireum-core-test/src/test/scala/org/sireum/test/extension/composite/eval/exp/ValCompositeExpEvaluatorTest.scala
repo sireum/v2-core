@@ -75,6 +75,8 @@ class ValCompositeExpEvaluatorTest
         }
     })
   }
+  
+  import State.UriAccess._
 
   {
     val s = {
@@ -290,7 +292,7 @@ class ValCompositeExpEvaluatorTest
   }
 
   {
-    val s = state()
+    val s = state
 
     Case("kiasan.x_rec.f1.is.ki1.lazyempty").
       Evaluating expression "@@x_rec.f1" on s gives "ki1" satisfying {
@@ -300,7 +302,7 @@ class ValCompositeExpEvaluatorTest
 
   {
     val s = {
-      val s = state()
+      val s = state
       val s2s = first3(eval(Either3.First("@@x_rec.f1"), s)).map(first2)
       assert(s2s.size == 1)
       s2s(0)
@@ -320,7 +322,7 @@ class ValCompositeExpEvaluatorTest
   }
 
   {
-    val s = state()
+    val s = state
 
     Case("kiasan.x_arr.1.is.ki4.lazyconempty").
       Evaluating expression "@@x_arr[1ii]" on s gives "ki4" satisfying {
@@ -335,7 +337,7 @@ class ValCompositeExpEvaluatorTest
 
   {
     val s = {
-      val s = state()
+      val s = state
       val s2s = first3(eval(Either3.First("@@x_arr[1ii]"), s)).map(first2)
       assert(s2s.size == 1)
       s2s(0)
@@ -363,7 +365,7 @@ class ValCompositeExpEvaluatorTest
 
   {
     val s = {
-      val s = state()
+      val s = state
       val s2s = first3(eval(Either3.First("@@x_arr[@@y]"), s)).map(first2)
       assert(s2s.size == 1)
       s2s(0)
@@ -392,7 +394,7 @@ class ValCompositeExpEvaluatorTest
 
   {
     val ss = {
-      val s = state()
+      val s = state
       val s2s = first3(eval(Either3.First("@@x_arr[@@y]"), s)).map(first2)
       assert(s2s.size == 1)
       val s2 = s2s(0)
