@@ -71,7 +71,9 @@ case class SireumLaunchMode(
   sireumdev : LaunchSireumDevMode = LaunchSireumDevMode(),
   compilerdev : LaunchCompilerDevMode = LaunchCompilerDevMode(),
   bakar : LaunchBakarV1Mode = LaunchBakarV1Mode(),
-  antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode())
+  antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
+  bakarv1gps: LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
+  bakargps: LaunchBakarGpsMode = LaunchBakarGpsMode())
 
 abstract class LaunchEclipseAppMode {
   def jvmopts : ISeq[String]
@@ -121,10 +123,24 @@ case class LaunchBakarV1Mode(
   var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
-
+  
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "antlrworks", className = "org.sireum.cli.launcher.AntlrWorksLauncher", featureName = "Antlr.sapp",
   desc = "Launch ANTLRWorks")
 case class LaunchAntlrWorksMode()
+
+  /**
+ * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
+ */
+@Main(value = "bakarv1gps", className = "org.sireum.cli.launcher.GpsLauncher", featureName = "BakarGpsV1.sapp",
+  desc = "Launch Gps with BakarV1 Plugins")
+case class LaunchBakarV1GpsMode()
+
+  /**
+ * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
+ */
+@Main(value = "bakargps", className = "org.sireum.cli.launcher.GpsLauncher", featureName = "BakarGps.sapp",
+  desc = "Launch Gpswith BakarV2 Plugins")
+case class LaunchBakarGpsMode()
