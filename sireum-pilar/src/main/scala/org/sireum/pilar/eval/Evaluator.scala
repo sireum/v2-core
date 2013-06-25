@@ -319,7 +319,7 @@ object Evaluator {
       type R = ISeq[(S, V)]
       type C = ISeq[(S, Boolean)]
       type SR = ISeq[S]
-      var ev : Evaluator[S, R, C, SR] = this
+      var ev : Evaluator[S, R, C, SR] = _ev
       def mainEvaluator = ev
       def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
         _ev.setMainEvaluator(eval)
