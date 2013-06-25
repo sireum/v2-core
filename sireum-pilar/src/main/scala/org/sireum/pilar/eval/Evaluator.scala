@@ -160,7 +160,7 @@ trait EvaluatorConfiguration[S, V, R, C, SR] extends PropertyProvider {
  */
 object EvaluatorHeapConfiguration {
   import language.implicitConversions
-  
+
   implicit def ec2ehc[S, V, R, C, SR](ec : EvaluatorConfiguration[S, V, R, C, SR]) =
     ec.asInstanceOf[EvaluatorHeapConfiguration[S, V, R, C, SR]]
 }
@@ -314,8 +314,8 @@ object Evaluator {
   }
 
   def context[S <: EvaluationContextProvider[S], V](
-    ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
+    ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] =
+    new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
       type R = ISeq[(S, V)]
       type C = ISeq[(S, Boolean)]
       type SR = ISeq[S]
@@ -324,6 +324,13 @@ object Evaluator {
       def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
         ev.setMainEvaluator(eval)
         ev = eval
+      }
+
+      def initialize(config : EvaluatorConfiguration[S, V, R, C, SR]) {
+        ev match {
+          case (ev : EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] @unchecked) => ev.initialize(config)
+          case _ =>
+        }
       }
 
       import PartialFunctionUtil._
