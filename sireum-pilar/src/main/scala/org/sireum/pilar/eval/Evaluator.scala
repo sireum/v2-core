@@ -205,10 +205,10 @@ trait EvaluationContextProvider[C <: EvaluationContextProvider[C]] {
   def popContext[T <: ContextStackElement] = make(contextStack.tail)
 
   @inline
-  private def peek = peekContext(0)
+  private def peek[T <: ContextStackElement] : T = peekContext(0)
 
   @inline
-  private def peekAt(i : Int) = peekContext(i)
+  private def peekAt[T <: ContextStackElement](i : Int) : T = peekContext(i)
 
   @inline
   private def push = pushContext _
@@ -314,7 +314,7 @@ object Evaluator {
   }
 
   def context[S <: EvaluationContextProvider[S], V](
-    ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] =
+    _ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] =
     new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
       type R = ISeq[(S, V)]
       type C = ISeq[(S, Boolean)]
@@ -322,12 +322,12 @@ object Evaluator {
       var ev : Evaluator[S, R, C, SR] = this
       def mainEvaluator = ev
       def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
-        ev.setMainEvaluator(eval)
+        _ev.setMainEvaluator(eval)
         ev = eval
       }
 
       def initialize(config : EvaluatorConfiguration[S, V, R, C, SR]) {
-        ev match {
+        _ev match {
           case (ev : EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] @unchecked) => ev.initialize(config)
           case _ =>
         }
