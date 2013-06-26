@@ -15,12 +15,6 @@ import org.sireum.pilar.eval.EvaluatorConfiguration
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object Extension {
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 trait Extension {
   def uriPath : ResourceUri
 }
@@ -28,8 +22,7 @@ trait Extension {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait ExtensionConfig {
-}
+trait ExtensionConfig
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -37,6 +30,7 @@ trait ExtensionConfig {
 trait SemanticsExtensionConfig {
   def extensions : ISeq[ExtensionCompanion]
   def semanticsExtension[S, V, R, C, SR] : SemanticsExtensionConsumer[S, V, R, C, SR]
+  def semanticsExtension_=[S, V, R, C, SR](sec : SemanticsExtensionConsumer[S, V, R, C, SR])
 }
 
 object SemanticsExtensionConfig {

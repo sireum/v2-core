@@ -360,11 +360,15 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     _newListA += newListF
   }
 
+  protected val _expExtA : MMap[ResourceUri, MArray[Any --> R]] = mmapEmpty[ResourceUri, MArray[Any --> R]]
   protected val _expExt : MMap[ResourceUri, Any --> R] = mmapEmpty
-
   def addExpExt(extUri : ResourceUri, extF : Any --> R) {
-    require(!_expExt.contains(extUri))
-    _expExt(extUri) = extF
+    if (!_expExtA.contains(extUri)) {
+      val a = marrayEmpty[Any --> R]
+      _expExtA(extUri) = a
+      _expExt(extUri) = PartialFunctionUtil.orElses(a)
+    }
+    _expExtA(extUri) += extF
   }
 
   def hasExpExt(extUri : ResourceUri) : Boolean = _expExt.contains(extUri)
@@ -432,10 +436,15 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     _tupleDeconA += tupleDF
   }
 
+  protected val _actionExtA : MMap[ResourceUri, MArray[Any --> SR]] = mmapEmpty
   protected val _actionExt : MMap[ResourceUri, Any --> SR] = mmapEmpty
   def addActionExt(extUri : ResourceUri, extF : Any --> SR) {
-    require(!_actionExt.contains(extUri))
-    _actionExt(extUri) = extF
+    if (!_actionExtA.contains(extUri)) {
+      val a = marrayEmpty[Any --> SR]
+      _actionExtA(extUri) = a
+      _actionExt(extUri) = PartialFunctionUtil.orElses(a)
+    }
+    _actionExtA(extUri) += extF
   }
 
   def actionExtCall(extUri : ResourceUri, args : Product) : SR =
@@ -529,8 +538,7 @@ object ExtensionMiner {
                       lazyBitMask += i - 1
                     case _ =>
                   }
-                case t =>
-                  assert(t.isInstanceOf[V])
+                case _ =>
               }
             sei.addExtInfo(extUri, typeArgs.length - 1, lazyBitMask.toImmutable, varargs)
           case t =>
@@ -676,8 +684,8 @@ trait SemanticsExtensionModule[S, V, R, C, SR]
 
   def miners : ISeq[ExtensionMiner.Miner[S, V, R, C, SR]]
 
-  def initialize(ec : EvaluatorConfiguration) {
-    import language.reflectiveCalls
+  def initialize(ec : ExtensionConfig) {
+    import SemanticsExtensionConfig._
     ec.semanticsExtension = sei
     for (extC <- ec.extensions) {
       val ext = extC(ec)

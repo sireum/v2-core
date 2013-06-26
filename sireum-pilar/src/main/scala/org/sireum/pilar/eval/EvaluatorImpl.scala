@@ -51,8 +51,9 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   lazy val sp : SymbolProvider[S] = ec.symbolProvider
   lazy val elseGuardExpander : Option[ElseGuardExpander] = ec.elseGuardExpander
 
-  def initialize(config : EvaluatorConfiguration) {
-    ec = config
+  def initialize(config : ExtensionConfig) {
+    import EvaluatorConfig._
+    ec = config.evalConfig
   }
 
   import EvaluatorImpl._

@@ -136,7 +136,7 @@ trait ElseGuardExpander {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait EvaluatorModule {
-  def initialize(ec : EvaluatorConfiguration)
+  def initialize(ec : ExtensionConfig)
 }
 
 /**
@@ -173,7 +173,6 @@ trait EvaluatorConfiguration
   def elseGuardExpander : Option[ElseGuardExpander]
   def computeDisabledTransitions : Boolean
   def extensions : ISeq[ExtensionCompanion]
-  def semanticsExtension_=[S, V, R, C, SR](sec : SemanticsExtensionConsumer[S, V, R, C, SR])
   def evaluator[S, R, C, SR] : Evaluator[S, R, C, SR]
   def evalConfig : EvaluatorConfiguration = this
   def valueToV[V](v : Value) : V
@@ -383,7 +382,7 @@ object Evaluator {
         ev = eval
       }
 
-      def initialize(config : EvaluatorConfiguration) {
+      def initialize(config : ExtensionConfig) {
         _ev match {
           case ev : EvaluatorModule => ev.initialize(config)
           case _                    =>
