@@ -44,8 +44,8 @@ class BasicKiasanBfsTest
   type C = ISeq[(S, Boolean)]
   type SR = ISeq[S]
 
-  def stateInitializer(st : SymbolTable, config : EvaluatorConfiguration[S, V, R, C, SR]) : ISeq[S] = {
-    val sec = config.semanticsExtension
+  def stateInitializer(st : SymbolTable, config : EvaluatorConfiguration) : ISeq[S] = {
+    val sec = config.semanticsExtension[S, V, R, C, SR]
       def lazyInit(ss : ISeq[S], varUri : ResourceUri) =
         for {
           s1 <- ss

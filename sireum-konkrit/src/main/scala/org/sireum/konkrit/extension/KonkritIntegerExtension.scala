@@ -28,9 +28,7 @@ abstract class KonkritIntegerValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntegerExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritIntegerBExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritIntegerBExtension(ec)
 
   private type Op = String
 
@@ -143,8 +141,7 @@ object KonkritIntegerExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritIntegerExtension[S]
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+trait KonkritIntegerExtension[S] extends Extension {
 
   import KonkritIntegerExtension._
 
@@ -178,16 +175,13 @@ trait KonkritIntegerExtension[S]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntegerBExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritIntegerBExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritIntegerBExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritIntegerBExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
+final class KonkritIntegerBExtension[S](ec : ExtensionConfig)
     extends KonkritIntegerExtension[S] {
   import KonkritBooleanExtension._
 
@@ -198,27 +192,27 @@ final class KonkritIntegerBExtension[S](
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritIntegerIExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritIntegerIExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritIntegerIExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritIntegerIExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
+final class KonkritIntegerIExtension[S](ec : ExtensionConfig)
     extends KonkritIntegerExtension[S] {
   import KonkritIntegerExtension._
 
   def b2v(b : Boolean) = KonkritIntegerExtension.b2v(b)
 
-  val se = config.semanticsExtension
+  val sec = {
+    import SemanticsExtensionConfig._
+    ec.semanticsExtension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]
+  }
 
   @inline
-  implicit def canCastF = se.canCast _
-  
-  implicit val castF = se.cast
+  implicit def canCastF = sec.canCast _
+
+  implicit val castF = sec.cast
 
   @Cond
   val cond = KonkritIntegerExtension.cond

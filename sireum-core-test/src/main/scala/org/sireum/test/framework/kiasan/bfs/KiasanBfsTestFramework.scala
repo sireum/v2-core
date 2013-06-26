@@ -39,7 +39,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
   def extensions : ISeq[ExtensionCompanion]
 
-  def config(st : SymbolTable) : EvaluatorConfiguration[S, Value, R, C, ISeq[S]]
+  def config(st : SymbolTable) : EvaluatorConfiguration
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -52,10 +52,10 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
    */
   class KiasanBfsConfiguration(
       val source : FileResourceUri,
-      var stStates : (SymbolTable, EvaluatorConfiguration[S, Value, R, C, ISeq[S]]) => ISeq[S] = { (st, ec) => ivectorEmpty },
+      var stStates : (SymbolTable, EvaluatorConfiguration) => ISeq[S] = { (st, ec) => ivectorEmpty },
       var _depthBound : Int = 10) {
 
-    def on(f : (SymbolTable, EvaluatorConfiguration[S, Value, R, C, ISeq[S]]) => ISeq[S]) : this.type = {
+    def on(f : (SymbolTable, EvaluatorConfiguration) => ISeq[S]) : this.type = {
       stStates = f
       this
     }
@@ -159,7 +159,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
           }
         }
 
-        val evaluator = conf.evaluator.mainEvaluator
+        val evaluator = conf.evaluator[S, R, C, ISeq[S]].mainEvaluator
 
         def initialStatesProvider = new KiasanInitialStateProvider[S] {
           val initialStates = stStates(st, conf)

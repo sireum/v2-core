@@ -107,7 +107,7 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
 object KiasanExtensionMiner {
   def mine[S, V, R, C, SR](m : Method, ann : java.lang.annotation.Annotation,
                            sei : SemanticsExtensionInit[S, V, R, C, SR],
-                           ext : Extension[S, V, R, C, SR]) : Boolean = {
+                           ext : Extension) : Boolean = {
     if (!sei.isInstanceOf[KiasanSemanticsExtensionInit[S, V, R, C, SR]])
       return false
 

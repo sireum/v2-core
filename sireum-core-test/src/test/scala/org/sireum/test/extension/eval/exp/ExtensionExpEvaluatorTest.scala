@@ -88,17 +88,14 @@ class ExtensionExpEvaluatorTest
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object TestExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new TestExtension(config)
+  def apply(ec : ExtensionConfig) = new TestExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class TestExtension[S <: State[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+final class TestExtension[S <: State[S]](ec : ExtensionConfig)
+    extends Extension {
   import KonkritEvaluatorTestUtil._
 
   type V = Value

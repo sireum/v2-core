@@ -261,7 +261,7 @@ object KonkritValCompositeExtension {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KonkritValCompositeExtension[S <: State[S] with Heap[S]]
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+    extends Extension {
 
   type V = Value
   type R = ISeq[(S, Value)]
@@ -269,18 +269,21 @@ trait KonkritValCompositeExtension[S <: State[S] with Heap[S]]
   type SR = ISeq[S]
   type RV = Heap.RV
 
-  def config : EvaluatorConfiguration[S, V, R, C, SR]
+  def ec : ExtensionConfig
 
   val uriPath = UriUtil.classUri(this)
 
-  val sec = config.semanticsExtension
+  val sec = {
+    import SemanticsExtensionConfig._
+    ec.semanticsExtension[S, V, R, C, SR]
+  }
 
   @inline
   implicit def defValue(s : S, uri : ResourceUri) = sec.defaultValue(s, uri)
 
   implicit val hid = {
-    import EvaluatorHeapConfiguration._
-    config.heapConfig.heapId(KonkritValCompositeExtension.HeapIdKey)
+    import EvaluatorHeapConfig._
+    ec.heapEvalConfig.heapId(KonkritValCompositeExtension.HeapIdKey)
   }
 
   @FieldLookup

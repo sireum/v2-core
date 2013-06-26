@@ -38,7 +38,7 @@ object KonkritEvaluatorTestUtil {
         val sei = new SemanticsExtensionInitImpl[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {}
         val miners = ivector(ExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _)
       },
-      extCompanions : _*).evaluator.mainEvaluator
+      extCompanions : _*).evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]].mainEvaluator
 
   def newEvaluator[S <: State[S]](
     extCompanions : ExtensionCompanion*) =
@@ -47,5 +47,5 @@ object KonkritEvaluatorTestUtil {
         val sei = new SemanticsExtensionInitImpl[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {}
         val miners = ivector(ExtensionMiner.mine[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] _)
       },
-      extCompanions : _*).evaluator.mainEvaluator
+      extCompanions : _*).evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]].mainEvaluator
 }

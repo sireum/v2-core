@@ -27,9 +27,7 @@ object Extensions {
 }
 
 object MyKonkritValCompositeExtension extends ExtensionCompanion {
-  def create[S <: State[S] with Heap[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new MyKonkritValCompositeExtension(config)
+  def apply(ec : ExtensionConfig) = new MyKonkritValCompositeExtension(ec)
 
   import org.sireum.konkrit.extension.KonkritIntegerExtension.CI
 
@@ -63,8 +61,7 @@ object MyKonkritValCompositeExtension extends ExtensionCompanion {
 }
 
 final class MyKonkritValCompositeExtension[S <: State[S] with Heap[S]](
-  val config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends KonkritValCompositeExtension[S] {
+    val ec : ExtensionConfig) extends KonkritValCompositeExtension[S] {
 
   import language.implicitConversions
   implicit def t2s[T](t : T) = ivector(t)
@@ -79,9 +76,7 @@ final class MyKonkritValCompositeExtension[S <: State[S] with Heap[S]](
 }
 
 object MyKiasanValCompositeExtension extends ExtensionCompanion {
-  def create[S <: State[S] with KiasanStatePart[S] with Heap[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new MyKiasanValCompositeExtension(config)
+  def apply(ec : ExtensionConfig) = new MyKiasanValCompositeExtension(ec)
 
   import org.sireum.konkrit.extension.KonkritIntegerExtension.CI
   import org.sireum.kiasan.extension.KiasanIntegerExtension.KI
@@ -123,8 +118,7 @@ object MyKiasanValCompositeExtension extends ExtensionCompanion {
 }
 
 final class MyKiasanValCompositeExtension[S <: State[S] with KiasanStatePart[S] with Heap[S]](
-  val config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends KiasanValCompositeExtension[S] {
+    val ec : ExtensionConfig) extends KiasanValCompositeExtension[S] {
 
   import language.implicitConversions
   implicit def t2s[T](t : T) = ivector(t)

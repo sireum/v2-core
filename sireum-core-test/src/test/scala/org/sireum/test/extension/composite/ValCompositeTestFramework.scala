@@ -49,8 +49,8 @@ trait ValCompositeTestFramework extends TestFramework {
   val config = KiasanEvaluatorTestUtil.newConfig[S](None, extensions : _*)
 
   val heapConfig = {
-    import EvaluatorHeapConfiguration._
-    config.heapConfig
+    import EvaluatorHeapConfig._
+    config.heapEvalConfig
   }
   val chid = heapConfig.heapId(KonkritValCompositeExtension.HeapIdKey)
   val bkhid = heapConfig.heapId(KiasanValCompositeExtension.BaseHeapIdKey)
@@ -116,13 +116,13 @@ trait ValCompositeTestFramework extends TestFramework {
   def checkConcExe(s : S, s0 : S, action : String,
                    mcs : (IMap[String, Value], S)) {
     KiasanStateCheck.checkConcretizedState(topi, s, s0,
-      KonkritBooleanExtension.TT, config.evaluator.mainEvaluator, mcs)
+      KonkritBooleanExtension.TT, config.evaluator[S, R, C, SR].mainEvaluator, mcs)
   }
 
   def checkConcExe(s : S, s0 : S, exp : String, v : V,
                    mcs : (IMap[String, Value], S)) =
     KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
-      config.evaluator.mainEvaluator, exp, v, identity[Exp], Some(mcs)) match {
+      config.evaluator[S, R, C, SR].mainEvaluator, exp, v, identity[Exp], Some(mcs)) match {
         case TopiResult.SAT | TopiResult.UNKNOWN =>
         case _ =>
           assert(false, "Expecting SAT or UNKNOWN")

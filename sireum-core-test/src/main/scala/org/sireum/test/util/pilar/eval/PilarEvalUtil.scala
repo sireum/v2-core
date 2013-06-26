@@ -31,7 +31,7 @@ object PilarEvalUtil {
         case "rec" | "arr" |
           "recrec" | "recarr" |
           "arrrec" | "arrarr" => ext
-        case _      => IntegerExtension.Type
+        case _ => IntegerExtension.Type
       }
     }
   }
@@ -99,25 +99,32 @@ object PilarEvalUtil {
    */
   final class EvaluatorConfigurationImpl[S <: State[S]](
     st : Option[SymbolTable],
-    ev : Evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]],
+    ev : Evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule,
     sem : SemanticsExtensionModule[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]],
     exts : ExtensionCompanion*)
-      extends EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]
-      with EvaluatorHeapConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+      extends EvaluatorConfiguration with EvaluatorHeapConfiguration {
     self =>
     type R = ISeq[(S, Value)]
     type C = ISeq[(S, Boolean)]
     type SR = ISeq[S]
-    var symbolProvider : SymbolProvider[S] = new PilarSymbolProviderImpl[S](st)
+    var _symbolProvider = new PilarSymbolProviderImpl[S](st)
+    def symbolProvider[S] = _symbolProvider.asInstanceOf[SymbolProvider[S]]
     var typeProvider : TypeProvider = new TypeProviderImpl
     var elseGuardExpander : Option[ElseGuardExpander] = None
     var computeDisabledTransitions : Boolean = false
     var extensions : ISeq[ExtensionCompanion] = exts.toList
     val propertyMap = mmapEmpty[Property.Key, Any]
-    def valueToV(v : Value) : Value = v
-    def vToValue(v : Value) : Value = v
-    var evaluator : Evaluator[S, R, C, SR] = ev
-    var semanticsExtension : SemanticsExtensionConsumer[S, Value, R, C, SR] = null
+    def valueToV[V](v : Value) : V = v.asInstanceOf[V]
+    def vToValue[V](v : V) : Value = v.asInstanceOf[Value]
+    def evaluator[S, R, C, SR] = ev.asInstanceOf[Evaluator[S, R, C, SR]]
+    var _semanticsExtension : SemanticsExtensionConsumer[S, Value, R, C, SR] = null
+    def semanticsExtension[S, V, R, C, SR] =
+      _semanticsExtension.asInstanceOf[SemanticsExtensionConsumer[S, V, R, C, SR]]
+    def semanticsExtension_=[SS, VS, RS, CS, SRS](
+      sec : SemanticsExtensionConsumer[SS, VS, RS, CS, SRS]) {
+      _semanticsExtension = sec.asInstanceOf[SemanticsExtensionConsumer[S, Value, R, C, SR]]
+    }
+    def heapEvalConfig = this
 
     ev.initialize(this)
     sem.initialize(this)

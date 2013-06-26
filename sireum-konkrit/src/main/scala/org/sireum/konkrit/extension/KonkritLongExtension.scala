@@ -29,9 +29,7 @@ abstract class KonkritLongValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritLongExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritLongBExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritLongBExtension(ec)
 
   type Op = String
 
@@ -141,8 +139,7 @@ object KonkritLongExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KonkritLongExtension[S]
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+trait KonkritLongExtension[S] extends Extension {
 
   import KonkritLongExtension._
 
@@ -177,16 +174,13 @@ trait KonkritLongExtension[S]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritLongBExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritLongBExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritLongBExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritLongBExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
+final class KonkritLongBExtension[S](ec : ExtensionConfig)
     extends KonkritLongExtension[S] {
   import KonkritBooleanExtension._
 
@@ -197,27 +191,27 @@ final class KonkritLongBExtension[S](
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritLongIExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritLongIExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritLongIExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritLongIExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
+final class KonkritLongIExtension[S](ec : ExtensionConfig)
     extends KonkritLongExtension[S] {
   import KonkritLongExtension._
 
   def b2v(b : Boolean) = KonkritLongExtension.b2v(b)
 
-  val se = config.semanticsExtension
+  val sec = {
+    import SemanticsExtensionConfig._
+    ec.semanticsExtension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]
+  }
 
   @inline
-  implicit def canCastF = se.canCast _
+  implicit def canCastF = sec.canCast _
 
-  implicit val castF = se.cast
+  implicit val castF = sec.cast
 
   @Cond
   val cond = KonkritLongExtension.cond

@@ -31,9 +31,7 @@ trait KiasanIntegerValue extends IntegerValue with KiasanValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KiasanIntegerExtension extends ExtensionCompanion {
-  def create[S <: KiasanStatePart[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KiasanIntegerBExtension(config)
+  def apply(ec : ExtensionConfig) = new KiasanIntegerBExtension(ec)
 
   private type Op = String
   private type V = Value
@@ -264,8 +262,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+trait KiasanIntegerExtension[S <: KiasanStatePart[S]] extends Extension {
 
   val uriPath = UriUtil.classUri(this)
 
@@ -292,17 +289,14 @@ trait KiasanIntegerExtension[S <: KiasanStatePart[S]]
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KiasanIntegerBExtension extends ExtensionCompanion {
-  def create[S <: KiasanStatePart[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KiasanIntegerBExtension(config)
+  def apply(ec : ExtensionConfig) = new KiasanIntegerBExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class KiasanIntegerBExtension[S <: KiasanStatePart[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends KiasanIntegerExtension[S] {
+    ec : ExtensionConfig) extends KiasanIntegerExtension[S] {
   import KonkritBooleanExtension._
 
   def b2v(b : Boolean) = KonkritBooleanExtension.b2v(b)
@@ -312,17 +306,14 @@ final class KiasanIntegerBExtension[S <: KiasanStatePart[S]](
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KiasanIntegerIExtension extends ExtensionCompanion {
-  def create[S <: KiasanStatePart[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KiasanIntegerIExtension(config)
+  def apply(ec : ExtensionConfig) = new KiasanIntegerIExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class KiasanIntegerIExtension[S <: KiasanStatePart[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends KiasanIntegerExtension[S] {
+    ec : ExtensionConfig) extends KiasanIntegerExtension[S] {
   import KonkritIntegerExtension._
   import KiasanIntegerExtension._
 

@@ -28,9 +28,7 @@ abstract class KonkritBooleanValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritBooleanExtension extends ExtensionCompanion {
-  def create[S](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritBooleanExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritBooleanExtension(ec)
 
   @inline
   def b2v(b : Boolean) = if (b) TT else FF
@@ -159,15 +157,18 @@ object KonkritBooleanExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritBooleanExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+final class KonkritBooleanExtension[S](ec : ExtensionConfig)
+    extends Extension {
 
   import KonkritBooleanExtension._
 
   val uriPath = UriUtil.classUri(this)
 
-  implicit val cnd = config.semanticsExtension.cond
+  implicit val cnd = {
+    import SemanticsExtensionConfig._
+    val sec = ec.semanticsExtension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]
+    sec.cond
+  }
 
   @Cast
   val cast = KonkritBooleanExtension.cast

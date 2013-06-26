@@ -135,47 +135,82 @@ trait ElseGuardExpander {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait EvaluatorModule[S, V, R, C, SR] {
-  def initialize(ec : EvaluatorConfiguration[S, V, R, C, SR])
+trait EvaluatorModule {
+  def initialize(ec : EvaluatorConfiguration)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait EvaluatorConfiguration[S, V, R, C, SR] extends PropertyProvider {
-  var symbolProvider : SymbolProvider[S]
-  var typeProvider : TypeProvider
-  var elseGuardExpander : Option[ElseGuardExpander]
-  var computeDisabledTransitions : Boolean
-  var extensions : ISeq[ExtensionCompanion]
-  var semanticsExtension : SemanticsExtensionConsumer[S, V, R, C, SR]
-  var evaluator : Evaluator[S, R, C, SR]
-
-  def valueToV(v : Value) : V
-  def vToValue(v : V) : Value
+trait TypeProviderConfig {
+  def typeProvider : TypeProvider
 }
 
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object EvaluatorHeapConfiguration {
+object TypeProviderConfig {
   import language.implicitConversions
 
-  implicit def ec2ehc[S, V, R, C, SR](ec : EvaluatorConfiguration[S, V, R, C, SR]) =
-    ec.asInstanceOf[EvaluatorHeapConfiguration[S, V, R, C, SR]]
+  implicit def ec2tpc(ec : ExtensionConfig) : TypeProviderConfig =
+    ec.asInstanceOf[TypeProviderConfig]
+
+  implicit object TypeProviderAdapter
+      extends Adapter[ExtensionConfig, TypeProviderConfig] {
+    def adapt(ec : ExtensionConfig) : TypeProviderConfig = ec
+  }
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait EvaluatorHeapConfiguration[S, V, R, C, SR] {
-  self : EvaluatorConfiguration[S, V, R, C, SR] =>
+trait EvaluatorConfiguration
+    extends PropertyProvider
+    with ExtensionConfig
+    with SemanticsExtensionConfig
+    with TypeProviderConfig
+    with EvaluatorConfig
+    with EvaluatorHeapConfig {
+  def symbolProvider[S] : SymbolProvider[S]
+  def typeProvider : TypeProvider
+  def elseGuardExpander : Option[ElseGuardExpander]
+  def computeDisabledTransitions : Boolean
+  def extensions : ISeq[ExtensionCompanion]
+  def semanticsExtension_=[S, V, R, C, SR](sec : SemanticsExtensionConsumer[S, V, R, C, SR])
+  def evaluator[S, R, C, SR] : Evaluator[S, R, C, SR]
+  def evalConfig : EvaluatorConfiguration = this
+  def valueToV[V](v : Value) : V
+  def vToValue[V](v : V) : Value
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait EvaluatorConfig {
+  def evalConfig : EvaluatorConfiguration
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object EvaluatorConfig {
+  import language.implicitConversions
+
+  implicit def ec2tpc(ec : ExtensionConfig) : EvaluatorConfig =
+    ec.asInstanceOf[EvaluatorConfig]
+
+  implicit object EvaluatorConfigAdapter
+      extends Adapter[ExtensionConfig, EvaluatorConfig] {
+    def adapt(ec : ExtensionConfig) : EvaluatorConfig = ec
+  }
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait EvaluatorHeapConfiguration {
+  self : EvaluatorConfiguration =>
 
   val HEAP_KEY = getClass.getName + ".numOfHeaps"
 
   import org.sireum.pilar.state.Heap._
-
-  def heapConfig = this
 
   def heapId(heapIdKey : AnyRef) : HeapId =
     self.getPropertyOrElseUpdate(heapIdKey, {
@@ -189,6 +224,28 @@ trait EvaluatorHeapConfiguration[S, V, R, C, SR] {
 
   def numOfHeaps_=(n : Int) {
     self(HEAP_KEY) = n
+  }
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait EvaluatorHeapConfig {
+  def heapEvalConfig : EvaluatorHeapConfiguration
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object EvaluatorHeapConfig {
+  import language.implicitConversions
+
+  implicit def ec2tpc(ec : ExtensionConfig) : EvaluatorHeapConfig =
+    ec.asInstanceOf[EvaluatorHeapConfig]
+
+  implicit object EvaluatorHeapConfigAdapter
+      extends Adapter[ExtensionConfig, EvaluatorHeapConfig] {
+    def adapt(ec : ExtensionConfig) : EvaluatorHeapConfig = ec
   }
 }
 
@@ -314,8 +371,8 @@ object Evaluator {
   }
 
   def context[S <: EvaluationContextProvider[S], V](
-    _ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] =
-    new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
+    _ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule =
+    new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule {
       type R = ISeq[(S, V)]
       type C = ISeq[(S, Boolean)]
       type SR = ISeq[S]
@@ -326,10 +383,10 @@ object Evaluator {
         ev = eval
       }
 
-      def initialize(config : EvaluatorConfiguration[S, V, R, C, SR]) {
+      def initialize(config : EvaluatorConfiguration) {
         _ev match {
-          case (ev : EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] @unchecked) => ev.initialize(config)
-          case _ =>
+          case ev : EvaluatorModule => ev.initialize(config)
+          case _                    =>
         }
       }
 

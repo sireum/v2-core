@@ -22,10 +22,3 @@ object KiasanExtension {
     def num : Int
   }
 }
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait KiasanExtension[S <: KiasanStatePart[S], V, R, C, SR]
-    extends Extension[S, V, R, C, SR] {
-}

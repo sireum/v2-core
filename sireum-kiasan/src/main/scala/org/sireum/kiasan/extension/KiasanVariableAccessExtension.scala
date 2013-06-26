@@ -10,17 +10,16 @@ package org.sireum.kiasan.extension
 
 import org.sireum.extension._
 import org.sireum.pilar.ast._
+import org.sireum.pilar.eval._
 import org.sireum.pilar.state._
 import org.sireum.pilar.state.State._
 import org.sireum.util._
-import org.sireum.pilar.eval.EvaluatorConfiguration
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KiasanVariableAccessExtension extends ExtensionCompanion {
-  def create[S <: State[S]](config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KiasanVariableAccessExtension(config)
+  def apply(ec : ExtensionConfig) = new KiasanVariableAccessExtension(ec)
 
   import language.implicitConversions
   import PilarAstUtil._
@@ -47,7 +46,7 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
   @inline
   def variableUpdate[S <: SS[S]](
     implicit rep : (S, V) --> V) : (S, NameUser, V) --> ISeq[S] = {
-    case (s, x, v) => 
+    case (s, x, v) =>
       import State.NameAccess._
       s(x) = rep(s, v)
   }
@@ -57,21 +56,23 @@ object KiasanVariableAccessExtension extends ExtensionCompanion {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class KiasanVariableAccessExtension[S <: State[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+    ec : ExtensionConfig) extends Extension {
 
   val uriPath = UriUtil.classUri(this)
 
-  val se = {
+  val sec = {
+    import SemanticsExtensionConfig._
     import KiasanSemanticsExtensionConsumer._
-    config.semanticsExtension.kiasanSemanticsExtension
+    ec.semanticsExtension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]].kiasanSemanticsExtension
   }
 
   @inline
-  implicit def fresh(s : S, varUri : ResourceUri) =
-    se.freshKiasanValue(s, config.typeProvider.typeUri(varUri))
+  implicit def fresh(s : S, varUri : ResourceUri) = {
+    import TypeProviderConfig._
+    sec.freshKiasanValue(s, ec.typeProvider.typeUri(varUri))
+  }
 
-  implicit val repF = se.rep
+  implicit val repF = sec.rep
 
   @VarLookup
   val variableLookup = KiasanVariableAccessExtension.variableLookup

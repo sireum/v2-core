@@ -18,9 +18,7 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KonkritVariableAccessExtension extends ExtensionCompanion {
-  def create[S <: State[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KonkritVariableAccessExtension(config)
+  def apply(ec : ExtensionConfig) = new KonkritVariableAccessExtension(ec)
 
   import language.implicitConversions
   import PilarAstUtil._
@@ -39,7 +37,7 @@ object KonkritVariableAccessExtension extends ExtensionCompanion {
 
   @inline
   def variableLookup[S <: SS[S]] : (S, NameUser) --> ISeq[(S, V)] = {
-    case (s, x) => 
+    case (s, x) =>
       import State.NameAccess._
       (s, s(x))
   }
@@ -55,9 +53,8 @@ object KonkritVariableAccessExtension extends ExtensionCompanion {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class KonkritVariableAccessExtension[S <: State[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+final class KonkritVariableAccessExtension[S <: State[S]](ec : ExtensionConfig)
+    extends Extension {
 
   val uriPath = UriUtil.classUri(this)
 

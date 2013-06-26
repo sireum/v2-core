@@ -16,16 +16,13 @@ import org.sireum.pilar.eval.EvaluatorConfiguration
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object UriValueExtension extends ExtensionCompanion {
-  def create[S](ec : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new UriValueExtension(ec)
+  def apply(ec : ExtensionConfig) = new UriValueExtension(ec)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final class UriValueExtension[S](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+final class UriValueExtension[S](ec : ExtensionConfig) extends Extension {
 
   type V = Value
   type R = ISeq[(S, Value)]

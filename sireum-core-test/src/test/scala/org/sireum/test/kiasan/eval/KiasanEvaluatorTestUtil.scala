@@ -84,10 +84,10 @@ object KiasanEvaluatorTestUtil {
 
   def newEvaluator[S <: State[S]](
     extCompanions : ExtensionCompanion*) =
-    newConfig[S](None, extCompanions : _*).evaluator.mainEvaluator
+    newConfig[S](None, extCompanions : _*).evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]].mainEvaluator
 
   def newEvaluator[S <: State[S]](
     st : Option[SymbolTable],
     extCompanions : ExtensionCompanion*) =
-    newConfig[S](st, extCompanions : _*).evaluator.mainEvaluator
+    newConfig[S](st, extCompanions : _*).evaluator[S, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]].mainEvaluator
 }

@@ -575,7 +575,7 @@ object KiasanValCompositeExtension {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KiasanValCompositeExtension[S <: State[S] with Heap[S] with KiasanStatePart[S]]
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+    extends Extension {
 
   type V = Value
   type R = ISeq[(S, Value)]
@@ -583,26 +583,31 @@ trait KiasanValCompositeExtension[S <: State[S] with Heap[S] with KiasanStatePar
   type SR = ISeq[S]
   type RV = Heap.RV
 
-  def config : EvaluatorConfiguration[S, V, R, C, SR]
+  def ec : ExtensionConfig
 
   val uriPath = UriUtil.classUri(this)
 
-  val sec = config.semanticsExtension
-  implicit val typeProvider = config.typeProvider
-
-  implicit val (fresh, rep, rep2) = {
-    import KiasanSemanticsExtensionConsumer._
-    (sec.freshKiasanValue, sec.rep, sec.rep2)
+  implicit val typeProvider = {
+    import TypeProviderConfig._
+    ec.typeProvider
   }
 
+  val sec = {
+    import SemanticsExtensionConfig._
+    import KiasanSemanticsExtensionConsumer._
+    ec.semanticsExtension[S, V, R, C, SR].kiasanSemanticsExtension
+  }
+
+  implicit val (fresh, rep, rep2) = (sec.freshKiasanValue, sec.rep, sec.rep2)
+
   implicit val hid = {
-    import EvaluatorHeapConfiguration._
-    config.heapConfig.heapId(KiasanValCompositeExtension.HeapIdKey)
+    import EvaluatorHeapConfig._
+    ec.heapEvalConfig.heapId(KiasanValCompositeExtension.HeapIdKey)
   }
 
   val bhid = {
-    import EvaluatorHeapConfiguration._
-    config.heapConfig.heapId(KiasanValCompositeExtension.BaseHeapIdKey)
+    import EvaluatorHeapConfig._
+    ec.heapEvalConfig.heapId(KiasanValCompositeExtension.BaseHeapIdKey)
   }
 
   @FieldLookup

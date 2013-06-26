@@ -541,7 +541,7 @@ object ExtensionMiner {
 
   def mine[S, V, R, C, SR](m : Method, ann : java.lang.annotation.Annotation,
                            sei : SemanticsExtensionInit[S, V, R, C, SR],
-                           ext : Extension[S, V, R, C, SR]) : Boolean = {
+                           ext : Extension) : Boolean = {
     import org.sireum.pilar.symbol.H._
     val mName = m.getName
     val extUri = Resource.getResourceUri(SCHEME, EXTENSION_ELEM_TYPE, ivector(ext.uriPath, mName))
@@ -651,11 +651,11 @@ object ExtensionMiner {
     return true
   }
 
-  type Miner[S, V, R, C, SR] = (Method, java.lang.annotation.Annotation, SemanticsExtensionInit[S, V, R, C, SR], Extension[S, V, R, C, SR]) => Boolean
+  type Miner[S, V, R, C, SR] = (Method, java.lang.annotation.Annotation, SemanticsExtensionInit[S, V, R, C, SR], Extension) => Boolean
 
   def mineExtensions[S, V, R, C, SR](
     sei : SemanticsExtensionInit[S, V, R, C, SR],
-    ext : Extension[S, V, R, C, SR],
+    ext : Extension,
     miners : Miner[S, V, R, C, SR]*) {
     for (m <- ext.getClass.getDeclaredMethods)
       for (ann <- m.getDeclaredAnnotations) {
@@ -670,20 +670,17 @@ object ExtensionMiner {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait SemanticsExtensionModule[S, V, R, C, SR] extends EvaluatorModule[S, V, R, C, SR] {
-  type EC = {
-    def create(ec : EvaluatorConfiguration[S, V, R, C, SR]) : Extension[S, V, R, C, SR]
-  }
-
+trait SemanticsExtensionModule[S, V, R, C, SR]
+    extends EvaluatorModule {
   def sei : SemanticsExtensionInit[S, V, R, C, SR]
 
   def miners : ISeq[ExtensionMiner.Miner[S, V, R, C, SR]]
 
-  def initialize(ec : EvaluatorConfiguration[S, V, R, C, SR]) {
+  def initialize(ec : EvaluatorConfiguration) {
     import language.reflectiveCalls
     ec.semanticsExtension = sei
     for (extC <- ec.extensions) {
-      val ext = extC.asInstanceOf[EC].create(ec)
+      val ext = extC(ec)
       ExtensionMiner.mineExtensions(sei, ext, miners : _*)
     }
   }

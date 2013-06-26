@@ -40,18 +40,18 @@ object EvaluatorImpl {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]
-    with EvaluatorModule[S, V, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
+    with EvaluatorModule {
   type Re = (S, V)
   type R = ISeq[Re]
   type C = ISeq[(S, Boolean)]
   type SR = ISeq[S]
 
-  var ec : EvaluatorConfiguration[S, V, R, C, SR] = null
+  var ec : EvaluatorConfiguration = null
   lazy val sec : SemanticsExtensionConsumer[S, V, R, C, SR] = ec.semanticsExtension
   lazy val sp : SymbolProvider[S] = ec.symbolProvider
   lazy val elseGuardExpander : Option[ElseGuardExpander] = ec.elseGuardExpander
 
-  def initialize(config : EvaluatorConfiguration[S, V, R, C, SR]) {
+  def initialize(config : EvaluatorConfiguration) {
     ec = config
   }
 

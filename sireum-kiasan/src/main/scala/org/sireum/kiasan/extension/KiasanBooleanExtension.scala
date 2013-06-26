@@ -30,9 +30,7 @@ abstract class KiasanBooleanValue extends BooleanValue with KiasanValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object KiasanBooleanExtension extends ExtensionCompanion {
-  def create[S <: KiasanStatePart[S]](
-    config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]) =
-    new KiasanBooleanExtension(config)
+  def apply(ec : ExtensionConfig) = new KiasanBooleanExtension(ec)
 
   private type Op = String
   private type V = Value
@@ -160,8 +158,7 @@ object KiasanBooleanExtension extends ExtensionCompanion {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
-  config : EvaluatorConfiguration[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]])
-    extends Extension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]] {
+    ec : ExtensionConfig) extends Extension {
 
   val uriPath = UriUtil.classUri(this)
 
@@ -174,9 +171,12 @@ final class KiasanBooleanExtension[S <: KiasanStatePart[S]](
   @FreshKiasanValueProvider
   val fresh = KiasanBooleanExtension.fresh
 
-  val se = config.semanticsExtension
+  val sec = {
+    import SemanticsExtensionConfig._
+    ec.semanticsExtension[S, Value, ISeq[(S, Value)], ISeq[(S, Boolean)], ISeq[S]]
+  }
 
-  implicit val condF = se.cond
+  implicit val condF = sec.cond
 
   @Binaries(Array("==", "!="))
   val binopEqu = KiasanBooleanExtension.binopEqu
