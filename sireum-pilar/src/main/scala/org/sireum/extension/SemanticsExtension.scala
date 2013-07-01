@@ -53,7 +53,7 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
   def lazyLBinaryOp(op : String, s : S, fv1 : S => R, v2 : V) : R
   def newList : (S, ISeq[V]) --> R
 
-  def expExtCall(extUri : ResourceUri, args : Product) : R
+  def expExtCall : (ResourceUri, Product) --> R
   def hasExpExt(extUri : ResourceUri) : Boolean
 
   def variableUpdate : (S, NameUser, V) --> SR
@@ -62,7 +62,7 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
   def indexUpdate : (S, V, V, V) --> SR
   def indexUpdateVar : (S, NameUser, V, V) --> SR
   def resolveCall : (CallJump, S, V, V) --> ISeq[(S, ResourceUri)]
-  def actionExtCall(extUri : ResourceUri, args : Product) : SR
+  def actionExtCall : (ResourceUri, Product) --> SR
   def assignOp(op : String, s : S, v1 : V, v2 : V) : SR
   def hasActionExt(extUri : ResourceUri) : Boolean
 
@@ -373,11 +373,12 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
 
   def hasExpExt(extUri : ResourceUri) : Boolean = _expExt.contains(extUri)
 
-  def expExtCall(extUri : ResourceUri, args : Product) : R =
-    args match {
-      case Tuple1(s) => _expExt(extUri)(s)
-      case _         => _expExt(extUri)(args)
-    }
+  def expExtCall : (ResourceUri, Product) --> R = {
+    case (extUri, Tuple1(s)) if _expExt.contains(extUri) &&
+      _expExt(extUri).isDefinedAt(s) => _expExt(extUri)(s)
+    case (extUri, args) if _expExt.contains(extUri) &&
+      _expExt(extUri).isDefinedAt(args) => _expExt(extUri)(args)
+  }
 
   protected val _variableUpdateA : MArray[(S, NameUser, V) --> SR] = marrayEmpty
   val variableUpdate : (S, NameUser, V) --> SR = PartialFunctionUtil.orElses(_variableUpdateA)
@@ -447,11 +448,12 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     _actionExtA(extUri) += extF
   }
 
-  def actionExtCall(extUri : ResourceUri, args : Product) : SR =
-    args match {
-      case Tuple1(s) => _actionExt(extUri)(s)
-      case _         => _actionExt(extUri)(args)
-    }
+  def actionExtCall : (ResourceUri, Product) --> SR = {
+    case (extUri, Tuple1(s)) if _actionExt.contains(extUri) &&
+      _actionExt(extUri).isDefinedAt(s) => _actionExt(extUri)(s)
+    case (extUri, args) if _actionExt.contains(extUri) &&
+      _actionExt(extUri).isDefinedAt(args) => _actionExt(extUri)(args)
+  }
 
   def hasActionExt(extUri : ResourceUri) : Boolean = _actionExt.contains(extUri)
 
@@ -514,8 +516,9 @@ object ExtensionMiner {
     false
   }
 
-  def addExtInfo[S, V, R, C, SR](extUri : ResourceUri, m : Method,
-                                 sei : SemanticsExtensionInit[S, V, R, C, SR]) {
+  def addExtInfo[S, V, R, C, SR](
+    extUri : ResourceUri, m : Method,
+    sei : SemanticsExtensionInit[S, V, R, C, SR]) {
     import java.lang.reflect._
     m.getGenericReturnType match {
       case pt : ParameterizedType =>
