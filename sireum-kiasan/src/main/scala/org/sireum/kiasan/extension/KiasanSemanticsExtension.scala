@@ -61,39 +61,36 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
     with SemanticsExtensionInitImpl[S, V, R, C, SR] {
 
   protected val _freshKiasanPFA : MArray[(S, ResourceUri) --> (S, V)] = marrayEmpty
-  val freshKiasanValue : (S, ResourceUri) --> (S, V) = PartialFunctionUtil.orElses(_freshKiasanPFA)
+  val freshKiasanValue : (S, ResourceUri) --> (S, V) =
+    PartialFunctionUtil.orElses(_freshKiasanPFA)
 
   def addFreshKiasanValue(valueF : (S, ResourceUri) --> (S, V)) {
     assert(!PartialFunctionUtil.empty.equals(valueF))
     _freshKiasanPFA += valueF
   }
 
-  protected val _repPFA : MArray[(S, V) --> V] = {
-    val r = marrayEmpty[(S, V) --> V]
-    r += {
-      case (_, v) => v
-    }
-    r
-  }
+  protected val _repPFA : MArray[(S, V) --> V] = marrayEmpty
 
-  val rep : (S, V) --> V = PartialFunctionUtil.orElses(_repPFA)
+  lazy val rep : (S, V) --> V =
+    if (_repPFA.isEmpty) {
+      case (_, v) => v
+    } else
+      PartialFunctionUtil.orElses(_repPFA)
 
   def addGetRep(repF : (S, V) --> V) {
     assert(!PartialFunctionUtil.empty.equals(repF))
     _repPFA += repF
   }
 
-  protected val _rep2PFA : MArray[(S, V, V) --> V] = {
+  protected val _rep2PFA : MArray[(S, V, V) --> V] = marrayEmpty
+
+  lazy val rep2 : (S, V, V) --> V = {
     import org.sireum.kiasan.extension.KiasanExtension._
-    val r = marrayEmpty[(S, V, V) --> V]
-    r += {
+    if (_rep2PFA.isEmpty) {
       case (_, v1 : KiasanValue, v2 : KiasanValue) =>
         (if (v1.num <= v2.num) v1 else v2).asInstanceOf[V]
-    }
-    r
+    } else PartialFunctionUtil.orElses(_rep2PFA)
   }
-
-  val rep2 : (S, V, V) --> V = PartialFunctionUtil.orElses(_rep2PFA)
 
   def addValueRep(rep2F : (S, V, V) --> V) {
     assert(!PartialFunctionUtil.empty.equals(rep2F))
@@ -118,6 +115,10 @@ object KiasanExtensionMiner {
     ann match {
       case ann : FreshKiasanValueProvider =>
         ksei.addFreshKiasanValue(m.invoke(ext).asInstanceOf[(S, ResourceUri) --> (S, V)])
+      case ann : Rep =>
+        ksei.addGetRep(m.invoke(ext).asInstanceOf[(S, V) --> V])
+      case ann : Rep2 =>
+        ksei.addValueRep(m.invoke(ext).asInstanceOf[(S, V, V) --> V])
       case _ =>
         return false
     }
