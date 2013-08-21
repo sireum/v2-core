@@ -281,11 +281,11 @@ trait EvaluationContextProvider[C <: EvaluationContextProvider[C]] {
   def pushJump(j : Jump) : C = push(j)
   def popJump : (C, Jump) = (pop, peek)
 
-  def pushTransformation(l : LocationDecl, t : Transformation) : C = push(t).push(l)
+  def pushTransformation(l : LocationDecl, t : Transformation) : C = push(l).push(t)
   def popTransformation : (C, LocationDecl, Transformation) = {
-    val t = peek
+    val t : Transformation = peek
     val c1 = pop
-    val l = c1.peek
+    val l : LocationDecl = c1.peek
     val c2 = c1.pop
     (c2, l, t)
   }
@@ -335,7 +335,7 @@ trait EvaluationContextProvider[C <: EvaluationContextProvider[C]] {
   def peekActionLocation : (ActionLocation, Action) =
     (peekAt(1), peek)
   def peekJumpLocation : (JumpLocation, Jump) =
-    (peekAt(1), peek)
+    (peekAt(2), peek)
 }
 
 /**
@@ -376,7 +376,7 @@ object Evaluator {
       type C = ISeq[(S, Boolean)]
       type SR = ISeq[S]
       var ev : Evaluator[S, R, C, SR] = _ev
-      def mainEvaluator = ev
+      def mainEvaluator = this
       def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
         _ev.setMainEvaluator(eval)
         ev = eval
@@ -384,7 +384,9 @@ object Evaluator {
 
       def initialize(config : ExtensionConfig) {
         _ev match {
-          case ev : EvaluatorModule => ev.initialize(config)
+          case ev : EvaluatorModule => 
+            ev.initialize(config)
+            ev.setMainEvaluator(this)
           case _                    =>
         }
       }
