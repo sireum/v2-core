@@ -24,6 +24,9 @@ import com.typesafe.scalalogging.slf4j._
  */
 object Kiasan {
   type KiasanState[S <: KiasanState[S]] = State[S] with KiasanStatePart[S] with ScheduleRecordingState[S]
+
+  case class TopiCache(state : org.sireum.topi.TopiState,
+                       lastCompiledLength : Int) extends Immutable
 }
 
 /**
@@ -60,6 +63,7 @@ trait Kiasan {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
+  import Kiasan._
   import State._
 
   var dpTime = 0l
@@ -127,9 +131,6 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
       else "default")))
 
   }
-
-  case class TopiCache(state : org.sireum.topi.TopiState,
-                       lastCompiledLength : Int) extends Immutable
 
   @inline
   protected def check(s : S) = {
