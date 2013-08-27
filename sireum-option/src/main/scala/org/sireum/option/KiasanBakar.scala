@@ -56,7 +56,10 @@ case class KiasanBakarAnalysisGroup(
   var timeout : Int = 10,
   
   @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path")
-  var outdir : String = "."
+  var outdir : String = ".",
+    
+  @Option(longKey = "enable-ldp", desc = "Enable LDP")
+  var enableLdp : Boolean = false
 )
 
 @Group("Report Options")
