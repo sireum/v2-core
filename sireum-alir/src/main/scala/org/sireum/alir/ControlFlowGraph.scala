@@ -88,6 +88,9 @@ object ControlFlowGraph {
           case _                => result.addEdge(source, next)
         }
         false
+      case el : EmptyLocation =>
+        result.addEdge(source, next)
+        false
       case jl : JumpLocation =>
         transIndex = 0
         true

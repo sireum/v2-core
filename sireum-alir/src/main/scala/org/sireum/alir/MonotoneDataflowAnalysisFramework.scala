@@ -252,7 +252,11 @@ object MonotoneDataFlowAnalysisFramework {
             }
             update(result, ln)
           case l : EmptyLocation =>
-            false
+            val result = getEntrySet(next(l))
+            if (esl.isDefined) {
+              eslb.exitSet(None, result)
+            }
+            update(result, ln)
         }
       }
 
@@ -372,7 +376,9 @@ object MonotoneDataFlowAnalysisFramework {
           case l : JumpLocation =>
             jumpF(s, l.jump)
           case l : EmptyLocation =>
+            val sn = next(l)
             if (esl.isDefined) eslb.exitSet(None, s)
+            update(confluence(s, getEntrySet(sn)), sn)
             false
         }
       }
