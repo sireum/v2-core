@@ -17,11 +17,11 @@ IF %NEWEST%==%~nx0 (
 :END
 IF EXIST %SIREUM_HOME%apps\platform\java (
   SET JAVA_HOME=%SIREUM_HOME%apps\platform\java
-  SET PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%
+  SET "PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%"
 )
 IF EXIST %SIREUM_HOME%apps\platform\scala (
   SET SCALA_HOME=%SIREUM_HOME%apps\platform\scala
-  SET PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%
+  SET "PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%"
 )
 IF NOT DEFINED SCALA_BIN (
   SET SCALA_BIN=scala
