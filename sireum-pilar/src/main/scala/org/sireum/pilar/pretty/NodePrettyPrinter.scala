@@ -485,6 +485,26 @@ class NodePrettyPrinter(vprint : Value => String) {
   }
 
   def jump(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : CallJump =>
+      val st = ctx.stg.getInstanceOf("callTransformation")
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      if(o.lhs.isDefined) {
+        v(o.lhs.get)
+        st.add("lhs", ctx.popResult)
+      }
+      
+      v(o.callExp)
+      st.add("exp", ctx.popResult)
+      
+      if(o.jump.isDefined){
+        v(o.jump)
+        st.add("jump", ctx.popResult)
+      }
+        
+      ctx.pushResult(st)
+      false
     case o : GotoJump =>
       val st = ctx.stg.getInstanceOf("goto")
 
@@ -539,7 +559,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
   def e(ctx : Context, v : => BVisitor) : VisitorFunction = {
     case x =>
-      Console.err.println("Not handling: " + x)
+      Console.err.println(getClass.getSimpleName + ": Not handling: " + x)
       false
   }
 
