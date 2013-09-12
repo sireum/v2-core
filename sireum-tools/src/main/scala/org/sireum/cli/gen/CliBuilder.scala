@@ -122,15 +122,18 @@ class CliBuilder {
           val modeDesc = marrayEmpty[(String, String)]
           var longestName = 0
           for ((m, modeName, desc) <- q1) {
-            val stcase = stg.getInstanceOf("caseMode")
-            stcase.add("modeName", modeName)
-            stcase.add("className", m.getReturnType.getSimpleName)
-            stMode.add("modeName", modeName)
-            stMode.add("caseMode", stcase)
+            val mo = m.invoke(o)
+            if (mo != null) {
+              val stcase = stg.getInstanceOf("caseMode")
+              stcase.add("modeName", modeName)
+              stcase.add("className", m.getReturnType.getSimpleName)
+              stMode.add("modeName", modeName)
+              stMode.add("caseMode", stcase)
 
-            modeDesc += ((modeName, desc))
-            if (modeName.length > longestName) longestName = modeName.length + 1
-            mineClass(m.getReturnType, m.invoke(o), path :+ s.command)
+              modeDesc += ((modeName, desc))
+              if (modeName.length > longestName) longestName = modeName.length + 1
+              mineClass(m.getReturnType, m.invoke(o), path :+ s.command)
+            }
           }
           for ((name, desc) <- modeDesc.sortWith({ (md1, md2) => md1._1 <= md2._1 })) {
             val stAvailMode = stg.getInstanceOf("mode")
