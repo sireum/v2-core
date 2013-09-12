@@ -490,8 +490,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       
       ctx.processAnnotationList(v, st, o.annotations)
       
-      if(o.lhs.isDefined) {
-        v(o.lhs.get)
+      for (lhs <- o.lhss) {
+        v(lhs)
         st.add("lhs", ctx.popResult)
       }
       

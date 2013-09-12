@@ -59,7 +59,7 @@ class KiasanTransformationEvaluatorTest
   def emptyState = BasicKiasanState()
 
   def state = emptyState.enterCallFrame("proc", Some("init"), 0,
-    imapEmpty, None, -1, None)
+    imapEmpty, None, -1, ivectorEmpty)
 
   def action(code : String) = transformation(code)
 

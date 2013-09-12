@@ -56,7 +56,7 @@ class KonkritTransformationEvaluatorTest
   import org.sireum.test.konkrit.eval.KonkritEvaluatorTestUtil._
 
   def state = emptyState.enterCallFrame("proc", Some("init"), 0,
-    imapEmpty, None, -1, None)
+    imapEmpty, None, -1, ivectorEmpty)
 
   def action(code : String) = transformation(code)
   def jump(code : String) = transformation(code)

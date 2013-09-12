@@ -39,7 +39,8 @@ trait SemanticsExtensionConsumer[S, V, R, C, SR] {
   def integerLiteral : (S, BigInt) --> (S, V)
   def nullLiteral : S --> (S, V)
   def cond : (S, V) --> C
-  def tupleDecon : (S, V) --> (S, ISeq[V])
+  def tupleCon : (S, ISeq[V]) --> (S, V)
+  def tupleDecon : (S, V) --> ISeq[(S, ISeq[V])]
   def variable : (S, NameUser) --> R
   def field : (S, V, NameUser) --> R
   def index : (S, V, V) --> R
@@ -87,7 +88,8 @@ trait SemanticsExtensionInit[S, V, R, C, SR]
   def addLongLiteral(intF : (S, Long) --> (S, V))
   def addIntegerLiteral(integerF : (S, BigInt) --> (S, V))
   def addNullLiteral(nullF : S --> (S, V))
-  def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V]))
+  def addTupleCon(tupleCF : (S, ISeq[V]) --> (S, V))
+  def addTupleDecon(tupleDF : (S, V) --> ISeq[(S, ISeq[V])])
   def addVariableLookup(variableF : (S, NameUser) --> R)
   def addFieldLookup(fieldF : (S, V, NameUser) --> R)
   def addIndexLookup(fieldF : (S, V, V) --> R)
@@ -429,10 +431,18 @@ trait SemanticsExtensionInitImpl[S, V, R, C, SR]
     _resolveCallA += resolveF
   }
 
-  protected val _tupleDeconA : MArray[(S, V) --> (S, ISeq[V])] = marrayEmpty
-  val tupleDecon : (S, V) --> (S, ISeq[V]) = PartialFunctionUtil.orElses(_tupleDeconA)
+  protected val _tupleConA : MArray[(S, ISeq[V]) --> (S, V)] = marrayEmpty
+  val tupleCon : (S, ISeq[V]) --> (S, V) = PartialFunctionUtil.orElses(_tupleConA)
 
-  def addTupleDecon(tupleDF : (S, V) --> (S, ISeq[V])) {
+  def addTupleCon(tupleCF : (S, ISeq[V]) --> (S, V)) {
+    require(!PartialFunctionUtil.empty.equals(tupleCF))
+    _tupleConA += tupleCF
+  }
+
+  protected val _tupleDeconA : MArray[(S, V) --> ISeq[(S, ISeq[V])]] = marrayEmpty
+  val tupleDecon : (S, V) --> ISeq[(S, ISeq[V])] = PartialFunctionUtil.orElses(_tupleDeconA)
+
+  def addTupleDecon(tupleDF : (S, V) --> ISeq[(S, ISeq[V])]) {
     require(!PartialFunctionUtil.empty.equals(tupleDF))
     _tupleDeconA += tupleDF
   }
@@ -650,6 +660,12 @@ object ExtensionMiner {
           sei.addActionExt(mName, extF)
           addExtInfo(mName, m, sei)
         }
+      case ann : TupleCon =>
+        val extF = m.invoke(ext).asInstanceOf[(S, ISeq[V]) --> (S, V)]
+        sei.addTupleCon(extF)
+      case ann : TupleDecon =>
+        val extF = m.invoke(ext).asInstanceOf[(S, V) --> ISeq[(S, ISeq[V])]]
+        sei.addTupleDecon(extF)
       case ann : Assign =>
         val extF = m.invoke(ext).asInstanceOf[(S, V, V) --> SR]
         sei.addAssignOp(ann.value, extF)

@@ -62,11 +62,11 @@ trait CallFrame {
   def result : Option[Value]
   def returnLocationUri : Option[ResourceUri]
   def returnLocationIndex : Int
-  def returnVariableUri : Option[ResourceUri]
+  def returnVariableUris : ISeq[ResourceUri]
 
   def location(locationUri : Option[ResourceUri], locationIndex : Int) : CallFrame =
     make(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   def variable(varUri : ResourceUri) : Value = store(varUri)
 
@@ -74,17 +74,17 @@ trait CallFrame {
 
   def variable(varUri : ResourceUri, value : Value) : CallFrame =
     make(procedure, locationUri, locationIndex, store + (varUri -> value),
-      result, returnLocationUri, returnLocationIndex, returnVariableUri)
+      result, returnLocationUri, returnLocationIndex, returnVariableUris)
 
   def result(v : Value) =
     make(procedure, locationUri, locationIndex, store, Some(v),
-      returnLocationUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   protected def make(procedure : ResourceUri,
                      locationUri : Option[ResourceUri], locationIndex : Int,
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri], returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame
 }
 
 /**
@@ -231,10 +231,10 @@ trait State[Self <: State[Self]]
                      locationIndex : Int, store : Store = imapEmpty,
                      returnLocationUri : Option[ResourceUri] = None,
                      returnLocationIndex : Int = -1,
-                     returnVariableUri : Option[ResourceUri] = None) : Self =
+                     returnVariableUris : ISeq[ResourceUri] = ivectorEmpty) : Self =
     make(globalStore, closureStoreStack,
       make(procedureUri, locationUri, locationIndex, store, None,
-        returnLocationUri, returnLocationIndex, returnVariableUri) +: callStack,
+        returnLocationUri, returnLocationIndex, returnVariableUris) +: callStack,
       properties)
 
   def exitCallFrame : (Self, CallFrame) =
@@ -248,7 +248,7 @@ trait State[Self <: State[Self]]
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame
 }
 
 /**
@@ -278,7 +278,7 @@ trait ScheduleRecordingState[Self <: ScheduleRecordingState[Self]] {
 object BasicCallFrame {
   def apply(procLoc : (ResourceUri, Option[ResourceUri], Int)) : BasicCallFrame =
     BasicCallFrame(procLoc._1, procLoc._2, procLoc._3, imapEmpty, None, None,
-      -1, None)
+      -1, ivectorEmpty)
 }
 
 /**
@@ -292,7 +292,7 @@ final case class BasicCallFrame(
     result : Option[Value],
     returnLocationUri : Option[ResourceUri],
     returnLocationIndex : Int,
-    returnVariableUri : Option[ResourceUri]) extends CallFrame {
+    returnVariableUris : ISeq[ResourceUri]) extends CallFrame {
 
   import State._
 
@@ -301,9 +301,9 @@ final case class BasicCallFrame(
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame =
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
     BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 }
 
 /**
@@ -356,9 +356,9 @@ final case class BasicState(
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame =
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
     BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnVariableUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   def self = this
 }
@@ -464,9 +464,9 @@ final case class BasicMultiThreadState(
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame =
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
     BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnVariableUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   def self = this
 }

@@ -157,15 +157,22 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         ivector(newS.location(cf.returnLocationUri, cf.returnLocationIndex))
     } else {
       val eValues = eval(s, j.exp.get)
-      eValues.map { p =>
+      eValues.flatMap { p =>
         val s : S = re2s(p)
         val v : V = re2v(p)
         if (s.callStack.size == 1)
-          s.exitCallFrame._1
+          ivector(s.exitCallFrame._1)
         else {
-          val (newS, cf) = s.exitCallFrame
-          s.variable(cf.returnVariableUri.get, v2value(v)).
-            location(cf.returnLocationUri, cf.returnLocationIndex)
+          val (s2, cf) = s.exitCallFrame
+          val vars = cf.returnVariableUris
+          val s3 = s2.location(cf.returnLocationUri, cf.returnLocationIndex)
+          for { (s4, vs) <- sec.tupleDecon(s3, v) } yield {
+            var s5 = s4
+            if (vars.length == vs.length)
+              for (i <- 0 until vs.length)
+                s5 = s5.variable(vars(i), v2value(vs(i)))
+            s5
+          }
         }
       }
     }
@@ -182,7 +189,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       } yield (re2s(re2), re2v(re1), re2v(re2))
 
     val (locUri, locIndex, transIndex, commandIndex) = j.commandDescriptorInfo
-    val returnVar = j.lhs.map { nu =>
+    val returnVars = j.lhss.map { nu =>
       if (nu.name.hasResourceInfo) nu.name.uri
       else nu.name.name
     }
@@ -193,7 +200,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         val initLocUri = sp.initLocation(procUri)
         val store = sp.initStore(s, procUri, v2value(arg))
         s.enterCallFrame(procUri, initLocUri, 0, store, locUri,
-          locIndex, returnVar)
+          locIndex, returnVars)
       }
     }
   }
@@ -519,6 +526,15 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       ivector(sec.nullLiteral(s))
     case (s, TupleExp(Seq(e))) =>
       eval(s, e)
+    case (s, TupleExp(es)) =>
+      var rs : ISeq[(S, ISeq[V])] = ivector((s, ivectorEmpty))
+      for (e <- es) {
+        rs = for {
+          (s2, vs) <- rs
+          (s3, v) <- eval(s2, e)
+        } yield (s3, vs :+ v)
+      }
+      rs.map(sec.tupleCon)
     case (s, UnaryExp(op, e)) =>
       for {
         re1 <- eval(s, e)

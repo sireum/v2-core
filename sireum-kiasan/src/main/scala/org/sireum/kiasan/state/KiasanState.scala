@@ -147,9 +147,9 @@ final case class BasicKiasanState(
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame =
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
     BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
     BasicKiasanState(globalStore, closureStoreStack, callStack,
@@ -243,9 +243,9 @@ final case class KiasanStateWithHeap(
                      store : Store, result : Option[Value],
                      returnLocationUri : Option[ResourceUri],
                      returnLocationIndex : Int,
-                     returnVariableUri : Option[ResourceUri]) : CallFrame =
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
     BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUri)
+      returnLocationUri, returnLocationIndex, returnVariableUris)
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,

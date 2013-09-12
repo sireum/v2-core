@@ -544,8 +544,8 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
     var n = 0
 
-    // optional name exp: 0
-    val lhs = getOptChild[NameExp](n, t)
+    // name exp list: 0
+    val lhss = getChildren[NameExp](n, t)
     n += 1
 
     // exp: 1
@@ -568,7 +568,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val annList = getChildren[Annotation](n, t)
     n += 1
 
-    val result = CallJump(annList, lhs, exp, jump)
+    val result = CallJump(annList, lhss, exp, jump)
     context.pushResult(result, t)
     return false
   }

@@ -797,7 +797,7 @@ final case class SwitchCaseJump(
  */
 final case class CallJump(
   annotations : ISeq[Annotation],
-  lhs : Option[NameExp],
+  lhss : ISeq[NameExp],
   callExp : CallExp,
   jump : Option[GotoJump])
     extends Jump with Assignment {

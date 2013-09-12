@@ -37,6 +37,8 @@ package object extension {
   type RBinaries = org.sireum.extension.annotation.RBinaries @getter
   type RBinary = org.sireum.extension.annotation.RBinary @getter
   type TopLevel = org.sireum.extension.annotation.TopLevel @getter
+  type TupleCon = org.sireum.extension.annotation.TupleCon @getter
+  type TupleDecon = org.sireum.extension.annotation.TupleDecon @getter
   type Unaries = org.sireum.extension.annotation.Unaries @getter
   type Unary = org.sireum.extension.annotation.Unary @getter
   type UriValueProvider = org.sireum.extension.annotation.UriValueProvider @getter

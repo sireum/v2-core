@@ -79,8 +79,7 @@ object PilarAstUtil {
     a match {
       case aa : AssignAction => getLHSRec(aa.lhs)
       case cj : CallJump =>
-        if (cj.lhs.isDefined)
-          getLHSRec(cj.lhs.get)
+        cj.lhss.foreach(getLHSRec)
       case _ =>
     }
     result

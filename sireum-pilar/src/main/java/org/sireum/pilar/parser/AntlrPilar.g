@@ -529,9 +529,9 @@ jump
 	  switchDefaultJump?
 	  annotationList ';'                   -> ^(SWITCH_JUMP[$t] exp ^(LIST switchCaseJump+) ^(OPTION switchDefaultJump?) annotationList)
 	| t='call'
-	  ( nameExp ':=' )?
+	  ( nameExp ( ',' nameExp )* ':=' )?
 	  exp annotationList ';'
-	  ( gotoJump )?                        -> ^(CALL_JUMP[$t] ^(OPTION nameExp?) exp ^(OPTION gotoJump?) annotationList)
+	  ( gotoJump )?                        -> ^(CALL_JUMP[$t] ^(LIST nameExp*) exp ^(OPTION gotoJump?) annotationList)
 	;
 
 gotoJump 
