@@ -28,15 +28,15 @@ Setting up Development Environment
 
    * `Sireum Core Prelude Repo <https://github.com/sireum/prelude>`_
    
-     * read-only: ``https://github.com/sireum/prelude.git``
+     * ``https://github.com/sireum/prelude.git``
      
-     * read-write: ``git@github.com:sireum/prelude.git``
+     * ``git@github.com:sireum/prelude.git``
      
    * `Sireum Core Repo <https://github.com/sireum/core>`_
     
-     * read-only: ``https://github.com/sireum/core.git``
+     * ``https://github.com/sireum/core.git``
      
-     * read-write: ``git@github.com:sireum/core.git``
+     * ``git@github.com:sireum/core.git``
      
    This should import projects such as ``sireum-core-test``.
 
