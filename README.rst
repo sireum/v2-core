@@ -26,7 +26,7 @@ Setting up Development Environment
 
 4. Import all projects in:
 
-   * `Sireum Core Prelude Repo <https://github.com/sireum/prelude>`_
+   * `Sireum Prelude Repo <https://github.com/sireum/prelude>`_
    
      * ``https://github.com/sireum/prelude.git``
      
