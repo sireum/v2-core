@@ -21,7 +21,8 @@ Sireum for Spark
 """)
 case class SireumBakarMode(
   typ : SireumBakarTypeMode = SireumBakarTypeMode(),
-  program : SireumBakarProgramMode = SireumBakarProgramMode())
+  program : SireumBakarProgramMode = SireumBakarProgramMode(),
+  kiasan : KiasanBakarMode = EmptySireumMode.internal(KiasanBakarMode()))
 
 object TypeTarget extends Enum {
   sealed abstract class Type extends EnumElem

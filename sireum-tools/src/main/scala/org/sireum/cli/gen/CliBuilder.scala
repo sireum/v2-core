@@ -67,7 +67,8 @@ object CliBuilder {
         cgm = CliGenMode()
         cgm.dir = "../sireum-cli/src/main/scala/"
         cgm.genClassName = "org.sireum.cli.SireumCli"
-        cgm.classpath = ilist("../../sireum-bakar/sireum-bakar-tools/bin")
+        cgm.classpath = ilist("../../sireum-bakar/sireum-bakar-tools/bin",
+            "../../sireum-bakar-internal/sireum-bakar-kiasan/bin")
         cgm.packages = List("org.sireum")
         cgm.className = SireumMode.getClass.getName.replace("$", "")
     }
