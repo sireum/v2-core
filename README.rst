@@ -1,4 +1,4 @@
-sireum-core
+Sireum Core
 ###########
 
 This repository stores some of the core components of the Sireum (v2) software analysis platform.
@@ -26,17 +26,17 @@ Setting up Development Environment
 
 4. Import all projects in:
 
-   * `Sireum Core Prelude Repo <https://www.assembla.com/code/sireum-core/git-3/nodes>`_
+   * `Sireum Core Prelude Repo <https://github.com/sireum/prelude>`_
    
-     * read-only: ``git://git.assembla.com/sireum-core.prelude.git``
+     * read-only: ``https://github.com/sireum/prelude.git``
      
-     * read-write: ``git@git.assembla.com:sireum-core.prelude.git``
+     * read-write: ``git@github.com:sireum/prelude.git``
      
-   * `Sireum Core Repo <https://www.assembla.com/code/sireum-core/git/nodes>`_
+   * `Sireum Core Repo <https://github.com/sireum/core>`_
     
-     * read-only: ``git://git.assembla.com/sireum-core.git``
+     * read-only: ``https://github.com/sireum/core.git``
      
-     * read-write: ``git@git.assembla.com:sireum-core.git``
+     * read-write: ``git@github.com:sireum/core.git``
      
    This should import projects such as ``sireum-core-test``.
 
