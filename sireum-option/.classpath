@@ -3,7 +3,8 @@
 	<classpathentry kind="src" path="src/main/scala"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry combineaccessrules="false" kind="src" path="/sireum-lib"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-lib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-macro"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
