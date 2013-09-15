@@ -28,7 +28,9 @@ class $className$ {
   def parseModeHelper(parentMode : String, modes : Seq[String],
                       args : Seq[String], i : Int)(f : String => Unit) {
     val mode = args(i)
-    val modeMatches = modes.filter(_.startsWith(mode))
+    val modeMatches =
+      if (modes.exists(_ == mode)) ivector(mode)
+      else modes.filter(_.startsWith(mode))
     if (modeMatches.size == 1) f(modeMatches(0))
     else {
       val lineSep = System.getProperty("line.separator")
