@@ -26,7 +26,7 @@ class GpsLauncher {
     gpsRelPath = gpsRelPath + "gps"
     val gps = new File(System.getenv("SIREUM_HOME"), gpsRelPath).getCanonicalPath()
     val e = new Exec
-    e.env("PATH") = System.getenv("SIREUM_HOME") + "/apps/gnat/2014/bin/:" + System.getenv("PATH") 
+    e.env("PATH") = System.getenv("SIREUM_HOME") + "apps/gnat/2014/bin/:" + System.getenv("PATH") 
     e.run(-1, ivector(gps), None)
   }
 }
