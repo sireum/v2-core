@@ -145,8 +145,10 @@ case class LaunchBakarV1GpsMode()
   desc = "Launch Gpswith BakarV2 Plugins")
 case class LaunchBakarGpsMode()
 
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object EmptySireumMode {
   def internal[T](o : T) : T =
-    org.sireum.macros.cc.ite(
-        System.getenv("SIREUM_INTERNAL") != null, o, null.asInstanceOf[T])
+    org.sireum.macros.cc.ite(o, null.asInstanceOf[T])
 }
