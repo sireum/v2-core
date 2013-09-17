@@ -166,13 +166,16 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
           val (s2, cf) = s.exitCallFrame
           val vars = cf.returnVariableUris
           val s3 = s2.location(cf.returnLocationUri, cf.returnLocationIndex)
-          for { (s4, vs) <- sec.tupleDecon(s3, v) } yield {
-            var s5 = s4
-            if (vars.length == vs.length)
-              for (i <- 0 until vs.length)
-                s5 = s5.variable(vars(i), v2value(vs(i)))
-            s5
-          }
+          if (vars.length == 1)
+            ivector(s3.variable(vars(0), v2value(v)))
+          else
+            for { (s4, vs) <- sec.tupleDecon(s3, v) } yield {
+              var s5 = s4
+              if (vars.length == vs.length)
+                for (i <- 0 until vs.length)
+                  s5 = s5.variable(vars(i), v2value(vs(i)))
+              s5
+            }
         }
       }
     }
