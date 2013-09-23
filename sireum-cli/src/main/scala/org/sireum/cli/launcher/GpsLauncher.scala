@@ -22,7 +22,7 @@ object GpsLauncher {
  */
 class GpsLauncher {
   def execute {
-    var gpsRelPath = "apps/gnat/2014/bin/"
+    var gpsRelPath = "/apps/gnat/2014/bin/"
     gpsRelPath = gpsRelPath + "gps"
     val gps = new File(System.getenv("SIREUM_HOME"), gpsRelPath).getCanonicalPath()
     val e = new Exec
