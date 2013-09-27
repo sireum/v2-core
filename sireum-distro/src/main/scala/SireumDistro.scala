@@ -336,6 +336,7 @@ object SireumDistro extends App {
   }
 
   def execute(className : String, options : AnyRef) {
+    updateClasspath(sireumDir)
     val c = Class.forName(className)
     val prc = Class.forName("org.sireum.cli.PipelineRunner")
     if (c.isAssignableFrom(prc)) {
