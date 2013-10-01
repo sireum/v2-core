@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export GEF_DROP_URL=${GEF_MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/}${GEF_VERSION:=3.8.2}/${GEF_REL:=R}${GEF_BUILD_DATE:=201301141834}/GEF-ALL-$GEF_VERSION.zip
+export GEF_DROP_URL=${GEF_MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/}${GEF_VERSION:=3.9.1}/${GEF_REL:=R}${GEF_BUILD_DATE:=201308190730}/GEF-ALL-$GEF_VERSION.zip
 export GEF_DROP=GEF-ALL-$GEF_VERSION.zip
 if [ ! -f $GEF_DROP ]; then
   echo
@@ -10,11 +10,11 @@ if [ ! -f $GEF_DROP ]; then
   wget $GEF_DROP_URL
   echo
 fi
-export EGIT_DROP_URL=${EGIT_URL:=http://download.eclipse.org/egit/updates-}${EGIT_VERSION:=2.3}/org.eclipse.egit.repository-$EGIT_VERSION.${EGIT_VERSION_M:=1}.${EGIT_BUILD_DATE:=201302201838}-r.zip
-export EGIT_DROP=org.eclipse.egit.repository-$EGIT_VERSION.$EGIT_VERSION_M.$EGIT_BUILD_DATE-r.zip
+export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates-}${EGIT_VERSION:=3.0.3}/org.eclipse.egit.repository-$EGIT_VERSION.${EGIT_BUILD_DATE:=201309161630}-r.zip
+export EGIT_DROP=org.eclipse.egit.repository-$EGIT_VERSION.$EGIT_BUILD_DATE-r.zip
 if [ ! -f $EGIT_DROP ]; then
   echo
-  echo Downloading EGIT $EGIT_VERSION.$EGIT_VERSION_M.$EGIT_BUILD_DATE
+  echo Downloading EGIT $EGIT_VERSION.$EGIT_BUILD_DATE
   echo
   wget $EGIT_DROP_URL
   echo
@@ -37,11 +37,11 @@ if [ ! -f $SUBCLIPSE_DROP ]; then
   wget $SUBCLIPSE_DROP_URL
   echo
 fi
-export ELT_DROP_URL=${ELT_URL:=http://elt.googlecode.com/files/elt-}${ELT_VERSION:=1.1.0}.${ELT_BUILD_DATE:=201208062130}.zip
-export ELT_DROP=elt-$ELT_VERSION.$ELT_BUILD_DATE.zip
+export ELT_DROP_URL=http://elt.googlecode.com/archive/${ELT_COMMIT_SHORT:=c4c170f31632}${ELT_COMMIT:=2d0d6040411b4170a4c696ff8c2b}.zip
+export ELT_DROP=$ELT_COMMIT_SHORT$ELT_COMMIT.zip
 if [ ! -f $ELT_DROP ]; then
   echo
-  echo Downloading ELT $ELT_VERSION
+  echo Downloading ELT $ELT_COMMIT_SHORT
   echo
   wget $ELT_DROP_URL
   echo
@@ -81,8 +81,12 @@ unzip -oq ../../../$SUBCLIPSE_DROP
 cd ../../..
 mkdir eclipse-plugins-essential/elt 2> /dev/null
 mkdir eclipse-plugins-essential/elt/eclipse 2> /dev/null
-cd eclipse-plugins-essential/elt/eclipse
-unzip -oq ../../../$ELT_DROP
+cd eclipse-plugins-essential/elt/
+unzip -oq ../../$ELT_DROP
+mv elt-$ELT_COMMIT_SHORT/update-site elt-$ELT_COMMIT_SHORT/eclipse
+mv elt-$ELT_COMMIT_SHORT/eclipse .
+rm -fR elt-$ELT_COMMIT_SHORT
+cd eclipse
 > .eclipseextension
 cd ../../..
 mkdir eclipse-plugins-essential/texlipse 2> /dev/null
