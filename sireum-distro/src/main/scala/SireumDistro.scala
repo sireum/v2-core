@@ -1157,7 +1157,7 @@ Sireum Distro managed apps are currently running.""")
         seenFeatures = seenFeatures + fName
         val (fs, sapps) =
           features(fName).partition(name => features.contains(name))
-        l = fs ++ l
+        l = fs.reverse ++ l
         result = sapps ++ result
         newFeatures += fName
       }
