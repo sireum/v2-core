@@ -1155,12 +1155,10 @@ Sireum Distro managed apps are currently running.""")
       l = l.tail
       if (!seenFeatures.contains(fName) && !installedFeatures.contains(fName)) {
         seenFeatures = seenFeatures + fName
-        for (name <- features(fName)) {
-          if (features.contains(name)) {
-            l = name :: l
-          } else
-            result = name :: result
-        }
+        val (fs, sapps) =
+          features(fName).partition(name => features.contains(name))
+        l = fs ++ l
+        result = sapps ++ result
         newFeatures += fName
       }
     }
