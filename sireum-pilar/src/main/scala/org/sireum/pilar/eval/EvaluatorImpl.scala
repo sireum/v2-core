@@ -184,6 +184,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   @inline
   private def evalCallJump(s : S, j : CallJump) : SR = {
     val ce = j.callExp
+    val nextLoc = sp.nextLocation(s)
     val eValues = eval(s, ce.exp)
     val spa =
       for {
@@ -191,7 +192,6 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         re2 <- eval(re2s(re1), ce.arg)
       } yield (re2s(re2), re2v(re1), re2v(re2))
 
-    val (locUri, locIndex, transIndex, commandIndex) = j.commandDescriptorInfo
     val returnVars = j.lhss.map { nu =>
       if (nu.name.hasResourceInfo) nu.name.uri
       else nu.name.name
@@ -202,8 +202,8 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         val (s, procUri) = p
         val initLocUri = sp.initLocation(procUri)
         val store = sp.initStore(s, procUri, v2value(arg))
-        s.enterCallFrame(procUri, initLocUri, 0, store, locUri,
-          locIndex, returnVars)
+        s.enterCallFrame(procUri, initLocUri, 0, store, nextLoc.locationUri,
+          nextLoc.locationIndex, returnVars)
       }
     }
   }
