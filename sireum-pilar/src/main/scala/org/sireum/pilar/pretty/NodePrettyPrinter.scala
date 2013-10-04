@@ -343,7 +343,16 @@ class NodePrettyPrinter(vprint : Value => String) {
       ctx.processAnnotationList(v, st, o.annotations)
       ctx.pushResult(st)
       false
-    case o @ (AssertAction | AssumeAction | ThrowAction | StartAction | ExtCallAction) =>
+    case o : AssumeAction =>
+      val st = ctx.stg.getInstanceOf("assume")
+
+      v(o.cond)
+      st.add("exp", ctx.popResult)
+
+      ctx.processAnnotationList(v, st, o.annotations)
+      ctx.pushResult(st)
+      false
+    case o @ (ThrowAction | StartAction | ExtCallAction) =>
       Console.err.println("Not handling " + o.getClass.getSimpleName)
       false
   }
