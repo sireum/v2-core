@@ -32,3 +32,8 @@ trait ValCompositeValue extends CompositeValue
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait RefCompositeValue extends CompositeValue
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object NullValue extends RefCompositeValue with ConcreteValue
