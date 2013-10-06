@@ -205,7 +205,7 @@ object EvaluatorConfig {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait EvaluatorHeapConfiguration {
-  self : EvaluatorConfiguration =>
+  self : PropertyProvider =>
 
   val HEAP_KEY = getClass.getName + ".numOfHeaps"
 
