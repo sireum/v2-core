@@ -207,8 +207,7 @@ trait State[Self <: State[Self]]
       if (!closureStoreStack.isEmpty) {
         val s = closureStoreStack.head
         make(globalStore, (s + (varUri -> value)) +: closureStoreStack.tail,
-          callStack.head.variable(varUri, value) +: callStack.tail,
-          properties)
+          callStack, properties)
       } else
         make(globalStore, closureStoreStack,
           callStack.head.variable(varUri, value) +: callStack.tail,
