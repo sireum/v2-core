@@ -25,6 +25,51 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
   val newState = Z3Process.State()
   val tran = PartialFunctionUtil.orElses[(TopiProcess.TypeCounters, Exp), (TopiProcess.TypeCounters, String)](trans.map { _.expTranslator })
 
+  def check(cconjuncts : Iterable[Iterable[Exp]]) : Iterable[TopiResult.Type] = {
+    val sb = new StringBuilder()
+    for (conjuncts <- cconjuncts) {
+      sb.append("(push)\n")
+
+      var tc = imapEmpty[ResourceUri, Int]
+      for (c <- conjuncts) {
+        val (tc2, s) = tran(tc, c)
+        sb.append(s)
+        tc = tc2
+      }
+      sb.append("(check-sat)\n")
+      sb.append("(pop)\n")
+    }
+    if (sb.length == 0) return cconjuncts.map(x => TopiResult.SAT)
+    sb.append("(exit)\n")
+    val script = sb.toString
+    exec(script) match {
+      case Exec.Timeout =>
+        ivector(TopiResult.TIMEOUT)
+      case Exec.StringResult(s, _) =>
+        import java.io._
+        val lnr = new LineNumberReader(new StringReader(s))
+        var line = lnr.readLine
+        var r = ivectorEmpty[TopiResult.Type]
+        while (line != null) {
+          line.trim match {
+            case "sat"     => r :+= TopiResult.SAT
+            case "unsat"   => r :+= TopiResult.UNSAT
+            case "unknown" => r :+= TopiResult.UNKNOWN
+            case s =>
+              scala.Console.err.println(script)
+              scala.Console.err.println(s)
+              scala.Console.err.flush
+              assert(false)
+              sys.error("Unexpected result")
+          }
+          line = lnr.readLine
+        }
+        r
+      case Exec.ExceptionRaised(ex) =>
+        throw ex
+    }
+  }
+
   def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
     ts match {
       case Z3Process.State(s, m) =>

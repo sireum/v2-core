@@ -57,6 +57,7 @@ trait Topi {
   def newState : TopiState
   def compile(conjuncts : Iterable[Exp], ts : TopiState = newState) : TopiState
   def check(ts : TopiState) : TopiResult.Type
+  def check(cconjuncts : Iterable[Iterable[Exp]]) : Iterable[TopiResult.Type]
   def getModel(ts : TopiState) : Option[IMap[String, Value]]
 
   def check(conjuncts : Iterable[Exp]) : TopiResult.Type
