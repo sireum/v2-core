@@ -89,6 +89,7 @@ object MonotoneDataFlowAnalysisFramework {
         sb.toString
       }
 
+      // TODO: use CFG successors (handle exceptions)
       protected def next(l : LocationDecl) = cfg.getNode(pst.location(l.index + 1))
 
       protected def node(locUri : ResourceUri) = cfg.getNode(pst.location(locUri))
@@ -372,14 +373,19 @@ object MonotoneDataFlowAnalysisFramework {
             if (esl.isDefined) eslb.action(l.action, s)
             val r = actionF(s, l.action)
             if (esl.isDefined) eslb.exitSet(None, r)
-            update(confluence(r, getEntrySet(sn)), sn)
+            if (l.index < pst.locations.size - 1) {
+              val sn = next(l)
+              update(confluence(r, getEntrySet(sn)), sn)
+            } else {
+              val sn = cfg.exitNode
+              update(confluence(r, getEntrySet(sn)), sn)
+            }
           case l : JumpLocation =>
             jumpF(s, l.jump)
           case l : EmptyLocation =>
             val sn = next(l)
             if (esl.isDefined) eslb.exitSet(None, s)
             update(confluence(s, getEntrySet(sn)), sn)
-            false
         }
       }
 
