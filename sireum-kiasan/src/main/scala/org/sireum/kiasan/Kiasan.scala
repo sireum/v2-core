@@ -147,9 +147,9 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
   }
 
   @inline
-  protected def check(s : S) : (S, TopiResult.Type) = {
-    val topiCachePropKey = "Topi Cache"
+  protected def check(s : S) : (S, TopiResult.Type) =
     topiPool { topi =>
+      val topiCachePropKey = "Topi Cache"
       val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
       var pcs = s.pathConditions
       val size = pcs.length - tc.lastCompiledLength
@@ -166,7 +166,6 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
       val r = topi.check(newTc.state)
       (s2, r)
     }
-  }
 
   @inline
   private def par[T](shouldParallize : Boolean, l : GenSeq[T]) =
