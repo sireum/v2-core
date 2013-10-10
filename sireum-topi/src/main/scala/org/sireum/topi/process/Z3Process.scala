@@ -83,7 +83,7 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
         sb.append(s)
         tc = tc2
       }
-      sb.append("(check-sat)\n")
+      sb.append("(check-sat)\n(reset)\n")
     }
     if (sb.length == 0) return cconjuncts.map(x => TopiResult.SAT)
     val script = sb.toString
