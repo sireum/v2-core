@@ -10,13 +10,13 @@ package org.sireum.kiasan
 
 import scala.concurrent.forkjoin._
 import scala.collection.parallel._
+import com.typesafe.scalalogging.slf4j._
+import org.sireum.kiasan.state._
 import org.sireum.pilar.state._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
+import org.sireum.topi._
 import org.sireum.util._
-import org.sireum.kiasan.state._
-import com.typesafe.scalalogging.slf4j._
-import org.sireum.topi.TopiResult
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -69,6 +69,8 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
 
   var dpTotalTime = 0l
 
+  val topiQueue = new java.util.concurrent.ConcurrentLinkedQueue[Topi]
+
   def parallelMode : Boolean
 
   def parallelThreshold : Int
@@ -83,11 +85,19 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
 
   def reporter : KiasanReporter[S]
 
-  def createTopi : org.sireum.topi.Topi
+  def createTopi : Topi
 
   def depthBound : Int
 
   lazy val taskSupport = new ForkJoinTaskSupport(new ForkJoinPool(parallelismLevel))
+
+  def topiPool[T](f : Topi => T) : T = {
+    var t = topiQueue.poll
+    if (t == null) {
+      t = createTopi
+    }
+    try f(t) finally topiQueue.offer(t)
+  }
 
   def search {
     var workList : GenSeq[S] = initialStatesProvider.initialStates
@@ -109,6 +119,11 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
 
     if (i >= depth) {
       workList.foreach(reporter.foundDepthBoundExhaustion)
+    }
+
+    {
+      import scala.collection.JavaConversions._
+      for (t <- topiQueue.par) t.close
     }
 
     searchTime = System.currentTimeMillis - searchTime
@@ -134,8 +149,7 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
   @inline
   protected def check(s : S) : (S, TopiResult.Type) = {
     val topiCachePropKey = "Topi Cache"
-    val topi = createTopi
-    try {
+    topiPool { topi =>
       val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
       var pcs = s.pathConditions
       val size = pcs.length - tc.lastCompiledLength
@@ -151,7 +165,7 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
 
       val r = topi.check(newTc.state)
       (s2, r)
-    } finally topi.close
+    }
   }
 
   @inline
