@@ -86,6 +86,9 @@ trait ValCompositeTestFramework extends TestFramework {
     }
   }
 
+  def createTopi =
+    Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*)
+
   def eprint(vprint : V => String)(e : Exp) : String =
     NodePrettyPrinter.print(e, vprint)
 
@@ -109,24 +112,24 @@ trait ValCompositeTestFramework extends TestFramework {
     }
   }
 
-  val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*)
-
-  def check(s : S) = KiasanStateCheck.check(topi, s)
+  def check(s : S, topi : Topi) = KiasanStateCheck.check(topi, s)
 
   def checkConcExe(s : S, s0 : S, action : String,
                    mcs : (IMap[String, Value], S)) {
-    KiasanStateCheck.checkConcretizedState(topi, s, s0,
-      KonkritBooleanExtension.TT, config.evaluator[S, R, C, SR].mainEvaluator, mcs)
+    for (topi <- resource.managed(createTopi))
+      KiasanStateCheck.checkConcretizedState(topi, s, s0,
+        KonkritBooleanExtension.TT, config.evaluator[S, R, C, SR].mainEvaluator, mcs)
   }
 
   def checkConcExe(s : S, s0 : S, exp : String, v : V,
                    mcs : (IMap[String, Value], S)) =
-    KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
-      config.evaluator[S, R, C, SR].mainEvaluator, exp, v, identity[Exp], Some(mcs)) match {
-        case TopiResult.SAT | TopiResult.UNKNOWN =>
-        case _ =>
-          assert(false, "Expecting SAT or UNKNOWN")
-      }
+    for (topi <- resource.managed(createTopi))
+      KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
+        config.evaluator[S, R, C, SR].mainEvaluator, exp, v, identity[Exp], Some(mcs)) match {
+          case TopiResult.SAT | TopiResult.UNKNOWN =>
+          case _ =>
+            assert(false, "Expecting SAT or UNKNOWN")
+        }
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -178,28 +181,29 @@ trait ValCompositeTestFramework extends TestFramework {
     pw.println
     KiasanStateVisualizer(s, "Before", pw, vpr, eprint(vpr))
     pw.println
-    for (post <- sr if post.pathConditions.isEmpty || check(post) != TopiResult.UNSAT) {
-      pw.println
-      pw.println("----")
-      pw.println
-      val vp = vprint(post) _
-      val swPost = new StringWriter
-      KiasanStateVisualizer(post, "After", swPost, vp, eprint(vp))
-      var postState = swPost.toString + additionalStateText(post, None)
-      if (post.pathConditions.isEmpty) {
-        pw.println(postState)
-      } else {
-        KiasanStateCheck.concretizeState(topi, post,
-          None, Some(fixKiasanArray))
-        val mcsOpt = KiasanStateCheck.concretizeState(topi, post,
-          None, Some(fixKiasanArray))
-        val (m, cs) = mcsOpt.get
-        val swPostC = new StringWriter
-        KiasanStateVisualizer(cs, "After (Semi-Concrete)", swPostC, vp, eprint(vp))
-        val postStateC = swPostC + additionalStateText(post, Some(m, cs))
-        pw.print(RstUtil.tab(postState, postStateC))
+    for (topi <- resource.managed(createTopi))
+      for (post <- sr if post.pathConditions.isEmpty || check(post, topi) != TopiResult.UNSAT) {
+        pw.println
+        pw.println("----")
+        pw.println
+        val vp = vprint(post) _
+        val swPost = new StringWriter
+        KiasanStateVisualizer(post, "After", swPost, vp, eprint(vp))
+        var postState = swPost.toString + additionalStateText(post, None)
+        if (post.pathConditions.isEmpty) {
+          pw.println(postState)
+        } else {
+          KiasanStateCheck.concretizeState(topi, post,
+            None, Some(fixKiasanArray))
+          val mcsOpt = KiasanStateCheck.concretizeState(topi, post,
+            None, Some(fixKiasanArray))
+          val (m, cs) = mcsOpt.get
+          val swPostC = new StringWriter
+          KiasanStateVisualizer(cs, "After (Semi-Concrete)", swPostC, vp, eprint(vp))
+          val postStateC = swPostC + additionalStateText(post, Some(m, cs))
+          pw.print(RstUtil.tab(postState, postStateC))
+        }
       }
-    }
     pw.flush
     val result = sw.toString
 

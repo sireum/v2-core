@@ -29,7 +29,7 @@ object Topi {
           TopiProcess.mine(solver, mode, extensions : _*) : _*)
     }
   }
-
+  
   case class Boolean(value : scala.Boolean) extends Value with IsBoolean {
     def asBoolean = value
   }
@@ -53,7 +53,7 @@ trait TopiState extends Immutable
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait Topi {
+trait Topi extends Closeable {
   def newState : TopiState
   def compile(conjuncts : Iterable[Exp], ts : TopiState = newState) : TopiState
   def check(ts : TopiState) : TopiResult.Type

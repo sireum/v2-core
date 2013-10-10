@@ -19,6 +19,55 @@ import org.sireum.util.sexp.ast._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
+  val (process, reader, writer) = {
+    import java.io._
+    val args =
+      OsArchUtil.detect match {
+        case OsArch.Win64 | OsArch.Win32 => ivector(z3, "/smt2", "/in")
+        case _                           => ivector(z3, "-smt2", "-in")
+      }
+    val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
+    val proc = processBuilder.start()
+    val reader = new BufferedReader(new InputStreamReader(proc.getInputStream))
+    val writer = new OutputStreamWriter(proc.getOutputStream)
+    (proc, reader, writer)
+  }
+
+  def check(script : String) : ISeq[TopiResult.Type] = {
+    var r = ivectorEmpty[TopiResult.Type]
+    send(script) { line =>
+      line.trim match {
+        case "sat"     => r :+= TopiResult.SAT
+        case "unsat"   => r :+= TopiResult.UNSAT
+        case "unknown" => r :+= TopiResult.UNKNOWN
+        case s =>
+          scala.Console.err.println(script)
+          scala.Console.err.println(s)
+          scala.Console.err.flush
+          assert(false)
+          sys.error("Unexpected result")
+      }
+    }
+    r
+  }
+
+  def send(script : String)(f : String => Unit) {
+    val text = script + "(reset)\n(echo \"end\")\n"
+    writer.write(text)
+    writer.flush
+    val sb = new StringBuilder()
+    var line : String = null
+    while ({ line = reader.readLine; line.trim != "end" }) {
+      f(line)
+    }
+  }
+
+  override def close() {
+    writer.write("(exit)\n")
+    writer.flush
+    process.waitFor
+  }
+
   def stateRewriter(m : IMap[String, Value]) =
     PartialFunctionUtil.orElses[Any, Any](trans.map { _.stateRewriter(m) })
 
@@ -28,8 +77,6 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
   def check(cconjuncts : Iterable[Iterable[Exp]]) : Iterable[TopiResult.Type] = {
     val sb = new StringBuilder()
     for (conjuncts <- cconjuncts) {
-      sb.append("(push)\n")
-
       var tc = imapEmpty[ResourceUri, Int]
       for (c <- conjuncts) {
         val (tc2, s) = tran(tc, c)
@@ -37,37 +84,10 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
         tc = tc2
       }
       sb.append("(check-sat)\n")
-      sb.append("(pop)\n")
     }
     if (sb.length == 0) return cconjuncts.map(x => TopiResult.SAT)
-    sb.append("(exit)\n")
     val script = sb.toString
-    exec(script) match {
-      case Exec.Timeout =>
-        ivector(TopiResult.TIMEOUT)
-      case Exec.StringResult(s, _) =>
-        import java.io._
-        val lnr = new LineNumberReader(new StringReader(s))
-        var line = lnr.readLine
-        var r = ivectorEmpty[TopiResult.Type]
-        while (line != null) {
-          line.trim match {
-            case "sat"     => r :+= TopiResult.SAT
-            case "unsat"   => r :+= TopiResult.UNSAT
-            case "unknown" => r :+= TopiResult.UNKNOWN
-            case s =>
-              scala.Console.err.println(script)
-              scala.Console.err.println(s)
-              scala.Console.err.flush
-              assert(false)
-              sys.error("Unexpected result")
-          }
-          line = lnr.readLine
-        }
-        r
-      case Exec.ExceptionRaised(ex) =>
-        throw ex
-    }
+    check(script)
   }
 
   def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
@@ -86,38 +106,12 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
         Z3Process.State(sb.toString, tc)
     }
 
-  def exec(script : String) = {
-    val args =
-      OsArchUtil.detect match {
-        case OsArch.Win64 | OsArch.Win32 => ivector(z3, "/smt2", "/in")
-        case _                           => ivector(z3, "-smt2", "-in")
-      }
-
-    val e = new Exec
-    e.run(waitTime, args, Some(script))
-  }
-
   def check(ts : TopiState) : TopiResult.Type =
     ts match {
       case Z3Process.State(script, _) =>
-        exec(script + "(check-sat)\n(exit)\n") match {
-          case Exec.Timeout =>
-            TopiResult.TIMEOUT
-          case Exec.StringResult(s, _) =>
-            s.trim match {
-              case "sat"     => TopiResult.SAT
-              case "unsat"   => TopiResult.UNSAT
-              case "unknown" => TopiResult.UNKNOWN
-              case s =>
-                scala.Console.err.println(script)
-                scala.Console.err.println(s)
-                scala.Console.err.flush
-                assert(false)
-                sys.error("Unexpected result")
-            }
-          case Exec.ExceptionRaised(ex) =>
-            throw ex
-        }
+        val r = check(script + "(check-sat)\n")
+        assert(r.length == 1)
+        r(0)
     }
 
   def check(conjuncts : Iterable[Exp]) : TopiResult.Type =
@@ -126,11 +120,12 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
   def getModel(ts : TopiState) : Option[IMap[String, Value]] =
     ts match {
       case Z3Process.State(script, _) =>
-        exec(script + "(check-sat)\n(get-model)\n(exit)\n") match {
-          case Exec.Timeout             => None
-          case Exec.StringResult(s, _)  => Some(Z3Process.parseModel(s))
-          case Exec.ExceptionRaised(ex) => throw ex
+        val sb = new StringBuilder
+        send(script + "(check-sat)\n(get-model)\n") { line =>
+          sb.append(line)
+          sb.append('\n')
         }
+        Some(Z3Process.parseModel(sb.toString))
     }
 
   def getModel(conjuncts : Iterable[Exp]) : Option[IMap[String, Value]] =

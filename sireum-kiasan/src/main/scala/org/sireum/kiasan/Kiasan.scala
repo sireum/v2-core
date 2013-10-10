@@ -10,14 +10,13 @@ package org.sireum.kiasan
 
 import scala.concurrent.forkjoin._
 import scala.collection.parallel._
-
 import org.sireum.pilar.state._
 import org.sireum.pilar.ast._
 import org.sireum.pilar.eval._
 import org.sireum.util._
 import org.sireum.kiasan.state._
-
 import com.typesafe.scalalogging.slf4j._
+import org.sireum.topi.TopiResult
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -84,7 +83,7 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
 
   def reporter : KiasanReporter[S]
 
-  def topi : org.sireum.topi.Topi
+  def createTopi : org.sireum.topi.Topi
 
   def depthBound : Int
 
@@ -133,22 +132,26 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
   }
 
   @inline
-  protected def check(s : S) = {
+  protected def check(s : S) : (S, TopiResult.Type) = {
     val topiCachePropKey = "Topi Cache"
-    val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
-    var pcs = s.pathConditions
-    val size = pcs.length - tc.lastCompiledLength
-    var conjuncts = List[Exp]()
-    var i = 0
-    while (i < size) {
-      conjuncts = pcs.head :: conjuncts
-      pcs = pcs.tail
-      i += 1
-    }
-    val newTc = TopiCache(topi.compile(conjuncts, tc.state), pcs.length)
-    val s2 = s.setProperty(topiCachePropKey, newTc)
+    val topi = createTopi
+    try {
+      val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
+      var pcs = s.pathConditions
+      val size = pcs.length - tc.lastCompiledLength
+      var conjuncts = List[Exp]()
+      var i = 0
+      while (i < size) {
+        conjuncts = pcs.head :: conjuncts
+        pcs = pcs.tail
+        i += 1
+      }
+      val newTc = TopiCache(topi.compile(conjuncts, tc.state), pcs.length)
+      val s2 = s.setProperty(topiCachePropKey, newTc)
 
-    (s2, topi.check(newTc.state))
+      val r = topi.check(newTc.state)
+      (s2, r)
+    } finally topi.close
   }
 
   @inline

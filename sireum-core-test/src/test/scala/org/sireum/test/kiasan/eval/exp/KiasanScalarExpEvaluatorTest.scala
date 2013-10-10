@@ -52,8 +52,6 @@ class KiasanScalarExpEvaluatorTest
 
   val extensions = ivector(KiasanIntegerExtension, KonkritIntegerExtension,
     KiasanBooleanExtension, KonkritBooleanExtension)
-  val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*)
-
   val (state, alpha, beta, gamma, b_alpha, b_beta, b_gamma) = {
     val s = BasicKiasanState()
     val (s2, a) = KiasanIntegerExtension.fresh(s)
@@ -154,13 +152,19 @@ class KiasanScalarExpEvaluatorTest
 
   def pc(exp : String*) : Seq[Exp] = KiasanStateCheck.pc(rewriter, exp : _*)
 
-  def checkConcExe(s : S, s0 : S, exp : String, v : V) =
-    KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
-      newExpEvaluator(s0), exp, v, rewriter) match {
-        case TopiResult.SAT | TopiResult.UNKNOWN =>
-        case _ =>
-          assert(false, "Expecting SAT or UNKNOWN")
-      }
+  def checkConcExe(s : S, s0 : S, exp : String, v : V) = {
+    for (
+      topi <- resource.managed(
+        Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*))
+    ) {
+      KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
+        newExpEvaluator(s0), exp, v, rewriter) match {
+          case TopiResult.SAT | TopiResult.UNKNOWN =>
+          case _ =>
+            assert(false, "Expecting SAT or UNKNOWN")
+        }
+    }
+  }
 
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>

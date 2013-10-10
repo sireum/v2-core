@@ -180,8 +180,8 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
           }
         }
 
-        val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 7000,
-          extensions : _*)
+        def createTopi =
+          Topi.create(TopiSolver.Z3, TopiMode.Process, 7000, extensions : _*)
       }
 
       kiasan.search
