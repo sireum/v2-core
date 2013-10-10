@@ -171,8 +171,6 @@ trait State[Self <: State[Self]]
   }
 
   def variable(varUri : ResourceUri) : Value = {
-    import org.sireum.pilar.symbol.H._
-
     if (isGlobalVar(varUri))
       globalStore(varUri)
     else {
@@ -183,10 +181,11 @@ trait State[Self <: State[Self]]
       callStack.head.variable(varUri)
     }
   }
+  
+  def isGlobalVar(varUri : ResourceUri) =
+    org.sireum.pilar.symbol.H.isGlobalVar(varUri)
 
   def hasVariableValue(varUri : ResourceUri) : Boolean = {
-    import org.sireum.pilar.symbol.H._
-
     if (isGlobalVar(varUri))
       globalStore.contains(varUri)
     else {
@@ -199,8 +198,6 @@ trait State[Self <: State[Self]]
   }
 
   def variable(varUri : ResourceUri, value : Value) : Self = {
-    import org.sireum.pilar.symbol.H._
-
     if (isGlobalVar(varUri))
       make(globalStore + (varUri -> value), closureStoreStack, callStack, properties)
     else {
