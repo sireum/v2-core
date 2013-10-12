@@ -17,15 +17,15 @@ mkdir eclipse 2> /dev/null
 mkdir eclipse/classic 2> /dev/null
 mkdir eclipse/classic/links 2> /dev/null
 echo "path=../../sireumdev/windowbuilder" > eclipse/classic/links/windowbuilder.link 
-mkdir SireumDev 2> /dev/null
-mkdir SireumDev/windowbuilder 2> /dev/null
-mkdir SireumDev/windowbuilder/eclipse 2> /dev/null
-cd SireumDev/windowbuilder/eclipse
+mkdir EclipseDev 2> /dev/null
+mkdir EclipseDev/windowbuilder 2> /dev/null
+mkdir EclipseDev/windowbuilder/eclipse 2> /dev/null
+cd EclipseDev/windowbuilder/eclipse
 > .eclipseextension
 unzip -oq ../../../$WB_DROP
 cd ../..
 zip -rq windowbuilder.sapp windowbuilder ../eclipse/classic/links/windowbuilder.link
 cd ..
-rm -fR eclipse SireumDev/windowbuilder
+rm -fR eclipse EclipseDev/windowbuilder
 echo
 echo ...done!
