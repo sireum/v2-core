@@ -16,7 +16,7 @@ fi
 mkdir eclipse 2> /dev/null
 mkdir eclipse/classic 2> /dev/null
 mkdir eclipse/classic/links 2> /dev/null
-echo "path=../../sireumdev/windowbuilder" > eclipse/classic/links/windowbuilder.link 
+echo "path=../../eclipsedev/windowbuilder" > eclipse/classic/links/windowbuilder.link 
 mkdir EclipseDev 2> /dev/null
 mkdir EclipseDev/windowbuilder 2> /dev/null
 mkdir EclipseDev/windowbuilder/eclipse 2> /dev/null
