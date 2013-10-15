@@ -114,7 +114,10 @@ object SireumDistro extends App {
   final val SAPP_INFO = ".sapp_info"
   final val CHECKSUM_SUFFIX = ".checksum"
   final val POST_INSTALL = "sireum-postinstall"
-  final val SKIP_UPDATE_ENV_KEY = "SIREUM_SKIP_UPDATE"
+  final val SIREUM_UPDATE_PROPERTY_KEY = "sireum.update.url"
+  final val SIREUM_UPDATE_KEY = "SIREUM_UPDATE"
+  final val SIREUM_DIST_KEY = "SIREUM_DIST"
+  final val SIREUM_SKIP_UPDATE_KEY = "SIREUM_SKIP_UPDATE"
 
   final val BUFFER_SIZE = 1024
   final val GLOBAL_OPTION_KEY = "Global.ProgramOptions"
@@ -155,8 +158,8 @@ object SireumDistro extends App {
     }
 
   val updateUrl = {
-    var url = System.getProperty("sireum.update.url")
-    if (url == null) url = System.getenv("SIREUM_UPDATE")
+    var url = System.getProperty(SIREUM_UPDATE_PROPERTY_KEY)
+    if (url == null) url = System.getenv(SIREUM_UPDATE_KEY)
     if (url == null) url = "http://update.sireum.org/dev/latest/"
     if (url != null && !url.startsWith("http://") && !url.startsWith("file://"))
       url = new File(url).toURI.toURL.toExternalForm
@@ -164,12 +167,12 @@ object SireumDistro extends App {
   }
 
   val isDevelopment = {
-    val d = System.getenv("SIREUM_DIST")
+    val d = System.getenv(SIREUM_DIST_KEY)
     if (d == null || d.trim != "true") true else false
   }
 
   val skipUpdate = {
-    val env = System.getenv(SKIP_UPDATE_ENV_KEY)
+    val env = System.getenv(SIREUM_SKIP_UPDATE_KEY)
     if (env == null) false else env.trim == "true"
   }
 
@@ -532,6 +535,8 @@ object SireumDistro extends App {
 
   def install(featureNames : String*) {
     updateClasspath(sireumDir)
+    
+    if (isDevelopment) return
 
     {
       val installedFeatures = loadInstalledFeatures
