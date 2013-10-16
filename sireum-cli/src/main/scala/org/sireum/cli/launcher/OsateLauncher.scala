@@ -19,9 +19,15 @@ object OsateLauncher {
 class OsateLauncher {
   def execute {
     var osateRelPath = "/apps/osate/osate2/"
-    osateRelPath = osateRelPath + "osate.app"
+    val osArch = OsArchUtil.detect
+    val extension = if (osArch == OsArch.Win32 || osArch == OsArch.Win64) ".exe" else if (osArch == OsArch.Mac32 || osArch == OsArch.Mac64) ".app" else ""
+    osateRelPath = osateRelPath + "osate" + extension
     val osate = new File(System.getenv("SIREUM_HOME"), osateRelPath).getCanonicalPath()
     val e = new Exec
-    e.run(-1, ivector(osate), None)
+    if (osArch == OsArch.Mac64 || osArch == OsArch.Mac32) {
+    	e.run(-1, ivector("open", osate), None)
+    } else {
+      e.run(-1, ivector(osate), None)
+    }
   }
 }
