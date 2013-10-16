@@ -73,7 +73,8 @@ case class SireumLaunchMode(
   bakar : LaunchBakarV1Mode = LaunchBakarV1Mode(),
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
-  bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode())
+  bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
+  osate : LaunchOsateMode = LaunchOsateMode())
 
 abstract class LaunchEclipseAppMode {
   def jvmopts : ISeq[String]
