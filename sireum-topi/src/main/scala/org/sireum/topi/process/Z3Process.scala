@@ -27,6 +27,7 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
         case _                           => ivector(z3, "-smt2", "-in")
       }
     val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
+    processBuilder.redirectErrorStream(true)
     val proc = processBuilder.start()
     val reader = new BufferedReader(new InputStreamReader(proc.getInputStream))
     val writer = new OutputStreamWriter(proc.getOutputStream)
@@ -52,7 +53,7 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
   }
 
   def send(script : String)(f : String => Unit) {
-    val text = script + "(reset)\n(echo \"end\")\n"
+    val text = "(push)\n" + script + "(pop)\n(echo \"end\")\n"
     writer.write(text)
     writer.flush
     val sb = new StringBuilder()
@@ -78,12 +79,13 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
     val sb = new StringBuilder()
     for (conjuncts <- cconjuncts) {
       var tc = imapEmpty[ResourceUri, Int]
+      sb.append("(push)\n")
       for (c <- conjuncts) {
         val (tc2, s) = tran(tc, c)
         sb.append(s)
         tc = tc2
       }
-      sb.append("(check-sat)\n(reset)\n")
+      sb.append("(check-sat)\n(pop)\n")
     }
     if (sb.length == 0) return cconjuncts.map(x => TopiResult.SAT)
     val script = sb.toString
