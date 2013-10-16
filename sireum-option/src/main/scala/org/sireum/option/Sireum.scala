@@ -146,6 +146,13 @@ case class LaunchBakarV1GpsMode()
 case class LaunchBakarGpsMode()
 
 /**
+ * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
+ */
+@Main(value = "osate", className = "org.sireum.cli.launcher.OsateLauncher", featureName = "Osate.sapp",
+  desc = "Launch Osate with RDALTE, egit and BLESS plugins")
+case class LaunchOsateMode()
+
+/**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object EmptySireumMode {
