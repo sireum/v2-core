@@ -34,9 +34,9 @@ State: Before
 |                                 |                                 |
 |     * [1] = i4                  |     * [1] = i4                  |
 |                                 |                                 |
-|     * [i5] = i6                 |     * [2] = i6                  |
+|     * [i5] = i6                 |     * [4] = i6                  |
 |                                 |                                 |
-|   * @@y = i5                    |   * @@y = 2                     |
+|   * @@y = i5                    |   * @@y = 4                     |
 |                                 |                                 |
 | * Path Conditions               | * Path Conditions               |
 |                                 |                                 |
@@ -50,7 +50,7 @@ State: Before
 |                                 |                                 |
 |   * 2 <= i2                     |   * 2 <= 2                      |
 |                                 |                                 |
-|   * i5 != 1                     |   * 2 != 1                      |
+|   * i5 != 1                     |   * 4 != 1                      |
 |                                 |                                 |
 | * Result: i6                    | * Result: i6                    |
 |                                 |                                 |
