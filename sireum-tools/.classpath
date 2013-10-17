@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/scala"/>
-  <classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/main/scala"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry combineaccessrules="false" kind="src" path="/sireum-lib"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-lib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-option"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-pipeline"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sireum-cli"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sireum-jvm-translator"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

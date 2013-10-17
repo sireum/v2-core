@@ -54,7 +54,8 @@ case class SireumToolsMode(
   pipeline : PipelineMode = PipelineMode(),
   cligen : CliGenMode = CliGenMode(),
   antlr : TreeVisitorGenMode = TreeVisitorGenMode(),
-  sapper : SapperMode = SapperMode())
+  sapper : SapperMode = SapperMode(),
+  jvm : JVMMode = JVMMode())
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
