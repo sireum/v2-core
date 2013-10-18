@@ -172,7 +172,7 @@ trait State[Self <: State[Self]]
 
   def variable(varUri : ResourceUri) : Value = {
     if (isGlobalVar(varUri))
-      globalStore(varUri)
+      globalVar(varUri)
     else {
       if (!closureStoreStack.isEmpty)
         for (s <- closureStoreStack)
@@ -181,9 +181,15 @@ trait State[Self <: State[Self]]
       callStack.head.variable(varUri)
     }
   }
-  
+
+  def globalVar(varUri : ResourceUri) : Value =
+    globalStore(varUri)
+
   def isGlobalVar(varUri : ResourceUri) =
     org.sireum.pilar.symbol.H.isGlobalVar(varUri)
+
+  def hasGlobalVarValue(varUri : ResourceUri) =
+    globalStore.contains(varUri)
 
   def hasVariableValue(varUri : ResourceUri) : Boolean = {
     if (isGlobalVar(varUri))
@@ -197,9 +203,12 @@ trait State[Self <: State[Self]]
     }
   }
 
+  def globalVar(varUri : ResourceUri, value : Value) : Self =
+    make(globalStore + (varUri -> value), closureStoreStack, callStack, properties)
+
   def variable(varUri : ResourceUri, value : Value) : Self = {
     if (isGlobalVar(varUri))
-      make(globalStore + (varUri -> value), closureStoreStack, callStack, properties)
+      globalVar(varUri, value)
     else {
       if (!closureStoreStack.isEmpty) {
         val s = closureStoreStack.head
