@@ -13,6 +13,9 @@ import org.sireum.pipeline._
 import org.sireum.util._
 import org.sireum.alir._
 import org.sireum.pilar.ast.CatchClause
+import org.sireum.alir.DataDependenceGraph.DdgUtil
+import org.sireum.alir.ProgramDependenceGraph.PdgUtil
+import org.sireum.alir.ProgramDependenceGraph
 
 /**
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
@@ -165,7 +168,8 @@ class DdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends 
   val pst = this.procedureSymbolTable
   val iiopp = this.isInputOutputParamPredicate(pst)
   val result = DataDependenceGraph[String](this.pool, this.cfg, this.rda,
-    this.defRef(pst.symbolTable), second2(iiopp))
+    this.defRef(pst.symbolTable), iiopp, 
+    new DdgUtil(this.rda,this.cfg,this.defRef(pst.symbolTable),iiopp),None)
   this.ddg_=(result)
 }
 
@@ -175,10 +179,7 @@ class DdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends 
  */
 class PdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PdgModule {
   val pst = this.procedureSymbolTable
-  this.pdg_=(ProgramDependenceGraph[String](
-    pst, this.pool,
-    this.cfg, this.cdg, this.ddg,
-    new ProgramDependenceGraph.LabelProvider[String] {
+  val lp = new ProgramDependenceGraph.LabelProvider[String] {
       def inLabel(slot : Slot) : String = slot + ".in"
       def outLabel(slot : Slot) : String = slot + ".out"
       def paramLabel(dd : ParamDefDesc) : String = dd + ".arg" + dd.paramIndex
@@ -186,6 +187,8 @@ class PdgModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends 
       def useLabel(slot : Slot, dd : UseDefDesc) : String = slot.toString + "#" + dd
       def effectLabel(slot : Slot, dd : EffectDefDesc) : String = slot.toString + "#" + dd
     }
-  ))
+  this.pdg = ProgramDependenceGraph[String](
+    pst, this.pool,
+    this.cfg, this.cdg, this.ddg,lp,new PdgUtil(pst,cfg,ddg,lp), None)
 
 }
