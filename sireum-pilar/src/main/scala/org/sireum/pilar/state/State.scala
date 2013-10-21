@@ -210,7 +210,14 @@ trait State[Self <: State[Self]]
     if (isGlobalVar(varUri))
       globalVar(varUri, value)
     else {
-      if (!closureStoreStack.isEmpty) {
+      val i = closureStoreStack.indexWhere(_.contains(varUri))
+      if (i >= 0) {
+        val begin = closureStoreStack.slice(0, i)
+        val str = closureStoreStack(i)
+        val end = closureStoreStack.slice(i + 1, closureStoreStack.length)
+        make(globalStore, (begin :+ (str + (varUri -> value))) ++ end,
+          callStack, properties)
+      } else if (!closureStoreStack.isEmpty) {
         val s = closureStoreStack.head
         make(globalStore, (s + (varUri -> value)) +: closureStoreStack.tail,
           callStack, properties)
