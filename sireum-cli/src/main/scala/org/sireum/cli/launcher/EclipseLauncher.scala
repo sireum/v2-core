@@ -38,19 +38,8 @@ class EclipseLauncher {
 
     val cmd =
       osArch match {
-        case OsArch.Mac32 | OsArch.Mac64 =>
-          val eclipse = new File(sireumHome,
-            "apps/eclipse/classic/Eclipse.app/Contents/MacOS/eclipse.orig").getCanonicalPath
-          val args =
-            if (opt.args.length > 0 && opt.args(0).startsWith("-psn"))
-              opt.args.slice(1, opt.args.length)
-            else opt.args
-          (eclipse :: args.toList) ++ (
-            if (javaHomeDir.exists)
-              ilist("-vm", new File(javaHomeDir,
-              "jre/lib/server/libjvm.dylib").getCanonicalPath)
-            else ilistEmpty) ++ ("-vmargs" :: javaOptions)
-        case OsArch.Linux32 | OsArch.Linux64 | OsArch.Win32 | OsArch.Win64 =>
+        case OsArch.Mac32 | OsArch.Mac64 | OsArch.Linux32 |
+          OsArch.Linux64 | OsArch.Win32 | OsArch.Win64 =>
           var java =
             if (javaHomeDir.exists) new File(javaHomeDir, "bin/java" + exeExt).getCanonicalPath
             else "java"
@@ -68,6 +57,11 @@ class EclipseLauncher {
                 System.err.flush
                 sys.exit(-1)
             }
+          val addArgs = if (osArch == OsArch.Mac32 || osArch == OsArch.Mac64)
+            ivector("-Xdock:icon=../Resources/Eclipse.icns",
+              "-XstartOnFirstThread",
+              "-Dorg.eclipse.swt.internal.carbon.smallFonts")
+          else ivectorEmpty
           val launcherArgs =
             ivector(
               "-Dosgi.requiredJavaVersion=1.5",
@@ -75,13 +69,20 @@ class EclipseLauncher {
               "-showsplash", "org.eclipse.platform",
               "--launcher.defaultAction", "openFile") ++
               (if (java == "java") ivectorEmpty else ivector("-vm", java))
-          java :: javaOptions ++ launcherArgs ++ opt.args
+          java :: javaOptions ++ addArgs ++ launcherArgs ++ opt.args
         case _ =>
           scala.Console.err.println("Unsupported platform")
           scala.Console.err.flush
           sys.exit(-1)
       }
-    val e = new Exec
-    e.run(-1, cmd, None)
+    var start = true
+    while (start) {
+      start = false
+      val e = new Exec
+      e.run(-1, cmd, None) match {
+        case Exec.StringResult(_, 23) => start = true
+        case _                        =>
+      }
+    }
   }
 }
