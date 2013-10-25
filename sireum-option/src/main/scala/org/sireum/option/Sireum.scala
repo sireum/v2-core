@@ -152,7 +152,12 @@ case class LaunchBakarGpsMode()
  */
 @Main(value = "osate", className = "org.sireum.cli.launcher.OsateLauncher", featureName = "Osate.sapp",
   desc = "Launch Osate with RDALTE, egit and BLESS plugins")
-case class LaunchOsateMode()
+case class LaunchOsateMode(
+  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
+  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
+
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
