@@ -85,7 +85,14 @@ class EclipseLauncher {
       val e = new Exec
       e.run(-1, cmd, None, dir) match {
         case Exec.StringResult(_, 23) => start = true
-        case _                        =>
+        case Exec.StringResult(x, code) if code != 0 =>
+          val text = x.trim
+          if (!text.isEmpty) scala.Console.out.println(text)
+          scala.Console.out.println(s"Exit Code: $code")
+          scala.Console.out.flush
+        case Exec.ExceptionRaised(e) =>
+          e.printStackTrace
+        case _ =>
       }
     }
   }
