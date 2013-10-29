@@ -617,5 +617,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         (s1, vs) <- rec(s, e.elements.toList, ivectorEmpty[V])
         re <- sec.newList(s1, vs)
       } yield re
+    case (s, e : TypeExp) =>
+      ivector((s, value2v(ec.typeProvider.typeValue(e.typeSpec))))
   }
 }

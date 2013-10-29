@@ -34,6 +34,8 @@ object PilarEvalUtil {
         case _ => IntegerExtension.Type
       }
     }
+    
+    def typeValue(typ : TypeSpec) = throw new RuntimeException("Unhandled")
   }
 
   /**
