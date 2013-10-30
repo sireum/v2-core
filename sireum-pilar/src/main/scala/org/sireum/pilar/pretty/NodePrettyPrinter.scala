@@ -481,6 +481,12 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
+    case o : TypeExp =>
+      val st = ctx.stg.getInstanceOf("typeExp")
+      v(o.typeSpec)
+      st.add("type", ctx.popResult)
+      ctx.pushResult(st)
+      false
     case o : UnaryExp =>
       val st = ctx.stg.getInstanceOf("unaryExp")
       st.add("unop", o.op)

@@ -9,6 +9,7 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.option
 
 import org.sireum.util._
+import EmptySireumMode._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -75,7 +76,7 @@ case class SireumLaunchMode(
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
   bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
-  osate : LaunchOsateMode = LaunchOsateMode())
+  osate : LaunchOsateMode = dev(LaunchOsateMode()))
 
 abstract class LaunchEclipseAppMode {
   def jvmopts : ISeq[String]
@@ -158,11 +159,16 @@ case class LaunchOsateMode(
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
-
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object EmptySireumMode {
   def internal[T](o : T) : T =
     org.sireum.macros.cc.ite(o, null.asInstanceOf[T])
+
+  def dev[T](o : T) : T =
+    org.sireum.macros.cc.ite(System.getenv("SITE_DESC") match {
+      case "stable" => false
+      case _        => true
+    }, o, null.asInstanceOf[T])
 }

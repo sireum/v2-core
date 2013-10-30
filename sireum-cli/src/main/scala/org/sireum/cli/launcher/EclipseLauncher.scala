@@ -36,7 +36,7 @@ class EclipseLauncher {
     val javaHomeDir = new File(sireumHome, "apps/platform/java")
     var javaOptions = opt.jvmopts.toList
 
-    val cmd =
+    val (cmd, dir) =
       osArch match {
         case OsArch.Mac32 | OsArch.Mac64 | OsArch.Linux32 |
           OsArch.Linux64 | OsArch.Win32 | OsArch.Win64 =>
@@ -57,19 +57,23 @@ class EclipseLauncher {
                 System.err.flush
                 sys.exit(-1)
             }
-          val addArgs = if (osArch == OsArch.Mac32 || osArch == OsArch.Mac64)
-            ivector("-Xdock:icon=../Resources/Eclipse.icns",
-              "-XstartOnFirstThread",
-              "-Dorg.eclipse.swt.internal.carbon.smallFonts")
-          else ivectorEmpty
+          val (addArgs, launchDir) =
+            if (osArch == OsArch.Mac32 || osArch == OsArch.Mac64)
+              (ivector("-Xdock:icon=../Resources/Eclipse.icns",
+                "-XstartOnFirstThread",
+                "-Dorg.eclipse.swt.internal.carbon.smallFonts"),
+                new File(sireumHome,
+                  "apps/eclipse/classic/Eclipse.app/Contents/MacOS"))
+            else (ivectorEmpty, new File(sireumHome, "apps/eclipse/classic"))
           val launcherArgs =
             ivector(
-              "-Dosgi.requiredJavaVersion=1.5",
+              "-Dosgi.requiredJavaVersion=1.7",
               "-jar", launcherJar,
               "-showsplash", "org.eclipse.platform",
               "--launcher.defaultAction", "openFile") ++
               (if (java == "java") ivectorEmpty else ivector("-vm", java))
-          java :: javaOptions ++ addArgs ++ launcherArgs ++ opt.args
+          (java :: javaOptions ++ addArgs ++ launcherArgs ++ opt.args,
+            Some(launchDir))
         case _ =>
           scala.Console.err.println("Unsupported platform")
           scala.Console.err.flush
@@ -79,9 +83,16 @@ class EclipseLauncher {
     while (start) {
       start = false
       val e = new Exec
-      e.run(-1, cmd, None) match {
+      e.run(-1, cmd, None, dir) match {
         case Exec.StringResult(_, 23) => start = true
-        case _                        =>
+        case Exec.StringResult(x, code) if code != 0 =>
+          val text = x.trim
+          if (!text.isEmpty) scala.Console.out.println(text)
+          scala.Console.out.println(s"Exit Code: $code")
+          scala.Console.out.flush
+        case Exec.ExceptionRaised(e) =>
+          e.printStackTrace
+        case _ =>
       }
     }
   }

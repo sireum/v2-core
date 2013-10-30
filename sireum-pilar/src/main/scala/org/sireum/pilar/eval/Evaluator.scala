@@ -122,6 +122,7 @@ trait PilarSymbolProvider[S] extends SymbolProvider[S] {
  */
 trait TypeProvider {
   def typeUri(symUri : ResourceUri) : ResourceUri
+  def typeValue(typ : TypeSpec) : Value
 }
 
 /**

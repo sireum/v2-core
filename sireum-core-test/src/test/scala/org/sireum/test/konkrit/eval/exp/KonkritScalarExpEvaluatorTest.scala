@@ -43,7 +43,7 @@ class KonkritScalarExpEvaluatorTest
   implicit def l2bi(l : Long) = BigInt(l)
   implicit def i2bi(i : Int) = BigInt(i)
 
-  val numOfTests = 100
+  val numOfTests = 10
   val random = new Random()
   val state = BasicState()
 
