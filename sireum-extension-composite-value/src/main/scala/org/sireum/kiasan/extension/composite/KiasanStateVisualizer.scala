@@ -28,8 +28,9 @@ object KiasanStateVisualizer {
     vviz : Value => String = { _.toString },
     eviz : Exp => String = { _.toString },
     pc : Boolean = true,
-    template : String = "rst.stg") =
-    new KiasanStateVisualizer(s, name, w, vviz, eviz, pc, template)
+    template : String = "rst.stg",
+    filter : String => Boolean = { _ => true }) =
+    new KiasanStateVisualizer(s, name, w, vviz, eviz, pc, template, filter)
 }
 
 /**
@@ -42,7 +43,8 @@ class KiasanStateVisualizer[S <: SHK[S]](
     vviz : Value => String,
     eviz : Exp => String,
     pc : Boolean,
-    template : String) {
+    template : String,
+    filter : String => Boolean) {
 
   import org.stringtemplate.v4._
 
@@ -83,7 +85,7 @@ class KiasanStateVisualizer[S <: SHK[S]](
   state.write(new AutoIndentWriter(w))
 
   def vars(m : IMap[ResourceUri, Value], st : ST, element : String) {
-    for ((varUri, value) <- m) {
+    for ((varUri, value) <- m if (filter(varUri))) {
       val slot = stg.getInstanceOf("slot")
       slot.add("name", varUri)
       slot.add("value", vviz(value))
