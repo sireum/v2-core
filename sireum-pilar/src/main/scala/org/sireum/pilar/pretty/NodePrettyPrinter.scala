@@ -127,6 +127,9 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
+    case o : EmptyBody =>
+      ctx.pushResult(ctx.stg.getInstanceOf("body"))
+      false
     case o : ImplementedBody =>
       val st = ctx.stg.getInstanceOf("body")
 
