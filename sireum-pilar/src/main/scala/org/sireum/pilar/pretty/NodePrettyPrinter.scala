@@ -108,6 +108,25 @@ class NodePrettyPrinter(vprint : Value => String) {
   }
 
   def packageElement(ctx : Context, v : => BVisitor) : VisitorFunction = {
+    case o : ConstDecl =>
+      val st = ctx.stg.getInstanceOf("constDeclaration")
+      st.add("ID", o.name.name)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      for(ce <- o.elements) {
+        val ste = ctx.stg.getInstanceOf("constElement")
+        ste.add("ID", ce.name.name)
+        
+        v(ce.exp)
+        ste.add("exp", ctx.popResult)
+        
+        ctx.processAnnotationList(v, ste, ce.annotations)
+        
+        st.add("constElement", ste)
+      }
+      ctx.pushResult(st)
+      false
     case o : ImplementedBody =>
       val st = ctx.stg.getInstanceOf("body")
 
@@ -438,6 +457,16 @@ class NodePrettyPrinter(vprint : Value => String) {
       v(o.arg)
       st.add("arg", ctx.popResult)
 
+      ctx.pushResult(st)
+      false
+    case o : CastExp =>
+      val st = ctx.stg.getInstanceOf("castExp")
+      v(o.typeSpec)
+      st.add("type", ctx.popResult)
+      
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+      
       ctx.pushResult(st)
       false
     case o : IndexingExp =>
