@@ -202,7 +202,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
 
   def references(j: Jump): ISet[Slot] =
     refCache.getOrElseUpdate(j, getRefs(j))
-
+//get rid of the below code
   def callReferences(j: CallJump): ISeq[ISet[Slot]] = {
     val arg = j.callExp.arg
     arg match {
@@ -223,7 +223,7 @@ final class BasicVarDefRef(st: SymbolTable, val varAccesses: VarAccesses)
         ivector(isetEmpty[Slot])
     }
   }
-
+//-------
   private def getRefs(n: PilarAstNode): ISet[Slot] = {
     if (n.isInstanceOf[CallJump]) {
       val j = n.asInstanceOf[CallJump]

@@ -168,34 +168,33 @@ object ProgramDependenceGraph {
 
       for (e <- ddg.dependeeEdges(n))
         for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
-          if (involvesCall(toDD))
-            if (toDD.isInstanceOf[ParamDefDesc]) {
-              val from = pdgUtil.getNode(slot, fromDD, result)
-              val cDD = toDD.asInstanceOf[ParamDefDesc]
-              val to = result.addVirtualNode(lp.paramLabel(cDD))
-              pdgUtil.addEdgeNT(from, to, t, result)
-            } else {
-              val from = pdgUtil.getNode(slot, fromDD, result)
-              val uDD = toDD.asInstanceOf[UseDefDesc]
-              val to = result.addVirtualNode(lp.useLabel(slot, uDD))
-              pdgUtil.addEdgeNT(from, to, t, result)
-            }
-          else
+          if (!involvesCall(toDD))
             pdgUtil.addEdgeT(t, result)
+//          else if (toDD.isInstanceOf[ParamDefDesc]) {
+//            val from = pdgUtil.getNode(slot, fromDD, result)
+//            val cDD = toDD.asInstanceOf[ParamDefDesc]
+//            val to = result.addVirtualNode(lp.paramLabel(cDD))
+//            pdgUtil.addEdgeNT(from, to, t, result)
+//          } else {
+//            val from = pdgUtil.getNode(slot, fromDD, result)
+//            val uDD = toDD.asInstanceOf[UseDefDesc]
+//            val to = result.addVirtualNode(lp.useLabel(slot, uDD))
+//            pdgUtil.addEdgeNT(from, to, t, result)
+//          }
 
       for (e <- ddg.dependentEdges(n))
         for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
           if (involvesCall(fromDD)) {
-            val to = pdgUtil.getNode(slot, toDD, result)
-            if (fromDD.isInstanceOf[EffectDefDesc]) {
-              val cDD = fromDD.asInstanceOf[EffectDefDesc]
-              val from = result.addVirtualNode(lp.effectLabel(slot, cDD))
-              pdgUtil.addEdgeNT(from, to, t, result)
-            } else {
-              val fromLDD = fromDD.asInstanceOf[LocDefDesc]
-              val r = result.addVirtualNode(lp.resultLabel(fromLDD))
-              pdgUtil.addEdgeNT(r, to, t, result)
-            }
+//            val to = pdgUtil.getNode(slot, toDD, result)
+//            if (fromDD.isInstanceOf[EffectDefDesc]) {
+//              val cDD = fromDD.asInstanceOf[EffectDefDesc]
+//              val from = result.addVirtualNode(lp.effectLabel(slot, cDD))
+//              pdgUtil.addEdgeNT(from, to, t, result)
+//            } else {
+//              val fromLDD = fromDD.asInstanceOf[LocDefDesc]
+//              val r = result.addVirtualNode(lp.resultLabel(fromLDD))
+//              pdgUtil.addEdgeNT(r, to, t, result)
+//            }
           } else
             pdgUtil.addEdgeT(t, result)
     }
