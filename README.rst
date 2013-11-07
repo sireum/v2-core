@@ -32,7 +32,7 @@ Setting up Development Environment
      
      * ``git@github.com:sireum/prelude.git``
      
-   * `Sireum Parser Repo <https://github.com/sireum/parser`_
+   * `Sireum Parser Repo <https://github.com/sireum/parser>`_
    
      * ``https://github.com/sireum/parser.git``
      
