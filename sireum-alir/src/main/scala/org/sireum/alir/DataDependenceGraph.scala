@@ -190,7 +190,6 @@ object DataDependenceGraph {
 
     def addExits(result: DdgResult[VirtualLabel]) = {
       for ((slot @ VarSlot(varUri), dd) <- rda.entrySet(cfg.exitNode)) {
-        println("exit set :" + varUri)
         if (iiop._2(varUri) || H.isGlobalVar(varUri)) {
           val m = DefDesc.getNode(cfg, dd)
           addEdgeToExit(m, slot, dd, result)
