@@ -47,6 +47,9 @@ object ProgramDependenceGraph {
       result: PdgResult[VirtualLabel])
     def addOutNodes(callOrEntryOrExitNodes: MIdSet[Node],
       result: PdgResult[VirtualLabel])
+    def addParamsGlobalsNode( callOrEntryOrExitNodes: MIdSet[Node],
+    result : PdgResult[VirtualLabel])
+
 
     def getNode(slot: Slot, dd: DefDesc, result: PdgResult[VirtualLabel]): Node
 
@@ -153,57 +156,11 @@ object ProgramDependenceGraph {
 
     callOrEntryOrExitNodes -= cfg.entryNode
     callOrEntryOrExitNodes -= cfg.exitNode
-
-    for (n <- callOrEntryOrExitNodes.keys) {
-      val jumps = PilarAstUtil.getJumps(pst.location(
-        n.asInstanceOf[AlirLocationNode].locIndex))
-      val jdds = jumps.map { j =>
-        if (j.isDefined && j.get.isInstanceOf[CallJump])
-          Set(DefDesc.desc(j.get).asInstanceOf[LocDefDesc])
-        else Set[LocDefDesc]()
-      }.fold(Set())(iunion[LocDefDesc])
-
-      def involvesCall(dd: DefDesc) =
-        jdds.exists { jdd => jdd.hasSameDesc(dd) }
-
-      for (e <- ddg.dependeeEdges(n))
-        for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
-          if (!involvesCall(toDD))
-            pdgUtil.addEdgeT(t, result)
-//          else if (toDD.isInstanceOf[ParamDefDesc]) {
-//            val from = pdgUtil.getNode(slot, fromDD, result)
-//            val cDD = toDD.asInstanceOf[ParamDefDesc]
-//            val to = result.addVirtualNode(lp.paramLabel(cDD))
-//            pdgUtil.addEdgeNT(from, to, t, result)
-//          } else {
-//            val from = pdgUtil.getNode(slot, fromDD, result)
-//            val uDD = toDD.asInstanceOf[UseDefDesc]
-//            val to = result.addVirtualNode(lp.useLabel(slot, uDD))
-//            pdgUtil.addEdgeNT(from, to, t, result)
-//          }
-
-      for (e <- ddg.dependentEdges(n))
-        for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
-          if (involvesCall(fromDD)) {
-//            val to = pdgUtil.getNode(slot, toDD, result)
-//            if (fromDD.isInstanceOf[EffectDefDesc]) {
-//              val cDD = fromDD.asInstanceOf[EffectDefDesc]
-//              val from = result.addVirtualNode(lp.effectLabel(slot, cDD))
-//              pdgUtil.addEdgeNT(from, to, t, result)
-//            } else {
-//              val fromLDD = fromDD.asInstanceOf[LocDefDesc]
-//              val r = result.addVirtualNode(lp.resultLabel(fromLDD))
-//              pdgUtil.addEdgeNT(r, to, t, result)
-//            }
-          } else
-            pdgUtil.addEdgeT(t, result)
-    }
-
-    //print(result)
-    //print(result.toDot)
-
+    pdgUtil.addParamsGlobalsNode(callOrEntryOrExitNodes, result)
     result
   }
+
+  
 
   class PdgUtil[VirtualLabel](pst: ProcedureSymbolTable,
     cfg: ControlFlowGraph[VirtualLabel],
@@ -256,6 +213,58 @@ object ProgramDependenceGraph {
       else if (n eq cfg.exitNode) result.addVirtualNode(lp.outLabel(slot))
       else n
     }
+    
+    def addParamsGlobalsNode( callOrEntryOrExitNodes: MIdSet[Node],result : PdgResult[VirtualLabel])= {
+    
+      for (n <- callOrEntryOrExitNodes.keys) {
+      val jumps = PilarAstUtil.getJumps(pst.location(
+        n.asInstanceOf[AlirLocationNode].locIndex))
+      val jdds = jumps.map { j =>
+        if (j.isDefined && j.get.isInstanceOf[CallJump])
+          Set(DefDesc.desc(j.get).asInstanceOf[LocDefDesc])
+        else Set[LocDefDesc]()
+      }.fold(Set())(iunion[LocDefDesc])
+
+      def involvesCall(dd: DefDesc) =
+        jdds.exists { jdd => jdd.hasSameDesc(dd) }
+
+      for (e <- ddg.dependeeEdges(n))
+        for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
+          if (!involvesCall(toDD))
+            addEdgeT(t, result)
+          else if (toDD.isInstanceOf[ParamDefDesc]) {
+            val from = getNode(slot, fromDD, result)
+            val cDD = toDD.asInstanceOf[ParamDefDesc]
+            val to = result.addVirtualNode(lp.paramLabel(cDD))
+            addEdgeNT(from, to, t, result)
+          } else {
+            val from = getNode(slot, fromDD, result)
+            val uDD = toDD.asInstanceOf[UseDefDesc]
+            val to = result.addVirtualNode(lp.useLabel(slot, uDD))
+            addEdgeNT(from, to, t, result)
+          }
+
+      for (e <- ddg.dependentEdges(n))
+        for (t @ (slot, fromDD, toDD) <- ddg.getDependenceInfo(e))
+          if (involvesCall(fromDD)) {
+            val to = getNode(slot, toDD, result)
+            if (fromDD.isInstanceOf[EffectDefDesc]) {
+              val cDD = fromDD.asInstanceOf[EffectDefDesc]
+              val from = result.addVirtualNode(lp.effectLabel(slot, cDD))
+              addEdgeNT(from, to, t, result)
+            } else {
+              val fromLDD = fromDD.asInstanceOf[LocDefDesc]
+              val r = result.addVirtualNode(lp.resultLabel(fromLDD))
+              addEdgeNT(r, to, t, result)
+            }
+          } else
+            addEdgeT(t, result)
+    }
+
+    //print(result)
+    //print(result.toDot)
+  }
+    
 
   }
 
