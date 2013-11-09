@@ -23,34 +23,34 @@ object Symbol {
 
   val symbolPropKey = "pilar.symbol"
 
-  implicit def pp2r[T <: PropertyProvider](pp : T) : Resource =
-    pp.getPropertyOrElse(symbolPropKey,
-      new Resource {
-        var _uriScheme : String = null
-        var _uriType : String = null
-        var _uriPaths : ISeq[String] = null
-        var _uri : ResourceUri = null
+  implicit def pp2r[T <: PropertyProvider](pp : T) : Resource = {
+    case class ResourceProperty(
+        var _uriScheme : String = null,
+        var _uriType : String = null,
+        var _uriPaths : ISeq[String] = null,
+        var _uri : ResourceUri = null) extends Resource {
+      def uriScheme = { require(hasResourceInfo); _uriScheme }
 
-        def uriScheme = { require(hasResourceInfo); _uriScheme }
+      def uriType = { require(hasResourceInfo); _uriType }
 
-        def uriType = { require(hasResourceInfo); _uriType }
+      def uriPaths = { require(hasResourceInfo); _uriPaths }
 
-        def uriPaths = { require(hasResourceInfo); _uriPaths }
+      def uri = { require(hasResourceInfo); _uri }
 
-        def uri = { require(hasResourceInfo); _uri }
+      def hasResourceInfo : Boolean = pp ? symbolPropKey
 
-        def hasResourceInfo : Boolean = pp ? symbolPropKey
-
-        def uri(scheme : String, typ : String,
-                paths : ISeq[String], uri : ResourceUri) {
-          require(paths != null && uri != null && paths.forall(_ != null))
-          pp(symbolPropKey) = this
-          this._uriScheme = scheme
-          this._uriType = typ
-          this._uriPaths = paths
-          this._uri = uri
-        }
-      })
+      def uri(scheme : String, typ : String,
+              paths : ISeq[String], uri : ResourceUri) {
+        require(paths != null && uri != null && paths.forall(_ != null))
+        pp(symbolPropKey) = this
+        this._uriScheme = scheme
+        this._uriType = typ
+        this._uriPaths = paths
+        this._uri = uri
+      }
+    }
+    pp.getPropertyOrElse(symbolPropKey, ResourceProperty())
+  }
 
   implicit object ResourceAdapter
       extends Adapter[PropertyProvider, Resource] {
