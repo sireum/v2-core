@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringEscapeUtils
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object NodePrettyPrinter {
-  def print(o : PilarAstNode, vprint : Value => String = { _.toString }) =
+  def print(o: PilarAstNode, vprint: Value => String = { _.toString }) =
     new NodePrettyPrinter(vprint).print(o)
 }
 
@@ -28,7 +28,7 @@ object NodePrettyPrinter {
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class NodePrettyPrinter(vprint : Value => String) {
+class NodePrettyPrinter(vprint: Value => String) {
   type BVisitor = Any => Boolean
 
   /**
@@ -36,20 +36,20 @@ class NodePrettyPrinter(vprint : Value => String) {
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   trait Context {
-    val stg : STGroupFile = new STGroupFile(getClass.getResource("pretty.stg"), "UTF-8", '$', '$')
-    var result : ST = null
-    var parent : PilarAstNode = null
+    val stg: STGroupFile = new STGroupFile(getClass.getResource("pretty.stg"), "UTF-8", '$', '$')
+    var result: ST = null
+    var parent: PilarAstNode = null
 
-    var variableArity : Boolean = false
+    var variableArity: Boolean = false
 
-    def processName(o : Any) = {
+    def processName(o: Any) = {
       o match {
-        case x : NameDefinition => stg.getInstanceOf("name").add("ID", x.name)
-        case x : NameUser       => stg.getInstanceOf("name").add("ID", x.name)
+        case x: NameDefinition => stg.getInstanceOf("name").add("ID", x.name)
+        case x: NameUser => stg.getInstanceOf("name").add("ID", x.name)
       }
     }
 
-    def processAnnotationList(v : => BVisitor, st : ST, annots : ISeq[Annotation], noIndent : Boolean = false) {
+    def processAnnotationList(v: => BVisitor, st: ST, annots: ISeq[Annotation], noIndent: Boolean = false) {
       if (annots.isEmpty)
         return
       val stAnnotationList = if (noIndent) stg.getInstanceOf("annotationListNoIndent") else stg.getInstanceOf("annotationList")
@@ -65,7 +65,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       this.result
     }
 
-    def pushResult(st : ST) = {
+    def pushResult(st: ST) = {
       //assert (this.result == null && st != null)
       this.result = st
     }
@@ -78,8 +78,8 @@ class NodePrettyPrinter(vprint : Value => String) {
     }
   }
 
-  def model(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : Model =>
+  def model(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: Model =>
       val st = ctx.stg.getInstanceOf("model")
 
       ctx.processAnnotationList(v, st, o.annotations)
@@ -90,7 +90,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
-    case o : PackageDecl =>
+    case o: PackageDecl =>
       val st = ctx.stg.getInstanceOf("packageDeclaration")
 
       if (o.name.isDefined)
@@ -107,30 +107,30 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def packageElement(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : ConstDecl =>
+  def packageElement(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: ConstDecl =>
       val st = ctx.stg.getInstanceOf("constDeclaration")
       st.add("ID", o.name.name)
-      
+
       ctx.processAnnotationList(v, st, o.annotations)
-      
-      for(ce <- o.elements) {
+
+      for (ce <- o.elements) {
         val ste = ctx.stg.getInstanceOf("constElement")
         ste.add("ID", ce.name.name)
-        
+
         v(ce.exp)
         ste.add("exp", ctx.popResult)
-        
+
         ctx.processAnnotationList(v, ste, ce.annotations)
-        
+
         st.add("constElement", ste)
       }
       ctx.pushResult(st)
       false
-    case o : EmptyBody =>
+    case o: EmptyBody =>
       ctx.pushResult(ctx.stg.getInstanceOf("body"))
       false
-    case o : ImplementedBody =>
+    case o: ImplementedBody =>
       val st = ctx.stg.getInstanceOf("body")
 
       for (lv <- o.locals) {
@@ -149,22 +149,22 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : GlobalVarDecl =>
+    case o: GlobalVarDecl =>
       val st = ctx.stg.getInstanceOf("globalVarDeclaration")
-      
+
       if (o.typeSpec.isDefined) {
         v(o.typeSpec.get)
         st.add("type", ctx.popResult)
       }
-      
+
       st.add("GLOBALID", o.name.name)
-      
+
       ctx.processAnnotationList(v, st, o.annotations)
-      
+
       ctx.pushResult(st)
-      
+
       false
-    case o : LocalVarDecl =>
+    case o: LocalVarDecl =>
       val st = ctx.stg.getInstanceOf("localVarDeclaration")
 
       if (o.typeSpec.isDefined) {
@@ -178,7 +178,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : ParamDecl =>
+    case o: ParamDecl =>
       val st = ctx.stg.getInstanceOf("param")
 
       if (o.typeSpec.isDefined) {
@@ -195,7 +195,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : ProcedureDecl =>
+    case o: ProcedureDecl =>
       val st = ctx.stg.getInstanceOf("procedureDeclaration")
 
       //ctx.processTypeVarTuple(st, o.typeVars)
@@ -227,7 +227,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : RecordDecl =>
+    case o: RecordDecl =>
       val st = ctx.stg.getInstanceOf("recordDeclaration")
       st.add("ID", ctx.processName(o.name))
 
@@ -258,7 +258,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
-    case o : TypeAliasDecl =>
+    case o: TypeAliasDecl =>
       val st = ctx.stg.getInstanceOf("typealiasDeclaration")
 
       v(o.typeSpec)
@@ -272,8 +272,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def typeSpec(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : NamedTypeSpec =>
+  def typeSpec(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: NamedTypeSpec =>
       val st = ctx.stg.getInstanceOf("namedType")
 
       st.add("name", o.name.name)
@@ -287,8 +287,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def location(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : ActionLocation =>
+  def location(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: ActionLocation =>
       val st = ctx.stg.getInstanceOf("location")
 
       if (o.name.isDefined) {
@@ -302,7 +302,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : JumpLocation =>
+    case o: JumpLocation =>
       val st = ctx.stg.getInstanceOf("location")
 
       if (o.name.isDefined) {
@@ -316,7 +316,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : EmptyLocation =>
+    case o: EmptyLocation =>
       val st = ctx.stg.getInstanceOf("location")
 
       if (o.name.isDefined) {
@@ -337,8 +337,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def action(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : AssignAction =>
+  def action(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: AssignAction =>
       val st = ctx.stg.getInstanceOf("assignment")
 
       v(o.lhs)
@@ -353,7 +353,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : AssertAction =>
+    case o: AssertAction =>
       val st = ctx.stg.getInstanceOf("assert")
 
       v(o.cond)
@@ -365,7 +365,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       ctx.processAnnotationList(v, st, o.annotations)
       ctx.pushResult(st)
       false
-    case o : AssumeAction =>
+    case o: AssumeAction =>
       val st = ctx.stg.getInstanceOf("assume")
 
       v(o.cond)
@@ -379,8 +379,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def annotations(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : Annotation =>
+  def annotations(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: Annotation =>
       val st = ctx.stg.getInstanceOf("annotation")
       st.add("ID", o.name.name)
 
@@ -402,7 +402,7 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
-    case o : AnnotationAnnotationParam =>
+    case o: AnnotationAnnotationParam =>
       val st = ctx.stg.getInstanceOf("annotationParam")
       if (o.name.isDefined)
         st.add("ID", ctx.processName(o.name.get))
@@ -412,7 +412,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : ExpAnnotationParam =>
+    case o: ExpAnnotationParam =>
       val st = ctx.stg.getInstanceOf("annotationParam")
       if (o.name.isDefined) {
         st.add("ID", ctx.processName(o.name.get))
@@ -423,8 +423,8 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def exp(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : AccessExp =>
+  def exp(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: AccessExp =>
       val st = ctx.stg.getInstanceOf("accessExp")
 
       v(o.exp)
@@ -439,7 +439,16 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(ast)
       false
-    case o : BinaryExp =>
+    case o: AttributeInit =>
+      val st = ctx.stg.getInstanceOf("attrInit")
+
+      st.add("id", o.name.name)
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+
+      ctx.pushResult(st)
+      false
+    case o: BinaryExp =>
       val st = ctx.stg.getInstanceOf("binaryExp")
 
       st.add("binop", o.op)
@@ -452,7 +461,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : CallExp =>
+    case o: CallExp =>
       val st = ctx.stg.getInstanceOf("callExp")
       v(o.exp)
       st.add("exp", ctx.popResult)
@@ -462,17 +471,27 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : CastExp =>
+    case o: CastExp =>
       val st = ctx.stg.getInstanceOf("castExp")
       v(o.typeSpec)
       st.add("type", ctx.popResult)
-      
+
       v(o.exp)
       st.add("exp", ctx.popResult)
-      
+
       ctx.pushResult(st)
       false
-    case o : IndexingExp =>
+    case o: FunExp =>
+      val st = ctx.stg.getInstanceOf("funExp")
+
+      for (m <- o.matchings) {
+        v(m)
+        st.add("matching", ctx.popResult)
+      }
+
+      ctx.pushResult(st)
+      false
+    case o: IndexingExp =>
       val st = ctx.stg.getInstanceOf("indexingExp")
       v(o.exp)
       st.add("exp", ctx.popResult)
@@ -482,30 +501,78 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
-    case o : ValueExp =>
-      val st = ctx.stg.getInstanceOf("literal")
-      st.add("literal", vprint(o.value))
-      ctx.pushResult(st)
-      false
-    case o : LiteralExp =>
+
+    case o: LiteralExp =>
       val st = ctx.stg.getInstanceOf("literal")
 
       o.typ match {
-        case LiteralType.STRING   =>
+        case LiteralType.STRING =>
           st.add("literal", "\"" + StringEscapeUtils.escapeJava(o.text) + "\"")
-        case LiteralType.RAW      =>
+        case LiteralType.RAW =>
           st.add("literal", "\"\"\"" + o.text + "\"\"\"")
         case _ =>
           st.add("literal", o.text)
       }
 
+      ctx.pushResult(st)
+      false
+    case o: Matching =>
+      val st = ctx.stg.getInstanceOf("matching")
+
+      for (p <- o.params) {
+        v(p)
+        st.add("param", ctx.popResult)
+      }
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+      ctx.pushResult(st)
+      false
+    case o: NameExp =>
+      ctx.pushResult(ctx.processName(o.name))
+      false
+    case o: NewRecordExp =>
+      val st = ctx.stg.getInstanceOf("newRecord")
+      v(o.recordType)
+      st.add("type", ctx.popResult)
+
+      for (ai <- o.attributeInits) {
+        v(ai)
+        st.add("attrInit", ctx.popResult)
+      }
 
       ctx.pushResult(st)
       false
-    case o : NameExp =>
-      ctx.pushResult(ctx.processName(o.name))
+    case o: SwitchCaseExp =>
+      val st = ctx.stg.getInstanceOf("switchCaseExp")
+      v(o.exp)
+      st.add("exp2", ctx.popResult)
+
+      ctx.processAnnotationList(v, st, o.annotations)
+
+      v(o.cond)
+      st.add("exp", ctx.popResult)
+
+      ctx.pushResult(st)
       false
-    case o : TupleExp =>
+    case o: SwitchExp =>
+      val st = ctx.stg.getInstanceOf("switchExp")
+      v(o.exp)
+      st.add("exp", ctx.popResult)
+
+      for (s <- o.cases) {
+        v(s)
+        st.add("switchCaseExp", ctx.popResult)
+      }
+
+      if (o.defaultCase != null) {
+        v(o.defaultCase)
+        val std = ctx.stg.getInstanceOf("switchDefaultExp")
+        std.add("exp", ctx.popResult)
+        st.add("switchDefaultExp", std)
+      }
+      ctx.pushResult(st)
+      false
+    case o: TupleExp =>
       val st = ctx.stg.getInstanceOf("tuple")
       for (e <- o.exps) {
         v(e)
@@ -513,13 +580,13 @@ class NodePrettyPrinter(vprint : Value => String) {
       }
       ctx.pushResult(st)
       false
-    case o : TypeExp =>
+    case o: TypeExp =>
       val st = ctx.stg.getInstanceOf("typeExp")
       v(o.typeSpec)
       st.add("type", ctx.popResult)
       ctx.pushResult(st)
       false
-    case o : UnaryExp =>
+    case o: UnaryExp =>
       val st = ctx.stg.getInstanceOf("unaryExp")
       st.add("unop", o.op)
 
@@ -529,30 +596,35 @@ class NodePrettyPrinter(vprint : Value => String) {
       ctx.pushResult(st)
 
       false
+    case o: ValueExp =>
+      val st = ctx.stg.getInstanceOf("literal")
+      st.add("literal", vprint(o.value))
+      ctx.pushResult(st)
+      false
   }
 
-  def jump(ctx : Context, v : => BVisitor) : VisitorFunction = {
-    case o : CallJump =>
+  def jump(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: CallJump =>
       val st = ctx.stg.getInstanceOf("callTransformation")
-      
+
       ctx.processAnnotationList(v, st, o.annotations)
-      
+
       for (lhs <- o.lhss) {
         v(lhs)
         st.add("lhs", ctx.popResult)
       }
-      
+
       v(o.callExp)
       st.add("exp", ctx.popResult)
-      
-      if(o.jump.isDefined){
+
+      if (o.jump.isDefined) {
         v(o.jump)
         st.add("jump", ctx.popResult)
       }
-        
+
       ctx.pushResult(st)
       false
-    case o : GotoJump =>
+    case o: GotoJump =>
       val st = ctx.stg.getInstanceOf("goto")
 
       st.add("ID", ctx.processName(o.target))
@@ -561,7 +633,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : IfJump =>
+    case o: IfJump =>
       val st = ctx.stg.getInstanceOf("ifJump")
 
       for (itj <- o.ifThens) {
@@ -578,7 +650,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : IfThenJump =>
+    case o: IfThenJump =>
       val st = ctx.stg.getInstanceOf("ifThenJump")
 
       v(o.cond)
@@ -590,7 +662,7 @@ class NodePrettyPrinter(vprint : Value => String) {
 
       ctx.pushResult(st)
       false
-    case o : ReturnJump =>
+    case o: ReturnJump =>
       val st = ctx.stg.getInstanceOf("return")
 
       if (o.exp.isDefined) {
@@ -604,13 +676,13 @@ class NodePrettyPrinter(vprint : Value => String) {
       false
   }
 
-  def e(ctx : Context, v : => BVisitor) : VisitorFunction = {
+  def e(ctx: Context, v: => BVisitor): VisitorFunction = {
     case x =>
       Console.err.println(getClass.getSimpleName + ": Not handling: " + x)
       false
   }
 
-  def v : BVisitor = b
+  def v: BVisitor = b
   val ctx = new Context {}
 
   val b = Visitor.build(
@@ -623,11 +695,9 @@ class NodePrettyPrinter(vprint : Value => String) {
         action(ctx, v),
         exp(ctx, v),
         annotations(ctx, v),
-        e(ctx, v))
-    )
-  )
+        e(ctx, v))))
 
-  def print(o : PilarAstNode) : String = {
+  def print(o: PilarAstNode): String = {
     b(o)
     ctx.popResult.render
   }

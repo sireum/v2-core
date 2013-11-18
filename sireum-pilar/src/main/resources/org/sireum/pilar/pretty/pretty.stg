@@ -471,7 +471,7 @@ multiArrayFragment(exp) ::= <<
 >>
 
 typeExp(type) ::= <<
-^$type$
+`$type$
 >>
 
 newListRanged(exp1, exp2) ::= <<
@@ -479,7 +479,7 @@ newListRanged(exp1, exp2) ::= <<
 >>
 
 newRecord(type, attrInit) ::= <<
-^$type$ {
+`$type$ {
   $attrInit; separator=",\n"$
 }
 >>
@@ -517,7 +517,7 @@ $e1$ -> $e2$
 >>
 
 funExp(matching) ::= <<
-($matching; separator="\n| "$)
+{$matching; separator="\n| "$}
 >>
 
 matching(param, exp) ::= <<
