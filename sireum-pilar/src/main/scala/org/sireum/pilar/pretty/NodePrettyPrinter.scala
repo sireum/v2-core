@@ -530,6 +530,22 @@ class NodePrettyPrinter(vprint: Value => String) {
     case o: NameExp =>
       ctx.pushResult(ctx.processName(o.name))
       false
+    case o: NewFunctionExp =>
+      val st = ctx.stg.getInstanceOf("newFunction")
+      
+      for(e <- o.elements) {
+        val stMapping = ctx.stg.getInstanceOf("mapping")
+        
+        v(e._1)
+        stMapping.add("e1", ctx.popResult)
+        
+        v(e._2)
+        stMapping.add("e2", ctx.popResult)
+        
+        st.add("mapping", stMapping)
+      }
+      ctx.pushResult(st)
+      false
     case o: NewRecordExp =>
       val st = ctx.stg.getInstanceOf("newRecord")
       v(o.recordType)
