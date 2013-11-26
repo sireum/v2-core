@@ -491,6 +491,37 @@ class NodePrettyPrinter(vprint: Value => String) {
 
       ctx.pushResult(st)
       false
+    case o: IfExp =>
+      val st = ctx.stg.getInstanceOf("ifExp")
+      
+      for(ite <- o.ifThens) {
+        v(ite)
+        st.add("ifThenExp", ctx.popResult)
+      }
+      
+      if(o.elseExp != null) {
+        v(o.elseExp)
+        
+        val stElse = ctx.stg.getInstanceOf("ifElseExp")
+        stElse.add("exp", ctx.popResult)
+        st.add("ifElseExp", stElse)
+      }
+      
+      ctx.pushResult(st)
+      false
+    case o: IfThenExp =>
+      val st = ctx.stg.getInstanceOf("ifThenExp")
+      
+      v(o.cond)
+      st.add("exp", ctx.popResult)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      v(o.exp)
+      st.add("exp2", ctx.popResult)
+      
+      ctx.pushResult(st)
+      false
     case o: IndexingExp =>
       val st = ctx.stg.getInstanceOf("indexingExp")
       v(o.exp)
