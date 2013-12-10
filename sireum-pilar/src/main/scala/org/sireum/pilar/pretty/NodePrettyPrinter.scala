@@ -130,6 +130,26 @@ class NodePrettyPrinter(vprint: Value => String) {
     case o: EmptyBody =>
       ctx.pushResult(ctx.stg.getInstanceOf("body"))
       false
+    case o: EnumDecl =>
+      val st = ctx.stg.getInstanceOf("enumDeclaration")
+      st.add("ID", o.name.name)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      for(ce <- o.elements) {
+        v(ce)
+        st.add("enumElement", ctx.popResult)
+      }
+      ctx.pushResult(st)
+      false
+    case o: EnumElement =>
+      val st = ctx.stg.getInstanceOf("enumElement")
+      st.add("ID", o.name.name)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      
+      ctx.pushResult(st)
+      false
     case o: ImplementedBody =>
       val st = ctx.stg.getInstanceOf("body")
 
