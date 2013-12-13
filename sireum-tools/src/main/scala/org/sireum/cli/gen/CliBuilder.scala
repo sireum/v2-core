@@ -68,7 +68,7 @@ object CliBuilder {
         cgm.dir = "../sireum-cli/src/main/scala/"
         cgm.genClassName = "org.sireum.cli.SireumCli"
         cgm.classpath = ilist("../../sireum-bakar/sireum-bakar-tools/bin",
-            "../../sireum-bakar-internal/sireum-bakar-kiasan/bin")
+          "../../sireum-bakar-internal/sireum-bakar-kiasan/bin")
         cgm.packages = List("org.sireum")
         cgm.className = SireumMode.getClass.getName.replace("$", "")
     }
@@ -120,9 +120,9 @@ class CliBuilder {
           stMode.add("name", s.command)
 
           val q1 = getMainModeInfo(filter(c.getDeclaredMethods))
-          val modeDesc = marrayEmpty[(String, String)]
+          val modeDesc = marrayEmpty[(String, String, Boolean)]
           var longestName = 0
-          for ((m, modeName, desc) <- q1) {
+          for ((m, modeName, desc, listed) <- q1) {
             val mo = m.invoke(o)
             if (mo != null) {
               val stcase = stg.getInstanceOf("caseMode")
@@ -131,12 +131,16 @@ class CliBuilder {
               stMode.add("modeName", modeName)
               stMode.add("caseMode", stcase)
 
-              modeDesc += ((modeName, desc))
+              modeDesc += ((modeName, desc, listed))
               if (modeName.length > longestName) longestName = modeName.length + 1
               mineClass(m.getReturnType, m.invoke(o), path :+ s.command)
             }
           }
-          for ((name, desc) <- modeDesc.sortWith({ (md1, md2) => md1._1 <= md2._1 })) {
+          for (
+            (name, desc, listed) <- modeDesc.sortWith({
+              (md1, md2) => md1._1 <= md2._1
+            }) if listed
+          ) {
             val stAvailMode = stg.getInstanceOf("mode")
             stAvailMode.add("name", name)
             if (desc.length > 0) stAvailMode.add("desc",
@@ -553,16 +557,16 @@ class CliBuilder {
     }
   }
 
-  def getMainModeInfo(meths : Array[Method]) : List[(Method, String, String)] = {
-    var l = List[(Method, String, String)]()
+  def getMainModeInfo(meths : Array[Method]) : List[(Method, String, String, Boolean)] = {
+    var l = List[(Method, String, String, Boolean)]()
     for (m <- meths) {
       val c = m.getReturnType
       for (a <- c.getDeclaredAnnotations) {
         a match {
           case s : Mode =>
-            l :+= (m, s.command, s.desc)
+            l :+= (m, s.command, s.desc, s.listed)
           case s : Main =>
-            l :+= (m, s.value, s.desc)
+            l :+= (m, s.value, s.desc, true)
           case s : Check                        => // ignore
           case s : scala.reflect.ScalaSignature => // ignore  
           case s =>

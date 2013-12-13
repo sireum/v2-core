@@ -21,4 +21,6 @@ public @interface Mode {
   String desc() default "";
 
   String header() default "";
+  
+  boolean listed() default true;
 }
