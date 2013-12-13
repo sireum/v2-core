@@ -24,7 +24,15 @@ case class SireumMode(
   distro : SireumDistroMode = SireumDistroMode(),
   launch : SireumLaunchMode = SireumLaunchMode(),
   tools : SireumToolsMode = SireumToolsMode(),
-  bakar : SireumBakarMode = SireumBakarMode())
+  bakar : SireumBakarMode = SireumBakarMode(),
+  x : SireumXMode = SireumXMode())
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Mode(command = "x", header = "Sireum X", desc = "Sireum Experimental Features", listed = false)
+case class SireumXMode(
+  amandroid : SireumAmandroidMode = internal(SireumAmandroidMode()))
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
