@@ -84,7 +84,7 @@ object ControlFlowGraph {
     val visitor = Visitor.build({
       case al : ActionLocation =>
         al.action match {
-          case ta : ThrowAction => result.addEdge(source, exitNode)
+          case ta : ThrowAction => 
           case _                => result.addEdge(source, next)
         }
         false
@@ -161,7 +161,7 @@ object ControlFlowGraph {
       }
     }
 
-    //print(result)
+//    print(result)
     //result.useBranch(pst) {}
 
     result

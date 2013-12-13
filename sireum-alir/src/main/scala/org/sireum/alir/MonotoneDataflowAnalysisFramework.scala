@@ -369,17 +369,12 @@ object MonotoneDataFlowAnalysisFramework {
             }
             bs.exists(_ == true)
           case l : ActionLocation =>
-            val sn = next(l)
             if (esl.isDefined) eslb.action(l.action, s)
             val r = actionF(s, l.action)
             if (esl.isDefined) eslb.exitSet(None, r)
-            if (l.index < pst.locations.size - 1) {
-              val sn = next(l)
-              update(confluence(r, getEntrySet(sn)), sn)
-            } else {
-              val sn = cfg.exitNode
-              update(confluence(r, getEntrySet(sn)), sn)
-            }
+            val node = cfg.getNode(l)
+            val succs = cfg.successors(node)
+            succs.map(succ=>update(confluence(r, getEntrySet(succ)), succ)).exists(_ == true)
           case l : JumpLocation =>
             jumpF(s, l.jump)
           case l : EmptyLocation =>
