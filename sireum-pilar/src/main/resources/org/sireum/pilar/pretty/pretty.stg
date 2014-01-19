@@ -282,8 +282,8 @@ $jump$$endif$$else$$jump$$endif$
 $endif$
 >>
 
-assert(exp, annotationList) ::= <<
-assert $exp$$annotationList$;
+assert(exp, message, annotationList) ::= <<
+assert $exp$$if(message)$ $message$$endif$$annotationList$;
 >>
 
 assume(exp, annotationList) ::= <<

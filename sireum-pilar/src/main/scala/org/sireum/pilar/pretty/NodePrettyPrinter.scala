@@ -379,8 +379,10 @@ class NodePrettyPrinter(vprint: Value => String) {
       v(o.cond)
       st.add("exp", ctx.popResult)
 
-      if (o.message.isDefined)
-        Console.err.println("Not handling 'message' field: " + o)
+      if (o.message.isDefined) {
+        v(o.message.get)
+        st.add("message", ctx.popResult)
+      }
 
       ctx.processAnnotationList(v, st, o.annotations)
       ctx.pushResult(st)
