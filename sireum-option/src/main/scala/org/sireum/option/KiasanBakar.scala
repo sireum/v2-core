@@ -46,6 +46,9 @@ case class KiasanBakarAnalysisGroup(
   @Option(shortKey = "a", longKey = "array-bound", desc = "Array Element Bound")
   var arrayBound : Int = 3,
   
+  @Option(shortKey = "d", longKey = "depth-bound", desc = "Depth Bound")
+  var depthBound : Int = 100,
+  
   @Option(shortKey = "l", longKey = "loop-bound", desc = "Loop Bound")
   var loopBound : Int = 10,
   
