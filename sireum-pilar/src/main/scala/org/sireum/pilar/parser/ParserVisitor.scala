@@ -99,7 +99,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
-      result = result :+ context.popResult[T] 
+      result = result :+ context.popResult[T]
     }
     return result
   }
@@ -114,7 +114,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val count = list.getChildCount
     for (i <- 0 until count) {
       visit(list.getChild(i))
-      result = result :+ f(context.popResult[AnyRef]) 
+      result = result :+ f(context.popResult[AnyRef])
     }
     return result
   }
@@ -324,6 +324,29 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     return false
   }
 
+  override def visitASSERTM(t : Tree) : Boolean = {
+    assert(context.noResult)
+
+    var n = 0
+
+    // e1: 0
+    val e1 = getChild[Exp](n, t)
+    n += 1
+
+    // e2: 1
+    val e2 = getChild[Exp](n, t)
+    n += 1
+
+    // annotation list: 2
+    val annList = getChildren[Annotation](n, t)
+    n += 1
+
+    val result = AssertAction(annList, e1, Some(e2))
+    context.pushResult(result, t)
+
+    return false
+  }
+
   override def visitASSERT(t : Tree) : Boolean = {
     assert(context.noResult)
 
@@ -393,6 +416,28 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     return false
   }
 
+  override def visitASSUMEM(t : Tree) : Boolean = {
+    assert(context.noResult)
+
+    var n = 0
+
+    // e1: 0
+    val e1 = getChild[Exp](n, t)
+    n += 1
+
+    // e2: 1
+    val e2 = getChild[Exp](n, t)
+    n += 1
+
+    // annotation list: 2
+    val annList = getChildren[Annotation](n, t)
+    n += 1
+
+    val result = AssumeAction(annList, e1, Some(e2))
+    context.pushResult(result, t)
+    return false
+  }
+
   override def visitASSUME(t : Tree) : Boolean = {
     assert(context.noResult)
 
@@ -406,7 +451,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val annList = getChildren[Annotation](n, t)
     n += 1
 
-    val result = AssumeAction(annList, exp)
+    val result = AssumeAction(annList, exp, None)
     context.pushResult(result, t)
     return false
   }

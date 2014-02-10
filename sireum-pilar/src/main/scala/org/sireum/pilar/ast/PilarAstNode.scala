@@ -663,7 +663,8 @@ final case class AssertAction(
  */
 final case class AssumeAction(
   annotations : ISeq[Annotation],
-  cond : Exp)
+  cond : Exp,
+  message : Option[Exp])
     extends Action {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
