@@ -283,11 +283,11 @@ $endif$
 >>
 
 assert(exp, message, annotationList) ::= <<
-assert $exp$$if(message)$ $message$$endif$$annotationList$;
+assert $if(message)$($exp$, $message$)$else$$exp$$endif$$annotationList$;
 >>
 
-assume(exp, annotationList) ::= <<
-assume $exp$$annotationList$;
+assume(exp, message, annotationList) ::= <<
+assume $if(message)$($exp$, $message$)$else$$exp$$endif$$annotationList$;
 >>
 
 throw(exp, annotationList) ::= <<
