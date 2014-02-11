@@ -2014,14 +2014,19 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
     var n = 0
 
-    // optional exp: 0
-    val exp = getOptChild[Exp](n, t)
+    // exp list: 0
+    val exps = getChildren[Exp](n, t)
     n += 1
 
     // annotation list: 1
     val annList = getChildren[Annotation](n, t)
     n += 1
 
+    val exp = exps match {
+      case Nil    => None
+      case Seq(e) => Some(e)
+      case _      => Some(TupleExp(exps))
+    }
     val result = ReturnJump(annList, exp)
     context.pushResult(result, t)
     return false
