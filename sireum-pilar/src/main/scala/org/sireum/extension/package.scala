@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum
 
-import scala.annotation.target._
+import scala.annotation.meta._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

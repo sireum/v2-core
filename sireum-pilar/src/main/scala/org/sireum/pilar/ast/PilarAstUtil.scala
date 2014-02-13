@@ -109,4 +109,4 @@ object PilarAstUtil {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-protected case class Id(id : String, line : Int, column : Int)
+case class Id(id : String, line : Int, column : Int)

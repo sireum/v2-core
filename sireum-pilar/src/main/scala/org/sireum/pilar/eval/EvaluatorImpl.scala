@@ -258,13 +258,14 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
               case None =>
                 val n = sr.length
                 sr.zip(0 until n).map { sj =>
-                  val (s : ScheduleRecordingState[S], j) = sj
-                  s.recordSchedule(uri, n, j)
+                  val (s, j) = sj
+                  s.asInstanceOf[ScheduleRecordingState[_]].
+                    recordSchedule(uri, n, j).asInstanceOf[S]
                 }
               case Some((sourceOpt, num, i)) =>
                 assert(sourceOpt == Some(uri) && num == sr.length)
-                val s4 = sr(i).asInstanceOf[ScheduleRecordingState[S]]
-                ivector(s4.popSchedule)
+                val s4 = sr(i).asInstanceOf[ScheduleRecordingState[_]]
+                ivector(s4.popSchedule.asInstanceOf[S])
             }
           case _ => sr
         }
@@ -629,13 +630,15 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
                   case None =>
                     val n = r.length
                     r.zip(0 until n).map { svj =>
-                      val ((s : ScheduleRecordingState[S], v), j) = svj
-                      (s.recordSchedule(uri, n, j), v)
+                      val ((s, v), j) = svj
+                      (s.asInstanceOf[ScheduleRecordingState[_]].
+                        recordSchedule(uri, n, j).asInstanceOf[S], v)
                     }
                   case Some((sourceOpt, num, i)) =>
                     assert(sourceOpt == Some(uri) && num == r.length)
-                    val (s4 : ScheduleRecordingState[S], v) = r(i)
-                    ivector((s4.popSchedule, v))
+                    val (s4, v) = r(i)
+                    ivector((s4.asInstanceOf[ScheduleRecordingState[_]].
+                      popSchedule.asInstanceOf[S], v))
                 }
               case _ => r
             }

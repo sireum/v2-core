@@ -153,17 +153,15 @@ class KiasanScalarExpEvaluatorTest
   def pc(exp : String*) : Seq[Exp] = KiasanStateCheck.pc(rewriter, exp : _*)
 
   def checkConcExe(s : S, s0 : S, exp : String, v : V) = {
-    for (
-      topi <- resource.managed(
-        Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*))
-    ) {
+    val topi = Topi.create(TopiSolver.Z3, TopiMode.Process, 10000, extensions : _*)
+    try
       KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
         newExpEvaluator(s0), exp, v, rewriter) match {
           case TopiResult.SAT | TopiResult.UNKNOWN =>
           case _ =>
             assert(false, "Expecting SAT or UNKNOWN")
         }
-    }
+    finally topi.close
   }
 
   /**

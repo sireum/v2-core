@@ -116,21 +116,26 @@ trait ValCompositeTestFramework extends TestFramework {
 
   def checkConcExe(s : S, s0 : S, action : String,
                    mcs : (IMap[String, Value], S)) {
-    for (topi <- resource.managed(createTopi))
+    val topi = createTopi
+    try
       KiasanStateCheck.checkConcretizedState(topi, s, s0,
         KonkritBooleanExtension.TT, config.evaluator[S, R, C, SR].mainEvaluator, mcs)
+    finally topi.close
   }
 
   def checkConcExe(s : S, s0 : S, exp : String, v : V,
-                   mcs : (IMap[String, Value], S)) =
-    for (topi <- resource.managed(createTopi))
+                   mcs : (IMap[String, Value], S)) = {
+    val topi = createTopi
+    try
       KiasanStateCheck.checkConcExe(topi, s, s0, KonkritBooleanExtension.TT,
         config.evaluator[S, R, C, SR].mainEvaluator, exp, v, identity[Exp], Some(mcs)) match {
           case TopiResult.SAT | TopiResult.UNKNOWN =>
           case _ =>
             assert(false, "Expecting SAT or UNKNOWN")
         }
-
+    finally topi.close
+  }
+  
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
@@ -181,7 +186,8 @@ trait ValCompositeTestFramework extends TestFramework {
     pw.println
     KiasanStateVisualizer(s, "Before", pw, vpr, eprint(vpr))
     pw.println
-    for (topi <- resource.managed(createTopi))
+    val topi = createTopi
+    try
       for (post <- sr if post.pathConditions.isEmpty || check(post, topi) != TopiResult.UNSAT) {
         pw.println
         pw.println("----")
@@ -204,6 +210,7 @@ trait ValCompositeTestFramework extends TestFramework {
           pw.print(RstUtil.tab(postState, postStateC))
         }
       }
+    finally topi.close
     pw.flush
     val result = sw.toString
 
