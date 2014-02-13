@@ -528,7 +528,7 @@ object SireumDistro extends App {
 
   def install(featureNames : String*) {
     updateClasspath(sireumDir)
-    
+
     if (isDevelopment) return
 
     {
@@ -1479,83 +1479,57 @@ Sireum Distro managed apps are currently running.""")
   /**
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
-  class Exec {
-    import Exec._
-    import scala.actors._
-    import scala.actors.Actor._
+  final class Exec {
+    private val sb = new StringBuffer
 
-    private var _env : Option[HashMap[String, String]] = None
+    val env = scala.collection.mutable.Map.empty[String, String]
 
-    def env =
-      _env match {
-        case Some(m) => m
-        case _ =>
-          import scala.collection.JavaConversions._
-          val m = HashMap[String, String]()
-          m ++= System.getenv()
-          _env = Some(m)
-          m
-      }
+    def run(waitTime : Long, args : Seq[String], input : Option[String],
+            extraEnv : (String, String)*) : Exec.Result =
+      run(waitTime, args, input, None, extraEnv : _*)
 
-    def run(waitTime : Long, args : Seq[String], input : Option[String], dir : Option[File] = None) : Result = {
-      singleReader(self, waitTime, dir) ! (args, input)
+    def run(waitTime : Long, args : Seq[String], input : Option[String],
+            dir : Option[File], extraEnv : (String, String)*) : Exec.Result = {
+      import scala.sys.process._
+      val p = Process(args, dir, (env.toSeq ++ extraEnv) : _*).
+        run(new ProcessIO(inputF(input), outputF, outputF))
+      if (waitTime <= 0) {
+        val x = p.exitValue
+        Exec.StringResult(sb.toString, x)
+      } else {
+        import scala.concurrent._
+        import scala.concurrent.duration._
+        import scala.concurrent.ExecutionContext.Implicits.global
 
-      (if (waitTime < 0)
-        receive[Result] _
-      else receiveWithin[Result](waitTime) _) {
-        case TIMEOUT | Some(TIMEOUT) =>
-          Timeout
-        case e : Exception =>
-          ExceptionRaised(e)
-        case (result : String, exitValue : Int) =>
-          StringResult(result, exitValue)
+        try {
+          val x = Await.result(future { p.exitValue }, waitTime.millis)
+          Exec.StringResult(sb.toString, x)
+        } catch {
+          case _ : TimeoutException =>
+            p.destroy
+            Exec.Timeout
+        }
       }
     }
 
-    private def singleReader(caller : Actor, waitTime : Long, dir : Option[File]) = actor {
-      (if (waitTime < 0)
-        react _
-      else
-        reactWithin(waitTime) _) {
-        case TIMEOUT =>
-          caller ! Some(TIMEOUT)
-        case (args : Seq[_], in : Option[_]) =>
-          import java.io._
-          val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
-          if (dir.isDefined)
-            processBuilder.directory(dir.get)
-          processBuilder.redirectErrorStream(true)
-
-          _env match {
-            case Some(m) =>
-              import scala.collection.JavaConversions._
-              val pbEnv = processBuilder.environment()
-              pbEnv.clear
-              pbEnv.putAll(env)
-            case _ =>
-          }
-
-          try {
-            val proc = processBuilder.start()
-            if (in.isDefined) {
-              val osr = new OutputStreamWriter(proc.getOutputStream)
-              osr.write(in.get.asInstanceOf[String])
-              osr.flush
-            }
-            val br = new BufferedReader(new InputStreamReader(proc.getInputStream))
-            val sb = new StringBuilder()
-            var line : String = null
-            while ({ line = br.readLine; line != null }) {
-              sb.append(line)
-              sb.append('\n')
-            }
-            proc.waitFor
-            caller ! (sb.toString, proc.exitValue)
-          } catch {
-            case e : Exception =>
-              caller ! e
-          }
+    def inputF(in : Option[String])(out : OutputStream) {
+      val osw = new OutputStreamWriter(out)
+      try in match {
+        case Some(s) => osw.write(s, 0, s.length)
+        case _       =>
       }
+      finally osw.close
+    }
+
+    def outputF(is : InputStream) {
+      val buffer = new Array[Byte](10 * 1024)
+      try {
+        var n = is.read(buffer)
+        while (n != -1) {
+          sb.append(new String(buffer, 0, n))
+          n = is.read(buffer)
+        }
+      } finally is.close
     }
   }
 
