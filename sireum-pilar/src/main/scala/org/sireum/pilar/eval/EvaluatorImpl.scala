@@ -248,7 +248,27 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         val extUri = sec.uriExtractor(f)
         buildExtArgs(s2, extUri, e.arg)
       }
-      re3 <- sec.actionExtCall(sec.uriExtractor(re2v(re1)), args)
+      re3 <- {
+        val uri = sec.uriExtractor(re2v(re1))
+        val sr = sec.actionExtCall(uri, args)
+        val s3 = args.productElement(0)
+        s3 match {
+          case s3 : ScheduleRecordingState[S] =>
+            s3.peekSchedule match {
+              case None =>
+                val n = sr.length
+                sr.zip(0 until n).map { sj =>
+                  val (s : ScheduleRecordingState[S], j) = sj
+                  s.recordSchedule(uri, n, j)
+                }
+              case Some((sourceOpt, num, i)) =>
+                assert(sourceOpt == Some(uri) && num == sr.length)
+                val s4 = sr(i).asInstanceOf[ScheduleRecordingState[S]]
+                ivector(s4.popSchedule)
+            }
+          case _ => sr
+        }
+      }
     } yield re3
   }
 
@@ -599,7 +619,26 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
           }
         }
         re3 <- i match { // TODO: handles function and closure
-          case 0 => sec.expExtCall(sec.uriExtractor(re2v(re1)), args)
+          case 0 =>
+            val uri = sec.uriExtractor(re2v(re1))
+            val r = sec.expExtCall(uri, args)
+            val s3 = args.productElement(0)
+            s3 match {
+              case s3 : ScheduleRecordingState[S] =>
+                s3.peekSchedule match {
+                  case None =>
+                    val n = r.length
+                    r.zip(0 until n).map { svj =>
+                      val ((s : ScheduleRecordingState[S], v), j) = svj
+                      (s.recordSchedule(uri, n, j), v)
+                    }
+                  case Some((sourceOpt, num, i)) =>
+                    assert(sourceOpt == Some(uri) && num == r.length)
+                    val (s4 : ScheduleRecordingState[S], v) = r(i)
+                    ivector((s4.popSchedule, v))
+                }
+              case _ => r
+            }
         }
       } yield re3
     case (s, e : NewListExp) =>

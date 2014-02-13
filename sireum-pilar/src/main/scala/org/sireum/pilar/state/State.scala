@@ -278,10 +278,13 @@ trait MultiThreadState[Self <: MultiThreadState[Self]] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-trait ScheduleRecordingState[Self <: ScheduleRecordingState[Self]] {
+trait ScheduleRecordingState[S <: ScheduleRecordingState[S]] {
   import State._
 
-  def recordSchedule(numChoices : Int, chosen : Int) : Self
+  def peekSchedule : Option[(Option[Any], Int, Int)]
+  def popSchedule : S
+  def recordSchedule(numChoices : Int, chosen : Int) : S
+  def recordSchedule(source : Any, numChoices : Int, chosen : Int) : S
 }
 
 /**
@@ -413,7 +416,7 @@ final case class BasicMultiThreadState(
   currentThreadId : Option[State.ThreadId],
   threads : ISortedMap[State.ThreadId, Thread],
   properties : Property.ImmutableProperties,
-  schedule : ISeq[(Int, Int)])
+  schedule : ISeq[(Option[Any], Int, Int)])
     extends State[BasicMultiThreadState]
     with MultiThreadState[BasicMultiThreadState]
     with ScheduleRecordingState[BasicMultiThreadState] {
@@ -454,10 +457,18 @@ final case class BasicMultiThreadState(
       Thread(t.closureStoreStack, t.callStack, Some(avi), t.raisedException))
     BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
   }
+  
+  def peekSchedule = None
+  
+  def popSchedule = this
+
+  def recordSchedule(source : Any, numChoices : Int, chosen : Int) : BasicMultiThreadState =
+    BasicMultiThreadState(globalStore, currentThreadId, threads,
+      properties, ((Some(source), numChoices, chosen)) +: schedule)
 
   def recordSchedule(numChoices : Int, chosen : Int) : BasicMultiThreadState =
     BasicMultiThreadState(globalStore, currentThreadId, threads,
-      properties, ((numChoices, chosen)) +: schedule)
+      properties, ((None, numChoices, chosen)) +: schedule)
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicMultiThreadState = {

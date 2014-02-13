@@ -95,7 +95,7 @@ final case class BasicKiasanState(
   assertionViolation : Option[AssertionViolationInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
-  schedule : ISeq[(Int, Int)])
+  schedule : ISeq[(Option[Any], Int, Int)])
     extends State[BasicKiasanState] with KiasanStatePart[BasicKiasanState]
     with ScheduleRecordingState[BasicKiasanState] {
 
@@ -137,10 +137,19 @@ final case class BasicKiasanState(
       counters, properties, assertionViolation, raisedException,
       shouldCheck, schedule)
 
+  def peekSchedule = None
+  
+  def popSchedule = this
+
   def recordSchedule(numChoices : Int, chosen : Int) : BasicKiasanState =
     BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
       counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((numChoices, chosen)) +: schedule)
+      inconsistencyCheckRequested, ((None, numChoices, chosen)) +: schedule)
+
+  def recordSchedule(source : Any, numChoices : Int, chosen : Int) : BasicKiasanState =
+    BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
+      counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, ((Some(source), numChoices, chosen)) +: schedule)
 
   protected def make(procedure : ResourceUri,
                      locationUri : Option[ResourceUri], locationIndex : Int,
@@ -182,7 +191,7 @@ final case class KiasanStateWithHeap(
   assertionViolation : Option[AssertionViolationInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
-  schedule : ISeq[(Int, Int)])
+  schedule : ISeq[(Option[Any], Int, Int)])
     extends State[KiasanStateWithHeap]
     with KiasanStatePart[KiasanStateWithHeap]
     with HeapPart[KiasanStateWithHeap]
@@ -233,10 +242,19 @@ final case class KiasanStateWithHeap(
       pathConditions, counters, properties, assertionViolation,
       raisedException, shouldCheck, schedule)
 
+  def peekSchedule = None
+  
+  def popSchedule = this
+
+  def recordSchedule(source : Any, numChoices : Int, chosen : Int) : KiasanStateWithHeap =
+    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
+      pathConditions, counters, properties, assertionViolation, raisedException,
+      inconsistencyCheckRequested, ((Some(source), numChoices, chosen)) +: schedule)
+
   def recordSchedule(numChoices : Int, chosen : Int) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
       pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((numChoices, chosen)) +: schedule)
+      inconsistencyCheckRequested, ((None, numChoices, chosen)) +: schedule)
 
   protected def make(procedure : ResourceUri,
                      locationUri : Option[ResourceUri], locationIndex : Int,
