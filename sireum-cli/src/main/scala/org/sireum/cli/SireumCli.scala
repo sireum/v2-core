@@ -84,7 +84,7 @@ where the available options are:
       result.options = Some(opt)
       result.className = "org.sireum.cli.gen.CliBuilder"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "-p", "--packages", "-d", "--directory", "--min-col", "--max-col", "-c", "--class-name", "-cp", "--classpath")
+      val keys = List[String]("-h", "--help", "-p", "--packages", "-d", "--directory", "-cp", "--classpath", "--min-col", "--max-col", "-c", "--class-name")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -136,6 +136,24 @@ where the available options are:
                   result.status &= new org.sireum.option.CliGenOption().dirCheck(opt, result.tags)
                   j += 1
                 }
+              case "-cp" | "--classpath" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--classpath"
+                  r = r || s == "-cp"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--classpath"
+                  seenopts += "-cp"
+                }
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
+                if (result.status) {
+                  opt.classpath = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
               case "--min-col" =>
 
                 if (seenopts.exists { s =>
@@ -185,24 +203,6 @@ where the available options are:
                 if (result.status) {
                   opt.genClassName = v.get.asInstanceOf[java.lang.String]
                   result.status &= new org.sireum.option.CliGenOption().genClassNameCheck(opt, result.tags)
-                  j += 1
-                }
-              case "-cp" | "--classpath" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--classpath"
-                  r = r || s == "-cp"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--classpath"
-                  seenopts += "-cp"
-                }
-                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
-                if (result.status) {
-                  opt.classpath = v.get.asInstanceOf[ISeq[String]]
                   j += 1
                 }
               case "-h" | "--help" =>
@@ -301,6 +301,130 @@ where the available options are:
                 val v = process(args(j), args(j), keys, "")
                 if (result.status) {
                   opt.classes :+= v.get.asInstanceOf[java.lang.String]
+                }
+
+            }
+          }
+          j = j + 1
+        }
+      } catch {
+        case e : Exception => addErrorTag(e.toString)
+      }
+
+      if (k + 1 < 0) {
+        addErrorTag("Missing required arguments")
+      }
+
+    }
+  }
+
+  def parsePipelineMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum tools pipeline [options] <class-names> 
+
+where the available options are:
+
+-h | --help
+-d   | --directory   Directory where generated class should be saved
+                     [Default: ""]
+-gcn | --generated-class-name 
+                     Name for the generated class [Default: ""]
+-ts  | --type-substitutions 
+                     Pairs of fully qualified type names separated by '/' (e.g.
+                     java.lang.Boolean/scala.Boolean) [Separator: ",",
+                     Default: ""]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
+    } else {
+      val opt = PipelineMode()
+      result.options = Some(opt)
+      result.className = "org.sireum.pipeline.gen.ModuleGenerator"
+      result.featureName = "Sireum Tools"
+      val keys = List[String]("-h", "--help", "-d", "--directory", "-ts", "--type-substitutions", "-gcn", "--generated-class-name")
+      var j = i
+      var k = -1
+      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+      try {
+        while (j < args.length) {
+          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          if (k == -1 && keys.contains(args(j))) {
+            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+              addErrorTag(args(j) + " is not an option")
+            }
+            args(j) match {
+              case "-d" | "--directory" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--directory"
+                  seenopts += "-d"
+                }
+                val v = process(args(j), args(j + 1), keys, "")
+                if (result.status) {
+                  opt.dir = v.get.asInstanceOf[java.lang.String]
+                  j += 1
+                }
+              case "-ts" | "--type-substitutions" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--type-substitutions"
+                  r = r || s == "-ts"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--type-substitutions"
+                  seenopts += "-ts"
+                }
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
+                if (result.status) {
+                  opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-gcn" | "--generated-class-name" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--generated-class-name"
+                  r = r || s == "-gcn"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--generated-class-name"
+                  seenopts += "-gcn"
+                }
+                val v = process(args(j), args(j + 1), keys, "")
+                if (result.status) {
+                  opt.genClassName = v.get.asInstanceOf[java.lang.String]
+                  j += 1
+                }
+              case "-h" | "--help" =>
+                usage; result.status = false
+              case _               =>
+            }
+          } else {
+            k = k + 1
+            k match {
+              case _ =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.classNames :+= v.get.asInstanceOf[java.lang.String]
                 }
 
             }
@@ -440,130 +564,6 @@ where the available options are:
     }
   }
 
-  def parsePipelineMode(args : Seq[String], i : Int) {
-      def usage {
-        addInfoTag(
-          """
-Usage:
-  sireum tools pipeline [options] <class-names> 
-
-where the available options are:
-
--h | --help
--d   | --directory   Directory where generated class should be saved
-                     [Default: ""]
--gcn | --generated-class-name 
-                     Name for the generated class [Default: ""]
--ts  | --type-substitutions 
-                     Pairs of fully qualified type names separated by '/' (e.g.
-                     java.lang.Boolean/scala.Boolean) [Separator: ",",
-                     Default: ""]
-""".trim)
-      }
-    if (i == args.length) {
-      usage
-    } else {
-      val opt = PipelineMode()
-      result.options = Some(opt)
-      result.className = "org.sireum.pipeline.gen.ModuleGenerator"
-      result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "-d", "--directory", "-gcn", "--generated-class-name", "-ts", "--type-substitutions")
-      var j = i
-      var k = -1
-      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-      try {
-        while (j < args.length) {
-          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          if (k == -1 && keys.contains(args(j))) {
-            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-              addErrorTag(args(j) + " is not an option")
-            }
-            args(j) match {
-              case "-d" | "--directory" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--directory"
-                  r = r || s == "-d"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--directory"
-                  seenopts += "-d"
-                }
-                val v = process(args(j), args(j + 1), keys, "")
-                if (result.status) {
-                  opt.dir = v.get.asInstanceOf[java.lang.String]
-                  j += 1
-                }
-              case "-gcn" | "--generated-class-name" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--generated-class-name"
-                  r = r || s == "-gcn"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--generated-class-name"
-                  seenopts += "-gcn"
-                }
-                val v = process(args(j), args(j + 1), keys, "")
-                if (result.status) {
-                  opt.genClassName = v.get.asInstanceOf[java.lang.String]
-                  j += 1
-                }
-              case "-ts" | "--type-substitutions" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--type-substitutions"
-                  r = r || s == "-ts"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--type-substitutions"
-                  seenopts += "-ts"
-                }
-                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
-                if (result.status) {
-                  opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
-                  j += 1
-                }
-              case "-h" | "--help" =>
-                usage; result.status = false
-              case _               =>
-            }
-          } else {
-            k = k + 1
-            k match {
-              case _ =>
-                val v = process(args(j), args(j), keys, "")
-                if (result.status) {
-                  opt.classNames :+= v.get.asInstanceOf[java.lang.String]
-                }
-
-            }
-          }
-          j = j + 1
-        }
-      } catch {
-        case e : Exception => addErrorTag(e.toString)
-      }
-
-      if (k + 1 < 0) {
-        addErrorTag("Missing required arguments")
-      }
-
-    }
-  }
-
   def parseSapperMode(args : Seq[String], i : Int) {
       def usage {
         addInfoTag(
@@ -648,16 +648,16 @@ Available Modes:
 """.trim
       )
     } else {
-      parseModeHelper("tools", Seq("cligen", "jvm", "antlr", "pipeline", "sapper"), args, i) {
+      parseModeHelper("tools", Seq("cligen", "jvm", "pipeline", "antlr", "sapper"), args, i) {
         _ match {
           case "cligen" =>
             parseCliGenMode(args, i + 1)
           case "jvm" =>
             parseJVMMode(args, i + 1)
-          case "antlr" =>
-            parseTreeVisitorGenMode(args, i + 1)
           case "pipeline" =>
             parsePipelineMode(args, i + 1)
+          case "antlr" =>
+            parseTreeVisitorGenMode(args, i + 1)
           case "sapper" =>
             parseSapperMode(args, i + 1)
         }
@@ -869,6 +869,99 @@ Available Modes:
 Sireum Distro
 """.trim
       )
+    }
+  }
+
+  def parseLaunchBakarV1Mode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum launch bakar [options]  
+
+where the available options are:
+
+-h | --help
+-j | --jvmopts Options for Java [Separator: ",",
+               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+--args         Arguments for Eclipse (accepts all following string arguments) 
+""".trim)
+      }
+    {
+      val opt = LaunchBakarV1Mode()
+      result.options = Some(opt)
+      result.className = "org.sireum.cli.launcher.EclipseLauncher"
+      result.featureName = "BakarV1.sapp"
+      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
+      var j = i
+      var k = -1
+      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+      try {
+        while (j < args.length) {
+          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          if (k == -1 && keys.contains(args(j))) {
+            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+              addErrorTag(args(j) + " is not an option")
+            }
+            args(j) match {
+              case "--args" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--args"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--args"
+                }
+                opt.args =
+                  if (j + 1 == args.length) List()
+                  else args.slice(j + 1, args.length).toList
+                j = args.length
+              case "-j" | "--jvmopts" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--jvmopts"
+                  r = r || s == "-j"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--jvmopts"
+                  seenopts += "-j"
+                }
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
+                if (result.status) {
+                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
+              case "-h" | "--help" =>
+                usage; result.status = false
+              case _               =>
+            }
+          } else {
+            k = k + 1
+            k match {
+
+              case _ =>
+                addErrorTag("Too many arguments starting at " + args(j))
+            }
+          }
+          j = j + 1
+        }
+      } catch {
+        case e : Exception => addErrorTag(e.toString)
+      }
+
+      if (k + 1 < 0) {
+        addErrorTag("Missing required arguments")
+      }
+
     }
   }
 
@@ -1415,99 +1508,6 @@ where the available options are:
     }
   }
 
-  def parseLaunchBakarV1Mode(args : Seq[String], i : Int) {
-      def usage {
-        addInfoTag(
-          """
-Usage:
-  sireum launch bakar [options]  
-
-where the available options are:
-
--h | --help
--j | --jvmopts Options for Java [Separator: ",",
-               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
---args         Arguments for Eclipse (accepts all following string arguments) 
-""".trim)
-      }
-    {
-      val opt = LaunchBakarV1Mode()
-      result.options = Some(opt)
-      result.className = "org.sireum.cli.launcher.EclipseLauncher"
-      result.featureName = "BakarV1.sapp"
-      val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
-      var j = i
-      var k = -1
-      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-      try {
-        while (j < args.length) {
-          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          if (k == -1 && keys.contains(args(j))) {
-            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-              addErrorTag(args(j) + " is not an option")
-            }
-            args(j) match {
-              case "--args" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--args"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--args"
-                }
-                opt.args =
-                  if (j + 1 == args.length) List()
-                  else args.slice(j + 1, args.length).toList
-                j = args.length
-              case "-j" | "--jvmopts" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--jvmopts"
-                  r = r || s == "-j"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--jvmopts"
-                  seenopts += "-j"
-                }
-                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
-                if (result.status) {
-                  opt.jvmopts = v.get.asInstanceOf[ISeq[String]]
-                  j += 1
-                }
-              case "-h" | "--help" =>
-                usage; result.status = false
-              case _               =>
-            }
-          } else {
-            k = k + 1
-            k match {
-
-              case _ =>
-                addErrorTag("Too many arguments starting at " + args(j))
-            }
-          }
-          j = j + 1
-        }
-      } catch {
-        case e : Exception => addErrorTag(e.toString)
-      }
-
-      if (k + 1 < 0) {
-        addErrorTag("Missing required arguments")
-      }
-
-    }
-  }
-
   def parseSireumLaunchMode(args : Seq[String], i : Int) {
     if (i == args.length) {
       addInfoTag(
@@ -1528,8 +1528,10 @@ Available Modes:
 """.trim
       )
     } else {
-      parseModeHelper("launch", Seq("eclipse", "osate", "sireumdev", "compilerdev", "antlrworks", "bakarv1gps", "bakargps", "bakar"), args, i) {
+      parseModeHelper("launch", Seq("bakar", "eclipse", "osate", "sireumdev", "compilerdev", "antlrworks", "bakarv1gps", "bakargps"), args, i) {
         _ match {
+          case "bakar" =>
+            parseLaunchBakarV1Mode(args, i + 1)
           case "eclipse" =>
             parseLaunchEclipseMode(args, i + 1)
           case "osate" =>
@@ -1544,8 +1546,6 @@ Available Modes:
             parseLaunchBakarV1GpsMode(args, i + 1)
           case "bakargps" =>
             parseLaunchBakarGpsMode(args, i + 1)
-          case "bakar" =>
-            parseLaunchBakarV1Mode(args, i + 1)
         }
       }
     }
