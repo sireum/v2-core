@@ -24,8 +24,24 @@ trait ExpEvaluator[S, R] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait ExpEvaluatorExt[S, R] {
+  def evalExpBefore : Option[(S, Exp) => S]
+  def evalExpAfter : Option[(S, Exp, R) => R]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 trait ActionEvaluator[S, SR] {
   def evalAction : (S, Action) --> SR
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait ActionEvaluatorExt[S, SR] {
+  def evalActionBefore : Option[(S, Action) => S]
+  def evalActionAfter : Option[(S, Action, SR) => SR]
 }
 
 /**
@@ -38,8 +54,24 @@ trait JumpEvaluator[S, SR] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait JumpEvaluatorExt[S, SR] {
+  def evalJumpBefore : Option[(S, Jump) => S]
+  def evalJumpAfter : Option[(S, Jump, SR) => SR]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 trait TransformationEvaluator[S, SR] {
   def evalTransformation : (S, LocationDecl, Transformation) --> SR
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait TransformationEvaluatorExt[S, SR] {
+  def evalTransformationBefore : Option[(S, LocationDecl, Transformation) => S]
+  def evalTransformationAfter : Option[(S, LocationDecl, Transformation, SR) => SR]
 }
 
 /**
@@ -48,6 +80,16 @@ trait TransformationEvaluator[S, SR] {
 trait LocationEvaluator[S, C] {
   def evalGuard : (S, LocationDecl, Transformation, Exp) --> C
   def transitions : (S, LocationDecl) --> Transitions[S]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait LocationEvaluatorExt[S, C] {
+  def evalGuardBefore : Option[(S, LocationDecl, Transformation, Exp) => S]
+  def evalGuardAfter : Option[(S, LocationDecl, Transformation, Exp, C) => C]
+  def transitionsBefore : Option[(S, LocationDecl) => S]
+  def transitionsAfter : Option[(S, LocationDecl, Transitions[S]) => Transitions[S]]
 }
 
 /**
@@ -69,6 +111,349 @@ trait Evaluator[S, R, C, SR]
     with LocationEvaluator[S, C] {
   def mainEvaluator : Evaluator[S, R, C, SR]
   def setMainEvaluator(eval : Evaluator[S, R, C, SR])
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+object Evaluator {
+  def combine[S, R, C, SR](evs : Evaluator[S, R, C, SR]*) = {
+    require(evs.length > 0)
+    evs.length match {
+      case 1 => evs(0)
+      case _ =>
+        new Evaluator[S, R, C, SR] {
+          var ev : Evaluator[S, R, C, SR] = this
+          def mainEvaluator = ev
+          def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
+            for (e <- evs) {
+              e.setMainEvaluator(eval)
+            }
+            ev = eval
+          }
+
+          import PartialFunctionUtil._
+
+          val evalExp : (S, Exp) --> R = orElses(evs.map { ev => ev.evalExp })
+          val evalAction : (S, Action) --> SR = orElses(evs.map { ev => ev.evalAction })
+          val evalJump : (S, Jump) --> SR = orElses(evs.map { ev => ev.evalJump })
+          val evalTransformation : (S, LocationDecl, Transformation) --> SR = orElses(evs.map { ev => ev.evalTransformation })
+          val evalGuard : (S, LocationDecl, Transformation, Exp) --> C = orElses(evs.map { ev => ev.evalGuard })
+          val transitions : (S, LocationDecl) --> Transitions[S] = orElses(evs.map { ev => ev.transitions })
+        }
+    }
+  }
+
+  def combine[S, R, C, SR](ev : Evaluator[S, R, C, SR], evxs : EvaluatorExt[S, R, C, SR]*) =
+    if (evxs.length < 1) ev
+    else
+      new Evaluator[S, R, C, SR] {
+        var mainEvaluator = ev
+        def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
+          mainEvaluator = eval
+          ev.setMainEvaluator(eval)
+        }
+
+        val evalExp = new PartialFunction[(S, Exp), R] {
+          val eebs = evxs.flatMap(_.evalExpBefore)
+          val eeas = evxs.flatMap(_.evalExpAfter)
+          def isDefinedAt(o : (S, Exp)) = ev.evalExp.isDefinedAt(o)
+          def apply(o : (S, Exp)) : R = {
+            val ee = ev.evalExp
+            val (s, e) = o
+            var sNext = s
+            for (eeb <- eebs) {
+              sNext = eeb(sNext, e)
+            }
+            var r = ee(sNext, e)
+            for (eea <- eeas) {
+              r = eea(s, e, r)
+            }
+            r
+          }
+        }
+
+        val evalAction = new PartialFunction[(S, Action), SR] {
+          val eabs = evxs.flatMap(_.evalActionBefore)
+          val eaas = evxs.flatMap(_.evalActionAfter)
+          def isDefinedAt(o : (S, Action)) = ev.evalAction.isDefinedAt(o)
+          def apply(o : (S, Action)) : SR = {
+            val ea = ev.evalAction
+            val (s, a) = o
+            var sNext = s
+            for (eab <- eabs) {
+              sNext = eab(sNext, a)
+            }
+            var sr = ea(sNext, a)
+            for (eaa <- eaas) {
+              sr = eaa(s, a, sr)
+            }
+            sr
+          }
+        }
+
+        val evalJump = new PartialFunction[(S, Jump), SR] {
+          val ejbs = evxs.flatMap(_.evalJumpBefore)
+          val ejas = evxs.flatMap(_.evalJumpAfter)
+          def isDefinedAt(o : (S, Jump)) = ev.evalJump.isDefinedAt(o)
+          def apply(o : (S, Jump)) : SR = {
+            val ej = ev.evalJump
+            val (s, j) = o
+            var sNext = s
+            for (ejb <- ejbs) {
+              sNext = ejb(sNext, j)
+            }
+            var sr = ej(sNext, j)
+            for (eja <- ejas) {
+              sr = eja(s, j, sr)
+            }
+            sr
+          }
+        }
+
+        val evalTransformation = new PartialFunction[(S, LocationDecl, Transformation), SR] {
+          val etbs = evxs.flatMap(_.evalTransformationBefore)
+          val etas = evxs.flatMap(_.evalTransformationAfter)
+          def isDefinedAt(o : (S, LocationDecl, Transformation)) = ev.evalTransformation.isDefinedAt(o)
+          def apply(o : (S, LocationDecl, Transformation)) : SR = {
+            val et = ev.evalTransformation
+            val (s, l, t) = o
+            var sNext = s
+            for (etb <- etbs) {
+              sNext = etb(sNext, l, t)
+            }
+            var sr = et(sNext, l, t)
+            for (eta <- etas) {
+              sr = eta(s, l, t, sr)
+            }
+            sr
+          }
+        }
+
+        val evalGuard = new PartialFunction[(S, LocationDecl, Transformation, Exp), C] {
+          val egbs = evxs.flatMap(_.evalGuardBefore)
+          val egas = evxs.flatMap(_.evalGuardAfter)
+          def isDefinedAt(o : (S, LocationDecl, Transformation, Exp)) = ev.evalGuard.isDefinedAt(o)
+          def apply(o : (S, LocationDecl, Transformation, Exp)) : C = {
+            val eg = ev.evalGuard
+            val (s, l, t, e) = o
+            var sNext = s
+            for (egb <- egbs) {
+              sNext = egb(sNext, l, t, e)
+            }
+            var c = eg(sNext, l, t, e)
+            for (ega <- egas) {
+              c = ega(s, l, t, e, c)
+            }
+            c
+          }
+        }
+
+        val transitions = new PartialFunction[(S, LocationDecl), Transitions[S]] {
+          val tbs = evxs.flatMap(_.transitionsBefore)
+          val tas = evxs.flatMap(_.transitionsAfter)
+          def isDefinedAt(o : (S, LocationDecl)) = ev.transitions.isDefinedAt(o)
+          def apply(o : (S, LocationDecl)) : Transitions[S] = {
+            val t = ev.transitions
+            val (s, l) = o
+            var sNext = s
+            for (tb <- tbs) {
+              sNext = tb(sNext, l)
+            }
+            var ts = t(sNext, l)
+            for (ta <- tas) {
+              ts = ta(s, l, ts)
+            }
+            ts
+          }
+        }
+      }
+
+  def module[S, R, C, SR](_ev : Evaluator[S, R, C, SR]) =
+    new Evaluator[S, R, C, SR] with EvaluatorModule {
+      var ev : Evaluator[S, R, C, SR] = this
+      def mainEvaluator = ev
+      def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
+        ev = eval
+        _ev.setMainEvaluator(eval)
+      }
+
+      def initialize(config : ExtensionConfig) {
+        _ev match {
+          case em : EvaluatorModule =>
+            em.initialize(config)
+            em.setMainEvaluator(this)
+          case _ =>
+        }
+      }
+
+      import PartialFunctionUtil._
+
+      val evalExp = ev.evalExp
+      val evalAction = ev.evalAction
+      val evalJump = ev.evalJump
+      val evalTransformation = ev.evalTransformation
+      val evalGuard = ev.evalGuard
+      val transitions = ev.transitions
+    }
+
+  def context[S <: EvaluationContextProvider[S], V](
+    ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule =
+    module(combine(ev, new EvaluationContextEvaluatorExt[S, V]))
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait EvaluatorExt[S, R, C, SR]
+    extends ExpEvaluatorExt[S, R]
+    with ActionEvaluatorExt[S, SR]
+    with JumpEvaluatorExt[S, SR]
+    with TransformationEvaluatorExt[S, SR]
+    with LocationEvaluatorExt[S, C] {
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait EvaluationContextProvider[C <: EvaluationContextProvider[C]] {
+  type ContextStackElement = PilarAstNode
+  protected[eval] def contextStack : IList[ContextStackElement]
+  def make(newContextStack : IList[ContextStackElement]) : C
+
+  def peekContext[T <: ContextStackElement](i : Int = 0) : T = contextStack(i).asInstanceOf[T]
+  def pushContext[T <: ContextStackElement](c : T) = make(c :: contextStack)
+  def popContext[T <: ContextStackElement] = make(contextStack.tail)
+
+  @inline
+  private def peek[T <: ContextStackElement] : T = peekContext(0)
+
+  @inline
+  private def peekAt[T <: ContextStackElement](i : Int) : T = peekContext(i)
+
+  @inline
+  private def push = pushContext _
+
+  @inline
+  private def pop = popContext
+
+  def pushExp(e : Exp) : C = push(e)
+  def popExp : (C, Exp) = (pop, peek)
+
+  def pushAction(a : Action) : C = push(a)
+  def popAction : (C, Action) = (pop, peek)
+
+  def pushJump(j : Jump) : C = push(j)
+  def popJump : (C, Jump) = (pop, peek)
+
+  def pushTransformation(l : LocationDecl, t : Transformation) : C = push(l).push(t)
+  def popTransformation : (C, LocationDecl, Transformation) = {
+    val t : Transformation = peek
+    val c1 = pop
+    val l : LocationDecl = c1.peek
+    val c2 = c1.pop
+    (c2, l, t)
+  }
+
+  def pushGuard(l : LocationDecl, t : Transformation, e : Exp) : C =
+    push(l).push(t).push(e)
+  def popGuard : (C, LocationDecl, Transformation, Exp) = {
+    val e = peek
+    val c1 = pop
+    val t = c1.peek
+    val c2 = c1.pop
+    val l = c2.peek
+    val c3 = c2.pop
+    (c3, l, t, e)
+  }
+
+  def pushLocation(l : LocationDecl) : C = push(l)
+  def popLocation : (C, LocationDecl) = (pop, peek)
+
+  def peekKind : EvaluationContextKind =
+    contextStack match {
+      case e :: t :: l :: _ if //
+      (e.isInstanceOf[Exp] && t.isInstanceOf[Transformation] &&
+        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Guard
+      case a :: t :: l :: _ if //
+      (a.isInstanceOf[Action] && t.isInstanceOf[Transformation] &&
+        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Action
+      case j :: t :: l :: _ if //
+      (j.isInstanceOf[Jump] && t.isInstanceOf[Transformation] &&
+        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Jump
+      case a :: l :: _ if //
+      (a.isInstanceOf[Action] && l.isInstanceOf[ActionLocation]) =>
+        EvaluationContextKind.ActionLocation
+      case j :: l :: _ if //
+      (j.isInstanceOf[Jump] && l.isInstanceOf[JumpLocation]) =>
+        EvaluationContextKind.JumpLocation
+      case e :: _ if e.isInstanceOf[Exp] => EvaluationContextKind.Exp
+    }
+
+  def peekExp : Exp = peek
+  def peekAction : (LocationDecl, Transformation, Action) =
+    (peekAt(2), peekAt(1), peek)
+  def peekJump : (LocationDecl, Transformation, Jump) =
+    (peekAt(2), peekAt(1), peek)
+  def peekGuard : (LocationDecl, Transformation, Exp) =
+    (peekAt(2), peekAt(1), peek)
+  def peekActionLocation : (ActionLocation, Action) =
+    (peekAt(1), peek)
+  def peekJumpLocation : (JumpLocation, Jump) =
+    (peekAt(2), peek)
+}
+
+final class EvaluationContextEvaluatorExt[S <: EvaluationContextProvider[S], V]
+    extends EvaluatorExt[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] {
+  type R = ISeq[(S, V)]
+  type C = ISeq[(S, Boolean)]
+  type SR = ISeq[S]
+
+  val evalExpBefore = Some((s : S, e : Exp) => s.pushExp(e))
+  val evalExpAfter = Some((s : S, e : Exp, r : R) =>
+    r.map { re =>
+      val (s2, v) = re
+      val (s3, e2) = s2.popExp
+      assert(e2 eq e)
+      (s3, v)
+    })
+  val evalActionBefore = Some((s : S, a : Action) => s.pushAction(a))
+  val evalActionAfter = Some((s : S, a : Action, sr : SR) =>
+    sr.map { s2 =>
+      val (s3, a2) = s2.popAction
+      assert(a2 eq a)
+      s3
+    })
+  val evalJumpBefore = Some((s : S, j : Jump) => s.pushJump(j))
+  val evalJumpAfter = Some((s : S, j : Jump, sr : SR) =>
+    sr.map { s2 =>
+      val (s3, j2) = s2.popJump
+      assert(j2 eq j)
+      s3
+    })
+  val evalTransformationBefore =
+    Some((s : S, l : LocationDecl, t : Transformation) =>
+      s.pushTransformation(l, t))
+  val evalTransformationAfter =
+    Some((s : S, l : LocationDecl, t : Transformation, sr : SR) =>
+      sr.map { s2 =>
+        val (s3, l2, t2) = s2.popTransformation
+        assert((l2 eq l) && (t2 eq t))
+        s3
+      })
+  val evalGuardBefore =
+    Some((s : S, l : LocationDecl, t : Transformation, e : Exp) =>
+      s.pushGuard(l, t, e))
+  val evalGuardAfter =
+    Some((s : S, l : LocationDecl, t : Transformation, e : Exp, c : C) =>
+      c.map { sb =>
+        val (s2, b) = sb
+        val (s3, l2, t2, e2) = s2.popGuard
+        assert((l2 eq l) && (t2 eq t) && (e2 eq e))
+        (s3, b)
+      })
+  val transitionsBefore = None
+  val transitionsAfter = None
 }
 
 /**
@@ -247,232 +632,4 @@ object EvaluatorHeapConfig {
       extends Adapter[ExtensionConfig, EvaluatorHeapConfig] {
     def adapt(ec : ExtensionConfig) : EvaluatorHeapConfig = ec
   }
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-trait EvaluationContextProvider[C <: EvaluationContextProvider[C]] {
-  type ContextStackElement = PilarAstNode
-  protected[eval] def contextStack : IList[ContextStackElement]
-  def make(newContextStack : IList[ContextStackElement]) : C
-
-  def peekContext[T <: ContextStackElement](i : Int = 0) : T = contextStack(i).asInstanceOf[T]
-  def pushContext[T <: ContextStackElement](c : T) = make(c :: contextStack)
-  def popContext[T <: ContextStackElement] = make(contextStack.tail)
-
-  @inline
-  private def peek[T <: ContextStackElement] : T = peekContext(0)
-
-  @inline
-  private def peekAt[T <: ContextStackElement](i : Int) : T = peekContext(i)
-
-  @inline
-  private def push = pushContext _
-
-  @inline
-  private def pop = popContext
-
-  def pushExp(e : Exp) : C = push(e)
-  def popExp : (C, Exp) = (pop, peek)
-
-  def pushAction(a : Action) : C = push(a)
-  def popAction : (C, Action) = (pop, peek)
-
-  def pushJump(j : Jump) : C = push(j)
-  def popJump : (C, Jump) = (pop, peek)
-
-  def pushTransformation(l : LocationDecl, t : Transformation) : C = push(l).push(t)
-  def popTransformation : (C, LocationDecl, Transformation) = {
-    val t : Transformation = peek
-    val c1 = pop
-    val l : LocationDecl = c1.peek
-    val c2 = c1.pop
-    (c2, l, t)
-  }
-
-  def pushGuard(l : LocationDecl, t : Transformation, e : Exp) : C =
-    push(l).push(t).push(e)
-  def popGuard : (C, LocationDecl, Transformation, Exp) = {
-    val e = peek
-    val c1 = pop
-    val t = c1.peek
-    val c2 = c1.pop
-    val l = c2.peek
-    val c3 = c2.pop
-    (c3, l, t, e)
-  }
-
-  def pushLocation(l : LocationDecl) : C = push(l)
-  def popLocation : (C, LocationDecl) = (pop, peek)
-
-  def peekKind : EvaluationContextKind =
-    contextStack match {
-      case e :: t :: l :: _ if //
-      (e.isInstanceOf[Exp] && t.isInstanceOf[Transformation] &&
-        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Guard
-      case a :: t :: l :: _ if //
-      (a.isInstanceOf[Action] && t.isInstanceOf[Transformation] &&
-        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Action
-      case j :: t :: l :: _ if //
-      (j.isInstanceOf[Jump] && t.isInstanceOf[Transformation] &&
-        l.isInstanceOf[LocationDecl]) => EvaluationContextKind.Jump
-      case a :: l :: _ if //
-      (a.isInstanceOf[Action] && l.isInstanceOf[ActionLocation]) =>
-        EvaluationContextKind.ActionLocation
-      case j :: l :: _ if //
-      (j.isInstanceOf[Jump] && l.isInstanceOf[JumpLocation]) =>
-        EvaluationContextKind.JumpLocation
-      case e :: _ if e.isInstanceOf[Exp] => EvaluationContextKind.Exp
-    }
-
-  def peekExp : Exp = peek
-  def peekAction : (LocationDecl, Transformation, Action) =
-    (peekAt(2), peekAt(1), peek)
-  def peekJump : (LocationDecl, Transformation, Jump) =
-    (peekAt(2), peekAt(1), peek)
-  def peekGuard : (LocationDecl, Transformation, Exp) =
-    (peekAt(2), peekAt(1), peek)
-  def peekActionLocation : (ActionLocation, Action) =
-    (peekAt(1), peek)
-  def peekJumpLocation : (JumpLocation, Jump) =
-    (peekAt(2), peek)
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-object Evaluator {
-  def combine[S, R, C, SR](evs : Evaluator[S, R, C, SR]*) = {
-    require(evs.length > 0)
-    evs.length match {
-      case 1 => evs(0)
-      case _ =>
-        new Evaluator[S, R, C, SR] {
-          var ev : Evaluator[S, R, C, SR] = this
-          def mainEvaluator = ev
-          def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
-            for (e <- evs) {
-              e.setMainEvaluator(eval)
-            }
-            ev = eval
-          }
-
-          import PartialFunctionUtil._
-
-          val evalExp : (S, Exp) --> R = orElses(evs.map { ev => ev.evalExp })
-          val evalAction : (S, Action) --> SR = orElses(evs.map { ev => ev.evalAction })
-          val evalJump : (S, Jump) --> SR = orElses(evs.map { ev => ev.evalJump })
-          val evalTransformation : (S, LocationDecl, Transformation) --> SR = orElses(evs.map { ev => ev.evalTransformation })
-          val evalGuard : (S, LocationDecl, Transformation, Exp) --> C = orElses(evs.map { ev => ev.evalGuard })
-          val transitions : (S, LocationDecl) --> Transitions[S] = orElses(evs.map { ev => ev.transitions })
-        }
-    }
-  }
-
-  def context[S <: EvaluationContextProvider[S], V](
-    _ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule =
-    new Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule {
-      type R = ISeq[(S, V)]
-      type C = ISeq[(S, Boolean)]
-      type SR = ISeq[S]
-      var ev : Evaluator[S, R, C, SR] = _ev
-      def mainEvaluator = this
-      def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
-        _ev.setMainEvaluator(eval)
-        ev = eval
-      }
-
-      def initialize(config : ExtensionConfig) {
-        _ev match {
-          case ev : EvaluatorModule => 
-            ev.initialize(config)
-            ev.setMainEvaluator(this)
-          case _                    =>
-        }
-      }
-
-      import PartialFunctionUtil._
-
-      val evalExp : (S, Exp) --> R =
-        new PartialFunction[(S, Exp), R] {
-          def isDefinedAt(se : (S, Exp)) = ev.evalExp.isDefinedAt(se)
-          def apply(se : (S, Exp)) = {
-            val (s, e) = se
-            val s1 = s.pushExp(e)
-            val r = ev.evalExp(s1, e)
-            r.map { re =>
-              val (s2, v) = re
-              val (s3, e2) = s2.popExp
-              assert(e2 eq e)
-              (s3, v)
-            }
-          }
-        }
-
-      val evalAction : (S, Action) --> SR =
-        new PartialFunction[(S, Action), SR] {
-          def isDefinedAt(sa : (S, Action)) = ev.evalAction.isDefinedAt(sa)
-          def apply(sa : (S, Action)) = {
-            val (s, a) = sa
-            val s1 = s.pushAction(a)
-            val sr = ev.evalAction(s1, a)
-            sr.map { s2 =>
-              val (s3, a2) = s2.popAction
-              assert(a2 eq a)
-              s3
-            }
-          }
-        }
-
-      val evalJump : (S, Jump) --> SR =
-        new PartialFunction[(S, Jump), SR] {
-          def isDefinedAt(sj : (S, Jump)) = ev.evalJump.isDefinedAt(sj)
-          def apply(sj : (S, Jump)) = {
-            val (s, j) = sj
-            val s1 = s.pushJump(j)
-            val sr = ev.evalJump(s1, j)
-            sr.map { s2 =>
-              val (s3, j2) = s2.popJump
-              assert(j2 eq j)
-              s3
-            }
-          }
-        }
-
-      val evalTransformation : (S, LocationDecl, Transformation) --> SR =
-        new PartialFunction[(S, LocationDecl, Transformation), SR] {
-          def isDefinedAt(slt : (S, LocationDecl, Transformation)) =
-            ev.evalTransformation.isDefinedAt(slt)
-          def apply(slt : (S, LocationDecl, Transformation)) = {
-            val (s, l, t) = slt
-            val s1 = s.pushTransformation(l, t)
-            val sr = ev.evalTransformation(s1, l, t)
-            sr.map { s2 =>
-              val (s3, l2, t2) = s2.popTransformation
-              assert((l2 eq l) && (t2 eq t))
-              s3
-            }
-          }
-        }
-
-      val evalGuard : (S, LocationDecl, Transformation, Exp) --> C =
-        new PartialFunction[(S, LocationDecl, Transformation, Exp), C] {
-          def isDefinedAt(slte : (S, LocationDecl, Transformation, Exp)) =
-            ev.evalGuard.isDefinedAt(slte)
-          def apply(slt : (S, LocationDecl, Transformation, Exp)) = {
-            val (s, l, t, e) = slt
-            val s1 = s.pushGuard(l, t, e)
-            val sr = ev.evalGuard(s1, l, t, e)
-            sr.map { sb =>
-              val (s2, b) = sb
-              val (s3, l2, t2, e2) = s2.popGuard
-              assert((l2 eq l) && (t2 eq t) && (e2 eq e))
-              (s3, b)
-            }
-          }
-        }
-
-      val transitions : (S, LocationDecl) --> Transitions[S] = ev.transitions
-    }
 }
