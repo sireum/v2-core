@@ -251,23 +251,26 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       re3 <- {
         val uri = sec.uriExtractor(re2v(re1))
         val sr = sec.actionExtCall(uri, args)
-        val s3 = args.productElement(0)
-        s3 match {
-          case s3 : ScheduleRecordingState[S] =>
-            s3.peekSchedule match {
-              case None =>
-                val n = sr.length
-                sr.zip(0 until n).map { sj =>
-                  val (s, j) = sj
-                  s.asInstanceOf[ScheduleRecordingState[_]].
-                    recordSchedule(uri, n, j).asInstanceOf[S]
-                }
-              case Some((sourceOpt, num, i)) =>
-                assert(sourceOpt == Some(uri) && num == sr.length)
-                val s4 = sr(i).asInstanceOf[ScheduleRecordingState[_]]
-                ivector(s4.popSchedule.asInstanceOf[S])
-            }
-          case _ => sr
+        val n = sr.length
+        if (n <= 1) sr
+        else {
+          val s3 = args.productElement(0)
+          s3 match {
+            case s3 : ScheduleRecordingState[S] =>
+              s3.peekSchedule match {
+                case None =>
+                  sr.zip(0 until n).map { sj =>
+                    val (s, j) = sj
+                    s.asInstanceOf[ScheduleRecordingState[_]].
+                      recordSchedule(uri, n, j).asInstanceOf[S]
+                  }
+                case Some((sourceOpt, num, i)) =>
+                  assert(sourceOpt == Some(uri) && num == sr.length)
+                  val s4 = sr(i).asInstanceOf[ScheduleRecordingState[_]]
+                  ivector(s4.popSchedule.asInstanceOf[S])
+              }
+            case _ => sr
+          }
         }
       }
     } yield re3
@@ -623,24 +626,27 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
           case 0 =>
             val uri = sec.uriExtractor(re2v(re1))
             val r = sec.expExtCall(uri, args)
-            val s3 = args.productElement(0)
-            s3 match {
-              case s3 : ScheduleRecordingState[S] =>
-                s3.peekSchedule match {
-                  case None =>
-                    val n = r.length
-                    r.zip(0 until n).map { svj =>
-                      val ((s, v), j) = svj
-                      (s.asInstanceOf[ScheduleRecordingState[_]].
-                        recordSchedule(uri, n, j).asInstanceOf[S], v)
-                    }
-                  case Some((sourceOpt, num, i)) =>
-                    assert(sourceOpt == Some(uri) && num == r.length)
-                    val (s4, v) = r(i)
-                    ivector((s4.asInstanceOf[ScheduleRecordingState[_]].
-                      popSchedule.asInstanceOf[S], v))
-                }
-              case _ => r
+            val n = r.length
+            if (n <= 1) r
+            else {
+              val s3 = args.productElement(0)
+              s3 match {
+                case s3 : ScheduleRecordingState[S] =>
+                  s3.peekSchedule match {
+                    case None =>
+                      r.zip(0 until n).map { svj =>
+                        val ((s, v), j) = svj
+                        (s.asInstanceOf[ScheduleRecordingState[_]].
+                          recordSchedule(uri, n, j).asInstanceOf[S], v)
+                      }
+                    case Some((sourceOpt, num, i)) =>
+                      assert(sourceOpt == Some(uri) && num == r.length)
+                      val (s4, v) = r(i)
+                      ivector((s4.asInstanceOf[ScheduleRecordingState[_]].
+                        popSchedule.asInstanceOf[S], v))
+                  }
+                case _ => r
+              }
             }
         }
       } yield re3
