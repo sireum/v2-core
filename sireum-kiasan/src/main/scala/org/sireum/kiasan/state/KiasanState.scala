@@ -79,7 +79,7 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
 object BasicKiasanState {
   def apply() : BasicKiasanState =
     BasicKiasanState(imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty, imapEmpty,
-      imapEmpty, None, None, false, ivectorEmpty)
+      imapEmpty, None, None, false, ivectorEmpty, ivectorEmpty, 0)
 }
 
 /**
@@ -95,9 +95,11 @@ final case class BasicKiasanState(
   assertionViolation : Option[AssertionViolationInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
-  schedule : ISeq[(Option[Any], Int, Int)])
+  schedule : ISeq[(Option[Any], Int, Int)],
+  schedulePrefix : ISeq[(Option[Any], Int, Int)],
+  currentScheduleIndex : Int)
     extends State[BasicKiasanState] with KiasanStatePart[BasicKiasanState]
-    with ScheduleRecordingState[BasicKiasanState]
+    with ScheduleReplayState[BasicKiasanState]
     with BasicCallFrameState[BasicKiasanState] {
 
   import State._
@@ -130,9 +132,10 @@ final case class BasicKiasanState(
   def requestInconsistencyCheck(shouldCheck : Boolean) : BasicKiasanState =
     copy(inconsistencyCheckRequested = shouldCheck)
 
-  def peekSchedule = None
-
-  def popSchedule = this
+  def popSchedule =
+    if (currentScheduleIndex < schedulePrefix.length)
+      copy(currentScheduleIndex = currentScheduleIndex + 1)
+    else this
 
   def recordSchedule(numChoices : Int, chosen : Int) : BasicKiasanState =
     copy(schedule = ((None, numChoices, chosen)) +: schedule)
@@ -152,7 +155,7 @@ final case class BasicKiasanState(
 object KiasanStateWithHeap {
   def apply(heaps : ISeq[ISeq[HeapObject]]) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty,
-      imapEmpty, imapEmpty, None, None, false, ivectorEmpty)
+      imapEmpty, imapEmpty, None, None, false, ivectorEmpty, ivectorEmpty, 0)
 }
 
 /**
@@ -169,11 +172,13 @@ final case class KiasanStateWithHeap(
   assertionViolation : Option[AssertionViolationInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
-  schedule : ISeq[(Option[Any], Int, Int)])
+  schedule : ISeq[(Option[Any], Int, Int)],
+  schedulePrefix : ISeq[(Option[Any], Int, Int)],
+  currentScheduleIndex : Int)
     extends State[KiasanStateWithHeap]
     with KiasanStatePart[KiasanStateWithHeap]
     with HeapPart[KiasanStateWithHeap]
-    with ScheduleRecordingState[KiasanStateWithHeap]
+    with ScheduleReplayState[KiasanStateWithHeap]
     with BasicCallFrameState[KiasanStateWithHeap] {
 
   import State._
@@ -210,9 +215,10 @@ final case class KiasanStateWithHeap(
   def requestInconsistencyCheck(shouldCheck : Boolean) : KiasanStateWithHeap =
     copy(inconsistencyCheckRequested = shouldCheck)
 
-  def peekSchedule = None
-
-  def popSchedule = this
+  def popSchedule =
+    if (currentScheduleIndex < schedulePrefix.length)
+      copy(currentScheduleIndex = currentScheduleIndex + 1)
+    else this
 
   def recordSchedule(source : Any, numChoices : Int, chosen : Int) : KiasanStateWithHeap =
     copy(schedule = ((Some(source), numChoices, chosen)) +: schedule)

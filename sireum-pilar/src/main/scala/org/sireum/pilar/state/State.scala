@@ -290,6 +290,19 @@ trait ScheduleRecordingState[S <: ScheduleRecordingState[S]] {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait ScheduleReplayState[S <: ScheduleReplayState[S]]
+    extends ScheduleRecordingState[S] {
+  def schedulePrefix : ISeq[(Option[Any], Int, Int)]
+  def currentScheduleIndex : Int
+  def peekSchedule =
+    if (currentScheduleIndex < schedulePrefix.length)
+      Some(schedulePrefix(currentScheduleIndex))
+    else None
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 object BasicCallFrame {
   def apply(procLoc : (ResourceUri, Option[ResourceUri], Int)) : BasicCallFrame =
     BasicCallFrame(procLoc._1, procLoc._2, procLoc._3, imapEmpty, None, None,
