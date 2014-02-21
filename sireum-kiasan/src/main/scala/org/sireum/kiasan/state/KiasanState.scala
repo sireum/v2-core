@@ -97,7 +97,8 @@ final case class BasicKiasanState(
   inconsistencyCheckRequested : Boolean,
   schedule : ISeq[(Option[Any], Int, Int)])
     extends State[BasicKiasanState] with KiasanStatePart[BasicKiasanState]
-    with ScheduleRecordingState[BasicKiasanState] {
+    with ScheduleRecordingState[BasicKiasanState]
+    with BasicCallFrameState[BasicKiasanState] {
 
   import State._
 
@@ -116,54 +117,31 @@ final case class BasicKiasanState(
   }
 
   def raiseException(exceptionValue : Value, li : LocationInfo) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))),
-      inconsistencyCheckRequested, schedule)
+    copy(raisedException = Some(BasicExceptionInfo(exceptionValue, ivector(li))))
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, Some(avi), raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(assertionViolation = Some(avi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(globalStore = globalStore, closureStoreStack = closureStoreStack,
+      callStack = callStack, properties = properties)
 
   def requestInconsistencyCheck(shouldCheck : Boolean) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
-      counters, properties, assertionViolation, raisedException,
-      shouldCheck, schedule)
+    copy(inconsistencyCheckRequested = shouldCheck)
 
   def peekSchedule = None
-  
+
   def popSchedule = this
 
   def recordSchedule(numChoices : Int, chosen : Int) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
-      counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((None, numChoices, chosen)) +: schedule)
+    copy(schedule = ((None, numChoices, chosen)) +: schedule)
 
   def recordSchedule(source : Any, numChoices : Int, chosen : Int) : BasicKiasanState =
-    BasicKiasanState(globalStore, closureStoreStack, callStack, pathConditions,
-      counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((Some(source), numChoices, chosen)) +: schedule)
-
-  protected def make(procedure : ResourceUri,
-                     locationUri : Option[ResourceUri], locationIndex : Int,
-                     store : Store, result : Option[Value],
-                     returnLocationUri : Option[ResourceUri],
-                     returnLocationIndex : Int,
-                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
-    BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUris)
+    copy(schedule = ((Some(source), numChoices, chosen)) +: schedule)
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
-    BasicKiasanState(globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(pathConditions = pathConditions, counters = counters)
 
   def self = this
 }
@@ -195,16 +173,14 @@ final case class KiasanStateWithHeap(
     extends State[KiasanStateWithHeap]
     with KiasanStatePart[KiasanStateWithHeap]
     with HeapPart[KiasanStateWithHeap]
-    with ScheduleRecordingState[KiasanStateWithHeap] {
+    with ScheduleRecordingState[KiasanStateWithHeap]
+    with BasicCallFrameState[KiasanStateWithHeap] {
 
   import State._
   import Heap._
 
   def make(hid : HeapId, objects : ISeq[HeapObject]) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps.updated(hid, objects), globalStore,
-      closureStoreStack, callStack, pathConditions, counters, properties,
-      assertionViolation, raisedException, inconsistencyCheckRequested,
-      schedule)
+    copy(heaps = heaps.updated(hid, objects))
 
   def init : KiasanStateWithHeap = {
     val newCounters : MMap[ResourceUri, Int] = mmapEmpty
@@ -221,54 +197,31 @@ final case class KiasanStateWithHeap(
   }
 
   def raiseException(exceptionValue : Value, li : LocationInfo) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))),
-      inconsistencyCheckRequested, schedule)
+    copy(raisedException = Some(BasicExceptionInfo(exceptionValue, ivector(li))))
 
   def assertionViolation(avi : AssertionViolationInfo) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, Some(avi), raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(assertionViolation = Some(avi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(globalStore = globalStore, closureStoreStack = closureStoreStack,
+      callStack = callStack, properties = properties)
 
   def requestInconsistencyCheck(shouldCheck : Boolean) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation,
-      raisedException, shouldCheck, schedule)
+    copy(inconsistencyCheckRequested = shouldCheck)
 
   def peekSchedule = None
-  
+
   def popSchedule = this
 
   def recordSchedule(source : Any, numChoices : Int, chosen : Int) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((Some(source), numChoices, chosen)) +: schedule)
+    copy(schedule = ((Some(source), numChoices, chosen)) +: schedule)
 
   def recordSchedule(numChoices : Int, chosen : Int) : KiasanStateWithHeap =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, ((None, numChoices, chosen)) +: schedule)
-
-  protected def make(procedure : ResourceUri,
-                     locationUri : Option[ResourceUri], locationIndex : Int,
-                     store : Store, result : Option[Value],
-                     returnLocationUri : Option[ResourceUri],
-                     returnLocationIndex : Int,
-                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
-    BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUris)
+    copy(schedule = ((None, numChoices, chosen)) +: schedule)
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) =
-    KiasanStateWithHeap(heaps, globalStore, closureStoreStack, callStack,
-      pathConditions, counters, properties, assertionViolation, raisedException,
-      inconsistencyCheckRequested, schedule)
+    copy(pathConditions = pathConditions, counters = counters)
 
   def self = this
 }

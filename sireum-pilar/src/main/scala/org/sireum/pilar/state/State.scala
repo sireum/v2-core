@@ -324,11 +324,25 @@ final case class BasicCallFrame(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait BasicCallFrameState[S <: State[S]] extends State[S] {
+  protected def make(procedure : ResourceUri,
+                     locationUri : Option[ResourceUri], locationIndex : Int,
+                     store : State.Store, result : Option[Value],
+                     returnLocationUri : Option[ResourceUri],
+                     returnLocationIndex : Int,
+                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
+    BasicCallFrame(procedure, locationUri, locationIndex, store, result,
+      returnLocationUri, returnLocationIndex, returnVariableUris)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class BasicExceptionInfo(
   exceptionValue : Value, locationInfos : ISeq[LocationInfo])
     extends ExceptionInfo {
   def addLocationInfo(li : LocationInfo) =
-    BasicExceptionInfo(exceptionValue, li +: locationInfos)
+    copy(locationInfos = li +: locationInfos)
 }
 
 /**
@@ -349,31 +363,20 @@ final case class BasicState(
   properties : Property.ImmutableProperties,
   assertionViolation : Option[AssertionViolationInfo],
   raisedException : Option[BasicExceptionInfo])
-    extends State[BasicState] {
+    extends State[BasicState] with BasicCallFrameState[BasicState] {
 
   import State._
 
   def raiseException(exceptionValue : Value, li : LocationInfo) : BasicState =
-    BasicState(globalStore, closureStoreStack, callStack, properties,
-      assertionViolation, Some(BasicExceptionInfo(exceptionValue, ivector(li))))
+    copy(raisedException = Some(BasicExceptionInfo(exceptionValue, ivector(li))))
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicState =
-    BasicState(globalStore, closureStoreStack, callStack, properties,
-      Some(avi), raisedException)
+    copy(assertionViolation = Some(avi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicState =
-    BasicState(globalStore, closureStoreStack, callStack, properties,
-      assertionViolation, raisedException)
-
-  protected def make(procedure : ResourceUri,
-                     locationUri : Option[ResourceUri], locationIndex : Int,
-                     store : Store, result : Option[Value],
-                     returnLocationUri : Option[ResourceUri],
-                     returnLocationIndex : Int,
-                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
-    BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUris)
+    copy(globalStore = globalStore, closureStoreStack = closureStoreStack,
+      callStack = callStack, properties = properties)
 
   def self = this
 }
@@ -419,7 +422,8 @@ final case class BasicMultiThreadState(
   schedule : ISeq[(Option[Any], Int, Int)])
     extends State[BasicMultiThreadState]
     with MultiThreadState[BasicMultiThreadState]
-    with ScheduleRecordingState[BasicMultiThreadState] {
+    with ScheduleRecordingState[BasicMultiThreadState]
+    with BasicCallFrameState[BasicMultiThreadState] {
 
   import State._
 
@@ -443,7 +447,7 @@ final case class BasicMultiThreadState(
       Thread(t.closureStoreStack, t.callStack,
         t.assertionViolation,
         Some(BasicExceptionInfo(exceptionValue, ivector(li)))))
-    BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
+    copy(threads = newThreads)
   }
 
   def raisedException : Option[BasicExceptionInfo] = thread.raisedException
@@ -457,18 +461,16 @@ final case class BasicMultiThreadState(
       Thread(t.closureStoreStack, t.callStack, Some(avi), t.raisedException))
     BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
   }
-  
+
   def peekSchedule = None
-  
+
   def popSchedule = this
 
   def recordSchedule(source : Any, numChoices : Int, chosen : Int) : BasicMultiThreadState =
-    BasicMultiThreadState(globalStore, currentThreadId, threads,
-      properties, ((Some(source), numChoices, chosen)) +: schedule)
+    copy(schedule = ((Some(source), numChoices, chosen)) +: schedule)
 
   def recordSchedule(numChoices : Int, chosen : Int) : BasicMultiThreadState =
-    BasicMultiThreadState(globalStore, currentThreadId, threads,
-      properties, ((None, numChoices, chosen)) +: schedule)
+    copy(schedule = ((None, numChoices, chosen)) +: schedule)
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicMultiThreadState = {
@@ -476,20 +478,11 @@ final case class BasicMultiThreadState(
     val tid = currentThreadId.get
     val newThreads = threads + (tid ->
       Thread(closureStoreStack, callStack, t.assertionViolation, t.raisedException))
-    BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
+    copy(threads = newThreads)
   }
 
   def make(tid : Option[ThreadId]) : BasicMultiThreadState =
-    BasicMultiThreadState(globalStore, tid, threads, properties, schedule)
-
-  protected def make(procedure : ResourceUri,
-                     locationUri : Option[ResourceUri], locationIndex : Int,
-                     store : Store, result : Option[Value],
-                     returnLocationUri : Option[ResourceUri],
-                     returnLocationIndex : Int,
-                     returnVariableUris : ISeq[ResourceUri]) : CallFrame =
-    BasicCallFrame(procedure, locationUri, locationIndex, store, result,
-      returnLocationUri, returnLocationIndex, returnVariableUris)
+    copy(currentThreadId = tid)
 
   def self = this
 }
