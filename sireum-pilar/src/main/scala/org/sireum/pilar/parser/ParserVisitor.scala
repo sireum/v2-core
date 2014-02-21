@@ -46,7 +46,7 @@ protected final class ParserVisitorContext {
   def pushResult(r : PilarAstNode, t : Tree) : Unit = {
     assert(noResult)
 
-    import LineColumnLocation._
+    import LineColumnLocation.At._
     pushResult(r at (lineOffset + t.getLine, t.getCharPositionInLine))
   }
 
@@ -81,7 +81,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     x match {
       case e : Exp =>
         val r = ExpMultiArrayFragment(e)
-        import LineColumnLocation._
+        import LineColumnLocation.At._
         r.line = e.line
         r.column = e.column
         r
@@ -2552,13 +2552,13 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
   def getNameUser(id : Id) : NameUser = {
     val result = NameUser(id.id)
-    import LineColumnLocation._
+    import LineColumnLocation.At._
     result at (id.line, id.column)
   }
 
   def getNameDefinition(id : Id) : NameDefinition = {
     val result = NameDefinition(id.id)
-    import FileLineColumnLocation._
+    import FileLineColumnLocation.At._
     import PropertyAdapter._
     result at (context.source, id.line, id.column)
   }
