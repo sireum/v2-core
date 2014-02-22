@@ -144,22 +144,28 @@ object Evaluator {
     }
   }
 
-  def combine[S, R, C, SR](ev : Evaluator[S, R, C, SR], evxs : EvaluatorExt[S, R, C, SR]*) =
+  def combineExt[S, R, C, SR](ev : Evaluator[S, R, C, SR], evxs : EvaluatorExt[S, R, C, SR]*) =
     if (evxs.length < 1) ev
     else
       new Evaluator[S, R, C, SR] {
-        var mainEvaluator = ev
+        var mainEvaluator : Evaluator[S, R, C, SR] = this
         def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
           mainEvaluator = eval
           ev.setMainEvaluator(eval)
         }
+        val ee = ev.mainEvaluator.evalExp
+        val ea = ev.mainEvaluator.evalAction
+        val ej = ev.mainEvaluator.evalJump
+        val et = ev.mainEvaluator.evalTransformation
+        val eg = ev.mainEvaluator.evalGuard
+        val t = ev.mainEvaluator.transitions
+        ev.setMainEvaluator(this)
 
         val evalExp = new PartialFunction[(S, Exp), R] {
           val eebs = evxs.flatMap(_.evalExpBefore)
           val eeas = evxs.flatMap(_.evalExpAfter)
-          def isDefinedAt(o : (S, Exp)) = ev.evalExp.isDefinedAt(o)
+          def isDefinedAt(o : (S, Exp)) = ee.isDefinedAt(o)
           def apply(o : (S, Exp)) : R = {
-            val ee = ev.evalExp
             val (s, e) = o
             var sNext = s
             for (eeb <- eebs) {
@@ -176,9 +182,8 @@ object Evaluator {
         val evalAction = new PartialFunction[(S, Action), SR] {
           val eabs = evxs.flatMap(_.evalActionBefore)
           val eaas = evxs.flatMap(_.evalActionAfter)
-          def isDefinedAt(o : (S, Action)) = ev.evalAction.isDefinedAt(o)
+          def isDefinedAt(o : (S, Action)) = ea.isDefinedAt(o)
           def apply(o : (S, Action)) : SR = {
-            val ea = ev.evalAction
             val (s, a) = o
             var sNext = s
             for (eab <- eabs) {
@@ -195,9 +200,8 @@ object Evaluator {
         val evalJump = new PartialFunction[(S, Jump), SR] {
           val ejbs = evxs.flatMap(_.evalJumpBefore)
           val ejas = evxs.flatMap(_.evalJumpAfter)
-          def isDefinedAt(o : (S, Jump)) = ev.evalJump.isDefinedAt(o)
+          def isDefinedAt(o : (S, Jump)) = ej.isDefinedAt(o)
           def apply(o : (S, Jump)) : SR = {
-            val ej = ev.evalJump
             val (s, j) = o
             var sNext = s
             for (ejb <- ejbs) {
@@ -214,9 +218,8 @@ object Evaluator {
         val evalTransformation = new PartialFunction[(S, LocationDecl, Transformation), SR] {
           val etbs = evxs.flatMap(_.evalTransformationBefore)
           val etas = evxs.flatMap(_.evalTransformationAfter)
-          def isDefinedAt(o : (S, LocationDecl, Transformation)) = ev.evalTransformation.isDefinedAt(o)
+          def isDefinedAt(o : (S, LocationDecl, Transformation)) = et.isDefinedAt(o)
           def apply(o : (S, LocationDecl, Transformation)) : SR = {
-            val et = ev.evalTransformation
             val (s, l, t) = o
             var sNext = s
             for (etb <- etbs) {
@@ -233,9 +236,8 @@ object Evaluator {
         val evalGuard = new PartialFunction[(S, LocationDecl, Transformation, Exp), C] {
           val egbs = evxs.flatMap(_.evalGuardBefore)
           val egas = evxs.flatMap(_.evalGuardAfter)
-          def isDefinedAt(o : (S, LocationDecl, Transformation, Exp)) = ev.evalGuard.isDefinedAt(o)
+          def isDefinedAt(o : (S, LocationDecl, Transformation, Exp)) = eg.isDefinedAt(o)
           def apply(o : (S, LocationDecl, Transformation, Exp)) : C = {
-            val eg = ev.evalGuard
             val (s, l, t, e) = o
             var sNext = s
             for (egb <- egbs) {
@@ -252,9 +254,8 @@ object Evaluator {
         val transitions = new PartialFunction[(S, LocationDecl), Transitions[S]] {
           val tbs = evxs.flatMap(_.transitionsBefore)
           val tas = evxs.flatMap(_.transitionsAfter)
-          def isDefinedAt(o : (S, LocationDecl)) = ev.transitions.isDefinedAt(o)
+          def isDefinedAt(o : (S, LocationDecl)) = t.isDefinedAt(o)
           def apply(o : (S, LocationDecl)) : Transitions[S] = {
-            val t = ev.transitions
             val (s, l) = o
             var sNext = s
             for (tb <- tbs) {
@@ -289,17 +290,19 @@ object Evaluator {
 
       import PartialFunctionUtil._
 
-      val evalExp = ev.evalExp
-      val evalAction = ev.evalAction
-      val evalJump = ev.evalJump
-      val evalTransformation = ev.evalTransformation
-      val evalGuard = ev.evalGuard
-      val transitions = ev.transitions
+      val evalExp = _ev.mainEvaluator.evalExp
+      val evalAction = _ev.mainEvaluator.evalAction
+      val evalJump = _ev.mainEvaluator.evalJump
+      val evalTransformation = _ev.mainEvaluator.evalTransformation
+      val evalGuard = _ev.mainEvaluator.evalGuard
+      val transitions = _ev.mainEvaluator.transitions
+
+      _ev.setMainEvaluator(this)
     }
 
   def context[S <: EvaluationContextProvider[S], V](
     ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule =
-    module(combine(ev, new EvaluationContextEvaluatorExt[S, V]))
+    module(combineExt(ev, new EvaluationContextEvaluatorExt[S, V]))
 }
 
 /**
