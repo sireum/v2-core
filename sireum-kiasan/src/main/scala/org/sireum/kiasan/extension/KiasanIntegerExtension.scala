@@ -118,8 +118,8 @@ object KiasanIntegerExtension extends ExtensionCompanion {
       import KiasanState.PathCondition._
       val w = KonkritIntegerExtension.CI(SireumNumber(0))
       ivector(
-        (s +? BinaryExp("==", v, w), true),
-        (s +? BinaryExp("!=", v, w), false))
+        (s +? BinaryExp("!=", v, w), true),
+        (s +? BinaryExp("==", v, w), false))
   }
 
   val comp =
