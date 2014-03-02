@@ -80,12 +80,12 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   val e2maf = { x : Any =>
     x match {
       case e : Exp =>
-        val r = ExpMultiArrayFragment(e)
+        val r = ExpMultiSeqFragment(e)
         import LineColumnLocation.At._
         r.line = e.line
         r.column = e.column
         r
-      case maf : MultiArrayFragment =>
+      case maf : MultiSeqFragment =>
         maf
     }
   }
@@ -317,9 +317,9 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   override def visitARRAY_FRAGMENT(t : Tree) : Boolean = {
     val result =
       if (!context.noResult)
-        ArrayTypeSpec(context.popResult[TypeSpec])
+        SeqTypeSpec(context.popResult[TypeSpec])
       else
-        ArrayTypeFragment()
+        SeqTypeFragment()
     context.pushResult(result, t)
     return false
   }
@@ -601,7 +601,7 @@ protected final class ParserVisitor(context : ParserVisitorContext)
         import LineColumnLocation._
         context.reporter.report(context.source, e.line, e.column,
           "Expecting a call expression instead of a general one")
-        CallExp(e, LiteralExp(LiteralType.NULL, null, "null"))
+        CallExp(e, TupleExp(ivector(LiteralExp(LiteralType.NULL, null, "null"))))
       }
     n += 1
 
@@ -967,7 +967,8 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val exp = getChild[FunExp](n, t)
     n += 1
 
-    val result = FunDecl(getNameDefinition(id), annList, exp.matchings)
+    val result = FunDecl(getNameDefinition(id), annList,
+      ivectorEmpty, ivectorEmpty, None, exp, exp.matchings)
     context.pushResult(result, t)
     return false
   }
@@ -1371,9 +1372,9 @@ protected final class ParserVisitor(context : ParserVisitorContext)
   override def visitLIST_FRAGMENT(t : Tree) : Boolean = {
     val result =
       if (!context.noResult)
-        ListTypeSpec(context.popResult[TypeSpec])
+        SeqTypeSpec(context.popResult[TypeSpec])
       else
-        ListTypeFragment()
+        SeqTypeFragment()
     context.pushResult(result, t)
     return false
   }
@@ -1551,9 +1552,9 @@ protected final class ParserVisitor(context : ParserVisitorContext)
 
     val result : PilarAstNode =
       if (!context.noResult)
-        MultiArrayTypeSpec(context.popResult[TypeSpec], rank)
+        MultiSeqTypeSpec(context.popResult[TypeSpec], rank)
       else
-        MultiArrayTypeFragment(rank)
+        MultiSeqTypeFragment(rank)
 
     context.pushResult(result, t)
 
@@ -1714,10 +1715,10 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     var n = 0
 
     // multi array fragments list: 0
-    val mafs = getChildrenBox[MultiArrayFragment](n, t, e2maf)
+    val mafs = getChildrenBox[MultiSeqFragment](n, t, e2maf)
     n += 1
 
-    val result = NewMultiArrayExp(mafs)
+    val result = NewMultiSeqExp(mafs)
     context.pushResult(result, t)
     return false
   }
@@ -1728,10 +1729,10 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     var n = 0
 
     // multi array fragments list: 0
-    var mafs = getChildrenBox[MultiArrayFragment](n, t, e2maf)
+    var mafs = getChildrenBox[MultiSeqFragment](n, t, e2maf)
     n += 1
 
-    val result = MultiArrayMultiArrayFragment(mafs)
+    val result = MultiSeqMultiSeqFragment(mafs)
     context.pushResult(result, t)
     return false
   }
@@ -2083,7 +2084,13 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val annList = getChildren[Annotation](n, t)
     n += 1
 
-    val result = StartAction(annList, getNameUser(name), count, arg)
+    val args =
+      arg match {
+        case Some(te : TupleExp) => te
+        case Some(e : Exp)       => TupleExp(ivector(e))
+        case None                => TupleExp(ivectorEmpty)
+      }
+    val result = StartAction(annList, getNameUser(name), count, Some(args))
     context.pushResult(result, t)
     return false
   }
@@ -2439,7 +2446,8 @@ protected final class ParserVisitor(context : ParserVisitorContext)
     val annList = getChildren[Annotation](n, t)
     n += 1
 
-    val result = TypeAliasDecl(getNameDefinition(id), annList, typeSpec)
+    val result = TypeAliasDecl(
+      getNameDefinition(id), annList, typeSpec)
     context.pushResult(result, t)
     return false
   }

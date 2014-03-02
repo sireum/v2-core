@@ -116,9 +116,9 @@ object AnnotableProperty {
  */
 sealed trait AnnotableProperty[T <: AnnotableProperty[T]]
     extends Product with Annotable[T] {
-  
+
   import AnnotableProperty._
-  
+
   def annotations : ISeq[Annotation] =
     this.getPropertyOrElse(annPropKey, ivectorEmpty)
 
@@ -144,9 +144,12 @@ sealed trait AnnotableProperty[T <: AnnotableProperty[T]]
 final case class Model(
   sourceURI : Option[FileResourceUri],
   annotations : ISeq[Annotation],
-  packages : ISeq[PackageDecl])
+  elements : ISeq[ModelElement])
     extends Annotable[Model] {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+
+  @Deprecated //
+  lazy val packages = elements.map { _.asInstanceOf[PackageDecl] }
 }
 
 /**
@@ -183,18 +186,27 @@ final case class ExpAnnotationParam(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+sealed trait ModelElement extends Annotable[ModelElement] {
+  def annotations : ISeq[Annotation]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Deprecated //
 final case class PackageDecl(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation],
   elements : ISeq[PackageElement])
-    extends Annotable[PackageDecl] {
+    extends ModelElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class PackageElement extends Annotable[PackageElement] {
+@Deprecated //
+sealed trait PackageElement extends Annotable[ModelElement] {
   def name : NameDefinition
   def annotations : ISeq[Annotation]
 }
@@ -206,7 +218,7 @@ final case class ConstDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[ConstElement])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -228,7 +240,7 @@ final case class EnumDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[EnumElement])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -245,11 +257,11 @@ final case class EnumElement(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class TypeAliasDecl(
+final case class TypeAliasDecl( // TODO: typeVarTuple
   name : NameDefinition,
   annotations : ISeq[Annotation],
   typeSpec : TypeSpec)
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -262,7 +274,7 @@ final case class RecordDecl(
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   extendsClauses : ISeq[ExtendClause],
   attributes : ISeq[AttributeDecl])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -284,6 +296,7 @@ final case class AttributeDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   typeSpec : Option[TypeSpec],
+  @Deprecated //
   binding : Option[NameUser])
     extends Annotable[AttributeDecl] {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
@@ -296,7 +309,7 @@ final case class GlobalVarDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   typeSpec : Option[TypeSpec])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -309,9 +322,10 @@ final case class ProcedureDecl(
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   params : ISeq[ParamDecl],
   returnType : Option[TypeSpec],
+  @Deprecated //
   varArity : Boolean,
   body : Body)
-    extends PackageElement {
+    extends ModelElement with PackageElement {
 
   def withoutBody =
     body match {
@@ -338,17 +352,19 @@ final case class ParamDecl(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 final case class VSetDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   elements : ISeq[VSetElement])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 final case class VSetElement(
   name : NameUser,
   annotations : ISeq[Annotation])
@@ -362,8 +378,13 @@ final case class VSetElement(
 final case class FunDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
+  typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
+  params : ISeq[ParamDecl],
+  returnType : Option[TypeSpec],
+  exp : Exp,
+  @Deprecated //
   matchings : ISeq[Matching])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -375,7 +396,7 @@ final case class ExtensionDecl(
   annotations : ISeq[Annotation],
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   elements : ISeq[ExtElement])
-    extends PackageElement {
+    extends ModelElement with PackageElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -396,6 +417,7 @@ final case class TypeExtensionDecl(
   name : NameDefinition,
   annotations : ISeq[Annotation],
   extendClauses : ISeq[ExtendClause],
+  @Deprecated //
   elements : ISeq[TypeExtElement])
     extends ExtElement {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
@@ -404,11 +426,13 @@ final case class TypeExtensionDecl(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 sealed abstract class TypeExtElement extends ExtElement
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 final case class TypeExtAttributeBinding(
   typeVars : ISeq[(NameDefinition, ISeq[Annotation])],
   name : NameDefinition,
@@ -421,6 +445,7 @@ final case class TypeExtAttributeBinding(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 sealed abstract class ParameterizedTypeExtElement extends TypeExtElement {
   def params : ISeq[ExtParam]
   def varArity : Boolean
@@ -471,7 +496,7 @@ final case class ProcedureExtensionDecl(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class ExtParam(
-  typeSpec : Option[TypeSpec],
+  typeSpec : Option[TypeSpec], // TODO: remove option
   name : Option[NameDefinition],
   annotations : ISeq[Annotation])
     extends Annotable[ExtParam] {
@@ -558,8 +583,7 @@ final case class JumpLocation(
 final case class EmptyLocation(
   name : Option[NameDefinition],
   annotations : ISeq[Annotation])
-    extends LocationDecl
- {
+    extends LocationDecl {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -577,7 +601,7 @@ final case class ComplexLocation(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class Transformation(
+final case class Transformation( // TODO: split to block and call
   annotations : ISeq[Annotation],
   guard : Option[Guard],
   actions : ISeq[Action],
@@ -605,7 +629,7 @@ final case class ExpGuard(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class ElseGuard(annotations : ISeq[Annotation])
-  extends Guard {
+    extends Guard {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
 
@@ -682,28 +706,11 @@ final case class ThrowAction(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed trait Assignment extends Command
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class AssignAction(
-  annotations : ISeq[Annotation],
-  lhs : Exp,
-  op : String,
-  rhs : Exp)
-    extends Action with Assignment {
-  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
-}
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class StartAction(
+final case class StartAction( // TODO: typeTuple
   annotations : ISeq[Annotation],
   name : NameUser,
   count : Option[Exp],
-  arg : Option[Exp])
+  arg : Option[Exp]) // TODO: TupleExp
     extends Action {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
@@ -714,6 +721,23 @@ final case class StartAction(
 final case class ExtCallAction(
   annotations : ISeq[Annotation],
   callExp : CallExp)
+    extends Action with Assignment {
+  def make(anns : ISeq[Annotation]) = copy(annotations = anns)
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+sealed trait Assignment extends Command
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class AssignAction(
+  annotations : ISeq[Annotation],
+  lhs : Exp,
+  op : String,
+  rhs : Exp)
     extends Action with Assignment {
   def make(anns : ISeq[Annotation]) = copy(annotations = anns)
 }
@@ -796,6 +820,7 @@ final case class SwitchCaseJump(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated //
 final case class CallJump(
   annotations : ISeq[Annotation],
   lhss : ISeq[NameExp],
@@ -827,6 +852,55 @@ sealed abstract class Exp extends AnnotableProperty[Exp]
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+final case class IndexingExp(
+  exp : Exp,
+  indices : ISeq[Exp])
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class AccessExp(
+  exp : Exp,
+  attributeName : NameUser)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class CallExp( // TODO: typeTuple
+  exp : Exp,
+  arg : Exp) // TODO: change to TupleExp
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class CastExp(
+  typeSpec : TypeSpec,
+  exp : Exp)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class UnaryExp(
+  op : UnaryOp,
+  exp : Exp)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class BinaryExp(
+  op : BinaryOp,
+  left : Exp,
+  right : Exp)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 final case class IfExp(
   ifThens : ISeq[IfThenExp],
   elseExp : Exp)
@@ -846,6 +920,7 @@ final case class IfThenExp(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated
 final case class SwitchExp(
   exp : Exp,
   cases : ISeq[SwitchCaseExp],
@@ -855,6 +930,7 @@ final case class SwitchExp(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+@Deprecated
 final case class SwitchCaseExp(
   cond : Exp,
   annotations : ISeq[Annotation],
@@ -866,114 +942,24 @@ final case class SwitchCaseExp(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class BinaryExp(
-  op : BinaryOp,
-  left : Exp,
-  right : Exp)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class UnaryExp(
-  op : UnaryOp,
-  exp : Exp)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class CastExp(
-  typeSpec : TypeSpec,
-  exp : Exp)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class IndexingExp(
-  exp : Exp,
-  indices : ISeq[Exp])
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class AccessExp(
-  exp : Exp,
-  attributeName : NameUser)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class CallExp(
-  exp : Exp,
-  arg : Exp)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class LiteralExp(
-  typ : LiteralType,
-  literal : Any,
-  text : String)
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class TupleExp(
-  exps : ISeq[Exp])
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class NewExp(
-  typeSpec : TypeSpec,
-  dims : ISeq[ISeq[Exp]],
-  typeFragments : ISeq[TypeFragment])
-    extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-sealed abstract class TypeFragment extends PilarAstNode
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class ArrayTypeFragment() extends TypeFragment
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class ListTypeFragment() extends TypeFragment
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class MultiArrayTypeFragment(rank : Int)
-  extends TypeFragment
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class SetTypeFragment() extends TypeFragment
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
 final case class NameExp(name : NameUser)
   extends Exp
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class TypeExp(typeSpec : TypeSpec)
-  extends Exp
+final case class LetExp(
+  bindings : ISeq[LetBinding],
+  exp : Exp)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class LetBinding(
+  names : ISeq[NameDefinition],
+  exp : Exp)
+    extends PilarAstNode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -992,26 +978,52 @@ final case class NewListExp(elements : ISeq[Exp])
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class NewMultiArrayExp(elements : ISeq[MultiArrayFragment])
+final case class NewSetExp(elements : ISeq[Exp])
   extends Exp
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-sealed abstract class MultiArrayFragment
+final case class NewFunctionExp(elements : ISeq[(Exp, Exp)])
+  extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class NewMultiSeqExp(elements : ISeq[MultiSeqFragment])
+  extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+sealed abstract class MultiSeqFragment
   extends PilarAstNode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class ExpMultiArrayFragment(exp : Exp)
-  extends MultiArrayFragment
+final case class ExpMultiSeqFragment(exp : Exp)
+  extends MultiSeqFragment
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class MultiArrayMultiArrayFragment(fragments : ISeq[MultiArrayFragment])
-  extends MultiArrayFragment
+final case class MultiSeqMultiSeqFragment(fragments : ISeq[MultiSeqFragment])
+  extends MultiSeqFragment
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class FunExp(matchings : ISeq[Matching])
+  extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class Matching(
+  params : ISeq[ParamDecl],
+  exp : Exp)
+    extends PilarAstNode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -1032,44 +1044,66 @@ final case class AttributeInit(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class NewSetExp(elements : ISeq[Exp])
-  extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class NewFunctionExp(elements : ISeq[(Exp, Exp)])
-  extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class FunExp(matchings : ISeq[Matching])
-  extends Exp
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class Matching(
-  params : ISeq[ParamDecl],
-  exp : Exp)
-    extends PilarAstNode
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class LetExp(
-  bindings : ISeq[LetBinding],
-  exp : Exp)
+final case class NewExp(
+  typeSpec : TypeSpec,
+  dims : ISeq[ISeq[Exp]],
+  typeFragments : ISeq[TypeFragment])
     extends Exp
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class LetBinding(
-  names : ISeq[NameDefinition],
-  exp : Exp)
-    extends PilarAstNode
+final case class TypeExp(typeSpec : TypeSpec)
+  extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class LiteralExp(
+  typ : LiteralType,
+  literal : Any,
+  text : String)
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class TupleExp(
+  exps : ISeq[Exp])
+    extends Exp
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+sealed abstract class TypeFragment extends PilarAstNode
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class SeqTypeFragment() extends TypeFragment
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class StaticSeqTypeFragment(exp : Exp)
+  extends TypeFragment
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class MultiSeqTypeFragment(rank : Int)
+  extends TypeFragment
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class StaticMultiSeqTypeFragment(sizes : ISeq[Exp])
+  extends TypeFragment
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class SetTypeFragment() extends TypeFragment
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -1097,7 +1131,26 @@ sealed abstract class TypeSpec extends AnnotableProperty[TypeSpec]
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class ProcedureTypeSpec(
+final case class NamedTypeSpec(
+  name : NameUser,
+  typeArgs : ISeq[TypeSpec])
+    extends TypeSpec
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Deprecated //
+final case class NamedExtTypeSpec(
+  extName : String,
+  name : NameUser,
+  typeArgs : ISeq[TypeSpec])
+    extends TypeSpec
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+final case class FunTypeSpec(
+  @Deprecated
   varArity : Boolean,
   typeParams : ISeq[TypeParam],
   returnType : Option[TypeSpec])
@@ -1106,7 +1159,8 @@ final case class ProcedureTypeSpec(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class FunTypeSpec(
+final case class ProcedureTypeSpec(
+  @Deprecated
   varArity : Boolean,
   typeParams : ISeq[TypeParam],
   returnType : Option[TypeSpec])
@@ -1152,19 +1206,19 @@ final case class SetTypeSpec(elementType : TypeSpec)
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class ArrayTypeSpec(elementType : TypeSpec)
+final case class SeqTypeSpec(elementType : TypeSpec)
   extends TypeSpec
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class ListTypeSpec(elementType : TypeSpec)
+final case class StaticSeqTypeSpec(elementType : TypeSpec, exp : Exp)
   extends TypeSpec
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-final case class MultiArrayTypeSpec(
+final case class MultiSeqTypeSpec(
   elementType : TypeSpec,
   rank : Int)
     extends TypeSpec
@@ -1172,22 +1226,15 @@ final case class MultiArrayTypeSpec(
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+final case class StaticMultiSeqTypeSpec(
+  elementType : TypeSpec,
+  sizes : ISeq[Exp])
+    extends TypeSpec
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Deprecated
 final case class TypeVarSpec(name : NameUser)
   extends TypeSpec
 
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class NamedTypeSpec(
-  name : NameUser,
-  typeArgs : ISeq[TypeSpec])
-    extends TypeSpec
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-final case class NamedExtTypeSpec(
-  extName : String,
-  name : NameUser,
-  typeArgs : ISeq[TypeSpec])
-    extends TypeSpec
