@@ -8,6 +8,8 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.pilar.parser
 
+import org.antlr.v4.runtime.tree.ParseTree
+
 import org.sireum.pilar.ast._
 import org.sireum.util._
 import Antlr4PilarParser._
@@ -15,8 +17,19 @@ import Antlr4PilarParser._
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+object Antlr4PilarParserVisitor {
+  def apply[T <: PilarAstNode](
+    src : Option[FileResourceUri], t : ParseTree,
+    reporter : Parser.ErrorReporter, storeLoc : Boolean) =
+    new Antlr4PilarParserVisitor(reporter, src, storeLoc).
+      visit(t).asInstanceOf[T]
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 class Antlr4PilarParserVisitor(
-  reporter : PilarParser.ErrorReporter,
+  reporter : Parser.ErrorReporter,
   src : Option[FileResourceUri], storeLoc : Boolean)
     extends Antlr4PilarBaseVisitor[PilarAstNode]
     with Antlr4.Visitor[PilarAstNode] {
@@ -58,7 +71,7 @@ class Antlr4PilarParserVisitor(
           case me : GlobalVarsDeclarationContext =>
             me.globalVarDeclaration.toVector.flatMap(globalVarDeclaration)
           case me =>
-            ivector(getChild(me))
+            ivector(getChild[ModelElement](me))
         }
       }
     ) at ctx
@@ -66,6 +79,7 @@ class Antlr4PilarParserVisitor(
   override def visitAnnotation(ctx : AnnotationContext) =
     Annotation(nameUser(ctx.ID),
       ctx.annotationParams match {
+        case null => ivectorEmpty
         case ap : AnnotationParamsAContext =>
           getChildren(ap.annotationParam)
         case ap : AnnotationParamsEContext =>
@@ -197,7 +211,7 @@ class Antlr4PilarParserVisitor(
 
   override def visitCallTransformation(ctx : CallTransformationContext) = {
     val op = ctx.AssignOP
-    if (op.getText != ":=") {
+    if (op != null && op.getText != ":=") {
       val line = op.getSymbol.getLine
       val column = op.getSymbol.getCharPositionInLine
       reporter.report(source,
@@ -246,7 +260,7 @@ class Antlr4PilarParserVisitor(
 
   override def visitAssign(ctx : AssignContext) = {
     val rhs =
-      getChildren(ctx.rhs) match {
+      getChildren[Exp, RhsContext](ctx.rhs) match {
         case Seq(e : Exp)   => e
         case es : ISeq[Exp] => TupleExp(es)
       }
