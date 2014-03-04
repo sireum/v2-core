@@ -31,53 +31,6 @@ object Parser {
   final val JUMP_TYPE = ru.typeOf[Jump]
   final val EXP_TYPE = ru.typeOf[Exp]
 
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  sealed trait Result[T <: PilarAstNode] {
-    def ast : T
-  }
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class ModelResult(ast : Model) extends Result[Model]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class AnnotationResult(ast : Annotation) extends Result[Annotation]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class BodyResult(ast : ImplementedBody) extends Result[ImplementedBody]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class LocationResult(ast : LocationDecl) extends Result[LocationDecl]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class TransformationResult(ast : Transformation) extends Result[Transformation]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class ActionResult(ast : Action) extends Result[Action]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class JumpResult(ast : Jump) extends Result[Jump]
-
-  /**
-   * @author <a href="mailto:robby@k-state.edu">Robby</a>
-   */
-  final case class ExpResult(ast : Exp) extends Result[Exp]
-
   def tokenize(reader : java.io.Reader) = {
     import scala.collection.JavaConversions._
     val input = new ANTLRInputStream(reader)
@@ -102,10 +55,17 @@ object Parser {
     }
   }
 
+  def parseWithErrorAsString[T <: PilarAstNode : ru.TypeTag](
+    source : Either[String, FileResourceUri]) = {
+    val r = new StringErrorReporter
+    val result = parse[T](source, r, true)
+    (result, r.errorAsString)
+  }
+
   def parse[T <: PilarAstNode : ru.TypeTag](
     source : Either[String, ResourceUri],
     reporter : ErrorReporter,
-    storeLoc : Boolean) : Option[Result[T]] = {
+    storeLoc : Boolean) : Option[T] = {
     import java.io._
     import java.net._
     val reader = source match {
@@ -119,7 +79,7 @@ object Parser {
     source : Either[String, ResourceUri],
     reader : java.io.Reader,
     reporter : ErrorReporter,
-    storeLoc : Boolean) : Option[Result[T]] = try {
+    storeLoc : Boolean) : Option[T] = try {
     val text = FileUtil.readFile(reader)
     val sr = new java.io.StringReader(text)
     try {
@@ -148,52 +108,52 @@ object Parser {
         case t if t =:= MODEL_TYPE =>
           val tree = parser.modelFile
           if (success)
-            Some(ModelResult(Antlr4PilarParserVisitor[Model](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Model](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= ANNOTATION_TYPE =>
           val tree = parser.annotationFile
           if (success)
-            Some(AnnotationResult(Antlr4PilarParserVisitor[Annotation](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Annotation](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= BODY_TYPE =>
           val tree = parser.bodyFile
           if (success)
-            Some(BodyResult(Antlr4PilarParserVisitor[ImplementedBody](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[ImplementedBody](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= LOCATION_TYPE =>
           val tree = parser.locationFile
           if (success)
-            Some(LocationResult(Antlr4PilarParserVisitor[LocationDecl](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[LocationDecl](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= TRANSFORMATION_TYPE =>
           val tree = parser.transformationFile
           if (success)
-            Some(TransformationResult(Antlr4PilarParserVisitor[Transformation](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Transformation](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= ACTION_TYPE =>
           val tree = parser.actionFile
           if (success)
-            Some(ActionResult(Antlr4PilarParserVisitor[Action](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Action](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= JUMP_TYPE =>
           val tree = parser.jumpFile
           if (success)
-            Some(JumpResult(Antlr4PilarParserVisitor[Jump](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Jump](
+              src, tree, reporter, storeLoc))
           else None
         case t if t =:= EXP_TYPE =>
           val tree = parser.expFile
           if (success)
-            Some(ExpResult(Antlr4PilarParserVisitor[Exp](
-              src, tree, reporter, storeLoc)))
+            Some(Antlr4PilarParserVisitor[Exp](
+              src, tree, reporter, storeLoc))
           else None
-      }).asInstanceOf[Option[Result[T]]]
+      }).asInstanceOf[Option[T]]
     } finally sr.close
   } finally reader.close
 
