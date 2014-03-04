@@ -264,9 +264,13 @@ class Antlr4PilarParserVisitor(
         case Seq(e : Exp)   => e
         case es : ISeq[Exp] => TupleExp(es)
       }
+    val lhs =
+      ctx.lhss.lhs.toVector.map(visitLhs) match {
+        case Seq(e : Exp)   => e
+        case es : ISeq[Exp] => TupleExp(es) at ctx.lhss
+      }
     AssignAction(getChildren(ctx.annotation),
-      TupleExp(ctx.lhss.lhs.toVector.map(visitLhs)) at ctx.lhss,
-      ctx.AssignOP.getText, rhs) at ctx
+      lhs, ctx.AssignOP.getText, rhs) at ctx
   }
 
   override def visitLhs(ctx : LhsContext) = {
@@ -597,7 +601,7 @@ class Antlr4PilarParserVisitor(
       temp = temp.substring(0, temp.length() - 1)
       choice = 0
     } else if (temp.endsWith("I")) {
-      temp = temp.substring(0, temp.length() - 2)
+      temp = temp.substring(0, temp.length() - 1)
       choice = 1
     } else {
       choice = 2
