@@ -272,6 +272,8 @@ object H {
       with FunMiner with GlobalVarMiner with ProcedureMiner with RecordMiner
       with TypeAliasMiner with VsetMiner {
 
+    override val locPropKey = Location.locPropKey
+
     val packageElementMiner =
       Visitor.build(Visitor.map(
         ivector(packageMiner, constMiner, enumMiner,
@@ -284,6 +286,8 @@ object H {
       extends ProcedureSymbolTableProducer with ProcedureSymbolMiner
       with ProcedureSymbolResolver with JumpResolver {
     override def dependency = EMPTY_DEPENDENCY
+
+    override val locPropKey = Location.locPropKey
 
     def tables : ProcedureSymbolTableData = pstp.tables
 
