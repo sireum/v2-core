@@ -19,6 +19,7 @@ import org.sireum.test.kiasan.eval.action.KiasanActionEvaluatorTest
 import org.sireum.test.konkrit.eval.transformation.KonkritTransformationEvaluatorTest
 import org.sireum.test.kiasan.eval.exp.KiasanScalarExpEvaluatorTest
 import org.sireum.test.pilar.parser.ParserTest
+import org.sireum.test.pilar.parser.ParserV2Test
 import org.sireum.test.alir.AlirIntraProceduralTest
 import org.sireum.test.konkrit.eval.location.KonkritLocationEvaluatorTest
 import org.junit.runners.Suite
@@ -42,6 +43,7 @@ import org.sireum.test.extension.composite.eval.action.ValCompositeActionEvaluat
   classOf[KonkritTests],
   classOf[ExtensionTests],
   classOf[ParserTest],
+  classOf[ParserV2Test],
   classOf[SymbolResolverTest]
 ))
 class SireumRegression {}

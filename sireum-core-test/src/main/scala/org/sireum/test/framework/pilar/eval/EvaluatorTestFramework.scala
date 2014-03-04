@@ -146,10 +146,10 @@ trait ExpEvaluatorTestFramework[S <: State[S], Re, R] extends EvaluatorTestFrame
       src match {
         case Either3.First(s) =>
           expS = s
-          parse(source(src), classOf[Exp])
+          parse[Exp](source(src))
         case Either3.Second(s) =>
           expS = FileUtil.readFile(s)._1
-          parse(source(src), classOf[Exp])
+          parse[Exp](source(src))
         case Either3.Third(e) =>
           (Some(e), "")
       }
@@ -229,7 +229,7 @@ trait ActionEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestF
         case Right(s) => actionS = FileUtil.readFile(s)._1
       }
 
-      val (aOpt, errors) = parse(source, classOf[Action])
+      val (aOpt, errors) = parse[Action](source)
 
       assert(errors == "", "Expecting no parse error, but found:\n" + errors)
 
@@ -281,7 +281,7 @@ trait JumpEvaluatorTestFramework[S <: State[S], Se, SR] extends EvaluatorTestFra
         case Right(s) => jumpS = FileUtil.readFile(s)._1
       }
 
-      val (jOpt, errors) = parse(source, classOf[Jump])
+      val (jOpt, errors) = parse[Jump](source)
 
       assert(errors == "", "Expecting no parse error, but found:\n" + errors)
 
@@ -335,7 +335,7 @@ trait TransformationEvaluatorTestFramework[S <: State[S], Se, SR]
         case Right(s) => transformationS = FileUtil.readFile(s)._1
       }
 
-      val (tOpt, errors) = parse(source, classOf[Transformation])
+      val (tOpt, errors) = parse[Transformation](source)
 
       assert(errors == "", "Expecting no parse error, but found:\n" + errors)
 
@@ -393,7 +393,7 @@ trait LocationEvaluatorTestFramework[S <: State[S], C] extends EvaluatorTestFram
         case Right(s) => locationS = FileUtil.readFile(s)._1
       }
 
-      val (lOpt, errors) = parse(source, classOf[LocationDecl])
+      val (lOpt, errors) = parse[LocationDecl](source)
 
       assert(errors == "", "Expecting no parse error, but found:\n" + errors)
 

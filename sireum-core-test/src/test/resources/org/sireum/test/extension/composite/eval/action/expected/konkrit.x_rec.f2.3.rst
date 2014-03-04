@@ -1,4 +1,4 @@
-Action: @@x_rec.f2 := 3ii;
+Action: @@x_rec.f2 := 3;
 
 State: Before
 

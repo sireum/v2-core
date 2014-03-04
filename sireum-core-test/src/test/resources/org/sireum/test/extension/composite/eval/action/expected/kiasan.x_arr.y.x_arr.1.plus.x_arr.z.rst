@@ -1,4 +1,4 @@
-Action: @@x_arr[@@y] := @@x_arr[1ii] + @@x_arr[@@z];
+Action: @@x_arr[@@y] := @@x_arr[1] + @@x_arr[@@z];
 
 State: Before
 

@@ -1,4 +1,4 @@
-Exp: @@x_arrarr[2ii][1ii]
+Exp: @@x_arrarr[2][1]
 
 State: Before
 

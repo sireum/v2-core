@@ -1,0 +1,33 @@
+procedure foo {
+# return;
+}
+
+procedure foo (x) {
+# return;
+}
+
+procedure foo (x, y) {
+# return;
+}
+
+procedure bar {
+# call foo ();
+# return;
+}
+
+procedure foo {
+# return;
+}
+
+procedure foo (x) {
+# return;
+}
+
+procedure foo (x, y) {
+# return;
+}
+
+procedure bar {
+# call `a.foo` ();
+# return;
+}

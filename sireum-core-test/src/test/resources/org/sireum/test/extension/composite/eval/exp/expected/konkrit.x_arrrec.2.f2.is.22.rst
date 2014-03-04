@@ -1,4 +1,4 @@
-Exp: @@x_arrrec[2ii].f2
+Exp: @@x_arrrec[2].f2
 
 State: Before
 

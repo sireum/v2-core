@@ -1,0 +1,26 @@
+record BinaryTreeNode<A> @Abstract
+{
+  A data @NonNull;
+}
+
+record LeafBinaryTreeNode<A>
+    extends BinaryTreeNode<A>
+{
+}
+
+record InBinaryTreeNode<A>
+    extends BinaryTreeNode<A>
+{
+  BinaryTreeNode<A> left;
+  BinaryTreeNode<A> right;
+}
+
+procedure BTInvariantCheck {
+  # return { LeafBinaryTreeNode n => true
+           | InBinaryTreenode n =>
+                 let leftOK = n.left == null
+                              || (n.left.data < data && p(left)),
+                     rightOK = n.right == null
+                              || (n.right.data > data && p(right))
+                 in leftOK && rightOK};
+} // can you see what's wrong with the invariant above?

@@ -1,4 +1,4 @@
-Action: @@x_arrrec[1ii] := @@x_arrrec[2ii];
+Action: @@x_arrrec[1] := @@x_arrrec[2];
 
 State: Before
 

@@ -102,7 +102,7 @@ object KiasanStateCheck {
   def pc(rewriter : Exp => Exp, exp : String*) : Seq[Exp] = exp.map { source =>
     import org.sireum.test.framework.TestUtil._
 
-    val (eOpt, errors) = parse(Left(source), classOf[Exp])
+    val (eOpt, errors) = parse[Exp](Left(source))
 
     assert(errors == "", "Expecting no parse error, but found:\n" + errors)
 

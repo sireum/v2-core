@@ -1,0 +1,10 @@
+procedure foo (Integer x, (Integer, Integer) yz)
+{
+  # return;
+}
+
+procedure bar
+{
+  # call foo (1, (2, 3));
+  # return;
+}

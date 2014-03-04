@@ -1,0 +1,7 @@
+global
+  @@x, @@y;
+
+procedure foo {
+  # @@x, @@y := 1, 2;
+    return;
+}

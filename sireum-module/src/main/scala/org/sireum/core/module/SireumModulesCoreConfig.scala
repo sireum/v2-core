@@ -52,8 +52,19 @@ case class PilarParser(
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-case class ChunkingPilarParser(
-  title : String = "Pilar Parser",
+case class PilarParserV2(
+  title : String = "Pilar Parser v2",
+
+  @Input @Consume(Array(classOf[PilarSources])) sources : ISeq[Either[String, ResourceUri]],
+
+  @Output @Produce models : ISeq[Model])
+
+/**
+ * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+case class ChunkingPilarParserV2(
+  title : String = "Chunking Pilar Parser v2",
 
   @Input @Consume(Array(classOf[PilarSources])) sources : ISeq[Either[String, ResourceUri]],
 
@@ -65,6 +76,23 @@ case class ChunkingPilarParser(
  */
 case class PilarSymbolResolver(
   title : String = "Pilar Symbol Resolver",
+
+  @Input parallel : Boolean,
+
+  @Input @Consume(Array(classOf[PilarParser]))@Output @Produce models : ISeq[Model],
+
+  @Input hasExistingSymbolTable : scala.Option[SymbolTable],
+
+  @Input hasExistingModels : scala.Option[ISeq[Model]],
+
+  @Output symbolTable : SymbolTable)
+
+/**
+ * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+case class PilarSymbolResolverV2(
+  title : String = "Pilar Symbol Resolver v2",
 
   @Input parallel : Boolean,
 
@@ -104,7 +132,9 @@ object SireumModuleCoreConfig {
     val opt = PipelineMode()
     opt.classNames = Array(
       PilarSources.getClass().getName().dropRight(1),
-      ChunkingPilarParser.getClass().getName().dropRight(1),
+      PilarParser.getClass().getName().dropRight(1),
+      PilarParserV2.getClass().getName().dropRight(1),
+      ChunkingPilarParserV2.getClass().getName().dropRight(1),
       PilarSymbolResolver.getClass().getName().dropRight(1),
       Bogor.getClass.getName.dropRight(1))
     opt.dir = "./src/main/scala/org/sireum/core/module"

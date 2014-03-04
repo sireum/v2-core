@@ -1,0 +1,25 @@
+global 
+ int @@x, @@h, @@y, @@g, @@z;
+
+procedure r2 {
+  #l1. if @@x <= 1 then goto l3;
+  #l2. @@x := 1;
+  #l3. return;
+}
+
+procedure int r1(int q, int r) {
+  #l1. r := @@y + r;
+  #l2. @@g := @@h + q;
+  #l3. @@z := q;
+  #l4. call r2 ();
+  #l5. return r;
+}
+ 
+procedure int q1 (int a, int b) {
+  int c;
+  
+  #l1. c := @@x + @@y;
+  #l2. call b := r1(c, b);
+  #l3. c := c + @@h + b + a;
+  #l4. return c;
+}

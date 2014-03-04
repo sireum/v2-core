@@ -12,9 +12,9 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.junit.ShouldMatchersForJUnit
 import org.sireum.test.framework.pilar.parser.ParserTestFramework
-import org.sireum.example.alir.AlirExamples
-import org.sireum.example.pilar.symbol.SymbolExamples
-import org.sireum.example.pilar.parser.ParserExamples
+import org.sireum.example.pilarv3.alir.AlirExamples
+import org.sireum.example.pilarv3.symbol.SymbolExamples
+import org.sireum.example.pilarv3.parser.ParserExamples
 import org.sireum.util._
 import org.sireum.pilar.ast.PilarAstNode
 

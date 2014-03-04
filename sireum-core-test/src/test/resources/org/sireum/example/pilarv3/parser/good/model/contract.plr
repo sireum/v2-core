@@ -1,0 +1,24 @@
+procedure <A> swap (LinkedNode<A> n1 @NonNull, LinkedNode<A> n2 @NonNull) {
+  # n1.data, n2.data := n2.data, n1.data; // parallel assignments
+    return;
+}
+
+global @@z; // global variable name starts with double at signs (@@)
+
+procedure foo (Integer x, Integer y)
+    @behavior(
+      @pre y != 0,
+      @post @@z != 0) // behavior case 1
+    @behavior(
+      @pre y == 0,
+      @post @@z == 0) // behavior case 2
+{
+  #l. @@z := x / y; // a location ID may immediately be followed by dot (.)
+      return;
+
+  #lHandler
+      @@z := 0;
+      return;
+
+  catch @[l..l] goto lHandler;
+}

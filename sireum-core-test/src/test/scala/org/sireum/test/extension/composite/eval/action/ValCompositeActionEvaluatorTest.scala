@@ -72,10 +72,10 @@ class ValCompositeActionEvaluatorTest
     }
 
     Case("konkrit.x_rec.f1.2").
-      Evaluating action "@@x_rec.f1 := 2ii;" on s gives "@@x_rec.f1 == 2"
+      Evaluating action "@@x_rec.f1 := 2;" on s gives "@@x_rec.f1 == 2"
 
     Case("konkrit.x_rec.f2.3").
-      Evaluating action "@@x_rec.f2 := 3ii;" on s gives "@@x_rec.f2 == 3"
+      Evaluating action "@@x_rec.f2 := 3;" on s gives "@@x_rec.f2 == 3"
   }
 
   {
@@ -110,10 +110,10 @@ class ValCompositeActionEvaluatorTest
     }
 
     Case("konkrit.x_arr.1.2").
-      Evaluating action "@@x_arr[1ii] := 2ii;" on s gives "@@x_arr[1] == 2"
+      Evaluating action "@@x_arr[1] := 2;" on s gives "@@x_arr[1] == 2"
 
     Case("konkrit.x_arr.2.3").
-      Evaluating action "@@x_arr[2ii] := 3ii;" on s gives "@@x_arr[2] == 3"
+      Evaluating action "@@x_arr[2] := 3;" on s gives "@@x_arr[2] == 3"
   }
 
   {
@@ -124,7 +124,7 @@ class ValCompositeActionEvaluatorTest
     }
 
     Case("konkrit.x_arrrec.1.x_arrrec.2").
-      Evaluating action "@@x_arrrec[1ii] := @@x_arrrec[2ii];" on s gives "@@x_arrrec[1] == @@x_arrrec[2]"
+      Evaluating action "@@x_arrrec[1] := @@x_arrrec[2];" on s gives "@@x_arrrec[1] == @@x_arrrec[2]"
   }
 
   {
@@ -135,14 +135,14 @@ class ValCompositeActionEvaluatorTest
     }
 
     Case("konkrit.x_arrarr.1.x_arrarr.2").
-      Evaluating action "@@x_arrarr[1ii] := @@x_arrarr[2ii];" on s gives "@@x_arrarr[1] == @@x_arrarr[2]"
+      Evaluating action "@@x_arrarr[1] := @@x_arrarr[2];" on s gives "@@x_arrarr[1] == @@x_arrarr[2]"
   }
 
   {
     val s = state
 
     Case("kiasan.x_rec.f1.2").
-      Evaluating action "@@x_rec.f1 := 2ii;" on s gives "@@x_rec.f1 == 2"
+      Evaluating action "@@x_rec.f1 := 2;" on s gives "@@x_rec.f1 == 2"
 
     Case("kiasan.x_rec.f1.y").
       Evaluating action "@@x_rec.f1 := @@y;" on s gives "@@x_rec.f1 == @@y"
@@ -154,24 +154,24 @@ class ValCompositeActionEvaluatorTest
       Evaluating action "@@x_recarr.f1_rec := @@y_arr;" on s gives "@@x_recarr.f1_arr == @@y_arr"
 
     Case("kiasan.x_arr.1.2").
-      Evaluating action "@@x_arr[1ii] := 2ii;" on s gives "@@x_arr[1] == 2"
+      Evaluating action "@@x_arr[1] := 2;" on s gives "@@x_arr[1] == 2"
 
     Case("kiasan.x_arr.y.2").
-      Evaluating action "@@x_arr[@@y] := 2ii;" on s gives "@@x_arr[@@y] == 2"
+      Evaluating action "@@x_arr[@@y] := 2;" on s gives "@@x_arr[@@y] == 2"
 
     Case("kiasan.x_arr.y.x_arr.1").
-      Evaluating action "@@x_arr[@@y] := @@x_arr[1ii];" on s gives "@@x_arr[@@y] == @@x_arr[1]"
+      Evaluating action "@@x_arr[@@y] := @@x_arr[1];" on s gives "@@x_arr[@@y] == @@x_arr[1]"
 
     Case("kiasan.x_arr.y.x_arr.z").
       Evaluating action "@@x_arr[@@y] := @@x_arr[@@z];" on s gives "@@x_arr[@@y] == @@x_arr[@@z]"
       
     Case("kiasan.x_arr.y.x_arr.1.plus.x_arr.z").
-      Evaluating action "@@x_arr[@@y] := @@x_arr[1ii] + @@x_arr[@@z];" on s gives "@@x_arr[@@y] == @@x_arr[@@z]"
+      Evaluating action "@@x_arr[@@y] := @@x_arr[1] + @@x_arr[@@z];" on s gives "@@x_arr[@@y] == @@x_arr[@@z]"
       
     Case("kiasan.x_arrrec.1.y_rec").
-      Evaluating action "@@x_arrrec[1ii] := @@y_rec;" on s gives "@@x_arr[1] == @@y_rec"
+      Evaluating action "@@x_arrrec[1] := @@y_rec;" on s gives "@@x_arr[1] == @@y_rec"
       
     Case("kiasan.x_arrarr.1.y_arr").
-      Evaluating action "@@x_arrarr[1ii] := @@y_arr;" on s gives "@@x_arr[1] == @@y_arr"
+      Evaluating action "@@x_arrarr[1] := @@y_arr;" on s gives "@@x_arr[1] == @@y_arr"
   }
 }

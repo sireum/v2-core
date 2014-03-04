@@ -1,0 +1,32 @@
+record Meter extends Integer { }
+
+record CentiMeter extends Integer { }
+
+record MyMeter extends Integer { }
+
+enum OP {
+  PLUS, EQ
+}
+
+// ... add procedures are elided
+// used for Integer * Integer, Meter * Meter, or CentiMeter * CentiMeter
+procedure equals (Integer x, Integer y) {
+  # return x == y;
+}
+
+procedure equals (Meter x, CentiMeter y) {
+  # return x * 100 == y;
+}
+
+procedure equals (CentiMeter x, Meter y) {
+  # return x == y * 100;
+}
+
+procedure eval (OP op, x, y) {
+  local f, result;
+  #   op == OP.PLUS +> f := add;
+    | op == OP.EQ   +> f := equals; // can point to any of the equals function
+    | else return null;
+  # call result := f (x, y);
+  # return result;
+}

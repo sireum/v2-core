@@ -1,0 +1,20 @@
+record LinkedNode<A> { // A is a type variable, instantiable with any type
+  A data; // data is of type A
+  LinkedNode next @generic ^A; // an alternative of <A> using the @generic annotation
+}
+
+record TreeNode<A> @Abstract { }
+
+record LeafTreeNode<A> extends TreeNode<A> { A data; }
+
+record InTreeNode @generic ^A extends TreeNode @generic ^A {
+  A data;
+  LinkedNode<A> children;
+}
+
+
+global
+  LinkedNode<Integer> @@head; // instantiate A with Integer
+
+global
+  TreeNode<Integer> @@root;

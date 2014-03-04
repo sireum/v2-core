@@ -101,25 +101,6 @@ object PilarParserModule extends PipelineModule {
     return tags
   }
 
-  def getModels(options : scala.collection.Map[Property.Key, Any]) : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = {
-    if (options.contains(PilarParserModule.globalModelsKey)) {
-      return options(PilarParserModule.globalModelsKey).asInstanceOf[scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]]
-    }
-    if (options.contains(PilarParserModule.modelsKey)) {
-      return options(PilarParserModule.modelsKey).asInstanceOf[scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]]
-    }
-
-    throw new Exception("Pipeline checker should guarantee we never reach here")
-  }
-
-  def setModels(options : MMap[Property.Key, Any], models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) : MMap[Property.Key, Any] = {
-
-    options(PilarParserModule.globalModelsKey) = models
-    options(modelsKey) = models
-
-    return options
-  }
-
   def getSources(options : scala.collection.Map[Property.Key, Any]) : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = {
     if (options.contains(PilarParserModule.globalSourcesKey)) {
       return options(PilarParserModule.globalSourcesKey).asInstanceOf[scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]]]
@@ -142,21 +123,40 @@ object PilarParserModule extends PipelineModule {
     return options
   }
 
+  def getModels(options : scala.collection.Map[Property.Key, Any]) : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = {
+    if (options.contains(PilarParserModule.globalModelsKey)) {
+      return options(PilarParserModule.globalModelsKey).asInstanceOf[scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]]
+    }
+    if (options.contains(PilarParserModule.modelsKey)) {
+      return options(PilarParserModule.modelsKey).asInstanceOf[scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]]
+    }
+
+    throw new Exception("Pipeline checker should guarantee we never reach here")
+  }
+
+  def setModels(options : MMap[Property.Key, Any], models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) : MMap[Property.Key, Any] = {
+
+    options(PilarParserModule.globalModelsKey) = models
+    options(modelsKey) = models
+
+    return options
+  }
+
   object ConsumerView {
     implicit class PilarParserModuleConsumerView(val job : PropertyProvider) extends AnyVal {
-      def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.propertyMap)
       def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.getSources(job.propertyMap)
+      def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.propertyMap)
     }
   }
 
   object ProducerView {
     implicit class PilarParserModuleProducerView(val job : PropertyProvider) extends AnyVal {
 
-      def models_=(models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) { PilarParserModule.setModels(job.propertyMap, models) }
-      def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.propertyMap)
-
       def sources_=(sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]]) { PilarParserModule.setSources(job.propertyMap, sources) }
       def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.getSources(job.propertyMap)
+
+      def models_=(models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) { PilarParserModule.setModels(job.propertyMap, models) }
+      def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.propertyMap)
     }
   }
 }
@@ -164,8 +164,8 @@ object PilarParserModule extends PipelineModule {
 trait PilarParserModule {
   def job : PipelineJob
 
+  def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.getSources(job.propertyMap)
+
   def models_=(models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model]) { PilarParserModule.setModels(job.propertyMap, models) }
   def models : scala.collection.immutable.Seq[org.sireum.pilar.ast.Model] = PilarParserModule.getModels(job.propertyMap)
-
-  def sources : scala.collection.immutable.Seq[scala.util.Either[java.lang.String, java.lang.String]] = PilarParserModule.getSources(job.propertyMap)
 }

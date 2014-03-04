@@ -29,7 +29,7 @@ trait KonkritActionEvaluatorTestCases[S <: State[S], Se, SR] {
   import State.UriAccess._
   
   Case("AssignX1").
-    Evaluating action "@@x := 1II;" on (state("@@x" -> 0)) gives "x==1" satisfying {
+    Evaluating action "@@x := 1;" on (state("@@x" -> 0)) gives "x==1" satisfying {
       s : Se =>
         se2s(s)("@@x") should equal(n(1))
     }

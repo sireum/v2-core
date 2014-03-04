@@ -1,0 +1,5 @@
+fun foo = { x => x };
+
+fun bar = { x => foo(x) };
+
+fun baz = { foo => foo };

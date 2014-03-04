@@ -1,0 +1,22 @@
+enum OP { // enumeration for operators
+  PLUS, EQ
+}
+
+procedure add (x, y) { // addition
+  # return x + y;
+}
+
+procedure equals (x, y) { // equality test
+  # return x == y;
+}
+
+procedure eval (OP op, Integer x, Integer y) { // interpreter for + and == on two Integers
+  local
+    result;
+    (Integer v1 , Integer v2 -!> Object) f; // procedure type; v1 and v2 are optional
+  #   op == OP.PLUS +> f := add;
+    | op == OP.EQ   +> f := equals;
+    | else return null;
+  # call result := f (x, y);
+  # return result;
+}

@@ -23,7 +23,7 @@ import org.sireum.pilar._
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-object ChunkingPilarParserModuleDef {
+object ChunkingPilarParserModuleV2Def {
   val ERROR_TAG_TYPE = MarkerType(
     "org.sireum.pilar.tag.error.parse",
     None,
@@ -37,7 +37,7 @@ object ChunkingPilarParserModuleDef {
  * @author <a href="mailto:belt@k-state.edu">Jason Belt</a>
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-class ChunkingPilarParserModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarParserModule {
+class ChunkingPilarParserModuleV2Def(val job : PipelineJob, info : PipelineJobModuleInfo) extends PilarParserModule {
   val srcs = this.sources
   val result = marrayEmpty[Model]
   for (src <- srcs) {

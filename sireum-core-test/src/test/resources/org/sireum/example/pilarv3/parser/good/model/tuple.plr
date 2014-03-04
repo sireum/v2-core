@@ -1,0 +1,20 @@
+procedure foo { // no parameters
+  # return (3, 5); // returns a pair of Int 3 and 5
+}
+
+procedure bar (x, y) {
+  # return x + y;
+}
+
+procedure baz () { // also no parameters
+  local
+    x, y, xy;
+    (Integer, Integer) z; // z is of pair type Integer * Integer
+
+  # call xy := foo (); // call foo, but returns a pair
+  # x, y := xy; // assign the first of the pair returned to x and the second to y
+  # z := (x * 1, y * -1); // create a pair and assign it to z
+  # assert z == (3, -5); // assert structural equivalence of tuples
+  # call x := bar(z); // z is unwrapped to x and y
+  # assert x < 0;
+}

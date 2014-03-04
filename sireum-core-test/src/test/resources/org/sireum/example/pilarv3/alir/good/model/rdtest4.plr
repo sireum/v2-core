@@ -1,0 +1,11 @@
+// Test Purpose:
+//   Trivial one line test that copies one variable to another.
+global 
+ int @@q;
+ 
+procedure rdtest2 (int x, int y) {
+  int z;
+  
+ #l1. y := z + @@q;
+      return;
+}

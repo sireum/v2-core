@@ -1,0 +1,18 @@
+record R {}
+
+procedure foo {
+#l1.
+
+#l2. if true then goto l3
+     else if false then goto l2
+     else goto l1;
+
+#l3. switch 0
+       | 0 => goto l4
+       | else => goto l3;
+
+#l4. switch 0
+       | 0 => goto l5;
+
+#l5. return;
+}

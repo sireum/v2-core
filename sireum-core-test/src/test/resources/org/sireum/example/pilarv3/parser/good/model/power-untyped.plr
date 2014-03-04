@@ -1,0 +1,16 @@
+procedure power (x, n) {
+  local i, result;
+  
+  # // anonymous atomic block (location)
+    result := 1;
+    i := 0;
+    // implicit jump to the next location
+    
+  #loop // a location named "loop", name must immediately follow #
+       (i < n) +>
+         result := result * x;
+         i := i + 1;
+         goto loop;
+     | else
+         return result;
+}

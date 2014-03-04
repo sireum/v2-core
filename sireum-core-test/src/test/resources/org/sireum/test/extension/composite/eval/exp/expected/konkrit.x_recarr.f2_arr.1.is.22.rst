@@ -1,4 +1,4 @@
-Exp: @@x_recarr.f2_arr[1ii]
+Exp: @@x_recarr.f2_arr[1]
 
 State: Before
 

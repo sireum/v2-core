@@ -1,0 +1,16 @@
+global @@z
+    @Invariant
+        let
+          x = @@z
+        in x > 0;
+
+fun f = { x => x };
+
+procedure foo (x)
+    @pre x > 0
+{
+  y;
+  
+  # y := 1;
+    return x + y;
+}

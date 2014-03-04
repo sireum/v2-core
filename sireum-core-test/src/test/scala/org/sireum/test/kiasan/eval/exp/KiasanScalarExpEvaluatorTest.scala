@@ -142,7 +142,7 @@ class KiasanScalarExpEvaluatorTest
       var l = random.nextLong
       while (isNonZero && l == 0)
         l = random.nextLong
-      (s, l.toString + "II")
+      (s, l.toString)
     case v =>
       if (isNonZero)
         (s.addPathCondition(BinaryExp("!=", ValueExp(alpha),

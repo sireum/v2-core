@@ -1,0 +1,203 @@
+/**
+ * Pilar Kernel (Value).
+ * 
+ * @author robby
+ */
+
+@Profile `org.sireum.profile.modeling.classdesign`
+
+@Factory ValueFactory
+@Interface
+
+enum Comparably
+{
+  LT, GT, EQ
+}
+
+record Iterator<A>
+    @Abstract
+{
+  ( -!> Bool ) end;
+  ( -!> A ) next;
+}
+
+record Collection<A>
+    @Abstract
+{
+  ( -!> Bool ) empty;
+  ( A -!> Bool ) contains;
+  ( ( A -!> Bool ) -!> Bool ) forall;
+  ( ( A -!> Bool ) -!> Bool ) exists;
+  ( ( A -!> Bool ) -!> Self<A> ) filter;
+  ( ( A -!> B ) -!> Self<B> ) map;
+  ( ( A , B -!> B ) , B -!> B ) foldr;
+  ( ( A , B -!> B ) , B -!> B ) foldl;
+  ( -!> Iterator<A> ) iterator;
+  ( -!> Integer ) size;
+}
+
+record Indexable<A, B>
+    @Abstract
+{
+  ( A -!> B ) get;
+  ( A -!> Bool ) index;
+  ( A , B -!> Bool ) indexed;
+  ( -!> Collection<A> ) keys;
+  ( -!> Collection<B> ) values;
+  ( -!> Collection<(A , B)> ) elements;
+}
+
+record Map<A, B>
+    @Abstract
+    extends Indexable<A, B>
+{
+  ( A , B -!> ) set;
+}
+
+record Vector<A>
+  @Abstract
+  extends Collection<A>,
+     Indexable<Int, A>
+{
+  ( A -!> Integer ) indexOf;
+  ( -!> Iterator<A> ) reverseIterator;
+}
+
+record Object
+{
+  ( -!> Type) type;
+  ( -!> Bool ) frozen;
+  ( Object -!> Bool ) freeze;
+  ( Object -!> Bool ) thaw;
+  ( Attribute -!> Object ) get;
+  ( Attribute , Object -!> ) set;
+  ( Self -!> Comparably ) compare;
+  ( -!> String ) toString;
+}
+
+record Bool
+{
+}
+
+record Char
+{
+  ( -!> Integer ) toInteger;
+}
+
+record Enum
+{
+}
+
+record Number
+    @Abstract
+{
+}
+
+record Integer
+    extends Number
+{
+  ( -!> Char ) toChar;
+}
+
+record RangedInteger
+    extends Integer
+{
+}
+
+record Real
+    extends Number
+{
+  ( -!> Integer ) toInteger;
+}
+
+record Float
+    extends Real
+{
+}
+
+record Double
+    extends Real
+{
+}
+
+record String
+    extends Vector<Char>,
+       Indexable<Int, Char>
+{
+}
+
+record Symbol
+{
+}
+
+record Tuple
+    extends Collection<Object>,
+       Indexable<Int, Object>
+{
+  ( -!> Integer ) size;
+}
+
+record Procedure
+{
+}
+
+record Set<A>
+    extends Collection<A>
+{
+  ( Self<A> -!> Bool ) disjoint;
+  ( A -!> ) add;
+  ( Collection<A> -!> ) addAll;
+  ( A -!> ) remove;
+  ( Collection<A> -!> ) removeAll;
+  ( Collection<A> -!> ) retainAll;
+  ( Self<A> -!> Self<A> ) union;
+  ( Self<A> -!> Self<A> ) intersect;
+  ( Self<A>[] -!> Self<Tuple> ) product;
+  ( -!> List<A> ) toList;
+}
+
+record Relation<A @Invariant self <: Tuple>
+    extends Set<A>,
+       Map<Object, Object>    
+{
+  ( -!> Relation<A> ) inverse;
+  ( -!> Relation<A> ) tclosure;
+  ( -!> Relation<A> ) rtclosure;
+  ( -!> Function<A> ) toFunction;
+}
+
+record Function<A, B>
+    extends Relation<(A , B)>,
+       Map<A, B>
+{
+  ( -!> Relation<(A , B)> ) toRelation;
+}
+
+record List<A>
+    extends Vector<A>,
+       Map<Int, A>
+{
+  ( A -!> ) addFirst;
+  ( Collection<A> -!> ) addAllFirst;
+  ( A -!> ) addLast;
+  ( Collection<A> -!> ) addAllLast;
+  ( A , Integer ) insert;
+  ( Collection<A> , Integer ) insertAll;
+  ( A -!> ) remove;
+  ( Collection<A> -!> ) removeAll;
+  ( Self<A> -!> Self<A> ) append;
+  ( Self<A>[] -!> Self<Tuple> ) product;
+  ( -!> Set<A> ) toSet;
+}
+
+record MultiArray<A>
+    extends Collection<A>,
+       Indexable<Tuple, A>
+{
+  ( -!> Tuple) sizes;
+  ( Tuple , A -!> ) set;
+}
+
+record ExtValue
+{
+}

@@ -1,0 +1,12 @@
+procedure foo {
+  #l0.   goto l1; 
+  #l1.   goto l2;
+	     | goto l3;
+  #l2.   goto l7;
+  #l3.   goto l4;
+       | goto l5;
+  #l4.   goto l6;
+  #l5.   goto l6;
+  #l6.   goto l7;
+  #l7.   goto l1;
+}

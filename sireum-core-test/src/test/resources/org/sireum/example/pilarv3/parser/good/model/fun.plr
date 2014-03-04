@@ -1,0 +1,24 @@
+record BinaryTreeNode<A> @Abstract
+{
+  A data @NonNull;
+}
+
+record LeafBinaryTreeNode<A>
+    extends BinaryTreeNode<A>
+{
+}
+
+record InBinaryTreeNode<A>
+    extends BinaryTreeNode<A>
+{
+  BinaryTreeNode<A> left;
+  BinaryTreeNode<A> right;
+}
+
+fun BTInvariantCheck =
+    { LeafBinaryTreeNode n => true
+    | InBinaryTreenode n =>
+          let leftOK = n.left == null || (n.left.data < data && BTInvariantCheck(left)),
+              rightOK = n.right == null || (n.right.data > data && BTInvariantCheck(right))
+          in leftOK && rightOK };
+// can you see what's wrong with the invariant above?

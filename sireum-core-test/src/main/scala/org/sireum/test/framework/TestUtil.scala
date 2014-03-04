@@ -19,4 +19,8 @@ object TestUtil {
   def parse[T <: PilarAstNode] //
   (source : Either[String, FileResourceUri], claz : Class[T]) =
     PilarParser.parseWithErrorAsString(source, claz)
+
+  def parse[T <: PilarAstNode : scala.reflect.runtime.universe.TypeTag] //
+  (source : Either[String, FileResourceUri]) =
+    Parser.parseWithErrorAsString(source)
 }

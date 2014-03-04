@@ -147,12 +147,12 @@ class ValCompositeExpEvaluatorTest
       }
 
     Case("konkrit.x_recarr.f1_arr.1.is.11").
-      Evaluating expression "@@x_recarr.f1_arr[1ii]" on s gives "11" satisfying {
+      Evaluating expression "@@x_recarr.f1_arr[1]" on s gives "11" satisfying {
         r : Re => r.value is 11
       }
 
     Case("konkrit.x_recarr.f1_arr.2.is.12").
-      Evaluating expression "@@x_recarr.f1_arr[2ii]" on s gives "12" satisfying {
+      Evaluating expression "@@x_recarr.f1_arr[2]" on s gives "12" satisfying {
         r : Re => r.value is 12
       }
 
@@ -162,12 +162,12 @@ class ValCompositeExpEvaluatorTest
       }
 
     Case("konkrit.x_recarr.f2_arr.1.is.22").
-      Evaluating expression "@@x_recarr.f2_arr[1ii]" on s gives "22" satisfying {
+      Evaluating expression "@@x_recarr.f2_arr[1]" on s gives "22" satisfying {
         r : Re => r.value is 22
       }
 
     Case("konkrit.x_recarr.f2_arr.2.is.23").
-      Evaluating expression "@@x_recarr.f2_arr[2ii]" on s gives "23" satisfying {
+      Evaluating expression "@@x_recarr.f2_arr[2]" on s gives "23" satisfying {
         r : Re => r.value is 23
       }
   }
@@ -180,17 +180,17 @@ class ValCompositeExpEvaluatorTest
     }
 
     Case("konkrit.x_arr.1.is.11").
-      Evaluating expression "@@x_arr[1ii]" on s gives "11" satisfying {
+      Evaluating expression "@@x_arr[1]" on s gives "11" satisfying {
         r : Re => r.value is 11
       }
 
     Case("konkrit.x_arr.2.is.12").
-      Evaluating expression "@@x_arr[2ii]" on s gives "12" satisfying {
+      Evaluating expression "@@x_arr[2]" on s gives "12" satisfying {
         r : Re => r.value is 12
       }
 
     Case("konkrit.x_arr.3.is.13").
-      Evaluating expression "@@x_arr[3ii]" on s gives "13" satisfying {
+      Evaluating expression "@@x_arr[3]" on s gives "13" satisfying {
         r : Re => r.value is 13
       }
   }
@@ -203,32 +203,32 @@ class ValCompositeExpEvaluatorTest
     }
 
     Case("konkrit.x_arrrec.1.is.rec0").
-      Evaluating expression "@@x_arrrec[1ii]" on s gives "rec0" satisfying {
+      Evaluating expression "@@x_arrrec[1]" on s gives "rec0" satisfying {
         r : Re => r.value is Heap.RV(chid, 0)
       }
 
     Case("konkrit.x_arrrec.1.f1.is.11").
-      Evaluating expression "@@x_arrrec[1ii].f1" on s gives "11" satisfying {
+      Evaluating expression "@@x_arrrec[1].f1" on s gives "11" satisfying {
         r : Re => r.value is 11
       }
 
     Case("konkrit.x_arrrec.1.f1.is.12").
-      Evaluating expression "@@x_arrrec[1ii].f2" on s gives "12" satisfying {
+      Evaluating expression "@@x_arrrec[1].f2" on s gives "12" satisfying {
         r : Re => r.value is 12
       }
 
     Case("konkrit.x_arrrec.2.is.rec0").
-      Evaluating expression "@@x_arrrec[2ii]" on s gives "rec1" satisfying {
+      Evaluating expression "@@x_arrrec[2]" on s gives "rec1" satisfying {
         r : Re => r.value is Heap.RV(chid, 1)
       }
 
     Case("konkrit.x_arrrec.2.f1.is.21").
-      Evaluating expression "@@x_arrrec[2ii].f1" on s gives "21" satisfying {
+      Evaluating expression "@@x_arrrec[2].f1" on s gives "21" satisfying {
         r : Re => r.value is 21
       }
 
     Case("konkrit.x_arrrec.2.f2.is.22").
-      Evaluating expression "@@x_arrrec[2ii].f2" on s gives "22" satisfying {
+      Evaluating expression "@@x_arrrec[2].f2" on s gives "22" satisfying {
         r : Re => r.value is 22
       }
   }
@@ -241,32 +241,32 @@ class ValCompositeExpEvaluatorTest
     }
 
     Case("konkrit.x_arrarr.1.is.arr0").
-      Evaluating expression "@@x_arrarr[1ii]" on s gives "arr0" satisfying {
+      Evaluating expression "@@x_arrarr[1]" on s gives "arr0" satisfying {
         r : Re => r.value is Heap.RV(chid, 0)
       }
 
     Case("konkrit.x_arrarr.1.1.is.11").
-      Evaluating expression "@@x_arrarr[1ii][1ii]" on s gives "11" satisfying {
+      Evaluating expression "@@x_arrarr[1][1]" on s gives "11" satisfying {
         r : Re => r.value is 11
       }
 
     Case("konkrit.x_arrarr.1.2.is.12").
-      Evaluating expression "@@x_arrarr[1ii][2ii]" on s gives "12" satisfying {
+      Evaluating expression "@@x_arrarr[1][2]" on s gives "12" satisfying {
         r : Re => r.value is 12
       }
 
     Case("konkrit.x_arrarr.2.is.arr1").
-      Evaluating expression "@@x_arrarr[2ii]" on s gives "arr1" satisfying {
+      Evaluating expression "@@x_arrarr[2]" on s gives "arr1" satisfying {
         r : Re => r.value is Heap.RV(chid, 1)
       }
 
     Case("konkrit.x_arrarr.2.1.is.22").
-      Evaluating expression "@@x_arrarr[2ii][1ii]" on s gives "22" satisfying {
+      Evaluating expression "@@x_arrarr[2][1]" on s gives "22" satisfying {
         r : Re => r.value is 22
       }
 
     Case("konkrit.x_arrarr.2.2.is.23").
-      Evaluating expression "@@x_arrarr[2ii][2ii]" on s gives "23" satisfying {
+      Evaluating expression "@@x_arrarr[2][2]" on s gives "23" satisfying {
         r : Re => r.value is 23
       }
   }
@@ -325,7 +325,7 @@ class ValCompositeExpEvaluatorTest
     val s = state
 
     Case("kiasan.x_arr.1.is.ki4.lazyconempty").
-      Evaluating expression "@@x_arr[1ii]" on s gives "ki4" satisfying {
+      Evaluating expression "@@x_arr[1]" on s gives "ki4" satisfying {
         r : Re => r.value is ki4
       }
 
@@ -338,20 +338,20 @@ class ValCompositeExpEvaluatorTest
   {
     val s = {
       val s = state
-      val s2s = first3(eval(Either3.First("@@x_arr[1ii]"), s)).map(first2)
+      val s2s = first3(eval(Either3.First("@@x_arr[1]"), s)).map(first2)
       assert(s2s.size == 1)
       s2s(0)
     }
 
     Case("kiasan.x_arr.1.is.ki4.existconcon").
-      Evaluating expression "@@x_arr[1ii]" on s gives "ki4" satisfying {
+      Evaluating expression "@@x_arr[1]" on s gives "ki4" satisfying {
         r : Re =>
           r.value is ki4
           r.state is s
       }
 
     Case("kiasan.x_arr.2.is.ki5.lazyconcon").
-      Evaluating expression "@@x_arr[2ii]" on s gives "ki5" satisfying {
+      Evaluating expression "@@x_arr[2]" on s gives "ki5" satisfying {
         r : Re =>
           r.value is ki5
       }
@@ -379,7 +379,7 @@ class ValCompositeExpEvaluatorTest
       }
 
     Case("kiasan.x_arr.1.is.ki5.or.ki6.lazyconsym").
-      Evaluating expression "@@x_arr[1ii]" on s gives "ki5 or ki6" satisfying {
+      Evaluating expression "@@x_arr[1]" on s gives "ki5 or ki6" satisfying {
         r : Re =>
           r.value is_in (ki5, ki6)
       }
@@ -398,7 +398,7 @@ class ValCompositeExpEvaluatorTest
       val s2s = first3(eval(Either3.First("@@x_arr[@@y]"), s)).map(first2)
       assert(s2s.size == 1)
       val s2 = s2s(0)
-      first3(eval(Either3.First("@@x_arr[1ii]"), s2)).map(first2)
+      first3(eval(Either3.First("@@x_arr[1]"), s2)).map(first2)
     }
 
     for (i <- 0 until ss.length) {
@@ -412,14 +412,14 @@ class ValCompositeExpEvaluatorTest
         }
 
       Case("kiasan.x_arr.1.is.ki5.or.ki6.existconsymcon." + i).
-        Evaluating expression "@@x_arr[1ii]" on s gives "ki5 or ki6" satisfying {
+        Evaluating expression "@@x_arr[1]" on s gives "ki5 or ki6" satisfying {
           r : Re =>
             r.value is_in (ki5, ki6)
             r.state is s
         }
 
       Case("kiasan.x_arr.2.is.ki5.or.ki6.or.ki7.lazyconsymcon." + i).
-        Evaluating expression "@@x_arr[2ii]" on s gives "ki5 or ki6 or ki7" satisfying {
+        Evaluating expression "@@x_arr[2]" on s gives "ki5 or ki6 or ki7" satisfying {
           r : Re =>
             r.value is_in (ki5, ki6, ki7)
         }

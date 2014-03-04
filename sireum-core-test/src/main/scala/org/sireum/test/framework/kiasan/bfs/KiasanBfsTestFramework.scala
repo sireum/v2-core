@@ -200,7 +200,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
         PipelineStage(
           "Pilar Parsing",
           false,
-          PilarParserModule),
+          PilarParserV2Module),
         PipelineStage(
           "Pilar Symbol Resolution",
           false,

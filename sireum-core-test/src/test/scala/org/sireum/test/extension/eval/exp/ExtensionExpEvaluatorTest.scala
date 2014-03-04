@@ -42,11 +42,11 @@ class ExtensionExpEvaluatorTest
 
   implicit def rf2erf(rf : Re => Unit) : R => Unit = { r => r.foreach { rf(_) } }
 
-  Evaluating expression "one()" gives "1II" satisfying { r : Re =>
+  Evaluating expression "one()" gives "1" satisfying { r : Re =>
     r.value should equal(n(1))
   }
 
-  Evaluating expression "id(1II)" gives "1II" satisfying { r : Re =>
+  Evaluating expression "id(1)" gives "1" satisfying { r : Re =>
     r.value should equal(n(1))
   }
 
@@ -54,23 +54,23 @@ class ExtensionExpEvaluatorTest
     t.getMessage should equal("ill-formed model")
   }
 
-  Evaluating expression "fst(1II)" gives "1II" satisfying { r : Re =>
+  Evaluating expression "fst(1)" gives "1" satisfying { r : Re =>
     r.value should equal(n(1))
   }
 
-  Evaluating expression "fst(1II,2II)" gives "1II" satisfying { r : Re =>
+  Evaluating expression "fst(1,2)" gives "1" satisfying { r : Re =>
     r.value should equal(n(1))
   }
 
-  Evaluating expression "last(1II)" gives "1II" satisfying { r : Re =>
+  Evaluating expression "last(1)" gives "1" satisfying { r : Re =>
     r.value should equal(n(1))
   }
 
-  Evaluating expression "last(1II,@@x)" gives "error" failing { t =>
+  Evaluating expression "last(1,@@x)" gives "error" failing { t =>
     assert(t.isInstanceOf[NullPointerException])
   }
 
-  Evaluating expression "last(1II,@@x,3II+2II)" gives "5II" satisfying { r : Re =>
+  Evaluating expression "last(1,@@x,3+2)" gives "5" satisfying { r : Re =>
     r.value should equal(n(5))
   }
 

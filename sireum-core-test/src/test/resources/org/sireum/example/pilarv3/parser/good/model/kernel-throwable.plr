@@ -1,0 +1,48 @@
+/**
+ * Pilar Kernel (Throwable).
+ * 
+ * @author robby
+ */
+
+@Profile `org.sireum.profile.modeling.classdesign`
+
+@Factory Kernel
+@Interface
+
+
+record Exception
+{
+}
+
+record NullDereferenceException
+    extends Exception
+{
+}
+
+record IndexNotBoundException<A, B>
+    extends Exception
+{
+  ( -!> A ) index;
+  ( -!> Indexed<A, B> ) indexed;
+}
+
+record CastException
+    extends Exception
+{
+  ( -!> Type ) type;
+  ( -!> Object ) object;
+}
+
+record ArithmeticException
+    extends Exception
+{
+}
+
+record Error
+{
+}
+
+record AssertionError
+    extends Error
+{
+}

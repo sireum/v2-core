@@ -55,7 +55,7 @@ class KonkritScalarExpEvaluatorTest
     for (n1 <- integerOpInputs)
       for (n2 <- integerOpInputs if !(op == "/" || op == "%") || n2 != 0) {
         val result = binopASem(op)(n1, n2)
-        val exp = n1 + "ii " + op + " " + n2 + "ii"
+        val exp = n1 + " " + op + " " + n2
         makeTest(exp, result)
       }
 
@@ -69,7 +69,7 @@ class KonkritScalarExpEvaluatorTest
           n2 = random.nextLong
         }
       val result = binopASem(op)(n1, n2)
-      val exp = n1 + "ii " + op + " " + n2 + "ii"
+      val exp = n1 + " " + op + " " + n2
 
       makeTest(exp, result)
     }
@@ -84,7 +84,7 @@ class KonkritScalarExpEvaluatorTest
           n2 = random.nextInt
         }
       val result = binopASem(op)(n1, n2)
-      val exp = n1 + "ii " + op + " " + n2 + "ii"
+      val exp = n1 + " " + op + " " + n2
 
       makeTest(exp, result)
     }
@@ -93,7 +93,7 @@ class KonkritScalarExpEvaluatorTest
   for (op <- ivector("+", "-"))
     for (n <- integerOpInputs) {
       val result = unopASem(op)(n)
-      val exp = op + " " + n + "ii"
+      val exp = op + " " + n
 
       makeTest(exp, result)
     }
@@ -103,7 +103,7 @@ class KonkritScalarExpEvaluatorTest
     for (i <- 0 until numOfTests) {
       val n = random.nextLong
       val result = unopASem(op)(n)
-      val exp = op + " " + n + "ii"
+      val exp = op + " " + n
 
       makeTest(exp, result)
     }
@@ -116,7 +116,7 @@ class KonkritScalarExpEvaluatorTest
         if (random.nextBoolean && (op == "==" || op == "!=")) n1
         else random.nextLong
       val result = binopRSem(op)(n1, n2)
-      val exp = n1 + "ii " + op + " " + n2 + "ii"
+      val exp = n1 + " " + op + " " + n2
 
       makeTest(exp, result)
     }
@@ -131,22 +131,22 @@ class KonkritScalarExpEvaluatorTest
           n2 = random.nextInt
         }
       val result = binopASemInt(op)(n1, n2)
-      val exp = n1 + " " + op + " " + n2
+      val exp = n1 + "i " + op + " " + n2 + "i"
 
       makeTest(exp, result)
     }
 
-  // test integer arith unop
+  // test int arith unop
   for (op <- ivector("+", "-"))
     for (i <- 0 until numOfTests) {
       val n = random.nextInt
       val result = unopASemInt(op)(n)
-      val exp = op + " " + n
+      val exp = op + " " + n + "i"
 
       makeTest(exp, result)
     }
 
-  // test integer rel binop
+  // test int rel binop
   for (op <- ivector("==", "!=", ">", ">=", "<", "<="))
     for (i <- 0 until numOfTests) {
       val n1 = random.nextInt
@@ -154,7 +154,7 @@ class KonkritScalarExpEvaluatorTest
         if (random.nextBoolean && (op == "==" || op == "!=")) n1
         else random.nextInt
       val result = binopRSemInt(op)(n1, n2)
-      val exp = n1 + " " + op + " " + n2
+      val exp = n1 + "i " + op + " " + n2 + "i"
 
       makeTest(exp, result)
     }

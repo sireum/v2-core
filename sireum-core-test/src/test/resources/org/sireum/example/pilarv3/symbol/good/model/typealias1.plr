@@ -1,0 +1,5 @@
+record R {}
+
+typealias RList = R[];
+
+typealias RListList = RList[];
