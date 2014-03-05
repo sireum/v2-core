@@ -76,7 +76,7 @@ trait ConstMiner extends SymbolMiner {
                   packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = constDecl.name
     H.symbolInit(nameDef, H.CONST_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val cds = mmapGetOrElseUpdateT(tables.constTable,
@@ -148,7 +148,7 @@ trait EnumMiner extends SymbolMiner {
                  packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = enumDecl.name
     H.symbolInit(nameDef, H.ENUM_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val eds = mmapGetOrElseUpdateT(tables.enumTable, key,
@@ -229,7 +229,7 @@ trait ExtensionMiner extends SymbolMiner {
                       packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = extensionDecl.name
     H.symbolInit(nameDef, H.EXTENSION_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val eds = mmapGetOrElseUpdateT(tables.extensionTable, key,
@@ -298,7 +298,7 @@ trait FunMiner extends SymbolMiner {
                 packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = funDecl.name
     H.symbolInit(nameDef, H.FUN_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val ft = tables.funTable
@@ -350,7 +350,7 @@ trait GlobalVarMiner extends SymbolMiner {
                       packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = globalVarDecl.name
     H.symbolInit(nameDef, H.GLOBAL_VAR_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val gvt = tables.globalVarTable
@@ -403,7 +403,7 @@ trait ProcedureMiner extends SymbolMiner {
                       packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = procedureDecl.name
     H.symbolInit(nameDef, H.PROCEDURE_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val pds = mmapGetOrElseUpdateT(tables.procedureTable, key,
@@ -412,13 +412,13 @@ trait ProcedureMiner extends SymbolMiner {
     import LineColumnLocation._
     if (nameDef ? locPropKey)
       H.symbolInit(nameDef, H.PROCEDURE_TYPE,
-        H.packagePath(packageSymDef, nameDef.name + "/" +
+        H.paths(packageSymDef, nameDef.name + "/" +
           nameDef.line + "/" + nameDef.column +
           "/" + Integer.toHexString(procedureDecl.withoutBody.
             toString.hashCode)))
     else
       H.symbolInit(nameDef, H.PROCEDURE_TYPE,
-        H.packagePath(packageSymDef, nameDef.name + "/" +
+        H.paths(packageSymDef, nameDef.name + "/" +
           Integer.toHexString(procedureDecl.withoutBody.
             toString.hashCode)))
 
@@ -512,7 +512,7 @@ trait RecordMiner extends SymbolMiner {
                    packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = recordDecl.name
     H.symbolInit(nameDef, H.RECORD_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val rt = tables.recordTable
@@ -562,7 +562,7 @@ trait TypeAliasMiner extends SymbolMiner {
                       packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = typeAliasDecl.name
     H.symbolInit(nameDef, H.TYPE_ALIAS_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val tat = tables.typeAliasTable
@@ -610,7 +610,7 @@ trait VsetMiner extends SymbolMiner {
                  packageSymDef : Option[SymbolDefinition]) = {
     val nameDef = vsetDecl.name
     H.symbolInit(nameDef, H.VSET_TYPE,
-      H.packagePath(packageSymDef, nameDef.name))
+      H.paths(packageSymDef, nameDef.name))
 
     val key = nameDef.uri
     val vt = tables.vsetTable

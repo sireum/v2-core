@@ -90,7 +90,6 @@ object SymbolTableMessage {
  */
 object H {
   val SCHEME = "pilar"
-  val DEFAULT_PACKAGE_PATH = "default"
 
   val PACKAGE_TYPE = "package"
   def isPackage(r : Symbol) = r.uriType == PACKAGE_TYPE
@@ -173,19 +172,15 @@ object H {
     return true
   }
 
-  def packageName(symDef : Option[SymbolDefinition]) =
-    symDef match {
-      case Some(sd) =>
-        sd.uriPaths(0)
-      case _ =>
-        H.DEFAULT_PACKAGE_PATH
-    }
-
   def packageName(symDef : SymbolDefinition) = symDef.uriPaths(0)
 
-  def packagePath(symDef : Option[SymbolDefinition],
-                  name : String) =
-    ivector(packageName(symDef), name);
+  def paths(symDef : Option[SymbolDefinition], name : String*) =
+    symDef match {
+      case Some(sd) =>
+        sd.uriPaths(0) +: name.toVector
+      case _ =>
+        ivector(name : _*)
+    }
 
   def paths(symDef : SymbolDefinition, name : String) =
     symDef.uriPaths :+ name

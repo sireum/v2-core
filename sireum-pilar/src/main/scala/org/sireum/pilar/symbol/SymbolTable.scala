@@ -99,6 +99,7 @@ object SymbolTable {
   def resolveRecordHierarchy(stp : SymbolTableProducer) : Unit = {
     val dm = mmapEmpty[String, MSet[String]]
     new Object with RecordHierarchyResolver {
+      override def locPropKey = Location.locPropKey
       override def dependency = dm
     }.recordHierarchyResolver(stp)
     H.combineMap(stp.tables.dependency, dm)
