@@ -14,7 +14,7 @@ package org.sireum
 package object pilar {
   val PILAR_PACKAGE_CHAR = ':'
   val PILAR_PACKAGE_SEP = "::"
-  val PILAR_EXT_SEP = "."
+  val PILAR_ACCESSOR_SEP = "\\."
   val PILAR_VALUE_ANNOTATION_PARAM_ID = "value"
     
   def pilarSimpleName(name : String) : String = {

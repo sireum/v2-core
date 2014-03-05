@@ -39,7 +39,7 @@ trait ConstResolver extends SymbolResolver {
     if (tables.constElementTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -48,8 +48,13 @@ trait ConstResolver extends SymbolResolver {
         case pd : PackageDecl =>
           packageName = H.packageName(pd.name)
           true
+        case NameExp(id) =>
+          val paths = ivector(id.name)
+          val key = H.symbolUri(H.CONST_ELEM_TYPE, paths)
+          resolveConstElem(source, id, key, paths)
+          false
         case AccessExp(NameExp(name), id) =>
-          if (source != null && packageName != null) {
+          if (packageName != null) {
             val constName = name.name
             val constElementName = id.name
             val paths = ivector(constName, constElementName)
@@ -61,11 +66,22 @@ trait ConstResolver extends SymbolResolver {
               resolveConstElem(source, id, key, paths, name,
                 ivector(packageName, constName))
             }
-          }
-          false
+            false
+          } else true
       }
     }
   }
+
+  def resolveConstElem(source : Option[FileResourceUri],
+                       constElemR : SymbolUser,
+                       key : String,
+                       constElemPaths : ISeq[String]) =
+    tables.constElementTable.get(key) match {
+      case Some(ce) =>
+        H.symbolInit(constElemR, H.CONST_ELEM_TYPE, constElemPaths, key)
+        source.foreach { addDependency(_, ce.name) }
+      case _ =>
+    }
 
   def resolveConstElem(source : Option[FileResourceUri],
                        constElemR : SymbolUser,
@@ -93,7 +109,7 @@ trait EnumResolver extends SymbolResolver {
     if (tables.enumTable.isEmpty && tables.enumElementTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -103,7 +119,7 @@ trait EnumResolver extends SymbolResolver {
           packageName = H.packageName(pd.name)
           true
         case nts : NamedTypeSpec =>
-          if (source != null && packageName != null) {
+          if (packageName != null) {
             val enumName = nts.name.name
             val paths = ivector(enumName)
             val key = H.symbolUri(H.ENUM_TYPE, paths)
@@ -112,10 +128,20 @@ trait EnumResolver extends SymbolResolver {
               val key = H.symbolUri(H.ENUM_TYPE, paths)
               resolveEnum(source, nts.name, key, paths)
             }
+          } else {
+            val enumName = nts.name.name
+            val paths = ivector(enumName)
+            val key = H.symbolUri(H.ENUM_TYPE, paths)
+            resolveEnum(source, nts.name, key, paths)
           }
           false
+        case NameExp(id) =>
+          val paths = ivector(id.name)
+          val key = H.symbolUri(H.ENUM_ELEM_TYPE, paths)
+          resolveEnumElem(source, id, key, paths)
+          false
         case AccessExp(NameExp(name), id) =>
-          if (source != null && packageName != null) {
+          if (packageName != null) {
             val enumName = name.name
             val enumElementName = id.name
             val paths = ivector(enumName, enumElementName)
@@ -127,11 +153,23 @@ trait EnumResolver extends SymbolResolver {
               resolveEnumElem(source, id, key, paths, name,
                 ivector(packageName, enumName))
             }
-          }
-          false
+            false
+          } else true
       }
     }
   }
+
+  def resolveEnumElem(source : Option[FileResourceUri],
+                      enumElemR : SymbolUser,
+                      key : String, enumElemPaths : ISeq[String]) : Boolean =
+    tables.enumElementTable.get(key) match {
+      case Some(ee) =>
+        H.symbolInit(enumElemR, H.ENUM_ELEM_TYPE, enumElemPaths, key)
+        source.foreach { addDependency(_, ee.name) }
+        true
+      case _ =>
+        false
+    }
 
   def resolveEnumElem(source : Option[FileResourceUri],
                       enumElemR : SymbolUser,
@@ -172,7 +210,7 @@ trait ExtensionResolver extends SymbolResolver {
     if (tables.extensionTable.isEmpty && tables.extensionElementTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -181,8 +219,13 @@ trait ExtensionResolver extends SymbolResolver {
         case pd : PackageDecl =>
           packageName = H.packageName(pd.name)
           true
+        case NamedTypeSpec(id, _) =>
+          val paths = ivector(id.name)
+          val key = H.symbolUri(H.TYPE_EXTENSION_TYPE, paths)
+          resolveTypeExt(source, id, key, paths)
+          false
         case nets : NamedExtTypeSpec =>
-          if (source != null && packageName != null) {
+          if (packageName != null) {
             val extName = nets.extName
             val nameUser = nets.name
             val extTypeName = nameUser.name
@@ -195,8 +238,13 @@ trait ExtensionResolver extends SymbolResolver {
             }
           }
           false
+        case NameExp(id) =>
+          val paths = ivector(id.name)
+          val key = H.symbolUri(H.EXTENSION_ELEM_TYPE, paths)
+          resolveExtElem(source, id, key, paths)
+          false
         case AccessExp(NameExp(name), id) =>
-          if (source != null && packageName != null) {
+          if (packageName != null) {
             val extName = name.name
             val expExtName = id.name
             val paths = ivector(extName, expExtName)
@@ -208,11 +256,23 @@ trait ExtensionResolver extends SymbolResolver {
               resolveExtElem(source, id, key, paths, name,
                 ivector(packageName, extName))
             }
-          }
-          false
+            false
+          } else true
       }
     }
   }
+
+  def resolveExtElem(source : Option[FileResourceUri],
+                     extElemR : SymbolUser,
+                     key : String, extElemPaths : ISeq[String]) : Boolean =
+    tables.extensionElementTable.get(key) match {
+      case Some(ee) =>
+        H.symbolInit(extElemR, H.EXTENSION_ELEM_TYPE, extElemPaths, key)
+        source.foreach { addDependency(_, ee.name) }
+        true
+      case _ =>
+        false
+    }
 
   def resolveExtElem(source : Option[FileResourceUri],
                      extElemR : SymbolUser,
@@ -253,7 +313,7 @@ trait FunResolver extends SymbolResolver {
     if (tables.funTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -263,15 +323,17 @@ trait FunResolver extends SymbolResolver {
           packageName = H.packageName(pd.name)
           true
         case ne : NameExp =>
-          if (source != null && packageName != null) {
-            val funName = ne.name.name
-            val paths = ivector(funName)
-            val key = H.symbolUri(H.FUN_TYPE, paths)
+          val funName = ne.name.name
+          val paths = ivector(funName)
+          val key = H.symbolUri(H.FUN_TYPE, paths)
+          if (packageName != null) {
             if (!resolveFun(source, ne.name, key, paths)) {
               val paths = ivector(packageName, funName)
               val key = H.symbolUri(H.FUN_TYPE, paths)
               resolveFun(source, ne.name, key, paths)
             }
+          } else {
+            resolveFun(source, ne.name, key, paths)
           }
           false
       }
@@ -302,7 +364,7 @@ trait GlobalVarResolver extends SymbolResolver {
     if (tables.globalVarTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -312,15 +374,17 @@ trait GlobalVarResolver extends SymbolResolver {
           packageName = H.packageName(pd.name)
           true
         case ne : NameExp =>
-          if (source != null && packageName != null) {
-            val globalVarName = ne.name.name
-            val paths = ivector(globalVarName)
-            val key = H.symbolUri(H.GLOBAL_VAR_TYPE, paths)
+          val globalVarName = ne.name.name
+          val paths = ivector(globalVarName)
+          val key = H.symbolUri(H.GLOBAL_VAR_TYPE, paths)
+          if (packageName != null) {
             if (!resolveGlobalVar(source, ne.name, key, paths)) {
               val paths = ivector(packageName, globalVarName)
               val key = H.symbolUri(H.GLOBAL_VAR_TYPE, paths)
               resolveGlobalVar(source, ne.name, key, paths)
             }
+          } else {
+            resolveGlobalVar(source, ne.name, key, paths)
           }
           false
       }
@@ -351,7 +415,7 @@ trait ProcedureResolver extends SymbolResolver {
     if (tables.procedureTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -361,15 +425,17 @@ trait ProcedureResolver extends SymbolResolver {
           packageName = H.packageName(pd.name)
           true
         case ne : NameExp =>
-          if (source != null && packageName != null) {
-            val procedureName = ne.name
-            val paths = ivector(procedureName.name)
-            val key = H.symbolUri(H.PROCEDURE_TYPE, paths)
+          val procedureName = ne.name
+          val paths = ivector(procedureName.name)
+          val key = H.symbolUri(H.PROCEDURE_TYPE, paths)
+          if (packageName != null) {
             if (!resolveProcedure(source, procedureName, key, paths)) {
               val paths = ivector(packageName, procedureName.name)
               val key = H.symbolUri(H.PROCEDURE_TYPE, paths)
               resolveProcedure(source, procedureName, key, paths)
             }
+          } else {
+            resolveProcedure(source, procedureName, key, paths)
           }
           false
       }
@@ -438,11 +504,13 @@ trait RecordHierarchyResolver extends SymbolResolver {
 trait RecordResolver extends SymbolResolver {
   self : SymbolTableProducer =>
 
+  def locPropKey : Property.Key
+
   val recordResolver : VisitorFunction = {
     if (tables.recordTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -455,7 +523,6 @@ trait RecordResolver extends SymbolResolver {
           if (!rd.typeVars.isEmpty &&
             (!rd.attributes.isEmpty ||
               rd.extendsClauses.exists { !_.typeArgs.isEmpty })) {
-            assert(source != null && packageName != null)
             val tvt = mmapEmpty[String, NameDefinition]
             rd.typeVars.foreach { tv =>
               val nameDef = tv._1
@@ -464,7 +531,13 @@ trait RecordResolver extends SymbolResolver {
             val visitor = Visitor.build({
               case tvs : TypeVarSpec =>
                 H.resolveTypeVar(source, self, tvs.name,
-                  tvt, "record '%s'".format(rd.name.name))
+                  tvt, "record '%s'".format(rd.name.name),
+                  locPropKey, true)
+                false
+              case nts : NamedTypeSpec =>
+                H.resolveTypeVar(source, self, nts.name,
+                  tvt, "record '%s'".format(rd.name.name),
+                  locPropKey, false)
                 false
             })
             rd.attributes.foreach { a => visitor(a.typeSpec) }
@@ -473,16 +546,18 @@ trait RecordResolver extends SymbolResolver {
             }
           }
           true
-        case nts : NamedTypeSpec =>
-          if (source != null && packageName != null) {
-            val recordName = nts.name.name
-            val paths = ivector(recordName)
-            val key = H.symbolUri(H.RECORD_TYPE, paths)
-            if (!resolveRecord(source, nts.name, key, paths)) {
+        case NamedTypeSpec(id, _) =>
+          val recordName = id.name
+          val paths = ivector(recordName)
+          val key = H.symbolUri(H.RECORD_TYPE, paths)
+          if (packageName != null) {
+            if (!resolveRecord(source, id, key, paths)) {
               val paths = ivector(packageName, recordName)
               val key = H.symbolUri(H.RECORD_TYPE, paths)
-              resolveRecord(source, nts.name, key, paths)
+              resolveRecord(source, id, key, paths)
             }
+          } else {
+            resolveRecord(source, id, key, paths)
           }
           false
       }
@@ -490,19 +565,17 @@ trait RecordResolver extends SymbolResolver {
   }
 
   def attributeInitResolver : VisitorFunction = {
-    var source : Option[FileResourceUri] = null
+    var source : Option[FileResourceUri] = None
     return {
       case m : Model =>
         source = m.sourceURI
         true
       case nr : NewRecordExp =>
-        if (source != null) {
-          val rNameUser = nr.recordType.name
-          nr.attributeInits.foreach { ai =>
-            val paths = rNameUser.uriPaths :+ ai.name.name
-            val key = H.symbolUri(H.RECORD_TYPE, paths)
-            resolveAttribute(source, ai.name, key, paths)
-          }
+        val rNameUser = nr.recordType.name
+        nr.attributeInits.foreach { ai =>
+          val paths = rNameUser.uriPaths :+ ai.name.name
+          val key = H.symbolUri(H.RECORD_TYPE, paths)
+          resolveAttribute(source, ai.name, key, paths)
         }
         true
     }
@@ -545,7 +618,7 @@ trait TypeAliasResolver extends SymbolResolver {
     if (!tables.typeAliasTable.isEmpty)
       ignoringVisitorFunction
     else {
-      var source : Option[FileResourceUri] = null
+      var source : Option[FileResourceUri] = None
       var packageName : String = null;
       {
         case m : Model =>
@@ -555,15 +628,17 @@ trait TypeAliasResolver extends SymbolResolver {
           packageName = H.packageName(pd.name)
           true
         case nts : NamedTypeSpec =>
-          if (source != null && packageName != null) {
-            val typeAliasName = nts.name.name
-            val paths = ivector(typeAliasName)
-            val key = H.symbolUri(H.TYPE_ALIAS_TYPE, paths)
+          val typeAliasName = nts.name.name
+          val paths = ivector(typeAliasName)
+          val key = H.symbolUri(H.TYPE_ALIAS_TYPE, paths)
+          if (packageName != null) {
             if (!resolveTypeAlias(source, nts.name, key, paths)) {
               val paths = ivector(packageName, typeAliasName)
               val key = H.symbolUri(H.TYPE_ALIAS_TYPE, paths)
               resolveTypeAlias(source, nts.name, key, paths)
             }
+          } else {
+            resolveTypeAlias(source, nts.name, key, paths)
           }
           false
       }
@@ -639,6 +714,8 @@ trait VsetResolver extends SymbolResolver {
 trait FunParamResolver extends SymbolResolver {
   self : SymbolTableProducer =>
 
+  def locPropKey : Property.Key
+
   val scopeStack = mlistEmpty[MMap[String, ParamDecl]]
   val funParamResolver : VisitorFunction = {
     case m : Matching =>
@@ -652,10 +729,14 @@ trait FunParamResolver extends SymbolResolver {
             case Some(other) =>
               import LineColumnLocation._
               import FileLocation._
-              reportError(pName.fileUriOpt,
-                pName.line, pName.column,
-                DUPLICATE_ANON_PARAM.format(pName.name,
-                  other.name.line, other.column))
+              if (pName ? locPropKey)
+                reportError(pName.fileUriOpt,
+                  pName.line, pName.column,
+                  DUPLICATE_ANON_PARAM.format(pName.name,
+                    other.name.line, other.column))
+              else
+                reportError(None, 0, 0,
+                  DUPLICATE_ANON_PARAM.format(pName.name, 0, 0))
             case _ =>
               scope(key) = p
           }
@@ -695,6 +776,8 @@ trait FunParamResolver extends SymbolResolver {
 trait ProcedureSymbolResolver extends SymbolResolver {
   self : ProcedureSymbolTableProducer =>
 
+  def locPropKey : Property.Key
+
   val procedureHeaderResolver : VisitorFunction = {
     case pd : ProcedureDecl =>
       if (!pd.typeVars.isEmpty) {
@@ -702,9 +785,13 @@ trait ProcedureSymbolResolver extends SymbolResolver {
         import FileLocation._
         val source = pd.name.fileUriOpt
         Visitor.build {
+          case NamedTypeSpec(id, Seq()) =>
+            H.resolveTypeVar(source, self.symbolTableProducer, id, tvt,
+              "procedure '%s'".format(pd.name.name), locPropKey, false)
+            false
           case tvs : TypeVarSpec =>
             H.resolveTypeVar(source, self.symbolTableProducer, tvs.name, tvt,
-              "procedure '%s'".format(pd.name.name))
+              "procedure '%s'".format(pd.name.name), locPropKey, true)
             false
           case body : Body =>
             false
@@ -714,7 +801,7 @@ trait ProcedureSymbolResolver extends SymbolResolver {
   }
 
   def procedureBodyResolver : VisitorFunction = {
-    var source : Option[FileResourceUri] = null
+    var source : Option[FileResourceUri] = None
     var tvt : MMap[String, NameDefinition] = null
     var procNameDef : NameDefinition = null
     return {
@@ -734,9 +821,13 @@ trait ProcedureSymbolResolver extends SymbolResolver {
           case _ =>
         }
         false
+      case NamedTypeSpec(id, Seq()) =>
+        H.resolveTypeVar(source, self.symbolTableProducer, id, tvt,
+          "procedure '%s'".format(procNameDef.name), locPropKey, false)
+        false
       case tvs : TypeVarSpec =>
         H.resolveTypeVar(source, self.symbolTableProducer, tvs.name, tvt,
-          "procedure '%s'".format(procNameDef.name))
+          "procedure '%s'".format(procNameDef.name), locPropKey, true)
         false
     }
   }
@@ -747,6 +838,8 @@ trait ProcedureSymbolResolver extends SymbolResolver {
  */
 trait JumpResolver extends SymbolResolver {
   self : ProcedureSymbolTableProducer =>
+
+  def locPropKey : Property.Key
 
   def hasImplicitNextJump(loc : LocationDecl) : Boolean = {
       def hasImplicit(j : Jump) : Boolean =
@@ -761,8 +854,8 @@ trait JumpResolver extends SymbolResolver {
     loc match {
       case loc : ActionLocation =>
         !loc.action.isInstanceOf[ThrowAction]
-      case loc : EmptyLocation  => true
-      case loc : JumpLocation   => hasImplicit(loc.jump)
+      case loc : EmptyLocation => true
+      case loc : JumpLocation  => hasImplicit(loc.jump)
       case loc : ComplexLocation =>
         loc.transformations.exists { t =>
           if (t.actions.exists(_.isInstanceOf[ThrowAction])) false
@@ -774,7 +867,7 @@ trait JumpResolver extends SymbolResolver {
   }
 
   val jumpResolver : VisitorFunction = {
-    var source : Option[FileResourceUri] = null
+    var source : Option[FileResourceUri] = None
     var procNameDef : NameDefinition = null
     var locations : ISeq[LocationDecl] = null;
     import LineColumnLocation._
@@ -787,10 +880,15 @@ trait JumpResolver extends SymbolResolver {
       case ib : ImplementedBody =>
         locations = ib.locations
         val lastLoc = locations(locations.size - 1)
-        if (hasImplicitNextJump(lastLoc))
-          symbolTableProducer.reportError(source,
-            lastLoc.line, lastLoc.column,
-            LAST_LOCATION_NEED_EXPLICIT_JUMP)
+        if (hasImplicitNextJump(lastLoc)) {
+          if (lastLoc ? locPropKey)
+            symbolTableProducer.reportError(source,
+              lastLoc.line, lastLoc.column,
+              LAST_LOCATION_NEED_EXPLICIT_JUMP)
+          else
+            symbolTableProducer.reportError(source,
+              0, 0, LAST_LOCATION_NEED_EXPLICIT_JUMP)
+        }
         true
       case gj : GotoJump =>
         val nameUser = gj.target
@@ -814,11 +912,17 @@ trait JumpResolver extends SymbolResolver {
         if (end == -1) {
           import LineColumnLocation._
           import FileLocation._
-          symbolTableProducer.reportError(source, toNameUser.line,
-            toNameUser.column, CATCH_TABLE_END_BEFORE_START.
-              format(H.symbolSimpleName(toNameUser),
-                H.symbolSimpleName(fromNameUser),
-                fromNameUser.line, fromNameUser.column))
+          if (toNameUser ? locPropKey && fromNameUser ? locPropKey)
+            symbolTableProducer.reportError(source, toNameUser.line,
+              toNameUser.column, CATCH_TABLE_END_BEFORE_START.
+                format(H.symbolSimpleName(toNameUser),
+                  H.symbolSimpleName(fromNameUser),
+                  fromNameUser.line, fromNameUser.column))
+          else
+            symbolTableProducer.reportError(source, 0, 0,
+              CATCH_TABLE_END_BEFORE_START.
+                format(H.symbolSimpleName(toNameUser),
+                  H.symbolSimpleName(fromNameUser), 0, 0))
         } else {
           val ct = tables.bodyTables.get.catchTable
           for (i <- start to end)
@@ -848,9 +952,13 @@ trait JumpResolver extends SymbolResolver {
       case None =>
         import LineColumnLocation._
         import FileLocation._
-        symbolTableProducer.reportError(source,
-          nameUser.line, nameUser.column,
-          NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
+        if (nameUser ? locPropKey)
+          symbolTableProducer.reportError(source,
+            nameUser.line, nameUser.column,
+            NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
+        else
+          symbolTableProducer.reportError(source,
+            0, 0, NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
     }
   }
 }

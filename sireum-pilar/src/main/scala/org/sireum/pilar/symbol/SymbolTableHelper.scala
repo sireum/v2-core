@@ -200,7 +200,10 @@ object H {
     s.uriPaths.last
 
   def symbolUri(typ : String, paths : ISeq[String], relative : Boolean = false) =
-    Resource.getResourceUri(SCHEME, typ, paths.map { _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/") }, relative)
+    Resource.getResourceUri(SCHEME, typ, paths.map {
+      _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/").
+        replaceAll(org.sireum.pilar.PILAR_ACCESSOR_SEP, "/")
+    }, relative)
 
   def typeVarSymbol(tvt : MMap[ResourceUri, NameDefinition], str : SymbolTableReporter,
                     nameDef : NameDefinition, symDef : SymbolDefinition) = {
@@ -233,17 +236,25 @@ object H {
   def resolveTypeVar(source : Option[FileResourceUri],
                      str : SymbolTableReporter, typeVarR : NameUser,
                      tvt : MMap[String, NameDefinition],
-                     name : String) =
+                     name : String,
+                     locPropKey : Property.Key,
+                     produceError : Boolean) =
     tvt.get(typeVarR.name) match {
       case Some(nameDef) =>
         H.symbolInit(typeVarR, H.TYPE_VAR_TYPE,
           nameDef.uriPaths, nameDef.uri)
       case _ =>
-        import LineColumnLocation._
-        import FileLocation._
-        str.reportError(source,
-          typeVarR.line, typeVarR.column,
-          NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+        if (produceError) {
+          import LineColumnLocation._
+          import FileLocation._
+          if (typeVarR ? locPropKey)
+            str.reportError(source,
+              typeVarR.line, typeVarR.column,
+              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+          else
+            str.reportError(source, 0, 0,
+              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+        }
     }
 
   val EMPTY_DEPENDENCY = mmapEmpty[String, MSet[String]]
@@ -308,6 +319,8 @@ object H {
       with FunResolver with GlobalVarResolver with ProcedureResolver
       with RecordResolver with TypeAliasResolver with VsetResolver
       with FunParamResolver {
+
+    override val locPropKey = Location.locPropKey
 
     override def dependency = mmapEmpty[String, MSet[String]]
 
