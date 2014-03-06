@@ -1,0 +1,5 @@
+procedure inc(x) {
+  # r := x + 1;
+  # assert r > x;
+  # return r;
+}

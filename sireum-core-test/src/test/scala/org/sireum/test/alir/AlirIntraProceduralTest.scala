@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 package org.sireum.test.alir
 
-import org.sireum.example.alir.AlirExamples
+import org.sireum.example.pilarv3.alir.AlirExamples
 import org.junit.runner.RunWith
 
 import org.scalatest.junit.JUnitRunner

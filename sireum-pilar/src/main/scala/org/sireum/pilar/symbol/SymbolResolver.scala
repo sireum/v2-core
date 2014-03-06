@@ -17,13 +17,16 @@ import org.sireum.util._
  */
 trait SymbolResolver {
   def dependency : MMap[String, MSet[String]]
+  def locPropKey : Property.Key
 
-  def addDependency(fromUri : FileResourceUri, toSD : SymbolDefinition) : Unit = {
-    import FileLocation._
-    toSD.fileUriForEach { fileLoc : FileResourceUri =>
-      if (fromUri != fileLoc) {
-        dependency.getOrElseUpdate(fileLoc,
-          msetEmpty[FileResourceUri]) += fromUri
+  def addDependency(fromUri : FileResourceUri, toSD : SymbolDefinition) {
+    if (toSD ? locPropKey) {
+      import FileLocation._
+      toSD.fileUriForEach { fileLoc : FileResourceUri =>
+        if (fromUri != fileLoc) {
+          dependency.getOrElseUpdate(fileLoc,
+            msetEmpty[FileResourceUri]) += fromUri
+        }
       }
     }
   }

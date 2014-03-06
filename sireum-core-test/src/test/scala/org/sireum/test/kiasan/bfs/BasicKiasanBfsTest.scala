@@ -19,7 +19,7 @@ import org.sireum.pilar.symbol._
 import org.sireum.test.kiasan.eval._
 import org.sireum.kiasan.extension._
 import org.sireum.konkrit.extension._
-import org.sireum.example.kiasan._
+import org.sireum.example.pilarv3.kiasan._
 import org.sireum.pilar.eval.EvaluatorConfiguration
 import org.sireum.pilar.ast.NameUser
 

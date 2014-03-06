@@ -1,0 +1,10 @@
+procedure abs(x) {
+  r;
+  
+  # if x < 0 then goto l1;
+  # r := x;
+  # goto l2;
+  #l1. r := x * -1;
+  #l2. assert r >= 0;
+  # return r;
+}
