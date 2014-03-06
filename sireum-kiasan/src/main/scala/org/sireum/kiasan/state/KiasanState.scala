@@ -22,8 +22,8 @@ object KiasanState {
       case kv : KiasanExtension.KiasanValue with ScalarValue =>
         val turi = kv.typeUri
         val counter = m.getOrElse(kv.typeUri, 0)
-        if (kv.num > counter)
-          m(turi) = kv.num
+        if (kv.num >= counter)
+          m(turi) = kv.num + 1
       case _ =>
     }
   }
@@ -65,9 +65,9 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
     make(pathConditions :+ e, counters)
 
   def fresh(uri : ResourceUri) : (Self, Int) = {
-    val last = counters.getOrElse(uri, 0)
-    val r = last + 1
-    (make(pathConditions, counters + (uri -> r)), r)
+    val num = counters.getOrElse(uri, 0)
+    val next = num + 1
+    (make(pathConditions, counters + (uri -> next)), num)
   }
 
   protected def make(pathConditions : ISeq[Exp], counters : IMap[ResourceUri, Int]) : Self

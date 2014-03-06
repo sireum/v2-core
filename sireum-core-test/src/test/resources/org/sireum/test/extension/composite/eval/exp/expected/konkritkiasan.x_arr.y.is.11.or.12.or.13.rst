@@ -14,7 +14,7 @@ State: Before
 
     * [3] = 13
 
-  * @@y = i1
+  * @@y = i0
 
 ----
 
@@ -34,11 +34,11 @@ State: Before
 |                              |                              |
 |     * [3] = 13               |     * [3] = 13               |
 |                              |                              |
-|   * @@y = i1                 |   * @@y = 1                  |
+|   * @@y = i0                 |   * @@y = 1                  |
 |                              |                              |
 | * Path Conditions            | * Path Conditions            |
 |                              |                              |
-|   * 1 == i1                  |   * 1 == 1                   |
+|   * 1 == i0                  |   * 1 == 1                   |
 |                              |                              |
 | * Result: 11                 | * Result: 11                 |
 |                              |                              |
@@ -62,11 +62,11 @@ State: Before
 |                              |                              |
 |     * [3] = 13               |     * [3] = 13               |
 |                              |                              |
-|   * @@y = i1                 |   * @@y = 2                  |
+|   * @@y = i0                 |   * @@y = 2                  |
 |                              |                              |
 | * Path Conditions            | * Path Conditions            |
 |                              |                              |
-|   * 2 == i1                  |   * 2 == 2                   |
+|   * 2 == i0                  |   * 2 == 2                   |
 |                              |                              |
 | * Result: 12                 | * Result: 12                 |
 |                              |                              |
@@ -90,11 +90,11 @@ State: Before
 |                              |                              |
 |     * [3] = 13               |     * [3] = 13               |
 |                              |                              |
-|   * @@y = i1                 |   * @@y = 3                  |
+|   * @@y = i0                 |   * @@y = 3                  |
 |                              |                              |
 | * Path Conditions            | * Path Conditions            |
 |                              |                              |
-|   * 3 == i1                  |   * 3 == 3                   |
+|   * 3 == i0                  |   * 3 == 3                   |
 |                              |                              |
 | * Result: 13                 | * Result: 13                 |
 |                              |                              |

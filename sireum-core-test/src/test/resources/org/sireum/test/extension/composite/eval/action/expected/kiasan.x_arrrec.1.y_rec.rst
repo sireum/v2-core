@@ -14,7 +14,7 @@ State: Before
 |                                 |                                 |
 |   * @@x_arrrec = KArray#3       |   * @@x_arrrec = KArray#3       |
 |                                 |                                 |
-|     * min=i1; length=i2; max=i3 |     * min=0; length=1; max=0    |
+|     * min=i0; length=i1; max=i2 |     * min=0; length=1; max=0    |
 |                                 |                                 |
 |     * [1] = KRecord#1           |     * [1] = KRecord#1           |
 |                                 |                                 |
@@ -22,12 +22,12 @@ State: Before
 |                                 |                                 |
 | * Path Conditions               | * Path Conditions               |
 |                                 |                                 |
-|   * i1 <= i3                    |   * 0 <= 0                      |
+|   * i0 <= i2                    |   * 0 <= 0                      |
 |                                 |                                 |
-|   * 0 <= i2                     |   * 0 <= 1                      |
+|   * 0 <= i1                     |   * 0 <= 1                      |
 |                                 |                                 |
-|   * i2 == i3 - i1 + 1           |   * 1 == 0 - 0 + 1              |
+|   * i1 == i2 - i0 + 1           |   * 1 == 0 - 0 + 1              |
 |                                 |                                 |
-|   * 1 <= i2                     |   * 1 <= 1                      |
+|   * 1 <= i1                     |   * 1 <= 1                      |
 |                                 |                                 |
 +---------------------------------+---------------------------------+

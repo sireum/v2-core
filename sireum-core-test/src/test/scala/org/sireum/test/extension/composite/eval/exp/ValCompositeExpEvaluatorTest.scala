@@ -286,17 +286,17 @@ class ValCompositeExpEvaluatorTest
       }
   }
 
-  val (ki1, ki2, ki3, ki4, ki5, ki6, ki7, ki8) = {
+  val (ki0, ki1, ki2, ki3, ki4, ki5, ki6, ki7) = {
     import KiasanIntegerExtension.KI
-    (KI(1), KI(2), KI(3), KI(4), KI(5), KI(6), KI(7), KI(8))
+    (KI(0), KI(1), KI(2), KI(3), KI(4), KI(5), KI(6), KI(7))
   }
 
   {
     val s = state
 
-    Case("kiasan.x_rec.f1.is.ki1.lazyempty").
-      Evaluating expression "@@x_rec.f1" on s gives "ki1" satisfying {
-        r : Re => r.value is ki1
+    Case("kiasan.x_rec.f1.is.ki0.lazyempty").
+      Evaluating expression "@@x_rec.f1" on s gives "ki0" satisfying {
+        r : Re => r.value is ki0
       }
   }
 
@@ -308,30 +308,30 @@ class ValCompositeExpEvaluatorTest
       s2s(0)
     }
 
-    Case("kiasan.x_rec.f1.is.ki1.exist").
-      Evaluating expression "@@x_rec.f1" on s gives "ki1" satisfying {
+    Case("kiasan.x_rec.f1.is.ki0.exist").
+      Evaluating expression "@@x_rec.f1" on s gives "ki0" satisfying {
         r : Re =>
-          r.value is ki1
+          r.value is ki0
           r.state is s
       }
 
-    Case("kiasan.x_rec.f2.is.ki2.lazy").
-      Evaluating expression "@@x_rec.f2" on s gives "ki2" satisfying {
-        r : Re => r.value is ki2
+    Case("kiasan.x_rec.f2.is.ki1.lazy").
+      Evaluating expression "@@x_rec.f2" on s gives "ki1" satisfying {
+        r : Re => r.value is ki1
       }
   }
 
   {
     val s = state
 
-    Case("kiasan.x_arr.1.is.ki4.lazyconempty").
-      Evaluating expression "@@x_arr[1]" on s gives "ki4" satisfying {
-        r : Re => r.value is ki4
+    Case("kiasan.x_arr.1.is.ki3.lazyconempty").
+      Evaluating expression "@@x_arr[1]" on s gives "ki3" satisfying {
+        r : Re => r.value is ki3
       }
 
-    Case("kiasan.x_arr.y.is.ki5.lazysymempty").
-      Evaluating expression "@@x_arr[@@y]" on s gives "ki5" satisfying {
-        r : Re => r.value is ki5
+    Case("kiasan.x_arr.y.is.ki4.lazysymempty").
+      Evaluating expression "@@x_arr[@@y]" on s gives "ki4" satisfying {
+        r : Re => r.value is ki4
       }
   }
 
@@ -343,23 +343,23 @@ class ValCompositeExpEvaluatorTest
       s2s(0)
     }
 
-    Case("kiasan.x_arr.1.is.ki4.existconcon").
-      Evaluating expression "@@x_arr[1]" on s gives "ki4" satisfying {
+    Case("kiasan.x_arr.1.is.ki3.existconcon").
+      Evaluating expression "@@x_arr[1]" on s gives "ki3" satisfying {
         r : Re =>
-          r.value is ki4
+          r.value is ki3
           r.state is s
       }
 
-    Case("kiasan.x_arr.2.is.ki5.lazyconcon").
-      Evaluating expression "@@x_arr[2]" on s gives "ki5" satisfying {
+    Case("kiasan.x_arr.2.is.ki4.lazyconcon").
+      Evaluating expression "@@x_arr[2]" on s gives "ki4" satisfying {
         r : Re =>
-          r.value is ki5
+          r.value is ki4
       }
 
-    Case("kiasan.x_arr.y.is.ki4.or.ki6.lazysymcon").
-      Evaluating expression "@@x_arr[@@y]" on s gives "ki4 or ki6" satisfying {
+    Case("kiasan.x_arr.y.is.ki3.or.ki5.lazysymcon").
+      Evaluating expression "@@x_arr[@@y]" on s gives "ki3 or ki5" satisfying {
         r : Re =>
-          r.value is_in (ki6, ki4)
+          r.value is_in (ki5, ki3)
       }
   }
 
@@ -371,23 +371,23 @@ class ValCompositeExpEvaluatorTest
       s2s(0)
     }
 
-    Case("kiasan.x_arr.y.is.ki5.existsym").
-      Evaluating expression "@@x_arr[@@y]" on s gives "ki5" satisfying {
+    Case("kiasan.x_arr.y.is.ki4.existsym").
+      Evaluating expression "@@x_arr[@@y]" on s gives "ki4" satisfying {
         r : Re =>
-          r.value is ki5
+          r.value is ki4
           r.state is s
       }
 
-    Case("kiasan.x_arr.1.is.ki5.or.ki6.lazyconsym").
-      Evaluating expression "@@x_arr[1]" on s gives "ki5 or ki6" satisfying {
+    Case("kiasan.x_arr.1.is.ki4.or.ki5.lazyconsym").
+      Evaluating expression "@@x_arr[1]" on s gives "ki4 or ki5" satisfying {
         r : Re =>
-          r.value is_in (ki5, ki6)
+          r.value is_in (ki4, ki5)
       }
 
-    Case("kiasan.x_arr.y.is.ki5.or.ki7.lazysymsym").
-      Evaluating expression "@@x_arr[@@z]" on s gives "ki5 or ki7" satisfying {
+    Case("kiasan.x_arr.y.is.ki4.or.ki6.lazysymsym").
+      Evaluating expression "@@x_arr[@@z]" on s gives "ki4 or ki6" satisfying {
         r : Re =>
-          r.value is_in (ki5, ki7)
+          r.value is_in (ki4, ki6)
       }
 
   }
@@ -404,30 +404,30 @@ class ValCompositeExpEvaluatorTest
     for (i <- 0 until ss.length) {
       val s = ss(i)
 
-      Case("kiasan.x_arr.y.is.ki5.or.ki6.existsymsymcon." + i).
-        Evaluating expression "@@x_arr[@@y]" on s gives "ki5 or ki6" satisfying {
+      Case("kiasan.x_arr.y.is.ki4.or.ki5.existsymsymcon." + i).
+        Evaluating expression "@@x_arr[@@y]" on s gives "ki4 or ki5" satisfying {
           r : Re =>
-            r.value is_in (ki5, ki6)
+            r.value is_in (ki4, ki5)
           // r.state is s // TODO: implemet better rep
         }
 
-      Case("kiasan.x_arr.1.is.ki5.or.ki6.existconsymcon." + i).
-        Evaluating expression "@@x_arr[1]" on s gives "ki5 or ki6" satisfying {
+      Case("kiasan.x_arr.1.is.ki4.or.ki5.existconsymcon." + i).
+        Evaluating expression "@@x_arr[1]" on s gives "ki4 or ki5" satisfying {
           r : Re =>
-            r.value is_in (ki5, ki6)
+            r.value is_in (ki4, ki5)
             r.state is s
         }
 
-      Case("kiasan.x_arr.2.is.ki5.or.ki6.or.ki7.lazyconsymcon." + i).
-        Evaluating expression "@@x_arr[2]" on s gives "ki5 or ki6 or ki7" satisfying {
+      Case("kiasan.x_arr.2.is.ki4.or.ki5.or.ki6.lazyconsymcon." + i).
+        Evaluating expression "@@x_arr[2]" on s gives "ki4 or ki5 or ki6" satisfying {
           r : Re =>
-            r.value is_in (ki5, ki6, ki7)
+            r.value is_in (ki4, ki5, ki6)
         }
 
-      Case("kiasan.x_arr.z.is.ki5.or.ki6.or.ki7.or.ki8.lazysymsymcon." + i).
-        Evaluating expression "@@x_arr[@@z]" on s gives "ki5 or ki6 or ki7 or ki8" satisfying {
+      Case("kiasan.x_arr.z.is.ki4.or.ki5.or.ki6.or.ki7.lazysymsymcon." + i).
+        Evaluating expression "@@x_arr[@@z]" on s gives "ki4 or ki5 or ki6 or ki7" satisfying {
           r : Re =>
-            r.value is_in (ki5, ki6, ki7, ki8)
+            r.value is_in (ki4, ki5, ki6, ki7)
         }
     }
   }

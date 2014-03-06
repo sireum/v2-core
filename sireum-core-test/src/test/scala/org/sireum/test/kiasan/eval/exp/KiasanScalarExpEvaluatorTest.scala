@@ -56,10 +56,10 @@ class KiasanScalarExpEvaluatorTest
     val s = BasicKiasanState()
     val (s2, a) = KiasanIntegerExtension.fresh(s)
     val (s3, b) = KiasanIntegerExtension.fresh(s2)
-    val c = KI(3)
+    val c = KI(2)
     val (s4, ba) = KiasanBooleanExtension.fresh(s3)
     val (s5, bb) = KiasanBooleanExtension.fresh(s4)
-    val bc = KB(3)
+    val bc = KB(2)
     (s5, a, b, c, ba, bb, bc)
   }
 
