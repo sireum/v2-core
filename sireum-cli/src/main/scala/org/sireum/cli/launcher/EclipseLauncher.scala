@@ -45,7 +45,7 @@ class EclipseLauncher {
             else "java"
           val launcherJar =
             try {
-              val pluginsDir = new File(sireumHome, "apps/eclipse/classic/plugins")
+              val pluginsDir = new File(sireumHome, "apps/eclipse/dsl/plugins")
               pluginsDir.listFiles(new FilenameFilter {
                 def accept(dir : File, name : String) = {
                   name.startsWith("org.eclipse.equinox.launcher_")
@@ -63,8 +63,8 @@ class EclipseLauncher {
                 "-XstartOnFirstThread",
                 "-Dorg.eclipse.swt.internal.carbon.smallFonts"),
                 new File(sireumHome,
-                  "apps/eclipse/classic/Eclipse.app/Contents/MacOS"))
-            else (ivectorEmpty, new File(sireumHome, "apps/eclipse/classic"))
+                  "apps/eclipse/dsl/Eclipse.app/Contents/MacOS"))
+            else (ivectorEmpty, new File(sireumHome, "apps/eclipse/dsl"))
           val launcherArgs =
             ivector(
               "-Dosgi.requiredJavaVersion=1.7",
