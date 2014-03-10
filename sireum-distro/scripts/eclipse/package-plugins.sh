@@ -79,6 +79,7 @@ mkdir eclipse-plugins-essential/texlipse/eclipse 2> /dev/null
 cd eclipse-plugins-essential/texlipse
 aspell --encoding=UTF-8 --lang=en dump master > en.dict
 cd eclipse
+unzip -oq ../../../"$TEXLIPSE_DROP"
 > .eclipseextension
 cd ../../..
 zip -rq eclipse-plugins-essential.sapp eclipse-plugins-essential
