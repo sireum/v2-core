@@ -45,6 +45,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
    * @author <a href="mailto:robby@k-state.edu">Robby</a>
    */
   case class ResultingStates(endStates : ISeq[S], errorStates : ISeq[S],
+                             infeasibleStates : ISeq[S],
                              depthBoundExStates : ISeq[S])
 
   /**
@@ -139,6 +140,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
       var endStates = ivectorEmpty[S]
       var avStates = ivectorEmpty[S]
+      var abStates = ivectorEmpty[S]
       var boundDepthExStates = ivectorEmpty[S]
       val ecs = extensions
       val conf = config(st)
@@ -170,6 +172,10 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
             avStates = s +: avStates
             s
           }
+          def foundAssumptionBreach(s : S) : S = {
+            abStates = s +: abStates
+            s
+          }
           def foundEndState(s : S) : S = {
             endStates = s +: endStates
             s
@@ -186,7 +192,7 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
 
       kiasan.search
 
-      ResultingStates(endStates, avStates, boundDepthExStates)
+      ResultingStates(endStates, avStates, abStates, boundDepthExStates)
     }
 
     protected var funs : ISeq[ResultingStates => Unit] = ivectorEmpty

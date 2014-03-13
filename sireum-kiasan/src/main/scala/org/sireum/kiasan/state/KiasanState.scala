@@ -79,7 +79,7 @@ trait KiasanStatePart[Self <: KiasanStatePart[Self]] extends SelfType[Self] {
 object BasicKiasanState {
   def apply() : BasicKiasanState =
     BasicKiasanState(imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty, imapEmpty,
-      imapEmpty, None, None, false, ivectorEmpty, ivectorEmpty, 0)
+      imapEmpty, None, None, None, false, ivectorEmpty, ivectorEmpty, 0)
 }
 
 /**
@@ -93,6 +93,7 @@ final case class BasicKiasanState(
   counters : IMap[ResourceUri, Int],
   properties : Property.ImmutableProperties,
   assertionViolation : Option[AssertionViolationInfo],
+  assumptionBreach : Option[AssumptionBreachInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
   schedule : ISeq[(Option[Any], Int, Int)],
@@ -123,6 +124,9 @@ final case class BasicKiasanState(
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicKiasanState =
     copy(assertionViolation = Some(avi))
+
+  def assumptionBreach(abi : AssumptionBreachInfo) : BasicKiasanState =
+    copy(assumptionBreach = Some(abi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicKiasanState =
@@ -155,7 +159,7 @@ final case class BasicKiasanState(
 object KiasanStateWithHeap {
   def apply(heaps : ISeq[ISeq[HeapObject]]) : KiasanStateWithHeap =
     KiasanStateWithHeap(heaps, imapEmpty, ivectorEmpty, ivectorEmpty, ivectorEmpty,
-      imapEmpty, imapEmpty, None, None, false, ivectorEmpty, ivectorEmpty, 0)
+      imapEmpty, imapEmpty, None, None, None, false, ivectorEmpty, ivectorEmpty, 0)
 }
 
 /**
@@ -170,6 +174,7 @@ final case class KiasanStateWithHeap(
   counters : IMap[ResourceUri, Int],
   properties : Property.ImmutableProperties,
   assertionViolation : Option[AssertionViolationInfo],
+  assumptionBreach : Option[AssumptionBreachInfo],
   raisedException : Option[BasicExceptionInfo],
   inconsistencyCheckRequested : Boolean,
   schedule : ISeq[(Option[Any], Int, Int)],
@@ -206,6 +211,9 @@ final case class KiasanStateWithHeap(
 
   def assertionViolation(avi : AssertionViolationInfo) : KiasanStateWithHeap =
     copy(assertionViolation = Some(avi))
+
+  def assumptionBreach(abi : AssumptionBreachInfo) : KiasanStateWithHeap =
+    copy(assumptionBreach = Some(abi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : KiasanStateWithHeap =

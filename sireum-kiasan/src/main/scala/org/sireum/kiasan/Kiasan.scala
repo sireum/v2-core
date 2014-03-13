@@ -47,6 +47,7 @@ trait KiasanLocationProvider[S <: Kiasan.KiasanState[S]] {
  */
 trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
   def foundAssertionViolation(s : S) : S
+  def foundAssumptionBreach(s : S) : S
   def foundEndState(s : S) : S
   def foundDepthBoundExhaustion(s : S) : S
 }
@@ -217,6 +218,9 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
             val s3 = s3Opt.get
             if (s3.assertionViolation.isDefined) {
               reporter.foundAssertionViolation(s3)
+              None
+            } else if (s3.assumptionBreach.isDefined) {
+              reporter.foundAssumptionBreach(s3)
               None
             } else {
               Some(s3, time)

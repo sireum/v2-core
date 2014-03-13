@@ -25,6 +25,12 @@ object EvaluatorImpl {
   final case class AVIL(procUri : ResourceUri, locUri : Option[ResourceUri], locIndex : Int,
                         transIndex : Int, commandIndex : Int) extends AssertionViolationInfo with ProcInfo
 
+  final case class ABI(locUri : Option[ResourceUri], locIndex : Int,
+                       transIndex : Int, commandIndex : Int) extends AssumptionBreachInfo
+
+  final case class ABIL(procUri : ResourceUri, locUri : Option[ResourceUri], locIndex : Int,
+                        transIndex : Int, commandIndex : Int) extends AssumptionBreachInfo with ProcInfo
+
   final case class LI(locUri : Option[ResourceUri], locIndex : Int,
                       transIndex : Int, commandIndex : Int) extends LocationInfo
 
@@ -223,8 +229,15 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   }
 
   @inline
-  private def evalAssumeAction(s : S, a : AssumeAction) : SR =
-    cond(s, a.cond).filter { p => p._2 }.map { p => p._1 }
+  private def evalAssumeAction(s : S, a : AssumeAction) : SR = {
+    val (locName, locIndex, transIndex, cmdIndex) = a.commandDescriptorInfo
+    cond(s, a.cond).map { p =>
+      if (p._2)
+        p._1
+      else
+        p._1.assumptionBreach(ABI(locName, locIndex, transIndex, cmdIndex))
+    }
+  }
 
   @inline
   private def evalThrowAction(s : S, a : ThrowAction) : SR = {
