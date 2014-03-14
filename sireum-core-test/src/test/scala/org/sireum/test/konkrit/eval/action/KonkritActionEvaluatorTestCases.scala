@@ -57,8 +57,8 @@ trait KonkritActionEvaluatorTestCases[S <: State[S], Se, SR] {
 
   Case("AssertFalse").
     Evaluating action "assume false;" on (state()) gives
-    "nothing" satisfying {
-      s : Se => assert(false)
+    "an empty state with assumption breach" satisfying {
+      s : Se => s.assumptionBreach.isDefined should equal(true)
     }
 
 }

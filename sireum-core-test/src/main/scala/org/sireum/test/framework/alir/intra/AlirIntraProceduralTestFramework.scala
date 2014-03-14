@@ -136,7 +136,7 @@ trait AlirIntraProceduralTestFramework extends TestFramework {
       PipelineStage(
         "Pilar Parsing",
         false,
-        PilarParserV2Module),
+        PilarParserModule),
       PipelineStage(
         "Pilar Symbol Resolution",
         false,

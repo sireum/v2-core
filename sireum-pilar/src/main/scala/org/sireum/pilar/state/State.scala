@@ -113,6 +113,12 @@ trait AssertionViolationInfo extends LocationInfo {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
+trait AssumptionBreachInfo extends LocationInfo {
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
 trait ExceptionInfo {
   def exceptionValue : Value
   def locationInfos : ISeq[LocationInfo]
@@ -125,6 +131,14 @@ trait ExceptionInfo {
 trait AssertionViolationStatePart[Self <: AssertionViolationStatePart[Self]] {
   def assertionViolation : Option[AssertionViolationInfo]
   def assertionViolation(avi : AssertionViolationInfo) : Self
+}
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+trait AssumptionBreachStatePart[Self <: AssumptionBreachStatePart[Self]] {
+  def assumptionBreach : Option[AssumptionBreachInfo]
+  def assumptionBreach(abi : AssumptionBreachInfo) : Self
 }
 
 /**
@@ -143,6 +157,7 @@ trait State[Self <: State[Self]]
     with SelfType[Self]
     with ImmutablePropertyProvider[Self]
     with AssertionViolationStatePart[Self]
+    with AssumptionBreachStatePart[Self]
     with RaisedExceptionStatePart[Self] {
   import State._
 
@@ -363,7 +378,7 @@ final case class BasicExceptionInfo(
  */
 object BasicState {
   def apply() : BasicState =
-    BasicState(imapEmpty, ivectorEmpty, ivectorEmpty, imapEmpty, None, None)
+    BasicState(imapEmpty, ivectorEmpty, ivectorEmpty, imapEmpty, None, None, None)
 }
 
 /**
@@ -375,6 +390,7 @@ final case class BasicState(
   callStack : State.CallStack,
   properties : Property.ImmutableProperties,
   assertionViolation : Option[AssertionViolationInfo],
+  assumptionBreach : Option[AssumptionBreachInfo],
   raisedException : Option[BasicExceptionInfo])
     extends State[BasicState] with BasicCallFrameState[BasicState] {
 
@@ -385,6 +401,9 @@ final case class BasicState(
 
   def assertionViolation(avi : AssertionViolationInfo) : BasicState =
     copy(assertionViolation = Some(avi))
+
+  def assumptionBreach(abi : AssumptionBreachInfo) : BasicState =
+    copy(assumptionBreach = Some(abi))
 
   def make(globalStore : Store, closureStoreStack : StoreStack, callStack : CallStack,
            properties : Property.ImmutableProperties) : BasicState =
@@ -398,9 +417,9 @@ final case class BasicState(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Thread {
-  def apply() : Thread = Thread(ivectorEmpty, ivectorEmpty, None, None)
+  def apply() : Thread = Thread(ivectorEmpty, ivectorEmpty, None, None, None)
   def apply(stacks : (State.StoreStack, State.CallStack)) : Thread =
-    Thread(stacks._1, stacks._2, None, None)
+    Thread(stacks._1, stacks._2, None, None, None)
 }
 
 /**
@@ -410,6 +429,7 @@ final case class Thread(
   closureStoreStack : State.StoreStack,
   callStack : State.CallStack,
   assertionViolation : Option[AssertionViolationInfo],
+  assumptionBreach : Option[AssumptionBreachInfo],
   raisedException : Option[BasicExceptionInfo])
 
 /**
@@ -457,8 +477,7 @@ final case class BasicMultiThreadState(
     val t = thread
     val tid = currentThreadId.get
     val newThreads = threads + (tid ->
-      Thread(t.closureStoreStack, t.callStack,
-        t.assertionViolation,
+      t.copy(raisedException =
         Some(BasicExceptionInfo(exceptionValue, ivector(li)))))
     copy(threads = newThreads)
   }
@@ -467,12 +486,20 @@ final case class BasicMultiThreadState(
 
   def assertionViolation : Option[AssertionViolationInfo] = thread.assertionViolation
 
+  def assumptionBreach : Option[AssumptionBreachInfo] = thread.assumptionBreach
+
   def assertionViolation(avi : AssertionViolationInfo) : BasicMultiThreadState = {
     val t = thread
     val tid = currentThreadId.get
-    val newThreads = threads + (tid ->
-      Thread(t.closureStoreStack, t.callStack, Some(avi), t.raisedException))
-    BasicMultiThreadState(globalStore, currentThreadId, newThreads, properties, schedule)
+    val newThreads = threads + (tid -> t.copy(assertionViolation = Some(avi)))
+    copy(threads = newThreads)
+  }
+
+  def assumptionBreach(abi : AssumptionBreachInfo) : BasicMultiThreadState = {
+    val t = thread
+    val tid = currentThreadId.get
+    val newThreads = threads + (tid -> t.copy(assumptionBreach = Some(abi)))
+    copy(threads = newThreads)
   }
 
   def peekSchedule = None
@@ -490,8 +517,8 @@ final case class BasicMultiThreadState(
     val t = thread
     val tid = currentThreadId.get
     val newThreads = threads + (tid ->
-      Thread(closureStoreStack, callStack, t.assertionViolation, t.raisedException))
-    copy(threads = newThreads)
+      t.copy(closureStoreStack = closureStoreStack, callStack = callStack))
+    copy(globalStore = globalStore, threads = newThreads, properties = properties)
   }
 
   def make(tid : Option[ThreadId]) : BasicMultiThreadState =

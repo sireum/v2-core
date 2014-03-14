@@ -42,7 +42,7 @@ class SymbolResolverTest extends SymbolResolverTestFramework {
       assert (ne.hasResourceInfo)
       ne.uriScheme should be === SCHEME
       ne.uriType should be === GLOBAL_VAR_TYPE
-      ne.uriPaths should be === Seq(DEFAULT_PACKAGE_PATH, "@@x")
+      ne.uriPaths should be === Seq("@@x")
       false
   }
 }

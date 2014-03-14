@@ -6,20 +6,16 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html                             
 */
 
-package org.sireum
+package org.sireum.example.pilarv3.kiasan
+
+import org.sireum.example._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-package object pilar {
-  val PILAR_PACKAGE_CHAR = ':'
-  val PILAR_PACKAGE_SEP = "::"
-  val PILAR_ACCESSOR_SEP = "\\."
-  val PILAR_VALUE_ANNOTATION_PARAM_ID = "value"
-    
-  def pilarSimpleName(name : String) : String = {
-    val i = name.lastIndexOf(PILAR_PACKAGE_CHAR)
-    if (i >= 0) name.substring(i + 1)
-    else name
-  }
+object KiasanExamples extends Examples {
+  val GOOD_MODEL_DIR_URI = sourceDirUri(this.getClass, "./good/model/")
+
+  def goodModelFiles = exampleFiles(GOOD_MODEL_DIR_URI)
+
 }

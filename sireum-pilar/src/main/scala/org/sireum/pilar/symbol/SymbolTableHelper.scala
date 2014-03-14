@@ -90,7 +90,6 @@ object SymbolTableMessage {
  */
 object H {
   val SCHEME = "pilar"
-  val DEFAULT_PACKAGE_PATH = "default"
 
   val PACKAGE_TYPE = "package"
   def isPackage(r : Symbol) = r.uriType == PACKAGE_TYPE
@@ -173,19 +172,15 @@ object H {
     return true
   }
 
-  def packageName(symDef : Option[SymbolDefinition]) =
-    symDef match {
-      case Some(sd) =>
-        sd.uriPaths(0)
-      case _ =>
-        H.DEFAULT_PACKAGE_PATH
-    }
-
   def packageName(symDef : SymbolDefinition) = symDef.uriPaths(0)
 
-  def packagePath(symDef : Option[SymbolDefinition],
-                  name : String) =
-    ivector(packageName(symDef), name);
+  def paths(symDef : Option[SymbolDefinition], name : String*) =
+    symDef match {
+      case Some(sd) =>
+        sd.uriPaths(0) +: name.toVector
+      case _ =>
+        ivector(name : _*)
+    }
 
   def paths(symDef : SymbolDefinition, name : String) =
     symDef.uriPaths :+ name
@@ -200,7 +195,10 @@ object H {
     s.uriPaths.last
 
   def symbolUri(typ : String, paths : ISeq[String], relative : Boolean = false) =
-    Resource.getResourceUri(SCHEME, typ, paths.map { _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/") }, relative)
+    Resource.getResourceUri(SCHEME, typ, paths.map {
+      _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/").
+        replaceAll(org.sireum.pilar.PILAR_ACCESSOR_SEP, "/")
+    }, relative)
 
   def typeVarSymbol(tvt : MMap[ResourceUri, NameDefinition], str : SymbolTableReporter,
                     nameDef : NameDefinition, symDef : SymbolDefinition) = {
@@ -233,17 +231,25 @@ object H {
   def resolveTypeVar(source : Option[FileResourceUri],
                      str : SymbolTableReporter, typeVarR : NameUser,
                      tvt : MMap[String, NameDefinition],
-                     name : String) =
+                     name : String,
+                     locPropKey : Property.Key,
+                     produceError : Boolean) =
     tvt.get(typeVarR.name) match {
       case Some(nameDef) =>
         H.symbolInit(typeVarR, H.TYPE_VAR_TYPE,
           nameDef.uriPaths, nameDef.uri)
       case _ =>
-        import LineColumnLocation._
-        import FileLocation._
-        str.reportError(source,
-          typeVarR.line, typeVarR.column,
-          NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+        if (produceError) {
+          import LineColumnLocation._
+          import FileLocation._
+          if (typeVarR ? locPropKey)
+            str.reportError(source,
+              typeVarR.line, typeVarR.column,
+              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+          else
+            str.reportError(source, 0, 0,
+              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+        }
     }
 
   val EMPTY_DEPENDENCY = mmapEmpty[String, MSet[String]]
@@ -272,6 +278,8 @@ object H {
       with FunMiner with GlobalVarMiner with ProcedureMiner with RecordMiner
       with TypeAliasMiner with VsetMiner {
 
+    override val locPropKey = Location.locPropKey
+
     val packageElementMiner =
       Visitor.build(Visitor.map(
         ivector(packageMiner, constMiner, enumMiner,
@@ -284,6 +292,8 @@ object H {
       extends ProcedureSymbolTableProducer with ProcedureSymbolMiner
       with ProcedureSymbolResolver with JumpResolver {
     override def dependency = EMPTY_DEPENDENCY
+
+    override val locPropKey = Location.locPropKey
 
     def tables : ProcedureSymbolTableData = pstp.tables
 
@@ -304,6 +314,8 @@ object H {
       with FunResolver with GlobalVarResolver with ProcedureResolver
       with RecordResolver with TypeAliasResolver with VsetResolver
       with FunParamResolver {
+
+    override val locPropKey = Location.locPropKey
 
     override def dependency = mmapEmpty[String, MSet[String]]
 

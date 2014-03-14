@@ -10,15 +10,6 @@ if [ ! -f $GEF_DROP ]; then
   wget $GEF_DROP_URL
   echo
 fi
-export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates-}${EGIT_VERSION:=3.0.3}/org.eclipse.egit.repository-$EGIT_VERSION.${EGIT_BUILD_DATE:=201309161630}-r.zip
-export EGIT_DROP=org.eclipse.egit.repository-$EGIT_VERSION.$EGIT_BUILD_DATE-r.zip
-if [ ! -f $EGIT_DROP ]; then
-  echo
-  echo Downloading EGIT $EGIT_VERSION.$EGIT_BUILD_DATE
-  echo
-  wget $EGIT_DROP_URL
-  echo
-fi
 export ASM_DROP_URL=${ASM_URL:=http://download.forge.objectweb.org/asm/de.loskutov.BytecodeOutline.update_}${ASM_VERSION:=2.4.0}.zip
 export ASM_DROP=de.loskutov.BytecodeOutline.update_$ASM_VERSION.zip
 if [ ! -f $ASM_DROP ]; then
@@ -28,7 +19,7 @@ if [ ! -f $ASM_DROP ]; then
   wget $ASM_DROP_URL
   echo
 fi
-export SUBCLIPSE_DROP_URL=${SUBCLIPSE_URL:=http://subclipse.tigris.org/files/documents/906/49260/site-}${SUBCLIPSE_VERSION:=1.8.18}.zip
+export SUBCLIPSE_DROP_URL=${SUBCLIPSE_URL:=http://subclipse.tigris.org/files/documents/906/49378/site-}${SUBCLIPSE_VERSION:=1.10.4}.zip
 export SUBCLIPSE_DROP=site-$SUBCLIPSE_VERSION.zip
 if [ ! -f $SUBCLIPSE_DROP ]; then
   echo
@@ -61,12 +52,6 @@ cd eclipse-plugins-essential/gef
 unzip -oq ../../$GEF_DROP
 > eclipse/.eclipseextension
 cd ../..
-mkdir eclipse-plugins-essential/egit 2> /dev/null
-mkdir eclipse-plugins-essential/egit/eclipse 2> /dev/null
-cd eclipse-plugins-essential/egit/eclipse
-unzip -oq ../../../$EGIT_DROP
-> .eclipseextension
-cd ../../..
 mkdir eclipse-plugins-essential/asm 2> /dev/null
 mkdir eclipse-plugins-essential/asm/eclipse 2> /dev/null
 cd eclipse-plugins-essential/asm/eclipse
