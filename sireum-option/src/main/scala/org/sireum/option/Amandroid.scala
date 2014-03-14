@@ -91,10 +91,7 @@ case class SireumAmandroidCryptoMisuseMode(
   analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
     
   @Arg(index = 0, value = "Source file")
-  var srcFile : String = "",
-    
-  @Arg(index = 1, value = "Sink list file")
-  var sasFile : String = ""
+  var srcFile : String = ""
   )
   
 @Main(value = "taintAnalysis",
