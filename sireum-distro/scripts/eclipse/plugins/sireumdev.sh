@@ -9,6 +9,14 @@ if [ ! -f $SCIDE_DROP ]; then
   wget $SCIDE_DROP_URL
   echo
 fi
+export VRAPPER_DROP_URL=${VRAPPER_URL:=http://sourceforge.net/projects/vrapper/files/vrapper/}${VRAPPER_VERSION:=0.40.0}/${VRAPPER_DROP:=vrapper_${VRAPPER_VERSION}_20140208.zip}
+if [ ! -f "$VRAPPER_DROP" ]; then
+  echo
+  echo Downloading Vrapper $VRAPPER_DROP
+  echo
+  wget $VRAPPER_DROP_URL
+  echo
+fi
 #
 # Scala IDE
 #
@@ -26,5 +34,18 @@ cd ..
 zip -rq eclipse-plugins-scala.sapp eclipse-plugins-scala ../eclipse/dsl/links/scala.link
 cd ..
 rm -fR SireumDev/eclipse-plugins-scala
+#
+# Vrapper
+#
+echo "path=../../sireumdev/vrapper" > eclipse/dsl/links/vrapper.link 
+mkdir SireumDev/vrapper 2> /dev/null
+mkdir SireumDev/vrapper/eclipse 2> /dev/null
+cd SireumDev/vrapper/eclipse
+unzip -oq ../../../$VRAPPER_DROP
+> .eclipseextension
+cd ../..
+zip -rq vrapper.sapp vrapper ../eclipse/dsl/links/vrapper.link
+cd ..
+rm -fR SireumDev/vrapper
 echo
 echo ...done!
