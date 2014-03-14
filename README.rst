@@ -54,13 +54,13 @@ Setting up Development Environment
    respective Eclipse preference pages:
  
    * In `Java -> Code Style -> Clean Up preference page <http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-cleanup.htm>`_:
-     `sireum-util/codestyle/java-clean-up.xml <https://www.assembla.com/code/sireum-core/git-3/nodes/master/sireum-util/codestyle/java-clean-up.xml>`_
+     `sireum-util/codestyle/java-clean-up.xml <https://github.com/sireum/prelude/blob/master/sireum-util/codestyle/java-clean-up.xml>`_
    
    * In `Java -> Code Style -> Formatter preference page <http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm>`_: 
-     `sireum-util/codestyle/java-formatter.xml <https://www.assembla.com/code/sireum-core/git-3/nodes/master/sireum-util/codestyle/java-formatter.xml>`_
+     `sireum-util/codestyle/java-formatter.xml <https://github.com/sireum/prelude/blob/master/sireum-util/codestyle/java-formatter.xml>`_
    
    * In `Scala -> Formatter preference page <http://scala-ide.org/docs/current-user-doc/features/typingviewing/formatting/index.html>`_: 
-     `sireum-util/codestyle/scala-formatterPreferences.properties <https://www.assembla.com/code/sireum-core/git-3/nodes/master/sireum-util/codestyle/scala-formatterPreferences.properties>`_
+     `sireum-util/codestyle/scala-formatterPreferences.properties <https://github.com/sireum/prelude/blob/master/sireum-util/codestyle/scala-formatterPreferences.properties>`_
    
    Make sure to run Java source clean up before committing Java code.
    Similarly, make sure to run Scala formatter before committing Scala code. 
