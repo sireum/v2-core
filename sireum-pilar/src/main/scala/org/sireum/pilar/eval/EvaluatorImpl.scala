@@ -263,28 +263,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       }
       re3 <- {
         val uri = sec.uriExtractor(re2v(re1))
-        val sr = sec.actionExtCall(uri, args)
-        val n = sr.length
-        if (n <= 1) sr
-        else {
-          val s3 = args.productElement(0)
-          s3 match {
-            case s3 : ScheduleRecordingState[S] =>
-              s3.peekSchedule match {
-                case None =>
-                  sr.zip(0 until n).map { sj =>
-                    val (s, j) = sj
-                    s.asInstanceOf[ScheduleRecordingState[_]].
-                      recordSchedule(uri, n, j).asInstanceOf[S]
-                  }
-                case Some((sourceOpt, num, i)) =>
-                  assert(sourceOpt == Some(uri) && num == sr.length)
-                  val s4 = sr(i).asInstanceOf[ScheduleRecordingState[_]]
-                  ivector(s4.popSchedule.asInstanceOf[S])
-              }
-            case _ => sr
-          }
-        }
+        scheduleSR(uri, args.productElement(0), sec.actionExtCall(uri, args))
       }
     } yield re3
   }
@@ -296,7 +275,10 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         case e : NameExp if sp.isVar(e) || !e.name.hasResourceInfo =>
           for {
             re1 <- eval(s, a.rhs)
-            re2 <- sec.variableUpdate(re2s(re1), e.name, re2v(re1))
+            re2 <- {
+              val s2 = re2s(re1)
+              scheduleSR(a.op, s2, sec.variableUpdate(s2, e.name, re2v(re1)))
+            }
           } yield re2
         case AccessExp(e : NameExp, f) if sp.isVar(e) || !e.name.hasResourceInfo =>
           for {
@@ -307,16 +289,19 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
               val v = re2v(re2)
               val arg = (s2, e.name, f, v)
               if (sec.fieldUpdateVar.isDefinedAt(arg))
-                sec.fieldUpdateVar(arg)
+                scheduleSR(a.op, s2, sec.fieldUpdateVar(arg))
               else
-                sec.fieldUpdate(s2, re2v(re1), f, v)
+                scheduleSR(a.op, s2, sec.fieldUpdate(s2, re2v(re1), f, v))
             }
           } yield s1
         case AccessExp(e : Exp, f) =>
           for {
             re1 <- eval(s, e)
             re2 <- eval(re2s(re1), a.rhs)
-            s1 <- sec.fieldUpdate(re2s(re2), re2v(re1), f, re2v(re2))
+            s1 <- {
+              val s2 = re2s(re2)
+              scheduleSR(a.op, s2, sec.fieldUpdate(s2, re2v(re1), f, re2v(re2)))
+            }
           } yield s1
         case IndexingExp(e : NameExp, ies) if (
           sp.isVar(e) || !e.name.hasResourceInfo) && ies.length == 1 =>
@@ -330,9 +315,9 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
               val v = re2v(re3)
               val arg = (s2, e.name, index, v)
               if (sec.indexUpdateVar.isDefinedAt(arg))
-                sec.indexUpdateVar(arg)
+                scheduleSR(a.op, s2, sec.indexUpdateVar(arg))
               else
-                sec.indexUpdate(s2, re2v(re1), index, v)
+                scheduleSR(a.op, s2, sec.indexUpdate(s2, re2v(re1), index, v))
             }
           } yield s1
         case IndexingExp(e : Exp, ies) if ies.length == 1 =>
@@ -340,14 +325,21 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
             re1 <- eval(s, a.rhs)
             re2 <- eval(re2s(re1), e)
             re3 <- eval(re2s(re2), ies(0))
-            s1 <- sec.indexUpdate(re2s(re3), re2v(re2), re2v(re3), re2v(re1))
+            s1 <- {
+              val s2 = re2s(re3)
+              scheduleSR(a.op, s2,
+                sec.indexUpdate(s2, re2v(re2), re2v(re3), re2v(re1)))
+            }
           } yield s1
       }
     else
       for {
         re1 <- eval(s, a.rhs)
         re2 <- eval(re2s(re1), a.lhs)
-        s1 <- sec.assignOp(a.op, re2s(re2), re2v(re1), re2v(re2))
+        s1 <- {
+          val s2 = re2s(re2)
+          scheduleSR(a.op, s2, sec.assignOp(a.op, s2, re2v(re1), re2v(re2)))
+        }
       } yield s1
 
   @inline
@@ -551,6 +543,53 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     case (s, a : StartAction)   => evalStartAction(s, a)
   }
 
+  def scheduleSR(key : Any, s : Any, sr : SR) : SR = {
+    val n = sr.length
+    if (n <= 1) sr
+    else {
+      s match {
+        case s : ScheduleRecordingState[S] =>
+          s.peekSchedule match {
+            case None =>
+              sr.zip(0 until n).map { sj =>
+                val (s2, j) = sj
+                s2.asInstanceOf[ScheduleRecordingState[_]].
+                  recordSchedule(key, n, j).asInstanceOf[S]
+              }
+            case Some((sourceOpt, num, i)) =>
+              assert(sourceOpt == Some(key) && num == sr.length)
+              val s2 = sr(i).asInstanceOf[ScheduleRecordingState[_]]
+              ivector(s2.popSchedule.asInstanceOf[S])
+          }
+        case _ => sr
+      }
+    }
+  }
+
+  def scheduleR(key : Any, s : Any, r : R) : R = {
+    val n = r.length
+    if (n <= 1) r
+    else {
+      s match {
+        case s : ScheduleRecordingState[S] =>
+          s.peekSchedule match {
+            case None =>
+              r.zip(0 until n).map { svj =>
+                val ((s2, v), j) = svj
+                (s2.asInstanceOf[ScheduleRecordingState[_]].
+                  recordSchedule(key, n, j).asInstanceOf[S], v)
+              }
+            case Some((sourceOpt, num, i)) =>
+              assert(sourceOpt == Some(key) && num == r.length)
+              val (s2, v) = r(i)
+              ivector((s2.asInstanceOf[ScheduleRecordingState[_]].
+                popSchedule.asInstanceOf[S], v))
+          }
+        case _ => r
+      }
+    }
+  }
+
   def evalExp : (S, Exp) --> R = {
     case (s, ValueExp(v)) =>
       ivector((s, ec.valueToV(v)))
@@ -578,49 +617,69 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
     case (s, UnaryExp(op, e)) =>
       for {
         re1 <- eval(s, e)
-        re2 <- sec.unaryOp(op, re2s(re1), re2v(re1))
+        re2 <- {
+          val s2 = re2s(re1)
+          scheduleR(op, s2, sec.unaryOp(op, s2, re2v(re1)))
+        }
       } yield re2
     case (s, e : NameExp) if sp.isVar(e) =>
-      sec.variable(s, e.name)
+      scheduleR(e.name, s, sec.variable(s, e.name))
     case (s, e : NameExp) if sp.extUri(e, sec.hasExpExt _).isDefined =>
-      sec.uriValue(s, sp.extUri(e, sec.hasExpExt _).get)
+      scheduleR(e.name, s, sec.uriValue(s, sp.extUri(e, sec.hasExpExt _).get))
     case (s, e : NameExp) if sp.extUri(e, sec.hasActionExt _).isDefined =>
-      sec.uriValue(s, sp.extUri(e, sec.hasActionExt _).get)
+      scheduleR(e.name, s, sec.uriValue(s, sp.extUri(e, sec.hasActionExt _).get))
     case (s, e : NameExp) if sp.procedureUri(e).isDefined =>
-      sec.uriValue(s, sp.procedureUri(e).get)
+      scheduleR(e.name, s, sec.uriValue(s, sp.procedureUri(e).get))
     case (s, e : NameExp) if sp.funUri(e).isDefined =>
-      sec.uriValue(s, sp.funUri(e).get)
+      scheduleR(e.name, s, sec.uriValue(s, sp.funUri(e).get))
     case (s, e : NameExp) if !e.name.hasResourceInfo =>
-      sec.variable(s, e.name)
+      scheduleR(e.name, s, sec.variable(s, e.name))
     case (s, BinaryExp(op, e1, e2)) =>
       sec.binaryOpMode(op) match {
         case BinaryOpMode.LAZY_LEFT =>
           for {
             re1 <- eval(s, e2)
-            re2 <- sec.lazyLBinaryOp(op, re2s(re1), { s => eval(s, e1) }, re2v(re1))
+            re2 <- {
+              val s2 = re2s(re1)
+              scheduleR(op, s2,
+                sec.lazyLBinaryOp(op, s2, { s => eval(s, e1) }, re2v(re1)))
+            }
           } yield re2
         case BinaryOpMode.LAZY_RIGHT =>
           for {
             re1 <- eval(s, e1)
-            re2 <- sec.lazyRBinaryOp(op, re2s(re1), re2v(re1), { s => eval(s, e2) })
+            re2 <- {
+              val s2 = re2s(re1)
+              scheduleR(op, s2,
+                sec.lazyRBinaryOp(op, s2, re2v(re1), { s => eval(s, e2) }))
+            }
           } yield re2
         case BinaryOpMode.REGULAR =>
           for {
             re1 <- eval(s, e1)
             re2 <- eval(re2s(re1), e2)
-            re3 <- sec.binaryOp(op, re2s(re2), re2v(re1), re2v(re2))
+            re3 <- {
+              val s2 = re2s(re2)
+              scheduleR(op, s2, sec.binaryOp(op, s2, re2v(re1), re2v(re2)))
+            }
           } yield re3
       }
     case (s, AccessExp(e, f)) if !f.hasResourceInfo || sp.isFieldAccess(f) =>
       for {
         re1 <- eval(s, e)
-        re2 <- sec.field(re2s(re1), re2v(re1), f)
+        re2 <- {
+          val s2 = re2s(re1)
+          scheduleR(f.name, s2, sec.field(s2, re2v(re1), f))
+        }
       } yield re2
     case (s, IndexingExp(e, ies)) if ies.length == 1 =>
       for {
         re1 <- eval(s, e)
         re2 <- eval(re2s(re1), ies(0))
-        re3 <- sec.index(re2s(re2), re2v(re1), re2v(re2))
+        re3 <- {
+          val s2 = re2s(re2)
+          scheduleR("index", s2, sec.index(s2, re2v(re1), re2v(re2)))
+        }
       } yield re3
     case (s, e : CallExp) =>
       for {
@@ -638,29 +697,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         re3 <- i match { // TODO: handles function and closure
           case 0 =>
             val uri = sec.uriExtractor(re2v(re1))
-            val r = sec.expExtCall(uri, args)
-            val n = r.length
-            if (n <= 1) r
-            else {
-              val s3 = args.productElement(0)
-              s3 match {
-                case s3 : ScheduleRecordingState[S] =>
-                  s3.peekSchedule match {
-                    case None =>
-                      r.zip(0 until n).map { svj =>
-                        val ((s, v), j) = svj
-                        (s.asInstanceOf[ScheduleRecordingState[_]].
-                          recordSchedule(uri, n, j).asInstanceOf[S], v)
-                      }
-                    case Some((sourceOpt, num, i)) =>
-                      assert(sourceOpt == Some(uri) && num == r.length)
-                      val (s4, v) = r(i)
-                      ivector((s4.asInstanceOf[ScheduleRecordingState[_]].
-                        popSchedule.asInstanceOf[S], v))
-                  }
-                case _ => r
-              }
-            }
+            scheduleR(uri, args.productElement(0), sec.expExtCall(uri, args))
         }
       } yield re3
     case (s, e : NewListExp) =>
