@@ -212,10 +212,13 @@ class Antlr4PilarParserVisitor(
   override def visitCallTransformation(ctx : CallTransformationContext) = {
     val op = ctx.AssignOP
     if (op != null && op.getText != ":=") {
-      val line = op.getSymbol.getLine
-      val column = op.getSymbol.getCharPositionInLine
+      val token = op.getSymbol
+      val line = token.getLine
+      val column = token.getCharPositionInLine
+      val start = token.getStartIndex
       reporter.report(source,
-        line, column, "Only := is allowed instead of: " + op.getText)
+        line, column, start, token.getStopIndex - start + 1,
+        "Only := is allowed instead of: " + op.getText)
     }
     Transformation(getChildren(ctx.tanns), getOptChild(ctx.guard),
       ivectorEmpty, Some(
@@ -452,10 +455,12 @@ class Antlr4PilarParserVisitor(
     SeqTypeFragment() at ctx
 
   override def visitStaticSeqFragment(ctx : StaticSeqFragmentContext) = {
-    val line = ctx.getStart.getLine
-    val column = ctx.getStart.getCharPositionInLine
-    reporter.report(source,
-      line, column, "Seq fragment with constant is not allowed here")
+    val token = ctx.getStart
+    val line = token.getLine
+    val column = token.getCharPositionInLine
+    val start = token.getStartIndex
+    reporter.report(source, line, column, start, token.getStopIndex - start,
+      "Seq fragment with constant is not allowed here")
     SeqTypeFragment() at ctx
   }
 
@@ -463,10 +468,12 @@ class Antlr4PilarParserVisitor(
     MultiSeqTypeFragment(ctx.rank.size) at ctx
 
   override def visitStaticMultiSeqFragment(ctx : StaticMultiSeqFragmentContext) = {
-    val line = ctx.getStart.getLine
-    val column = ctx.getStart.getCharPositionInLine
-    reporter.report(source,
-      line, column, "Multi Seq fragment with constant is not allowed here")
+    val token = ctx.getStart
+    val line = token.getLine
+    val column = token.getCharPositionInLine
+    val start = token.getStartIndex
+    reporter.report(source, line, column, start, token.getStopIndex - start,
+      "Multi Seq fragment with constant is not allowed here")
     MultiSeqTypeFragment(ctx.constant.size) at ctx
   }
 
@@ -504,15 +511,18 @@ class Antlr4PilarParserVisitor(
   override def visitFloatConstant(ctx : FloatConstantContext) = {
     val s = ctx.getText
 
-    val line = ctx.getStart.getLine
-    val column = ctx.getStart.getCharPositionInLine
+    val token = ctx.getStart
+    val line = token.getLine
+    val column = token.getCharPositionInLine
+    val start = token.getStartIndex
 
     (if (s.endsWith("f") || s.endsWith("F")) {
       try {
         LiteralExp(LiteralType.FLOAT, s.toFloat, s)
       } catch {
         case ex : Exception =>
-          reporter.report(source, line, column, "Cannot parse float: " + s)
+          reporter.report(source, line, column, start, token.getStopIndex - start,
+            "Cannot parse float: " + s)
           LiteralExp(LiteralType.FLOAT, 0.0, s)
       }
     } else {
@@ -520,7 +530,8 @@ class Antlr4PilarParserVisitor(
         LiteralExp(LiteralType.DOUBLE, s.toDouble, s)
       } catch {
         case ex : Exception =>
-          reporter.report(source, line, column, "Cannot parse double: " + s)
+          reporter.report(source, line, column, start, token.getStopIndex - start,
+            "Cannot parse double: " + s)
           LiteralExp(LiteralType.DOUBLE, 0.0d, s)
       }
     }) at ctx
@@ -607,26 +618,30 @@ class Antlr4PilarParserVisitor(
       choice = 2
     }
 
-    val line = ctx.getStart.getLine
-    val column = ctx.getStart.getCharPositionInLine
+    val token = ctx.getStart
+    val line = token.getLine
+    val column = token.getCharPositionInLine
+    val start = token.getStartIndex
 
     var bi : BigInt = null
     try {
       bi = BigInt(temp, radix)
     } catch {
       case ex : Exception =>
-        reporter.report(source,
-          line, column, "Cannot parse integer: " + s)
+        reporter.report(source, line, column, start, token.getStopIndex - start,
+          "Cannot parse integer: " + s)
     }
 
     (choice match {
       case 0 =>
         if (bi < Long.MinValue || bi > Long.MaxValue)
-          reporter.report(source, line, column, "Exceeds long: " + s)
+          reporter.report(source, line, column, start, token.getStopIndex - start,
+            "Exceeds long: " + s)
         LiteralExp(LiteralType.LONG, bi.longValue, s)
       case 1 =>
         if (bi < Int.MinValue || bi > Int.MaxValue)
-          reporter.report(source, line, column, "Exceeds int: " + s)
+          reporter.report(source, line, column, start, token.getStopIndex - start,
+            "Exceeds int: " + s)
         LiteralExp(LiteralType.INT, bi.intValue, s)
       case _ =>
         LiteralExp(LiteralType.INTEGER, bi, s)

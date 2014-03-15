@@ -53,7 +53,8 @@ class PilarParserModuleDef(val job : PipelineJob, info : PipelineJobModuleInfo) 
   def reporter(info : PipelineJobModuleInfo) =
     new org.sireum.pilar.parser.Parser.ErrorReporter {
       def report(source : Option[FileResourceUri], line : Int,
-                 column : Int, message : String) =
-        info.tags += Tag.toTag(source, line, column, message, PilarParserModuleDef.ERROR_TAG_TYPE)
+                 column : Int, offset : Int, length : Int, message : String) =
+        info.tags += Tag.toTag(source, line, column, offset, length,
+          message, PilarParserModuleDef.ERROR_TAG_TYPE)
     }
 }

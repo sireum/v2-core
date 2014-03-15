@@ -100,7 +100,9 @@ object Parser {
                                  e : RecognitionException) {
           success = false
           val token = offendingSymbol.asInstanceOf[Token]
+          val start = token.getStartIndex
           reporter.report(src, line, charPositionInLine,
+            start, token.getStopIndex - start + 1,
             msg + s" (token=${token.getType})")
         }
       })
@@ -159,14 +161,14 @@ object Parser {
 
   trait ErrorReporter {
     def report(source : Option[FileResourceUri], line : Int,
-               column : Int, message : String)
+               column : Int, offset : Int, length : Int, message : String)
   }
 
   class CollectingErrorReporter extends ErrorReporter {
     val errors = mmapEmpty[Option[FileResourceUri], MArray[(Int, Int, String)]]
 
     def report(source : Option[FileResourceUri], line : Int,
-               column : Int, message : String) =
+               column : Int, offset : Int, length : Int, message : String) =
       errors.getOrElse(source, marrayEmpty) += ((line, column, message))
   }
 
@@ -176,7 +178,7 @@ object Parser {
       else null
 
     def report(source : Option[FileResourceUri], line : Int,
-               column : Int, message : String) = {
+               column : Int, offset : Int, length : Int, message : String) = {
       val fileUri = source.getOrElse(UNKNOWN_FILE)
       errorMap(fileUri) = "  - [%d, %d] %s\n".format(line, column, message)
 
