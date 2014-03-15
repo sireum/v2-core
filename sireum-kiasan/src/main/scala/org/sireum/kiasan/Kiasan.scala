@@ -56,7 +56,7 @@ trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait Kiasan {
-  def search
+  def search : this.type
 }
 
 /**
@@ -100,7 +100,7 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
     try f(t) finally topiQueue.offer(t)
   }
 
-  def search {
+  def search : this.type = {
     var workList : GenSeq[S] = initialStatesProvider.initialStates
 
     var i = 0
@@ -145,6 +145,7 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
       if (parallelismLevel >= 2) parallelismLevel.toString
       else "default")))
 
+    this
   }
 
   @inline
