@@ -168,19 +168,19 @@ trait KiasanBfsTestFramework[S <: Kiasan.KiasanState[S], R, C]
         }
 
         val reporter = new KiasanReporter[S] {
-          def foundAssertionViolation(s : S) : S = {
+          def foundAssertionViolation(s : S, depth : Int) : S = {
             avStates = s +: avStates
             s
           }
-          def foundAssumptionBreach(s : S) : S = {
+          def foundAssumptionBreach(s : S, depth : Int) : S = {
             abStates = s +: abStates
             s
           }
-          def foundEndState(s : S) : S = {
+          def foundEndState(s : S, depth : Int) : S = {
             endStates = s +: endStates
             s
           }
-          def foundDepthBoundExhaustion(s : S) : S = {
+          def foundDepthBoundExhaustion(s : S, depth : Int) : S = {
             boundDepthExStates = s +: boundDepthExStates
             s
           }

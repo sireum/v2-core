@@ -26,6 +26,55 @@ object Kiasan {
 
   case class TopiCache(state : org.sireum.topi.TopiState,
                        lastCompiledLength : Int) extends Immutable
+
+  def replay[S <: KiasanState[S], R, C](
+    locationProvider : KiasanLocationProvider[S],
+    evaluator : Evaluator[S, R, C, ISeq[S]],
+    initialStatesProvider : KiasanInitialStateProvider[S],
+    depthBound : Int) : S = {
+
+    var Seq(s) = initialStatesProvider.initialStates
+    var i = 0
+    while (!isTerminal(s) && i < depthBound) {
+      val nextStates =
+        for {
+          (s2, l, t) <- schedule(s, evaluator.transitions(s, locationProvider.location(s)).enabled)
+          nextS <- evaluator.evalTransformation(s2, l, t)
+        } yield nextS
+      s = nextStates(0)
+      i += 1
+    }
+    s
+  }
+
+  def isTerminal[S <: KiasanState[S]](s : S) : Boolean =
+    s.callStack.isEmpty || s.assertionViolation.isDefined ||
+      s.assumptionBreach.isDefined
+
+  def schedule[S <: KiasanState[S]](
+    s : S, slts : ISeq[(S, LocationDecl, Transformation)]) : ISeq[(S, LocationDecl, Transformation)] = {
+    val n = slts.length
+    if (n <= 1) slts
+    else {
+      s match {
+        case s : ScheduleRecordingState[S] =>
+          s.peekSchedule match {
+            case None =>
+              slts.zip(0 until n).map { sltj =>
+                val ((s2, l, t), j) = sltj
+                (s2.asInstanceOf[ScheduleRecordingState[_]].
+                  recordSchedule("trans", n, j).asInstanceOf[S], l, t)
+              }
+            case Some((sourceOpt, num, i)) =>
+              assert(sourceOpt == Some("trans") && num == slts.length)
+              val (s2, l, t) = slts(i)
+              ivector((s2.asInstanceOf[ScheduleRecordingState[_]].
+                popSchedule.asInstanceOf[S], l, t))
+          }
+        case _ => slts
+      }
+    }
+  }
 }
 
 /**
@@ -46,10 +95,10 @@ trait KiasanLocationProvider[S <: Kiasan.KiasanState[S]] {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
-  def foundAssertionViolation(s : S) : S
-  def foundAssumptionBreach(s : S) : S
-  def foundEndState(s : S) : S
-  def foundDepthBoundExhaustion(s : S) : S
+  def foundAssertionViolation(s : S, depth : Int) : S
+  def foundAssumptionBreach(s : S, depth : Int) : S
+  def foundEndState(s : S, depth : Int) : S
+  def foundDepthBoundExhaustion(s : S, depth : Int) : S
 }
 
 /**
@@ -111,15 +160,15 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
       val ps = inconNextStatesPairs(workList)
       val inconsistencyCheckRequested = ps.exists(first2)
       val nextStates = ps.flatMap(second2)
-
-      workList =
-        filterTerminatingStates(inconsistencyCheckRequested, nextStates)
-
+      
       i += 1
+      
+      workList =
+        filterTerminatingStates(inconsistencyCheckRequested, nextStates, i)
     }
 
     if (i >= depth) {
-      workList.foreach(reporter.foundDepthBoundExhaustion)
+      workList.foreach(s => reporter.foundDepthBoundExhaustion(s, i))
     }
 
     {
@@ -184,7 +233,7 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
       var inconsistencyCheckRequested = false
       val nextStates =
         for {
-          (s2, l, t) <- evaluator.transitions(s, locationProvider.location(s)).enabled
+          (s2, l, t) <- schedule(s, evaluator.transitions(s, locationProvider.location(s)).enabled)
           nextS <- evaluator.evalTransformation(s2, l, t)
         } yield {
           inconsistencyCheckRequested =
@@ -197,13 +246,13 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
 
   @inline
   private def filterTerminatingStates(inconsistencyCheckRequested : Boolean,
-                                      states : GenSeq[S]) = {
+                                      states : GenSeq[S], depth : Int) = {
     val (gs, isPar) = par(inconsistencyCheckRequested, states)
     val stateTimePairs =
       gs.flatMap { s =>
         var time = 0l
         if (s.callStack.isEmpty) {
-          reporter.foundEndState(s)
+          reporter.foundEndState(s, depth)
           None
         } else {
           val s3Opt =
@@ -218,10 +267,10 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
           if (s3Opt.isDefined) {
             val s3 = s3Opt.get
             if (s3.assertionViolation.isDefined) {
-              reporter.foundAssertionViolation(s3)
+              reporter.foundAssertionViolation(s3, depth)
               None
             } else if (s3.assumptionBreach.isDefined) {
-              reporter.foundAssumptionBreach(s3)
+              reporter.foundAssumptionBreach(s3, depth)
               None
             } else {
               Some(s3, time)
