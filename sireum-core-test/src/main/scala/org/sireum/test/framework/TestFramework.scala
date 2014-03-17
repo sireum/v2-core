@@ -69,4 +69,30 @@ trait TestFramework
   private object SingleTestTag extends T(SINGLE_TAG_NAME)
 
   private val SINGLE_TAG_NAME = "Single"
+
+  import java.io._
+
+  def checkRegression(file : File, dir : File, ext : String,
+                      result : String, force : Boolean) {
+    val filename = file.getName + "." + ext
+    val expectedFileDir = new File(dir, "expected")
+    val expectedFile = new File(expectedFileDir, filename)
+    if (force || !expectedFile.exists) {
+      expectedFileDir.mkdirs
+      val fw = new FileWriter(expectedFile)
+      fw.write(result)
+      fw.close
+    } else {
+      val resultFileDir = new File(dir, "result")
+      resultFileDir.mkdirs
+      val resultFile = new File(resultFileDir, filename)
+      val fw = new FileWriter(resultFile)
+      fw.write(result)
+      fw.close
+      val fr = new FileReader(expectedFile)
+      val expected = FileUtil.readFile(fr)
+      fr.close
+      assert(expected == result)
+    }
+  }
 }
