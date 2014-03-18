@@ -68,7 +68,7 @@ case class KiasanBakarAnalysisGroup(
 @Group("Report Options")
 case class KiasanBakarReportGroup(
   @Option(longKey = "disable-file-cases", desc="Disable Kiasan report file cases")
-  var disableFileCases : Boolean = true
+  var disableFileCases : Boolean = false
 )
 
 @Group("Solver Options")
