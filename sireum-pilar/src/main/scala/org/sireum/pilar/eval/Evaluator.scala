@@ -122,7 +122,7 @@ object Evaluator {
     evs.length match {
       case 1 => evs(0)
       case _ =>
-        new Evaluator[S, R, C, SR] {
+        new Evaluator[S, R, C, SR] with EvaluatorModule {
           var ev : Evaluator[S, R, C, SR] = this
           def mainEvaluator = ev
           def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
@@ -130,6 +130,17 @@ object Evaluator {
               e.setMainEvaluator(eval)
             }
             ev = eval
+          }
+
+          def initialize(config : ExtensionConfig) {
+            for (e <- evs) {
+              e match {
+                case em : EvaluatorModule =>
+                  em.initialize(config)
+                  em.setMainEvaluator(this)
+                case _ =>
+              }
+            }
           }
 
           import PartialFunctionUtil._
@@ -144,15 +155,32 @@ object Evaluator {
     }
   }
 
-  def combineExt[S, R, C, SR](ev : Evaluator[S, R, C, SR], evxs : EvaluatorExt[S, R, C, SR]*) =
-    if (evxs.length < 1) ev
+  def combineExt[S, R, C, SR](ev : Evaluator[S, R, C, SR], evxs : EvaluatorExt[S, R, C, SR]*) : Evaluator[S, R, C, SR] with EvaluatorModule =
+    if (evxs.length < 1) {
+      ev match {
+        case em : EvaluatorModule =>
+          ev.asInstanceOf[Evaluator[S, R, C, SR] with EvaluatorModule]
+        case _ =>
+          module(ev)
+      }
+    }
     else
-      new Evaluator[S, R, C, SR] {
+      new Evaluator[S, R, C, SR] with EvaluatorModule {
         var mainEvaluator : Evaluator[S, R, C, SR] = this
         def setMainEvaluator(eval : Evaluator[S, R, C, SR]) {
           mainEvaluator = eval
           ev.setMainEvaluator(eval)
         }
+
+        def initialize(config : ExtensionConfig) {
+          ev match {
+            case em : EvaluatorModule =>
+              em.initialize(config)
+              em.setMainEvaluator(this)
+            case _ =>
+          }
+        }
+
         val ee = ev.mainEvaluator.evalExp
         val ea = ev.mainEvaluator.evalAction
         val ej = ev.mainEvaluator.evalJump
@@ -302,7 +330,7 @@ object Evaluator {
 
   def context[S <: EvaluationContextProvider[S], V](
     ev : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]]) : Evaluator[S, ISeq[(S, V)], ISeq[(S, Boolean)], ISeq[S]] with EvaluatorModule =
-    module(combineExt(ev, new EvaluationContextEvaluatorExt[S, V]))
+    combineExt(ev, new EvaluationContextEvaluatorExt[S, V])
 }
 
 /**
