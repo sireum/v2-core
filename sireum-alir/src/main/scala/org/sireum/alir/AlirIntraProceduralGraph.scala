@@ -31,7 +31,7 @@ trait AlirIntraProceduralGraph //
     extends AlirGraph[Node] {
   self =>
 
-  protected val graph = new DirectedMultigraph(
+  protected val graph = new DirectedPseudograph(
     new EdgeFactory[Node, Edge] {
       def createEdge(source : Node, target : Node) =
         new AlirEdge(self, source, target)
