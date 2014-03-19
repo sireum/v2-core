@@ -57,27 +57,36 @@ Sireum X
     }
   }
 
-  def parseJVMMode(args : Seq[String], i : Int) {
+  def parseSireumDistroMode(args : Seq[String], i : Int) {
+    if (i == args.length) {
+      addInfoTag(
+        """
+Sireum Distro
+""".trim
+      )
+    }
+  }
+
+  def parseSapperMode(args : Seq[String], i : Int) {
       def usage {
         addInfoTag(
           """
 Usage:
-  sireum tools jvm [options] <classes> 
+  sireum tools sapper [options] <file.sapp> <files> 
 
 where the available options are:
 
 -h | --help
--d | --directory Output Directory [Default: "(current direcory)"]
 """.trim)
       }
     if (i == args.length) {
       usage
     } else {
-      val opt = JVMMode()
+      val opt = SapperMode()
       result.options = Some(opt)
-      result.className = "org.sireum.jvm.translator.Translator"
+      result.className = "org.sireum.tools.sapp.Sapper"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "-d", "--directory")
+      val keys = List[String]("-h", "--help", "")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -92,24 +101,6 @@ where the available options are:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-d" | "--directory" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--directory"
-                  r = r || s == "-d"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--directory"
-                  seenopts += "-d"
-                }
-                val v = process(args(j), args(j + 1), keys, "(current direcory)")
-                if (result.status) {
-                  opt.dir = v.get.asInstanceOf[java.lang.String]
-                  j += 1
-                }
               case "-h" | "--help" =>
                 usage; result.status = false
               case _               =>
@@ -117,10 +108,15 @@ where the available options are:
           } else {
             k = k + 1
             k match {
+              case 0 =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.sappFile = v.get.asInstanceOf[java.lang.String]
+                }
               case _ =>
                 val v = process(args(j), args(j), keys, "")
                 if (result.status) {
-                  opt.classes :+= v.get.asInstanceOf[java.lang.String]
+                  opt.files :+= v.get.asInstanceOf[java.lang.String]
                 }
 
             }
@@ -131,7 +127,7 @@ where the available options are:
         case e : Exception => addErrorTag(e.toString)
       }
 
-      if (k + 1 < 0) {
+      if (k + 1 < 1) {
         addErrorTag("Missing required arguments")
       }
 
@@ -287,7 +283,7 @@ where the available options are:
       result.options = Some(opt)
       result.className = "org.sireum.pipeline.gen.ModuleGenerator"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "-d", "--directory", "-gcn", "--generated-class-name", "-ts", "--type-substitutions")
+      val keys = List[String]("-h", "--help", "-ts", "--type-substitutions", "-d", "--directory", "-gcn", "--generated-class-name")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -302,6 +298,24 @@ where the available options are:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "-ts" | "--type-substitutions" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--type-substitutions"
+                  r = r || s == "-ts"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--type-substitutions"
+                  seenopts += "-ts"
+                }
+                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
+                if (result.status) {
+                  opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
+                  j += 1
+                }
               case "-d" | "--directory" =>
 
                 if (seenopts.exists { s =>
@@ -338,24 +352,6 @@ where the available options are:
                   opt.genClassName = v.get.asInstanceOf[java.lang.String]
                   j += 1
                 }
-              case "-ts" | "--type-substitutions" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--type-substitutions"
-                  r = r || s == "-ts"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--type-substitutions"
-                  seenopts += "-ts"
-                }
-                val v = process(args(j), args(j + 1), keys, ivectorEmpty[String])
-                if (result.status) {
-                  opt.typeSubstitutions = v.get.asInstanceOf[ISeq[String]]
-                  j += 1
-                }
               case "-h" | "--help" =>
                 usage; result.status = false
               case _               =>
@@ -384,26 +380,27 @@ where the available options are:
     }
   }
 
-  def parseSapperMode(args : Seq[String], i : Int) {
+  def parseJVMMode(args : Seq[String], i : Int) {
       def usage {
         addInfoTag(
           """
 Usage:
-  sireum tools sapper [options] <file.sapp> <files> 
+  sireum tools jvm [options] <classes> 
 
 where the available options are:
 
 -h | --help
+-d | --directory Output Directory [Default: "(current direcory)"]
 """.trim)
       }
     if (i == args.length) {
       usage
     } else {
-      val opt = SapperMode()
+      val opt = JVMMode()
       result.options = Some(opt)
-      result.className = "org.sireum.tools.sapp.Sapper"
+      result.className = "org.sireum.jvm.translator.Translator"
       result.featureName = "Sireum Tools"
-      val keys = List[String]("-h", "--help", "")
+      val keys = List[String]("-h", "--help", "-d", "--directory")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -418,6 +415,24 @@ where the available options are:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
+              case "-d" | "--directory" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--directory"
+                  seenopts += "-d"
+                }
+                val v = process(args(j), args(j + 1), keys, "(current direcory)")
+                if (result.status) {
+                  opt.dir = v.get.asInstanceOf[java.lang.String]
+                  j += 1
+                }
               case "-h" | "--help" =>
                 usage; result.status = false
               case _               =>
@@ -425,15 +440,10 @@ where the available options are:
           } else {
             k = k + 1
             k match {
-              case 0 =>
-                val v = process(args(j), args(j), keys, "")
-                if (result.status) {
-                  opt.sappFile = v.get.asInstanceOf[java.lang.String]
-                }
               case _ =>
                 val v = process(args(j), args(j), keys, "")
                 if (result.status) {
-                  opt.files :+= v.get.asInstanceOf[java.lang.String]
+                  opt.classes :+= v.get.asInstanceOf[java.lang.String]
                 }
 
             }
@@ -444,7 +454,7 @@ where the available options are:
         case e : Exception => addErrorTag(e.toString)
       }
 
-      if (k + 1 < 1) {
+      if (k + 1 < 0) {
         addErrorTag("Missing required arguments")
       }
 
@@ -648,16 +658,16 @@ Available Modes:
 """.trim
       )
     } else {
-      parseModeHelper("tools", Seq("jvm", "antlr", "pipeline", "sapper", "cligen"), args, i) {
+      parseModeHelper("tools", Seq("sapper", "antlr", "pipeline", "jvm", "cligen"), args, i) {
         _ match {
-          case "jvm" =>
-            parseJVMMode(args, i + 1)
+          case "sapper" =>
+            parseSapperMode(args, i + 1)
           case "antlr" =>
             parseTreeVisitorGenMode(args, i + 1)
           case "pipeline" =>
             parsePipelineMode(args, i + 1)
-          case "sapper" =>
-            parseSapperMode(args, i + 1)
+          case "jvm" =>
+            parseJVMMode(args, i + 1)
           case "cligen" =>
             parseCliGenMode(args, i + 1)
         }
@@ -665,27 +675,24 @@ Available Modes:
     }
   }
 
-  def parseSireumBakarTypeMode(args : Seq[String], i : Int) {
+  def parseLaunchBakarGpsMode(args : Seq[String], i : Int) {
       def usage {
         addInfoTag(
           """
 Usage:
-  sireum bakar type [options]  [<Output file>]
+  sireum launch bakargps [options]  
 
 where the available options are:
 
 -h | --help
--t | --type  [Default: Coq, Choices: (Ocaml, Coq)]
 """.trim)
       }
-    if (i == args.length) {
-      usage
-    } else {
-      val opt = SireumBakarTypeMode()
+    {
+      val opt = LaunchBakarGpsMode()
       result.options = Some(opt)
-      result.className = "org.sireum.bakar.tools.BakarType"
-      result.featureName = "Sireum Bakar Tools:Gnat.sapp"
-      val keys = List[String]("-h", "--help", "-t", "--type")
+      result.className = "org.sireum.cli.launcher.GpsLauncher"
+      result.featureName = "BakarGps.sapp"
+      val keys = List[String]("-h", "--help", "")
       var j = i
       var k = -1
       val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -700,24 +707,6 @@ where the available options are:
               addErrorTag(args(j) + " is not an option")
             }
             args(j) match {
-              case "-t" | "--type" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--type"
-                  seenopts += "-t"
-                }
-                val v = process(args(j), args(j + 1), keys, org.sireum.option.TypeTarget.Coq)
-                if (result.status) {
-                  opt.typ = v.get.asInstanceOf[org.sireum.option.TypeTarget.Type]
-                  j += 1
-                }
               case "-h" | "--help" =>
                 usage; result.status = false
               case _               =>
@@ -725,11 +714,6 @@ where the available options are:
           } else {
             k = k + 1
             k match {
-              case 0 =>
-                val v = process(args(j), args(j), keys, "")
-                if (result.status) {
-                  opt.outFile = v.get.asInstanceOf[java.lang.String]
-                }
 
               case _ =>
                 addErrorTag("Too many arguments starting at " + args(j))
@@ -745,130 +729,6 @@ where the available options are:
         addErrorTag("Missing required arguments")
       }
 
-    }
-  }
-
-  def parseSireumBakarProgramMode(args : Seq[String], i : Int) {
-      def usage {
-        addInfoTag(
-          """
-Usage:
-  sireum bakar program [options] <src-files> [<Output file>]
-
-where the available options are:
-
--h | --help
--p | --program  [Default: Coq, Choices: (Java, Ocaml, Coq)]
-""".trim)
-      }
-    if (i == args.length) {
-      usage
-    } else {
-      val opt = SireumBakarProgramMode()
-      result.options = Some(opt)
-      result.className = "org.sireum.bakar.tools.BakarProgram"
-      result.featureName = "Sireum Bakar Tools:Gnat.sapp"
-      val keys = List[String]("-h", "--help", "-p", "--program")
-      var j = i
-      var k = -1
-      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-      try {
-        while (j < args.length) {
-          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          if (k == -1 && keys.contains(args(j))) {
-            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-              addErrorTag(args(j) + " is not an option")
-            }
-            args(j) match {
-              case "-p" | "--program" =>
-
-                if (seenopts.exists { s =>
-                  var r = false
-                  r = r || s == "--program"
-                  r = r || s == "-p"
-                  r
-                }) {
-                  addWarningTag("Option already set: %s".format(args(j)))
-                } else {
-                  seenopts += "--program"
-                  seenopts += "-p"
-                }
-                val v = process(args(j), args(j + 1), keys, org.sireum.option.ProgramTarget.Coq)
-                if (result.status) {
-                  opt.typ = v.get.asInstanceOf[org.sireum.option.ProgramTarget.Type]
-                  j += 1
-                }
-              case "-h" | "--help" =>
-                usage; result.status = false
-              case _               =>
-            }
-          } else {
-            k = k + 1
-            k match {
-              case 0 =>
-                val v = process(args(j), args(j), keys, ivectorEmpty[String])
-                if (result.status) {
-                  opt.srcFiles = v.get.asInstanceOf[ISeq[String]]
-                }
-              case 1 =>
-                val v = process(args(j), args(j), keys, "")
-                if (result.status) {
-                  opt.outFile = v.get.asInstanceOf[java.lang.String]
-                }
-
-              case _ =>
-                addErrorTag("Too many arguments starting at " + args(j))
-            }
-          }
-          j = j + 1
-        }
-      } catch {
-        case e : Exception => addErrorTag(e.toString)
-      }
-
-      if (k + 1 < 1) {
-        addErrorTag("Missing required arguments")
-      }
-
-    }
-  }
-
-  def parseSireumBakarMode(args : Seq[String], i : Int) {
-    if (i == args.length) {
-      addInfoTag(
-        """
-Sireum for Spark
-(c) 2012, SAnToS Laboratory, Kansas State University
-""".trim
-          + "\n\n" +
-          """
-Available Modes:
-  program  Translation of Spark/Ada Programs
-  type     Generate Type Definitions
-""".trim
-      )
-    } else {
-      parseModeHelper("bakar", Seq("type", "program"), args, i) {
-        _ match {
-          case "type" =>
-            parseSireumBakarTypeMode(args, i + 1)
-          case "program" =>
-            parseSireumBakarProgramMode(args, i + 1)
-        }
-      }
-    }
-  }
-
-  def parseSireumDistroMode(args : Seq[String], i : Int) {
-    if (i == args.length) {
-      addInfoTag(
-        """
-Sireum Distro
-""".trim
-      )
     }
   }
 
@@ -975,8 +835,7 @@ Usage:
 where the available options are:
 
 -h | --help
--j | --jvmopts Options for Java [Separator: ",",
-               Default: "-XX:MaxPermSize=512m,-Xms128m,-Xmx1024m"]
+-j | --jvmopts Options for Java [Separator: ",", Default: "-Xms128m,-Xmx1024m"]
 --args         Arguments for Eclipse (accepts all following string arguments) 
 """.trim)
       }
@@ -1358,63 +1217,6 @@ where the available options are:
     }
   }
 
-  def parseLaunchBakarGpsMode(args : Seq[String], i : Int) {
-      def usage {
-        addInfoTag(
-          """
-Usage:
-  sireum launch bakargps [options]  
-
-where the available options are:
-
--h | --help
-""".trim)
-      }
-    {
-      val opt = LaunchBakarGpsMode()
-      result.options = Some(opt)
-      result.className = "org.sireum.cli.launcher.GpsLauncher"
-      result.featureName = "BakarGps.sapp"
-      val keys = List[String]("-h", "--help", "")
-      var j = i
-      var k = -1
-      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-      try {
-        while (j < args.length) {
-          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          if (k == -1 && keys.contains(args(j))) {
-            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
-              addErrorTag(args(j) + " is not an option")
-            }
-            args(j) match {
-              case "-h" | "--help" =>
-                usage; result.status = false
-              case _               =>
-            }
-          } else {
-            k = k + 1
-            k match {
-
-              case _ =>
-                addErrorTag("Too many arguments starting at " + args(j))
-            }
-          }
-          j = j + 1
-        }
-      } catch {
-        case e : Exception => addErrorTag(e.toString)
-      }
-
-      if (k + 1 < 0) {
-        addErrorTag("Missing required arguments")
-      }
-
-    }
-  }
-
   def parseLaunchBakarV1Mode(args : Seq[String], i : Int) {
       def usage {
         addInfoTag(
@@ -1528,8 +1330,10 @@ Available Modes:
 """.trim
       )
     } else {
-      parseModeHelper("launch", Seq("eclipse", "osate", "sireumdev", "compilerdev", "antlrworks", "bakarv1gps", "bakargps", "bakar"), args, i) {
+      parseModeHelper("launch", Seq("bakargps", "eclipse", "osate", "sireumdev", "compilerdev", "antlrworks", "bakarv1gps", "bakar"), args, i) {
         _ match {
+          case "bakargps" =>
+            parseLaunchBakarGpsMode(args, i + 1)
           case "eclipse" =>
             parseLaunchEclipseMode(args, i + 1)
           case "osate" =>
@@ -1542,10 +1346,205 @@ Available Modes:
             parseLaunchAntlrWorksMode(args, i + 1)
           case "bakarv1gps" =>
             parseLaunchBakarV1GpsMode(args, i + 1)
-          case "bakargps" =>
-            parseLaunchBakarGpsMode(args, i + 1)
           case "bakar" =>
             parseLaunchBakarV1Mode(args, i + 1)
+        }
+      }
+    }
+  }
+
+  def parseSireumBakarProgramMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum bakar program [options] <src-files> [<Output file>]
+
+where the available options are:
+
+-h | --help
+-p | --program  [Default: Coq, Choices: (Java, Ocaml, Coq)]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
+    } else {
+      val opt = SireumBakarProgramMode()
+      result.options = Some(opt)
+      result.className = "org.sireum.bakar.tools.BakarProgram"
+      result.featureName = "Sireum Bakar Tools:Gnat.sapp"
+      val keys = List[String]("-h", "--help", "-p", "--program")
+      var j = i
+      var k = -1
+      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+      try {
+        while (j < args.length) {
+          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          if (k == -1 && keys.contains(args(j))) {
+            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+              addErrorTag(args(j) + " is not an option")
+            }
+            args(j) match {
+              case "-p" | "--program" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--program"
+                  r = r || s == "-p"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--program"
+                  seenopts += "-p"
+                }
+                val v = process(args(j), args(j + 1), keys, org.sireum.option.ProgramTarget.Coq)
+                if (result.status) {
+                  opt.typ = v.get.asInstanceOf[org.sireum.option.ProgramTarget.Type]
+                  j += 1
+                }
+              case "-h" | "--help" =>
+                usage; result.status = false
+              case _               =>
+            }
+          } else {
+            k = k + 1
+            k match {
+              case 0 =>
+                val v = process(args(j), args(j), keys, ivectorEmpty[String])
+                if (result.status) {
+                  opt.srcFiles = v.get.asInstanceOf[ISeq[String]]
+                }
+              case 1 =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.outFile = v.get.asInstanceOf[java.lang.String]
+                }
+
+              case _ =>
+                addErrorTag("Too many arguments starting at " + args(j))
+            }
+          }
+          j = j + 1
+        }
+      } catch {
+        case e : Exception => addErrorTag(e.toString)
+      }
+
+      if (k + 1 < 1) {
+        addErrorTag("Missing required arguments")
+      }
+
+    }
+  }
+
+  def parseSireumBakarTypeMode(args : Seq[String], i : Int) {
+      def usage {
+        addInfoTag(
+          """
+Usage:
+  sireum bakar type [options]  [<Output file>]
+
+where the available options are:
+
+-h | --help
+-t | --type  [Default: Coq, Choices: (Ocaml, Coq)]
+""".trim)
+      }
+    if (i == args.length) {
+      usage
+    } else {
+      val opt = SireumBakarTypeMode()
+      result.options = Some(opt)
+      result.className = "org.sireum.bakar.tools.BakarType"
+      result.featureName = "Sireum Bakar Tools:Gnat.sapp"
+      val keys = List[String]("-h", "--help", "-t", "--type")
+      var j = i
+      var k = -1
+      val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+      try {
+        while (j < args.length) {
+          if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          if (k == -1 && keys.contains(args(j))) {
+            if (!keys.contains(args(j)) && args(j).startsWith("-")) {
+              addErrorTag(args(j) + " is not an option")
+            }
+            args(j) match {
+              case "-t" | "--type" =>
+
+                if (seenopts.exists { s =>
+                  var r = false
+                  r = r || s == "--type"
+                  r = r || s == "-t"
+                  r
+                }) {
+                  addWarningTag("Option already set: %s".format(args(j)))
+                } else {
+                  seenopts += "--type"
+                  seenopts += "-t"
+                }
+                val v = process(args(j), args(j + 1), keys, org.sireum.option.TypeTarget.Coq)
+                if (result.status) {
+                  opt.typ = v.get.asInstanceOf[org.sireum.option.TypeTarget.Type]
+                  j += 1
+                }
+              case "-h" | "--help" =>
+                usage; result.status = false
+              case _               =>
+            }
+          } else {
+            k = k + 1
+            k match {
+              case 0 =>
+                val v = process(args(j), args(j), keys, "")
+                if (result.status) {
+                  opt.outFile = v.get.asInstanceOf[java.lang.String]
+                }
+
+              case _ =>
+                addErrorTag("Too many arguments starting at " + args(j))
+            }
+          }
+          j = j + 1
+        }
+      } catch {
+        case e : Exception => addErrorTag(e.toString)
+      }
+
+      if (k + 1 < 0) {
+        addErrorTag("Missing required arguments")
+      }
+
+    }
+  }
+
+  def parseSireumBakarMode(args : Seq[String], i : Int) {
+    if (i == args.length) {
+      addInfoTag(
+        """
+Sireum for Spark
+(c) 2012-2014, SAnToS Laboratory, Kansas State University
+""".trim
+          + "\n\n" +
+          """
+Available Modes:
+  program  Translation of Spark/Ada Programs
+  type     Generate Type Definitions
+""".trim
+      )
+    } else {
+      parseModeHelper("bakar", Seq("program", "type"), args, i) {
+        _ match {
+          case "program" =>
+            parseSireumBakarProgramMode(args, i + 1)
+          case "type" =>
+            parseSireumBakarTypeMode(args, i + 1)
         }
       }
     }
@@ -1556,30 +1555,30 @@ Available Modes:
       addInfoTag(
         """
 Sireum: A Software Analysis Platform
-(c) 2012, SAnToS Laboratory, Kansas State University
+(c) 2011-2014, SAnToS Laboratory, Kansas State University
 """.trim
           + "\n\n" +
           """
 Available Modes:
-  bakar  Sireum Bakar Tools
-  distro Sireum Package Manager
-  launch Sireum Launcher
-  tools  Sireum Development Tools
+  bakar   Sireum Bakar Tools
+  distro  Sireum Package Manager
+  launch  Sireum Launcher
+  tools   Sireum Development Tools
 """.trim
       )
     } else {
-      parseModeHelper("sireum", Seq("x", "tools", "bakar", "distro", "launch"), args, i) {
+      parseModeHelper("sireum", Seq("x", "distro", "tools", "launch", "bakar"), args, i) {
         _ match {
           case "x" =>
             parseSireumXMode(args, i + 1)
-          case "tools" =>
-            parseSireumToolsMode(args, i + 1)
-          case "bakar" =>
-            parseSireumBakarMode(args, i + 1)
           case "distro" =>
             parseSireumDistroMode(args, i + 1)
+          case "tools" =>
+            parseSireumToolsMode(args, i + 1)
           case "launch" =>
             parseSireumLaunchMode(args, i + 1)
+          case "bakar" =>
+            parseSireumBakarMode(args, i + 1)
         }
       }
     }

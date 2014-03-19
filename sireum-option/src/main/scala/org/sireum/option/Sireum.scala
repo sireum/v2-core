@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
+Copyright (c) 2011-2014 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -16,7 +16,7 @@ import EmptySireumMode._
  */
 @Mode(command = "sireum", header = """
 Sireum: A Software Analysis Platform
-(c) 2012, SAnToS Laboratory, Kansas State University
+(c) 2011-2014, SAnToS Laboratory, Kansas State University
 """)
 case class SireumMode(
   //  bogor : BogorMode = BogorMode(),
@@ -39,7 +39,7 @@ case class SireumXMode(
  */
 @Mode(command = "bogor", header = """
 Sireum/Bogor: A Software Model Checking Framework
-(c) 2012, SAnToS Laboratory, Kansas State University
+(c) 2012-2014, SAnToS Laboratory, Kansas State University
 """)
 case class BogorMode()
 
@@ -48,7 +48,7 @@ case class BogorMode()
  */
 @Mode(command = "kiasan", header = """
 Sireum/Kiasan: A Symbolic Execution Framework
-(c) 2012, SAnToS Laboratory, Kansas State University
+(c) 2012-2014, SAnToS Laboratory, Kansas State University
 """)
 case class KiasanMode(
   java : KiasanJavaMode = KiasanJavaMode(),
@@ -163,7 +163,7 @@ case class LaunchBakarGpsMode()
   desc = "Launch Osate with RDALTE, egit and BLESS plugins")
 case class LaunchOsateMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 

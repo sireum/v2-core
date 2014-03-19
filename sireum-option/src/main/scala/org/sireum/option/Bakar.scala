@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
+Copyright (c) 2011-2014 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -17,7 +17,7 @@ import org.sireum.util._
   desc = "Sireum Bakar Tools",
   header = """
 Sireum for Spark
-(c) 2012, SAnToS Laboratory, Kansas State University
+(c) 2012-2014, SAnToS Laboratory, Kansas State University
 """)
 case class SireumBakarMode(
   typ : SireumBakarTypeMode = SireumBakarTypeMode(),
