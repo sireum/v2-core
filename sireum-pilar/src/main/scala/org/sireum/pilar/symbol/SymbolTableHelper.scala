@@ -173,6 +173,15 @@ object H {
   }
 
   def packageName(symDef : SymbolDefinition) = symDef.uriPaths(0)
+  
+  
+  def procedureName(symUri : ResourceUri) = {
+    val p = PROCEDURE_TYPE + "/"
+    val i = symUri.indexOf(p) + p.length
+    val j = symUri.indexOf("/", i)
+    symUri.substring(i, j)
+  }
+    
 
   def paths(symDef : Option[SymbolDefinition], name : String*) =
     symDef match {
