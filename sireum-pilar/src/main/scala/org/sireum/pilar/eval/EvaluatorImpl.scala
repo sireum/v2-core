@@ -125,7 +125,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
         }
       }
     it(s, 0)
-    r
+    scheduleSR("if", s, r)
   }
 
   @inline
@@ -150,7 +150,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
       }
     val eValues = eval(s, j.cond)
     eValues.foreach { p => it(re2s(p), ValueExp(re2value(p)), 0) }
-    r
+    scheduleSR("switch", s, r)
   }
 
   @inline
