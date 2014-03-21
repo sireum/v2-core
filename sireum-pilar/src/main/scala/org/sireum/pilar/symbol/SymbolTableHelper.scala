@@ -203,8 +203,7 @@ object H {
 
   def symbolUri(typ : String, paths : ISeq[String], relative : Boolean = false) =
     Resource.getResourceUri(SCHEME, typ, paths.map {
-      _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/").
-        replaceAll(org.sireum.pilar.PILAR_ACCESSOR_SEP, "/")
+      _.replaceAll(org.sireum.pilar.PILAR_PACKAGE_SEP, "/")
     }, relative)
 
   def typeVarSymbol(tvt : MMap[ResourceUri, NameDefinition], str : SymbolTableReporter,
