@@ -90,6 +90,20 @@ class PilarSymbolResolverModuleDef(val job : PipelineJob, info : PipelineJobModu
                       column : Int, message : String) : Unit =
       tags += Tag.toTag(fileUri, line, column, message, WARNING_TAG_TYPE)
 
+    def reportError(source : Option[FileResourceUri], line : Int,
+                    column : Int, offset : Int, length : Int,
+                    message : String) : Unit = {
+      tags += Tag.toTag(source, line, column, offset, length, message,
+        ERROR_TAG_TYPE)
+      hasErrors = true
+    }
+
+    def reportWarning(fileUri : Option[String], line : Int,
+                      column : Int, offset : Int, length : Int,
+                      message : String) : Unit =
+      tags += Tag.toTag(fileUri, line, column, offset, length, message,
+        WARNING_TAG_TYPE)
+
     val pdMap = mmapEmpty[ResourceUri, PST]
 
     def globalVars = tables.globalVarTable.keys

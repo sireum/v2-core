@@ -173,15 +173,13 @@ object H {
   }
 
   def packageName(symDef : SymbolDefinition) = symDef.uriPaths(0)
-  
-  
+
   def procedureName(symUri : ResourceUri) = {
     val p = PROCEDURE_TYPE + "/"
     val i = symUri.indexOf(p) + p.length
     val j = symUri.indexOf("/", i)
     symUri.substring(i, j)
   }
-    
 
   def paths(symDef : Option[SymbolDefinition], name : String*) =
     symDef match {
@@ -217,12 +215,8 @@ object H {
     val key = nameDef.uri
     tvt.get(key) match {
       case Some(other) =>
-        import LineColumnLocation._
-        import FileLocation._
-        str.reportError(nameDef.fileUriOpt,
-          nameDef.line, nameDef.column,
-          DUPLICATE_TYPE_VAR.format(H.symbolSimpleName(nameDef),
-            other.line, other.column))
+        str.reportRedeclaration(Location.locPropKey, nameDef,
+          DUPLICATE_TYPE_VAR, other)
       case _ =>
         tvt(key.intern) = nameDef
     }
@@ -249,21 +243,14 @@ object H {
           nameDef.uriPaths, nameDef.uri)
       case _ =>
         if (produceError) {
-          import LineColumnLocation._
-          import FileLocation._
-          if (typeVarR ? locPropKey)
-            str.reportError(source,
-              typeVarR.line, typeVarR.column,
-              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
-          else
-            str.reportError(source, 0, 0,
-              NOT_FOUND_TYPE_VAR.format(typeVarR.name, name))
+          str.reportNotFound(locPropKey, typeVarR, NOT_FOUND_TYPE_VAR)
         }
     }
 
   val EMPTY_DEPENDENCY = mmapEmpty[String, MSet[String]]
 
   abstract class StpWrapper(stp : SymbolTableProducer) extends SymbolTableProducer {
+
     def tables : SymbolTableData = stp.tables
 
     def procedureSymbolTableProducer //
@@ -279,6 +266,14 @@ object H {
     def reportWarning(fileUri : Option[String], line : Int,
                       column : Int, message : String) : Unit =
       stp.reportWarning(fileUri, line, column, message)
+
+    def reportError(fileUri : Option[String], line : Int, column : Int,
+                    offset : Int, length : Int, message : String) : Unit =
+      stp.reportError(fileUri, line, column, offset, length, message)
+
+    def reportWarning(fileUri : Option[String], line : Int, column : Int,
+                      offset : Int, length : Int, message : String) : Unit =
+      stp.reportWarning(fileUri, line, column, offset, length, message)
   }
 
   class PackageElementMiner(stp : SymbolTableProducer)
@@ -375,7 +370,8 @@ object H {
                       m1 : MMap[String, T],
                       m2 : MMap[String, T],
                       f : T => NameDefinition,
-                      message : String) =
+                      message : String,
+                      locPropKey : Property.Key = Location.locPropKey) =
     m2.foreach { p =>
       val key = p._1
       val value = p._2
@@ -385,8 +381,7 @@ object H {
           val otherName = f(value)
           import LineColumnLocation._
           import FileLocation._
-          str.reportError(otherName.fileUriOpt,
-            otherName.line, otherName.column,
+          str.reportError(locPropKey, otherName,
             message.format(otherName.name, ceName.line,
               ceName.column, ceName.fileUriOpt))
         case _ =>

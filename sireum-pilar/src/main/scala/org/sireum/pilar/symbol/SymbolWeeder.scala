@@ -23,6 +23,8 @@ trait SymbolWeeder
 trait RecordHierarchyWeeder extends SymbolWeeder {
   self : SymbolTableProducer =>
 
+  implicit def locPropKey : Property.Key
+
   def recordHierarchyWeeder : Unit = {
     if (tables.recordTable.isEmpty)
       return
@@ -37,11 +39,7 @@ trait RecordHierarchyWeeder extends SymbolWeeder {
     superRecordsMap.foreach { p =>
       if (p._2.contains(p._1)) {
         val rdName = tables.recordTable(p._1).name
-        import LineColumnLocation._
-        import FileLocation._
-        reportError(rdName.fileUriOpt,
-          rdName.line, rdName.column,
-          CIRCULAR_RECORD.format(rdName.name))
+        reportError(locPropKey, rdName, CIRCULAR_RECORD.format(rdName.name))
       }
     }
   }

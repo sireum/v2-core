@@ -176,11 +176,60 @@ object SymbolTable {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait SymbolTableReporter {
+  def reportRedeclaration(locPropKey : Property.Key, s : Symbol,
+                          template : String, other : PropertyProvider) {
+    import LineColumnLocation._
+    if (other ? locPropKey)
+      reportError(locPropKey, s, template.format(H.symbolSimpleName(s),
+        other.line, other.column))
+    else
+      reportError(locPropKey, s, template.format(H.symbolSimpleName(s),
+        0, 0))
+  }
+
+  def reportNotFound(locPropKey : Property.Key, s : Symbol,
+                     template : String) {
+    reportError(locPropKey, s, template.format(H.symbolSimpleName(s)))
+  }
+
+  def reportError(locPropKey : Property.Key, pp : PropertyProvider,
+                  message : String) {
+    if (pp ? locPropKey)
+      pp.getProperty[Location](locPropKey) match {
+        case l : SourceOffsetLocation =>
+          reportError(l.fileUriOpt, l.line, l.column, l.offset, l.length, message)
+        case l : FileLocation with LineColumnLocation =>
+          reportError(l.fileUriOpt, l.line, l.column, message)
+      }
+    else reportError(None, 0, 0, message)
+  }
+
+  def reportError(locPropKey : Property.Key,
+                  source : Option[FileResourceUri], pp : PropertyProvider,
+                  message : String) {
+    if (pp ? locPropKey)
+      pp.getProperty[Location](locPropKey) match {
+        case l : SourceOffsetLocation =>
+          reportError(source, l.line, l.column, l.offset, l.length, message)
+        case l : LineColumnLocation =>
+          reportError(source, l.line, l.column, message)
+      }
+    else reportError(None, 0, 0, message)
+  }
+
   def reportError(fileUri : Option[String], line : Int,
                   column : Int, message : String) : Unit
 
   def reportWarning(fileUri : Option[String], line : Int,
                     column : Int, message : String) : Unit
+
+  def reportError(
+    fileUri : Option[String], line : Int, column : Int,
+    offset : Int, length : Int, message : String) : Unit
+
+  def reportWarning(
+    fileUri : Option[String], line : Int, column : Int,
+    offset : Int, length : Int, message : String) : Unit
 }
 
 /**

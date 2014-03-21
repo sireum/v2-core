@@ -492,8 +492,7 @@ trait RecordHierarchyResolver extends SymbolResolver {
             success = resolveRecordHierarchy(stp, source, nameUser, key, paths)
           }
           if (!success)
-            stp.reportError(source,
-              nameUser.line, nameUser.column,
+            stp.reportError(locPropKey, source, nameUser,
               NOT_FOUND_EXTEND_RECORD.format(nameUser.name))
         }
 
@@ -744,16 +743,8 @@ trait FunParamResolver extends SymbolResolver {
           val key = pName.uri
           scope.get(key) match {
             case Some(other) =>
-              import LineColumnLocation._
-              import FileLocation._
-              if (pName ? locPropKey)
-                reportError(pName.fileUriOpt,
-                  pName.line, pName.column,
-                  DUPLICATE_ANON_PARAM.format(pName.name,
-                    other.name.line, other.column))
-              else
-                reportError(None, 0, 0,
-                  DUPLICATE_ANON_PARAM.format(pName.name, 0, 0))
+              reportRedeclaration(locPropKey, pName, DUPLICATE_ANON_PARAM,
+                other)
             case _ =>
               scope(key) = p
           }
@@ -903,13 +894,14 @@ trait JumpResolver extends SymbolResolver {
         locations = ib.locations
         val lastLoc = locations(locations.size - 1)
         if (hasImplicitNextJump(lastLoc)) {
-          if (lastLoc ? locPropKey)
-            symbolTableProducer.reportError(source,
-              lastLoc.line, lastLoc.column,
-              LAST_LOCATION_NEED_EXPLICIT_JUMP)
-          else
-            symbolTableProducer.reportError(source,
-              0, 0, LAST_LOCATION_NEED_EXPLICIT_JUMP)
+          lastLoc.name match {
+            case Some(name) =>
+              symbolTableProducer.reportError(locPropKey, name,
+                LAST_LOCATION_NEED_EXPLICIT_JUMP)
+            case _ =>
+              symbolTableProducer.reportError(locPropKey, lastLoc,
+                LAST_LOCATION_NEED_EXPLICIT_JUMP)
+          }
         }
         true
       case gj : GotoJump =>
@@ -932,19 +924,18 @@ trait JumpResolver extends SymbolResolver {
         val start = tables.bodyTables.get.locationTable(fromNameUser.uri).index
         val end = tables.bodyTables.get.locationTable(toNameUser.uri).index
         if (end == -1) {
-          import LineColumnLocation._
-          import FileLocation._
-          if (toNameUser ? locPropKey && fromNameUser ? locPropKey)
-            symbolTableProducer.reportError(source, toNameUser.line,
-              toNameUser.column, CATCH_TABLE_END_BEFORE_START.
+          if (fromNameUser ? locPropKey)
+            symbolTableProducer.reportError(locPropKey, source, toNameUser,
+              CATCH_TABLE_END_BEFORE_START.
                 format(H.symbolSimpleName(toNameUser),
                   H.symbolSimpleName(fromNameUser),
                   fromNameUser.line, fromNameUser.column))
           else
-            symbolTableProducer.reportError(source, 0, 0,
+            symbolTableProducer.reportError(locPropKey, source, toNameUser,
               CATCH_TABLE_END_BEFORE_START.
                 format(H.symbolSimpleName(toNameUser),
-                  H.symbolSimpleName(fromNameUser), 0, 0))
+                  H.symbolSimpleName(fromNameUser),
+                  0, 0))
         } else {
           val ct = tables.bodyTables.get.catchTable
           for (i <- start to end)
@@ -972,15 +963,8 @@ trait JumpResolver extends SymbolResolver {
         H.symbolInit(nameUser, symDef.uriType,
           symDef.uriPaths, symDef.uri)
       case None =>
-        import LineColumnLocation._
-        import FileLocation._
-        if (nameUser ? locPropKey)
-          symbolTableProducer.reportError(source,
-            nameUser.line, nameUser.column,
-            NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
-        else
-          symbolTableProducer.reportError(source,
-            0, 0, NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
+        symbolTableProducer.reportError(locPropKey, source, nameUser,
+          NOT_FOUND_LOCATION.format(nameUser.name, procNameDef.name))
     }
   }
 }
