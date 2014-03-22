@@ -98,7 +98,7 @@ abstract class LaunchEclipseAppMode {
   desc = "Launch Eclipse")
 case class LaunchEclipseMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
@@ -109,7 +109,7 @@ case class LaunchEclipseMode(
   desc = "Launch Eclipse with Sireum Dev Plugins")
 case class LaunchSireumDevMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
@@ -120,7 +120,7 @@ case class LaunchSireumDevMode(
   desc = "Launch Eclipse with Compiler Dev Plugins")
 case class LaunchCompilerDevMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
@@ -131,7 +131,7 @@ case class LaunchCompilerDevMode(
   desc = "Launch Eclipse with Bakar Plugins")
 case class LaunchBakarV1Mode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-XX:MaxPermSize=512m", "-Xms128m", "-Xmx1024m"),
+  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
