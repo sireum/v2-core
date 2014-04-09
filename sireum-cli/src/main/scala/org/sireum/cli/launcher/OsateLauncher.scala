@@ -42,7 +42,7 @@ class OsateLauncher {
             else "java"
           val launcherJar =
             try {
-              val pluginsDir = new File(sireumHome, "apps/osage/osate2/plugins")
+              val pluginsDir = new File(sireumHome, "apps/osate/osate2/plugins")
               pluginsDir.listFiles(new FilenameFilter {
                 def accept(dir : File, name : String) = {
                   name.startsWith("org.eclipse.equinox.launcher_")
