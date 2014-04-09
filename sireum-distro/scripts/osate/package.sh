@@ -32,7 +32,7 @@ if [ ! -f osate2-$VERSION-win32.win32.x86_64.zip ]; then
   wget $DROP_URL/osate2-$VERSION-win32.win32.x86_64.zip
   echo
 fi
-if [ ! -f osate2-SDK-$VERSION-win32.win32.zip ]; then
+if [ ! -f osate2-$VERSION-win32.win32.x86.zip ]; then
   echo Downloading Osate2 $VERSION win32
   echo
   wget $DROP_URL/osate2-$VERSION-win32.win32.x86.zip
@@ -41,15 +41,21 @@ fi
 #
 echo Packaging osate2-mac64.sapp
 #
-unzip osate2-$VERSION-macosx.cocoa.x86_64.zip 
+unzip -q osate2-$VERSION-macosx.cocoa.x86_64.zip 
+mv osate2/osate.app/Contents/MacOS/osate osate2/osate.app/Contents/MacOS/osate.orig
+cp $PACKAGE_HOME/mac/osate osate2/osate.app/Contents/MacOS/
+chmod 755 osate2/osate.app/Contents/MacOS/osate
 cp -R $PACKAGE_HOME/links osate2/
 sireum tools sapper osate2-mac64.sapp osate2
-#tar cfz osate2-mac64.tar.gz osate2
+tar cfz osate2-mac64.tar.gz osate2
 rm -R osate2
 #
 echo Packaging osate2-linux64.sapp
 #
-unzip osate2-$VERSION-linux.gtk.x86_64.zip
+unzip -q osate2-$VERSION-linux.gtk.x86_64.zip
+rm osate2/osate
+cp $PACKAGE_HOME/linux/osate osate2/
+chmod 755 osate2/osate
 cp -R $PACKAGE_HOME/links osate2/
 sireum tools sapper osate2-linux64.sapp osate2
 #tar cfz osate2-linux64.tar.gz osate2
@@ -57,7 +63,10 @@ rm -fR osate2
 #
 echo Packaging osate2-linux32.sapp
 #
-unzip osate2-$VERSION-linux.gtk.x86.zip
+unzip -q osate2-$VERSION-linux.gtk.x86.zip
+rm osate2/osate
+cp $PACKAGE_HOME/linux/osate osate2/
+chmod 755 osate2/osate
 cp -R $PACKAGE_HOME/links osate2/
 sireum tools sapper osate2-linux32.sapp osate2
 #tar cfz osate2-linux32.tar.gz osate2
@@ -66,6 +75,10 @@ rm -fR osate2
 echo Packaging osate2-win64.sapp
 #
 unzip -q osate2-$VERSION-win32.win32.x86_64.zip
+rm osate2/osate.exe
+rm osate2/eclipsec.exe
+cp $PACKAGE_HOME/windows/osate.bat osate2/
+cp $PACKAGE_HOME/windows/README.TXT osate2/
 cp -R $PACKAGE_HOME/links osate2/
 zip -q -r osate2-win64.sapp osate2
 rm -R osate2
@@ -73,6 +86,10 @@ rm -R osate2
 echo Packaging osate2-win32.sapp
 #
 unzip -q osate2-$VERSION-win32.win32.x86.zip
+rm osate2/osate.exe
+rm osate2/eclipsec.exe
+cp $PACKAGE_HOME/windows/osate.bat osate2/
+cp $PACKAGE_HOME/windows/README.TXT osate2/
 cp -R $PACKAGE_HOME/links osate2/
 zip -q -r osate2-win32.sapp osate2
 rm -R osate2

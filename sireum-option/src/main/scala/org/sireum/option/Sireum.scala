@@ -84,7 +84,7 @@ case class SireumLaunchMode(
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
   bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
-  osate : LaunchOsateMode = dev(LaunchOsateMode()))
+  osate : LaunchOsateMode = LaunchOsateMode())
 
 abstract class LaunchEclipseAppMode {
   def jvmopts : ISeq[String]
@@ -160,7 +160,7 @@ case class LaunchBakarGpsMode()
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
  */
 @Main(value = "osate", className = "org.sireum.cli.launcher.OsateLauncher", featureName = "Osate.sapp",
-  desc = "Launch Osate with RDALTE, egit and BLESS plugins")
+  desc = "Launch Osate with egit plugin")
 case class LaunchOsateMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
   var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
