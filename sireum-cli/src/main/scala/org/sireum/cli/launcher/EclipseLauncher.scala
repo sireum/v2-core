@@ -29,12 +29,19 @@ object EclipseLauncher {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 class EclipseLauncher {
+  final val jvmopts = "sireum.launcher.eclipse.jvmopts"
+
   def execute(opt : LaunchEclipseAppMode) {
     val osArch = OsArchUtil.detect
     val exeExt = if (osArch == OsArch.Win32 || osArch == OsArch.Win64) ".exe" else ""
     val sireumHome = System.getenv("SIREUM_HOME")
     val javaHomeDir = new File(sireumHome, "apps/platform/java")
     var javaOptions = opt.jvmopts.toList
+    
+    Config.load.get(jvmopts) match {
+      case Some(s) => javaOptions = s.split(",").map(_.trim).toList
+      case _       =>
+    }
 
     val (cmd, dir) =
       osArch match {
