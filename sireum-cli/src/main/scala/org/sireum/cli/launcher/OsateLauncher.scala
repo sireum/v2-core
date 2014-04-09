@@ -42,7 +42,7 @@ class OsateLauncher {
             else "java"
           val launcherJar =
             try {
-              val pluginsDir = new File(sireumHome, "apps/osate2/plugins")
+              val pluginsDir = new File(sireumHome, "apps/osage/osate2/plugins")
               pluginsDir.listFiles(new FilenameFilter {
                 def accept(dir : File, name : String) = {
                   name.startsWith("org.eclipse.equinox.launcher_")
@@ -60,8 +60,8 @@ class OsateLauncher {
                 "-XstartOnFirstThread",
                 "-Dorg.eclipse.swt.internal.carbon.smallFonts"),
                 new File(sireumHome,
-                  "apps/eclipse/dsl/Eclipse.app/Contents/MacOS"))
-            else (ivectorEmpty, new File(sireumHome, "apps/osate2"))
+                  "apps/osate/osate2/osate.app/Contents/MacOS"))
+            else (ivectorEmpty, new File(sireumHome, "apps/osate/osate2"))
           val launcherArgs =
             ivector(
               "-Dosgi.requiredJavaVersion=1.7",
