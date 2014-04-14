@@ -16,7 +16,8 @@ case class SireumAmandroidMode(
   passwordTracking : SireumAmandroidPasswordTrackingMode = SireumAmandroidPasswordTrackingMode(),
   intentInjection : SireumAmandroidIntentInjectionMode = SireumAmandroidIntentInjectionMode(),
   cryptoMisuse : SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
-  taintAnalysis : SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode())
+  taintAnalysis : SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
+  staging : SireumAmandroidStagingMode = SireumAmandroidStagingMode())
 
 object DumpSource extends Enum {
   sealed abstract class Type extends EnumElem
@@ -109,6 +110,19 @@ case class SireumAmandroidTaintAnalysisMode(
   @Arg(index = 1, value = "Sink list file")
   var sasFile : String = "")
   
+@Main(value = "staging",
+  className = "org.sireum.amandroid.security.cli.StagingCli",
+  featureName = "Sireum Amandroid Alir",
+  desc = "Generate IDFG&DDG for Android apk and store it")
+case class SireumAmandroidStagingMode(
+    
+  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  
+  @Arg(index = 0, value = "Source file")
+  var srcFile : String = ""
+)
+  
 @Group("General Options")
 case class SireumAmandroidGeneralGroup(
   @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to analyze.")
@@ -132,7 +146,7 @@ case class SireumAmandroidAnalysisGroup(
   @Option(shortKey = "k", longKey = "k-context", desc = "Context length")
   var k_context : Int = 1,
   
-  @Option(shortKey = "t", longKey = "timeout", desc = "Timeout (minute)")
+  @Option(shortKey = "to", longKey = "timeout", desc = "Timeout (minute)")
   var timeout : Int = 10,
   
   @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path")
