@@ -27,6 +27,16 @@ object DumpSource extends Enum {
 
   def elements = ivector(APK, DEX, DIR)
 }
+
+object MessageLevel extends Enum {
+  sealed abstract class Type extends EnumElem
+  object NO extends Type
+  object CRITICAL extends Type
+  object NORMAL extends Type
+  object VERBOSE extends Type
+
+  def elements = ivector(NO, CRITICAL, NORMAL, VERBOSE)
+}
   
 @Main(value = "decompile",
   className = "org.sireum.amandroid.android.decompile.DecompilerCli",
@@ -129,7 +139,10 @@ case class SireumAmandroidGeneralGroup(
   var typ : AnalyzeSource.Type = AnalyzeSource.APK,
   
   @Option(shortKey = "m", longKey = "memory", desc = "Max memory (GB).")
-  var mem : Int = 2
+  var mem : Int = 2,
+  
+  @Option(shortKey = "msg", longKey = "message", desc = "Message Level.")
+  var msgLevel : MessageLevel.Type = MessageLevel.NO
 )
 
 @Group("Analysis Options")
