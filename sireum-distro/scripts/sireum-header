@@ -46,4 +46,4 @@ if [ "$RELOAD" == "true" ]; then
 fi
 exit $code 
 !#
-SireumDistro.main(argv)
+SireumDistro.main(args)

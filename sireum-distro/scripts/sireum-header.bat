@@ -53,4 +53,4 @@ IF %COND%==true (
 ENDLOCAL
 EXIT /B %CODE%
 ::!#
-SireumDistro.main(argv)
+SireumDistro.main(args)

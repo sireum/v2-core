@@ -170,8 +170,8 @@ object SireumDistro extends App {
       deleteJar
       sys.exit(-1)
     }
-    if (util.Properties.versionString.substring(8, 12) != "2.10") {
-      outPrintln("This version of Sireum requires Scala 2.10")
+    if (util.Properties.versionString.substring(8, 12) != "2.11") {
+      outPrintln("This version of Sireum requires Scala 2.11")
       deleteJar
       sys.exit(-1)
     }

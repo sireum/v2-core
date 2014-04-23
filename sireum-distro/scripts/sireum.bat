@@ -53,7 +53,7 @@ IF %COND%==true (
 ENDLOCAL
 EXIT /B %CODE%
 ::!#
-SireumDistro.main(argv)
+SireumDistro.main(args)
 /*
 Copyright (c) 2011-2013 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
@@ -226,8 +226,8 @@ object SireumDistro extends App {
       deleteJar
       sys.exit(-1)
     }
-    if (util.Properties.versionString.substring(8, 12) != "2.10") {
-      outPrintln("This version of Sireum requires Scala 2.10")
+    if (util.Properties.versionString.substring(8, 12) != "2.11") {
+      outPrintln("This version of Sireum requires Scala 2.11")
       deleteJar
       sys.exit(-1)
     }
