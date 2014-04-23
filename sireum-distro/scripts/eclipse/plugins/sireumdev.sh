@@ -1,6 +1,6 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SCIDE_DROP_URL=${SCIDE_URL:=http://download.scala-ide.org/sdk/helium/e38/scala210/}${R:=stable}/${SCIDE_DROP:=update-site.zip}
+export SCIDE_DROP_URL=${SCIDE_URL:=http://download.scala-ide.org/sdk/helium/e38/scala211/}${R:=stable}/${SCIDE_DROP:=update-site.zip}
 if [ ! -f $SCIDE_DROP ]; then
   echo
   echo Downloading Scala IDE $R
