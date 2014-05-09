@@ -33,6 +33,9 @@ mv site eclipse
 cd ..
 zip -rq eclipse-plugins-scala.sapp eclipse-plugins-scala ../eclipse/dsl/links/scala.link
 cd ..
+#
+# Subclipse
+#
 echo "path=../../sireumdev/subclipse" > eclipse/dsl/links/subclipse.link 
 mkdir SireumDev/subclipse 2> /dev/null
 mkdir SireumDev/subclipse/eclipse 2> /dev/null
@@ -42,6 +45,20 @@ unzip -oq ../../../$SUBCLIPSE_DROP
 cd ../..
 zip -rq subclipse.sapp subclipse ../eclipse/dsl/links/subclipse.link
 cd ..
-rm -fR SireumDev/eclipse-plugins-scala SireumDev/subclipse
+#
+# Eclipse Fonts
+#
+echo "path=../../sireumdev/eclipse-fonts" > eclipse/dsl/links/eclipse-fonts.link 
+mkdir SireumDev/eclipse-fonts 2> /dev/null
+cd SireumDev/eclipse-fonts
+svn checkout https://eclipse-fonts.googlecode.com/svn/trunk/FontsUpdate eclipse
+cd eclipse
+> .eclipseextension
+rm -fR `find . -name ".svn"`
+rm .project
+cd ../..
+zip -rq eclipse-fonts.sapp eclipse-fonts ../eclipse/dsl/links/eclipse-fonts.link
+cd ..
+rm -fR SireumDev/eclipse-plugins-scala SireumDev/subclipse SireumDev/eclipse-fonts
 echo
 echo ...done!
