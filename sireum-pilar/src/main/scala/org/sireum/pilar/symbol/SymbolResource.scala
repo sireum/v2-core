@@ -23,38 +23,39 @@ object Symbol {
 
   val symbolPropKey = "pilar.symbol"
 
-  implicit def pp2r[T <: PropertyProvider](pp : T) : Resource = {
-    case class ResourceProperty(
-        var _uriScheme : String = null,
-        var _uriType : String = null,
-        var _uriPaths : ISeq[String] = null,
-        var _uri : ResourceUri = null) extends Resource {
-      def uriScheme = { require(hasResourceInfo); _uriScheme }
+  case class ResourceProperty[T <: PropertyProvider](var _uriScheme: String = null,
+    var _uriType: String = null,
+    var _uriPaths: ISeq[String] = null,
+    var _uri: ResourceUri = null) extends Resource with PropertyProviderContext[T] {
+    def make(pp: T) = ResourceProperty[T](_uriScheme, _uriType, _uriPaths, _uri).context(pp)
 
-      def uriType = { require(hasResourceInfo); _uriType }
+    def uriScheme = { require(hasResourceInfo); _uriScheme }
 
-      def uriPaths = { require(hasResourceInfo); _uriPaths }
+    def uriType = { require(hasResourceInfo); _uriType }
 
-      def uri = { require(hasResourceInfo); _uri }
+    def uriPaths = { require(hasResourceInfo); _uriPaths }
 
-      def hasResourceInfo : Boolean = pp ? symbolPropKey
+    def uri = { require(hasResourceInfo); _uri }
 
-      def uri(scheme : String, typ : String,
-              paths : ISeq[String], uri : ResourceUri) {
-        require(paths != null && uri != null && paths.forall(_ != null))
-        pp(symbolPropKey) = this
-        this._uriScheme = scheme
-        this._uriType = typ
-        this._uriPaths = paths
-        this._uri = uri
-      }
+    def hasResourceInfo: Boolean = context ? symbolPropKey
+
+    def uri(scheme: String, typ: String,
+      paths: ISeq[String], uri: ResourceUri) {
+      require(paths != null && uri != null && paths.forall(_ != null))
+      context(symbolPropKey) = this
+      this._uriScheme = scheme
+      this._uriType = typ
+      this._uriPaths = paths
+      this._uri = uri
     }
-    pp.getPropertyOrElse(symbolPropKey, ResourceProperty())
   }
 
+  implicit def pp2r[T <: PropertyProvider](pp: T): Resource = 
+    pp.getPropertyOrElse(symbolPropKey, ResourceProperty().context(pp))
+
   implicit object ResourceAdapter
-      extends Adapter[PropertyProvider, Resource] {
-    def adapt(pp : PropertyProvider) : Resource = pp
+    extends Adapter[PropertyProvider, Resource] {
+    def adapt(pp: PropertyProvider): Resource = pp
   }
 }
 
