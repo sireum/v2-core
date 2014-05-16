@@ -559,7 +559,7 @@ class CliBuilder {
 
   def getMainModeInfo(meths : Array[Method]) : List[(Method, String, String, Boolean)] = {
     var l = List[(Method, String, String, Boolean)]()
-    for (m <- meths) {
+    for (m <- meths if m.getName != "apply") {
       val c = m.getReturnType
       for (a <- c.getDeclaredAnnotations) {
         a match {
@@ -586,7 +586,7 @@ class CliBuilder {
 
   def filter(meths : Array[Method], includePrim : Boolean = false) : Array[Method] = {
     val result = meths.filter(f => !f.getName.startsWith("copy") && !f.getName.startsWith("_") &&
-      !f.getName.contains("$") &&
+      !f.getName.contains("$") && f.getName != "apply" &&
       (includePrim ||
         this.cgm.packages.exists(p => f.getReturnType.getName.startsWith(p))))
 
