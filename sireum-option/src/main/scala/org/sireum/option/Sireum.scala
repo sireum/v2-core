@@ -82,6 +82,8 @@ case class SireumLaunchMode(
   compilerdev : LaunchCompilerDevMode = LaunchCompilerDevMode(),
   bakar : LaunchBakarV1Mode = LaunchBakarV1Mode(),
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
+  server : LaunchServerMode = internal(LaunchServerMode()),
+  symbologics : LaunchSymbologicsMode = internal(LaunchSymbologicsMode()),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
   bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
   osate : LaunchOsateMode = LaunchOsateMode())
@@ -141,6 +143,24 @@ case class LaunchBakarV1Mode(
 @Main(value = "antlrworks", className = "org.sireum.cli.launcher.AntlrWorksLauncher", featureName = "Antlr.sapp",
   desc = "Launch ANTLRWorks")
 case class LaunchAntlrWorksMode()
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Main(value = "server", className = "org.sireum.server.WebServer", featureName = "Sireum Server", desc = "Launch Server")
+case class LaunchServerMode(
+  @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
+  var port : Int = 8080)
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Main(value = "symbologics", className = "org.sireum.server.SymbologicsServer", featureName = "Sireum Symbologics Server Plugin", desc = "Launch Symbologics")
+case class LaunchSymbologicsMode(
+  @Option(shortKey = "u", longKey = "uri", desc = "Server URI") //
+  var uri : String = "http://localhost",  
+  @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
+  var port : Int = 8080)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
