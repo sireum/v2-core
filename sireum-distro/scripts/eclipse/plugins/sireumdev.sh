@@ -8,7 +8,7 @@ if [ ! -f $SCIDE_DROP ]; then
   wget $SCIDE_DROP_URL
   echo
 fi
-export SUBCLIPSE_DROP_URL=${SUBCLIPSE_URL:=http://subclipse.tigris.org/files/documents/906/49378/site-}${SUBCLIPSE_VERSION:=1.10.4}.zip
+export SUBCLIPSE_DROP_URL=${SUBCLIPSE_URL:=http://subclipse.tigris.org/files/documents/906/49382/site-}${SUBCLIPSE_VERSION:=1.10.5}.zip
 export SUBCLIPSE_DROP=site-$SUBCLIPSE_VERSION.zip
 if [ ! -f $SUBCLIPSE_DROP ]; then
   echo
