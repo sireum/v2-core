@@ -64,7 +64,7 @@ object PilarExpSimplifier {
         })
 
       case e @ BinaryExp(op, e1, e2) if isInequality(op) &&
-        !toInteger.isDefinedAt(e1) && toInteger.isDefinedAt(e2) =>
+        toInteger.isDefinedAt(e1) && !toInteger.isDefinedAt(e2) =>
         rec(BinaryExp(mirrorRelationalOp(op), e2, e1))
     })
 
