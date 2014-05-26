@@ -10,6 +10,7 @@ package org.sireum.pilar.ast
 
 import org.sireum.util._
 import org.sireum.util.math._
+import scala.annotation.tailrec
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -24,6 +25,90 @@ object PilarExpSimplifier {
   def isAddSubMulDiv(op : BinaryOp) = {
     import PilarAstUtil._
     op == ADD_BINOP || op == SUB_BINOP || op == MUL_BINOP || op == DIV_BINOP
+  }
+
+  val simplify = simplify_x_rop_c_x_nrop_d _
+
+  def simplify_x_rop_c_x_nrop_d(exps : ISeq[Exp]) : ISeq[Exp] = {
+    import PilarAstUtil._
+    var result = simplify_x_rop_c(exps)
+    for (op <- Seq(GT_BINOP, GE_BINOP, LT_BINOP, LE_BINOP)) {
+      var (beIs, rest) = result.partition(_ match {
+        case BinaryExp(`op`, e1, e2) =>
+          isInequality(op) && !toInteger.isDefinedAt(e1) &&
+            toInteger.isDefinedAt(e2)
+        case _ => false
+      })
+      var r = ivectorEmpty[Exp]
+      for (beI <- beIs) {
+        val BinaryExp(_, e1, e2) = beI
+        val nop = compRelationalOp(op)
+        val (beJs, rest2) = rest.partition(_ match {
+          case BinaryExp(`nop`, `e1`, e3) => toInteger.isDefinedAt(e3)
+          case _                          => false
+        })
+        rest = rest2
+        val vOpt =
+          if (!beJs.isEmpty) {
+            val Seq(BinaryExp(_, _, e3)) = beJs
+            val v2 = toInteger(e2)
+            val v3 = toInteger(e3)
+
+            op match {
+              // x > v2, x <= v3
+              case GT_BINOP if v2 + 1 == v3 => Some(v3)
+              // x >= v2, x < v3
+              case GE_BINOP if v2 == v3 - 1 => Some(v2)
+              // x < v2, x >= v3
+              case LT_BINOP if v2 - 1 == v3 => Some(v3)
+              // x <= v2, x > v3
+              case LE_BINOP if v2 == v3 + 1 => Some(v2)
+              case _                        => None
+            }
+          } else None
+        vOpt match {
+          case Some(v) =>
+            r :+= BinaryExp(EQ_BINOP, e1, toLiteral(v))
+          case _ =>
+            r :+= beI
+            r ++= beJs
+        }
+      }
+      result = rest ++ r
+    }
+    result
+  }
+
+  def simplify_x_rop_c(exps : ISeq[Exp]) : ISeq[Exp] = {
+    import PilarAstUtil._
+    var (temp, r) = exps.map(simplify).partition(_ match {
+      case BinaryExp(op, e1, e2) =>
+        isInequality(op) && !toInteger.isDefinedAt(e1) &&
+          toInteger.isDefinedAt(e2)
+      case _ => false
+    })
+
+    while (!temp.isEmpty) {
+      val BinaryExp(op, e1, e2) = temp.head
+      val (orbit, rest) = temp.partition(_ match {
+        case BinaryExp(`op`, `e1`, _) => true
+        case _                        => false
+      })
+      if (orbit.size > 1) {
+        val values =
+          orbit.map(x => toInteger(x.asInstanceOf[BinaryExp].right))
+        val v =
+          op match {
+            case GT_BINOP | GE_BINOP => values.max
+            case LT_BINOP | LE_BINOP => values.min
+          }
+        r :+= BinaryExp(op, e1, toLiteral(v))
+      } else {
+        r :+= orbit.head
+      }
+      temp = rest
+    }
+    r
   }
 
   def simplify(exp : Exp) : Exp = {
