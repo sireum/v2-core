@@ -45,6 +45,22 @@ object PilarAstUtil {
   final val LOGICAL_IMPLIED_BINOP = "<==="
   final val DISTINCT_BINOP = "<!"
 
+  final val mirrorRelationalOp =
+    Map(EQ_BINOP -> EQ_BINOP,
+      NE_BINOP -> NE_BINOP,
+      GT_BINOP -> LT_BINOP,
+      GE_BINOP -> LE_BINOP,
+      LT_BINOP -> GT_BINOP,
+      LE_BINOP -> GE_BINOP)
+
+  final val compRelationalOp =
+    Map(EQ_BINOP -> NE_BINOP,
+      NE_BINOP -> EQ_BINOP,
+      GT_BINOP -> LE_BINOP,
+      GE_BINOP -> LT_BINOP,
+      LT_BINOP -> GE_BINOP,
+      LE_BINOP -> GT_BINOP)
+
   @inline
   def varUri(x : NameUser) =
     if (x.hasResourceInfo) x.uri
@@ -95,15 +111,25 @@ object PilarAstUtil {
 
   @inline
   def toLiteral(n : java.math.BigInteger) =
-    LiteralExp(LiteralType.INTEGER, new BigInt(n), n.toString())
+    LiteralExp(LiteralType.INTEGER, new BigInt(n), n.toString)
 
   @inline
   def toLiteral(n : Apint) =
-    LiteralExp(LiteralType.INTEGER, new BigInt(n.toBigInteger()), n.toString())
+    LiteralExp(LiteralType.INTEGER, new BigInt(n.toBigInteger), n.toString)
 
   @inline
   def toLiteral(n : BigInt) =
     LiteralExp(LiteralType.INTEGER, n, n.toString())
+
+  @inline
+  def isEquality(op : BinaryOp) = op == EQ_BINOP || op == NE_BINOP
+
+  @inline
+  def isInequality(op : BinaryOp) =
+    op == LT_BINOP || op == LE_BINOP || op == GT_BINOP || op == GE_BINOP
+
+  @inline
+  def isRelational(op : BinaryOp) = isEquality(op) || isInequality(op)
 }
 
 /**

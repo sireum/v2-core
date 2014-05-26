@@ -122,13 +122,7 @@ object KiasanIntegerExtension extends ExtensionCompanion {
         (s +? BinaryExp("==", v, w), false))
   }
 
-  val comp =
-    Map("==" -> "!=",
-      "!=" -> "==",
-      ">" -> "<=",
-      ">=" -> "<",
-      "<" -> ">=",
-      "<=" -> ">")
+  val comp = PilarAstUtil.compRelationalOp 
 
   val Type = "pilar://typeext/" + UriUtil.classUri(this) + "/Type"
 
