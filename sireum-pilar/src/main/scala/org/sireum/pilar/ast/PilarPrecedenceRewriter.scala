@@ -57,41 +57,44 @@ object PilarPrecedenceRewriter {
     case e : ExternalExp => 16
   }
 
-  private def existsNe[T <: AnyRef](es : ISeq[(T, T)]) =
-    es.exists(p => p._1 ne p._2)
+  def rewrite[T <: PilarAstNode](n : T) : T = {
+    import language.implicitConversions
+      implicit def n2t[T](n : PilarAstNode) : T = n.asInstanceOf[T]
+    lazy val rec : PilarAstNode => PilarAstNode = {
 
-  private def mapR(es : ISeq[Exp]) = es.map(x => (x, rewrite(x)))
+      Rewriter.build[PilarAstNode]({
+        case e : AccessExp =>
+          var exp = rec(e.exp)
+          exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
+          if (e.exp ne exp) AccessExp(exp, e.attributeName) else e
+        case e : IndexingExp =>
+          var exp = rec(e.exp)
+          val eindices = e.indices
+          val indices = eindices.map(x => rec(x).asInstanceOf[Exp])
+          exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
+          if ((e.exp ne exp) || (0 until indices.size).
+            exists(i => indices(i) ne eindices(i)))
+            IndexingExp(exp, indices) else e
+        case e : CastExp =>
+          var exp = rec(e.exp)
+          exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
+          if (exp ne e.exp) CastExp(e.typeSpec, exp) else e
+        case e : UnaryExp =>
+          var exp = rec(e.exp)
+          exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
+          if (exp ne e.exp) UnaryExp(e.op, exp) else e
+        case e : BinaryExp =>
+          var left = rec(e.left)
+          left = if (precedence(left) > precedence(e)) tuple(left) else left
+          var right = rec(e.right)
+          right = if (precedence(right) > precedence(e)) tuple(right) else right
+          if ((left ne e.left) || (right ne e.right))
+            BinaryExp(e.op, left, right)
+          else e
+      }, Rewriter.TraversalMode.BOTTOM_UP)
+    }
+    rec(n)
+  }
 
   private def tuple(e : Exp) = TupleExp(ivector(e))
-
-  def rewrite(e : Exp) : Exp = {
-    Rewriter.build({
-      case e : AccessExp =>
-        var exp = rewrite(e.exp)
-        exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
-        if (e.exp ne exp) AccessExp(exp, e.attributeName) else e
-      case e : IndexingExp =>
-        var exp = rewrite(e.exp)
-        val indices = mapR(e.indices)
-        exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
-        if ((e.exp ne exp) || existsNe(indices))
-          IndexingExp(exp, indices.map(second2)) else e
-      case e : CastExp =>
-        var exp = rewrite(e.exp)
-        exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
-        if (exp ne e.exp) CastExp(e.typeSpec, exp) else e
-      case e : UnaryExp =>
-        var exp = rewrite(e.exp)
-        exp = if (precedence(exp) > precedence(e)) tuple(exp) else exp
-        if (exp ne e.exp) UnaryExp(e.op, exp) else e
-      case e : BinaryExp =>
-        var left = rewrite(e.left)
-        left = if (precedence(left) > precedence(e)) tuple(left) else left
-        var right = rewrite(e.right)
-        right = if (precedence(right) > precedence(e)) tuple(right) else right
-        if ((left ne e.left) || (right ne e.right))
-          BinaryExp(e.op, left, right)
-        else e
-    }, Rewriter.TraversalMode.BOTTOM_UP)(e).asInstanceOf[Exp]
-  }
 }
