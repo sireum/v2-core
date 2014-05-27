@@ -46,7 +46,7 @@ class AlirIntraProceduralModuleDef(val job : PipelineJob, info : PipelineJobModu
       info.exception = Some(ErrorneousModulesThrowable(
         j.lastStageInfo.info.filter { i => i.hasError }))
     }
-    println(Tag.collateAsString(j.lastStageInfo.tags))
+    //println(Tag.collateAsString(j.lastStageInfo.tags))
     val pool = CfgModule.getPool(options)
     val cfg = CfgModule.getCfg(options)
     val idg = if (this.shouldBuildIdg) Some(IdgModule.getIdg(options)) else None
