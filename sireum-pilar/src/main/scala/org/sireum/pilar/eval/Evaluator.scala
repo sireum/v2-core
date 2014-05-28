@@ -201,7 +201,7 @@ object Evaluator {
             }
             var r = ee(sNext, e)
             for (eea <- eeas) {
-              r = eea(s, e, r)
+              r = eea(sNext, e, r)
             }
             r
           }
@@ -219,7 +219,7 @@ object Evaluator {
             }
             var sr = ea(sNext, a)
             for (eaa <- eaas) {
-              sr = eaa(s, a, sr)
+              sr = eaa(sNext, a, sr)
             }
             sr
           }
@@ -237,7 +237,7 @@ object Evaluator {
             }
             var sr = ej(sNext, j)
             for (eja <- ejas) {
-              sr = eja(s, j, sr)
+              sr = eja(sNext, j, sr)
             }
             sr
           }
@@ -255,7 +255,7 @@ object Evaluator {
             }
             var sr = et(sNext, l, t)
             for (eta <- etas) {
-              sr = eta(s, l, t, sr)
+              sr = eta(sNext, l, t, sr)
             }
             sr
           }
@@ -273,7 +273,7 @@ object Evaluator {
             }
             var c = eg(sNext, l, t, e)
             for (ega <- egas) {
-              c = ega(s, l, t, e, c)
+              c = ega(sNext, l, t, e, c)
             }
             c
           }
@@ -291,7 +291,7 @@ object Evaluator {
             }
             var ts = t(sNext, l)
             for (ta <- tas) {
-              ts = ta(s, l, ts)
+              ts = ta(sNext, l, ts)
             }
             ts
           }
