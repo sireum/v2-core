@@ -150,7 +150,9 @@ case class LaunchAntlrWorksMode()
 @Main(value = "server", className = "org.sireum.server.WebServer", featureName = "Sireum Server", desc = "Launch Server")
 case class LaunchServerMode(
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
-  var port : Int = 8080)
+  var port : Int = 8080,
+  @Option(shortKey = "s", longKey = "single", desc = "Singleton mode") //
+  var isSingle : Boolean = false)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
