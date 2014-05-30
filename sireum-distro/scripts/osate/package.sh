@@ -3,8 +3,8 @@
 # This script assumes that Sireum is reachable from the PATH environment variable.
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export VERSION=2.0.5
-export BUILD_DATE=201402041212
+export VERSION=2.0.6
+export BUILD_DATE=201404281618
 export DROP_URL=${MIRROR_URL:=http://www.aadl.info/aadl/osate/stable/}$VERSION/products
 
 if [ ! -f osate2-$VERSION-macosx.cocoa.x86_64.zip ]; then
