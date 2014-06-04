@@ -1,10 +1,11 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export WTP_DROP_URL=${WTP_URL:=http://ftp.osuosl.org/pub/eclipse/webtools/downloads/drops/}R${WTP_VERSION:=3.5.2}/${WTP_RELEASE:=R-$WTP_VERSION-20140217150812}/${WTP_DROP:=wtp4x-$WTP_RELEASE.zip}
+export WTP_DROP_URL=http://ftp.osuosl.org/pub/eclipse/webtools/downloads/drops/R3.6.0/S-3.6.0RC3-20140602160322/wtp4x-S-3.6.0RC3-20140602160322.zip
+export WTP_DROP=${WTP_DROP_URL##*/}
 if [ ! -f $WTP_DROP ]; then
   echo
-  echo Downloading WTP $WTP_VERSION
+  echo Downloading WTP $WTP_DROP
   echo
   wget $WTP_DROP_URL
   echo

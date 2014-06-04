@@ -1,18 +1,19 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SCIDE_DROP_URL=${SCIDE_URL:=http://download.scala-ide.org/sdk/helium/e38/scala211/}${R:=stable}/${SCIDE_DROP:=update-site.zip}
+export SCIDE_DROP_URL=http://download.scala-ide.org/sdk/lithium/e44/scala211/dev/update-site.zip
+export SCIDE_DROP=${SCIDE_DROP_URL##*/}
 if [ ! -f $SCIDE_DROP ]; then
   echo
-  echo Downloading Scala IDE $R
+  echo Downloading Scala IDE $SCIDE_DROP
   echo
   wget $SCIDE_DROP_URL
   echo
 fi
-export SUBCLIPSE_DROP_URL=${SUBCLIPSE_URL:=http://subclipse.tigris.org/files/documents/906/49382/site-}${SUBCLIPSE_VERSION:=1.10.5}.zip
-export SUBCLIPSE_DROP=site-$SUBCLIPSE_VERSION.zip
+export SUBCLIPSE_DROP_URL=http://subclipse.tigris.org/files/documents/906/49382/site-1.10.5.zip
+export SUBCLIPSE_DROP=${SUBCLIPSE_DROP_URL##*/}
 if [ ! -f $SUBCLIPSE_DROP ]; then
   echo
-  echo Downloading Subclipse $SUBCLIPSE_VERSION
+  echo Downloading Subclipse $SUBCLIPSE_DROP
   echo
   wget $SUBCLIPSE_DROP_URL
   echo

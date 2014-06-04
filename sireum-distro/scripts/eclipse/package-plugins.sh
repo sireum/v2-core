@@ -1,33 +1,24 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export GEF_DROP_URL=${GEF_MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/}${GEF_VERSION:=3.9.1}/${GEF_REL:=R}${GEF_BUILD_DATE:=201308190730}/GEF-ALL-$GEF_VERSION.zip
-export GEF_DROP=GEF-ALL-$GEF_VERSION.zip
+export GEF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/3.9.100/S201405261516/GEF-SDK-3.9.100RC2.zip
+export GEF_DROP=${GEF_DROP_URL##*/}
 if [ ! -f $GEF_DROP ]; then
   echo
-  echo Downloading GEF SDK $GEF_VERSION
+  echo Downloading GEF SDK $GEF_DROP
   echo
   wget $GEF_DROP_URL
   echo
 fi
-export ASM_DROP_URL=${ASM_URL:=http://download.forge.objectweb.org/asm/de.loskutov.BytecodeOutline.update_}${ASM_VERSION:=2.4.0}.zip
-export ASM_DROP=de.loskutov.BytecodeOutline.update_$ASM_VERSION.zip
+export ASM_DROP_URL=http://download.forge.objectweb.org/asm/de.loskutov.BytecodeOutline.update_2.4.2.zip
+export ASM_DROP=${ASM_DROP_URL##*/}
 if [ ! -f $ASM_DROP ]; then
   echo
-  echo Downloading Bytecode Outline $ASM_VERSION
+  echo Downloading Bytecode Outline $ASM_DROP
   echo
   wget $ASM_DROP_URL
   echo
 fi
-#export ELT_DROP_URL=http://elt.googlecode.com/archive/${ELT_COMMIT_SHORT:=c4c170f31632}${ELT_COMMIT:=2d0d6040411b4170a4c696ff8c2b}.zip
-#export ELT_DROP=$ELT_COMMIT_SHORT$ELT_COMMIT.zip
-#if [ ! -f $ELT_DROP ]; then
-#  echo
-#  echo Downloading ELT $ELT_COMMIT_SHORT
-#  echo
-#  wget $ELT_DROP_URL
-#  echo
-#fi
 export TEXLIPSE_DROP_URL=${TEXLIPSE_URL:=http://downloads.sourceforge.net/project/texlipse/texlipse%20plugin/}${TEXLIPSE_VERSION:=1.5.0}/texlipse_$TEXLIPSE_VERSION%20src.zip
 export TEXLIPSE_DROP="texlipse_$TEXLIPSE_VERSION src.zip"
 if [ ! -f "$TEXLIPSE_DROP" ]; then

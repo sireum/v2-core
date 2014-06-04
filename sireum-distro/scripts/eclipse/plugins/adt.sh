@@ -1,11 +1,11 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export ADT_DROP_URL=${ADT_URL:=http://dl.google.com/android/ADT-}${ADT_VERSION:=22.6.1}.zip
-export ADT_DROP=ADT-$ADT_VERSION.zip
+export ADT_DROP_URL=http://dl.google.com/android/ADT-22.6.3.zip
+export ADT_DROP=${ADT_DROP_URL##*/}
 if [ ! -f $ADT_DROP ]; then
   echo
-  echo Downloading ADT $ADT_VERSION
+  echo Downloading ADT $ADT_DROP
   echo
   wget $ADT_DROP_URL
   echo

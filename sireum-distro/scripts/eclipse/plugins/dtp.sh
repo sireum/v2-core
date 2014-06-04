@@ -1,11 +1,12 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export DTP_DROP_URL=${DTP_URL:=http://ftp.osuosl.org/pub/eclipse/datatools/downloads/}${DTP_RELEASE:=1.11}/dtp_${DTP_VERSION:=1.11.2}.zip
-export DTP_DROP=dtp_$DTP_VERSION.zip
+#export DTP_DROP_URL=${DTP_URL:=http://ftp.osuosl.org/pub/eclipse/datatools/downloads/}${DTP_RELEASE:=1.11}/dtp_${DTP_VERSION:=1.11.2}.zip
+export DTP_DROP_URL=http://download.eclipse.org/datatools/downloads/drops/N_DTP_1.12.0/dtp-sdk-1.12.0RC3-201405302300.zip
+export DTP_DROP=${DTP_DROP_URL##*/}
 if [ ! -f $DTP_DROP ]; then
   echo
-  echo Downloading DTP $DTP_VERSION
+  echo Downloading DTP $DTP_DROP
   echo
   wget $DTP_DROP_URL
   echo
