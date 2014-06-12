@@ -147,10 +147,12 @@ case class LaunchAntlrWorksMode()
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-@Main(value = "server", className = "org.sireum.server.WebServer", featureName = "Sireum Server", desc = "Launch Server")
+@Main(value = "server", className = "org.sireum.server.Server", featureName = "Sireum Server", desc = "Launch Server")
 case class LaunchServerMode(
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
-  var port : Int = 8080)
+  var port : Int = 8080,
+  @Option(shortKey = "q", longKey = "quiet", desc = "Quiet Mode") //
+  var quiet : Boolean = false)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -158,7 +160,7 @@ case class LaunchServerMode(
 @Main(value = "symbologics", className = "org.sireum.server.SymbologicsServer", featureName = "Sireum Symbologics Server Plugin", desc = "Launch Symbologics")
 case class LaunchSymbologicsMode(
   @Option(shortKey = "u", longKey = "uri", desc = "Server URI") //
-  var uri : String = "http://localhost",  
+  var uri : String = "http://localhost",
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
   var port : Int = 8080)
 
