@@ -1,0 +1,47 @@
+pickler(member) ::= <<
+object Pickler {
+  import upickle.Implicits._
+  $member; separator="\n"$
+}
+>>
+
+name(class) ::= <<
+private val $class$Name = classOf[$class$].getName
+>>
+
+leaf(class, wfield, rfield) ::= <<
+implicit val $class$Pickler = new ReadWriter[$class$](
+  o => Js.Object(Seq(("type", writeJs($class$Name))$if(wfield)$, $wfield; separator=", "$$endif$)),
+  { case Js.Object(s) => $class$($rfield; separator=", "$) }
+)
+>>
+
+leafWriteField(name) ::= <<
+("$name$", writeJs(o.$name$))
+>>
+
+leafReadField(type, index) ::= <<
+readJs[$type$](s($index$)._2)
+>>
+
+root(class, wfield, rfield) ::= <<
+implicit val aPickler = new ReadWriter[A](
+  _ match {
+    $wfield; separator="\n"$
+  },
+  {
+    case o @ Js.Object(s) =>
+      readJs[String](s(0)._2) match {
+        $rfield; separator="\n"$
+      }
+  }
+)
+>>
+
+rootWriteField(class) ::= <<
+case o : $class$ => $class$Pickler.write(o)
+>>
+
+rootReadField(class) ::= <<
+case `$class$Name` => $class$Pickler.read(o)
+>>

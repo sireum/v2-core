@@ -64,6 +64,7 @@ case class SireumToolsMode(
   cligen : CliGenMode = CliGenMode(),
   antlr : TreeVisitorGenMode = TreeVisitorGenMode(),
   sapper : SapperMode = SapperMode(),
+  upickler : UPicklerMode = UPicklerMode(),
   jvm : JVMMode = JVMMode())
 
 /**
