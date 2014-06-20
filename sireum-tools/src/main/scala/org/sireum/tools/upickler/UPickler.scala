@@ -42,6 +42,7 @@ class UPickler {
     val stg = new STGroupFile(UPickler.getClass
       .getResource("upickler.stg").toURI().toURL(), "UTF-8", '$', '$')
     val st = stg.getInstanceOf("pickler")
+    val stMain = stg.getInstanceOf("main").add("member", st)
     val stRoot = stg.getInstanceOf("root").add("class", root.getName)
 
     for (c <- leaves) {
@@ -50,15 +51,17 @@ class UPickler {
       st.add("member", stg.getInstanceOf("name").add("class", name))
 
       val stLeaf = stg.getInstanceOf("leaf").add("class", name)
+      val stPy = stg.getInstanceOf("leafPy").add("class", name)
       st.add("member", stLeaf)
+      stMain.add("member", stPy)
 
       val cc = Reflection.CaseClass.caseClassType(c, false)
-      var i = 1
       for (p <- cc.params) {
         stLeaf.
           add("wfield", stg.getInstanceOf("leafWriteField").add("name", p.name)).
-          add("rfield", stg.getInstanceOf("leafReadField").add("type", p.tipe).add("index", i))
-        i += 1
+          add("rfield", stg.getInstanceOf("leafReadField").add("type", p.tipe).add("name", p.name))
+        stPy.add("field", p.name).
+          add("fieldAssign", stg.getInstanceOf("leafPyAssign").add("name", p.name))
       }
 
       stRoot.
@@ -67,6 +70,6 @@ class UPickler {
 
     }
     st.add("member", stRoot)
-    st.render
+    stMain.render
   }
 }

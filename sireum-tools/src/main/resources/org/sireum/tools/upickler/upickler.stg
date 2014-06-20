@@ -1,3 +1,7 @@
+main(member) ::= <<
+$member; separator="\n\n"$
+>>
+
 pickler(member) ::= <<
 object Pickler {
   import upickle.Implicits._
@@ -12,7 +16,10 @@ private val $class$Name = classOf[$class$].getName
 leaf(class, wfield, rfield) ::= <<
 implicit val $class$Pickler = new ReadWriter[$class$](
   o => Js.Object(Seq(("type", writeJs($class$Name))$if(wfield)$, $wfield; separator=", "$$endif$)),
-  { case Js.Object(s) => $class$($rfield; separator=", "$) }
+  { case Js.Object(s) =>
+      val m = Map(s : _*) 
+      $class$($rfield; separator=", "$) 
+  }
 )
 >>
 
@@ -20,8 +27,8 @@ leafWriteField(name) ::= <<
 ("$name$", writeJs(o.$name$))
 >>
 
-leafReadField(type, index) ::= <<
-readJs[$type$](s($index$)._2)
+leafReadField(type, name) ::= <<
+readJs[$type$](m("$name$"))
 >>
 
 root(class, wfield, rfield) ::= <<
@@ -31,7 +38,7 @@ implicit val aPickler = new ReadWriter[A](
   },
   {
     case o @ Js.Object(s) =>
-      readJs[String](s(0)._2) match {
+      readJs[String](s.find(_._1 == "type").get._2) match {
         $rfield; separator="\n"$
       }
   }
@@ -44,4 +51,16 @@ case o : $class$ => $class$Pickler.write(o)
 
 rootReadField(class) ::= <<
 case `$class$Name` => $class$Pickler.read(o)
+>>
+
+leafPy(class, field, fieldAssign) ::= <<
+def $class$($field; separator=", "$):
+  o = {}
+  $fieldAssign; separator="\n"$
+  o['type'] = "$class$"
+  return json.dumps(o)
+>>
+
+leafPyAssign(name) ::= <<
+o['$name$'] = $name$
 >>
