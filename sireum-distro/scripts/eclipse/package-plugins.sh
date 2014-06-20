@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export GEF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/3.9.100/S201405261516/GEF-SDK-3.9.100RC2.zip
+export GEF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/3.9.100/R201405261516/GEF-ALL-3.9.100.zip
 export GEF_DROP=${GEF_DROP_URL##*/}
 if [ ! -f $GEF_DROP ]; then
   echo
@@ -40,16 +40,6 @@ cd eclipse-plugins-essential/asm/eclipse
 unzip -oq ../../../$ASM_DROP
 > .eclipseextension
 cd ../../..
-#mkdir eclipse-plugins-essential/elt 2> /dev/null
-#mkdir eclipse-plugins-essential/elt/eclipse 2> /dev/null
-#cd eclipse-plugins-essential/elt/
-#unzip -oq ../../$ELT_DROP
-#mv elt-$ELT_COMMIT_SHORT/update-site elt-$ELT_COMMIT_SHORT/eclipse
-#mv elt-$ELT_COMMIT_SHORT/eclipse .
-#rm -fR elt-$ELT_COMMIT_SHORT
-#cd eclipse
-#> .eclipseextension
-#cd ../../..
 mkdir eclipse-plugins-essential/texlipse 2> /dev/null
 mkdir eclipse-plugins-essential/texlipse/eclipse 2> /dev/null
 cd eclipse-plugins-essential/texlipse

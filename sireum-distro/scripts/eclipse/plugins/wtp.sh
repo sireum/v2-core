@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export WTP_DROP_URL=http://ftp.osuosl.org/pub/eclipse/webtools/downloads/drops/R3.6.0/S-3.6.0RC3-20140602160322/wtp4x-S-3.6.0RC3-20140602160322.zip
+export WTP_DROP_URL=http://ftp.osuosl.org/pub/eclipse/webtools/downloads/drops/R3.6.0/R-3.6.0-20140602160322/wtp4x-R-3.6.0-20140602160322.zip
 export WTP_DROP=${WTP_DROP_URL##*/}
 if [ ! -f $WTP_DROP ]; then
   echo

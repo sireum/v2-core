@@ -1,7 +1,6 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-#export CDT_DROP_URL=${CDT_URL:=http://ftp.osuosl.org/pub/eclipse/tools/cdt/releases/}${CDT_RELEASE:=kepler/sr2}/cdt-master-${CDT_VERSION:=8.3.0}.zip
 export CDT_DROP_URL=https://hudson.eclipse.org/cdt/job/cdt-master/lastSuccessfulBuild/artifact/releng/org.eclipse.cdt.repo/target/org.eclipse.cdt.repo.zip
 export CDT_DROP=${CDT_DROP_URL##*/}
 if [ ! -f $CDT_DROP ]; then

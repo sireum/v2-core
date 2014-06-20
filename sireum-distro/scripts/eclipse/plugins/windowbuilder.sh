@@ -1,8 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-#export WB_DROP_URL=${WB_URL:=http://ftp.osuosl.org/pub/eclipse/windowbuilder/WB/release/R}${WB_RELEASE:=201309271200}/WB_v${WB_VERSION:=1.6.1}_UpdateSite_for_Eclipse4.3.zip
-export WB_DROP_URL=http://download.eclipse.org/windowbuilder/WB/integration/WB_v1.7.0_UpdateSite_for_Eclipse4.4.zip
+export WB_DROP_URL=http://ftp.osuosl.org/pub/eclipse/windowbuilder/WB/release/R201406251200/WB_v1.7.0_UpdateSite_for_Eclipse4.4.zip
 export WB_DROP=${WB_DROP_URL##*/}
 if [ ! -f $WB_DROP ]; then
   echo

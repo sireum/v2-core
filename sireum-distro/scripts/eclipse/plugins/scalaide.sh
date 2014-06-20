@@ -9,18 +9,6 @@ if [ ! -f $SCIDE_DROP ]; then
   wget $SCIDE_DROP_URL
   echo
 fi
-#export SUBCLIPSE_DROP_URL=http://subclipse.tigris.org/files/documents/906/49382/site-1.10.5.zip
-#export SUBCLIPSE_DROP=${SUBCLIPSE_DROP_URL##*/}
-#if [ ! -f $SUBCLIPSE_DROP ]; then
-#  echo
-#  echo Downloading Subclipse $SUBCLIPSE_DROP
-#  echo
-#  wget $SUBCLIPSE_DROP_URL
-#  echo
-#fi
-#
-# Scala IDE
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
@@ -34,18 +22,6 @@ mv site eclipse
 cd ..
 zip -rq eclipse-plugins-scala.sapp eclipse-plugins-scala ../eclipse/dsl/links/scala.link
 cd ..
-#
-# Subclipse
-#
-#echo "path=../../sireumdev/subclipse" > eclipse/dsl/links/subclipse.link 
-#mkdir SireumDev/subclipse 2> /dev/null
-#mkdir SireumDev/subclipse/eclipse 2> /dev/null
-#cd SireumDev/subclipse/eclipse
-#unzip -oq ../../../$SUBCLIPSE_DROP
-#> .eclipseextension
-#cd ../..
-#zip -rq subclipse.sapp subclipse ../eclipse/dsl/links/subclipse.link
-#cd ..
 rm -fR SireumDev/eclipse-plugins-scala eclipse
 echo
 echo ...done!

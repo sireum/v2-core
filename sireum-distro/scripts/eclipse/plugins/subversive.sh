@@ -1,6 +1,6 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SUBVERSIVE_DROP_URL=http://ftp.osuosl.org/pub/eclipse/technology/subversive/2.0/builds/Subversive-2.0.0.I20140519-1700.zip
+export SUBVERSIVE_DROP_URL=http://ftp.osuosl.org/pub/eclipse/technology/subversive/2.0/builds/luna/Subversive-2.0.0.I20140609-1700.zip
 export SUBVERSIVE_DROP=${SUBVERSIVE_DROP_URL##*/}
 if [ ! -f $SUBVERSIVE_DROP ]; then
   echo
