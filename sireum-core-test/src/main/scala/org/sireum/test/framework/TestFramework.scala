@@ -73,16 +73,14 @@ trait TestFramework
   import java.io._
 
   def checkRegression(file : File, dir : File, ext : String,
-                      result : String, force : Boolean,
-                      normalizeLine : Boolean = true) {
+                      result : String, force : Boolean) {
     val filename = file.getName + "." + ext
     val expectedFileDir = new File(dir, "expected")
     val expectedFile = new File(expectedFileDir, filename)
-    val r = if (normalizeLine) result.replaceAll("\r\n", "\n") else result
     if (force || !expectedFile.exists) {
       expectedFileDir.mkdirs
       val fw = new FileWriter(expectedFile)
-      fw.write(r)
+      fw.write(result)
       fw.close
     } else {
       val resultFileDir = new File(dir, "result")
@@ -91,10 +89,10 @@ trait TestFramework
       val fw = new FileWriter(resultFile)
       fw.write(result)
       fw.close
-      val fr = new FileReader(expectedFile)
-      val expected = FileUtil.readFile(fr)
-      fr.close
-      r should equal(expected)
+      
+      val resultLines = StringUtil.readLines(result)
+      val expectedLines = FileUtil.readFileLines(FileUtil.toUri(expectedFile))._1
+      resultLines should equal(expectedLines)
     }
   }
 }
