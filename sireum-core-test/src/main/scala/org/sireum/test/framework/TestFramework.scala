@@ -9,7 +9,7 @@ http://www.eclipse.org/legal/epl-v10.html
 package org.sireum.test.framework
 
 import org.scalatest._
-import org.scalatest.junit.ShouldMatchersForJUnit
+import org.scalatest.junit._
 
 import org.sireum.util._
 
@@ -17,7 +17,7 @@ import org.sireum.util._
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 trait TestFramework
-    extends FunSuite with ShouldMatchersForJUnit with Assertions
+    extends FunSuite with Matchers with AssertionsForJUnit with Assertions
     with ImplicitLogging {
   private type T = org.scalatest.Tag
 
@@ -92,7 +92,7 @@ trait TestFramework
       val fr = new FileReader(expectedFile)
       val expected = FileUtil.readFile(fr)
       fr.close
-      assert(expected == result)
+      result should equal(expected)
     }
   }
 }
