@@ -27,26 +27,30 @@ object UPickler {
  */
 class UPickler {
   def execute(option : UPicklerMode) {
-      def p(name : String) =
-        if (option.packageName == "") name
-        else option.packageName + "." + name
-    val r =
-      pickler(
-        Class.forName(p(option.rootClass)),
-        option.leafClasses.map(c => Class.forName(p(c))) : _*)
+    val r = pickler(option)
     System.out.println(r)
     System.out.flush
   }
 
-  def pickler(root : Class[_], leaves : Class[_]*) : String = {
+  def pickler(option : UPicklerMode) : String = {
+      def p(name : String) =
+        if (option.packageName == "") name
+        else option.packageName + "." + name
+    pickler(option.packageName,
+      Class.forName(p(option.rootClass)),
+      option.leafClasses.map(c => Class.forName(p(c))) : _*)
+  }
+
+  def pickler(packageName : String,
+              root : Class[_], leaves : Class[_]*) : String = {
     val stg = new STGroupFile(UPickler.getClass
       .getResource("upickler.stg").toURI().toURL(), "UTF-8", '$', '$')
     val st = stg.getInstanceOf("pickler")
     val stMain = stg.getInstanceOf("main").add("member", st)
-    val stRoot = stg.getInstanceOf("root").add("class", root.getName)
+    val stRoot = stg.getInstanceOf("root").add("class", root.getSimpleName)
 
     for (c <- leaves) {
-      val name = c.getName
+      val name = c.getSimpleName
 
       st.add("member", stg.getInstanceOf("name").add("class", name))
 
@@ -57,11 +61,14 @@ class UPickler {
 
       val cc = Reflection.CaseClass.caseClassType(c, false)
       for (p <- cc.params) {
+        val pName = p.name
+        val pType = simpleName(packageName, p.tipe.toString)
         stLeaf.
-          add("wfield", stg.getInstanceOf("leafWriteField").add("name", p.name)).
-          add("rfield", stg.getInstanceOf("leafReadField").add("type", p.tipe).add("name", p.name))
-        stPy.add("field", p.name).
-          add("fieldAssign", stg.getInstanceOf("leafPyAssign").add("name", p.name))
+          add("wfield", stg.getInstanceOf("leafWriteField").add("name", pName)).
+          add("rfield", stg.getInstanceOf("leafReadField").add("type", pType)
+            .add("name", pName))
+        stPy.add("field", pName).
+          add("fieldAssign", stg.getInstanceOf("leafPyAssign").add("name", pName))
       }
 
       stRoot.
@@ -71,5 +78,9 @@ class UPickler {
     }
     st.add("member", stRoot)
     stMain.render
+  }
+
+  def simpleName(packageName : String, name : String) = {
+    if (packageName != "") name.replaceAll(packageName + ".", "") else name
   }
 }
