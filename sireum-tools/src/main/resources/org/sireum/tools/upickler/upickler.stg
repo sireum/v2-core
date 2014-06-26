@@ -5,7 +5,7 @@ $member; separator="\n\n"$
 pickler(package, class, member) ::= <<
 package $package$
 
-object $class$Pickler {
+object $class$Picklers {
   import upickle._
   import upickle.Implicits._
   $member; separator="\n"$

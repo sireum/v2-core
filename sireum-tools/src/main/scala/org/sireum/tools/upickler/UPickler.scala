@@ -56,7 +56,7 @@ class UPickler {
     stMain.add("member", st)
     
     for (c <- imports) {
-      st.add("member", s"import ${c.getSimpleName}Pickler._")
+      st.add("member", s"import ${c.getSimpleName}Picklers._")
     }
     
     val stRoot = stg.getInstanceOf("root").add("class", root.getSimpleName)
