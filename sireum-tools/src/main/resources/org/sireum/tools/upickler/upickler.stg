@@ -18,7 +18,7 @@ private val $class$Name = classOf[$class$].getSimpleName
 
 leaf(class, wfield, rfield) ::= <<
 implicit val $class$Pickler = new ReadWriter[$class$](
-  o => Js.Object(Seq(("type", writeJs("$class$Name"))$if(wfield)$, $wfield; separator=", "$$endif$)),
+  o => Js.Object(Seq(("type", writeJs("$class$"))$if(wfield)$, $wfield; separator=", "$$endif$)),
   { case Js.Object(s) =>
       val m = Map(s : _*) 
       $class$($rfield; separator=", "$) 
