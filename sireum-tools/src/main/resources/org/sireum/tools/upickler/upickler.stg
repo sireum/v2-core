@@ -2,8 +2,10 @@ main(member) ::= <<
 $member; separator="\n\n"$
 >>
 
-pickler(member) ::= <<
-object Pickler {
+pickler(package, class, member) ::= <<
+package $package$
+
+object $class$Pickler {
   import upickle._
   import upickle.Implicits._
   $member; separator="\n"$

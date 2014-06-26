@@ -7,6 +7,8 @@ http://www.eclipse.org/legal/epl-v10.html
 */
 package org.sireum.option
 
+import org.sireum.util._
+
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
@@ -18,5 +20,8 @@ case class UPicklerMode(
   @Arg(index = 1, value = "root-class") // 
   var rootClass : String = "",
 
+  @Arg(index = 2, value = "import-classes") // 
+  var importClasses : ISeq[String] = ivectorEmpty,
+
   @Args("leaf-classes") //
-  var leafClasses : Array[String] = Array())
+  var leafClasses : ISeq[String] = ivectorEmpty)

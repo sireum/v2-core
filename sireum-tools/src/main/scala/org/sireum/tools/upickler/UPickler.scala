@@ -38,15 +38,27 @@ class UPickler {
         else option.packageName + "." + name
     pickler(option.packageName,
       Class.forName(p(option.rootClass)),
+      option.importClasses.map(c => Class.forName(p(c))),
       option.leafClasses.map(c => Class.forName(p(c))) : _*)
   }
 
   def pickler(packageName : String,
-              root : Class[_], leaves : Class[_]*) : String = {
+              root : Class[_],
+              imports : ISeq[Class[_]],
+              leaves : Class[_]*) : String = {
     val stg = new STGroupFile(UPickler.getClass
       .getResource("upickler.stg").toURI().toURL(), "UTF-8", '$', '$')
-    val st = stg.getInstanceOf("pickler")
-    val stMain = stg.getInstanceOf("main").add("member", st)
+    val stMain = stg.getInstanceOf("main")
+    
+    val st = stg.getInstanceOf("pickler").
+        add("package", root.getPackage.getName).
+        add("class", root.getSimpleName)
+    stMain.add("member", st)
+    
+    for (c <- imports) {
+      st.add("member", s"import ${c.getSimpleName}Pickler._")
+    }
+    
     val stRoot = stg.getInstanceOf("root").add("class", root.getSimpleName)
 
     for (c <- leaves) {
@@ -76,7 +88,9 @@ class UPickler {
         add("rfield", stg.getInstanceOf("rootReadField").add("class", name))
 
     }
+
     st.add("member", stRoot)
+    
     stMain.render
   }
 
