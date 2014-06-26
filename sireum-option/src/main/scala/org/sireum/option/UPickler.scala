@@ -24,4 +24,4 @@ case class UPicklerMode(
   var importClasses : ISeq[String] = ivectorEmpty,
 
   @Args("leaf-classes") //
-  var leafClasses : ISeq[String] = ivectorEmpty)
+  var leafClasses : Array[String] = Array())
