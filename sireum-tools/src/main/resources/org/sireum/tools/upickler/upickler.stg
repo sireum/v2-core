@@ -13,7 +13,7 @@ object $class$Picklers {
 >>
 
 name(class) ::= <<
-private val $class$Name = classOf[$class$].getSimpleName
+private val $class$Name = "$class$"
 >>
 
 leaf(class, wfield, rfield) ::= <<
