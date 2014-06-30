@@ -179,7 +179,7 @@ case class LaunchBakarKiasanServerMode(
   var id : String = "",
   @Option(shortKey = "r", longKey = "remote", desc = "Remote Server DNS") //
   var remote : String = "",
-  @Option(shortKey = "r", longKey = "remote", desc = "Remote Server Port") //
+  @Option(shortKey = "t", longKey = "remoteport", desc = "Remote Server Port") //
   var remotePort : Int = 80)
 
 /**
