@@ -85,6 +85,7 @@ case class SireumLaunchMode(
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
   server : LaunchServerMode = internal(LaunchServerMode()),
   symbologics : LaunchSymbologicsMode = internal(LaunchSymbologicsMode()),
+  bkserver : LaunchBakarKiasanServerMode = internal(LaunchBakarKiasanServerMode()),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
   bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
   osate : LaunchOsateMode = LaunchOsateMode())
@@ -164,6 +165,22 @@ case class LaunchSymbologicsMode(
   var uri : String = "http://localhost",
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
   var port : Int = 8080)
+
+/**
+ * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ */
+@Main(value = "bkserver", className = "org.sireum.server.BakarKiasanServer", featureName = "Sireum Bakar Kiasan Server Plugin", desc = "Launch Bakar Kiasan Server")
+case class LaunchBakarKiasanServerMode(
+  @Option(shortKey = "u", longKey = "uri", desc = "Server URI") //
+  var uri : String = "http://localhost",
+  @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
+  var port : Int = 8080,
+  @Option(shortKey = "i", longKey = "id", desc = "Id") //
+  var id : String = "",
+  @Option(shortKey = "r", longKey = "remote", desc = "Remote Server DNS") //
+  var remote : String = "",
+  @Option(shortKey = "r", longKey = "remote", desc = "Remote Server Port") //
+  var remotePort : Int = 80)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
