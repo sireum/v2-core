@@ -99,6 +99,11 @@ trait KiasanReporter[S <: Kiasan.KiasanState[S]] {
   def foundAssumptionBreach(s : S, depth : Int) : S
   def foundEndState(s : S, depth : Int) : S
   def foundDepthBoundExhaustion(s : S, depth : Int) : S
+  def console(s : String) {
+    println(s)
+  }
+  def statistics(numOfFeasibleStates : Int, numOfInfeasibleStates : Int,
+                 dpTimeInMs : Long) {}
 }
 
 /**
@@ -160,9 +165,9 @@ trait KiasanBfs[S <: Kiasan.KiasanState[S], R, C] extends Kiasan with Logging {
       val ps = inconNextStatesPairs(workList)
       val inconsistencyCheckRequested = ps.exists(first2)
       val nextStates = ps.flatMap(second2)
-      
+
       i += 1
-      
+
       workList =
         filterTerminatingStates(inconsistencyCheckRequested, nextStates, i)
     }
