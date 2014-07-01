@@ -154,7 +154,9 @@ case class LaunchServerMode(
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
   var port : Int = 8080,
   @Option(shortKey = "q", longKey = "quiet", desc = "Quiet Mode") //
-  var quiet : Boolean = false)
+  var quiet : Boolean = false,
+  @Option(shortKey = "w", longKey = "workers", desc = "Number of Worker Threads") //
+  var workers : Int = 1)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
@@ -180,7 +182,9 @@ case class LaunchBakarKiasanServerMode(
   @Option(shortKey = "r", longKey = "remote", desc = "Remote Server DNS") //
   var remote : String = "",
   @Option(shortKey = "t", longKey = "remoteport", desc = "Remote Server Port") //
-  var remotePort : Int = 80)
+  var remotePort : Int = 80,
+  @Option(shortKey = "w", longKey = "workers", desc = "Number of Worker Threads") //
+  var workers : Int = 1)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
