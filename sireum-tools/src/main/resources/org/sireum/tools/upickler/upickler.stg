@@ -9,6 +9,7 @@ package $package$
 object $class$Picklers {
   import upickle._
   import upickle.Implicits._
+  implicit var $class$Pickler : ReadWriter[$class$] = null
   $member; separator="\n"$
 }
 >>
@@ -36,7 +37,7 @@ readJs[$type$](m("$name$"))
 >>
 
 root(class, wfield, rfield) ::= <<
-implicit val $class$Pickler = new ReadWriter[$class$](
+$class$Pickler = new ReadWriter[$class$](
   _ match {
     $wfield; separator="\n"$
   },
