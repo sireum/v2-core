@@ -34,7 +34,7 @@ class UPickler {
 
   def pickler(option : UPicklerMode) : String = {
       def p(name : String) =
-        if (option.packageName == "") name
+        if (option.packageName == "" || name.contains(".")) name
         else option.packageName + "." + name
     pickler(option.packageName,
       Class.forName(p(option.rootClass)),
@@ -49,16 +49,18 @@ class UPickler {
     val stg = new STGroupFile(UPickler.getClass
       .getResource("upickler.stg").toURI().toURL(), "UTF-8", '$', '$')
     val stMain = stg.getInstanceOf("main")
-    
+
     val st = stg.getInstanceOf("pickler").
-        add("package", root.getPackage.getName).
-        add("class", root.getSimpleName)
+      add("package", root.getPackage.getName).
+      add("class", root.getSimpleName)
     stMain.add("member", st)
-    
+
     for (c <- imports) {
+      if (c.getPackage.getName != packageName)
+        st.add("member", s"import ${c.getPackage.getName}._")
       st.add("member", s"import ${c.getSimpleName}Picklers._")
     }
-    
+
     val stRoot = stg.getInstanceOf("root").add("class", root.getSimpleName)
 
     for (c <- leaves) {
@@ -90,7 +92,7 @@ class UPickler {
     }
 
     st.add("member", stRoot)
-    
+
     stMain.render
   }
 
