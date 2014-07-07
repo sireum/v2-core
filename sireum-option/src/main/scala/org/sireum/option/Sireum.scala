@@ -156,35 +156,41 @@ case class LaunchServerMode(
   @Option(shortKey = "q", longKey = "quiet", desc = "Quiet Mode") //
   var quiet : Boolean = false,
   @Option(shortKey = "w", longKey = "workers", desc = "Number of Worker Threads") //
-  var workers : Int = 1)
+  var workers : Int = 1,
+  @Option(shortKey = "l", longKey = "local", desc = "Local Mode") //
+  var local : Boolean = true)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "symbologics", className = "org.sireum.server.SymbologicsServer", featureName = "Sireum Symbologics Server Plugin", desc = "Launch Symbologics")
 case class LaunchSymbologicsMode(
-  @Option(shortKey = "u", longKey = "uri", desc = "Server URI") //
-  var uri : String = "http://localhost",
+  @Option(shortKey = "o", longKey = "host", desc = "Server Host") //
+  var host : String = "127.0.0.1",
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
-  var port : Int = 8080)
+  var port : Int = 8080,
+  @Option(shortKey = "l", longKey = "local", desc = "Local Mode") //
+  var local : Boolean = true)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Main(value = "bkserver", className = "org.sireum.server.BakarKiasanServer", featureName = "Sireum Bakar Kiasan Server Plugin", desc = "Launch Bakar Kiasan Server")
 case class LaunchBakarKiasanServerMode(
-  @Option(shortKey = "u", longKey = "uri", desc = "Server URI") //
-  var uri : String = "http://localhost",
+  @Option(shortKey = "o", longKey = "host", desc = "Server Host") //
+  var host : String = "127.0.0.1",
   @Option(shortKey = "p", longKey = "port", desc = "Server Port") //
   var port : Int = 8080,
   @Option(shortKey = "i", longKey = "id", desc = "Id") //
   var id : String = "",
-  @Option(shortKey = "r", longKey = "remote", desc = "Remote Server DNS") //
+  @Option(shortKey = "r", longKey = "remote", desc = "Remote Server Host") //
   var remote : String = "",
   @Option(shortKey = "t", longKey = "remoteport", desc = "Remote Server Port") //
   var remotePort : Int = 80,
   @Option(shortKey = "w", longKey = "workers", desc = "Number of Worker Threads") //
-  var workers : Int = 1)
+  var workers : Int = 1,
+  @Option(shortKey = "l", longKey = "local", desc = "Local Mode") //
+  var local : Boolean = true)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
