@@ -55,7 +55,7 @@ final case class PipelineConfiguration(
         var hasError = false
         for (
           stage <- stages //
-          if !j.hasInternalError && !j.hasError && !j.isCancelled && !hasError
+          if !j.hasInternalError && !j.hasError && !j.pm.terminated && !hasError
         ) {
 
           logger.debug(s"Begin computing stage: ${stage.title}")
@@ -152,8 +152,8 @@ object PipelineJob {
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 final case class PipelineJob(
+  pm : ProgressManager = new ProgressManager { val terminated = false },
   timestamp : Long = System.currentTimeMillis,
-  var isCancelled : Boolean = false,
   info : MArray[PipelineJobStageInfo] = marrayEmpty[PipelineJobStageInfo],
   properties : MMap[Property.Key, Any] = mmapEmpty[Property.Key, Any])
     extends PropertyProvider {
@@ -181,7 +181,7 @@ final case class PipelineJob(
   def par = {
     val newProperties = cmapEmpty[Property.Key, Any]
     newProperties ++= properties
-    PipelineJob(timestamp, isCancelled, info, newProperties)
+    PipelineJob(pm, timestamp, info, newProperties)
   }
 
   def tags : ISeq[Tag] = {
