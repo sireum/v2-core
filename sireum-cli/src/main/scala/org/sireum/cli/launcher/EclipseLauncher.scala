@@ -16,10 +16,6 @@ object EclipseLauncher {
     new EclipseLauncher().execute(elmode)
   }
 
-  def run(elmode : LaunchCompilerDevMode) {
-    new EclipseLauncher().execute(elmode)
-  }
-
   def run(elmode : LaunchBakarV1Mode) {
     new EclipseLauncher().execute(elmode)
   }

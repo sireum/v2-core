@@ -80,7 +80,6 @@ case class SireumDistroMode()
 case class SireumLaunchMode(
   eclipse : LaunchEclipseMode = LaunchEclipseMode(),
   sireumdev : LaunchSireumDevMode = LaunchSireumDevMode(),
-  compilerdev : LaunchCompilerDevMode = LaunchCompilerDevMode(),
   bakar : LaunchBakarV1Mode = LaunchBakarV1Mode(),
   antlrworks : LaunchAntlrWorksMode = LaunchAntlrWorksMode(),
   server : LaunchServerMode = internal(LaunchServerMode()),
@@ -98,7 +97,7 @@ abstract class LaunchEclipseAppMode {
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
-@Main(value = "eclipse", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "Eclipse.sapp",
+@Main(value = "eclipse", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "EclipseBase.sapp",
   desc = "Launch Eclipse")
 case class LaunchEclipseMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
@@ -115,17 +114,6 @@ case class LaunchSireumDevMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
   var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
   @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
-  var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
-
-/**
- * @author <a href="mailto:robby@k-state.edu">Robby</a>
- */
-@Main(value = "compilerdev", className = "org.sireum.cli.launcher.EclipseLauncher", featureName = "CompilerDev.sapp",
-  desc = "Launch Eclipse with Compiler Dev Plugins")
-case class LaunchCompilerDevMode(
-  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
-  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
 /**
