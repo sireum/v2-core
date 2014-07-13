@@ -16,17 +16,16 @@ fi
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../compilerdev/team/cdt" > eclipse/dsl/links/cdt.link 
-mkdir CompilerDev 2> /dev/null
-mkdir CompilerDev/team 2> /dev/null
-mkdir CompilerDev/team/cdt 2> /dev/null
-mkdir CompilerDev/team/cdt/eclipse 2> /dev/null
-cd CompilerDev/team/cdt/eclipse
+echo "path=../../eclipsebase/cdt" > eclipse/dsl/links/cdt.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/cdt 2> /dev/null
+mkdir EclipseBase/cdt/eclipse 2> /dev/null
+cd EclipseBase/cdt/eclipse
 > .eclipseextension
-unzip -oq ../../../../$CDT_DROP
-cd ../../..
-zip -rq team.sapp team ../eclipse/dsl/links/cdt.link
+unzip -oq ../../../$CDT_DROP
+cd ../..
+zip -rq cdt.sapp cdt ../eclipse/dsl/links/cdt.link
 cd ..
-rm -fR eclipse CompilerDev/team
+rm -fR eclipse EclipseBase/cdt
 echo
 echo ...done!

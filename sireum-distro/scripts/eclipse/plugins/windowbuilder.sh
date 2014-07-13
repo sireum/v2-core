@@ -10,22 +10,19 @@ if [ ! -f $WB_DROP ]; then
   wget $WB_DROP_URL
   echo
 fi
-#
-# WindowBuilder
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../eclipsedev/windowbuilder" > eclipse/dsl/links/windowbuilder.link 
-mkdir EclipseDev 2> /dev/null
-mkdir EclipseDev/windowbuilder 2> /dev/null
-mkdir EclipseDev/windowbuilder/eclipse 2> /dev/null
-cd EclipseDev/windowbuilder/eclipse
+echo "path=../../eclipsebase/windowbuilder" > eclipse/dsl/links/windowbuilder.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/windowbuilder 2> /dev/null
+mkdir EclipseBase/windowbuilder/eclipse 2> /dev/null
+cd EclipseBase/windowbuilder/eclipse
 > .eclipseextension
 unzip -oq ../../../$WB_DROP
 cd ../..
 zip -rq windowbuilder.sapp windowbuilder ../eclipse/dsl/links/windowbuilder.link
 cd ..
-rm -fR eclipse EclipseDev/windowbuilder
+rm -fR eclipse EclipseBase/windowbuilder
 echo
 echo ...done!

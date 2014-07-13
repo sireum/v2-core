@@ -10,23 +10,19 @@ if [ ! -f $EMF_DROP ]; then
   wget $EMF_DROP_URL
   echo
 fi
-#
-# EMF
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../webdev/emf" > eclipse/dsl/links/emf.link 
-mkdir WebDev 2> /dev/null
-mkdir WebDev/emf 2> /dev/null
-mkdir WebDev/emf/eclipse 2> /dev/null
-cd WebDev/emf/eclipse
+echo "path=../../eclipsebase/emf" > eclipse/dsl/links/emf.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/emf 2> /dev/null
+mkdir EclipseBase/emf/eclipse 2> /dev/null
+cd EclipseBase/emf/eclipse
 > .eclipseextension
-cd ..
-unzip -oq ../../$EMF_DROP
-cd ..
+unzip -oq ../../../$EMF_DROP
+cd ../..
 zip -rq emf.sapp emf ../eclipse/dsl/links/emf.link
 cd ..
-rm -fR eclipse WebDev/emf
+rm -fR eclipse EclipseBase/emf
 echo
 echo ...done!

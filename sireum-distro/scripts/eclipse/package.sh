@@ -44,7 +44,7 @@ mv eclipse dsl
 mv dsl/Eclipse.app/Contents/MacOS/eclipse dsl/Eclipse.app/Contents/MacOS/eclipse.orig
 cp $PACKAGE_HOME/mac/eclipse dsl/Eclipse.app/Contents/MacOS/
 chmod 755 dsl/Eclipse.app/Contents/MacOS/eclipse
-cp -R $PACKAGE_HOME/links dsl/
+mkdir dsl/links
 sireum tools sapper dsl-mac64.sapp dsl
 tar cfz dsl-mac64.tar.gz dsl
 rm -R dsl
@@ -56,7 +56,7 @@ mv eclipse dsl
 rm dsl/eclipse
 cp $PACKAGE_HOME/linux/eclipse dsl/
 chmod 755 dsl/eclipse
-cp -R $PACKAGE_HOME/links dsl/
+mkdir dsl/links
 sireum tools sapper dsl-linux64.sapp dsl
 #tar cfz dsl-linux64.tar.gz dsl
 rm -fR dsl
@@ -68,7 +68,7 @@ mv eclipse dsl
 rm dsl/eclipse
 cp $PACKAGE_HOME/linux/eclipse dsl/
 chmod 755 dsl/eclipse
-cp -R $PACKAGE_HOME/links dsl/
+mkdir dsl/links
 sireum tools sapper dsl-linux32.sapp dsl
 #tar cfz dsl-linux32.tar.gz dsl
 rm -fR dsl
@@ -81,7 +81,7 @@ rm dsl/eclipse.exe
 rm dsl/eclipsec.exe
 cp $PACKAGE_HOME/windows/eclipse.bat dsl/
 cp $PACKAGE_HOME/windows/README.TXT dsl/
-cp -R $PACKAGE_HOME/links dsl/
+mkdir dsl/links
 zip -q -r dsl-win64.sapp dsl
 rm -R dsl
 #
@@ -93,7 +93,7 @@ rm dsl/eclipse.exe
 rm dsl/eclipsec.exe
 cp $PACKAGE_HOME/windows/eclipse.bat dsl/
 cp $PACKAGE_HOME/windows/README.TXT dsl/
-cp -R $PACKAGE_HOME/links dsl/
+mkdir dsl/links
 zip -q -r dsl-win32.sapp dsl
 rm -R dsl
 echo

@@ -18,23 +18,20 @@ if [ ! -f $SUBVERSIVE_CONN_DROP ]; then
   wget $SUBVERSIVE_CONN_DROP_URL
   echo
 fi
-#
-# Subversive
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-mkdir SireumDev 2> /dev/null
-echo "path=../../sireumdev/subversive" > eclipse/dsl/links/subversive.link 
-mkdir SireumDev/subversive 2> /dev/null
-mkdir SireumDev/subversive/eclipse 2> /dev/null
-cd SireumDev/subversive/eclipse
+mkdir EclipseBase 2> /dev/null
+echo "path=../../eclipsebase/subversive" > eclipse/dsl/links/subversive.link 
+mkdir EclipseBase/subversive 2> /dev/null
+mkdir EclipseBase/subversive/eclipse 2> /dev/null
+cd EclipseBase/subversive/eclipse
 unzip -oq ../../../$SUBVERSIVE_CONN_DROP
 unzip -oq ../../../$SUBVERSIVE_DROP
 > .eclipseextension
 cd ../..
 zip -rq subversive.sapp subversive ../eclipse/dsl/links/subversive.link
 cd ..
-rm -fR SireumDev/subversive eclipse
+rm -fR EclipseBase/subversive eclipse
 echo
 echo ...done!

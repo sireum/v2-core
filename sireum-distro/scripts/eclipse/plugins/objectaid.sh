@@ -10,22 +10,19 @@ if [ ! -f $AID_DROP ]; then
   wget $AID_DROP_URL
   echo
 fi
-#
-# ObjectAid
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../sireumdev/objectaid" > eclipse/dsl/links/objectaid.link 
-mkdir SireumDev 2> /dev/null
-mkdir SireumDev/objectaid 2> /dev/null
-mkdir SireumDev/objectaid/eclipse 2> /dev/null
-cd SireumDev/objectaid/eclipse
+echo "path=../../eclipsebase/objectaid" > eclipse/dsl/links/objectaid.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/objectaid 2> /dev/null
+mkdir EclipseBase/objectaid/eclipse 2> /dev/null
+cd EclipseBase/objectaid/eclipse
 > .eclipseextension
 unzip -oq ../../../$AID_DROP
 cd ../..
 zip -rq objectaid.sapp objectaid ../eclipse/dsl/links/objectaid.link
 cd ..
-rm -fR eclipse SireumDev/objectaid
+rm -fR eclipse EclipseBase/objectaid
 echo
 echo ...done!

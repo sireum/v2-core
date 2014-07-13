@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export ADT_DROP_URL=http://dl.google.com/android/ADT-22.6.3.zip
+export ADT_DROP_URL=http://dl.google.com/android/ADT-23.0.2.zip
 export ADT_DROP=${ADT_DROP_URL##*/}
 if [ ! -f $ADT_DROP ]; then
   echo
@@ -10,9 +10,6 @@ if [ ! -f $ADT_DROP ]; then
   wget $ADT_DROP_URL
   echo
 fi
-#
-# ADT
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null

@@ -10,23 +10,20 @@ if [ ! -f $WTP_DROP ]; then
   wget $WTP_DROP_URL
   echo
 fi
-#
-# WTP
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../webdev/wtp" > eclipse/dsl/links/wtp.link 
-mkdir WebDev 2> /dev/null
-mkdir WebDev/wtp 2> /dev/null
-mkdir WebDev/wtp/eclipse 2> /dev/null
-cd WebDev/wtp/eclipse
+echo "path=../../eclipsebase/wtp" > eclipse/dsl/links/wtp.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/wtp 2> /dev/null
+mkdir EclipseBase/wtp/eclipse 2> /dev/null
+cd EclipseBase/wtp/eclipse
 > .eclipseextension
 cd ..
 unzip -oq ../../$WTP_DROP
 cd ..
 zip -rq wtp.sapp wtp ../eclipse/dsl/links/wtp.link
 cd ..
-rm -fR eclipse WebDev/wtp
+rm -fR eclipse EclipseBase/wtp
 echo
 echo ...done!

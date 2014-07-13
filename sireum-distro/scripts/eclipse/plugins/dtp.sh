@@ -10,23 +10,20 @@ if [ ! -f $DTP_DROP ]; then
   wget $DTP_DROP_URL
   echo
 fi
-#
-# DTP
-#
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../webdev/dtp" > eclipse/dsl/links/dtp.link 
-mkdir WebDev 2> /dev/null
-mkdir WebDev/dtp 2> /dev/null
-mkdir WebDev/dtp/eclipse 2> /dev/null
-cd WebDev/dtp/eclipse
+echo "path=../../eclipsebase/dtp" > eclipse/dsl/links/dtp.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/dtp 2> /dev/null
+mkdir EclipseBase/dtp/eclipse 2> /dev/null
+cd EclipseBase/dtp/eclipse
 > .eclipseextension
 cd ..
 unzip -oq ../../$DTP_DROP
 cd ..
 zip -rq dtp.sapp dtp ../eclipse/dsl/links/dtp.link
 cd ..
-rm -fR eclipse WebDev/dtp
+rm -fR eclipse EclipseBase/dtp
 echo
 echo ...done!
