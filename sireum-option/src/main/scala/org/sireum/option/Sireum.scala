@@ -178,7 +178,9 @@ case class LaunchBakarKiasanServerMode(
   @Option(shortKey = "w", longKey = "workers", desc = "Number of Worker Threads") //
   var workers : Int = 1,
   @Option(shortKey = "l", longKey = "local", desc = "Local Mode") //
-  var local : Boolean = true)
+  var local : Boolean = true,
+  @Option(shortKey = "g", longKey = "gps", desc = "GPS Mode")
+  var gpsMode : Boolean = true)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
