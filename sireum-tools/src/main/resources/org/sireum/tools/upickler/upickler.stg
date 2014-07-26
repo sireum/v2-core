@@ -8,7 +8,6 @@ package $package$
 
 object $class$Picklers {
   import upickle._
-  import upickle.Implicits._
   implicit var $class$Pickler : ReadWriter[$class$] = null
   $member; separator="\n"$
 }
@@ -19,7 +18,7 @@ private val $class$Name = "$class$"
 >>
 
 leaf(class, wfield, rfield) ::= <<
-implicit val $class$Pickler = new ReadWriter[$class$](
+implicit val $class$Pickler = ReadWriter[$class$](
   o => Js.Object(Seq(("type", writeJs("$class$"))$if(wfield)$, $wfield; separator=", "$$endif$)),
   { case Js.Object(s) =>
       val m = Map(s : _*) 
@@ -37,7 +36,7 @@ readJs[$type$](m("$name$"))
 >>
 
 root(class, wfield, rfield) ::= <<
-$class$Pickler = new ReadWriter[$class$](
+$class$Pickler = ReadWriter[$class$](
   _ match {
     $wfield; separator="\n"$
   },
