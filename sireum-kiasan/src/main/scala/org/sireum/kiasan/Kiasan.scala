@@ -207,16 +207,7 @@ DP time: ${dpTime} (${Math.round(dpTime * 100d / searchTime)}%) ms"""
     topiPool { topi =>
       val topiCachePropKey = "Topi Cache"
       val tc = s.getPropertyOrElse[TopiCache](topiCachePropKey, TopiCache(topi.newState, 0))
-      var pcs = s.pathConditions
-      val size = pcs.length - tc.lastCompiledLength
-      var conjuncts = List[Exp]()
-      var i = 0
-      while (i < size) {
-        conjuncts = pcs.head :: conjuncts
-        pcs = pcs.tail
-        i += 1
-      }
-      val newTc = TopiCache(topi.compile(conjuncts, tc.state), pcs.length)
+      val newTc = TopiCache(topi.compile(s.pathConditions, tc.state), s.pathConditions.length)
       val s2 = s.setProperty(topiCachePropKey, newTc)
 
       val r = topi.check(newTc.state)
