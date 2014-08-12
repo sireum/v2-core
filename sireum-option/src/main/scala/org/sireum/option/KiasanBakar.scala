@@ -62,7 +62,10 @@ case class KiasanBakarAnalysisGroup(
   var outdir : String = ".",
     
   @Option(longKey = "enable-ldp", desc = "Enable LDP")
-  var enableLdp : Boolean = false
+  var enableLdp : Boolean = false,
+  
+  @Option(longKey = "disable-parallelism", desc = "Disable parallel path exploration")
+  var disableParallelism : Boolean = false
 )
 
 @Group("Report Options")
