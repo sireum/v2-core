@@ -163,8 +163,5 @@ case class SireumAmandroidAnalysisGroup(
   var timeout : Int = 10,
   
   @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path")
-  var outdir : String = ".",
-    
-  @Option(shortKey = "ls", longKey = "libSideEffect", desc = "Lib side effect summary path")
-  var sideeffectPath : String = ""
+  var outdir : String = "."
 )
