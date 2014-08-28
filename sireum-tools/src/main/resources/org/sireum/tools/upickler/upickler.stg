@@ -19,8 +19,8 @@ private val $class$Name = "$class$"
 
 leaf(class, wfield, rfield) ::= <<
 implicit val $class$Pickler = ReadWriter[$class$](
-  o => Js.Object(Seq(("type", writeJs("$class$"))$if(wfield)$, $wfield; separator=", "$$endif$)),
-  { case Js.Object(s) =>
+  o => Js.Obj(("type", writeJs("$class$"))$if(wfield)$, $wfield; separator=", "$$endif$),
+  { case Js.Obj(s@_*) =>
       val m = Map(s : _*) 
       $class$($rfield; separator=", "$) 
   }
@@ -41,7 +41,7 @@ $class$Pickler = ReadWriter[$class$](
     $wfield; separator="\n"$
   },
   {
-    case o @ Js.Object(s) =>
+    case o @ Js.Obj(s@_*) =>
       readJs[String](s.find(_._1 == "type").get._2) match {
         $rfield; separator="\n"$
       }
