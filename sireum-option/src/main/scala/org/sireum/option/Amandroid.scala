@@ -39,8 +39,8 @@ object MessageLevel extends Enum {
 }
   
 @Main(value = "decompile",
-  className = "org.sireum.amandroid.android.decompile.DecompilerCli",
-  featureName = "Sireum Amandroid Alir",
+  className = "org.sireum.amandroid.cli.DecompilerCli",
+  featureName = "Sireum Amandroid",
   desc = "Dump .dex file and translate it to Pilar format")
 case class SireumAmandroidDecompileMode(
   @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.")
@@ -61,7 +61,7 @@ object AnalyzeSource extends Enum {
 }
 
 @Main(value = "passwordTracking",
-  className = "org.sireum.amandroid.security.cli.PasswordTrackingCli",
+  className = "org.sireum.amandroid.cli.PasswordTrackingCli",
   featureName = "Sireum Amandroid Alir",
   desc = "Tracking password flow within Android app")
 case class SireumAmandroidPasswordTrackingMode(
@@ -77,7 +77,7 @@ case class SireumAmandroidPasswordTrackingMode(
   )
   
 @Main(value = "intentInjection",
-  className = "org.sireum.amandroid.security.cli.IntentInjectionCli",
+  className = "org.sireum.amandroid.cli.IntentInjectionCli",
   featureName = "Sireum Amandroid Alir",
   desc = "Detecting Intent injection problem")
 case class SireumAmandroidIntentInjectionMode(
@@ -93,7 +93,7 @@ case class SireumAmandroidIntentInjectionMode(
   )
   
 @Main(value = "cryptoMisuse",
-  className = "org.sireum.amandroid.security.cli.CryptoMisuseCli",
+  className = "org.sireum.amandroid.cli.CryptoMisuseCli",
   featureName = "Sireum Amandroid Alir",
   desc = "Detecting crypto API misuse")
 case class SireumAmandroidCryptoMisuseMode(
@@ -106,7 +106,7 @@ case class SireumAmandroidCryptoMisuseMode(
   )
   
 @Main(value = "taintAnalysis",
-  className = "org.sireum.amandroid.security.cli.TaintAnalyzeCli",
+  className = "org.sireum.amandroid.cli.TaintAnalyzeCli",
   featureName = "Sireum Amandroid Alir",
   desc = "Analyze Android apk and output the result")
 case class SireumAmandroidTaintAnalysisMode(
@@ -121,7 +121,7 @@ case class SireumAmandroidTaintAnalysisMode(
   var sasFile : String = "")
   
 @Main(value = "staging",
-  className = "org.sireum.amandroid.security.cli.StagingCli",
+  className = "org.sireum.amandroid.cli.StagingCli",
   featureName = "Sireum Amandroid Alir",
   desc = "Generate IDFG&DDG for Android apk and store it")
 case class SireumAmandroidStagingMode(
