@@ -40,7 +40,7 @@ object MessageLevel extends Enum {
   
 @Main(value = "decompile",
   className = "org.sireum.amandroid.cli.DecompilerCli",
-  featureName = "Sireum Amandroid",
+  featureName = "Sireum Amandroid Security",
   desc = "Dump .dex file and translate it to Pilar format")
 case class SireumAmandroidDecompileMode(
   @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.")
@@ -62,7 +62,7 @@ object AnalyzeSource extends Enum {
 
 @Main(value = "passwordTracking",
   className = "org.sireum.amandroid.cli.PasswordTrackingCli",
-  featureName = "Sireum Amandroid Alir",
+  featureName = "Sireum Amandroid Security",
   desc = "Tracking password flow within Android app")
 case class SireumAmandroidPasswordTrackingMode(
     
@@ -78,7 +78,7 @@ case class SireumAmandroidPasswordTrackingMode(
   
 @Main(value = "intentInjection",
   className = "org.sireum.amandroid.cli.IntentInjectionCli",
-  featureName = "Sireum Amandroid Alir",
+  featureName = "Sireum Amandroid Security",
   desc = "Detecting Intent injection problem")
 case class SireumAmandroidIntentInjectionMode(
     
@@ -94,7 +94,7 @@ case class SireumAmandroidIntentInjectionMode(
   
 @Main(value = "cryptoMisuse",
   className = "org.sireum.amandroid.cli.CryptoMisuseCli",
-  featureName = "Sireum Amandroid Alir",
+  featureName = "Sireum Amandroid Security",
   desc = "Detecting crypto API misuse")
 case class SireumAmandroidCryptoMisuseMode(
     
@@ -107,7 +107,7 @@ case class SireumAmandroidCryptoMisuseMode(
   
 @Main(value = "taintAnalysis",
   className = "org.sireum.amandroid.cli.TaintAnalyzeCli",
-  featureName = "Sireum Amandroid Alir",
+  featureName = "Sireum Amandroid Security",
   desc = "Analyze Android apk and output the result")
 case class SireumAmandroidTaintAnalysisMode(
     
@@ -122,7 +122,7 @@ case class SireumAmandroidTaintAnalysisMode(
   
 @Main(value = "staging",
   className = "org.sireum.amandroid.cli.StagingCli",
-  featureName = "Sireum Amandroid Alir",
+  featureName = "Sireum Amandroid Security",
   desc = "Generate IDFG&DDG for Android apk and store it")
 case class SireumAmandroidStagingMode(
     
