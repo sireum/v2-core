@@ -40,7 +40,7 @@ object MessageLevel extends Enum {
   
 @Main(value = "decompile",
   className = "org.sireum.amandroid.cli.DecompilerCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Dump .dex file and translate it to Pilar format")
 case class SireumAmandroidDecompileMode(
   @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.")
@@ -62,7 +62,7 @@ object AnalyzeSource extends Enum {
 
 @Main(value = "passwordTracking",
   className = "org.sireum.amandroid.cli.PasswordTrackingCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Tracking password flow within Android app")
 case class SireumAmandroidPasswordTrackingMode(
     
@@ -78,7 +78,7 @@ case class SireumAmandroidPasswordTrackingMode(
   
 @Main(value = "intentInjection",
   className = "org.sireum.amandroid.cli.IntentInjectionCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Detecting Intent injection problem")
 case class SireumAmandroidIntentInjectionMode(
     
@@ -94,7 +94,7 @@ case class SireumAmandroidIntentInjectionMode(
   
 @Main(value = "cryptoMisuse",
   className = "org.sireum.amandroid.cli.CryptoMisuseCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Detecting crypto API misuse")
 case class SireumAmandroidCryptoMisuseMode(
     
@@ -107,7 +107,7 @@ case class SireumAmandroidCryptoMisuseMode(
   
 @Main(value = "taintAnalysis",
   className = "org.sireum.amandroid.cli.TaintAnalyzeCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Analyze Android apk and output the result")
 case class SireumAmandroidTaintAnalysisMode(
     
@@ -122,7 +122,7 @@ case class SireumAmandroidTaintAnalysisMode(
   
 @Main(value = "staging",
   className = "org.sireum.amandroid.cli.StagingCli",
-  featureName = "Sireum Amandroid Security",
+  featureName = "Sireum Amandroid Cli",
   desc = "Generate IDFG&DDG for Android apk and store it")
 case class SireumAmandroidStagingMode(
     
@@ -150,7 +150,7 @@ case class SireumAmandroidAnalysisGroup(
   @Option(shortKey = "ns", longKey = "nostatic", desc = "Does not handle static initializer")
   var noStatic : Boolean = false,
   
-  @Option(shortKey = "par", longKey = "parallel", desc = "Parallel")
+  @Option(shortKey = "p", longKey = "parallel", desc = "Parallel")
   var parallel : Boolean = false,
   
   @Option(shortKey = "ni", longKey = "no-icc", desc = "Does not tracking flows via icc")
