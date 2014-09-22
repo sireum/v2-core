@@ -446,12 +446,17 @@ class CliBuilder {
     stCase.add("value", value)
     if (groupName != null) stCase.add("gname", groupName)
     stCase.add("fname", fieldName)
-    if (t != tenum.DEFAULT)
-      stCase.add("isArg", true)
 
     val (typen, pvalue, _, _) = prettify(m._1, m._1.invoke(m._2))
     stCase.add("optioncheck", optcheck)
-
+    
+    if (t != tenum.DEFAULT){
+      stCase.add("isArg", true)
+    } else {
+      if (typen == "java.lang.Boolean")
+        stCase.add("isArg", true)
+    }
+    
     if (t == tenum.VARARG) {
       assert(typen.startsWith("Array"))
 
