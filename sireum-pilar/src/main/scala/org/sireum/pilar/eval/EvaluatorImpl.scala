@@ -220,23 +220,23 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
   @inline
   private def evalAssertAction(s : S, a : AssertAction) : SR = {
     val (locName, locIndex, transIndex, cmdIndex) = a.commandDescriptorInfo
-    cond(s, a.cond).map { p =>
+    scheduleSR("Assert", s, cond(s, a.cond).map { p =>
       if (p._2)
         p._1
       else
         p._1.assertionViolation(AVI(locName, locIndex, transIndex, cmdIndex))
-    }
+    })
   }
 
   @inline
   private def evalAssumeAction(s : S, a : AssumeAction) : SR = {
     val (locName, locIndex, transIndex, cmdIndex) = a.commandDescriptorInfo
-    cond(s, a.cond).map { p =>
+    scheduleSR("Assume", s, cond(s, a.cond).map { p =>
       if (p._2)
         p._1
       else
         p._1.assumptionBreach(ABI(locName, locIndex, transIndex, cmdIndex))
-    }
+    })
   }
 
   @inline
@@ -447,7 +447,7 @@ final class EvaluatorImpl[S <: State[S], V] extends Evaluator[S, ISeq[(S, V)], I
 
   @inline
   private def isNormal(s : S) =
-    s.raisedException.isEmpty && s.assertionViolation.isEmpty
+    s.raisedException.isEmpty && s.assertionViolation.isEmpty && s.assumptionBreach.isEmpty
 
   private val EMPTY_TRANS = Transformation(ivectorEmpty, None, ivectorEmpty, None)
 
