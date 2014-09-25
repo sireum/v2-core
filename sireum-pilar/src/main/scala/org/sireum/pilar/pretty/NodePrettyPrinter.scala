@@ -308,6 +308,35 @@ class NodePrettyPrinter(vprint: Value => String) {
   }
 
   def location(ctx: Context, v: => BVisitor): VisitorFunction = {
+    case o: ComplexLocation =>
+      val st = ctx.stg.getInstanceOf("location")
+      if(o.name.isDefined)
+        st.add("LOCID", o.name.get.name)
+      
+      assert(o.transformations.size == 1) // TODO        
+      
+      v(o.transformations.head)
+      st.add("singleTransformation", ctx.popResult)
+      
+      ctx.pushResult(st)
+      false
+    case o: Transformation =>
+      val st = ctx.stg.getInstanceOf("seqTransformation")
+      
+      assert(o.guard.isEmpty)
+      
+      for(a <- o.actions) {
+        v(a)
+        st.add("action", ctx.popResult)
+      }
+      
+      if(o.jump.isDefined) {
+        v(o.jump.get)
+        st.add("jump", ctx.popResult)
+      }
+        
+      ctx.pushResult(st)
+      false
     case o: ActionLocation =>
       val st = ctx.stg.getInstanceOf("location")
 
@@ -349,8 +378,7 @@ class NodePrettyPrinter(vprint: Value => String) {
 
       ctx.pushResult(st)
       false
-    case o @ (ComplexLocation |
-      Transformation |
+    case o @ (
       ExpGuard |
       ElseGuard) =>
       Console.err.println("Not handling " + o.getClass.getSimpleName)
@@ -400,7 +428,17 @@ class NodePrettyPrinter(vprint: Value => String) {
       ctx.processAnnotationList(v, st, o.annotations)
       ctx.pushResult(st)
       false
-    case o @ (ThrowAction | StartAction | ExtCallAction) =>
+    case o : ExtCallAction =>
+      val st = ctx.stg.getInstanceOf("extCall")
+      
+      v(o.callExp)
+      st.add("exp", ctx.popResult)
+      
+      ctx.processAnnotationList(v, st, o.annotations)
+      ctx.pushResult(st)
+      
+      false
+    case o @ (ThrowAction | StartAction) =>
       Console.err.println("Not handling " + o.getClass.getSimpleName)
       false
   }
