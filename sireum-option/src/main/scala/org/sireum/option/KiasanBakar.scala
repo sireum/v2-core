@@ -55,12 +55,18 @@ case class KiasanBakarAnalysisGroup(
   @Option(shortKey = "i", longKey = "invoke-bound", desc = "Method invoke-chain bound")
   var invokeBound : Int = 10,
   
-  @Option(shortKey = "t", longKey = "timeout", desc = "Timeout in minutes")
+  @Option(shortKey = "t", longKey = "timeout", desc = "Analysis timeout in minutes")
   var timeout : Int = 10,
+  
+  @Option(longKey = "dp-timeout", desc = "Timeout for decision procedure in seconds (-1 for unlimited)")
+  var dpTimeout : Int = -1,
+  
+  @Option(longKey = "int-bits", desc = "Number of bits for Standard.Integer")
+  var intBits : Int = 32,
   
   @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path")
   var outdir : String = ".",
-    
+  
   @Option(longKey = "enable-ldp", desc = "Enable LDP")
   var enableLdp : Boolean = false,
   

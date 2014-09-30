@@ -21,10 +21,13 @@ import org.sireum.util.sexp.ast._
 final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndPart*) extends Topi {
   val (process, reader, writer) = {
     import java.io._
+      def append(s : Seq[String], a : String) = if (waitTime > 0) s :+ a else s
     val args =
       OsArchUtil.detect match {
-        case OsArch.Win64 | OsArch.Win32 => ivector(z3, "/smt2", "/in")
-        case _                           => ivector(z3, "-smt2", "-in")
+        case OsArch.Win64 | OsArch.Win32 =>
+          append(ivector(z3, "/smt2", "/in"), s"/T:$waitTime")
+        case _ =>
+          append(ivector(z3, "-smt2", "-in"), s"-T:$waitTime")
       }
     val processBuilder = new ProcessBuilder(args.asInstanceOf[Seq[String]] : _*)
     processBuilder.redirectErrorStream(true)
