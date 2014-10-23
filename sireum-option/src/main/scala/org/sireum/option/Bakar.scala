@@ -59,6 +59,9 @@ object ProgramTarget extends Enum {
 case class SireumBakarProgramMode(
   @Option(shortKey = "p", longKey = "program", desc = "")
   var typ : ProgramTarget.Type = ProgramTarget.Coq,
+  
+  @Option(shortKey = "g", longKey = "gnatpath", desc = "path to bin directory of GNAT")
+  var gnatpath : String = "",
 
   @Arg(index = 0, value = "src-files")
   var srcFiles : ISeq[String] = ivectorEmpty,
