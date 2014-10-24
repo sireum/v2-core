@@ -10,7 +10,7 @@ package org.sireum.kiasan
 
 import scala.concurrent.forkjoin._
 import scala.collection.parallel._
-import com.typesafe.scalalogging.slf4j._
+import com.typesafe.scalalogging._
 import org.sireum.kiasan.state._
 import org.sireum.pilar.state._
 import org.sireum.pilar.ast._
