@@ -8,8 +8,8 @@ import org.sireum.util._
 @Mode(command = "amandroid",
   desc = "Sireum Amandroid Tools",
   header = """
-Sireum for Android
-(c) 2014, SAnToS Laboratory, Kansas State University
+Sireum Amandroid
+(c) 2014, Argus & SAnToS Laboratories, Kansas State University
 """)
 case class SireumAmandroidMode(
   decompile : SireumAmandroidDecompileMode = SireumAmandroidDecompileMode(),
