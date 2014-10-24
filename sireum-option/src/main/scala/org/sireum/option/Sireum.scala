@@ -13,6 +13,7 @@ import EmptySireumMode._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
+ * @author <a href="mailto:fgwei@k-state.edu">Fengguo Wei</a>
  */
 @Mode(command = "sireum", header = """
 Sireum: A Software Analysis Platform
@@ -25,6 +26,7 @@ case class SireumMode(
   launch : SireumLaunchMode = SireumLaunchMode(),
   tools : SireumToolsMode = SireumToolsMode(),
   bakar : SireumBakarMode = SireumBakarMode(),
+  amandroid : SireumAmandroidMode = SireumAmandroidMode(),
   x : SireumXMode = SireumXMode())
 
 /**
@@ -32,7 +34,8 @@ case class SireumMode(
  */
 @Mode(command = "x", header = "Sireum X", desc = "Sireum Experimental Features", listed = false)
 case class SireumXMode(
-  amandroid : SireumAmandroidMode = internal(SireumAmandroidMode()))
+//  amandroid : SireumAmandroidMode = internal(SireumAmandroidMode())
+)
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

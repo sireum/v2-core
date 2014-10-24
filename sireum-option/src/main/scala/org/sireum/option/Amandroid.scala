@@ -17,7 +17,8 @@ case class SireumAmandroidMode(
   intentInjection : SireumAmandroidIntentInjectionMode = SireumAmandroidIntentInjectionMode(),
   cryptoMisuse : SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
   taintAnalysis : SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
-  staging : SireumAmandroidStagingMode = SireumAmandroidStagingMode())
+  staging : SireumAmandroidStagingMode = SireumAmandroidStagingMode(),
+  genCallGraph : SireumAmandroidGenCallGraphMode = SireumAmandroidGenCallGraphMode())
 
 object DumpSource extends Enum {
   sealed abstract class Type extends EnumElem
@@ -40,7 +41,7 @@ object MessageLevel extends Enum {
   
 @Main(value = "decompile",
   className = "org.sireum.amandroid.cli.DecompilerCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Dump .dex file and translate it to Pilar format")
 case class SireumAmandroidDecompileMode(
   @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.")
@@ -62,7 +63,7 @@ object AnalyzeSource extends Enum {
 
 @Main(value = "passwordTracking",
   className = "org.sireum.amandroid.cli.PasswordTrackingCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Tracking password flow within Android app")
 case class SireumAmandroidPasswordTrackingMode(
     
@@ -78,7 +79,7 @@ case class SireumAmandroidPasswordTrackingMode(
   
 @Main(value = "intentInjection",
   className = "org.sireum.amandroid.cli.IntentInjectionCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Detecting Intent injection problem")
 case class SireumAmandroidIntentInjectionMode(
     
@@ -94,7 +95,7 @@ case class SireumAmandroidIntentInjectionMode(
   
 @Main(value = "cryptoMisuse",
   className = "org.sireum.amandroid.cli.CryptoMisuseCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Detecting crypto API misuse")
 case class SireumAmandroidCryptoMisuseMode(
     
@@ -107,7 +108,7 @@ case class SireumAmandroidCryptoMisuseMode(
   
 @Main(value = "taintAnalysis",
   className = "org.sireum.amandroid.cli.TaintAnalyzeCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Analyze Android apk and output the result")
 case class SireumAmandroidTaintAnalysisMode(
     
@@ -122,7 +123,7 @@ case class SireumAmandroidTaintAnalysisMode(
   
 @Main(value = "staging",
   className = "org.sireum.amandroid.cli.StagingCli",
-  featureName = "Sireum Amandroid Cli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Generate IDFG&DDG for Android apk and store it")
 case class SireumAmandroidStagingMode(
     
@@ -131,6 +132,21 @@ case class SireumAmandroidStagingMode(
   
   @Arg(index = 0, value = "Source file")
   var srcFile : String = ""
+)
+
+@Main(value = "genCallGraph",
+  className = "org.sireum.amandroid.cli.GenCallGraphCli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
+  desc = "Generate CallGraph for Android apk and store it")
+case class SireumAmandroidGenCallGraphMode(
+    
+  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  
+  @Arg(index = 0, value = "Source file")
+  var srcFile : String = "",
+  
+  @OptionalArg(index = 1, value = "Output file")
+  var outFile : String = ""
 )
   
 @Group("General Options")
@@ -158,7 +174,7 @@ case class SireumAmandroidAnalysisGroup(
   
   @Option(shortKey = "k", longKey = "k-context", desc = "Context length")
   var k_context : Int = 1,
-  
+
   @Option(shortKey = "to", longKey = "timeout", desc = "Timeout (minute)")
   var timeout : Int = 10,
   
