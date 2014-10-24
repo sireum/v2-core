@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
+Copyright (c) 2010-2013 Robby, Kansas State University.        
 All rights reserved. This program and the accompanying materials      
 are made available under the terms of the Eclipse Public License v1.0 
 which accompanies this distribution, and is available at              
@@ -10,7 +10,7 @@ package org.sireum.pipeline
 
 import org.sireum.util._
 
-import com.typesafe.scalalogging.slf4j._
+import com.typesafe.scalalogging._
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
