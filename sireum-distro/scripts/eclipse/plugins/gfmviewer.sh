@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export GFMVIEWER_DROP_URL=http://dl.bintray.com/satyagraha/generic/1.8.4/plugins/code.satyagraha.gfm.viewer.plugin_1.8.4.jar
+export GFMVIEWER_DROP_URL=http://dl.bintray.com/satyagraha/generic/1.9.2/plugins/code.satyagraha.gfm.viewer.plugin_1.9.2.jar
 export GFMVIEWER_DROP=${GFMVIEWER_DROP_URL##*/}
 if [ ! -f $GFMVIEWER_DROP ]; then
   echo

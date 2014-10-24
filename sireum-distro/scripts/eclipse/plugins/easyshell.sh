@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export EASY_SHELL_DROP_URL=http://downloads.sourceforge.net/project/pluginbox/easyshell/Release-1.4.1/Easy_Shell_1.4.1.zip
+export EASY_SHELL_DROP_URL=http://downloads.sourceforge.net/project/pluginbox/easyshell/Release-1.4.2/Easy_Shell_1.4.2.zip
 export EASY_SHELL_DROP=${EASY_SHELL_DROP_URL##*/}
 export EASY_SHELL=${EASY_SHELL_DROP%.*}
 if [ ! -f $EASY_SHELL_DROP ]; then

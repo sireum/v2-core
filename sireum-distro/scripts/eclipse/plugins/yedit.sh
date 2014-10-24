@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export YEDIT_DROP_URL=https://yedit.googlecode.com/files/org.dadacoalition.yedit_0.0.13.jar
+export YEDIT_DROP_URL=http://dadacoalition.org/yedit/plugins/org.dadacoalition.yedit_1.0.16.jar
 export YEDIT_DROP=${YEDIT_DROP_URL##*/}
 if [ ! -f $YEDIT_DROP ]; then
   echo

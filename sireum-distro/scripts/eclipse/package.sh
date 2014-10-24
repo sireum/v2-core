@@ -3,8 +3,8 @@
 # This script assumes that Sireum is reachable from the PATH environment variable.
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export DROP_URL=${MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release}/${REL:=luna/R}
-export VERSION=dsl-luna-R
+export DROP_URL=${MIRROR_URL:=http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release}/${REL:=luna/SR1}
+export VERSION=dsl-luna-SR1
 if [ ! -f eclipse-$VERSION-macosx-cocoa-x86_64.tar.gz ]; then
   echo
   echo Downloading Eclipse $VERSION mac64

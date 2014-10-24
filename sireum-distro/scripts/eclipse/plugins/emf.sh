@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export EMF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/modeling/emf/emf/downloads/drops/2.10.0/R201405190339/emf-xsd-SDK-2.10.0.zip
+export EMF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/modeling/emf/emf/downloads/drops/2.10.1/R201409011055/emf-xsd-SDK-2.10.1.zip
 export EMF_DROP=${EMF_DROP_URL##*/}
 if [ ! -f $EMF_DROP ]; then
   echo

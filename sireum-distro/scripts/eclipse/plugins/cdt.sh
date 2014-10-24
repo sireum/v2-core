@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export CDT_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/cdt/releases/8.4/cdt-8.4.0.zip
+export CDT_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/cdt/releases/8.5/cdt-8.5.0.zip
 export CDT_DROP=${CDT_DROP_URL##*/}
 if [ ! -f $CDT_DROP ]; then
   echo

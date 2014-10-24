@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export ECLEMMA_DROP_URL=http://download.eclipselab.org/eclemma/release/eclemma-2.3.1.zip
+export ECLEMMA_DROP_URL=http://download.eclipselab.org/eclemma/release/eclemma-2.3.2.zip
 export ECLEMMA_DROP=${ECLEMMA_DROP_URL##*/}
 if [ ! -f $ECLEMMA_DROP ]; then
   echo

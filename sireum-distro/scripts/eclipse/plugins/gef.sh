@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export GEF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/3.9.100/R201405261516/GEF-ALL-3.9.100.zip
+export GEF_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/gef/downloads/drops/3.9.101/R201408150207/GEF-ALL-3.9.101.zip
 export GEF_DROP=${GEF_DROP_URL##*/}
 if [ ! -f $GEF_DROP ]; then
   echo

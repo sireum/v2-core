@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates/org.eclipse.egit.repository-}${EGIT_VERSION:=3.3.2}.${EGIT_BUILD_DATE:=201404171909}-r.zip
+export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates/org.eclipse.egit.repository-}${EGIT_VERSION:=3.5.1}.${EGIT_BUILD_DATE:=201410131835}-r.zip
 export EGIT_DROP=org.eclipse.egit.repository-$EGIT_VERSION.$EGIT_BUILD_DATE-r.zip
 if [ ! -f $EGIT_DROP ]; then
   echo

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export ADT_DROP_URL=http://dl.google.com/android/ADT-23.0.2.zip
+export ADT_DROP_URL=http://dl.google.com/android/ADT-23.0.4.zip
 export ADT_DROP=${ADT_DROP_URL##*/}
 if [ ! -f $ADT_DROP ]; then
   echo
