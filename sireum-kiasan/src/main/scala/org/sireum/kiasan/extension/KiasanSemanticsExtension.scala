@@ -71,12 +71,11 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
 
   protected val _repPFA : MArray[(S, V) --> V] = marrayEmpty
 
-  lazy val rep : (S, V) --> V =
-    if (_repPFA.isEmpty) {
-      case (_, v) => v
-    } else
-      PartialFunctionUtil.orElses(_repPFA)
-
+  lazy val rep : (S, V) --> V = { 
+    val repPFA : (S, V) --> V = PartialFunctionUtil.orElses(_repPFA)
+    PartialFunctionUtil.orElse(repPFA, { case (_, v) => v })
+  }
+  
   def addGetRep(repF : (S, V) --> V) {
     assert(!PartialFunctionUtil.empty.equals(repF))
     _repPFA += repF
@@ -86,10 +85,11 @@ class KiasanSemanticsExtensionInitImpl[S, V, R, C, SR]
 
   lazy val rep2 : (S, V, V) --> V = {
     import org.sireum.kiasan.extension.KiasanExtension._
-    if (_rep2PFA.isEmpty) {
+    val rep2PFA : (S, V, V) --> V = PartialFunctionUtil.orElses(_rep2PFA)
+    PartialFunctionUtil.orElse(rep2PFA, {
       case (_, v1 : KiasanValue, v2 : KiasanValue) =>
         (if (v1.num <= v2.num) v1 else v2).asInstanceOf[V]
-    } else PartialFunctionUtil.orElses(_rep2PFA)
+    })
   }
 
   def addValueRep(rep2F : (S, V, V) --> V) {
