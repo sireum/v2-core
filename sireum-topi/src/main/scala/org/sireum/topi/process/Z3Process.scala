@@ -37,9 +37,9 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
     (proc, reader, writer)
   }
 
-  def check(script : String) : ISeq[TopiResult.Type] = {
+  def check(script : Iterable[String], opt : Option[String]) : ISeq[TopiResult.Type] = {
     var r = ivectorEmpty[TopiResult.Type]
-    send(script) { line =>
+    send(script, opt) { line =>
       line.trim match {
         case "sat"     => r :+= TopiResult.SAT
         case "unsat"   => r :+= TopiResult.UNSAT
@@ -55,9 +55,12 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
     r
   }
 
-  def send(script : String)(f : String => Unit) {
-    val text = "(push)\n" + script + "(pop)\n(echo \"end\")\n"
-    writer.write(text)
+  def send(script : Iterable[String], opt : Option[String])(f : String => Unit) {
+    writer.write("(push)\n")
+    script.foreach { writer.write(_) }
+    if (opt.isDefined)
+      writer.write(opt.get)
+    writer.write("(pop)\n(echo \"end\")\n")
     writer.flush
     val sb = new StringBuilder()
     var line : String = null
@@ -79,8 +82,9 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
   val tran = PartialFunctionUtil.orElses[(TopiProcess.TypeCounters, Exp), (TopiProcess.TypeCounters, String)](trans.map { _.expTranslator })
 
   def check(cconjuncts : Iterable[Iterable[Exp]]) : Iterable[TopiResult.Type] = {
-    val sb = new StringBuilder()
-    for (conjuncts <- cconjuncts) {
+
+    val s = for (conjuncts <- cconjuncts) yield {
+      val sb = new StringBuilder()
       var tc = imapEmpty[ResourceUri, Int]
       sb.append("(push)\n")
       for (c <- conjuncts) {
@@ -89,32 +93,32 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
         tc = tc2
       }
       sb.append("(check-sat)\n(pop)\n")
+      sb.toString
     }
-    if (sb.length == 0) return cconjuncts.map(x => TopiResult.SAT)
-    val script = sb.toString
-    check(script)
+    if (s.isEmpty) return cconjuncts.map(x => TopiResult.SAT)
+    check(s, None)
   }
 
   def compile(conjuncts : Iterable[Exp], ts : TopiState) : Z3Process.State =
     ts match {
       case Z3Process.State(s, m) =>
-        val sb = new StringBuilder(s)
 
+        assert(s.size <= conjuncts.size)
         var tc = m
-        for (c <- conjuncts) {
+        val s2 = for (c <- conjuncts.drop(s.size)) yield {
           assert(tran.isDefinedAt(m, c), c.toString)
           val (tc2, s) = tran(tc, c)
-          sb.append(s)
           tc = tc2
+          s
         }
 
-        Z3Process.State(sb.toString, tc)
+        Z3Process.State(s ++ s2, tc)
     }
 
   def check(ts : TopiState) : TopiResult.Type =
     ts match {
       case Z3Process.State(script, _) =>
-        val r = check(script + "(check-sat)\n")
+        val r = check(script, Some("(check-sat)\n"))
         assert(r.length == 1)
         r(0)
     }
@@ -126,7 +130,7 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
     ts match {
       case Z3Process.State(script, _) =>
         val sb = new StringBuilder
-        send(script + "(check-sat)\n(get-model)\n") { line =>
+        send(script, Some("(check-sat)\n(get-model)\n")) { line =>
           sb.append(line)
           sb.append('\n')
         }
@@ -141,7 +145,7 @@ final class Z3Process(z3 : String, waitTime : Long, trans : TopiProcess.BackEndP
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 object Z3Process {
-  case class State(z3String : String = "",
+  case class State(z3String : ISeq[String] = ilistEmpty,
                    m : TopiProcess.TypeCounters = imapEmpty) extends TopiState
 
   def parseModel(model : String) : IMap[String, Value] = {
