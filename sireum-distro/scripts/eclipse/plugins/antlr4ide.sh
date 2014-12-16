@@ -2,7 +2,7 @@
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
 export NAME=antlr4ide
-export ANTLR4IDE_DROP_URL=${ANTLR4IDE_URL:=http://dl.bintray.com/jknack/antlr4ide/}${ANTLR4IDE_VERSION:=0.3.4}/antlr4ide-plugin-$ANTLR4IDE_VERSION.zip
+export ANTLR4IDE_DROP_URL=${ANTLR4IDE_URL:=http://dl.bintray.com/jknack/antlr4ide/}${ANTLR4IDE_VERSION:=0.3.5}/antlr4ide-plugin-$ANTLR4IDE_VERSION.zip
 export ANTLR4IDE_DROP=antlr4ide-plugin-$ANTLR4IDE_VERSION.zip
 if [ ! -f $ANTLR4IDE_DROP ]; then
   echo
