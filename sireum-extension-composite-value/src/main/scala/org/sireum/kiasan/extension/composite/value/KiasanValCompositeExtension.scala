@@ -395,19 +395,30 @@ object KiasanValCompositeExtension {
           implicit rv : RV, freshValue : (S, ResourceUri) --> (S, V),
           rep : (S, V) --> V) : ISeq[(S, V)] = {
           import Access._
-          s.element(i) match {
+          StateWithKiasanArrayAccess(s).concreteArray.get(i) match {
             case Some(v) => (s, v)
             case _ =>
+              import KiasanState.PathCondition._
+              val b = StateWithKiasanArrayAccess(s).baseConcreteArray.get(i)
               val existingChoices =
                 for { (index, v) <- s.symbolicMapping.toVector } yield {
                   val s2 = (StateWithKiasanArrayAccess(s - index)(i) = v)
-                  val s3 = (StateWithKiasanArrayAccess(s2)(i) = v)(s2.base)
-                  import KiasanState.PathCondition._
-                  (s3 +? BinaryExp("==", i, index), v)
+                  val s3 =
+                    if (b.isDefined) s2
+                    else (StateWithKiasanArrayAccess(s2)(i) = v)(s2.base)
+                  (s3 +? BinaryExp(PilarAstUtil.EQ_BINOP, i, index), v)
                 }
-              val (s4, v) = freshValue(s, s.elementType)
-              ((Access.StateWithKiasanArrayAccess(
-                s4.lazyInit(i))(i) = v)(s4.base), v) +: existingChoices
+              b match {
+                case Some(v) =>
+                  var s4 = s
+                  for ((index, _) <- s.symbolicMapping.toVector)
+                    s4 = (s4 +? BinaryExp(PilarAstUtil.NE_BINOP, index, i))
+                  (s4, v) +: existingChoices
+                case _ =>
+                  val (s5, v) = freshValue(s, s.elementType)
+                  ((Access.StateWithKiasanArrayAccess(
+                    s5.lazyInit(i))(i) = v)(s5.base), v) +: (existingChoices)
+              }
           }
         }
 

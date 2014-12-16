@@ -415,7 +415,7 @@ class ValCompositeExpEvaluatorTest
         Evaluating expression "@@x_arr[1]" on s gives "ki4 or ki5" satisfying {
           r : Re =>
             r.value is_in (ki4, ki5)
-            r.state is s
+            //r.state is s
         }
 
       Case("kiasan.x_arr.2.is.ki4.or.ki5.or.ki6.lazyconsymcon." + i).
