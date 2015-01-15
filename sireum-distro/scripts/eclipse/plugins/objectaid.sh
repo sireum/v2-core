@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export AID_DROP_URL=http://www.objectaid.net/update/objectaid-1.1.7.zip
+export AID_DROP_URL=http://www.objectaid.net/update/objectaid-1.1.8.zip
 export AID_DROP=${AID_DROP_URL##*/}
 if [ ! -f $AID_DROP ]; then
   echo
