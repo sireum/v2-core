@@ -3,7 +3,7 @@
 # Sireum is reachable from the PATH environment variable.
 #
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SCALA_DROP_URL=${SCALA_URL:=http://scala-lang.org/files/archive/scala-}${SCALA_VERSION:=2.11.2}.tgz
+export SCALA_DROP_URL=${SCALA_URL:=http://scala-lang.org/files/archive/scala-}${SCALA_VERSION:=2.11.5}.tgz
 export SCALA_DROP=scala-$SCALA_VERSION.tgz
 if [ ! -f $SCALA_DROP ]; then
   echo
