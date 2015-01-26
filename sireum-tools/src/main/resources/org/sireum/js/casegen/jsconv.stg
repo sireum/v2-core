@@ -15,13 +15,13 @@ object $objectName$ {
   private var toScala : JsAny --> Any = {
       case x if x.dyn.selectDynamic("\$type\$") == "Boolean" => true && x.dyn.selectDynamic("value")
       case x if x == undefined => ()
-      case x if x.dyn.selectDynamic("\$type\$") == "Double" => x.dyn.selectDynamic("value").doubleValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Float" => x.dyn.selectDynamic("value").floatValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Int" => x.dyn.selectDynamic("value").intValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Long" => x.dyn.selectDynamic("value").longValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Short" => x.dyn.selectDynamic("value").shortValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Byte" => x.dyn.selectDynamic("value").byteValue()
-      case x if x.dyn.selectDynamic("\$type\$") == "Char" => x.dyn.selectDynamic("value").shortValue().toChar
+      case x if x.dyn.selectDynamic("\$type\$") == "Double" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Float" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Int" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Long" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Short" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Byte" => x.dyn.selectDynamic("value")
+      case x if x.dyn.selectDynamic("\$type\$") == "Char" => x.dyn.selectDynamic("value")
       case x => x.toString()
   }
   
@@ -73,7 +73,7 @@ toJsName(type, id) ::= <<
 >>
 
 toJs(className, params, name) ::= <<
-private def $name$: $className$ --> JsAny = {
+private def $name$: Any --> JsAny = {
   case input : $className$ => {
     val out = obj().asInstanceOf[JsDictionary[JsAny]]
     $params; separator="\n"$
@@ -81,7 +81,7 @@ private def $name$: $className$ --> JsAny = {
     out
   }
 }
-toJs = toJs.orElse($name$.asInstanceOf[Any --> JsAny])
+toJs = toJs.orElse($name$)
 >>
 
 toScala(className, args, name) ::= <<
@@ -116,12 +116,12 @@ private def $name$: JsAny --> Vector[$className$] = {
     out
   }
 }
-toScala = toScala.orElse($name$)
+toScala = $name$.orElse(toScala)
 >>
 
 fromMapToJs(keyClassName, valueClassName, name) ::= <<
-private def $name$: Map[$keyClassName$, $valueClassName$] --> JsAny = {
-  case input : Map[$keyClassName$, $valueClassName$] => {
+private def $name$: Any --> JsAny = {
+  case input : Map[_, _] => {
     val out = obj().asInstanceOf[JsDictionary[JsAny]]
     for(x <- input) {
       out(toJs(x._1).toString()) = toJs(x._2)
@@ -130,6 +130,7 @@ private def $name$: Map[$keyClassName$, $valueClassName$] --> JsAny = {
     out
   }
 }
+toJs = toJs.orElse($name$)
 >>
 
 toScalaMap(keyClassName, valueClassName, name) ::= <<
@@ -138,9 +139,12 @@ private def $name$: JsAny --> Map[$keyClassName$, $valueClassName$] = {
     val dict = input.asInstanceOf[JsDictionary[JsAny]]
     var out = Map[$keyClassName$, $valueClassName$]()
     dict foreach { (x : (String, JsAny)) =>
-      out = out + (toScala(x._1).asInstanceOf[$keyClassName$] -> x._2.asInstanceOf[$valueClassName$])
+      if(x._1 != "\$type\$") {
+        out = out + (toScala(x._1).asInstanceOf[$keyClassName$] -> x._2.asInstanceOf[$valueClassName$])
+      }
     }
     out
   }
 }
+toScala = $name$.orElse(toScala)
 >>

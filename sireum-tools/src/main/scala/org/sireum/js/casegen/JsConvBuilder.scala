@@ -125,6 +125,7 @@ class JsConvBuilder {
     val toJs = make("toJs", "className" -> tipe, "name" -> makeJsName(tipe))
     val toScala = make("toScala", "className" -> tipe, "name" -> makeScalaName(tipe))
     caseClass.params foreach { param =>
+      //System.out.println(param)
       addConv(param.tipe)
       toJs.add("params", make("assignToDict", "paramName" -> param.name))
       toScala.add("args", make("assignFromDict", "paramName" -> param.name, "type" -> param.tipe))
@@ -136,14 +137,14 @@ class JsConvBuilder {
     tipe match {
       case t if t <:< typeOf[Tuple1[_]] => 1
       case t if t <:< typeOf[Tuple2[_, _]] => 2
-      case t if t <:< typeOf[Tuple3[_, _, _]] => 2
-      case t if t <:< typeOf[Tuple4[_, _, _, _]] => 3
-      case t if t <:< typeOf[Tuple5[_, _, _, _, _]] => 4
-      case t if t <:< typeOf[Tuple6[_, _, _, _, _, _]] => 5
-      case t if t <:< typeOf[Tuple7[_, _, _, _, _, _, _]] => 6
-      case t if t <:< typeOf[Tuple8[_, _, _, _, _, _, _, _]] => 7
-      case t if t <:< typeOf[Tuple9[_, _, _, _, _, _, _, _, _]] => 8
-      case t if t <:< typeOf[Tuple10[_, _, _, _, _, _, _, _, _, _]] => 9
+      case t if t <:< typeOf[Tuple3[_, _, _]] => 3
+      case t if t <:< typeOf[Tuple4[_, _, _, _]] => 4
+      case t if t <:< typeOf[Tuple5[_, _, _, _, _]] => 5
+      case t if t <:< typeOf[Tuple6[_, _, _, _, _, _]] => 6
+      case t if t <:< typeOf[Tuple7[_, _, _, _, _, _, _]] => 7
+      case t if t <:< typeOf[Tuple8[_, _, _, _, _, _, _, _]] => 8
+      case t if t <:< typeOf[Tuple9[_, _, _, _, _, _, _, _, _]] => 9
+      case t if t <:< typeOf[Tuple10[_, _, _, _, _, _, _, _, _, _]] => 10
       case otherwise => throw new IllegalArgumentException("You gave me a really strange type. Don't do that")
     }
   }
@@ -157,9 +158,10 @@ class JsConvBuilder {
     val toJs = make("toJs", "className" -> tipe, "name" -> makeJsName(tipe))
     val toScala = make("toScala", "className" -> tipe, "name" -> makeScalaName(tipe))
     tipe.typeArgs zip (1 to getNumParamsTuple(tipe)) foreach { param =>
-      toJs.add("params", make("assignToDict", "paramName" -> param._2))
-      toScala.add("args", make("assignFromDict", "paramName" -> param._2, "type" -> param._1))
+      toJs.add("params", make("assignToDict", "paramName" -> ("_" + param._2.toString())))
+      toScala.add("args", make("assignFromDict", "paramName" -> ("_" + param._2.toString()), "type" -> param._1))
     }
+    addConversion(tipe, toJs, toScala)
   }
   
   private def addConv(tipe : Type) {
@@ -186,12 +188,8 @@ class JsConvBuilder {
     val loader = new URLClassLoader(cmode.classpath.map(x => new File(x).toURI().toURL()).toArray)
     val clazz = Class.forName(cmode.className, true, loader)
     val caseClass = CaseClass.caseClassType(clazz, true)
-    //walk the type and build the code
-    caseClass.annotations foreach { anno =>
-      if(anno.clazz.getCanonicalName() == JsConvBuilder.jsConvAnnoName) {
-        addConv(caseClass.tipe)
-      }
-    }
+    //now conver the type all all parameters, and all parameters parameters, etc...
+    addConv(caseClass.tipe)
     
     //finally we need to output to a file
     val root = new File(cmode.dir)
