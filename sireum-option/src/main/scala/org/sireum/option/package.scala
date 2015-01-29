@@ -22,4 +22,5 @@ package object option {
   type Args = org.sireum.option.annotation.Args @getter @setter  
   type OptionalArg = org.sireum.option.annotation.OptionalArg @getter @setter
   type Check = org.sireum.option.annotation.Check @getter @setter
+  type Leaves = org.sireum.option.annotation.Leaves @getter @setter
 }
