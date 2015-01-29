@@ -1,67 +1,47 @@
-topLevel(packageName, imports, objectName, impClassName, className, entry) ::= <<
+topLevel(packageName, imports, objectName, entry, converters) ::= <<
 $if(packageName)$package $packageName$$endif$
 
 import org.sireum.js._
-import scala.scalajs.js.annotation._
 $imports; separator="\n"$
 
-object $objectName$ {
-  type -->[D, I] = PartialFunction[D, I]
+object $objectName$ {  
+  private def toScala(x : JsAny): Any = x
   
-  private var emptyFunc: AnyRef --> AnyRef = {
-    case x if false => x
-  }
-  
-  private var toScala : JsAny --> Any = {
-      case x if x.dyn.selectDynamic("\$type\$") == "Boolean" => true && x.dyn.selectDynamic("value")
-      case x if x == undefined => ()
-      case x if x.dyn.selectDynamic("\$type\$") == "Double" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Float" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Int" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Long" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Short" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Byte" => x.dyn.selectDynamic("value")
-      case x if x.dyn.selectDynamic("\$type\$") == "Char" => x.dyn.selectDynamic("value")
-      case x => x.toString()
-  }
-  
-  private def toJsDef(pf: AnyRef --> JsAny): (Any --> JsAny) = {
-    case x : Double => obj("value"->x, "\$type\$"->"Double")
-    case x : Float => obj("value"->x, "\$type\$"->"Float")
-    case x : Long => obj("value"->x, "\$type\$"->"Long")
-    case x : Int => obj("value"->x, "\$type\$"->"Int")
-    case x : Short => obj("value"->x, "\$type\$"->"Short")
-    case x : Byte => obj("value"->x, "\$type\$"->"Byte")
-    case x : Char => obj("value"->x, "\$type\$"->"Char")
-    case x : Boolean => obj("value"->x, "\$type\$"->"Boolean")
-    case x : Unit => x
-    case x : String => x
-    case vec : Vector[_] => JsArray(vec map toJsDef(pf))
-    case x : AnyRef if pf.isDefinedAt(x) => pf(x)
-  }
-  
-  private var toJs = emptyFunc.asInstanceOf[Any --> JsAny]
+  private def toJs(x : Double): JsAny = x
+  private def toJs(x : Float): JsAny = x
+  private def toJs(x : Long): JsAny = x
+  private def toJs(x : Int): JsAny = x
+  private def toJs(x : Short): JsAny = x
+  private def toJs(x : Byte): JsAny = x
+  private def toJs(x : Char): JsAny = x
+  private def toJs(x : Boolean): JsAny = x
+  private def toJs(x : Unit): JsAny = x
+  private def toJs(x : String): JsAny = x
   
   $entry; separator="\n\n"$
   
-  toJs = toJsDef(toJs)
-  
-  def to(x : Any): JsAny = {
-    return toJs(x)
+  $converters; separator="\n\n"$
+}
+>>
+
+converterObj(type, toJs, toScala) ::= <<
+implicit object `Convert $type$` extends JsConvertable[$type$] {
+  def to(x : $type$): JsAny = {
+    return $toJs$(x)
   }
 
-  def from[T](x : JsAny): T = {
-    return toScala(x).asInstanceOf[T]
+  def from(x : JsAny): $type$ = {
+    return $toScala$(x)
   }
 }
 >>
 
-assignToDict(paramName) ::= <<
-  out("$paramName$") = toJs(input.$paramName$)
+assignToDict(paramName, toFunc) ::= <<
+  out("$paramName$") = $toFunc$(input.$paramName$)
 >>
 
-assignFromDict(dict, object, paramName, type) ::= <<
-  $paramName$ = toScala(dict("$paramName$")).asInstanceOf[$type$]
+assignFromDict(dict, object, paramName, type, toFunc) ::= <<
+  $paramName$ = $toFunc$(dict("$paramName$")).asInstanceOf[$type$]
 >>
 
 toScalaName(type, id) ::= <<
@@ -73,78 +53,57 @@ toJsName(type, id) ::= <<
 >>
 
 toJs(className, params, name) ::= <<
-private def $name$: Any --> JsAny = {
-  case input : $className$ => {
-    val out = obj().asInstanceOf[JsDictionary[JsAny]]
-    $params; separator="\n"$
-    out("\$type\$") = "$className$"
-    out
-  }
+private def $name$(input : $className$): JsAny = {
+  val out = obj().asInstanceOf[JsDictionary[JsAny]]
+  $params; separator="\n"$
+  out
 }
-toJs = toJs.orElse($name$)
 >>
 
 toScala(className, args, name) ::= <<
-private def $name$: JsAny --> $className$ = {
-  case input if input.dyn.selectDynamic("\$type\$") == "$className$" => {
-    val dict = input.asInstanceOf[JsDictionary[JsAny]]
-    new $className$($args; separator=","$)
-  }
+private def $name$(input : JsAny): $className$ = {
+  val dict = input.asInstanceOf[JsDictionary[JsAny]]
+  new $className$($args; separator=","$)
 }
-toScala = $name$.orElse(toScala)
 >>
 
-fromVecToJs(className, name) ::= <<
-private def $name$: Vector[$className$] --> JsAny = {
-   case input : Vector[$className$] => {
-     input.foldLeft (new JsArray[JsAny]()) { (acc, elem) => {
-          acc.+:(toJs(elem))
-       }
+fromVecToJs(className, name, toFunc) ::= <<
+private def $name$(input : Seq[$className$]): JsAny = {
+   input.foldLeft (new JsArray[JsAny]()) { (acc, elem) => {
+       acc :+ $toFunc$(elem)
      }
    }
 }
-toJs = toJs.orElse($name$.asInstanceOf[Any --> JsAny])
 >>
 
-toScalaVec(className, elementType, name) ::= <<
-private def $name$: JsAny --> Vector[$className$] = {
-  case arr : JsArray[JsAny] => {
-    var out = Vector[$className$]()
-    arr forEach { x =>
-      out = out +: toScala(x).asInstanceOf[$className$]
-    }
-    out
+toScalaVec(className, elementType, name, toFunc) ::= <<
+private def $name$(input : JsAny): Seq[$className$] = {
+  val arr = input.asInstanceOf[JsArray[JsAny]]
+  var out = Vector[$className$]()
+  arr foreach { x =>
+    out = out :+ $toFunc$(x).asInstanceOf[$className$]
   }
+  out
 }
-toScala = $name$.orElse(toScala)
 >>
 
-fromMapToJs(keyClassName, valueClassName, name) ::= <<
-private def $name$: Any --> JsAny = {
-  case input : Map[_, _] => {
-    val out = obj().asInstanceOf[JsDictionary[JsAny]]
-    for(x <- input) {
-      out(toJs(x._1).toString()) = toJs(x._2)
-    }
-    out("\$type\$") = "Map[$keyClassName$,$valueClassName$]"
-    out
+fromMapToJs(keyClassName, valueClassName, name, toFunc1, toFunc2) ::= <<
+private def $name$(input : Map[$keyClassName$, $valueClassName$]): JsAny = {
+  val out = obj().asInstanceOf[JsDictionary[JsAny]]
+  for(x <- input) {
+    out($toFunc1$(x._1).toString()) = $toFunc2$(x._2)
   }
+  out
 }
-toJs = toJs.orElse($name$)
 >>
 
-toScalaMap(keyClassName, valueClassName, name) ::= <<
-private def $name$: JsAny --> Map[$keyClassName$, $valueClassName$] = {
-  case input if input.dyn.selectDynamic("\$type\$") == "Map[$keyClassName$,$valueClassName$]" => {
-    val dict = input.asInstanceOf[JsDictionary[JsAny]]
-    var out = Map[$keyClassName$, $valueClassName$]()
-    dict foreach { (x : (String, JsAny)) =>
-      if(x._1 != "\$type\$") {
-        out = out + (toScala(x._1).asInstanceOf[$keyClassName$] -> x._2.asInstanceOf[$valueClassName$])
-      }
-    }
-    out
+toScalaMap(keyClassName, valueClassName, name, toFunc1, toFunc2) ::= <<
+private def $name$(input : JsAny): Map[$keyClassName$, $valueClassName$] = {
+  val dict = input.asInstanceOf[JsDictionary[JsAny]]
+  var out = Map[$keyClassName$, $valueClassName$]()
+  dict foreach { (x : (String, JsAny)) =>
+    out = out + ($toFunc1$(x._1).asInstanceOf[$keyClassName$] -> $toFunc2$(x._2).asInstanceOf[$valueClassName$])
   }
+  out
 }
-toScala = $name$.orElse(toScala)
 >>

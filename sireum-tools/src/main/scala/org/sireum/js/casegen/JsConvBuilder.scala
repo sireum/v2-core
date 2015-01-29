@@ -29,11 +29,15 @@ object JsConvBuilder {
   def main(args : Array[String]) {
     val classpath = System.getProperty("java.class.path")
     val classpathEntries = classpath.split(File.pathSeparator)
-    val cp = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan-server-plugin/bin" +: classpathEntries.toList
+    val cp = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan-server-plugin/bin"//  +: classpathEntries.toList
     //cp foreach println
     val example = JsGenMode(
-        className = "org.sireum.bakar.kiasan.message.UnitInfoStoreMessage",
-        classpath = cp.toVector,
+        classNames = Vector[String](
+            "org.sireum.bakar.kiasan.message.UnitInfoStoreMessage",
+            "org.sireum.bakar.kiasan.message.AnalysisProcessRequestMessage"
+            //,"org.sireum.bakar.kiasan.message.StatObject"
+        ),
+        classpath = List(cp).toVector,
         dir = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan.js/src/main/scala/org/sireum/js/bakar/kiasan",
         packageName = "org.sireum.js.bakar.kiasan"
     )
@@ -48,21 +52,34 @@ class JsConvBuilder {
   private val topLevel = stg.getInstanceOf("topLevel")
  
   private var names : Map[String, Int] = Map()
-  private var impls = Set[Type](
+  private val implsInitTypes = Set[Type](
     typeOf[Int], typeOf[Double], typeOf[Float], typeOf[Long],
     typeOf[Short], typeOf[Byte], typeOf[Char], typeOf[Boolean],
     typeOf[Unit], typeOf[String]
-  ) map (_.typeSymbol)
+  )
+  private val implsInit = implsInitTypes map (_.toString())
+  private val implsInitSym = implsInitTypes map (_.typeSymbol)
+  private var impls = implsInit.clone()
   
   private val seqType = typeOf[Seq[_]]
   private val mapType = typeOf[scala.collection.immutable.Map[_, _]]
   private val arrType = typeOf[Array[_]]
   private val vecType = typeOf[Vector[_]]
   
+  private var classLoader : URLClassLoader = null
+  
   private def isTupleType(tipe : Type): Boolean = {
     val tupleTypes = List(typeOf[Tuple1[_]], typeOf[Tuple2[_, _]], typeOf[Tuple3[_, _, _]], typeOf[Tuple4[_, _, _, _]])
     //lists don't have forsome method? I used demorgan's law to make one
     !tupleTypes.forall { x => !(tipe.erasure <:< x.erasure) }
+  }
+  
+  private def hasBeenImplemented(tipe : Type): Boolean = {
+    implsInitSym(tipe.typeSymbol) || impls(tipe.toString())
+  }
+  
+  private def markAsImplemented(tipe : Type) {
+    impls += tipe.toString()
   }
   
   //def getValueName(tipe : Type, name : String) = tipe.member(newTermName(name)).asMethod.returnType
@@ -86,20 +103,32 @@ class JsConvBuilder {
      return instance
   }
   
-  private def makeScalaName(tipe : Type): ST = {
-    make("toScalaName", "type" -> tipe, "id" -> getConversionCount(tipe))
+  private def makeScalaName(tipe : Type): String = {
+    if(implsInitSym(tipe.typeSymbol)) {
+      "toScala"
+    } else {
+      make("toScalaName", "type" -> tipe, "id" -> "").render()
+    }
   }
   
-  private def makeJsName(tipe : Type): ST = {
-    make("toJsName", "type" -> tipe, "id" -> getConversionCount(tipe))
+  private def makeJsName(tipe : Type): String = {
+    if(implsInitSym(tipe.typeSymbol)) {
+      "toJs"
+    } else {
+      make("toJsName", "type" -> tipe, "id" -> "").render()
+    }
   }
   
   private def addConvertVec(tipe : Type) {
-    tipe.typeArgs foreach { tipeArg =>
+    tipe.dealias.typeArgs foreach { tipeArg =>
       addConv(tipeArg)
     }
-    val toScalaVec = make("toScalaVec", "className" -> tipe.typeArgs(0), "name" -> makeScalaName(tipe))
-    val fromVecToJs = make("fromVecToJs", "className" -> tipe.typeArgs(0), "name" -> makeJsName(tipe))
+    val typeArg = tipe.dealias.typeArgs(0)
+    val toScalaVec = make("toScalaVec", "className" -> typeArg, "name" -> makeScalaName(tipe), "toFunc" -> makeScalaName(typeArg))
+    val fromVecToJs = make("fromVecToJs", 
+        "className" -> typeArg, 
+        "name" -> makeJsName(tipe), 
+        "toFunc" -> makeJsName(typeArg))
     addConversion(tipe, fromVecToJs, toScalaVec)
   }
   
@@ -107,8 +136,20 @@ class JsConvBuilder {
     tipe.typeArgs foreach { tipeArg =>
       addConv(tipeArg)
     }
-    val toScalaMap = make("toScalaMap", "keyClassName" -> tipe.typeArgs(0), "valueClassName" -> tipe.typeArgs(1), "name" -> makeScalaName(tipe))
-    val fromMapToJs = make("fromMapToJs", "keyClassName" -> tipe.typeArgs(0), "valueClassName" -> tipe.typeArgs(1), "name" -> makeJsName(tipe))
+    val keyArg = tipe.typeArgs(0)
+    val valArg = tipe.typeArgs(1)
+    val toScalaMap = make("toScalaMap", 
+        "keyClassName" -> keyArg, 
+        "valueClassName" -> valArg, 
+        "name" -> makeScalaName(tipe), 
+        "toFunc1" -> makeScalaName(keyArg),
+        "toFunc2" -> makeScalaName(valArg))
+    val fromMapToJs = make("fromMapToJs", 
+        "keyClassName" -> keyArg, 
+        "valueClassName" -> valArg, 
+        "name" -> makeJsName(tipe),
+        "toFunc1" -> makeJsName(keyArg),
+        "toFunc2" -> makeJsName(valArg))
     addConversion(tipe, fromMapToJs, toScalaMap)
   }
   
@@ -118,6 +159,7 @@ class JsConvBuilder {
       caseClass = CaseClass.caseClassType(tipe, true)
     } catch {
       case ex: IllegalArgumentException => {
+        println("Failed to convert:" + tipe)
         ex.printStackTrace()
         throw new IllegalArgumentException("the type '" + tipe + "' was not a case class, vector, or map")
       }
@@ -127,8 +169,8 @@ class JsConvBuilder {
     caseClass.params foreach { param =>
       //System.out.println(param)
       addConv(param.tipe)
-      toJs.add("params", make("assignToDict", "paramName" -> param.name))
-      toScala.add("args", make("assignFromDict", "paramName" -> param.name, "type" -> param.tipe))
+      toJs.add("params", make("assignToDict", "paramName" -> param.name, "toFunc" -> makeJsName(param.tipe)))
+      toScala.add("args", make("assignFromDict", "paramName" -> param.name, "type" -> param.tipe, "toFunc" -> makeScalaName(param.tipe)))
     }
     addConversion(tipe, toJs, toScala)
   }
@@ -145,7 +187,7 @@ class JsConvBuilder {
       case t if t <:< typeOf[Tuple8[_, _, _, _, _, _, _, _]] => 8
       case t if t <:< typeOf[Tuple9[_, _, _, _, _, _, _, _, _]] => 9
       case t if t <:< typeOf[Tuple10[_, _, _, _, _, _, _, _, _, _]] => 10
-      case otherwise => throw new IllegalArgumentException("You gave me a really strange type. Don't do that")
+      case otherwise => throw new IllegalArgumentException("You are a terrible person. Refactor your code")
     }
   }
   
@@ -158,8 +200,13 @@ class JsConvBuilder {
     val toJs = make("toJs", "className" -> tipe, "name" -> makeJsName(tipe))
     val toScala = make("toScala", "className" -> tipe, "name" -> makeScalaName(tipe))
     tipe.typeArgs zip (1 to getNumParamsTuple(tipe)) foreach { param =>
-      toJs.add("params", make("assignToDict", "paramName" -> ("_" + param._2.toString())))
-      toScala.add("args", make("assignFromDict", "paramName" -> ("_" + param._2.toString()), "type" -> param._1))
+      toJs.add("params", make("assignToDict", 
+          "paramName" -> ("_" + param._2.toString()),
+          "toFunc" -> makeJsName(param._1)))
+      toScala.add("args", make("assignFromDict", 
+          "paramName" -> ("_" + param._2.toString()), 
+          "type" -> param._1,
+          "toFunc" -> makeScalaName(param._1)))
     }
     addConversion(tipe, toJs, toScala)
   }
@@ -167,8 +214,9 @@ class JsConvBuilder {
   private def addConv(tipe : Type) {
     //this serves to dispatch to diffrent functions based on what kind of type
     //we are looking at
-    if(impls(tipe.typeSymbol)) return
-    if(tipe.erasure <:< vecType.erasure) {
+    if(hasBeenImplemented(tipe)) return
+    //println(typeOf[Int].dealias, tipe.dealias, impls(tipe.toString()))
+    if(tipe.erasure <:< seqType.erasure) {
       addConvertVec(tipe)
     } else if(tipe.erasure <:< mapType.erasure) {
       addConvertMap(tipe)
@@ -177,19 +225,29 @@ class JsConvBuilder {
     } else {
       addConvertCaseClass(tipe)
     }
-    impls += tipe.typeSymbol
-    println("added conversion for: " + tipe)
+    markAsImplemented(tipe)
+    println("conversion function pair created: " + tipe)
+  }
+  
+  def converterObject(tipe : Type): ST = {
+    make("converterObj", "type" -> tipe, "toJs" -> makeJsName(tipe), "toScala" -> makeScalaName(tipe))
   }
 
   def execute(cmode : JsGenMode) {
     topLevel.add("objectName", cmode.genObjectName)
     if(cmode.packageName.length() > 0) topLevel.add("packageName", cmode.packageName)
     //get the class to make the converter for
-    val loader = new URLClassLoader(cmode.classpath.map(x => new File(x).toURI().toURL()).toArray)
-    val clazz = Class.forName(cmode.className, true, loader)
-    val caseClass = CaseClass.caseClassType(clazz, true)
-    //now conver the type all all parameters, and all parameters parameters, etc...
-    addConv(caseClass.tipe)
+    classLoader = new URLClassLoader(cmode.classpath.map(x => new File(x).toURI().toURL()).toArray)
+    cmode.classNames foreach { className =>
+      val clazz = Class.forName(className, true, classLoader)
+      val caseClass = CaseClass.caseClassType(clazz, true)
+      //now convert the type all all parameters and such, and all parameters parameters, etc...
+      addConv(caseClass.tipe)
+      //now that we have created the conversions for all the types, add the outward interface
+      topLevel.add("converters", converterObject(caseClass.tipe))
+      //inform the user of the new converter
+      println("Converter for " + caseClass.tipe + " has been created")
+    }
     
     //finally we need to output to a file
     val root = new File(cmode.dir)
