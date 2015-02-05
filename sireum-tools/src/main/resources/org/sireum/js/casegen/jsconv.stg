@@ -6,6 +6,7 @@ $imports; separator="\n"$
 
 object $objectName$ {  
   private def toScala(x : JsAny): Any = x
+  private def toScalaLong(x : JsAny): Long = x.asInstanceOf[Double].toLong
   
   private def toJs(x : Double): JsAny = x
   private def toJs(x : Float): JsAny = x
@@ -63,7 +64,9 @@ private def $name$(input : $className$): JsAny = {
 toScala(className, args, name) ::= <<
 private def $name$(input : JsAny): $className$ = {
   val dict = input.asInstanceOf[JsDictionary[JsAny]]
-  new $className$($args; separator=","$)
+  new $className$(
+    $args; separator=",\n"$
+  )
 }
 >>
 
@@ -105,5 +108,28 @@ private def $name$(input : JsAny): Map[$keyClassName$, $valueClassName$] = {
     out = out + ($toFunc1$(x._1).asInstanceOf[$keyClassName$] -> $toFunc2$(x._2).asInstanceOf[$valueClassName$])
   }
   out
+}
+>>
+
+leafToJs(toFunc, subType) ::= <<
+case x : $subType$ => obj("value" -> $toFunc$(x), "type" -> "$subType$")
+>>
+
+leafToScala(toFunc, subType) ::= <<
+case x if x.dyn.selectDynamic("type") == "$subType$" => $toFunc$(x)
+>>
+
+leavesToJs(name, cases, type) ::= <<
+private def $name$(input : $type$): JsAny = {
+   input match {
+     $cases; separator="\n"$
+   }
+}
+>>
+leavesToScala(name, cases, type) ::= <<
+private def $name$(input : JsAny): $type$ = {
+  input match {
+     $cases; separator="\n"$
+   }
 }
 >>

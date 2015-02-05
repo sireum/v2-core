@@ -3,6 +3,7 @@ package org.sireum.js.casegen
 import org.sireum.option._
 import java.lang.ClassLoader
 import java.lang.Class
+import java.lang.NoSuchMethodException
 import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
@@ -10,6 +11,7 @@ import java.lang.IllegalArgumentException
 import java.net.URL
 import java.net.URLClassLoader
 import org.sireum.util.Reflection._
+import org.sireum.util.Reflection
 import org.stringtemplate.v4.ST
 import org.stringtemplate.v4.STGroupFile
 import scala.collection.mutable.ListBuffer
@@ -35,7 +37,7 @@ object JsConvBuilder {
         classNames = Vector[String](
             "org.sireum.bakar.kiasan.message.UnitInfoStoreMessage",
             "org.sireum.bakar.kiasan.message.AnalysisProcessRequestMessage"
-            //,"org.sireum.bakar.kiasan.message.StatObject"
+            ,"org.sireum.bakar.kiasan.message.StatObject"
         ),
         classpath = List(cp).toVector,
         dir = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan.js/src/main/scala/org/sireum/js/bakar/kiasan",
@@ -47,6 +49,8 @@ object JsConvBuilder {
 
 class JsConvBuilder {
   import scala.reflect.runtime.universe._
+  
+  private val jsMapName = "jsMap"
   
   private val stg : STGroupFile = new STGroupFile(getClass.getResource("jsconv.stg"), "UTF-8", '$', '$')
   private val topLevel = stg.getInstanceOf("topLevel")
@@ -67,6 +71,18 @@ class JsConvBuilder {
   private val vecType = typeOf[Vector[_]]
   
   private var classLoader : URLClassLoader = null
+  
+  private def isLeavesType(tipe : Type): Boolean = {
+    //taken from https://gist.github.com/xeno-by/4985929 and http://stackoverflow.com/questions/27821841/working-with-opaque-types-char-and-long
+    val classObject = Class.forName(tipe.typeSymbol.asClass.fullName, true, classLoader)
+    try {
+      val method = classObject.getMethod(jsMapName)
+      return tipe.typeSymbol.isAbstract
+    } catch {
+      case e : NoSuchMethodException => return false
+    }
+    false
+  }
   
   private def isTupleType(tipe : Type): Boolean = {
     val tupleTypes = List(typeOf[Tuple1[_]], typeOf[Tuple2[_, _]], typeOf[Tuple3[_, _, _]], typeOf[Tuple4[_, _, _, _]])
@@ -102,10 +118,14 @@ class JsConvBuilder {
      args.foreach[ST](x => instance.add(x._1, x._2))
      return instance
   }
-  
+ 
   private def makeScalaName(tipe : Type): String = {
     if(implsInitSym(tipe.typeSymbol)) {
-      "toScala"
+      if(tipe.typeSymbol == typeOf[Long].typeSymbol) {
+        "toScalaLong" //we need this special case to properly handle conversion from javascript numbers to scala longs 
+      } else {
+        "toScala"
+      }
     } else {
       make("toScalaName", "type" -> tipe, "id" -> "").render()
     }
@@ -211,10 +231,31 @@ class JsConvBuilder {
     addConversion(tipe, toJs, toScala)
   }
   
+  private def addLeavesConversion(tipe : Type) {
+    val clazz = Class.forName(tipe.typeSymbol.asClass.fullName, true, classLoader)
+    val seq = clazz.getMethod(jsMapName).invoke(null).asInstanceOf[Seq[Class[_]]]
+    val toJs = make("leavesToJs",
+          "name" -> makeJsName(tipe), 
+          "type" -> tipe)
+      val toScala = make("leavesToScala", 
+          "name" -> makeScalaName(tipe), 
+          "type" -> tipe)
+    seq foreach {implType =>
+      val caseClass = CaseClass.caseClassType(implType, true)
+      addConv(caseClass.tipe) //now we can be sure that this subtype has been implemented
+      val leafToJs = make("leafToJs", "subType" -> caseClass.tipe, "toFunc" -> makeJsName(caseClass.tipe))
+      val leafToScala = make("leafToScala", "subType" -> caseClass.tipe, "toFunc" -> makeScalaName(caseClass.tipe))
+      toJs.add("cases", leafToJs)
+      toScala.add("cases", leafToScala)
+    }
+    addConversion(tipe, toJs, toScala)
+  }
+  
   private def addConv(tipe : Type) {
     //this serves to dispatch to diffrent functions based on what kind of type
     //we are looking at
     if(hasBeenImplemented(tipe)) return
+    markAsImplemented(tipe) //mark this as implemented now so that another call to addConv dosn't try and convert it
     //println(typeOf[Int].dealias, tipe.dealias, impls(tipe.toString()))
     if(tipe.erasure <:< seqType.erasure) {
       addConvertVec(tipe)
@@ -222,10 +263,13 @@ class JsConvBuilder {
       addConvertMap(tipe)
     } else if(isTupleType(tipe)) {
       addConvertTuple(tipe)
+    } else if(isLeavesType(tipe)) {
+      addLeavesConversion(tipe)
+      println(tipe)
     } else {
       addConvertCaseClass(tipe)
     }
-    markAsImplemented(tipe)
+    
     println("conversion function pair created: " + tipe)
   }
   
