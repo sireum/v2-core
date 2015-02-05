@@ -116,7 +116,7 @@ case x : $subType$ => obj("value" -> $toFunc$(x), "type" -> "$subType$")
 >>
 
 leafToScala(toFunc, subType) ::= <<
-case x if x.dyn.selectDynamic("type") == "$subType$" => $toFunc$(x)
+case x if x.dyn.selectDynamic("type") == "$subType$" => $toFunc$(x.dyn.selectDynamic("value"))
 >>
 
 leavesToJs(name, cases, type) ::= <<
