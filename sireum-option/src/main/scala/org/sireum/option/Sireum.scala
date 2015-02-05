@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2011-2014 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2011-2014 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 package org.sireum.option
@@ -17,7 +17,7 @@ import EmptySireumMode._
  */
 @Mode(command = "sireum", header = """
 Sireum: A Software Analysis Platform
-(c) 2011-2014, SAnToS Laboratory, Kansas State University
+(c) 2011-2015, SAnToS Laboratory, Kansas State University
 """)
 case class SireumMode(
   //  bogor : BogorMode = BogorMode(),
@@ -33,8 +33,7 @@ case class SireumMode(
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
  */
 @Mode(command = "x", header = "Sireum X", desc = "Sireum Experimental Features", listed = false)
-case class SireumXMode(
-//  amandroid : SireumAmandroidMode = internal(SireumAmandroidMode())
+case class SireumXMode( //  amandroid : SireumAmandroidMode = internal(SireumAmandroidMode())
 )
 
 /**
@@ -42,7 +41,7 @@ case class SireumXMode(
  */
 @Mode(command = "bogor", header = """
 Sireum/Bogor: A Software Model Checking Framework
-(c) 2012-2014, SAnToS Laboratory, Kansas State University
+(c) 2012-2015, SAnToS Laboratory, Kansas State University
 """)
 case class BogorMode()
 
@@ -51,7 +50,7 @@ case class BogorMode()
  */
 @Mode(command = "kiasan", header = """
 Sireum/Kiasan: A Symbolic Execution Framework
-(c) 2012-2014, SAnToS Laboratory, Kansas State University
+(c) 2012-2015, SAnToS Laboratory, Kansas State University
 """)
 case class KiasanMode(
   java : KiasanJavaMode = KiasanJavaMode(),
@@ -105,7 +104,7 @@ abstract class LaunchEclipseAppMode {
 case class LaunchEclipseMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
   var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
-  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
 /**
@@ -127,7 +126,7 @@ case class LaunchSireumDevMode(
 case class LaunchBakarV1Mode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
   var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
-  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
 /**
@@ -182,8 +181,7 @@ case class LaunchBakarKiasanServerMode(
   var workers : Int = 1,
   @Option(shortKey = "l", longKey = "local", desc = "Local Mode") //
   var local : Boolean = true,
-  @Option(shortKey = "g", longKey = "gps", desc = "GPS Mode")
-  var gpsMode : Boolean = true)
+  @Option(shortKey = "g", longKey = "gps", desc = "GPS Mode") var gpsMode : Boolean = true)
 
 /**
  * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
@@ -207,7 +205,7 @@ case class LaunchBakarGpsMode()
 case class LaunchOsateMode(
   @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
   var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
-  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) // 
+  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
   var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
 /**

@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2011-2015 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 import java.net._
@@ -68,35 +68,25 @@ object SireumDistro extends App {
   final val CLI_FEATURE = "Sireum CLI"
   final val CLI_CLASS = "org.sireum.cli.SireumCli"
 
-  def outPrint(s : String) {
-    scala.Console.out.print(s)
-    scala.Console.out.flush
-  }
+  val OS_STRING = {
+    val osArch = System.getProperty("os.arch")
+    val is64bit = osArch.contains("64")
 
-  def outPrintln(s : String) {
-    scala.Console.out.println(s)
-    scala.Console.out.flush
-  }
-
-  def outPrintln {
-    scala.Console.out.println
-    scala.Console.out.flush
-  }
-
-  def errPrintln(s : String) {
-    scala.Console.err.println(s)
-    scala.Console.err.flush
-  }
-
-  def errPrintln {
-    scala.Console.err.println
-    scala.Console.err.flush
+    val osName = System.getProperty("os.name").toLowerCase()
+    if (osName.indexOf("mac") >= 0)
+      (if (is64bit) "mac64" else "mac32")
+    else if (osName.indexOf("nux") >= 0)
+      (if (is64bit) "linux64" else "linux32")
+    else if (osName.indexOf("win") >= 0)
+      (if (is64bit) "win64" else "win32")
+    else
+      "unsupported"
   }
 
   val allowableCopyDiffFiles = Set[String]()
 
   val scriptName =
-    getOsString match {
+    OS_STRING match {
       case "win64" | "win32" => "sireum.bat"
       case _                 => "sireum"
     }
@@ -150,6 +140,31 @@ object SireumDistro extends App {
     }
   }
 
+  def outPrint(s : String) {
+    scala.Console.out.print(s)
+    scala.Console.out.flush
+  }
+
+  def outPrintln(s : String) {
+    scala.Console.out.println(s)
+    scala.Console.out.flush
+  }
+
+  def outPrintln {
+    scala.Console.out.println
+    scala.Console.out.flush
+  }
+
+  def errPrintln(s : String) {
+    scala.Console.err.println(s)
+    scala.Console.err.flush
+  }
+
+  def errPrintln {
+    scala.Console.err.println
+    scala.Console.err.flush
+  }
+
   def shouldUpdate(f : String) =
     if (f == scriptName) !isDevelopment else true
 
@@ -175,7 +190,7 @@ object SireumDistro extends App {
       deleteJar
       sys.exit(-1)
     }
-    if (getOsString == "unsupported") {
+    if (OS_STRING == "unsupported") {
       outPrintln(
         "Running on an unsupported platform: some features maybe unavailable")
       outPrintln
@@ -315,7 +330,7 @@ object SireumDistro extends App {
   list                         List available features
   list installed               List installed features
   update                       Update features
-  uninstall <feature>+         Uninstall features and all features 
+  uninstall <feature>+         Uninstall features and all features
                                depending on them
   uninstall all                Uninstall all features and scrub Sireum directory
   version                      Display version
@@ -779,7 +794,7 @@ object SireumDistro extends App {
       val appPath = getAppPath(filePath)
       val dir = new File(sireumDir, appPath)
       if (dir.exists) {
-        if (deleteRec(dir, "Deleting " + appPath, false)) {
+        if (deleteRec(dir, "Deleting " + toOsPath(appPath), false)) {
           deleteRemainingAppFiles(filePath)
           Deleted
         } else Error
@@ -829,43 +844,40 @@ object SireumDistro extends App {
     }
 
   def getMacOsString(filename : String) = {
-    val osString = getOsString
-    val osStringEx = osString + "-10."
+    val osStringEx = OS_STRING + "-10."
     val i = filename.indexOf(osStringEx)
     if (i < 0)
-      osString
+      OS_STRING
     else
       filename.substring(i, i + osStringEx.length + 1)
   }
 
   def getMacOsString = {
-    val osString = getOsString
     val e = new Exec
     e.run(-1, Seq("sw_vers", "-productVersion"), None) match {
       case Exec.StringResult(s, _) =>
         val i = s.lastIndexOf(".")
-        osString + "-" + s.substring(0, i)
+        OS_STRING + "-" + s.substring(0, i)
       case _ => "?"
     }
   }
 
   def isNotForThisPlatform(filename : String) = {
-    val osString = getOsString
-    osString match {
+    OS_STRING match {
       case "mac32" | "mac64" =>
-        if (filename.indexOf(osString) < 0) true
+        if (filename.indexOf(OS_STRING) < 0) true
         else {
           val fOsString = getMacOsString(filename)
-          if (fOsString == osString) false
+          if (fOsString == OS_STRING) false
           else getMacOsString != fOsString
         }
       case _ =>
-        filename.indexOf(osString) < 0
+        filename.indexOf(OS_STRING) < 0
     }
   }
 
   def toOsPath(path : String) =
-    getOsString match {
+    OS_STRING match {
       case "win64" | "win32" => path.replace('/', '\\')
       case _                 => path
     }
@@ -952,7 +964,7 @@ object SireumDistro extends App {
       outPrintln("... done!")
 
       val postInstallFile = new File(installDir,
-        if (getOsString.contains("win")) POST_INSTALL + ".bat" else POST_INSTALL)
+        if (OS_STRING.contains("win")) POST_INSTALL + ".bat" else POST_INSTALL)
       if (postInstallFile.exists) {
         if (postInstallFile.canExecute) {
           outPrint("Running post-installer... ")
@@ -1016,12 +1028,11 @@ object SireumDistro extends App {
     var appPath = filePath
     appPath = removeSappExt(appPath)
     if ((isPlatformSpecific(appPath))) {
-      val osString = getOsString
-      osString match {
+      OS_STRING match {
         case "mac32" | "mac64" =>
           appPath = appPath.replace("-" + getMacOsString(appPath), "")
         case _ =>
-          appPath = appPath.replace("-" + osString, "")
+          appPath = appPath.replace("-" + OS_STRING, "")
       }
     }
     appPath
@@ -1039,7 +1050,7 @@ object SireumDistro extends App {
       } else {
         errPrintln("Unable to move " + appDir.getName + " to " +
           appDirBackup.getName)
-        outPrintln("""This might happen due to file permission issues or it is because some 
+        outPrintln("""This might happen due to file permission issues or it is because some
 Sireum Distro managed apps are currently running.""")
         abnormalExit
         None
@@ -1089,7 +1100,7 @@ Sireum Distro managed apps are currently running.""")
     for (f <- dir.listFiles)
       if ((f.isDirectory && f.getName.indexOf("-backup-") >= 0) || isAppFile(f)
         || f.getName.endsWith(".new") || f.getName.startsWith(POST_INSTALL))
-        deleteRec(f, "Deleting " + relativize(sireumDir, f), false)
+        deleteRec(f, "Deleting " + toOsPath(relativize(sireumDir, f)), false)
       else if (f.isDirectory)
         deleteAppsBackups(f)
   }
@@ -1249,21 +1260,6 @@ Sireum Distro managed apps are currently running.""")
     }
   }
 
-  def getOsString = {
-    val osArch = System.getProperty("os.arch")
-    val is64bit = osArch.contains("64")
-
-    val osName = System.getProperty("os.name").toLowerCase()
-    if (osName.indexOf("mac") >= 0)
-      (if (is64bit) "mac64" else "mac32")
-    else if (osName.indexOf("nux") >= 0)
-      (if (is64bit) "linux64" else "linux32")
-    else if (osName.indexOf("win") >= 0)
-      (if (is64bit) "win64" else "win32")
-    else
-      "unsupported"
-  }
-
   def isPlatformSpecific(filename : String) =
     (filename.indexOf("mac64") >= 0) || (filename.indexOf("mac32") >= 0) ||
       (filename.indexOf("linux64") >= 0) || (filename.indexOf("linux32") >= 0) ||
@@ -1283,7 +1279,7 @@ Sireum Distro managed apps are currently running.""")
         unzipEntry(zipFile, e, outputDir, dirLastModMap)
       }
 
-      if (getOsString.indexOf("win") < 0) {
+      if (OS_STRING.indexOf("win") < 0) {
         val ze = zipFile.getEntry(".sapp_info")
         if (ze != null) {
           val is = zipFile.getInputStream(ze)
@@ -1355,7 +1351,7 @@ Sireum Distro managed apps are currently running.""")
       try Files.createSymbolicLink(outputPath, path)
       catch { case e : Exception => }
       if (!Files.isSymbolicLink(outputPath))
-        getOsString match {
+        OS_STRING match {
           case "linux32" | "linux64" | "mac64" | "mac32" =>
             new Exec().
               run(-1, Seq("ln", "-s", linkPath, outputFile.getName),
