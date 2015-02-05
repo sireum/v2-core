@@ -133,3 +133,20 @@ private def $name$(input : JsAny): $type$ = {
    }
 }
 >>
+
+eitherToJs(name, type, toFuncLeft, toFuncRight) ::= <<
+private def $name$(input : $type$): JsAny = {
+  input match {
+    case Left(x) => obj("value" -> $toFuncLeft$(x), "type" -> "left")
+    case Right(x) => obj("value" -> $toFuncRight$(x), "type" -> "right")
+  }
+}
+>>
+eitherToScala(name, type,  toFuncLeft, toFuncRight) ::= <<
+private def $name$(input : JsAny): $type$ = {
+  input match {
+     case x if x.dyn.selectDynamic("type") == "left" => Left($toFuncLeft$(x.dyn.selectDynamic("value")))
+     case x if x.dyn.selectDynamic("type") == "right" => Right($toFuncRight$(x.dyn.selectDynamic("value")))
+   }
+}
+>>

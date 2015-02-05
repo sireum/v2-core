@@ -28,18 +28,35 @@ object JsConvBuilder {
   def run(cmode : JsGenMode) {
     new JsConvBuilder().execute(cmode)
   }
+  
   def main(args : Array[String]) {
     val classpath = System.getProperty("java.class.path")
     val classpathEntries = classpath.split(File.pathSeparator)
-    val cp = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan-server-plugin/bin"//  +: classpathEntries.toList
-    //cp foreach println
+    val cp1 = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan-server-plugin/bin"//  +: classpathEntries.toList
+    val cp2 = "/Users/jakeehrlich/Documents/workspace/client-server/sireum-project/bin"
+      //cp foreach println
     val example = JsGenMode(
         classNames = Vector[String](
             "org.sireum.bakar.kiasan.message.UnitInfoStoreMessage",
-            "org.sireum.bakar.kiasan.message.AnalysisProcessRequestMessage"
-            ,"org.sireum.bakar.kiasan.message.StatObject"
+            "org.sireum.bakar.kiasan.message.AnalysisProcessRequestMessage",
+            "org.sireum.bakar.kiasan.message.StatObject",
+            "org.sireum.bakar.kiasan.message.ProjectOpenMessage",
+            "org.sireum.bakar.kiasan.message.ProjectCloseMessage",
+            "org.sireum.bakar.kiasan.message.FileContentMessage",
+            "org.sireum.bakar.kiasan.message.ResourceChangedMessage",
+            "org.sireum.bakar.kiasan.message.QueuedAnalysisMessage",
+            "org.sireum.bakar.kiasan.message.BeginAnalysisMessage",
+            "org.sireum.bakar.kiasan.message.UpdateUnitInfoMessage",
+            "org.sireum.bakar.kiasan.message.TerminatedAnalysisMessage",
+            "org.sireum.bakar.kiasan.message.EndAnalysisMessage",
+            "org.sireum.bakar.kiasan.message.ConsoleMessage",
+            "org.sireum.bakar.kiasan.message.PathMessage",
+            "org.sireum.bakar.kiasan.message.PathMessageStore",
+            "org.sireum.bakar.kiasan.message.ProgressMessage",
+            "org.sireum.bakar.kiasan.message.StateMessage",
+            "org.sireum.bakar.kiasan.message.ProblemsMessage"
         ),
-        classpath = List(cp).toVector,
+        classpath = Vector(cp1, cp2),
         dir = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan.js/src/main/scala/org/sireum/js/bakar/kiasan",
         packageName = "org.sireum.js.bakar.kiasan"
     )
@@ -69,6 +86,7 @@ class JsConvBuilder {
   private val mapType = typeOf[scala.collection.immutable.Map[_, _]]
   private val arrType = typeOf[Array[_]]
   private val vecType = typeOf[Vector[_]]
+  private val eitherType = typeOf[Either[_, _]]
   
   private var classLoader : URLClassLoader = null
   
@@ -153,11 +171,11 @@ class JsConvBuilder {
   }
   
   private def addConvertMap(tipe : Type) {
-    tipe.typeArgs foreach { tipeArg =>
+    tipe.dealias.typeArgs foreach { tipeArg =>
       addConv(tipeArg)
     }
-    val keyArg = tipe.typeArgs(0)
-    val valArg = tipe.typeArgs(1)
+    val keyArg = tipe.dealias.typeArgs(0)
+    val valArg = tipe.dealias.typeArgs(1)
     val toScalaMap = make("toScalaMap", 
         "keyClassName" -> keyArg, 
         "valueClassName" -> valArg, 
@@ -213,13 +231,13 @@ class JsConvBuilder {
   
   private def addConvertTuple(tipe : Type) {
     //convert each stored type
-    tipe.typeArgs foreach { tipeArg =>
+    tipe.dealias.typeArgs foreach { tipeArg =>
       addConv(tipeArg)
     }
     //now add the conversion for the actual tuple type
     val toJs = make("toJs", "className" -> tipe, "name" -> makeJsName(tipe))
     val toScala = make("toScala", "className" -> tipe, "name" -> makeScalaName(tipe))
-    tipe.typeArgs zip (1 to getNumParamsTuple(tipe)) foreach { param =>
+    tipe.dealias.typeArgs zip (1 to getNumParamsTuple(tipe)) foreach { param =>
       toJs.add("params", make("assignToDict", 
           "paramName" -> ("_" + param._2.toString()),
           "toFunc" -> makeJsName(param._1)))
@@ -237,7 +255,7 @@ class JsConvBuilder {
     val toJs = make("leavesToJs",
           "name" -> makeJsName(tipe), 
           "type" -> tipe)
-      val toScala = make("leavesToScala", 
+    val toScala = make("leavesToScala", 
           "name" -> makeScalaName(tipe), 
           "type" -> tipe)
     seq foreach {implType =>
@@ -251,6 +269,28 @@ class JsConvBuilder {
     addConversion(tipe, toJs, toScala)
   }
   
+  private def addEitherConversion(tipe : Type) {
+    //convert each stored type
+    tipe.dealias.typeArgs foreach { tipeArg =>
+      addConv(tipeArg)
+    }
+    val leftJs = makeJsName(tipe.dealias.typeArgs(0))
+    val leftScala = makeScalaName(tipe.dealias.typeArgs(0))
+    val rightJs = makeJsName(tipe.dealias.typeArgs(1))
+    val rightScala = makeScalaName(tipe.dealias.typeArgs(1))
+    val toJs = make("eitherToJs",
+          "name" -> makeJsName(tipe), 
+          "type" -> tipe,
+          "toFuncLeft" -> leftJs,
+          "toFuncRight" -> rightJs)
+    val toScala = make("eitherToScala", 
+          "name" -> makeScalaName(tipe), 
+          "type" -> tipe,
+          "toFuncLeft" -> leftScala,
+          "toFuncRight" -> rightScala)
+    addConversion(tipe, toJs, toScala)
+  }
+  
   private def addConv(tipe : Type) {
     //this serves to dispatch to diffrent functions based on what kind of type
     //we are looking at
@@ -261,6 +301,8 @@ class JsConvBuilder {
       addConvertVec(tipe)
     } else if(tipe.erasure <:< mapType.erasure) {
       addConvertMap(tipe)
+    } else if(tipe.erasure <:< eitherType.erasure) {
+      addEitherConversion(tipe)
     } else if(isTupleType(tipe)) {
       addConvertTuple(tipe)
     } else if(isLeavesType(tipe)) {
