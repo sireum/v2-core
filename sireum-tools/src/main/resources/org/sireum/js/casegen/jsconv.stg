@@ -55,6 +55,7 @@ toJsName(type, id) ::= <<
 
 toJs(className, params, name) ::= <<
 private def $name$(input : $className$): JsAny = {
+  if(input == null) return null
   val out = obj().asInstanceOf[JsDictionary[JsAny]]
   $params; separator="\n"$
   out
@@ -63,6 +64,7 @@ private def $name$(input : $className$): JsAny = {
 
 toScala(className, args, name) ::= <<
 private def $name$(input : JsAny): $className$ = {
+  if(input == null) return null
   val dict = input.asInstanceOf[JsDictionary[JsAny]]
   new $className$(
     $args; separator=",\n"$
@@ -72,6 +74,7 @@ private def $name$(input : JsAny): $className$ = {
 
 fromVecToJs(className, name, toFunc) ::= <<
 private def $name$(input : Seq[$className$]): JsAny = {
+   if(input == null) return null
    input.foldLeft (new JsArray[JsAny]()) { (acc, elem) => {
        acc :+ $toFunc$(elem)
      }
@@ -81,6 +84,7 @@ private def $name$(input : Seq[$className$]): JsAny = {
 
 toScalaVec(className, elementType, name, toFunc) ::= <<
 private def $name$(input : JsAny): Seq[$className$] = {
+  if(input == null) return null
   val arr = input.asInstanceOf[JsArray[JsAny]]
   var out = Vector[$className$]()
   arr foreach { x =>
@@ -92,6 +96,7 @@ private def $name$(input : JsAny): Seq[$className$] = {
 
 fromMapToJs(keyClassName, valueClassName, name, toFunc1, toFunc2) ::= <<
 private def $name$(input : Map[$keyClassName$, $valueClassName$]): JsAny = {
+  if(input == null) return null
   val out = obj().asInstanceOf[JsDictionary[JsAny]]
   for(x <- input) {
     out($toFunc1$(x._1).toString()) = $toFunc2$(x._2)
@@ -102,6 +107,7 @@ private def $name$(input : Map[$keyClassName$, $valueClassName$]): JsAny = {
 
 toScalaMap(keyClassName, valueClassName, name, toFunc1, toFunc2) ::= <<
 private def $name$(input : JsAny): Map[$keyClassName$, $valueClassName$] = {
+  if(input == null) return null
   val dict = input.asInstanceOf[JsDictionary[JsAny]]
   var out = Map[$keyClassName$, $valueClassName$]()
   dict foreach { (x : (String, JsAny)) =>
@@ -121,6 +127,7 @@ case x if x.dyn.selectDynamic("type") == "$subType$" => $toFunc$(x.dyn.selectDyn
 
 leavesToJs(name, cases, type) ::= <<
 private def $name$(input : $type$): JsAny = {
+   if(input == null) return null
    input match {
      $cases; separator="\n"$
    }
@@ -128,6 +135,7 @@ private def $name$(input : $type$): JsAny = {
 >>
 leavesToScala(name, cases, type) ::= <<
 private def $name$(input : JsAny): $type$ = {
+  if(input == null) return null
   input match {
      $cases; separator="\n"$
    }
@@ -136,6 +144,7 @@ private def $name$(input : JsAny): $type$ = {
 
 eitherToJs(name, type, toFuncLeft, toFuncRight) ::= <<
 private def $name$(input : $type$): JsAny = {
+  if(input == null) return null
   input match {
     case Left(x) => obj("value" -> $toFuncLeft$(x), "type" -> "left")
     case Right(x) => obj("value" -> $toFuncRight$(x), "type" -> "right")
@@ -144,6 +153,7 @@ private def $name$(input : $type$): JsAny = {
 >>
 eitherToScala(name, type,  toFuncLeft, toFuncRight) ::= <<
 private def $name$(input : JsAny): $type$ = {
+  if(input == null) return null
   input match {
      case x if x.dyn.selectDynamic("type") == "left" => Left($toFuncLeft$(x.dyn.selectDynamic("value")))
      case x if x.dyn.selectDynamic("type") == "right" => Right($toFuncRight$(x.dyn.selectDynamic("value")))
