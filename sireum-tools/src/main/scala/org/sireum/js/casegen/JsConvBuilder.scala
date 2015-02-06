@@ -34,28 +34,35 @@ object JsConvBuilder {
     val classpathEntries = classpath.split(File.pathSeparator)
     val cp1 = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan-server-plugin/bin"//  +: classpathEntries.toList
     val cp2 = "/Users/jakeehrlich/Documents/workspace/client-server/sireum-project/bin"
+    val cp3 = "/Users/jakeehrlich/Documents/workspace/client-server/sireum-server/lib/prickle.jar"
     val example = JsGenMode(
-        classNames = Vector[String](
-            "org.sireum.bakar.kiasan.message.UnitInfoStoreMessage",
-            "org.sireum.bakar.kiasan.message.AnalysisProcessRequestMessage",
-            "org.sireum.bakar.kiasan.message.StatObject",
-            "org.sireum.bakar.kiasan.message.ProjectOpenMessage",
-            "org.sireum.bakar.kiasan.message.ProjectCloseMessage",
-            "org.sireum.bakar.kiasan.message.FileContentMessage",
-            "org.sireum.bakar.kiasan.message.ResourceChangedMessage",
-            "org.sireum.bakar.kiasan.message.QueuedAnalysisMessage",
-            "org.sireum.bakar.kiasan.message.BeginAnalysisMessage",
-            "org.sireum.bakar.kiasan.message.UpdateUnitInfoMessage",
-            "org.sireum.bakar.kiasan.message.TerminatedAnalysisMessage",
-            "org.sireum.bakar.kiasan.message.EndAnalysisMessage",
-            "org.sireum.bakar.kiasan.message.ConsoleMessage",
-            "org.sireum.bakar.kiasan.message.PathMessage",
-            "org.sireum.bakar.kiasan.message.PathMessageStore",
-            "org.sireum.bakar.kiasan.message.ProgressMessage",
-            "org.sireum.bakar.kiasan.message.StateMessage",
-            "org.sireum.bakar.kiasan.message.ProblemsMessage"
-        ),
-        classpath = Vector(cp1, cp2),
+        classNames = Vector(
+            "UnitInfoStoreMessage",
+            "LocUnitInfo",
+            "NameUnitInfo",
+            "StatObject",
+            "AnalysisRejectedResponseMessage",
+            "AnalysisBeginResponseMessage",
+            "AnalysisEndResponseMessage",
+            "ProjectOpenMessage",
+            "ProjectCloseMessage",
+            "FileContentMessage",
+            "ResourceChangedMessage",
+            "ErrorReportMessage",
+            "QueuedAnalysisMessage",
+            "BeginAnalysisMessage",
+            "UpdateUnitInfoMessage",
+            "TerminatedAnalysisMessage",
+            "EndAnalysisMessage",
+            "ConsoleMessage",
+            "PathMessage",
+            "PathMessageStore",
+            "ProgressMessage",
+            "StateMessage",
+            "ProblemsMessage",
+            "FileSavedMessage"
+        ) map (x => "org.sireum.bakar.kiasan.message." ++ x),
+        classpath = Vector(cp1, cp2, cp3),
         dir = "/Users/jakeehrlich/Documents/workspace/sireum-bakar-private/sireum-bakar-kiasan.js/src/main/scala/org/sireum/js/bakar/kiasan",
         packageName = "org.sireum.js.bakar.kiasan"
     )
@@ -236,18 +243,33 @@ class JsConvBuilder {
     (toJs, toScala)
   }
   
+  private def getPackageNameFromType(tipe : Type): String = {
+    tipe.typeSymbol.fullName.reverse dropWhile { x => x != '.' } reverse
+  }
+  
   private def addLeavesConversion(tipe : Type): (ST, ST) = {
+    //first get the jsMap field
     val clazz = Class.forName(tipe.typeSymbol.asClass.fullName, true, classLoader)
-    val seq = clazz.getMethod(jsMapName).invoke(null).asInstanceOf[Seq[Class[_]]]
+    val seq = clazz.getMethod(jsMapName).invoke(null).asInstanceOf[Seq[String]]
+    //make the function to convert the diffrent cases of the super type 
     val toJs = make("leavesToJs",
           "name" -> makeJsName(tipe), 
           "type" -> tipe)
     val toScala = make("leavesToScala", 
           "name" -> makeScalaName(tipe), 
           "type" -> tipe)
-    seq foreach {implType =>
+    //go though each implementing class name
+    seq foreach {implName =>
+      var implType : Class[_] = null
+      //get the proper Class[_] for the given implementation name
+      if(implName.contains(".")) implType = Class.forName(implName, true, classLoader)
+      else {
+        val fullName = getPackageNameFromType(tipe) + implName
+        implType = Class.forName(fullName, true, classLoader)
+      }
       val caseClass = CaseClass.caseClassType(implType, true)
-      addConv(caseClass.tipe) //now we can be sure that this subtype has been implemented
+      //now we can be sure that this subtype has been implemented
+      addConv(caseClass.tipe) 
       val leafToJs = make("leafToJs", "subType" -> caseClass.tipe, "toFunc" -> makeJsName(caseClass.tipe))
       val leafToScala = make("leafToScala", "subType" -> caseClass.tipe, "toFunc" -> makeScalaName(caseClass.tipe))
       toJs.add("cases", leafToJs)
