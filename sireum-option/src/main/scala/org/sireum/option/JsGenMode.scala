@@ -14,7 +14,7 @@ class JsGenOption {
  * @author <a href="mailto:jake.h.ehrlich@gmail.com">Jake Ehrlich</a>
  */
 @Main(value = "jsgen", className = "org.sireum.js.casegen.JsConvBuilder", featureName = "Sireum Tools")
-@Check(classOf[JsGenOption]) //  
+//@Check(classOf[JsGenOption]) //  
 case class JsGenMode(
   //@Check(classOf[JsGenOption]) //
   @Option(shortKey = "d", longKey = "directory", desc = "Directory where generated class should be saved") // 
@@ -43,6 +43,6 @@ case class JsGenMode(
   var classpath : ISeq[String] = ivectorEmpty,
   
   @Arg(index = 0, value="class-name") //
-  @Check(classOf[JsGenOption])
+  //@Check(classOf[JsGenOption])
   var classNames : ISeq[String] = ivectorEmpty
 )
