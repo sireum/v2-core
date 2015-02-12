@@ -67,7 +67,8 @@ case class SireumToolsMode(
   antlr : TreeVisitorGenMode = TreeVisitorGenMode(),
   sapper : SapperMode = SapperMode(),
   upickler : UPicklerMode = UPicklerMode(),
-  jvm : JVMMode = JVMMode())
+  jvm : JVMMode = JVMMode(),
+  jsgen : JsGenMode = JsGenMode())
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>
