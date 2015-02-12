@@ -27,6 +27,9 @@ object Topi {
       case (TopiSolver.Z3, TopiMode.Process) =>
         new Z3Process(TopiSolver.Z3.exeFilePath, waitTime,
           TopiProcess.mine(solver, mode, extensions : _*) : _*)
+      case (TopiSolver.CVC4, TopiMode.Process) =>
+        new CVC4Process(TopiSolver.CVC4.exeFilePath, waitTime,
+          TopiProcess.mine(solver, mode, extensions : _*) : _*)
     }
   }
   
@@ -98,8 +101,38 @@ object TopiSolver extends Enum {
       z3.get
     }
   }
+  
+  object CVC4 extends Type {
+    def exeFilePath : String = {
+      var cvc4 : Option[String] = None
 
-  def elements = ivector(Z3)
+      val sireumHome = System.getenv("SIREUM_HOME")
+      if (sireumHome != null) {
+        // var cvc4Path = "apps/cvc4/bin/cvc4"
+        var cvc4Path = "/opt/local/bin/cvc4"
+        OsArchUtil.detect match {
+          case OsArch.Win32 | OsArch.Win64 => cvc4Path += ".exe"
+          case _                           =>
+        }
+        val f = new File(sireumHome, cvc4Path)
+        if (f.canExecute)
+          cvc4 = Some(f.getAbsolutePath)
+      }
+
+      if (cvc4.isEmpty) {
+        val cvc4Path = System.getenv("cvc4")
+        if (cvc4Path != null)
+          cvc4 = Some(new File(cvc4Path).getAbsolutePath)
+      }
+
+      if (cvc4.isEmpty)
+        cvc4 = Some("cvc4")
+        
+      cvc4.get
+    }
+  }
+
+  def elements = ivector(Z3, CVC4)
 }
 
 /**
