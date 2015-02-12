@@ -333,7 +333,15 @@ class JsConvBuilder {
     classLoader = new URLClassLoader(cmode.classpath.map(x => new File(x).toURI().toURL()).toArray)
     cmode.classNames foreach { className =>
       val clazz = Class.forName(className, true, classLoader)
-      val caseClass = CaseClass.caseClassType(clazz, true)
+      var caseClass : CaseClass = null
+      try {
+        caseClass = CaseClass.caseClassType(clazz, true)
+      } catch {
+        case e : Exception => {
+          println("Error: class '" + clazz + "' must be a case class")
+          return
+        }
+      }
       //now convert the type all all parameters and such, and all parameters parameters, etc...
       addConv(caseClass.tipe)
       //now that we have created the conversions for all the types, add the outward interface
