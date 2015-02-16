@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2011-2013 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 package org.sireum.pilar.ast
@@ -122,7 +122,25 @@ object PilarAstUtil {
 
   @inline
   def toLiteral(n : BigInt) =
-    LiteralExp(LiteralType.INTEGER, n, n.toString())
+    LiteralExp(LiteralType.INTEGER, n, n.toString)
+
+  @inline
+  def nullLiteral =
+    LiteralExp(LiteralType.NULL, null, "null")
+
+  @inline
+  def toLiteral(rawString : String) = {
+    import org.apache.commons.lang3.StringEscapeUtils
+    var s = rawString
+    s = s.substring(1, s.length() - 1)
+    s = StringEscapeUtils.unescapeJava(s)
+
+    LiteralExp(LiteralType.STRING, s, s)
+  }
+
+  @inline
+  def toLiteral(b : Boolean) =
+    LiteralExp(LiteralType.BOOLEAN, b, b.toString)
 
   @inline
   def isEquality(op : BinaryOp) = op == EQ_BINOP || op == NE_BINOP

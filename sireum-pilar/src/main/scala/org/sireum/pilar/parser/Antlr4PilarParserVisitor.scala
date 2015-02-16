@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2014 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2014 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 package org.sireum.pilar.parser
@@ -481,13 +481,13 @@ class Antlr4PilarParserVisitor(
     SetTypeFragment() at ctx
 
   override def visitTrueConstant(ctx : TrueConstantContext) =
-    LiteralExp(LiteralType.BOOLEAN, true, "true") at ctx
+    PilarAstUtil.toLiteral(true) at ctx
 
   override def visitFalseConstant(ctx : FalseConstantContext) =
-    LiteralExp(LiteralType.BOOLEAN, false, "false") at ctx
+    PilarAstUtil.toLiteral(false) at ctx
 
   override def visitNullConstant(ctx : NullConstantContext) =
-    LiteralExp(LiteralType.NULL, null, "null")
+    PilarAstUtil.nullLiteral at ctx
 
   override def visitIdConstant(ctx : IdConstantContext) =
     NameExp(nameUser(ctx.ID)) at ctx
@@ -538,12 +538,7 @@ class Antlr4PilarParserVisitor(
   }
 
   override def visitStringConstant(ctx : StringConstantContext) = {
-    import org.apache.commons.lang3.StringEscapeUtils
-    var s = ctx.getText
-    s = s.substring(1, s.length() - 1)
-    s = StringEscapeUtils.unescapeJava(s)
-
-    LiteralExp(LiteralType.STRING, s, s) at ctx
+    PilarAstUtil.toLiteral(ctx.getText) at ctx
   }
 
   override def visitMultilineStringConstant(ctx : MultilineStringConstantContext) = {
