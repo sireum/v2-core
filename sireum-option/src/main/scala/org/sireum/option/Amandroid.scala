@@ -126,10 +126,9 @@ case class SireumAmandroidStagingMode(
 case class SireumAmandroidGenCallGraphMode(
 
   general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "",
-
-  @OptionalArg(index = 1, value = "Output file") var outFile : String = "")
+  @Arg(index = 0, value = "Source file") var srcFile : String = "")
 
 @Group("General Options")
 case class SireumAmandroidGeneralGroup(
