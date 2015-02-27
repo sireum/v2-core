@@ -1,6 +1,6 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SUBVERSIVE_DROP_URL=http://ftp.osuosl.org/pub/eclipse/technology/subversive/2.0/builds/luna/Subversive-2.0.0.I20140609-1700.zip
+export SUBVERSIVE_DROP_URL=http://ftp.osuosl.org/pub/eclipse/technology/subversive/2.0/builds/luna/Subversive-2.0.4.I20150123-1700.zip
 export SUBVERSIVE_DROP=${SUBVERSIVE_DROP_URL##*/}
 if [ ! -f $SUBVERSIVE_DROP ]; then
   echo
@@ -9,7 +9,7 @@ if [ ! -f $SUBVERSIVE_DROP ]; then
   wget $SUBVERSIVE_DROP_URL
   echo
 fi
-export SUBVERSIVE_CONN_DROP_URL=http://community.polarion.com/projects/subversive/download/eclipse/4.0/builds/Subversive-connectors-4.0.2.I20140528-1700.zip
+export SUBVERSIVE_CONN_DROP_URL=http://community.polarion.com/projects/subversive/download/eclipse/4.0/builds/Subversive-connectors-4.1.3.I20150214-1700.zip
 export SUBVERSIVE_CONN_DROP=${SUBVERSIVE_CONN_DROP_URL##*/}
 if [ ! -f $SUBVERSIVE_CONN_DROP ]; then
   echo
