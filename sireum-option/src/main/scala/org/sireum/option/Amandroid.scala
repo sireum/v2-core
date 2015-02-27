@@ -128,6 +128,7 @@ case class SireumAmandroidGenCallGraphMode(
   general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
   analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
+  @Option(shortKey = "api", longKey = "api-only", desc = "Only keep api calls in CG.") var apionly : Boolean = false,
   @Arg(index = 0, value = "Source file") var srcFile : String = "")
 
 @Group("General Options")
