@@ -1,6 +1,6 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export VRAPPER_DROP_URL=http://downloads.sourceforge.net/project/vrapper/vrapper/0.50.0/vrapper_0.50.0_20141207.zip
+export VRAPPER_DROP_URL=http://downloads.sourceforge.net/project/vrapper/vrapper/0.52.0/vrapper_0.52.1_20150211.zip
 export VRAPPER_DROP=${VRAPPER_DROP_URL##*/}
 if [ ! -f "$VRAPPER_DROP" ]; then
   echo
