@@ -39,6 +39,25 @@ object MessageLevel extends Enum {
   def elements = ivector(NO, CRITICAL, NORMAL, VERBOSE)
 }
 
+object GraphFormat extends Enum {
+  sealed abstract class Type extends EnumElem
+  object DOT extends Type
+  object GraphML extends Type
+  object GML extends Type
+  object TEXT extends Type
+
+  def elements = ivector(DOT, GraphML, GML, TEXT)
+}
+
+object GraphType extends Enum {
+  sealed abstract class Type extends EnumElem
+  object FULL extends Type
+  object CALL extends Type
+  object API extends Type
+
+  def elements = ivector(FULL, CALL, API)
+}
+
 @Main(value = "decompile",
   className = "org.sireum.amandroid.cli.DecompilerCli",
   featureName = "Sireum Amandroid Cli:Amandroid.sapp",
@@ -128,7 +147,8 @@ case class SireumAmandroidGenCallGraphMode(
   general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
   analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Option(shortKey = "api", longKey = "api-only", desc = "Only keep api calls in CG.") var apionly : Boolean = false,
+  @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format : GraphFormat.Type = GraphFormat.TEXT,
+  @Option(shortKey = "gt", longKey = "graph-type", desc = "Type of the graph.") var graphtyp : GraphType.Type = GraphType.FULL,
   @Arg(index = 0, value = "Source file") var srcFile : String = "")
 
 @Group("General Options")
