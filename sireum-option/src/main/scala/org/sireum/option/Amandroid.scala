@@ -18,7 +18,7 @@ case class SireumAmandroidMode(
   cryptoMisuse : SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
   taintAnalysis : SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
   staging : SireumAmandroidStagingMode = SireumAmandroidStagingMode(),
-  genCallGraph : SireumAmandroidGenCallGraphMode = SireumAmandroidGenCallGraphMode())
+  genCallGraph : SireumAmandroidGenGraphMode = SireumAmandroidGenGraphMode())
 
 object DumpSource extends Enum {
   sealed abstract class Type extends EnumElem
@@ -52,10 +52,10 @@ object GraphFormat extends Enum {
 object GraphType extends Enum {
   sealed abstract class Type extends EnumElem
   object FULL extends Type
-  object CALL extends Type
+  object SIMPLE_CALL extends Type
   object API extends Type
 
-  def elements = ivector(FULL, CALL, API)
+  def elements = ivector(FULL, SIMPLE_CALL, API)
 }
 
 @Main(value = "decompile",
@@ -142,7 +142,7 @@ case class SireumAmandroidStagingMode(
   className = "org.sireum.amandroid.cli.GenCallGraphCli",
   featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Generate CallGraph for Android apk and store it")
-case class SireumAmandroidGenCallGraphMode(
+case class SireumAmandroidGenGraphMode(
 
   general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
   analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
