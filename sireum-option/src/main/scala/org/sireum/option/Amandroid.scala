@@ -44,18 +44,18 @@ object GraphFormat extends Enum {
   object DOT extends Type
   object GraphML extends Type
   object GML extends Type
-  object TEXT extends Type
 
-  def elements = ivector(DOT, GraphML, GML, TEXT)
+  def elements = ivector(DOT, GraphML, GML)
 }
 
 object GraphType extends Enum {
   sealed abstract class Type extends EnumElem
   object FULL extends Type
   object SIMPLE_CALL extends Type
+  object DETAILED_CALL extends Type
   object API extends Type
 
-  def elements = ivector(FULL, SIMPLE_CALL, API)
+  def elements = ivector(FULL, SIMPLE_CALL, DETAILED_CALL, API)
 }
 
 @Main(value = "decompile",
@@ -138,16 +138,16 @@ case class SireumAmandroidStagingMode(
 
   @Arg(index = 0, value = "Source file") var srcFile : String = "")
 
-@Main(value = "genCallGraph",
-  className = "org.sireum.amandroid.cli.GenCallGraphCli",
+@Main(value = "genGraph",
+  className = "org.sireum.amandroid.cli.GenGraphCli",
   featureName = "Sireum Amandroid Cli:Amandroid.sapp",
-  desc = "Generate CallGraph for Android apk and store it")
+  desc = "Generate Graph for Android apk and store it")
 case class SireumAmandroidGenGraphMode(
 
   general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
   analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format : GraphFormat.Type = GraphFormat.TEXT,
+  @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format : GraphFormat.Type = GraphFormat.GraphML,
   @Option(shortKey = "gt", longKey = "graph-type", desc = "Type of the graph.") var graphtyp : GraphType.Type = GraphType.FULL,
   @Arg(index = 0, value = "Source file") var srcFile : String = "")
 
