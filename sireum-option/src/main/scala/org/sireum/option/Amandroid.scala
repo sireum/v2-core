@@ -41,11 +41,10 @@ object MessageLevel extends Enum {
 
 object GraphFormat extends Enum {
   sealed abstract class Type extends EnumElem
-  object DOT extends Type
   object GraphML extends Type
   object GML extends Type
 
-  def elements = ivector(DOT, GraphML, GML)
+  def elements = ivector(GraphML, GML)
 }
 
 object GraphType extends Enum {
