@@ -1,6 +1,20 @@
 #!/bin/bash
 export SIREUM_DIST=true
 export SIREUM_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
+if [ -d $SIREUM_HOME/apps/platform/java ]; then
+  export JAVA_HOME=$SIREUM_HOME/apps/platform/java
+  export PATH=$JAVA_HOME/bin:$PATH
+else
+  echo "Sireum is installed without the Platform feature; please reinstall Sireum."
+  exit -1
+fi
+if [ -d $SIREUM_HOME/apps/platform/scala ]; then
+  export SCALA_HOME=$SIREUM_HOME/apps/platform/scala
+  export PATH=$SCALA_HOME/bin:$PATH
+else
+  echo "Sireum is installed without the Platform feature; please reinstall Sireum."
+  exit -1
+fi
 if [ -f $0.jar ]; then
   if [ $0 -nt $0.jar ]; then
     echo "Please wait while Sireum is loading..."
@@ -10,15 +24,7 @@ else
   echo "Please wait while Sireum is loading..."
   echo
 fi
-if [ -d $SIREUM_HOME/apps/platform/java ]; then
-  export JAVA_HOME=$SIREUM_HOME/apps/platform/java
-  export PATH=$JAVA_HOME/bin:$PATH
-fi
-if [ -d $SIREUM_HOME/apps/platform/scala ]; then
-  export SCALA_HOME=$SIREUM_HOME/apps/platform/scala
-  export PATH=$SCALA_HOME/bin:$PATH
-fi
-${SCALA_BIN:=scala} -target:jvm-1.7 -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
+scala -target:jvm-1.7 -nocompdaemon -savecompiled $SCALA_OPTIONS $0 $SIREUM_HOME "$@"
 code=$?
 export RELOAD=false
 if [ -d $SIREUM_HOME/apps/platform/java.new ]; then

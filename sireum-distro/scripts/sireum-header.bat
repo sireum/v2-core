@@ -6,15 +6,6 @@ SET SIREUM_HOME=%~dp0
 SET SCRIPT=%SIREUM_HOME%%~nx0
 SET FILE1=%SCRIPT%
 SET FILE2=%SCRIPT%.jar
-IF NOT EXIST %FILE2% ( 
-  ECHO Please wait while Sireum is loading...
-  GOTO END 
-)
-FOR /F %%i IN ('DIR /B /O:D %FILE1% %FILE2%') DO SET NEWEST=%%i
-IF %NEWEST%==%~nx0 (
-  ECHO Please wait while Sireum is loading... 
-)
-:END
 IF EXIST %SIREUM_HOME%apps\platform\java (
   SET JAVA_HOME=%SIREUM_HOME%apps\platform\java
   SET "PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%"
@@ -22,11 +13,23 @@ IF EXIST %SIREUM_HOME%apps\platform\java (
 IF EXIST %SIREUM_HOME%apps\platform\scala (
   SET SCALA_HOME=%SIREUM_HOME%apps\platform\scala
   SET "PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%"
+) ELSE (
+  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  EXIT /B -1
 )
-IF NOT DEFINED SCALA_BIN (
-  SET SCALA_BIN=scala
+IF NOT EXIST %FILE2% ( 
+  ECHO Please wait while Sireum is loading...
+  GOTO END 
+) ELSE (
+  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  EXIT /B -1
 )
-CALL %SCALA_BIN% -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+FOR /F %%i IN ('DIR /B /O:D %FILE1% %FILE2%') DO SET NEWEST=%%i
+IF %NEWEST%==%~nx0 (
+  ECHO Please wait while Sireum is loading... 
+)
+:END
+CALL scala -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
 SET RELOAD=false
 IF EXIST %SIREUM_HOME%apps\platform\java.new (

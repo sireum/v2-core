@@ -6,15 +6,6 @@ SET SIREUM_HOME=%~dp0
 SET SCRIPT=%SIREUM_HOME%%~nx0
 SET FILE1=%SCRIPT%
 SET FILE2=%SCRIPT%.jar
-IF NOT EXIST %FILE2% ( 
-  ECHO Please wait while Sireum is loading...
-  GOTO END 
-)
-FOR /F %%i IN ('DIR /B /O:D %FILE1% %FILE2%') DO SET NEWEST=%%i
-IF %NEWEST%==%~nx0 (
-  ECHO Please wait while Sireum is loading... 
-)
-:END
 IF EXIST %SIREUM_HOME%apps\platform\java (
   SET JAVA_HOME=%SIREUM_HOME%apps\platform\java
   SET "PATH=%SIREUM_HOME%apps\platform\java\bin;%PATH%"
@@ -22,11 +13,23 @@ IF EXIST %SIREUM_HOME%apps\platform\java (
 IF EXIST %SIREUM_HOME%apps\platform\scala (
   SET SCALA_HOME=%SIREUM_HOME%apps\platform\scala
   SET "PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%"
+) ELSE (
+  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  EXIT /B -1
 )
-IF NOT DEFINED SCALA_BIN (
-  SET SCALA_BIN=scala
+IF NOT EXIST %FILE2% ( 
+  ECHO Please wait while Sireum is loading...
+  GOTO END 
+) ELSE (
+  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  EXIT /B -1
 )
-CALL %SCALA_BIN% -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+FOR /F %%i IN ('DIR /B /O:D %FILE1% %FILE2%') DO SET NEWEST=%%i
+IF %NEWEST%==%~nx0 (
+  ECHO Please wait while Sireum is loading... 
+)
+:END
+CALL scala -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
 SET RELOAD=false
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
@@ -106,7 +109,6 @@ object SireumDistro extends App {
     def setProperty(k : Object, v : Object) : Object
   }
 
-  final val METADATA_DIR = ".metadata/"
   final val BUILD_FILENAME = "BUILD"
   final val INSTALLED_FEATURES_FILENAME = "installed-features.txt"
   final val SAPP_EXT = ".sapp"
@@ -167,6 +169,11 @@ object SireumDistro extends App {
   }
 
   val sireumDir = new File(args(0))
+  val appsDir = new File(sireumDir, "apps")
+  val platformDir = new File(appsDir, "platform")
+  val metadataDir = new File(sireumDir, ".metadata")
+  val metadataAppsDir = new File(metadataDir, "apps")
+  val metadataPlatformDir = new File(metadataAppsDir, "platform")
   var unmanagedDir = new File(System.getProperty("user.home"))
 
   var _features = Map[String, List[String]]()
@@ -236,16 +243,6 @@ object SireumDistro extends App {
   }
 
   try {
-    if ((util.Properties.javaVersion.charAt(2) - '0') < 7) {
-      outPrintln("This version of Sireum requires at least Java 7")
-      deleteJar
-      sys.exit(-1)
-    }
-    if (util.Properties.versionString.substring(8, 12) != "2.11") {
-      outPrintln("This version of Sireum requires Scala 2.11")
-      deleteJar
-      sys.exit(-1)
-    }
     if (OS_STRING == "unsupported") {
       outPrintln(
         "Running on an unsupported platform: some features maybe unavailable")
@@ -322,16 +319,17 @@ object SireumDistro extends App {
           if (last) {
             errPrintln("Please specify features to uninstall")
           } else {
-            updateScriptAndPlatform
             var allFound = false
             for (j <- i + 1 until args.length if !allFound) {
               if (args(j) == "all")
                 allFound = true
             }
             if (allFound) uninstall("all")
-            else
+            else {
+              updateScriptAndPlatform
               for (j <- i + 1 until args.length)
                 uninstall(args(j))
+            }
           }
         case "update" =>
           if (last) {
@@ -441,7 +439,7 @@ object SireumDistro extends App {
     Class.forName(cliClassName).newInstance.asInstanceOf[Cli]
   }
 
-  def readBuild = readLine(new File(sireumDir, METADATA_DIR + BUILD_FILENAME))
+  def readBuild = readLine(new File(metadataDir, BUILD_FILENAME))
 
   def readLine(file : File) = {
     val r = new BufferedReader(new FileReader(file))
@@ -489,6 +487,7 @@ object SireumDistro extends App {
             status = delete(f, false) && status
         }
       }
+      saveInstalledFeatures(List("Platform.sapp"))
       ProgressPrinter.last
       if (status) {
         outPrintln("... done!")
@@ -537,8 +536,7 @@ object SireumDistro extends App {
               val featureDir = new File(sireumDir, featureRelPath)
               if (featureDir.exists)
                 featureDir.delete
-              val mFeatureDir = new File(sireumDir, METADATA_DIR +
-                featureRelPath)
+              val mFeatureDir = new File(metadataDir, featureRelPath)
               if (mFeatureDir.exists)
                 delete(mFeatureDir, false)
             }
@@ -611,8 +609,7 @@ object SireumDistro extends App {
 
   def isDownloaded(f : File) =
     if (f.getName.endsWith(SAPP_EXT))
-      new File(sireumDir, METADATA_DIR + relativize(sireumDir, f) +
-        CHECKSUM_SUFFIX).exists
+      new File(metadataDir, relativize(sireumDir, f) + CHECKSUM_SUFFIX).exists
     else
       f.exists
 
@@ -625,7 +622,7 @@ object SireumDistro extends App {
     val checksum = checksums(scriptName)
 
       def getPlatformFileUpdates : List[(String, String)] = {
-        val platformDir = new File(sireumDir, METADATA_DIR + "apps/platform")
+        val platformDir = metadataPlatformDir
         var result = List[(String, String)]()
         if (platformDir.isDirectory) {
           for (f <- platformDir.listFiles) {
@@ -727,9 +724,9 @@ object SireumDistro extends App {
               if (!features.contains(fPath)) {
                 if (!isAppFile(file))
                   update(fPath, file, None, true)
-                else if (isApp && !new File(sireumDir, METADATA_DIR + fPath +
+                else if (isApp && !new File(metadataDir, fPath +
                   CHECKSUM_SUFFIX).exists &&
-                  (file.getParentFile != new File(sireumDir, "apps")))
+                  (file.getParentFile != appsDir))
                   if (downloadFile(false, fPath, file))
                     downloadCount += 1
               } else if (features.contains(fPath) &&
@@ -756,7 +753,7 @@ object SireumDistro extends App {
       }
 
       def updateExisting(dirFile : File, relDirPath : String) {
-        val metaPath = new File(sireumDir, METADATA_DIR).getAbsolutePath
+        val metaPath = metadataDir.getAbsolutePath
         for (f <- dirFile.listFiles)
           if (f.isDirectory) {
             if (dirFile.getAbsolutePath != metaPath)
@@ -768,16 +765,13 @@ object SireumDistro extends App {
       }
 
     if (isApp) {
-      val metaDir = new File(sireumDir, METADATA_DIR)
-      val metaAppDir = new File(metaDir, "apps")
-
-      if (metaAppDir.exists)
-        for (d <- metaAppDir.listFiles) {
+      if (metadataAppsDir.exists)
+        for (d <- metadataAppsDir.listFiles) {
           if (d.isDirectory)
             for (f <- d.listFiles) {
               if (f.getName.endsWith(CHECKSUM_SUFFIX)) {
                 val currentChecksum = readLine(f)
-                var filePath = relativize(metaDir, f)
+                var filePath = relativize(metadataDir, f)
                 filePath = filePath.substring(0, filePath.length -
                   CHECKSUM_SUFFIX.length)
                 update(filePath, new File(sireumDir, filePath),
@@ -821,14 +815,14 @@ object SireumDistro extends App {
   }
 
   def downloadBuild {
-    val buildFile = new File(sireumDir, METADATA_DIR + BUILD_FILENAME)
+    val buildFile = new File(metadataDir, BUILD_FILENAME)
     downloadFile(buildFile.exists, BUILD_FILENAME, buildFile)
   }
 
   def deleteRemainingAppFiles(filePath : String) {
     val appPath = getAppPath(filePath)
     val dir = new File(sireumDir, appPath).getParentFile
-    val f = new File(sireumDir, METADATA_DIR + filePath + ".filelist")
+    val f = new File(metadataDir, filePath + ".filelist")
     if (!f.exists)
       return
     val r = new LineNumberReader(new FileReader(f))
@@ -977,9 +971,7 @@ object SireumDistro extends App {
     file.getAbsolutePath.substring(baseFile.getAbsolutePath.length + 1).
       replace("\\", "/")
 
-  def isManaged(file : File) =
-    file.getParentFile.getAbsolutePath != new File(sireumDir, "apps").
-      getAbsolutePath
+  def isManaged(file : File) = file.getParentFile != appsDir
 
   def installApp(file : File) {
     val relPath = relativize(sireumDir, file)
@@ -1000,9 +992,9 @@ object SireumDistro extends App {
       val fileList =
         if (managed) {
           val checksums = getChecksums
-          write(new File(sireumDir, METADATA_DIR + relPath + CHECKSUM_SUFFIX),
+          write(new File(metadataDir, relPath + CHECKSUM_SUFFIX),
             checksums(relPath))
-          Some(new PrintWriter(new FileWriter(new File(sireumDir, METADATA_DIR +
+          Some(new PrintWriter(new FileWriter(new File(metadataDir,
             relPath + ".filelist"))))
         } else
           None
@@ -1117,21 +1109,24 @@ Sireum Distro managed apps are currently running.""")
 
   def delete(file : File, onExit : Boolean) : Boolean = {
     if (file.isDirectory)
-      for (f <- file.listFiles) {
-        if (f.isDirectory) {
-          delete(f, onExit)
-        } else {
-          if (onExit) f.deleteOnExit
-          else Files.delete(f.toPath)
+      if (file == platformDir) return true
+      else
+        for (f <- file.listFiles) {
+          if (f.isDirectory) {
+            delete(f, onExit)
+          } else {
+            if (onExit) f.deleteOnExit
+            else Files.delete(f.toPath)
+          }
+          ProgressPrinter.next
         }
-        ProgressPrinter.next
-      }
     if (onExit) {
       file.deleteOnExit
       true
     } else
       try {
-        Files.delete(file.toPath)
+        if (file != appsDir)
+          Files.delete(file.toPath)
         true
       } catch {
         case e : IOException => false
@@ -1162,7 +1157,6 @@ Sireum Distro managed apps are currently running.""")
   }
 
   def cleanApps {
-    val appsDir = new File(sireumDir, "apps")
     if (appsDir.exists) {
       deleteAppsBackups(appsDir)
     }
@@ -1266,8 +1260,7 @@ Sireum Distro managed apps are currently running.""")
   }
 
   def loadInstalledFeatures = {
-    val installedFeaturesFile = new File(sireumDir, METADATA_DIR +
-      "installed-features.txt")
+    val installedFeaturesFile = new File(metadataDir, "installed-features.txt")
     if (!installedFeaturesFile.exists)
       List[String]()
     else {
@@ -1285,8 +1278,7 @@ Sireum Distro managed apps are currently running.""")
   }
 
   def saveInstalledFeatures(installedFeatures : List[String]) {
-    val installedFeaturesFile = new File(sireumDir, METADATA_DIR +
-      "installed-features.txt")
+    val installedFeaturesFile = new File(metadataDir, "installed-features.txt")
     installedFeaturesFile.getParentFile.mkdirs
     val pw = new PrintWriter(new FileWriter(installedFeaturesFile))
     for (f <- installedFeatures)
