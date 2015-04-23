@@ -5,14 +5,16 @@ if [ -d $SIREUM_HOME/apps/platform/java ]; then
   export JAVA_HOME=$SIREUM_HOME/apps/platform/java
   export PATH=$JAVA_HOME/bin:$PATH
 else
-  echo "Sireum is installed without the Platform feature; please reinstall Sireum."
+  echo "Sireum could not find Java that is supposed to be shipped with it"
+  echo "Please reinstall Sireum from its official distribution at http://sireum.org"
   exit -1
 fi
 if [ -d $SIREUM_HOME/apps/platform/scala ]; then
   export SCALA_HOME=$SIREUM_HOME/apps/platform/scala
   export PATH=$SCALA_HOME/bin:$PATH
 else
-  echo "Sireum is installed without the Platform feature; please reinstall Sireum."
+  echo "Sireum could not find Scala that is supposed to be shipped with it"
+  echo "Please reinstall Sireum from its official distribution at http://sireum.org"
   exit -1
 fi
 if [ -f $0.jar ]; then

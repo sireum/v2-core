@@ -14,14 +14,16 @@ IF EXIST %SIREUM_HOME%apps\platform\scala (
   SET SCALA_HOME=%SIREUM_HOME%apps\platform\scala
   SET "PATH=%SIREUM_HOME%apps\platform\scala\bin;%PATH%"
 ) ELSE (
-  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  ECHO Sireum could not find Java that is supposed to be shipped with it
+  ECHO Please reinstall Sireum from its official distribution at http://sireum.org
   EXIT /B -1
 )
 IF NOT EXIST %FILE2% ( 
   ECHO Please wait while Sireum is loading...
   GOTO END 
 ) ELSE (
-  ECHO Sireum is installed without the Platform feature; please reinstall Sireum.
+  ECHO Sireum could not find Scala that is supposed to be shipped with it
+  ECHO Please reinstall Sireum from its official distribution at http://sireum.org
   EXIT /B -1
 )
 FOR /F %%i IN ('DIR /B /O:D %FILE1% %FILE2%') DO SET NEWEST=%%i
