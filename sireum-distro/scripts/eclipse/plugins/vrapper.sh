@@ -15,16 +15,16 @@ fi
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../vim/vrapper" > eclipse/dsl/links/vrapper.link 
-mkdir Vim 2> /dev/null
-mkdir Vim/vrapper 2> /dev/null
-mkdir Vim/vrapper/eclipse 2> /dev/null
-cd Vim/vrapper/eclipse
+echo "path=../../eclipsebase/vrapper" > eclipse/dsl/links/vrapper.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/vrapper 2> /dev/null
+mkdir EclipseBase/vrapper/eclipse 2> /dev/null
+cd EclipseBase/vrapper/eclipse
 unzip -oq ../../../$VRAPPER_DROP
 > .eclipseextension
 cd ../..
 zip -rq vrapper.sapp vrapper ../eclipse/dsl/links/vrapper.link
 cd ..
-rm -fR Vim/vrapper
+rm -fR EclipseBase/vrapper
 echo
 echo ...done!

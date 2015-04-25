@@ -12,17 +12,16 @@ fi
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../python/eclipse-plugins-pydev/pydev" > eclipse/dsl/links/pydev.link 
-mkdir Python 2> /dev/null
-mkdir Python/eclipse-plugins-pydev 2> /dev/null
-mkdir Python/eclipse-plugins-pydev/pydev 2> /dev/null
-mkdir Python/eclipse-plugins-pydev/pydev/eclipse 2> /dev/null
-cd Python/eclipse-plugins-pydev/pydev/eclipse
+echo "path=../../eclipsebase/pydev" > eclipse/dsl/links/pydev.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/pydev 2> /dev/null
+mkdir EclipseBase/pydev/eclipse 2> /dev/null
+cd EclipseBase/pydev/eclipse
 > .eclipseextension
-unzip -oq ../../../../$PYDEV_DROP
-cd ../../..
-zip -rq eclipse-plugins-pydev.sapp eclipse-plugins-pydev ../eclipse/dsl/links/pydev.link
+unzip -oq ../../../$PYDEV_DROP
+cd ../..
+zip -rq pydev.sapp epydev ../eclipse/dsl/links/pydev.link
 cd ..
-rm -fR eclipse Python/eclipse-plugins-pydev
+rm -fR eclipse EclipseBase/pydev
 echo
 echo ...done!

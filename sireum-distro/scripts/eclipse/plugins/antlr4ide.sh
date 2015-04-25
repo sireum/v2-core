@@ -17,16 +17,16 @@ fi
 mkdir eclipse 2> /dev/null
 mkdir eclipse/dsl 2> /dev/null
 mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../antlr/antlr4ide" > eclipse/dsl/links/antlr4ide.link 
-mkdir Antlr 2> /dev/null
-mkdir Antlr/antlr4ide 2> /dev/null
-mkdir Antlr/antlr4ide/eclipse 2> /dev/null
-cd Antlr/antlr4ide/eclipse
+echo "path=../../eclipsebase/antlr4ide" > eclipse/dsl/links/antlr4ide.link 
+mkdir EclipseBase 2> /dev/null
+mkdir EclipseBase/antlr4ide 2> /dev/null
+mkdir EclipseBase/antlr4ide/eclipse 2> /dev/null
+cd EclipseBase/antlr4ide/eclipse
 > .eclipseextension
 unzip -oq ../../../$ANTLR4IDE_DROP
 cd ../..
 zip -rq antlr4ide.sapp antlr4ide ../eclipse/dsl/links/antlr4ide.link
 cd ..
-rm -fR eclipse Antlr/antlr4ide
+rm -fR eclipse EclipseBase/antlr4ide
 echo
 echo ...done!
