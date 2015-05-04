@@ -20,7 +20,7 @@ cd EclipseBase/pydev/eclipse
 > .eclipseextension
 unzip -oq ../../../$PYDEV_DROP
 cd ../..
-zip -rq pydev.sapp epydev ../eclipse/dsl/links/pydev.link
+zip -rq pydev.sapp pydev ../eclipse/dsl/links/pydev.link
 cd ..
 rm -fR eclipse EclipseBase/pydev
 echo
