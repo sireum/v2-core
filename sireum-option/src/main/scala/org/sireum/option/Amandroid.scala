@@ -12,13 +12,13 @@ Sireum Amandroid
 (c) 2014-2015, Argus & SAnToS Laboratories, Kansas State University
 """)
 case class SireumAmandroidMode(
-  decompile : SireumAmandroidDecompileMode = SireumAmandroidDecompileMode(),
-  passwordTracking : SireumAmandroidPasswordTrackingMode = SireumAmandroidPasswordTrackingMode(),
-  intentInjection : SireumAmandroidIntentInjectionMode = SireumAmandroidIntentInjectionMode(),
-  cryptoMisuse : SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
-  taintAnalysis : SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
-  staging : SireumAmandroidStagingMode = SireumAmandroidStagingMode(),
-  genCallGraph : SireumAmandroidGenGraphMode = SireumAmandroidGenGraphMode())
+  decompile: SireumAmandroidDecompileMode = SireumAmandroidDecompileMode(),
+  passwordTracking: SireumAmandroidPasswordTrackingMode = SireumAmandroidPasswordTrackingMode(),
+  intentInjection: SireumAmandroidIntentInjectionMode = SireumAmandroidIntentInjectionMode(),
+  cryptoMisuse: SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
+  taintAnalysis: SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
+  staging: SireumAmandroidStagingMode = SireumAmandroidStagingMode(),
+  genCallGraph: SireumAmandroidGenGraphMode = SireumAmandroidGenGraphMode())
 
 object DumpSource extends Enum {
   sealed abstract class Type extends EnumElem
@@ -62,11 +62,11 @@ object GraphType extends Enum {
   featureName = "Sireum Amandroid Cli:Amandroid.sapp",
   desc = "Dump .dex file and translate it to Pilar format")
 case class SireumAmandroidDecompileMode(
-  @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.") var typ : DumpSource.Type = DumpSource.APK,
+  @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to dump.") var typ: DumpSource.Type = DumpSource.APK,
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "",
+  @Arg(index = 0, value = "Source file") var srcFile: String = "",
 
-  @OptionalArg(index = 1, value = "Output file") var outFile : String = "")
+  @OptionalArg(index = 1, value = "Output file") var outFile: String = "")
 
 object AnalyzeSource extends Enum {
   sealed abstract class Type extends EnumElem
@@ -82,12 +82,12 @@ object AnalyzeSource extends Enum {
   desc = "Tracking password flow within Android app")
 case class SireumAmandroidPasswordTrackingMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "",
+  @Arg(index = 0, value = "Source file") var srcFile: String = "",
 
-  @Arg(index = 1, value = "Sink list file") var sasFile : String = "")
+  @Arg(index = 1, value = "Sink list file") var sasFile: String = "")
 
 @Main(value = "intentInjection",
   className = "org.sireum.amandroid.cli.IntentInjectionCli",
@@ -95,12 +95,12 @@ case class SireumAmandroidPasswordTrackingMode(
   desc = "Detecting Intent injection problem")
 case class SireumAmandroidIntentInjectionMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "",
+  @Arg(index = 0, value = "Source file") var srcFile: String = "",
 
-  @Arg(index = 1, value = "Sink list file") var sasFile : String = "")
+  @Arg(index = 1, value = "Sink list file") var sasFile: String = "")
 
 @Main(value = "cryptoMisuse",
   className = "org.sireum.amandroid.cli.CryptoMisuseCli",
@@ -108,10 +108,10 @@ case class SireumAmandroidIntentInjectionMode(
   desc = "Detecting crypto API misuse")
 case class SireumAmandroidCryptoMisuseMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "")
+  @Arg(index = 0, value = "Source file") var srcFile: String = "")
 
 @Main(value = "taintAnalysis",
   className = "org.sireum.amandroid.cli.TaintAnalyzeCli",
@@ -119,12 +119,12 @@ case class SireumAmandroidCryptoMisuseMode(
   desc = "Analyze Android apk and output the result")
 case class SireumAmandroidTaintAnalysisMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "",
+  @Arg(index = 0, value = "Source file") var srcFile: String = "",
 
-  @Arg(index = 1, value = "Sink list file") var sasFile : String = "")
+  @Arg(index = 1, value = "Sink list file") var sasFile: String = "")
 
 @Main(value = "staging",
   className = "org.sireum.amandroid.cli.StagingCli",
@@ -132,10 +132,10 @@ case class SireumAmandroidTaintAnalysisMode(
   desc = "Generate IDFG&DDG for Android apk and store it")
 case class SireumAmandroidStagingMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Arg(index = 0, value = "Source file") var srcFile : String = "")
+  @Arg(index = 0, value = "Source file") var srcFile: String = "")
 
 @Main(value = "genGraph",
   className = "org.sireum.amandroid.cli.GenGraphCli",
@@ -143,31 +143,32 @@ case class SireumAmandroidStagingMode(
   desc = "Generate Graph for Android apk and store it")
 case class SireumAmandroidGenGraphMode(
 
-  general : SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-  analysis : SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
-  @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format : GraphFormat.Type = GraphFormat.GraphML,
-  @Option(shortKey = "gt", longKey = "graph-type", desc = "Type of the graph.") var graphtyp : GraphType.Type = GraphType.FULL,
-  @Arg(index = 0, value = "Source file") var srcFile : String = "")
+  @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format: GraphFormat.Type = GraphFormat.GraphML,
+  @Option(shortKey = "gt", longKey = "graph-type", desc = "Type of the graph.") var graphtyp: GraphType.Type = GraphType.FULL,
+  @Option(shortKey = "h", longKey = "header", desc = "Type of the graph.") var header: String = "",
+  @Arg(index = 0, value = "Source file") var srcFile: String = "")
 
 @Group("General Options")
 case class SireumAmandroidGeneralGroup(
-  @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to analyze.") var typ : AnalyzeSource.Type = AnalyzeSource.APK,
+  @Option(shortKey = "t", longKey = "type", desc = "The type of the file you want to analyze.") var typ: AnalyzeSource.Type = AnalyzeSource.APK,
 
-  @Option(shortKey = "m", longKey = "memory", desc = "Max memory (GB).") var mem : Int = 2,
+  @Option(shortKey = "m", longKey = "memory", desc = "Max memory (GB).") var mem: Int = 2,
 
-  @Option(shortKey = "msg", longKey = "message", desc = "Message Level.") var msgLevel : MessageLevel.Type = MessageLevel.NO)
+  @Option(shortKey = "msg", longKey = "message", desc = "Message Level.") var msgLevel: MessageLevel.Type = MessageLevel.NO)
 
 @Group("Analysis Options")
 case class SireumAmandroidAnalysisGroup(
-  @Option(shortKey = "ns", longKey = "nostatic", desc = "Does not handle static initializer") var noStatic : Boolean = false,
+  @Option(shortKey = "ns", longKey = "nostatic", desc = "Does not handle static initializer") var noStatic: Boolean = false,
 
-  @Option(shortKey = "p", longKey = "parallel", desc = "Parallel") var parallel : Boolean = false,
+  @Option(shortKey = "p", longKey = "parallel", desc = "Parallel") var parallel: Boolean = false,
 
-  @Option(shortKey = "ni", longKey = "no-icc", desc = "Does not tracking flows via icc") var noicc : Boolean = false,
+  @Option(shortKey = "ni", longKey = "no-icc", desc = "Does not tracking flows via icc") var noicc: Boolean = false,
 
-  @Option(shortKey = "k", longKey = "k-context", desc = "Context length") var k_context : Int = 1,
+  @Option(shortKey = "k", longKey = "k-context", desc = "Context length") var k_context: Int = 1,
 
-  @Option(shortKey = "to", longKey = "timeout", desc = "Timeout (minute)") var timeout : Int = 10,
+  @Option(shortKey = "to", longKey = "timeout", desc = "Timeout (minute)") var timeout: Int = 10,
 
-  @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path") var outdir : String = ".")
+  @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path") var outdir: String = ".")
