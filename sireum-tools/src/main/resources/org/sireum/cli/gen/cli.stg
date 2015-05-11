@@ -350,7 +350,6 @@ tagRoutines() ::= <<
 >>
 
 properties(property) ::= <<
-# Sireum CLI default options
 $property; separator="\n"$
 >>
 

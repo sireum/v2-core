@@ -269,7 +269,7 @@ class CliBuilder {
           stgroup.add("groupName", s.value)
           stMain.add("header", stgroup)
 
-          val keyPrefix = s"${path.mkString(".")}.${s.value}"
+          val keyPrefix = path.mkString(".")
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
           val optblock = marrayEmpty[String]
@@ -722,7 +722,8 @@ class CliBuilder {
     val pname = new File(root, "sireum.properties")
 
     try {
-      val props = properties.render
+      var props = properties.render
+      props = s"# Sireum CLI default options ${org.sireum.util.StringUtil.md5(props)}\n" + props
       val ps = new java.util.Properties
       ps.load(new java.io.StringReader(props))
       println(ps)
