@@ -101,6 +101,7 @@ class CliBuilder {
 
   val stg : STGroupFile = new STGroupFile(getClass.getResource("cli.stg"), "UTF-8", '$', '$')
   val topLevel = stg.getInstanceOf("topLevel")
+  val properties : ST = stg.getInstanceOf("properties")
   var stMain : ST = null
 
   var imports = Set[String]()
@@ -234,6 +235,7 @@ class CliBuilder {
           val options = collect(md, classOf[Option])
           val (l1, l2) = computeMaxLen(options)
           val optblock = marrayEmpty[String]
+          val keyPrefix = s"${path.mkString(".")}.${s.value}"
           for (
             (mo, opt, optCheck) <- options.sortWith({ (t1, t2) =>
               val opt1 = t1._2
@@ -247,7 +249,7 @@ class CliBuilder {
               }
             })
           ) {
-            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck)
+            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, stMain, keyPrefix)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
@@ -267,11 +269,12 @@ class CliBuilder {
           stgroup.add("groupName", s.value)
           stMain.add("header", stgroup)
 
+          val keyPrefix = s"${path.mkString(".")}.${s.value}"
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
           val optblock = marrayEmpty[String]
           for ((mo, opt, optCheck) <- opts.sortBy(_._1.getName)) {
-            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, groupName)
+            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, stMain, keyPrefix, groupName)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
@@ -330,7 +333,9 @@ class CliBuilder {
 
   def handleOption(o : AnyRef, mo : Method,
                    ot : Option, maxShort : Int, maxLong : Int,
-                   check : scala.Option[Check], groupName : String = null) : (ST, ST) = {
+                   check : scala.Option[Check],
+                   stMain : ST, keyPrefix : String,
+                   groupName : String = null) : (ST, ST) = {
 
     val max = maxShort + (if (maxShort > 0) SHORT_KEY_PREFIX.length else 0) +
       (if (maxLong > 0 && maxShort > 0) " | ".length else 0) +
@@ -352,7 +357,7 @@ class CliBuilder {
       optioncheckst.add("shortkey", shortKey.get)
     }
 
-    if (longKey.isDefined) {
+    {
       keys += (if (!keys.isEmpty) " | " else "") + longKey.get
       stMain.add("key", longKey.get)
       matchings.add("g", longKey.get)
@@ -366,11 +371,19 @@ class CliBuilder {
       val defval = mo.invoke(o)
       val (_, _, simpleName, ochoices) = prettify(mo, defval)
 
-      if (defval.isInstanceOf[Seq[_]])
-        stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
-
-      if (!defval.isInstanceOf[Boolean])
-        stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", simpleName))
+      val field = if (groupName != null) s"opt.$groupName.${mo.getName}" else s"opt.${mo.getName}"
+      defval match {
+        case _ : Seq[_] =>
+          stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "\"${" + field + s""".mkString("${ot.separator}")}\""""))
+        case _ : String =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "\"${" + field + "}\""))
+        case _ : java.lang.Boolean =>
+        case _ : org.sireum.util.Enum#EnumElem =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "${" + field + ".toString.dropRight(1)}"))
+        case _ =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "${" + field + "}"))
+      }
 
       if (ochoices.isDefined) {
         val stchoices = stg.getInstanceOf("choices")
@@ -393,6 +406,36 @@ class CliBuilder {
       else
         handleCase(matchings.render, optioncheckst.render, value,
           (mo, o), check, groupName, mo.getName, tenum.DEFAULT)
+
+    val stProperty = stg.getInstanceOf("property")
+    properties.add("property", stProperty)
+    stProperty.add("key", keyPrefix)
+    stProperty.add("key", ot.longKey)
+
+    val stPropDef = stg.getInstanceOf("propDef")
+    stMain.add("propDef", stPropDef)
+    if (groupName != null) stPropDef.add("field", groupName)
+    stPropDef.add("field", mo.getName)
+    stPropDef.add("longKey", ot.longKey)
+
+    mo.invoke(o) match {
+      case b : java.lang.Boolean =>
+        stProperty.add("value", false)
+        stPropDef.add("type", "Boolean")
+      case n : Integer =>
+        stProperty.add("value", n)
+        stPropDef.add("type", "Int")
+      case s : Seq[_] =>
+        s.foreach(x => stProperty.add("value", x))
+        stPropDef.add("type", "ISeq[String]")
+      case s : String =>
+        stProperty.add("value", s)
+        stPropDef.add("type", "String")
+      case e : org.sireum.util.Enum#EnumElem =>
+        stProperty.add("value", e.toString.stripSuffix("$"))
+        stPropDef.add("type", e.enum.getClass.getName.dropRight(1))
+        stPropDef.add("type", ".Type")
+    }
 
     (stoption, stcase)
   }
@@ -676,12 +719,22 @@ class CliBuilder {
     }
 
     val fname = new File(root, objectName + ".scala")
+    val pname = new File(root, "sireum.properties")
 
     try {
-      val out = new PrintWriter(new FileWriter(fname))
-      out.write(topLevel.render())
+      val props = properties.render
+      val ps = new java.util.Properties
+      ps.load(new java.io.StringReader(props))
+      println(ps)
+      println(props)
+      var out = new PrintWriter(new FileWriter(fname))
+      out.write(topLevel.render)
       out.close()
       println("Succesfully wrote: " + fname.getAbsolutePath)
+      out = new PrintWriter(new FileWriter(pname))
+      out.write(props)
+      out.close();
+      println("Succesfully wrote: " + pname.getAbsolutePath)
     } catch {
       case s : Throwable => Console.err.println(s)
     }
