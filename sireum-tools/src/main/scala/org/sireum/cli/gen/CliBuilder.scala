@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2011-2013 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 package org.sireum.cli.gen
@@ -122,7 +122,9 @@ class CliBuilder {
           val q1 = getMainModeInfo(filter(c.getDeclaredMethods))
           val modeDesc = marrayEmpty[(String, String, Boolean)]
           var longestName = 0
-          for ((m, modeName, desc, listed) <- q1) {
+          for (
+            (m, modeName, desc, listed) <- q1.sortBy(_._1.getName)
+          ) {
             val mo = m.invoke(o)
             if (mo != null) {
               val stcase = stg.getInstanceOf("caseMode")
@@ -137,9 +139,7 @@ class CliBuilder {
             }
           }
           for (
-            (name, desc, listed) <- modeDesc.sortWith({
-              (md1, md2) => md1._1 <= md2._1
-            }) if listed
+            (name, desc, listed) <- modeDesc.sortBy(_._1) if listed
           ) {
             val stAvailMode = stg.getInstanceOf("mode")
             stAvailMode.add("name", name)
@@ -234,27 +234,29 @@ class CliBuilder {
           val options = collect(md, classOf[Option])
           val (l1, l2) = computeMaxLen(options)
           val optblock = marrayEmpty[String]
-          for ((mo, opt, optCheck) <- options) {
+          for (
+            (mo, opt, optCheck) <- options.sortWith({ (t1, t2) =>
+              val opt1 = t1._2
+              val opt2 = t2._2
+              if (opt1.shortKey == "") false
+              else if (opt2.shortKey == "") true
+              else {
+                val r = opt1.shortKey.compareTo(opt2.shortKey)
+                if (r != 0) r <= 0
+                else opt1.longKey.compareTo(opt2.longKey) <= 0
+              }
+            })
+          ) {
             val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
-          val sortedopts = optblock.sortWith({ (a, b) =>
-              def isLongKey(s : String) = s.startsWith(LONG_KEY_PREFIX)
-              def isShortKey(s : String) = s.startsWith(SHORT_KEY_PREFIX) && !s.startsWith(LONG_KEY_PREFIX)
-
-            if (isLongKey(a) && isShortKey(b))
-              false
-            else if (isShortKey(a) && isLongKey(b))
-              true
-            else a.compareTo(b) <= 0
-          })
           val optblockst = stg.getInstanceOf("optblock")
           optblockst.add("opt", "-h | --help")
-          sortedopts.foreach(so => optblockst.add("opt", so))
+          optblock.foreach(so => optblockst.add("opt", so))
           stMain.add("header", optblockst)
 
-          for (m <- filter(c.getDeclaredMethods)) {
+          for (m <- filter(c.getDeclaredMethods).sortBy(_.getName)) {
             mineClass(m.getReturnType, m.invoke(o), path :+ s.value, m.getName)
           }
           stMain = null
@@ -268,13 +270,12 @@ class CliBuilder {
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
           val optblock = marrayEmpty[String]
-          for ((mo, opt, optCheck) <- opts) {
+          for ((mo, opt, optCheck) <- opts.sortBy(_._1.getName)) {
             val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, groupName)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
-          val sortedopts = optblock.sortWith((a, b) => a.compareTo(b) <= 0)
-          sortedopts.foreach(so => stgroup.add("option", so))
+          optblock.foreach(so => stgroup.add("option", so))
         }
         case _ => {
 
@@ -449,14 +450,14 @@ class CliBuilder {
 
     val (typen, pvalue, _, _) = prettify(m._1, m._1.invoke(m._2))
     stCase.add("optioncheck", optcheck)
-    
-    if (t != tenum.DEFAULT){
+
+    if (t != tenum.DEFAULT) {
       stCase.add("isArg", true)
     } else {
       if (typen == "java.lang.Boolean")
         stCase.add("isArg", true)
     }
-    
+
     if (t == tenum.VARARG) {
       assert(typen.startsWith("Array"))
 
@@ -544,7 +545,7 @@ class CliBuilder {
         println("fqn: " + fqn)
         println("simpleName: " + simpleName)
         println("genericType: " + genericType)
-        
+
         (castType, castType + "()", simpleName, None)
         */
 
@@ -566,14 +567,14 @@ class CliBuilder {
     var l = List[(Method, String, String, Boolean)]()
     for (m <- meths if m.getName != "apply") {
       val c = m.getReturnType
-      for (a <- c.getDeclaredAnnotations) {
+      for (a <- c.getDeclaredAnnotations.sortBy(_.annotationType.getName)) {
         a match {
           case s : Mode =>
             l :+= (m, s.command, s.desc, s.listed)
           case s : Main =>
             l :+= (m, s.value, s.desc, true)
           case s : Check                        => // ignore
-          case s : scala.reflect.ScalaSignature => // ignore  
+          case s : scala.reflect.ScalaSignature => // ignore
           case s =>
             throw new RuntimeException("Unexpected: " + s.annotationType)
         }
