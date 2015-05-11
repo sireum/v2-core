@@ -2031,7 +2031,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.cli.launcher.EclipseLauncher"
     result.featureName = "BakarV1.sapp"
-    val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
+    val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2046,22 +2046,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "--args" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--args"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--args"
-              }
-              opt.args  = 
-                if (j + 1 == args.length) List()
-                else args.slice(j + 1, args.length).toList
-              j = args.length
             case "-j" | "--jvmopts" => 
 
               if(seenopts.exists{s => 
@@ -2081,6 +2065,22 @@ where the available options are:
                 opt.jvmopts  = v.get.asInstanceOf[ISeq[String]]
                 j += 1
               }
+            case "--args" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--args"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--args"
+              }
+              opt.args  = 
+                if (j + 1 == args.length) List()
+                else args.slice(j + 1, args.length).toList
+              j = args.length
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2236,7 +2236,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.cli.launcher.EclipseLauncher"
     result.featureName = "EclipseBase.sapp"
-    val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
+    val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2251,22 +2251,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "--args" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--args"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--args"
-              }
-              opt.args  = 
-                if (j + 1 == args.length) List()
-                else args.slice(j + 1, args.length).toList
-              j = args.length
             case "-j" | "--jvmopts" => 
 
               if(seenopts.exists{s => 
@@ -2286,6 +2270,22 @@ where the available options are:
                 opt.jvmopts  = v.get.asInstanceOf[ISeq[String]]
                 j += 1
               }
+            case "--args" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--args"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--args"
+              }
+              opt.args  = 
+                if (j + 1 == args.length) List()
+                else args.slice(j + 1, args.length).toList
+              j = args.length
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2329,7 +2329,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.cli.launcher.OsateLauncher"
     result.featureName = "Osate.sapp"
-    val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
+    val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2344,22 +2344,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "--args" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--args"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--args"
-              }
-              opt.args  = 
-                if (j + 1 == args.length) List()
-                else args.slice(j + 1, args.length).toList
-              j = args.length
             case "-j" | "--jvmopts" => 
 
               if(seenopts.exists{s => 
@@ -2379,6 +2363,22 @@ where the available options are:
                 opt.jvmopts  = v.get.asInstanceOf[ISeq[String]]
                 j += 1
               }
+            case "--args" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--args"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--args"
+              }
+              opt.args  = 
+                if (j + 1 == args.length) List()
+                else args.slice(j + 1, args.length).toList
+              j = args.length
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2422,7 +2422,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.cli.launcher.EclipseLauncher"
     result.featureName = "SireumDev.sapp"
-    val keys = List[String]("-h", "--help", "--args", "-j", "--jvmopts")
+    val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2437,22 +2437,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "--args" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--args"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--args"
-              }
-              opt.args  = 
-                if (j + 1 == args.length) List()
-                else args.slice(j + 1, args.length).toList
-              j = args.length
             case "-j" | "--jvmopts" => 
 
               if(seenopts.exists{s => 
@@ -2472,6 +2456,22 @@ where the available options are:
                 opt.jvmopts  = v.get.asInstanceOf[ISeq[String]]
                 j += 1
               }
+            case "--args" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--args"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--args"
+              }
+              opt.args  = 
+                if (j + 1 == args.length) List()
+                else args.slice(j + 1, args.length).toList
+              j = args.length
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2559,7 +2559,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.tools.antlr.TreeVisitorGen"
     result.featureName = "Sireum Tools"
-    val keys = List[String]("-h", "--help", "-c", "--class-name", "-p", "--package", "-d", "--directory")
+    val keys = List[String]("-h", "--help", "-c", "--class-name", "-d", "--directory", "-p", "--package")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2593,25 +2593,6 @@ where the available options are:
                 opt.className  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
-            case "-p" | "--package" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--package"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--package"
-                seenopts += "-p"
-              }
-              val v = process(args(j), args(j + 1), keys, "parser" )
-              if(result.status){
-                opt.packageName  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
             case "-d" | "--directory" => 
 
               if(seenopts.exists{s => 
@@ -2629,6 +2610,25 @@ where the available options are:
               val v = process(args(j), args(j + 1), keys, "(parent directory of token file)" )
               if(result.status){
                 opt.dir  = v.get.asInstanceOf[java.lang.String]
+                j += 1
+              }
+            case "-p" | "--package" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--package"
+                  r = r || s == "-p"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--package"
+                seenopts += "-p"
+              }
+              val v = process(args(j), args(j + 1), keys, "parser" )
+              if(result.status){
+                opt.packageName  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
@@ -2676,8 +2676,8 @@ where the available options are:
 -d  | --directory  Directory where generated class should be saved [Default: "."]
 -p  | --packages   Package name prefixes used to filter which classes to process
                    [Separator: ";", Default: ""]
---max-col          Maximum number of characters per line [Default: 80]
 --min-col          Column where description should begin [Default: 20]
+--max-col          Maximum number of characters per line [Default: 80]
 """.trim) 
   }
   if (i == args.length) {
@@ -2687,7 +2687,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.cli.gen.CliBuilder"
     result.featureName = "Sireum Tools"
-    val keys = List[String]("-h", "--help", "-p", "--packages", "--min-col", "--max-col", "-c", "--class-name", "-cp", "--classpath", "-d", "--directory")
+    val keys = List[String]("-h", "--help", "-c", "--class-name", "-cp", "--classpath", "-d", "--directory", "-p", "--packages", "--min-col", "--max-col")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2702,59 +2702,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "-p" | "--packages" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--packages"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--packages"
-                seenopts += "-p"
-              }
-              val v = process(args(j), args(j + 1), keys, ivectorEmpty[String] )
-              if(result.status){
-                opt.packages  = v.get.asInstanceOf[ISeq[String]]
-                j += 1
-              }
-            case "--min-col" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--min-col"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--min-col"
-              }
-              val v = process(args(j), args(j + 1), keys, 20 )
-              if(result.status){
-                opt.minCol  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "--max-col" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--max-col"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--max-col"
-              }
-              val v = process(args(j), args(j + 1), keys, 80 )
-              if(result.status){
-                opt.maxCol  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
             case "-c" | "--class-name" => 
 
               if(seenopts.exists{s => 
@@ -2814,6 +2761,59 @@ where the available options are:
                 result.status &= new org.sireum.option.CliGenOption().dirCheck (opt, result.tags)
                 j += 1
               }
+            case "-p" | "--packages" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--packages"
+                  r = r || s == "-p"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--packages"
+                seenopts += "-p"
+              }
+              val v = process(args(j), args(j + 1), keys, ivectorEmpty[String] )
+              if(result.status){
+                opt.packages  = v.get.asInstanceOf[ISeq[String]]
+                j += 1
+              }
+            case "--min-col" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--min-col"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--min-col"
+              }
+              val v = process(args(j), args(j + 1), keys, 20 )
+              if(result.status){
+                opt.minCol  = v.get.asInstanceOf[java.lang.Integer]
+                j += 1
+              }
+            case "--max-col" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--max-col"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--max-col"
+              }
+              val v = process(args(j), args(j + 1), keys, 80 )
+              if(result.status){
+                opt.maxCol  = v.get.asInstanceOf[java.lang.Integer]
+                j += 1
+              }
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2871,7 +2871,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.js.casegen.JsConvBuilder"
     result.featureName = "Sireum Tools"
-    val keys = List[String]("-h", "--help", "-p", "--package", "-c", "--class-name", "-cp", "--classpath", "-d", "--directory")
+    val keys = List[String]("-h", "--help", "-c", "--class-name", "-cp", "--classpath", "-d", "--directory", "-p", "--package")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -2886,25 +2886,6 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "-p" | "--package" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--package"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--package"
-                seenopts += "-p"
-              }
-              val v = process(args(j), args(j + 1), keys, "" )
-              if(result.status){
-                opt.packageName  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
             case "-c" | "--class-name" => 
 
               if(seenopts.exists{s => 
@@ -2960,6 +2941,25 @@ where the available options are:
               val v = process(args(j), args(j + 1), keys, "." )
               if(result.status){
                 opt.dir  = v.get.asInstanceOf[java.lang.String]
+                j += 1
+              }
+            case "-p" | "--package" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--package"
+                  r = r || s == "-p"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--package"
+                seenopts += "-p"
+              }
+              val v = process(args(j), args(j + 1), keys, "" )
+              if(result.status){
+                opt.packageName  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
@@ -3099,7 +3099,7 @@ where the available options are:
     result.options = Some(opt)
     result.className = "org.sireum.pipeline.gen.ModuleGenerator"
     result.featureName = "Sireum Tools"
-    val keys = List[String]("-h", "--help", "-gcn", "--generated-class-name", "-ts", "--type-substitutions", "-d", "--directory")
+    val keys = List[String]("-h", "--help", "-d", "--directory", "-gcn", "--generated-class-name", "-ts", "--type-substitutions")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -3114,6 +3114,25 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
+            case "-d" | "--directory" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--directory"
+                  r = r || s == "-d"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--directory"
+                seenopts += "-d"
+              }
+              val v = process(args(j), args(j + 1), keys, "" )
+              if(result.status){
+                opt.dir  = v.get.asInstanceOf[java.lang.String]
+                j += 1
+              }
             case "-gcn" | "--generated-class-name" => 
 
               if(seenopts.exists{s => 
@@ -3150,25 +3169,6 @@ where the available options are:
               val v = process(args(j), args(j + 1), keys, ivectorEmpty[String] )
               if(result.status){
                 opt.typeSubstitutions  = v.get.asInstanceOf[ISeq[String]]
-                j += 1
-              }
-            case "-d" | "--directory" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--directory"
-                  r = r || s == "-d"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--directory"
-                seenopts += "-d"
-              }
-              val v = process(args(j), args(j + 1), keys, "" )
-              if(result.status){
-                opt.dir  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
