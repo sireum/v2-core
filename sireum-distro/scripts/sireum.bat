@@ -133,13 +133,12 @@ object SireumDistro extends App {
     val is64bit = osArch.contains("64")
 
     val osName = System.getProperty("os.name").toLowerCase()
-    if (osName.indexOf("mac") >= 0)
-      (if (is64bit) "mac64" else "mac32")
-    else if (osName.indexOf("nux") >= 0)
-      (if (is64bit) "linux64" else "linux32")
-    else if (osName.indexOf("win") >= 0)
-      (if (is64bit) "win64" else "win32")
-    else
+    if (is64bit) {
+      if (osName.indexOf("mac") >= 0) "mac64"
+      else if (osName.indexOf("nux") >= 0) "linux64"
+      else if (osName.indexOf("win") >= 0) "win64"
+      else "unsupported"
+    } else
       "unsupported"
   }
 
