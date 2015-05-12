@@ -350,7 +350,7 @@ tagRoutines() ::= <<
 >>
 
 properties(property) ::= <<
-$property; separator="\n"$
+# $property; separator="\n# "$
 >>
 
 property(key, value) ::= <<

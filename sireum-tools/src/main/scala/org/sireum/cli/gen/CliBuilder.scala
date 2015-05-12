@@ -722,11 +722,9 @@ class CliBuilder {
     val pname = new File(root, "sireum.properties")
 
     try {
+      import org.sireum.util._
       var props = properties.render
-      props = s"# Sireum CLI default options ${org.sireum.util.StringUtil.md5(props)}\n" + props
-      val ps = new java.util.Properties
-      ps.load(new java.io.StringReader(props))
-      println(ps)
+      props = s"# Sireum CLI default options ${StringUtil.md5(props)}\n" + props
       println(props)
       var out = new PrintWriter(new FileWriter(fname))
       out.write(topLevel.render)
