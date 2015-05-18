@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-export PYDEV_DROP_URL=${PYDEV_URL:=http://downloads.sourceforge.net/project/pydev/pydev/PyDev%20}${PYDEV_VERSION:=3.9.2}/PyDev%20${PYDEV_VERSION}.zip
+export PYDEV_DROP_URL=${PYDEV_URL:=http://downloads.sourceforge.net/project/pydev/pydev/PyDev%20}${PYDEV_VERSION:=4.0.0}/PyDev%20${PYDEV_VERSION}.zip
 export PYDEV_DROP=PyDev-$PYDEV_VERSION.zip
 if [ ! -f $PYDEV_DROP ]; then
   echo
