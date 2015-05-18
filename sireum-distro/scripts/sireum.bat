@@ -133,13 +133,12 @@ object SireumDistro extends App {
     val is64bit = osArch.contains("64")
 
     val osName = System.getProperty("os.name").toLowerCase()
-    if (osName.indexOf("mac") >= 0)
-      (if (is64bit) "mac64" else "mac32")
-    else if (osName.indexOf("nux") >= 0)
-      (if (is64bit) "linux64" else "linux32")
-    else if (osName.indexOf("win") >= 0)
-      (if (is64bit) "win64" else "win32")
-    else
+    if (is64bit) {
+      if (osName.indexOf("mac") >= 0) "mac64"
+      else if (osName.indexOf("nux") >= 0) "linux64"
+      else if (osName.indexOf("win") >= 0) "win64"
+      else "unsupported"
+    } else
       "unsupported"
   }
 
@@ -150,6 +149,8 @@ object SireumDistro extends App {
       case "win64" | "win32" => "sireum.bat"
       case _                 => "sireum"
     }
+
+  val propName = "sireum.properties"
 
   val updateUrl = {
     var url = System.getProperty(SIREUM_UPDATE_PROPERTY_KEY)
@@ -786,6 +787,12 @@ object SireumDistro extends App {
     updateInstalledFeatures
     updateExisting(sireumDir, "")
 
+    val propFile = new File(sireumDir, propName)
+    if (!propFile.exists) {
+      downloadFile(false, propName, propFile)
+      downloadCount += 1
+    }
+
     printStatus(replacedFiles.size - installedFileCount, deleteCount,
       errorCount, downloadCount, newFeatures)
 
@@ -877,12 +884,50 @@ object SireumDistro extends App {
               checksum != currentChecksum
             }
             if (download) {
-              if (file.getName == scriptName && file.getParentFile == sireumDir)
+              if (file.getName == scriptName && file.getParentFile == sireumDir) {
                 downloadFile(file.exists, filename,
                   new File(sireumDir, scriptName + ".new"))
-              else
+                Replaced
+              } else if (file.getName == propName && file.getParentFile == sireumDir) {
+                val propNameNew = propName + ".new"
+                val propFile = new File(sireumDir, propName)
+                val propFileNew = new File(sireumDir, propNameNew)
+                downloadFile(false, propName, propFileNew, true)
+                if (propFile.exists) {
+                  import scala.collection.JavaConversions._
+                  val newProps = Files.readAllLines(propFileNew.toPath).toVector
+                  if (Files.readAllLines(propFile.toPath).get(0) != newProps.get(0)) {
+                    var f = new File(propFile.getParentFile, propName +
+                      "-backup-" + timeStamp)
+                    outPrint(s"Moving $propName to ${f.getName} ... ")
+                    propFile.renameTo(f)
+                    outPrintln("done!")
+                    outPrint(s"Downloading ${propName} ... ")
+                    propFileNew.renameTo(propFile)
+                    outPrintln("done!")
+                    outPrint(s"Patching ${propName} ... ")
+                    val p = new java.util.Properties
+                    val fr = new FileReader(f)
+                    try p.load(fr) finally fr.close
+                    val patch = p.stringPropertyNames.toVector.sorted.map(
+                      key => s"$key=${p.get(key)}")
+                    Files.write(propFile.toPath, "" +: patch,
+                      StandardOpenOption.APPEND)
+                    outPrintln("done!")
+                    Replaced
+                  } else {
+                    propFileNew.delete
+                    NoUpdate
+                  }
+                } else {
+                  propFileNew.renameTo(propFile)
+                  outPrintln(s"Downloaded ${propName} ... Done!")
+                  Replaced
+                }
+              } else {
                 downloadFile(file.exists, filename, file)
-              Replaced
+                Replaced
+              }
             } else
               NoUpdate
           }
@@ -935,12 +980,13 @@ object SireumDistro extends App {
     }
 
   def downloadFile(isUpdate : Boolean, filename : String,
-                   file : File) : Boolean = {
+                   file : File, isSilent : Boolean = false) : Boolean = {
     if (!isUpdate && isPlatformSpecific(filename)
       && isNotForThisPlatform(filename))
       return false
-    outPrint((if (isUpdate) "Updating" else "Downloading") + " file " +
-      toOsPath(filename))
+    if (!isSilent)
+      outPrint((if (isUpdate) "Updating" else "Downloading") + " file " +
+        toOsPath(filename))
 
     val is = new URL(updateUrl + filename).openStream
     try {
@@ -949,17 +995,21 @@ object SireumDistro extends App {
       try {
         val buffer = new Array[Byte](BUFFER_SIZE)
         var n = is.read(buffer)
-        ProgressPrinter.first
+        if (!isSilent)
+          ProgressPrinter.first
         while (n != -1) {
           os.write(buffer, 0, n)
           n = is.read(buffer)
-          ProgressPrinter.next
+          if (!isSilent)
+            ProgressPrinter.next
         }
       } finally os.close
     } finally is.close
 
-    ProgressPrinter.last
-    outPrintln("... done!")
+    if (!isSilent) {
+      ProgressPrinter.last
+      outPrintln("... done!")
+    }
 
     if (isAppFile(file))
       installApp(file)
@@ -1159,6 +1209,11 @@ Sireum Distro managed apps are currently running.""")
   }
 
   def cleanApps {
+    for (f <- sireumDir.listFiles) {
+      if (f.isFile && f.getName.indexOf("-backup-") >= 0) {
+        delete(f, false)
+      }
+    }
     if (appsDir.exists) {
       deleteAppsBackups(appsDir)
     }

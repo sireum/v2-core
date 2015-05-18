@@ -19,6 +19,18 @@ object $className$ extends App {
 
 class $className$ {
   val result = new CliResult()
+  val properties = {
+    import java.io._
+    import java.util._
+    val ps = new Properties
+    val f = new File(System.getProperty("SIREUM_HOME"), "sireum.properties")
+    if (f.exists) {
+      val fr = new FileReader(f)
+      try ps.load(fr)
+      finally fr.close
+    }
+    ps
+  }
   
   def parse(args: Seq[String]) : CliResult = {
     parse$topMethod$(args, 0)
@@ -127,22 +139,26 @@ optblock(opt) ::= <<
 $opt; separator="\n"$
 >>
   
-parseMain(className, header, featureName, targetName, caseOpt, name, caseArg, nummeth, key, optCheck, hasVarg, nonempty) ::= <<
+parseMain(className, header, featureName, targetName, caseOpt, name, caseArg, nummeth, key, optCheck, hasVarg, nonempty, propDef) ::= <<
 def parse$className$(args : Seq[String], i : Int) {
+  val opt = $className$()
+  val keys = List[String]("-h", "--help", "$key; separator="\", \""$")
+  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
+  
+  $propDef; separator="\n\n"$
+  
   def usage {
     addInfoTag(
-"""
+s"""
 $header; separator="\n\n"$
 """.trim) 
   }
   $if(nonempty)$if (i == args.length) {
     usage
   } else $endif${
-    val opt = $className$()
     result.options = Some(opt)
     result.className = "$targetName$"
     result.featureName = "$featureName$"
-    val keys = List[String]("-h", "--help", "$key; separator="\", \""$")
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -187,6 +203,14 @@ $header; separator="\n\n"$
 }  
 >>
 
+propDef(field, longKey, type) ::= <<
+opt.$field; separator="."$ = {
+  val v = properties.getProperty(keyPrefix + "$longKey$")
+  if (v != null) process("$longKey$", v, keys, opt.$field; separator="."$).get.asInstanceOf[$type$]
+  else opt.$field; separator="."$
+}
+>>
+
 process() ::= <<
   def process(key : String, value : String, keys : Seq[String], clazz : Any) : scala.Option[Any] = {
     var messages = Seq[Tag]()
@@ -214,7 +238,7 @@ process() ::= <<
                     s.elements.map{s => s.toString.stripSuffix("\$")}.mkString(", ") + "]")
             }
         case s : Seq[_] =>
-          v = Some(value.split(",").toList)
+          v = Some(value.split(",").toVector)
         case _ =>
           addErrorTag("Unknown option type " + clazz)
       }
@@ -246,7 +270,7 @@ case $matching$ =>
   $optioncheck$
   $lhs(gname, fname)$ = 
     if (j + 1 == args.length) List()
-    else args.slice(j + 1, args.length).toList
+    else args.slice(j + 1, args.length).toVector
   j = args.length
 >>
 
@@ -325,5 +349,10 @@ tagRoutines() ::= <<
   }
 >>
 
-   
-    
+properties(property) ::= <<
+# $property; separator="\n# "$
+>>
+
+property(key, value) ::= <<
+$key; separator="."$=$value; separator=","$
+>>

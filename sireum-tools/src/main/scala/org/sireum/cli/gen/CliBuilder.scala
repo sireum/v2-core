@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2011-2013 Robby, Kansas State University.        
-All rights reserved. This program and the accompanying materials      
-are made available under the terms of the Eclipse Public License v1.0 
-which accompanies this distribution, and is available at              
-http://www.eclipse.org/legal/epl-v10.html                             
+Copyright (c) 2011-2013 Robby, Kansas State University.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
 */
 
 package org.sireum.cli.gen
@@ -101,6 +101,7 @@ class CliBuilder {
 
   val stg : STGroupFile = new STGroupFile(getClass.getResource("cli.stg"), "UTF-8", '$', '$')
   val topLevel = stg.getInstanceOf("topLevel")
+  val properties : ST = stg.getInstanceOf("properties")
   var stMain : ST = null
 
   var imports = Set[String]()
@@ -122,7 +123,9 @@ class CliBuilder {
           val q1 = getMainModeInfo(filter(c.getDeclaredMethods))
           val modeDesc = marrayEmpty[(String, String, Boolean)]
           var longestName = 0
-          for ((m, modeName, desc, listed) <- q1) {
+          for (
+            (m, modeName, desc, listed) <- q1.sortBy(_._1.getName)
+          ) {
             val mo = m.invoke(o)
             if (mo != null) {
               val stcase = stg.getInstanceOf("caseMode")
@@ -137,9 +140,7 @@ class CliBuilder {
             }
           }
           for (
-            (name, desc, listed) <- modeDesc.sortWith({
-              (md1, md2) => md1._1 <= md2._1
-            }) if listed
+            (name, desc, listed) <- modeDesc.sortBy(_._1) if listed
           ) {
             val stAvailMode = stg.getInstanceOf("mode")
             stAvailMode.add("name", name)
@@ -234,27 +235,30 @@ class CliBuilder {
           val options = collect(md, classOf[Option])
           val (l1, l2) = computeMaxLen(options)
           val optblock = marrayEmpty[String]
-          for ((mo, opt, optCheck) <- options) {
-            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck)
+          val keyPrefix = s"${path.mkString(".")}.${s.value}"
+          for (
+            (mo, opt, optCheck) <- options.sortWith({ (t1, t2) =>
+              val opt1 = t1._2
+              val opt2 = t2._2
+              if (opt1.shortKey == "") false
+              else if (opt2.shortKey == "") true
+              else {
+                val r = opt1.shortKey.compareTo(opt2.shortKey)
+                if (r != 0) r <= 0
+                else opt1.longKey.compareTo(opt2.longKey) <= 0
+              }
+            })
+          ) {
+            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, stMain, keyPrefix)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
-          val sortedopts = optblock.sortWith({ (a, b) =>
-              def isLongKey(s : String) = s.startsWith(LONG_KEY_PREFIX)
-              def isShortKey(s : String) = s.startsWith(SHORT_KEY_PREFIX) && !s.startsWith(LONG_KEY_PREFIX)
-
-            if (isLongKey(a) && isShortKey(b))
-              false
-            else if (isShortKey(a) && isLongKey(b))
-              true
-            else a.compareTo(b) <= 0
-          })
           val optblockst = stg.getInstanceOf("optblock")
           optblockst.add("opt", "-h | --help")
-          sortedopts.foreach(so => optblockst.add("opt", so))
+          optblock.foreach(so => optblockst.add("opt", so))
           stMain.add("header", optblockst)
 
-          for (m <- filter(c.getDeclaredMethods)) {
+          for (m <- filter(c.getDeclaredMethods).sortBy(_.getName)) {
             mineClass(m.getReturnType, m.invoke(o), path :+ s.value, m.getName)
           }
           stMain = null
@@ -265,16 +269,16 @@ class CliBuilder {
           stgroup.add("groupName", s.value)
           stMain.add("header", stgroup)
 
+          val keyPrefix = path.mkString(".")
           val opts = collect(filter(c.getDeclaredMethods, true), classOf[Option])
           val (l1, l2) = computeMaxLen(opts)
           val optblock = marrayEmpty[String]
-          for ((mo, opt, optCheck) <- opts) {
-            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, groupName)
+          for ((mo, opt, optCheck) <- opts.sortBy(_._1.getName)) {
+            val (st1, st2) = handleOption(o, mo, opt, l1, l2, optCheck, stMain, keyPrefix, groupName)
             optblock += st1.render
             stMain.add("caseOpt", st2)
           }
-          val sortedopts = optblock.sortWith((a, b) => a.compareTo(b) <= 0)
-          sortedopts.foreach(so => stgroup.add("option", so))
+          optblock.foreach(so => stgroup.add("option", so))
         }
         case _ => {
 
@@ -329,7 +333,9 @@ class CliBuilder {
 
   def handleOption(o : AnyRef, mo : Method,
                    ot : Option, maxShort : Int, maxLong : Int,
-                   check : scala.Option[Check], groupName : String = null) : (ST, ST) = {
+                   check : scala.Option[Check],
+                   stMain : ST, keyPrefix : String,
+                   groupName : String = null) : (ST, ST) = {
 
     val max = maxShort + (if (maxShort > 0) SHORT_KEY_PREFIX.length else 0) +
       (if (maxLong > 0 && maxShort > 0) " | ".length else 0) +
@@ -351,7 +357,7 @@ class CliBuilder {
       optioncheckst.add("shortkey", shortKey.get)
     }
 
-    if (longKey.isDefined) {
+    {
       keys += (if (!keys.isEmpty) " | " else "") + longKey.get
       stMain.add("key", longKey.get)
       matchings.add("g", longKey.get)
@@ -365,11 +371,19 @@ class CliBuilder {
       val defval = mo.invoke(o)
       val (_, _, simpleName, ochoices) = prettify(mo, defval)
 
-      if (defval.isInstanceOf[Seq[_]])
-        stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
-
-      if (!defval.isInstanceOf[Boolean])
-        stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", simpleName))
+      val field = if (groupName != null) s"opt.$groupName.${mo.getName}" else s"opt.${mo.getName}"
+      defval match {
+        case _ : Seq[_] =>
+          stoption_desc.add("opt", stg.getInstanceOf("separator").add("sep", ot.separator))
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "\"${" + field + s""".mkString("${ot.separator}")}\""""))
+        case _ : String =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "\"${" + field + "}\""))
+        case _ : java.lang.Boolean =>
+        case _ : org.sireum.util.Enum#EnumElem =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "${" + field + ".toString.dropRight(1)}"))
+        case _ =>
+          stoption_desc.add("opt", stg.getInstanceOf("defaultval").add("val", "${" + field + "}"))
+      }
 
       if (ochoices.isDefined) {
         val stchoices = stg.getInstanceOf("choices")
@@ -392,6 +406,36 @@ class CliBuilder {
       else
         handleCase(matchings.render, optioncheckst.render, value,
           (mo, o), check, groupName, mo.getName, tenum.DEFAULT)
+
+    val stProperty = stg.getInstanceOf("property")
+    properties.add("property", stProperty)
+    stProperty.add("key", keyPrefix)
+    stProperty.add("key", ot.longKey)
+
+    val stPropDef = stg.getInstanceOf("propDef")
+    stMain.add("propDef", stPropDef)
+    if (groupName != null) stPropDef.add("field", groupName)
+    stPropDef.add("field", mo.getName)
+    stPropDef.add("longKey", ot.longKey)
+
+    mo.invoke(o) match {
+      case b : java.lang.Boolean =>
+        stProperty.add("value", false)
+        stPropDef.add("type", "Boolean")
+      case n : Integer =>
+        stProperty.add("value", n)
+        stPropDef.add("type", "Int")
+      case s : Seq[_] =>
+        s.foreach(x => stProperty.add("value", x))
+        stPropDef.add("type", "ISeq[String]")
+      case s : String =>
+        stProperty.add("value", s)
+        stPropDef.add("type", "String")
+      case e : org.sireum.util.Enum#EnumElem =>
+        stProperty.add("value", e.toString.stripSuffix("$"))
+        stPropDef.add("type", e.enum.getClass.getName.dropRight(1))
+        stPropDef.add("type", ".Type")
+    }
 
     (stoption, stcase)
   }
@@ -449,14 +493,14 @@ class CliBuilder {
 
     val (typen, pvalue, _, _) = prettify(m._1, m._1.invoke(m._2))
     stCase.add("optioncheck", optcheck)
-    
-    if (t != tenum.DEFAULT){
+
+    if (t != tenum.DEFAULT) {
       stCase.add("isArg", true)
     } else {
       if (typen == "java.lang.Boolean")
         stCase.add("isArg", true)
     }
-    
+
     if (t == tenum.VARARG) {
       assert(typen.startsWith("Array"))
 
@@ -544,7 +588,7 @@ class CliBuilder {
         println("fqn: " + fqn)
         println("simpleName: " + simpleName)
         println("genericType: " + genericType)
-        
+
         (castType, castType + "()", simpleName, None)
         */
 
@@ -566,14 +610,14 @@ class CliBuilder {
     var l = List[(Method, String, String, Boolean)]()
     for (m <- meths if m.getName != "apply") {
       val c = m.getReturnType
-      for (a <- c.getDeclaredAnnotations) {
+      for (a <- c.getDeclaredAnnotations.sortBy(_.annotationType.getName)) {
         a match {
           case s : Mode =>
             l :+= (m, s.command, s.desc, s.listed)
           case s : Main =>
             l :+= (m, s.value, s.desc, true)
           case s : Check                        => // ignore
-          case s : scala.reflect.ScalaSignature => // ignore  
+          case s : scala.reflect.ScalaSignature => // ignore
           case s =>
             throw new RuntimeException("Unexpected: " + s.annotationType)
         }
@@ -675,12 +719,21 @@ class CliBuilder {
     }
 
     val fname = new File(root, objectName + ".scala")
+    val pname = new File(root, "sireum.properties")
 
     try {
-      val out = new PrintWriter(new FileWriter(fname))
-      out.write(topLevel.render())
+      import org.sireum.util._
+      var props = properties.render
+      props = s"# Sireum CLI default options ${StringUtil.md5(props)}\n" + props
+      println(props)
+      var out = new PrintWriter(new FileWriter(fname))
+      out.write(topLevel.render)
       out.close()
       println("Succesfully wrote: " + fname.getAbsolutePath)
+      out = new PrintWriter(new FileWriter(pname))
+      out.write(props)
+      out.close();
+      println("Succesfully wrote: " + pname.getAbsolutePath)
     } catch {
       case s : Throwable => Console.err.println(s)
     }
