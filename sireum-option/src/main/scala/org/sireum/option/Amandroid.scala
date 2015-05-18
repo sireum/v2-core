@@ -148,7 +148,7 @@ case class SireumAmandroidGenGraphMode(
 
   @Option(shortKey = "f", longKey = "format", desc = "Graph output format.") var format: GraphFormat.Type = GraphFormat.GraphML,
   @Option(shortKey = "gt", longKey = "graph-type", desc = "Type of the graph.") var graphtyp: GraphType.Type = GraphType.FULL,
-  @Option(shortKey = "h", longKey = "header", desc = "Type of the graph.") var header: String = "",
+  @Option(shortKey = "h", longKey = "header", desc = "Header for nodes and edges.") var header: String = "",
   @Arg(index = 0, value = "Source file") var srcFile: String = "")
 
 @Group("General Options")
