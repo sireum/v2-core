@@ -1,6 +1,6 @@
 #!/bin/bash
 export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export SCIDE_DROP_URL=http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/update-site.zip
+export SCIDE_DROP_URL=http://download.scala-ide.org/sdk/lithium/e44/scala211/dev/update-site.zip
 export SCIDE_DROP=${SCIDE_DROP_URL##*/}
 if [ ! -f $SCIDE_DROP ]; then
   echo
