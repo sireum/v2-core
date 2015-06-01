@@ -31,7 +31,7 @@ IF %NEWEST%==%~nx0 (
   ECHO Please wait while Sireum is loading... 
 )
 :END
-CALL scala -target:jvm-1.7 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
+CALL scala -target:jvm-1.8 -nocompdaemon -savecompiled %SCALA_OPTIONS% %SCRIPT% %SIREUM_HOME% %*
 SET CODE=%ERRORLEVEL%
 SET RELOAD=false
 IF EXIST %SIREUM_HOME%apps\platform\java.new (
