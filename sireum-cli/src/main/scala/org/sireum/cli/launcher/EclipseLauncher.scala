@@ -67,7 +67,9 @@ class EclipseLauncher {
             }
           val (addArgs, launchDir) =
             if (osArch == OsArch.Mac32 || osArch == OsArch.Mac64)
-              (ivector("-Xdock:icon=../Resources/Eclipse.icns",
+              (ivector("-Xdock:name=Eclipse",
+                "-Xdock:icon=" + new File(sireumHome,
+                  "apps/eclipse/dsl/Eclipse.app/Contents/Resources/Eclipse.icns").getAbsolutePath,
                 "-XstartOnFirstThread",
                 "-Dorg.eclipse.swt.internal.carbon.smallFonts"),
                 new File(sireumHome,
@@ -75,7 +77,8 @@ class EclipseLauncher {
             else (ivectorEmpty, new File(sireumHome, "apps/eclipse/dsl"))
           val launcherArgs =
             ivector(
-              "-Dosgi.requiredJavaVersion=1.7",
+              "-Dosgi.requiredJavaVersion=1.8",
+              "-Dosgi.configuration.area.default=" + Config.configDirEclipse.getAbsolutePath,
               "-jar", launcherJar,
               "-showsplash", "org.eclipse.platform",
               "--launcher.defaultAction", "openFile") ++
