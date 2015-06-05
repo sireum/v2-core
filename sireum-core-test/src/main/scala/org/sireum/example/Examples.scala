@@ -18,7 +18,9 @@ object Examples {
 
   def exampleFiles(dirUri : FileResourceUri,
                    ext : String = Examples.PILAR_FILE_EXT) : ISeq[FileResourceUri] =
-    FileUtil.listFiles(dirUri, ext, true)
+    FileUtil.listFiles(dirUri, ext, true).map(_.
+      replace("/bin/", "/src/test/resources/").
+      replaceAll("/target/.*/test-classes/", "/src/test/resources/"))
 
   def sourceDirUri(claz : Class[_], path : String) = {
     FileUtil.fileUri(claz, path)
