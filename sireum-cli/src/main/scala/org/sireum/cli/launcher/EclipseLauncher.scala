@@ -48,7 +48,7 @@ class EclipseLauncher {
       osArch match {
         case OsArch.Mac32 | OsArch.Mac64 | OsArch.Linux32 |
              OsArch.Linux64 | OsArch.Win32 | OsArch.Win64 =>
-          var java =
+          val java =
             if (javaHomeDir.exists) new File(javaHomeDir, "bin/java" + exeExt).getCanonicalPath
             else "java"
           val launcherJar =
@@ -62,7 +62,7 @@ class EclipseLauncher {
             } catch {
               case ex: Exception =>
                 System.err.println("Could not find Eclipse Equinox launcher jar...")
-                System.err.flush
+                System.err.flush()
                 sys.exit(-1)
             }
           val addArgs =
@@ -77,9 +77,11 @@ class EclipseLauncher {
           val eclipseDir = new File(sireumHome, "apps/eclipse/jee")
           val launcherArgs =
             ivector(
+              "-Declipse.filesystem.useNatives=false", // workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=470153
               "-Declipse.launcher=sireum",
               "-Dosgi.requiredJavaVersion=1.8",
-              "-Dosgi.configuration.area.default=" + new File(Config.configDir, "Eclipse-Mars/Configuration").getAbsolutePath,
+              "-Dosgi.configuration.area.default=" +
+                new File(Config.configDir, "Eclipse-Mars/Configuration").getAbsolutePath,
               "-jar", launcherJar,
               "-showsplash", "org.eclipse.platform",
               "--launcher.defaultAction", "openFile") ++
@@ -88,7 +90,7 @@ class EclipseLauncher {
             Some(eclipseDir))
         case _ =>
           scala.Console.err.println("Unsupported platform")
-          scala.Console.err.flush
+          scala.Console.err.flush()
           sys.exit(-1)
       }
     var start = true
@@ -101,9 +103,9 @@ class EclipseLauncher {
           val text = x.trim
           if (!text.isEmpty) scala.Console.out.println(text)
           scala.Console.out.println(s"Exit Code: $code")
-          scala.Console.out.flush
-        case Exec.ExceptionRaised(e) =>
-          e.printStackTrace
+          scala.Console.out.flush()
+        case Exec.ExceptionRaised(ex) =>
+          ex.printStackTrace()
         case _ =>
       }
     }
