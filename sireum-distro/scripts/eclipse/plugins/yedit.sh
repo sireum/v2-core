@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
+ELINKDIR=eclipse/jee/links
+RELDIR=../..
 export YEDIT_DROP_URL=http://dadacoalition.org/yedit/plugins/org.dadacoalition.yedit_1.0.16.jar
 export YEDIT_DROP=${YEDIT_DROP_URL##*/}
 if [ ! -f $YEDIT_DROP ]; then
@@ -10,19 +11,14 @@ if [ ! -f $YEDIT_DROP ]; then
   wget $YEDIT_DROP_URL
   echo
 fi
-mkdir eclipse 2> /dev/null
-mkdir eclipse/dsl 2> /dev/null
-mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../eclipsebase/yedit" > eclipse/dsl/links/yedit.link 
-mkdir EclipseBase 2> /dev/null
-mkdir EclipseBase/yedit 2> /dev/null
-mkdir EclipseBase/yedit/eclipse 2> /dev/null
-mkdir EclipseBase/yedit/eclipse/plugins 2> /dev/null
-mkdir EclipseBase/yedit/eclipse/features 2> /dev/null
+mkdir -p ${ELINKDIR}
+echo "path=${RELDIR}/eclipsebase/yedit" > ${ELINKDIR}/yedit.link
+mkdir -p EclipseBase/yedit/eclipse/plugins
+mkdir -p EclipseBase/yedit/eclipse/features
 > EclipseBase/yedit/eclipse/.eclipseextension
 cp $YEDIT_DROP EclipseBase/yedit/eclipse/plugins
 cd EclipseBase
-zip -rq yedit.sapp yedit ../eclipse/dsl/links/yedit.link
+zip -rq yedit.sapp yedit ../${ELINKDIR}/yedit.link
 cd ..
 rm -fR eclipse EclipseBase/yedit
 echo

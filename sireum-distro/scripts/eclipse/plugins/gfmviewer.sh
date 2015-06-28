@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
+ELINKDIR=eclipse/jee/links
+RELDIR=../..
 export GFMVIEWER_DROP_URL=http://dl.bintray.com/satyagraha/generic/1.9.3/plugins/code.satyagraha.gfm.viewer.plugin_1.9.3.jar
 export GFMVIEWER_DROP=${GFMVIEWER_DROP_URL##*/}
 if [ ! -f $GFMVIEWER_DROP ]; then
@@ -10,19 +11,14 @@ if [ ! -f $GFMVIEWER_DROP ]; then
   wget $GFMVIEWER_DROP_URL
   echo
 fi
-mkdir eclipse 2> /dev/null
-mkdir eclipse/dsl 2> /dev/null
-mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../eclipsebase/gfmviewer" > eclipse/dsl/links/gfmviewer.link 
-mkdir EclipseBase 2> /dev/null
-mkdir EclipseBase/gfmviewer 2> /dev/null
-mkdir EclipseBase/gfmviewer/eclipse 2> /dev/null
-mkdir EclipseBase/gfmviewer/eclipse/plugins 2> /dev/null
-mkdir EclipseBase/gfmviewer/eclipse/features 2> /dev/null
+mkdir -p ${ELINKDIR}
+echo "path=${RELDIR}/eclipsebase/gfmviewer" > ${ELINKDIR}/gfmviewer.link
+mkdir -p EclipseBase/gfmviewer/eclipse/plugins
+mkdir -p EclipseBase/gfmviewer/eclipse/features
 > EclipseBase/gfmviewer/eclipse/.eclipseextension
 cp $GFMVIEWER_DROP EclipseBase/gfmviewer/eclipse/plugins
 cd EclipseBase
-zip -rq gfmviewer.sapp gfmviewer ../eclipse/dsl/links/gfmviewer.link
+zip -rq gfmviewer.sapp gfmviewer ../${ELINKDIR}/gfmviewer.link
 cd ..
 rm -fR eclipse EclipseBase/gfmviewer
 echo

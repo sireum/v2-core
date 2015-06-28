@@ -1,7 +1,8 @@
 #!/bin/bash
 #
-export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates/org.eclipse.egit.repository-}${EGIT_VERSION:=3.7.1}.${EGIT_BUILD_DATE:=201504261725}-r.zip
+ELINKDIR=eclipse/jee/links
+RELDIR=../..
+export EGIT_DROP_URL=${EGIT_URL:=http://ftp.osuosl.org/pub/eclipse/egit/updates/org.eclipse.egit.repository-}${EGIT_VERSION:=4.0.1}.${EGIT_BUILD_DATE:=201506240215}-r.zip
 export EGIT_DROP=org.eclipse.egit.repository-$EGIT_VERSION.$EGIT_BUILD_DATE-r.zip
 if [ ! -f $EGIT_DROP ]; then
   echo
@@ -10,18 +11,14 @@ if [ ! -f $EGIT_DROP ]; then
   wget $EGIT_DROP_URL
   echo
 fi
-mkdir eclipse 2> /dev/null
-mkdir eclipse/dsl 2> /dev/null
-mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../eclipsebase/egit" > eclipse/dsl/links/egit.link 
-mkdir EclipseBase 2> /dev/null
-mkdir EclipseBase/egit 2> /dev/null
-mkdir EclipseBase/egit/eclipse 2> /dev/null
+mkdir -p ${ELINKDIR}
+echo "path=${RELDIR}/eclipsebase/egit" > ${ELINKDIR}/egit.link
+mkdir -p EclipseBase/egit/eclipse
 cd EclipseBase/egit/eclipse
 > .eclipseextension
 unzip -oq ../../../$EGIT_DROP
 cd ../..
-zip -rq egit.sapp egit ../eclipse/dsl/links/egit.link
+zip -rq egit.sapp egit ../${ELINKDIR}/egit.link
 cd ..
 rm -fR eclipse EclipseBase/egit
 echo

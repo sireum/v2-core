@@ -1,11 +1,10 @@
 #!/bin/bash
-export PACKAGE_HOME=$( cd "$( dirname "$0" )" &> /dev/null && pwd )
-mkdir eclipse 2> /dev/null
-mkdir eclipse/dsl 2> /dev/null
-mkdir eclipse/dsl/links 2> /dev/null
-echo "path=../../eclipsebase/eclipse-fonts" > eclipse/dsl/links/eclipse-fonts.link 
-mkdir EclipseBase 2> /dev/null
-mkdir EclipseBase/eclipse-fonts 2> /dev/null
+#
+ELINKDIR=eclipse/jee/links
+RELDIR=../..
+mkdir -p ${ELINKDIR}
+echo "path=${RELDIR}/eclipsebase/eclipse-fonts" > ${ELINKDIR}/eclipse-fonts.link
+mkdir -p EclipseBase/eclipse-fonts
 cd EclipseBase/eclipse-fonts
 svn checkout https://eclipse-fonts.googlecode.com/svn/trunk/FontsUpdate eclipse
 cd eclipse
@@ -13,7 +12,7 @@ cd eclipse
 rm -fR `find . -name ".svn"`
 rm .project
 cd ../..
-zip -rq eclipse-fonts.sapp eclipse-fonts ../eclipse/dsl/links/eclipse-fonts.link
+zip -rq eclipse-fonts.sapp eclipse-fonts ../${ELINKDIR}/eclipse-fonts.link
 cd ..
 rm -fR EclipseBase/eclipse-fonts eclipse
 echo
