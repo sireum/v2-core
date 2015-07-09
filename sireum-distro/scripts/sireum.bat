@@ -596,7 +596,7 @@ object SireumDistro extends App {
     ) {
       val file = new File(sireumDir, fPath)
       if (!isDownloaded(file))
-        if (downloadFile(false, fPath, file))
+        if (downloadFile(false, fPath, file, Some(getChecksums(fPath))))
           installedFiles = installedFiles + fPath
     }
     installedFiles
@@ -730,7 +730,7 @@ object SireumDistro extends App {
                 else if (isApp && !new File(metadataDir, fPath +
                   CHECKSUM_SUFFIX).exists &&
                   (file.getParentFile != appsDir))
-                  if (downloadFile(false, fPath, file))
+                  if (downloadFile(false, fPath, file, Some(checksums(fPath))))
                     downloadCount += 1
               } else if (features.contains(fPath) &&
                 !installedFeatures.contains(fPath) &&
@@ -789,7 +789,7 @@ object SireumDistro extends App {
 
     val propFile = new File(sireumDir, propName)
     if (!propFile.exists) {
-      downloadFile(false, propName, propFile)
+      downloadFile(false, propName, propFile, Some(checksums(propName)))
       downloadCount += 1
     }
 
@@ -825,7 +825,7 @@ object SireumDistro extends App {
 
   def downloadBuild {
     val buildFile = new File(metadataDir, BUILD_FILENAME)
-    downloadFile(buildFile.exists, BUILD_FILENAME, buildFile)
+    downloadFile(buildFile.exists, BUILD_FILENAME, buildFile, None)
   }
 
   def deleteRemainingAppFiles(filePath : String) {
@@ -886,13 +886,13 @@ object SireumDistro extends App {
             if (download) {
               if (file.getName == scriptName && file.getParentFile == sireumDir) {
                 downloadFile(file.exists, filename,
-                  new File(sireumDir, scriptName + ".new"))
+                  new File(sireumDir, scriptName + ".new"), Some(checksum))
                 Replaced
               } else if (file.getName == propName && file.getParentFile == sireumDir) {
                 val propNameNew = propName + ".new"
                 val propFile = new File(sireumDir, propName)
                 val propFileNew = new File(sireumDir, propNameNew)
-                downloadFile(false, propName, propFileNew, true)
+                downloadFile(false, propName, propFileNew, Some(checksum), true)
                 if (propFile.exists) {
                   import scala.collection.JavaConversions._
                   val newProps = Files.readAllLines(propFileNew.toPath).toVector
@@ -925,7 +925,7 @@ object SireumDistro extends App {
                   Replaced
                 }
               } else {
-                downloadFile(file.exists, filename, file)
+                downloadFile(file.exists, filename, file, Some(checksum))
                 Replaced
               }
             } else
@@ -980,7 +980,8 @@ object SireumDistro extends App {
     }
 
   def downloadFile(isUpdate : Boolean, filename : String,
-                   file : File, isSilent : Boolean = false) : Boolean = {
+                   file : File, expectedChecksum : Option[String],
+                   isSilent : Boolean = false) : Boolean = {
     if (!isUpdate && isPlatformSpecific(filename)
       && isNotForThisPlatform(filename))
       return false
@@ -1004,7 +1005,16 @@ object SireumDistro extends App {
             ProgressPrinter.next
         }
       } finally os.close
-    } finally is.close
+    } finally {
+      is.close
+      expectedChecksum.foreach(c =>
+        if (getChecksum(file) != c) {
+          ProgressPrinter.last
+          errPrintln("... failed!")
+          file.delete()
+          sys.exit(-1)
+        })
+    }
 
     if (!isSilent) {
       ProgressPrinter.last
