@@ -197,7 +197,7 @@ General Options
                 seenopts += "--memory"
                 seenopts += "-m"
               }
-              val v = process(args(j), args(j + 1), keys, 2 )
+              val v = process(args(j), args(j + 1), keys, 4 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
@@ -315,7 +315,7 @@ General Options
                 seenopts += "--memory"
                 seenopts += "-m"
               }
-              val v = process(args(j), args(j + 1), keys, 2 )
+              val v = process(args(j), args(j + 1), keys, 4 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
@@ -572,7 +572,7 @@ General Options
                 seenopts += "--memory"
                 seenopts += "-m"
               }
-              val v = process(args(j), args(j + 1), keys, 2 )
+              val v = process(args(j), args(j + 1), keys, 4 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
@@ -608,19 +608,13 @@ General Options
 
 def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidTaintAnalysisMode()
-  val keys = List[String]("-h", "--help", "-mo", "--module", "-sas", "--souce_and_sink_file", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
+  val keys = List[String]("-h", "--help", "-mo", "--module", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
   opt.module = {
     val v = properties.getProperty(keyPrefix + "module")
     if (v != null) process("module", v, keys, opt.module).get.asInstanceOf[org.sireum.option.AnalysisModule.Type]
     else opt.module
-  }
-
-  opt.sas = {
-    val v = properties.getProperty(keyPrefix + "souce_and_sink_file")
-    if (v != null) process("souce_and_sink_file", v, keys, opt.sas).get.asInstanceOf[String]
-    else opt.sas
   }
 
   opt.analysis.outdir = {
@@ -656,10 +650,8 @@ Usage:
 where the available options are:
 
 -h | --help
--mo  | --module      Analysis module to use. [Default: ${opt.module.toString.dropRight(1)},
-                     Choices: (PASSWORD_TRACKING, INTENT_INJECTION, DATA_LEAKAGE)]
--sas | --souce_and_sink_file 
-                     Source and sink api list file. [Default: "${opt.sas}"]
+-mo | --module Analysis module to use. [Default: ${opt.module.toString.dropRight(1)},
+               Choices: (PASSWORD_TRACKING, INTENT_INJECTION, DATA_LEAKAGE)]
 
 Analysis Options
   -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
@@ -707,25 +699,6 @@ General Options
               val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalysisModule.DATA_LEAKAGE )
               if(result.status){
                 opt.module  = v.get.asInstanceOf[org.sireum.option.AnalysisModule.Type]
-                j += 1
-              }
-            case "-sas" | "--souce_and_sink_file" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--souce_and_sink_file"
-                  r = r || s == "-sas"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--souce_and_sink_file"
-                seenopts += "-sas"
-              }
-              val v = process(args(j), args(j + 1), keys, "" )
-              if(result.status){
-                opt.sas  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
             case "-o" | "--outdir" => 
@@ -798,7 +771,7 @@ General Options
                 seenopts += "--memory"
                 seenopts += "-m"
               }
-              val v = process(args(j), args(j + 1), keys, 2 )
+              val v = process(args(j), args(j + 1), keys, 4 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1

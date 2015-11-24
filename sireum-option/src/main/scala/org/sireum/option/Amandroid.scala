@@ -94,7 +94,6 @@ case class SireumAmandroidTaintAnalysisMode(
   analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
 
   @Option(shortKey = "mo", longKey = "module", desc = "Analysis module to use.") var module: AnalysisModule.Type = AnalysisModule.DATA_LEAKAGE,
-  @Option(shortKey = "sas", longKey = "souce_and_sink_file", desc = "Source and sink api list file.") var sas: String = "",
   @Arg(index = 0, value = "Source file/dir") var srcFile: String = "")
 
 //@Main(value = "staging",
@@ -124,7 +123,7 @@ case class SireumAmandroidGenGraphMode(
 
 @Group("General Options")
 case class SireumAmandroidGeneralGroup(
-  @Option(shortKey = "m", longKey = "memory", desc = "Max memory (GB).") var mem: Int = 2,
+  @Option(shortKey = "m", longKey = "memory", desc = "Max memory (GB).") var mem: Int = 4,
 
   @Option(shortKey = "d", longKey = "debug", desc = "Output debug information") var debug: Boolean = false)
 
