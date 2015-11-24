@@ -61,37 +61,13 @@ class SireumCli {
 
 def parseSireumAmandroidCryptoMisuseMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidCryptoMisuseMode()
-  val keys = List[String]("-h", "--help", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
+  val keys = List[String]("-h", "--help", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
-
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
-  }
-
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
-  }
 
   opt.analysis.outdir = {
     val v = properties.getProperty(keyPrefix + "outdir")
     if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
     else opt.analysis.outdir
-  }
-
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
   }
 
   opt.analysis.timeout = {
@@ -100,48 +76,35 @@ def parseSireumAmandroidCryptoMisuseMode(args : Seq[String], i : Int) {
     else opt.analysis.timeout
   }
 
+  opt.general.debug = {
+    val v = properties.getProperty(keyPrefix + "debug")
+    if (v != null) process("debug", v, keys, opt.general.debug).get.asInstanceOf[Boolean]
+    else opt.general.debug
+  }
+
   opt.general.mem = {
     val v = properties.getProperty(keyPrefix + "memory")
     if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
     else opt.general.mem
   }
 
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
   def usage {
     addInfoTag(
 s"""
 Usage:
-  sireum amandroid cryptoMisuse [options] <Source file> 
+  sireum amandroid cryptoMisuse [options] <Source file/dir> 
 
 where the available options are:
 
 -h | --help
 
 Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
+  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
 
 General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
+  -d | --debug  Output debug information 
+  -m | --memory Max memory (GB). [Default: ${opt.general.mem}]   
 """.trim) 
   }
   if (i == args.length) {
@@ -164,61 +127,6 @@ General Options
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "-k" | "--k-context" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--k-context"
-                seenopts += "-k"
-              }
-              val v = process(args(j), args(j + 1), keys, 1 )
-              if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-ns" | "--nostatic" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
-              }
             case "-o" | "--outdir" => 
 
               if(seenopts.exists{s => 
@@ -237,24 +145,6 @@ General Options
               if(result.status){
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
                 j += 1
-              }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
               }
             case "-to" | "--timeout" => 
 
@@ -275,6 +165,24 @@ General Options
                 opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
+            case "-d" | "--debug" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--debug"
+                  r = r || s == "-d"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--debug"
+                seenopts += "-d"
+              }
+              val v = process(args(j), "true", keys, false )
+              if(result.status){
+                opt.general.debug  = v.get.asInstanceOf[java.lang.Boolean]
+              }
             case "-m" | "--memory" => 
 
               if(seenopts.exists{s => 
@@ -292,44 +200,6 @@ General Options
               val v = process(args(j), args(j + 1), keys, 2 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
@@ -363,26 +233,34 @@ General Options
 
 def parseSireumAmandroidDecompileMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidDecompileMode()
-  val keys = List[String]("-h", "--help", "-t", "--type")
+  val keys = List[String]("-h", "--help", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
-  opt.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.typ).get.asInstanceOf[org.sireum.option.DumpSource.Type]
-    else opt.typ
+  opt.general.debug = {
+    val v = properties.getProperty(keyPrefix + "debug")
+    if (v != null) process("debug", v, keys, opt.general.debug).get.asInstanceOf[Boolean]
+    else opt.general.debug
+  }
+
+  opt.general.mem = {
+    val v = properties.getProperty(keyPrefix + "memory")
+    if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
+    else opt.general.mem
   }
 
   def usage {
     addInfoTag(
 s"""
 Usage:
-  sireum amandroid decompile [options] <Source file> [<Output file>]
+  sireum amandroid decompile [options] <Source file/dir> [<Output dir>]
 
 where the available options are:
 
 -h | --help
--t | --type The type of the file you want to dump. [Default: ${opt.typ.toString.dropRight(1)},
-            Choices: (DIR, DEX, APK)]
+
+General Options
+  -d | --debug  Output debug information 
+  -m | --memory Max memory (GB). [Default: ${opt.general.mem}]   
 """.trim) 
   }
   if (i == args.length) {
@@ -390,7 +268,7 @@ where the available options are:
     } else {
     result.options = Some(opt)
     result.className = "org.sireum.amandroid.cli.DecompilerCli"
-    result.featureName = "Sireum Amandroid Cli:Amandroid.sapp"
+    result.featureName = "Sireum Amandroid Cli"
     var j = i
     var k = -1
     val seenopts = scala.collection.mutable.ListBuffer.empty[String]
@@ -405,23 +283,41 @@ where the available options are:
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "-t" | "--type" => 
+            case "-d" | "--debug" => 
 
               if(seenopts.exists{s => 
                   var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
+                  r = r || s == "--debug"
+                  r = r || s == "-d"
                   r
                 }){
                 addWarningTag("Option already set: %s".format(args(j)))
               }
               else {
-                seenopts += "--type"
-                seenopts += "-t"
+                seenopts += "--debug"
+                seenopts += "-d"
               }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.DumpSource.APK )
+              val v = process(args(j), "true", keys, false )
               if(result.status){
-                opt.typ  = v.get.asInstanceOf[org.sireum.option.DumpSource.Type]
+                opt.general.debug  = v.get.asInstanceOf[java.lang.Boolean]
+              }
+            case "-m" | "--memory" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--memory"
+                  r = r || s == "-m"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--memory"
+                seenopts += "-m"
+              }
+              val v = process(args(j), args(j + 1), keys, 2 )
+              if(result.status){
+                opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
@@ -436,7 +332,7 @@ where the available options are:
                 opt.srcFile  = v.get.asInstanceOf[java.lang.String]
               }
             case 1 => 
-              val v = process(args(j), args(j), keys, "" )
+              val v = process(args(j), args(j), keys, "." )
               if(result.status){
                 opt.outFile  = v.get.asInstanceOf[java.lang.String]
               }
@@ -460,7 +356,7 @@ where the available options are:
 
 def parseSireumAmandroidGenGraphMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidGenGraphMode()
-  val keys = List[String]("-h", "--help", "-f", "--format", "-gt", "--graph-type", "-h", "--header", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
+  val keys = List[String]("-h", "--help", "-f", "--format", "-gt", "--graph-type", "-h", "--header", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
   opt.format = {
@@ -481,34 +377,10 @@ def parseSireumAmandroidGenGraphMode(args : Seq[String], i : Int) {
     else opt.header
   }
 
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
-  }
-
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
-  }
-
   opt.analysis.outdir = {
     val v = properties.getProperty(keyPrefix + "outdir")
     if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
     else opt.analysis.outdir
-  }
-
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
   }
 
   opt.analysis.timeout = {
@@ -517,29 +389,23 @@ def parseSireumAmandroidGenGraphMode(args : Seq[String], i : Int) {
     else opt.analysis.timeout
   }
 
+  opt.general.debug = {
+    val v = properties.getProperty(keyPrefix + "debug")
+    if (v != null) process("debug", v, keys, opt.general.debug).get.asInstanceOf[Boolean]
+    else opt.general.debug
+  }
+
   opt.general.mem = {
     val v = properties.getProperty(keyPrefix + "memory")
     if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
     else opt.general.mem
   }
 
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
   def usage {
     addInfoTag(
 s"""
 Usage:
-  sireum amandroid genGraph [options] <Source file> 
+  sireum amandroid genGraph [options] <Source file/dir> 
 
 where the available options are:
 
@@ -548,22 +414,15 @@ where the available options are:
                    GraphML)]
 -gt | --graph-type Type of the graph. [Default: ${opt.graphtyp.toString.dropRight(1)}, Choices: (API,
                    DETAILED_CALL, SIMPLE_CALL, FULL)]
--h  | --header     Type of the graph. [Default: "${opt.header}"]
+-h  | --header     Header for nodes and edges. [Default: "${opt.header}"]
 
 Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
+  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
 
 General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
+  -d | --debug  Output debug information 
+  -m | --memory Max memory (GB). [Default: ${opt.general.mem}]   
 """.trim) 
   }
   if (i == args.length) {
@@ -643,61 +502,6 @@ General Options
                 opt.header  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
-            case "-k" | "--k-context" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--k-context"
-                seenopts += "-k"
-              }
-              val v = process(args(j), args(j + 1), keys, 1 )
-              if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-ns" | "--nostatic" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
-              }
             case "-o" | "--outdir" => 
 
               if(seenopts.exists{s => 
@@ -716,24 +520,6 @@ General Options
               if(result.status){
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
                 j += 1
-              }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
               }
             case "-to" | "--timeout" => 
 
@@ -754,307 +540,23 @@ General Options
                 opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
-            case "-m" | "--memory" => 
+            case "-d" | "--debug" => 
 
               if(seenopts.exists{s => 
                   var r = false 
-                  r = r || s == "--memory"
-                  r = r || s == "-m"
+                  r = r || s == "--debug"
+                  r = r || s == "-d"
                   r
                 }){
                 addWarningTag("Option already set: %s".format(args(j)))
               }
               else {
-                seenopts += "--memory"
-                seenopts += "-m"
-              }
-              val v = process(args(j), args(j + 1), keys, 2 )
-              if(result.status){
-                opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-                j += 1
-              }
-            case "-h" | "--help" => usage; result.status = false
-            case _ =>
-          }
-        } else { 
-          k = k + 1
-          k match {
-            case 0 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.srcFile  = v.get.asInstanceOf[java.lang.String]
-              }
-
-            case _ =>
-              addErrorTag("Too many arguments starting at " + args(j))
-          }
-        }
-        j = j + 1
-      }
-    } catch {
-      case e: Exception => addErrorTag(e.toString)
-    }
-
-    if(k+1 < 1) {
-      addErrorTag("Missing required arguments")
-    }
-
-  }
-}  
-
-def parseSireumAmandroidIntentInjectionMode(args : Seq[String], i : Int) {
-  val opt = SireumAmandroidIntentInjectionMode()
-  val keys = List[String]("-h", "--help", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
-  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
-
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
-  }
-
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
-  }
-
-  opt.analysis.outdir = {
-    val v = properties.getProperty(keyPrefix + "outdir")
-    if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
-    else opt.analysis.outdir
-  }
-
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
-  }
-
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
-  }
-
-  opt.general.mem = {
-    val v = properties.getProperty(keyPrefix + "memory")
-    if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
-    else opt.general.mem
-  }
-
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
-  def usage {
-    addInfoTag(
-s"""
-Usage:
-  sireum amandroid intentInjection [options] <Source file> <Sink list file> 
-
-where the available options are:
-
--h | --help
-
-Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
-
-General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
-""".trim) 
-  }
-  if (i == args.length) {
-      usage
-    } else {
-    result.options = Some(opt)
-    result.className = "org.sireum.amandroid.cli.IntentInjectionCli"
-    result.featureName = "Sireum Amandroid Cli:Amandroid.sapp"
-    var j = i
-    var k = -1
-    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-    try {
-      while (j < args.length) {
-        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-          addErrorTag(args(j) + " is not an option")
-        }
-        if(k == -1 && keys.contains(args(j))){
-          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          args(j) match {
-            case "-k" | "--k-context" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--k-context"
-                seenopts += "-k"
-              }
-              val v = process(args(j), args(j + 1), keys, 1 )
-              if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-ns" | "--nostatic" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
+                seenopts += "--debug"
+                seenopts += "-d"
               }
               val v = process(args(j), "true", keys, false )
               if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-o" | "--outdir" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--outdir"
-                  r = r || s == "-o"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--outdir"
-                seenopts += "-o"
-              }
-              val v = process(args(j), args(j + 1), keys, "." )
-              if(result.status){
-                opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
+                opt.general.debug  = v.get.asInstanceOf[java.lang.Boolean]
               }
             case "-m" | "--memory" => 
 
@@ -1073,658 +575,6 @@ General Options
               val v = process(args(j), args(j + 1), keys, 2 )
               if(result.status){
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-                j += 1
-              }
-            case "-h" | "--help" => usage; result.status = false
-            case _ =>
-          }
-        } else { 
-          k = k + 1
-          k match {
-            case 0 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.srcFile  = v.get.asInstanceOf[java.lang.String]
-              }
-            case 1 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.sasFile  = v.get.asInstanceOf[java.lang.String]
-              }
-
-            case _ =>
-              addErrorTag("Too many arguments starting at " + args(j))
-          }
-        }
-        j = j + 1
-      }
-    } catch {
-      case e: Exception => addErrorTag(e.toString)
-    }
-
-    if(k+1 < 2) {
-      addErrorTag("Missing required arguments")
-    }
-
-  }
-}  
-
-def parseSireumAmandroidPasswordTrackingMode(args : Seq[String], i : Int) {
-  val opt = SireumAmandroidPasswordTrackingMode()
-  val keys = List[String]("-h", "--help", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
-  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
-
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
-  }
-
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
-  }
-
-  opt.analysis.outdir = {
-    val v = properties.getProperty(keyPrefix + "outdir")
-    if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
-    else opt.analysis.outdir
-  }
-
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
-  }
-
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
-  }
-
-  opt.general.mem = {
-    val v = properties.getProperty(keyPrefix + "memory")
-    if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
-    else opt.general.mem
-  }
-
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
-  def usage {
-    addInfoTag(
-s"""
-Usage:
-  sireum amandroid passwordTracking [options] <Source file> <Sink list file> 
-
-where the available options are:
-
--h | --help
-
-Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
-
-General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
-""".trim) 
-  }
-  if (i == args.length) {
-      usage
-    } else {
-    result.options = Some(opt)
-    result.className = "org.sireum.amandroid.cli.PasswordTrackingCli"
-    result.featureName = "Sireum Amandroid Cli:Amandroid.sapp"
-    var j = i
-    var k = -1
-    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-    try {
-      while (j < args.length) {
-        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-          addErrorTag(args(j) + " is not an option")
-        }
-        if(k == -1 && keys.contains(args(j))){
-          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          args(j) match {
-            case "-k" | "--k-context" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--k-context"
-                seenopts += "-k"
-              }
-              val v = process(args(j), args(j + 1), keys, 1 )
-              if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-ns" | "--nostatic" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-o" | "--outdir" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--outdir"
-                  r = r || s == "-o"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--outdir"
-                seenopts += "-o"
-              }
-              val v = process(args(j), args(j + 1), keys, "." )
-              if(result.status){
-                opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-m" | "--memory" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--memory"
-                  r = r || s == "-m"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--memory"
-                seenopts += "-m"
-              }
-              val v = process(args(j), args(j + 1), keys, 2 )
-              if(result.status){
-                opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-                j += 1
-              }
-            case "-h" | "--help" => usage; result.status = false
-            case _ =>
-          }
-        } else { 
-          k = k + 1
-          k match {
-            case 0 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.srcFile  = v.get.asInstanceOf[java.lang.String]
-              }
-            case 1 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.sasFile  = v.get.asInstanceOf[java.lang.String]
-              }
-
-            case _ =>
-              addErrorTag("Too many arguments starting at " + args(j))
-          }
-        }
-        j = j + 1
-      }
-    } catch {
-      case e: Exception => addErrorTag(e.toString)
-    }
-
-    if(k+1 < 2) {
-      addErrorTag("Missing required arguments")
-    }
-
-  }
-}  
-
-def parseSireumAmandroidStagingMode(args : Seq[String], i : Int) {
-  val opt = SireumAmandroidStagingMode()
-  val keys = List[String]("-h", "--help", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
-  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
-
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
-  }
-
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
-  }
-
-  opt.analysis.outdir = {
-    val v = properties.getProperty(keyPrefix + "outdir")
-    if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
-    else opt.analysis.outdir
-  }
-
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
-  }
-
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
-  }
-
-  opt.general.mem = {
-    val v = properties.getProperty(keyPrefix + "memory")
-    if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
-    else opt.general.mem
-  }
-
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
-  def usage {
-    addInfoTag(
-s"""
-Usage:
-  sireum amandroid staging [options] <Source file> 
-
-where the available options are:
-
--h | --help
-
-Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
-
-General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
-""".trim) 
-  }
-  if (i == args.length) {
-      usage
-    } else {
-    result.options = Some(opt)
-    result.className = "org.sireum.amandroid.cli.StagingCli"
-    result.featureName = "Sireum Amandroid Cli:Amandroid.sapp"
-    var j = i
-    var k = -1
-    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-    try {
-      while (j < args.length) {
-        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-          addErrorTag(args(j) + " is not an option")
-        }
-        if(k == -1 && keys.contains(args(j))){
-          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          args(j) match {
-            case "-k" | "--k-context" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--k-context"
-                seenopts += "-k"
-              }
-              val v = process(args(j), args(j + 1), keys, 1 )
-              if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-ns" | "--nostatic" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-o" | "--outdir" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--outdir"
-                  r = r || s == "-o"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--outdir"
-                seenopts += "-o"
-              }
-              val v = process(args(j), args(j + 1), keys, "." )
-              if(result.status){
-                opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-m" | "--memory" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--memory"
-                  r = r || s == "-m"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--memory"
-                seenopts += "-m"
-              }
-              val v = process(args(j), args(j + 1), keys, 2 )
-              if(result.status){
-                opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
                 j += 1
               }
             case "-h" | "--help" => usage; result.status = false
@@ -1758,25 +608,19 @@ General Options
 
 def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidTaintAnalysisMode()
-  val keys = List[String]("-h", "--help", "-k", "--k-context", "-ns", "--nostatic", "-ni", "--no-icc", "-o", "--outdir", "-p", "--parallel", "-to", "--timeout", "-m", "--memory", "-msg", "--message", "-t", "--type")
+  val keys = List[String]("-h", "--help", "-mo", "--module", "-sas", "--souce_and_sink_file", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
-  opt.analysis.k_context = {
-    val v = properties.getProperty(keyPrefix + "k-context")
-    if (v != null) process("k-context", v, keys, opt.analysis.k_context).get.asInstanceOf[Int]
-    else opt.analysis.k_context
+  opt.module = {
+    val v = properties.getProperty(keyPrefix + "module")
+    if (v != null) process("module", v, keys, opt.module).get.asInstanceOf[org.sireum.option.AnalysisModule.Type]
+    else opt.module
   }
 
-  opt.analysis.noStatic = {
-    val v = properties.getProperty(keyPrefix + "nostatic")
-    if (v != null) process("nostatic", v, keys, opt.analysis.noStatic).get.asInstanceOf[Boolean]
-    else opt.analysis.noStatic
-  }
-
-  opt.analysis.noicc = {
-    val v = properties.getProperty(keyPrefix + "no-icc")
-    if (v != null) process("no-icc", v, keys, opt.analysis.noicc).get.asInstanceOf[Boolean]
-    else opt.analysis.noicc
+  opt.sas = {
+    val v = properties.getProperty(keyPrefix + "souce_and_sink_file")
+    if (v != null) process("souce_and_sink_file", v, keys, opt.sas).get.asInstanceOf[String]
+    else opt.sas
   }
 
   opt.analysis.outdir = {
@@ -1785,16 +629,16 @@ def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
     else opt.analysis.outdir
   }
 
-  opt.analysis.parallel = {
-    val v = properties.getProperty(keyPrefix + "parallel")
-    if (v != null) process("parallel", v, keys, opt.analysis.parallel).get.asInstanceOf[Boolean]
-    else opt.analysis.parallel
-  }
-
   opt.analysis.timeout = {
     val v = properties.getProperty(keyPrefix + "timeout")
     if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
     else opt.analysis.timeout
+  }
+
+  opt.general.debug = {
+    val v = properties.getProperty(keyPrefix + "debug")
+    if (v != null) process("debug", v, keys, opt.general.debug).get.asInstanceOf[Boolean]
+    else opt.general.debug
   }
 
   opt.general.mem = {
@@ -1803,42 +647,27 @@ def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
     else opt.general.mem
   }
 
-  opt.general.msgLevel = {
-    val v = properties.getProperty(keyPrefix + "message")
-    if (v != null) process("message", v, keys, opt.general.msgLevel).get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-    else opt.general.msgLevel
-  }
-
-  opt.general.typ = {
-    val v = properties.getProperty(keyPrefix + "type")
-    if (v != null) process("type", v, keys, opt.general.typ).get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-    else opt.general.typ
-  }
-
   def usage {
     addInfoTag(
 s"""
 Usage:
-  sireum amandroid taintAnalysis [options] <Source file> <Sink list file> 
+  sireum amandroid taintAnalysis [options] <Source file/dir> 
 
 where the available options are:
 
 -h | --help
+-mo  | --module      Analysis module to use. [Default: ${opt.module.toString.dropRight(1)},
+                     Choices: (PASSWORD_TRACKING, INTENT_INJECTION, DATA_LEAKAGE)]
+-sas | --souce_and_sink_file 
+                     Source and sink api list file. [Default: "${opt.sas}"]
 
 Analysis Options
-  -k  | --k-context Context length [Default: ${opt.analysis.k_context}]
-  -ns | --nostatic  Does not handle static initializer 
-  -ni | --no-icc    Does not tracking flows via icc 
-  -o  | --outdir    Output directory path [Default: "${opt.analysis.outdir}"]
-  -p  | --parallel  Parallel 
-  -to | --timeout   Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
+  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
 
 General Options
-  -m   | --memory  Max memory (GB). [Default: ${opt.general.mem}]
-  -msg | --message Message Level. [Default: ${opt.general.msgLevel.toString.dropRight(1)},
-                   Choices: (VERBOSE, NORMAL, CRITICAL, NO)]
-  -t   | --type    The type of the file you want to analyze.
-                   [Default: ${opt.general.typ.toString.dropRight(1)}, Choices: (DIR, APK)]   
+  -d | --debug  Output debug information 
+  -m | --memory Max memory (GB). [Default: ${opt.general.mem}]   
 """.trim) 
   }
   if (i == args.length) {
@@ -1861,60 +690,43 @@ General Options
             addErrorTag(args(j) + " is not an option")
           }
           args(j) match {
-            case "-k" | "--k-context" => 
+            case "-mo" | "--module" => 
 
               if(seenopts.exists{s => 
                   var r = false 
-                  r = r || s == "--k-context"
-                  r = r || s == "-k"
+                  r = r || s == "--module"
+                  r = r || s == "-mo"
                   r
                 }){
                 addWarningTag("Option already set: %s".format(args(j)))
               }
               else {
-                seenopts += "--k-context"
-                seenopts += "-k"
+                seenopts += "--module"
+                seenopts += "-mo"
               }
-              val v = process(args(j), args(j + 1), keys, 1 )
+              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalysisModule.DATA_LEAKAGE )
               if(result.status){
-                opt.analysis.k_context  = v.get.asInstanceOf[java.lang.Integer]
+                opt.module  = v.get.asInstanceOf[org.sireum.option.AnalysisModule.Type]
                 j += 1
               }
-            case "-ns" | "--nostatic" => 
+            case "-sas" | "--souce_and_sink_file" => 
 
               if(seenopts.exists{s => 
                   var r = false 
-                  r = r || s == "--nostatic"
-                  r = r || s == "-ns"
+                  r = r || s == "--souce_and_sink_file"
+                  r = r || s == "-sas"
                   r
                 }){
                 addWarningTag("Option already set: %s".format(args(j)))
               }
               else {
-                seenopts += "--nostatic"
-                seenopts += "-ns"
+                seenopts += "--souce_and_sink_file"
+                seenopts += "-sas"
               }
-              val v = process(args(j), "true", keys, false )
+              val v = process(args(j), args(j + 1), keys, "" )
               if(result.status){
-                opt.analysis.noStatic  = v.get.asInstanceOf[java.lang.Boolean]
-              }
-            case "-ni" | "--no-icc" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--no-icc"
-                  r = r || s == "-ni"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--no-icc"
-                seenopts += "-ni"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.noicc  = v.get.asInstanceOf[java.lang.Boolean]
+                opt.sas  = v.get.asInstanceOf[java.lang.String]
+                j += 1
               }
             case "-o" | "--outdir" => 
 
@@ -1935,24 +747,6 @@ General Options
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
-            case "-p" | "--parallel" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--parallel"
-                  r = r || s == "-p"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--parallel"
-                seenopts += "-p"
-              }
-              val v = process(args(j), "true", keys, false )
-              if(result.status){
-                opt.analysis.parallel  = v.get.asInstanceOf[java.lang.Boolean]
-              }
             case "-to" | "--timeout" => 
 
               if(seenopts.exists{s => 
@@ -1971,6 +765,24 @@ General Options
               if(result.status){
                 opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
+              }
+            case "-d" | "--debug" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--debug"
+                  r = r || s == "-d"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--debug"
+                seenopts += "-d"
+              }
+              val v = process(args(j), "true", keys, false )
+              if(result.status){
+                opt.general.debug  = v.get.asInstanceOf[java.lang.Boolean]
               }
             case "-m" | "--memory" => 
 
@@ -1991,44 +803,6 @@ General Options
                 opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
-            case "-msg" | "--message" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--message"
-                  r = r || s == "-msg"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--message"
-                seenopts += "-msg"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.MessageLevel.NO )
-              if(result.status){
-                opt.general.msgLevel  = v.get.asInstanceOf[org.sireum.option.MessageLevel.Type]
-                j += 1
-              }
-            case "-t" | "--type" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--type"
-                  r = r || s == "-t"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--type"
-                seenopts += "-t"
-              }
-              val v = process(args(j), args(j + 1), keys, org.sireum.option.AnalyzeSource.APK )
-              if(result.status){
-                opt.general.typ  = v.get.asInstanceOf[org.sireum.option.AnalyzeSource.Type]
-                j += 1
-              }
             case "-h" | "--help" => usage; result.status = false
             case _ =>
           }
@@ -2039,11 +813,6 @@ General Options
               val v = process(args(j), args(j), keys, "" )
               if(result.status){
                 opt.srcFile  = v.get.asInstanceOf[java.lang.String]
-              }
-            case 1 => 
-              val v = process(args(j), args(j), keys, "" )
-              if(result.status){
-                opt.sasFile  = v.get.asInstanceOf[java.lang.String]
               }
 
             case _ =>
@@ -2056,7 +825,7 @@ General Options
       case e: Exception => addErrorTag(e.toString)
     }
 
-    if(k+1 < 2) {
+    if(k+1 < 1) {
       addErrorTag("Missing required arguments")
     }
 
@@ -2068,22 +837,19 @@ def parseSireumAmandroidMode(args : Seq[String], i : Int) {
     addInfoTag(
 """
 Sireum Amandroid
-(c) 2014-2015, Argus & SAnToS Laboratories, Kansas State University
+(c) 2015-2016, Argus Laboratory - University of South Florida, SAnToS Laboratories - Kansas State University
 """.trim
 + "\n\n" + 
 """
 Available Modes:
-  cryptoMisuse     Detecting crypto API misuse
-  decompile        Dump .dex file and translate it to Pilar format
-  genGraph         Generate Graph for Android apk and store it
-  intentInjection  Detecting Intent injection problem
-  passwordTracking Tracking password flow within Android app
-  staging          Generate IDFG&DDG for Android apk and store it
-  taintAnalysis    Analyze Android apk and output the result
+  cryptoMisuse  Detecting crypto API misuse
+  decompile     Decompile Apk file
+  genGraph      Generate graph for Apks.
+  taintAnalysis Perform taint analysis on Apks.
 """.trim
 )
   } else {
-    parseModeHelper("amandroid", Seq("cryptoMisuse", "decompile", "genGraph", "intentInjection", "passwordTracking", "staging", "taintAnalysis"), args, i) {
+    parseModeHelper("amandroid", Seq("cryptoMisuse", "decompile", "genGraph", "taintAnalysis"), args, i) {
       _ match {
         case "cryptoMisuse" =>
           parseSireumAmandroidCryptoMisuseMode(args, i + 1)
@@ -2091,12 +857,6 @@ Available Modes:
           parseSireumAmandroidDecompileMode(args, i + 1)
         case "genGraph" =>
           parseSireumAmandroidGenGraphMode(args, i + 1)
-        case "intentInjection" =>
-          parseSireumAmandroidIntentInjectionMode(args, i + 1)
-        case "passwordTracking" =>
-          parseSireumAmandroidPasswordTrackingMode(args, i + 1)
-        case "staging" =>
-          parseSireumAmandroidStagingMode(args, i + 1)
         case "taintAnalysis" =>
           parseSireumAmandroidTaintAnalysisMode(args, i + 1)
       }
@@ -3999,7 +2759,7 @@ Sireum: A Software Analysis Platform
 + "\n\n" + 
 """
 Available Modes:
-  amandroid  Sireum Amandroid Tools
+  amandroid  Sireum Amandroid Modules
   bakar      Sireum Bakar Tools
   distro     Sireum Package Manager
   launch     Sireum Launcher
