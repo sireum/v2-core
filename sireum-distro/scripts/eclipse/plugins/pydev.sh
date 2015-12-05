@@ -2,7 +2,7 @@
 #
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export PYDEV_DROP_URL=${PYDEV_URL:=http://downloads.sourceforge.net/project/pydev/pydev/PyDev%20}${PYDEV_VERSION:=4.1.0}/PyDev%20${PYDEV_VERSION}.zip
+export PYDEV_DROP_URL=${PYDEV_URL:=http://downloads.sourceforge.net/project/pydev/pydev/PyDev%20}${PYDEV_VERSION:=4.4.0}/PyDev%20${PYDEV_VERSION}.zip
 export PYDEV_DROP=PyDev-$PYDEV_VERSION.zip
 if [ ! -f $PYDEV_DROP ]; then
   echo

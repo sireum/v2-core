@@ -1,7 +1,7 @@
 #!/bin/bash
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export SUBCLIPSE_DROP_URL=http://subclipse.tigris.org/files/documents/906/49431/site-1.10.9.zip
+export SUBCLIPSE_DROP_URL=http://subclipse.tigris.org/files/documents/906/49433/site-1.10.10.zip
 export SUBCLIPSE_DROP=${SUBCLIPSE_DROP_URL##*/}
 if [ ! -f "$SUBCLIPSE_DROP" ]; then
   echo

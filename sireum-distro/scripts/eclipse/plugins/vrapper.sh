@@ -1,7 +1,7 @@
 #!/bin/bash
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export VRAPPER_DROP_URL=http://downloads.sourceforge.net/project/vrapper/vrapper/0.56.0/vrapper_0.56.0_20150607.zip
+export VRAPPER_DROP_URL=http://sourceforge.net/projects/vrapper/files/vrapper/0.60.0/vrapper_0.60.0_20151004.zip
 export VRAPPER_DROP=${VRAPPER_DROP_URL##*/}
 if [ ! -f "$VRAPPER_DROP" ]; then
   echo

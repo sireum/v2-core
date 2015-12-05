@@ -2,7 +2,7 @@
 #
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export CDT_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/cdt/releases/8.7/cdt-8.7.0.zip
+export CDT_DROP_URL=http://ftp.osuosl.org/pub/eclipse/tools/cdt/releases/8.7/cdt-8.8.0.zip
 export CDT_DROP=${CDT_DROP_URL##*/}
 if [ ! -f $CDT_DROP ]; then
   echo

@@ -2,7 +2,7 @@
 #
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export YEDIT_DROP_URL=http://dadacoalition.org/yedit/plugins/org.dadacoalition.yedit_1.0.16.jar
+export YEDIT_DROP_URL=http://dadacoalition.org/yedit/plugins/org.dadacoalition.yedit_1.0.20.201509041456-RELEASE.jar
 export YEDIT_DROP=${YEDIT_DROP_URL##*/}
 if [ ! -f $YEDIT_DROP ]; then
   echo

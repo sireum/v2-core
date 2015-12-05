@@ -2,7 +2,7 @@
 #
 ELINKDIR=eclipse/jee/links
 RELDIR=../..
-export CVS_DROP_URL=http://ftp.osuosl.org/pub/eclipse/  eclipse/downloads/drops4/R-4.5-201506032000/org.eclipse.cvs-4.5.zip
+export CVS_DROP_URL=http://ftp.osuosl.org/pub/eclipse/eclipse/downloads/drops4/R-4.5.1-201509040015/org.eclipse.cvs-4.5.1.zip
 export CVS_DROP=${CVS_DROP_URL##*/}
 if [ ! -f $CVS_DROP ]; then
   echo
