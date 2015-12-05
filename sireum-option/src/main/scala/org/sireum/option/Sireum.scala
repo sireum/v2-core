@@ -89,8 +89,7 @@ case class SireumLaunchMode(
   symbologics : LaunchSymbologicsMode = internal(LaunchSymbologicsMode()),
   bkserver : LaunchBakarKiasanServerMode = internal(LaunchBakarKiasanServerMode()),
   bakarv1gps : LaunchBakarV1GpsMode = LaunchBakarV1GpsMode(),
-  bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode(),
-  osate : LaunchOsateMode = LaunchOsateMode())
+  bakargps : LaunchBakarGpsMode = LaunchBakarGpsMode())
 
 abstract class LaunchEclipseAppMode {
   def jvmopts : ISeq[String]
@@ -197,17 +196,6 @@ case class LaunchBakarV1GpsMode()
 @Main(value = "bakargps", className = "org.sireum.cli.launcher.GpsLauncher", featureName = "BakarGps.sapp",
   desc = "Launch Gpswith BakarV2 Plugins")
 case class LaunchBakarGpsMode()
-
-/**
- * @author <a href="mailto:jjedrys@k-state.edu">Jakub Jedryszek</a>
- */
-@Main(value = "osate", className = "org.sireum.cli.launcher.OsateLauncher", featureName = "Osate.sapp",
-  desc = "Launch Osate with egit plugin")
-case class LaunchOsateMode(
-  @Option(shortKey = "j", longKey = "jvmopts", desc = "Options for Java") //
-  var jvmopts : ISeq[String] = ivector("-Xms128m", "-Xmx1024m"),
-  @Option(longKey = "args", desc = "Arguments for Eclipse", isRaw = true) //
-  var args : ISeq[String] = ivectorEmpty) extends LaunchEclipseAppMode
 
 /**
  * @author <a href="mailto:robby@k-state.edu">Robby</a>

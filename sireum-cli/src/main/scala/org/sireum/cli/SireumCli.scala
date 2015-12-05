@@ -1476,113 +1476,6 @@ where the available options are:
   }
 }  
 
-def parseLaunchOsateMode(args : Seq[String], i : Int) {
-  val opt = LaunchOsateMode()
-  val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
-  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
-
-  opt.jvmopts = {
-    val v = properties.getProperty(keyPrefix + "jvmopts")
-    if (v != null) process("jvmopts", v, keys, opt.jvmopts).get.asInstanceOf[ISeq[String]]
-    else opt.jvmopts
-  }
-
-  opt.args = {
-    val v = properties.getProperty(keyPrefix + "args")
-    if (v != null) process("args", v, keys, opt.args).get.asInstanceOf[ISeq[String]]
-    else opt.args
-  }
-
-  def usage {
-    addInfoTag(
-s"""
-Usage:
-  sireum launch osate [options]  
-
-where the available options are:
-
--h | --help
--j | --jvmopts Options for Java [Separator: ",", Default: "${opt.jvmopts.mkString(",")}"]
---args         Arguments for Eclipse (accepts all following string arguments) 
-""".trim) 
-  }
-{
-    result.options = Some(opt)
-    result.className = "org.sireum.cli.launcher.OsateLauncher"
-    result.featureName = "Osate.sapp"
-    var j = i
-    var k = -1
-    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
-
-    try {
-      while (j < args.length) {
-        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-          addErrorTag(args(j) + " is not an option")
-        }
-        if(k == -1 && keys.contains(args(j))){
-          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
-            addErrorTag(args(j) + " is not an option")
-          }
-          args(j) match {
-            case "-j" | "--jvmopts" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--jvmopts"
-                  r = r || s == "-j"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--jvmopts"
-                seenopts += "-j"
-              }
-              val v = process(args(j), args(j + 1), keys, ivectorEmpty[String] )
-              if(result.status){
-                opt.jvmopts  = v.get.asInstanceOf[ISeq[String]]
-                j += 1
-              }
-            case "--args" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--args"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--args"
-              }
-              opt.args  = 
-                if (j + 1 == args.length) List()
-                else args.slice(j + 1, args.length).toVector
-              j = args.length
-            case "-h" | "--help" => usage; result.status = false
-            case _ =>
-          }
-        } else { 
-          k = k + 1
-          k match {
-
-            case _ =>
-              addErrorTag("Too many arguments starting at " + args(j))
-          }
-        }
-        j = j + 1
-      }
-    } catch {
-      case e: Exception => addErrorTag(e.toString)
-    }
-
-    if(k+1 < 0) {
-      addErrorTag("Missing required arguments")
-    }
-
-  }
-}  
-
 def parseLaunchSireumDevMode(args : Seq[String], i : Int) {
   val opt = LaunchSireumDevMode()
   val keys = List[String]("-h", "--help", "-j", "--jvmopts", "--args")
@@ -1704,12 +1597,11 @@ Available Modes:
   bakargps    Launch Gpswith BakarV2 Plugins
   bakarv1gps  Launch Gps with BakarV1 Plugins
   eclipse     Launch Eclipse
-  osate       Launch Osate with egit plugin
   sireumdev   Launch Eclipse with Sireum Dev Plugins
 """.trim
 )
   } else {
-    parseModeHelper("launch", Seq("antlrworks", "bakar", "bakargps", "bakarv1gps", "eclipse", "osate", "sireumdev"), args, i) {
+    parseModeHelper("launch", Seq("antlrworks", "bakar", "bakargps", "bakarv1gps", "eclipse", "sireumdev"), args, i) {
       _ match {
         case "antlrworks" =>
           parseLaunchAntlrWorksMode(args, i + 1)
@@ -1721,8 +1613,6 @@ Available Modes:
           parseLaunchBakarV1GpsMode(args, i + 1)
         case "eclipse" =>
           parseLaunchEclipseMode(args, i + 1)
-        case "osate" =>
-          parseLaunchOsateMode(args, i + 1)
         case "sireumdev" =>
           parseLaunchSireumDevMode(args, i + 1)
       }
