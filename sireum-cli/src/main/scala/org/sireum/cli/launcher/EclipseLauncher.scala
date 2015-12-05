@@ -78,9 +78,16 @@ class EclipseLauncher {
           val eclipseDir = new File(sireumHome, "apps/eclipse/jee")
           val eclipseConfigDir = new File(Config.configDir, "Eclipse/Configuration")
           if (opt.args.contains("-clean")) {
-            val d = eclipseConfigDir.getParentFile
+            val d = eclipseConfigDir
             if (d.exists() && !FileUtil.delete(d.toPath)) {
               System.err.println(s"Could not delete: ${d.getAbsolutePath}")
+              System.err.println("Please delete it manually first.")
+              System.err.flush()
+              sys.exit(-1)
+            }
+            val p2Dir = new File(d.getParentFile, "p2")
+            if (p2Dir.exists() && !FileUtil.delete(p2Dir.toPath)) {
+              System.err.println(s"Could not delete: ${p2Dir.getAbsolutePath}")
               System.err.println("Please delete it manually first.")
               System.err.flush()
               sys.exit(-1)
