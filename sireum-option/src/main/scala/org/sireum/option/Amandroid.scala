@@ -22,9 +22,18 @@ case class SireumAmandroidMode(
   decompile: SireumAmandroidDecompileMode = SireumAmandroidDecompileMode(),
   cryptoMisuse: SireumAmandroidCryptoMisuseMode = SireumAmandroidCryptoMisuseMode(),
   taintAnalysis: SireumAmandroidTaintAnalysisMode = SireumAmandroidTaintAnalysisMode(),
-//  staging: SireumAmandroidStagingMode = SireumAmandroidStagingMode(),
+  concurrent: SireumAmandroidConcurrentMode = SireumAmandroidConcurrentMode(),
   genCallGraph: SireumAmandroidGenGraphMode = SireumAmandroidGenGraphMode())
 
+@Mode(command = "concurrent",
+  desc = "Sireum Amandroid Concurrent Modules",
+  header = """
+Sireum Amandroid Concurrent
+(c) 2015-2016, Argus Laboratory - University of South Florida, SAnToS Laboratories - Kansas State University
+""")
+case class SireumAmandroidConcurrentMode(
+  stage: SireumAmandroidStagingMode = SireumAmandroidStagingMode())
+  
 object AnalysisModule extends Enum {
   sealed abstract class Type extends EnumElem
   object DATA_LEAKAGE extends Type
@@ -96,16 +105,16 @@ case class SireumAmandroidTaintAnalysisMode(
   @Option(shortKey = "mo", longKey = "module", desc = "Analysis module to use.") var module: AnalysisModule.Type = AnalysisModule.DATA_LEAKAGE,
   @Arg(index = 0, value = "Source file/dir") var srcFile: String = "")
 
-//@Main(value = "staging",
-//  className = "org.sireum.amandroid.cli.StagingCli",
-//  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
-//  desc = "Generate IDFG&DDG for Android apk and store it")
-//case class SireumAmandroidStagingMode(
-//
-//  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
-//  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
-//
-//  @Arg(index = 0, value = "Source file") var srcFile: String = "")
+@Main(value = "staging",
+  className = "org.sireum.amandroid.cli.concurrent.StagingCli",
+  featureName = "Sireum Amandroid Cli:Amandroid.sapp",
+  desc = "Generate Apk info and points-to information and store it")
+case class SireumAmandroidStagingMode(
+
+  general: SireumAmandroidGeneralGroup = SireumAmandroidGeneralGroup(),
+  analysis: SireumAmandroidAnalysisGroup = SireumAmandroidAnalysisGroup(),
+
+  @Arg(index = 0, value = "Source file/dir") var srcFile: String = "")
 
 @Main(value = "genGraph",
   className = "org.sireum.amandroid.cli.GenGraphCli",
