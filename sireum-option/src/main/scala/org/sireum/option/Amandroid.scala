@@ -39,8 +39,10 @@ object AnalysisModule extends Enum {
   object DATA_LEAKAGE extends Type
   object INTENT_INJECTION extends Type
   object PASSWORD_TRACKING extends Type
+  object OAUTH_TOKEN_TRACKING extends Type
+  object COMMUNICATION_LEAKAGE extends Type
 
-  def elements = ivector(DATA_LEAKAGE, INTENT_INJECTION, PASSWORD_TRACKING)
+  def elements = ivector(DATA_LEAKAGE, INTENT_INJECTION, PASSWORD_TRACKING, OAUTH_TOKEN_TRACKING, COMMUNICATION_LEAKAGE)
 }
 
 //object MessageLevel extends Enum {
@@ -138,6 +140,4 @@ case class SireumAmandroidGeneralGroup(
 
 @Group("Analysis Options")
 case class SireumAmandroidAnalysisGroup(
-  @Option(shortKey = "to", longKey = "timeout", desc = "Timeout (minute)") var timeout: Int = 10,
-
   @Option(shortKey = "o", longKey = "outdir", desc = "Output directory path") var outdir: String = ".")
