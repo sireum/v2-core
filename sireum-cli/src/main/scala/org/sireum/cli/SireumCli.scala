@@ -59,9 +59,9 @@ class SireumCli {
     }
   }
 
-def parseSireumAmandroidCryptoMisuseMode(args : Seq[String], i : Int) {
-  val opt = SireumAmandroidCryptoMisuseMode()
-  val keys = List[String]("-h", "--help", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
+def parseSireumAmandroidStagingMode(args : Seq[String], i : Int) {
+  val opt = SireumAmandroidStagingMode()
+  val keys = List[String]("-h", "--help", "-o", "--outdir", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
   opt.analysis.outdir = {
@@ -70,10 +70,173 @@ def parseSireumAmandroidCryptoMisuseMode(args : Seq[String], i : Int) {
     else opt.analysis.outdir
   }
 
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
+  opt.general.debug = {
+    val v = properties.getProperty(keyPrefix + "debug")
+    if (v != null) process("debug", v, keys, opt.general.debug).get.asInstanceOf[Boolean]
+    else opt.general.debug
+  }
+
+  opt.general.mem = {
+    val v = properties.getProperty(keyPrefix + "memory")
+    if (v != null) process("memory", v, keys, opt.general.mem).get.asInstanceOf[Int]
+    else opt.general.mem
+  }
+
+  def usage {
+    addInfoTag(
+s"""
+Usage:
+  sireum amandroid concurrent staging [options] <Source file/dir> 
+
+where the available options are:
+
+-h | --help
+
+Analysis Options
+  -o | --outdir Output directory path [Default: "${opt.analysis.outdir}"]   
+
+General Options
+  -d | --debug  Output debug information 
+  -m | --memory Max memory (GB). [Default: ${opt.general.mem}]   
+""".trim) 
+  }
+  if (i == args.length) {
+      usage
+    } else {
+    result.options = Some(opt)
+    result.className = "org.sireum.amandroid.cli.concurrent.StagingCli"
+    result.featureName = "Sireum Amandroid Cli:Amandroid.sapp"
+    var j = i
+    var k = -1
+    val seenopts = scala.collection.mutable.ListBuffer.empty[String]
+
+    try {
+      while (j < args.length) {
+        if(!keys.contains(args(j)) && args(j).startsWith("-")) {
+          addErrorTag(args(j) + " is not an option")
+        }
+        if(k == -1 && keys.contains(args(j))){
+          if(!keys.contains(args(j)) && args(j).startsWith("-")) {
+            addErrorTag(args(j) + " is not an option")
+          }
+          args(j) match {
+            case "-o" | "--outdir" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--outdir"
+                  r = r || s == "-o"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--outdir"
+                seenopts += "-o"
+              }
+              val v = process(args(j), args(j + 1), keys, "." )
+              if(result.status){
+                opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
+                j += 1
+              }
+            case "-d" | "--debug" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--debug"
+                  r = r || s == "-d"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--debug"
+                seenopts += "-d"
+              }
+              val v = process(args(j), "true", keys, false )
+              if(result.status){
+                opt.general.debug  = v.get.asInstanceOf[java.lang.Boolean]
+              }
+            case "-m" | "--memory" => 
+
+              if(seenopts.exists{s => 
+                  var r = false 
+                  r = r || s == "--memory"
+                  r = r || s == "-m"
+                  r
+                }){
+                addWarningTag("Option already set: %s".format(args(j)))
+              }
+              else {
+                seenopts += "--memory"
+                seenopts += "-m"
+              }
+              val v = process(args(j), args(j + 1), keys, 4 )
+              if(result.status){
+                opt.general.mem  = v.get.asInstanceOf[java.lang.Integer]
+                j += 1
+              }
+            case "-h" | "--help" => usage; result.status = false
+            case _ =>
+          }
+        } else { 
+          k = k + 1
+          k match {
+            case 0 => 
+              val v = process(args(j), args(j), keys, "" )
+              if(result.status){
+                opt.srcFile  = v.get.asInstanceOf[java.lang.String]
+              }
+
+            case _ =>
+              addErrorTag("Too many arguments starting at " + args(j))
+          }
+        }
+        j = j + 1
+      }
+    } catch {
+      case e: Exception => addErrorTag(e.toString)
+    }
+
+    if(k+1 < 1) {
+      addErrorTag("Missing required arguments")
+    }
+
+  }
+}  
+
+def parseSireumAmandroidConcurrentMode(args : Seq[String], i : Int) {
+  if (i == args.length) {
+    addInfoTag(
+"""
+Sireum Amandroid Concurrent
+(c) 2015-2016, Argus Laboratory - University of South Florida, SAnToS Laboratories - Kansas State University
+""".trim
++ "\n\n" + 
+"""
+Available Modes:
+  staging  Generate Apk info and points-to information and store it
+""".trim
+)
+  } else {
+    parseModeHelper("concurrent", Seq("staging"), args, i) {
+      _ match {
+        case "staging" =>
+          parseSireumAmandroidStagingMode(args, i + 1)
+      }
+    }
+  }
+}  
+
+def parseSireumAmandroidCryptoMisuseMode(args : Seq[String], i : Int) {
+  val opt = SireumAmandroidCryptoMisuseMode()
+  val keys = List[String]("-h", "--help", "-o", "--outdir", "-d", "--debug", "-m", "--memory")
+  val keyPrefix = args.slice(0, i).mkString("", ".", ".")
+
+  opt.analysis.outdir = {
+    val v = properties.getProperty(keyPrefix + "outdir")
+    if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
+    else opt.analysis.outdir
   }
 
   opt.general.debug = {
@@ -99,8 +262,7 @@ where the available options are:
 -h | --help
 
 Analysis Options
-  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
-  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o | --outdir Output directory path [Default: "${opt.analysis.outdir}"]   
 
 General Options
   -d | --debug  Output debug information 
@@ -144,25 +306,6 @@ General Options
               val v = process(args(j), args(j + 1), keys, "." )
               if(result.status){
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
             case "-d" | "--debug" => 
@@ -356,7 +499,7 @@ General Options
 
 def parseSireumAmandroidGenGraphMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidGenGraphMode()
-  val keys = List[String]("-h", "--help", "-f", "--format", "-gt", "--graph-type", "-h", "--header", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
+  val keys = List[String]("-h", "--help", "-f", "--format", "-gt", "--graph-type", "-h", "--header", "-o", "--outdir", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
   opt.format = {
@@ -381,12 +524,6 @@ def parseSireumAmandroidGenGraphMode(args : Seq[String], i : Int) {
     val v = properties.getProperty(keyPrefix + "outdir")
     if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
     else opt.analysis.outdir
-  }
-
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
   }
 
   opt.general.debug = {
@@ -417,8 +554,7 @@ where the available options are:
 -h  | --header     Header for nodes and edges. [Default: "${opt.header}"]
 
 Analysis Options
-  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
-  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o | --outdir Output directory path [Default: "${opt.analysis.outdir}"]   
 
 General Options
   -d | --debug  Output debug information 
@@ -521,25 +657,6 @@ General Options
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
                 j += 1
               }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
-                j += 1
-              }
             case "-d" | "--debug" => 
 
               if(seenopts.exists{s => 
@@ -608,7 +725,7 @@ General Options
 
 def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
   val opt = SireumAmandroidTaintAnalysisMode()
-  val keys = List[String]("-h", "--help", "-mo", "--module", "-o", "--outdir", "-to", "--timeout", "-d", "--debug", "-m", "--memory")
+  val keys = List[String]("-h", "--help", "-mo", "--module", "-o", "--outdir", "-d", "--debug", "-m", "--memory")
   val keyPrefix = args.slice(0, i).mkString("", ".", ".")
 
   opt.module = {
@@ -621,12 +738,6 @@ def parseSireumAmandroidTaintAnalysisMode(args : Seq[String], i : Int) {
     val v = properties.getProperty(keyPrefix + "outdir")
     if (v != null) process("outdir", v, keys, opt.analysis.outdir).get.asInstanceOf[String]
     else opt.analysis.outdir
-  }
-
-  opt.analysis.timeout = {
-    val v = properties.getProperty(keyPrefix + "timeout")
-    if (v != null) process("timeout", v, keys, opt.analysis.timeout).get.asInstanceOf[Int]
-    else opt.analysis.timeout
   }
 
   opt.general.debug = {
@@ -651,11 +762,11 @@ where the available options are:
 
 -h | --help
 -mo | --module Analysis module to use. [Default: ${opt.module.toString.dropRight(1)},
-               Choices: (PASSWORD_TRACKING, INTENT_INJECTION, DATA_LEAKAGE)]
+               Choices: (COMMUNICATION_LEAKAGE, OAUTH_TOKEN_TRACKING, PASSWORD_TRACKING,
+               INTENT_INJECTION, DATA_LEAKAGE)]
 
 Analysis Options
-  -o  | --outdir  Output directory path [Default: "${opt.analysis.outdir}"]
-  -to | --timeout Timeout (minute) [Default: ${opt.analysis.timeout}]   
+  -o | --outdir Output directory path [Default: "${opt.analysis.outdir}"]   
 
 General Options
   -d | --debug  Output debug information 
@@ -718,25 +829,6 @@ General Options
               val v = process(args(j), args(j + 1), keys, "." )
               if(result.status){
                 opt.analysis.outdir  = v.get.asInstanceOf[java.lang.String]
-                j += 1
-              }
-            case "-to" | "--timeout" => 
-
-              if(seenopts.exists{s => 
-                  var r = false 
-                  r = r || s == "--timeout"
-                  r = r || s == "-to"
-                  r
-                }){
-                addWarningTag("Option already set: %s".format(args(j)))
-              }
-              else {
-                seenopts += "--timeout"
-                seenopts += "-to"
-              }
-              val v = process(args(j), args(j + 1), keys, 10 )
-              if(result.status){
-                opt.analysis.timeout  = v.get.asInstanceOf[java.lang.Integer]
                 j += 1
               }
             case "-d" | "--debug" => 
@@ -815,6 +907,7 @@ Sireum Amandroid
 + "\n\n" + 
 """
 Available Modes:
+  concurrent    Sireum Amandroid Concurrent Modules
   cryptoMisuse  Detecting crypto API misuse
   decompile     Decompile Apk file
   genGraph      Generate graph for Apks.
@@ -822,8 +915,10 @@ Available Modes:
 """.trim
 )
   } else {
-    parseModeHelper("amandroid", Seq("cryptoMisuse", "decompile", "genGraph", "taintAnalysis"), args, i) {
+    parseModeHelper("amandroid", Seq("concurrent", "cryptoMisuse", "decompile", "genGraph", "taintAnalysis"), args, i) {
       _ match {
+        case "concurrent" =>
+          parseSireumAmandroidConcurrentMode(args, i + 1)
         case "cryptoMisuse" =>
           parseSireumAmandroidCryptoMisuseMode(args, i + 1)
         case "decompile" =>
