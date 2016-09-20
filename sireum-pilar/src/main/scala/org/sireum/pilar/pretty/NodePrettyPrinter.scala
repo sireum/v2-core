@@ -729,7 +729,7 @@ class NodePrettyPrinter(vprint: Value => String) {
       st.add("exp", ctx.popResult)
 
       if (o.jump.isDefined) {
-        v(o.jump)
+        v(o.jump.get)
         st.add("jump", ctx.popResult)
       }
 
